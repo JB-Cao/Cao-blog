@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Database on Cao&#39;s blog</title>
-        <link>/tags/database/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/database/</link>
         <description>Recent content in Database on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 26 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/database/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 26 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/database/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>SQLite使用基础以及在R中操作数据库</title>
-        <link>/p/sqlite-r/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/sqlite-r/</link>
         <pubDate>Wed, 26 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/sqlite-r/</guid>
-        <description>&lt;img src="/p/sqlite-r/images/R-C.png" alt="Featured image of post SQLite使用基础以及在R中操作数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/sqlite-r/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/sqlite-r/images/R-C.png" alt="Featured image of post SQLite使用基础以及在R中操作数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在生物信息学分析中，许多软件的中间文件或输出结果是数据库格式，例如 &lt;code&gt;.db&lt;/code&gt; 文件。同时，很多生物数据库的存储和下载格式也是数据库格式。因此，掌握数据库的基本操作，不仅有助于数据存储，还能提高数据查询和处理的效率。&lt;/p&gt;
 &lt;p&gt;SQLite 是一款轻量级的嵌入式关系型数据库管理系统，它不需要单独的服务器进程，而是直接将数据库存储在单个文件中。SQLite 具有以下特点：&lt;/p&gt;
 &lt;ol&gt;
@@ -452,11 +452,11 @@ SQL 语句主要分为几大类：&lt;/li&gt;
         </item>
         <item>
         <title>生物合成基因簇家族（GCF）数据库 BiG-FAM</title>
-        <link>/p/gcf-big-fam/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/</link>
         <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/gcf-big-fam/</guid>
-        <description>&lt;img src="/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28.png" alt="Featured image of post 生物合成基因簇家族（GCF）数据库 BiG-FAM" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28.png" alt="Featured image of post 生物合成基因簇家族（GCF）数据库 BiG-FAM" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;生物合成基因簇 (BGC) 的计算分析通过快速研究微生物基因组序列内的次级代谢潜力，彻底改变了天然产物的发现。将同源 BGC 分组为基因簇家族 (GCF) 有助于绘制其结构和分类多样性，并通过对已知功能的 BGC 进行去重复，提供对假定 BGC 新颖性的见解。&lt;/p&gt;
 &lt;p&gt;通过将从当前可用的基因组和 MAG 中鉴定出的大规模全球 BGC 集合作为数据源，BiG-FAM 提供了可探索的微生物次生代谢多样性“图集”，以浏览和搜索跨类群的生物合成多样性。
 BiG-FAM 有助于查询假定的 BGC，以便根据公开数据与其他已知和预测的 BGC 的关系，快速找到它们在多样性图上的位置，并更好地了解它们的新颖性或（可能的）功能。&lt;/p&gt;
@@ -489,11 +489,11 @@ BiG-FAM 有助于查询假定的 BGC，以便根据公开数据与其他已知�
         </item>
         <item>
         <title>GTDB基因组分类数据库及GTDB-Tk工具</title>
-        <link>/p/gtdb/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/gtdb/</link>
         <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/gtdb/</guid>
-        <description>&lt;img src="/p/gtdb/images/gtdb.png" alt="Featured image of post GTDB基因组分类数据库及GTDB-Tk工具" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/gtdb/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/gtdb/images/gtdb.png" alt="Featured image of post GTDB基因组分类数据库及GTDB-Tk工具" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;GTDB（Genome Taxonomy Database）是一个专注于基因组分类学的数据库，旨在提供高质量的细菌、古细菌、叶绿体和线粒体的分类信息。通过使用全基因组信息，GTDB提供了多级别的分类，包括域、界、纲、目、科、属等级别。其系统发育分类系统使得研究人员能够深入了解生物的演化和功能。GTDB主要以细菌中普遍存在的120个单拷贝蛋白质（bac120）和古菌中53个（arc53，从R07-RS207开始）标记蛋白为基础，在对多分组类别消歧后，根据相对演化散度标准化和分级，得到基因组分类结果。&lt;/p&gt;
 &lt;p&gt;GTDB定期更新，与其他生物信息数据库整合，为基因组学研究和微生物生态学等领域的研究提供了全面且可靠的分类信息。GTDB数据库已经于2018/2020连续发表两篇Nature Biotechnology，2021年又发表在Nature Microbiology和Nucleic Acids
 Research上，是目前最权威的微生物分类数据库之一。
@@ -1183,11 +1183,11 @@ GTDB-Tk 不提供合并树的工具，但可以通过操作 Newick文件来人�
         </item>
         <item>
         <title>上传测序数据至ENA数据库</title>
-        <link>/p/ena/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/ena/</link>
         <pubDate>Fri, 17 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/ena/</guid>
-        <description>&lt;img src="/p/ena/images/ena5.png" alt="Featured image of post 上传测序数据至ENA数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/ena/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/ena/images/ena5.png" alt="Featured image of post 上传测序数据至ENA数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;European Nucleotide Archive (ENA) 是一个由欧洲分子生物学实验室 (EMBL) 欧洲生物信息学研究所 (EBI) 维护的公共数据库。ENA 收集、存储和提供核酸序列数据，是全球生物学和生物信息学研究的重要资源之一。以下是 ENA 的几个关键点：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1564,11 +1564,11 @@ GTDB-Tk 不提供合并树的工具，但可以通过操作 Newick文件来人�
         </item>
         <item>
         <title>常用扩增子数据库</title>
-        <link>/p/amplicon/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/amplicon/</link>
         <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/amplicon/</guid>
-        <description>&lt;img src="/p/amplicon/images/nbt1.png" alt="Featured image of post 常用扩增子数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/amplicon/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/amplicon/images/nbt1.png" alt="Featured image of post 常用扩增子数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;扩增子测序是一种主要用于研究微生物群落结构的分子生物学技术。它主要用于分析环境样本中的微生物群落，特别是对细菌和古菌的16S rRNA基因以及真菌的18S rRNA基因进行测序。这项技术广泛用于研究土壤、水体、空气、生物体内等不同环境中微生物的多样性和丰度。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;基本步骤：&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
@@ -1716,11 +1716,11 @@ GTDB-Tk 不提供合并树的工具，但可以通过操作 Newick文件来人�
         </item>
         <item>
         <title>地球微生物组计划介绍（EMP）</title>
-        <link>/p/emp/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/emp/</link>
         <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/emp/</guid>
-        <description>&lt;img src="/p/emp/images/emp1.png" alt="Featured image of post 地球微生物组计划介绍（EMP）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/emp/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/emp/images/emp1.png" alt="Featured image of post 地球微生物组计划介绍（EMP）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;The Earth Microbiome Project (EMP) 是一个旨在描述和解释地球上微生物多样性的国际性科学计划。这个项目的目标是通过对地球各种环境中的微生物群落进行大规模的DNA测序和元数据采集，构建一个全球微生物群落的参考数据库，以更好地理解和研究微生物的生态学、功能和进化。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
@@ -1913,11 +1913,11 @@ GTDB-Tk 不提供合并树的工具，但可以通过操作 Newick文件来人�
         </item>
         <item>
         <title>KEGG 数据库及API (2)</title>
-        <link>/p/kegg-api2/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/kegg-api2/</link>
         <pubDate>Sat, 12 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/kegg-api2/</guid>
-        <description>&lt;img src="/p/kegg-api2/images/hsa00600.png" alt="Featured image of post KEGG 数据库及API (2)" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/kegg-api2/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/kegg-api2/images/hsa00600.png" alt="Featured image of post KEGG 数据库及API (2)" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.genome.jp/kegg/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;KEGG&lt;/a&gt;（Kyoto Encyclopedia of Genes and Genomes）是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息。它提供了基因、蛋白质、代谢物和信号通路等生物分子的综合信息，帮助研究人员理解生物体内分子之间的相互作用和功能。&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../kegg-api&#34; &gt;上一篇&lt;/a&gt;文章已经介绍了各种KEGG重要的子数据库，在这里就要介绍非常重要的操作：通过api查询和下载KEGG数据库内容。&lt;/p&gt;
@@ -2731,11 +2731,11 @@ GTDB-Tk 不提供合并树的工具，但可以通过操作 Newick文件来人�
         </item>
         <item>
         <title>KEGG 数据库及API (1)</title>
-        <link>/p/kegg-api/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/kegg-api/</link>
         <pubDate>Fri, 11 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/kegg-api/</guid>
-        <description>&lt;img src="/p/kegg-api/images/M00007.png" alt="Featured image of post KEGG 数据库及API (1)" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/kegg-api/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/kegg-api/images/M00007.png" alt="Featured image of post KEGG 数据库及API (1)" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.genome.jp/kegg/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;KEGG&lt;/a&gt;（Kyoto Encyclopedia of Genes and Genomes）是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息。它提供了基因、蛋白质、代谢物和信号通路等生物分子的综合信息，帮助研究人员理解生物体内分子之间的相互作用和功能。&lt;/p&gt;
 &lt;p&gt;KEGG数据库包含以下几个主要模块：&lt;/p&gt;

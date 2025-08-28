@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>IDE on Cao&#39;s blog</title>
-        <link>/tags/ide/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/ide/</link>
         <description>Recent content in IDE on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Fri, 05 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/ide/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 05 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/ide/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Positron初尝试，新一代数据科学IDE（R&#43;Python&#43;...）</title>
-        <link>/p/positron-ide-r-python/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/positron-ide-r-python/</link>
         <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/positron-ide-r-python/</guid>
-        <description>&lt;img src="/p/positron-ide-r-python/images/Positron.png" alt="Featured image of post Positron初尝试，新一代数据科学IDE（R&#43;Python&#43;...）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/positron-ide-r-python/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/positron-ide-r-python/images/Positron.png" alt="Featured image of post Positron初尝试，新一代数据科学IDE（R&#43;Python&#43;...）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Positron（正电子），是由 RStudio 母公司（改名叫 Posit）构建的下一代数据科学 IDE，一个可用于编写代码和探索数据的可扩展的多语言工具，并提供可重复创作和发布的熟悉环境。&lt;/p&gt;
 &lt;p&gt;主页：&lt;a class=&#34;link&#34; href=&#34;https://github.com/posit-dev/positron&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/posit-dev/positron&lt;/a&gt;&lt;/p&gt;

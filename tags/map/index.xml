@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Map on Cao&#39;s blog</title>
-        <link>/tags/map/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/map/</link>
         <description>Recent content in Map on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Mon, 26 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/map/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 26 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/map/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>快速绘制采样地图</title>
-        <link>/p/sample-map/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/sample-map/</link>
         <pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/sample-map/</guid>
-        <description>&lt;img src="/p/sample-map/images/leaf2.png" alt="Featured image of post 快速绘制采样地图" /&gt;&lt;p&gt;采样地图可以帮助我们直观地展示研究样本的地理分布和采样点信息。我之前也写过一篇&lt;a class=&#34;link&#34; href=&#34;../r-map&#34; &gt;R绘制优美的地图&lt;/a&gt;的推文，详细介绍了地图文件，坐标参考系统，绘制地图，注释地图，RasterLayer等内容，但对于一些简单的采样地图绘制，可能不需要那么复杂的步骤。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/sample-map/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/sample-map/images/leaf2.png" alt="Featured image of post 快速绘制采样地图" /&gt;&lt;p&gt;采样地图可以帮助我们直观地展示研究样本的地理分布和采样点信息。我之前也写过一篇&lt;a class=&#34;link&#34; href=&#34;../r-map&#34; &gt;R绘制优美的地图&lt;/a&gt;的推文，详细介绍了地图文件，坐标参考系统，绘制地图，注释地图，RasterLayer等内容，但对于一些简单的采样地图绘制，可能不需要那么复杂的步骤。&lt;/p&gt;
 &lt;p&gt;本文将介绍如何使用&lt;code&gt;pcutils&lt;/code&gt;包中的&lt;code&gt;sample_map&lt;/code&gt;函数快速绘制采样地图。&lt;/p&gt;
 &lt;h3 id=&#34;函数介绍&#34;&gt;函数介绍&lt;/h3&gt;
 &lt;p&gt;该函数用于绘制 &lt;strong&gt;空间采样点分布图&lt;/strong&gt;，支持三种可视化模式：&lt;/p&gt;
@@ -222,7 +222,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;sample_map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;anno_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Group&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/sample-map/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/sample-map/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;使用xlim和ylim参数可以设置地图的显示范围：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -232,7 +232,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;sample_map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;anno_df&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Group&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;xlim&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;90&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;135&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ylim&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;50&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/sample-map/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/sample-map/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;h3 id=&#34;自定义地图文件精细&#34;&gt;自定义地图文件（精细）&lt;/h3&gt;
 &lt;p&gt;自己找一个合适的GeoJSON或Shapefile文件，放在本地，然后指定路径。&lt;/p&gt;
 &lt;p&gt;网上能够下载到中国地图的地方很多，比如 &lt;a class=&#34;link&#34; href=&#34;http://www.geojson.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -262,7 +262,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;scale_fill_pc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/sample-map/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/sample-map/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;h3 id=&#34;leaflet交互式地图&#34;&gt;leaflet交互式地图&lt;/h3&gt;
 &lt;p&gt;Leaflet是一个开源的JavaScript库，用于创建交互式地图。R中的Leaflet包提供了一个轻量级的接口，允许在R中创建交互式地图。Leaflet包提供了许多基本的地图操作功能，例如缩放、平移和旋转，同时还允许添加标记、文本注释、多边形、线条和点。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

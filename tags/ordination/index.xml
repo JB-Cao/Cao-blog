@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Ordination on Cao&#39;s blog</title>
-        <link>/tags/ordination/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/ordination/</link>
         <description>Recent content in Ordination on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Fri, 17 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/ordination/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 17 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/ordination/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>降维/排序分析（ordination analysis）</title>
-        <link>/p/ordination-analysis/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/ordination-analysis/</link>
         <pubDate>Fri, 17 Nov 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/ordination-analysis/</guid>
-        <description>&lt;img src="/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-9-1.png" alt="Featured image of post 降维/排序分析（ordination analysis）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/ordination-analysis/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-9-1.png" alt="Featured image of post 降维/排序分析（ordination analysis）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;ordination analysis（排序分析）是生态学和统计学领域中用于分析和解释多变量数据的方法之一。这个方法通常被用于探索和可视化生态学或生物学数据中的模式，尤其是在物种组成和环境因素之间的关系方面。具体可以参考张金屯老师的《数量生态学》，里面讲的非常详细，然后《数量生态学—R语言的应用》一书中还提供了所有分析的R代码，非常建议阅读。&lt;/p&gt;
 &lt;p&gt;排序分析是一种多变量分析的方法，而降维分析是其中的一部分。排序分析的目标是通过降维技术将高维数据转化为更容易理解和解释的低维形式，同时保留主要的数据结构。常见的方法包括主成分分析（Principal Component Analysis，PCA）和对应分析（Correspondence Analysis，CA）等，一般群落beta多样性分析都会用到这些方法。&lt;/p&gt;
 &lt;p&gt;排序方法根据有无解释变量可分为两种：限制性排序和非限制性排序。&lt;/p&gt;
@@ -410,7 +410,7 @@ if use pcoa or nmds, your can choose a dist method (default: euclidean)，如果
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Group&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Group&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;p&gt;对于这种分组的显著性（怎么说明三组的群落组成存在显著差异？），具体有adonis/mrpp/anosim/mantel等方法（可参考&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/qq_42830713/article/details/129073120&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://blog.csdn.net/qq_42830713/article/details/129073120&lt;/a&gt;）,一般用vegan包的&lt;code&gt;adonis2&lt;/code&gt;函数（又叫PERMANOVA，Permutational Multivariate Analysis of Variance Using Distance Matrices）来检验。&lt;/p&gt;
 &lt;p&gt;pctax::permanova函数也整合了几种方法，可以获得对应的R方和p值，然后标在PCA图上。注意这几种方法都是基于距离的，建议检验方法和降维方法使用的距离保持一致&lt;/p&gt;
@@ -457,7 +457,7 @@ if use pcoa or nmds, your can choose a dist method (default: euclidean)，如果
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Group&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Group&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;permanova_res&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;adonis_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;p&gt;也可以将连续变量映射到颜色上：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -467,7 +467,7 @@ if use pcoa or nmds, your can choose a dist method (default: euclidean)，如果
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Group&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;env1&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;p&gt;绘图有很多可以灵活调节的参数：&lt;/p&gt;
 &lt;p&gt;?pctax:::plot.b_res&lt;/p&gt;
 &lt;p&gt;mode 是绘图风格，1～3都是我常用的：&lt;/p&gt;
@@ -481,7 +481,7 @@ if use pcoa or nmds, your can choose a dist method (default: euclidean)，如果
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Group&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Group&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;1152&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;1152&#34; /&gt;
 &lt;p&gt;把bi设为true的话，会画出一部分贡献度最高的变量：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -493,7 +493,7 @@ if use pcoa or nmds, your can choose a dist method (default: euclidean)，如果
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;n&#34;&gt;permanova_res&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;adonis_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text_param&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;-0.3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;-0.4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;p&gt;margin 可以画出点的分布密度图或箱形图:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -503,7 +503,7 @@ if use pcoa or nmds, your can choose a dist method (default: euclidean)，如果
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Group&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Group&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;margin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -512,7 +512,7 @@ if use pcoa or nmds, your can choose a dist method (default: euclidean)，如果
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot.b_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Group&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Group&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;margin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;box_margin&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-11-2.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-11-2.png&#34; width=&#34;576&#34; /&gt;
 &lt;p&gt;限制性排序则需要输入响应变量数据和我们要研究的环境数据：&lt;/p&gt;
 &lt;p&gt;以RDA分析为例：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -565,7 +565,7 @@ if use pcoa or nmds, your can choose a dist method (default: euclidean)，如果
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;RDA_plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phy.rda&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Group&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;p&gt;对于这里每一个环境因素的检验，我们仍然可以使用adonis，或者envfit，bioenv等检验方式：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -577,7 +577,7 @@ if use pcoa or nmds, your can choose a dist method (default: euclidean)，如果
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;adonis_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -588,7 +588,7 @@ if use pcoa or nmds, your can choose a dist method (default: euclidean)，如果
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;envfit_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-13-2.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/ordination-analysis/index.en_files/figure-html/unnamed-chunk-13-2.png&#34; width=&#34;576&#34; /&gt;
 &lt;p&gt;限制性排序比较复杂，如果输入的环境因素较多具有共线性，还应该对得到的结果使用&lt;code&gt;ordistep&lt;/code&gt;进行forward，backward，both等方式的筛选，得到最合适的模型。&lt;/p&gt;
 </description>
         </item>

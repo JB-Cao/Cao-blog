@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>BGCs on Cao&#39;s blog</title>
-        <link>/tags/bgcs/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/bgcs/</link>
         <description>Recent content in BGCs on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Sun, 27 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/bgcs/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 27 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/bgcs/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>BGCkit：组学数据BGC分析流程</title>
-        <link>/p/bgckit-bgc/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/bgckit-bgc/</link>
         <pubDate>Sun, 27 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/bgckit-bgc/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/p/bgckit-bgc/</guid>
         <description></description>
         </item>
         <item>
         <title>使用BiG-SLiCE高效聚类大规模BGCs</title>
-        <link>/p/big-slice-bgcs/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/big-slice-bgcs/</link>
         <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/big-slice-bgcs/</guid>
-        <description>&lt;img src="/p/big-slice-bgcs/images/bgc_intro.png" alt="Featured image of post 使用BiG-SLiCE高效聚类大规模BGCs" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/big-slice-bgcs/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/big-slice-bgcs/images/bgc_intro.png" alt="Featured image of post 使用BiG-SLiCE高效聚类大规模BGCs" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;随着基因组挖掘技术的进步，生物合成基因簇（BGCs）的研究已成为天然产物发现的核心环节。目前，超过20万个公开的微生物基因组中蕴藏着丰富的化学多样性信息。然而，现有的工具在处理大规模BGCs时，常因基于网络的聚类方法效率低下而面临瓶颈。&lt;/p&gt;
 &lt;p&gt;BiG-SLiCE（Biosynthetic Gene clusters - Super Linear Clustering Engine） 应运而生，这是一款专为高效聚类大规模BGCs而设计的工具。它通过将BGCs映射到欧几里得空间，以近乎线性的方式将BGCs分组为基因簇家族（GCFs）。在短短10天内，BiG-SLiCE成功分析了来自209,206个微生物基因组和宏基因组组装基因组（MAGs）的1,225,071个BGCs，并构建了全球次级代谢多样性的分布图谱，揭示了未被开发的生物合成潜力。此外，BiG-SLiCE还提供了“查询模式”，能够快速将新测序的BGCs归类到已有的GCFs中，并配备了强大的可视化引擎，便于用户探索数据。这一工具不仅加速了天然产物的发现，还为构建全球可搜索的BGC网络奠定了基础。&lt;/p&gt;
 &lt;p&gt;BiG-SLiCE的开源地址：https://github.com/medema-group/bigslice&lt;/p&gt;
@@ -515,11 +515,11 @@ The sql dump of the BGC-Atlas database (2.0 GB).&lt;/p&gt;
         </item>
         <item>
         <title>BGC Atlas助力宏基因组中生物合成基因簇的发现与分析</title>
-        <link>/p/bgc-atlas/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/bgc-atlas/</link>
         <pubDate>Wed, 26 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/bgc-atlas/</guid>
-        <description>&lt;img src="/p/bgc-atlas/images/bgc_atlas.png" alt="Featured image of post BGC Atlas助力宏基因组中生物合成基因簇的发现与分析" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/bgc-atlas/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/bgc-atlas/images/bgc_atlas.png" alt="Featured image of post BGC Atlas助力宏基因组中生物合成基因簇的发现与分析" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;次级代谢产物（Secondary Metabolites）是微生物在生长过程中产生的非必需化合物，尽管对微生物自身的生长发育并非不可或缺，却在生态和生理功能中扮演着重要角色。这些化合物在医药、生物技术和农业领域具有广泛的应用潜力。它们的合成由生物合成基因簇（Biosynthetic Gene Clusters, BGCs）编码，这些基因簇共同指导次级代谢产物的生物合成。随着宏基因组学技术的发展，研究人员能够直接从环境样本中研究BGCs，发现了许多编码全新化学结构的未知基因簇。&lt;/p&gt;
 &lt;p&gt;上次介绍过一下生物合成基因簇家族（GCF）相关的&lt;a class=&#34;link&#34; href=&#34;../gcf-big-fam&#34; &gt;Big-Fam数据库&lt;/a&gt;，但它的源数据来自培养的微生物基因组或存放在公共存储库中的MAG的数据。而且它不提供相应数据的下载，上传还是AntiSmash的id，想要跟自己宏基因组产生的大量BGCs比较不太可能。&lt;/p&gt;
 &lt;p&gt;本文介绍一个比较新的名为&lt;strong&gt;BGC Atlas&lt;/strong&gt;的网络资源（&lt;a class=&#34;link&#34; href=&#34;https://bgc-atlas.cs.uni-tuebingen.de&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -570,11 +570,11 @@ The sql dump of the BGC-Atlas database (2.0 GB).&lt;/p&gt;
         </item>
         <item>
         <title>生物合成基因簇家族（GCF）数据库 BiG-FAM</title>
-        <link>/p/gcf-big-fam/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/</link>
         <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/gcf-big-fam/</guid>
-        <description>&lt;img src="/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28.png" alt="Featured image of post 生物合成基因簇家族（GCF）数据库 BiG-FAM" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28.png" alt="Featured image of post 生物合成基因簇家族（GCF）数据库 BiG-FAM" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;生物合成基因簇 (BGC) 的计算分析通过快速研究微生物基因组序列内的次级代谢潜力，彻底改变了天然产物的发现。将同源 BGC 分组为基因簇家族 (GCF) 有助于绘制其结构和分类多样性，并通过对已知功能的 BGC 进行去重复，提供对假定 BGC 新颖性的见解。&lt;/p&gt;
 &lt;p&gt;通过将从当前可用的基因组和 MAG 中鉴定出的大规模全球 BGC 集合作为数据源，BiG-FAM 提供了可探索的微生物次生代谢多样性“图集”，以浏览和搜索跨类群的生物合成多样性。
 BiG-FAM 有助于查询假定的 BGC，以便根据公开数据与其他已知和预测的 BGC 的关系，快速找到它们在多样性图上的位置，并更好地了解它们的新颖性或（可能的）功能。&lt;/p&gt;
@@ -607,11 +607,11 @@ BiG-FAM 有助于查询假定的 BGC，以便根据公开数据与其他已知�
         </item>
         <item>
         <title>使用BiG-SCAPE挖掘微生物组BGCs</title>
-        <link>/p/big-scape-bgcs/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/big-scape-bgcs/</link>
         <pubDate>Mon, 13 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/big-scape-bgcs/</guid>
-        <description>&lt;img src="/p/big-scape-bgcs/images/big3.png" alt="Featured image of post 使用BiG-SCAPE挖掘微生物组BGCs" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/big-scape-bgcs/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/big-scape-bgcs/images/big3.png" alt="Featured image of post 使用BiG-SCAPE挖掘微生物组BGCs" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在生物信息学领域，对（宏）基因组进行生物合成基因簇（BGCs）的挖掘，编码次生代谢产物的生产已成为自然产物发现的关键策略。在单个基因组水平上，这一过程由诸如antiSMASH之类的工具执行。&lt;/p&gt;
 &lt;p&gt;当研究大量基因组和宏基因组时，进行大规模分析变得至关重要。BiG-SCAPE（生物合成基因相似性聚类与勘探引擎）是一种计算BGC之间距离的工具，以便将BGC的多样性映射到序列相似性网络上，然后将其用于自动重建基因簇家族，即编码高度相似或相同分子的基因簇组。BiG-SCAPE对这些相似性网络的交互式可视化有助于有效地探索BGC的多样性，并将其与MIBiG存储库中的参考数据知识联系起来。&lt;/p&gt;
 &lt;h3 id=&#34;简要工作原理&#34;&gt;简要工作原理&lt;/h3&gt;
@@ -1277,11 +1277,11 @@ BiG-FAM 有助于查询假定的 BGC，以便根据公开数据与其他已知�
         </item>
         <item>
         <title>使用antiSMASH数据库及软件分析微生物组</title>
-        <link>/p/antismash/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/antismash/</link>
         <pubDate>Tue, 07 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/antismash/</guid>
-        <description>&lt;img src="/p/antismash/images/clusterrules.png" alt="Featured image of post 使用antiSMASH数据库及软件分析微生物组" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/antismash/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/antismash/images/clusterrules.png" alt="Featured image of post 使用antiSMASH数据库及软件分析微生物组" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;上次简要介绍过了&lt;a class=&#34;link&#34; href=&#34;../bgcs&#34; &gt;微生物组中生物合成基因簇（BGCs）分析&lt;/a&gt;，这次具体讲解使用antiSMASH数据库及软件分析的流程。&lt;/p&gt;
 &lt;p&gt;antiSMASH（antibiotics &amp;amp; Secondary Metabolite Analysis Shell）是一个用于识别和分析微生物中生物合成基因簇（BGCs）的工具。BGCs是一组编码生物合成途径的基因，这些途径用于合成生物活性化合物，如抗生素、抗肿瘤药物等。通过分析BGCs，可以帮助研究者发现新的生物活性化合物，并了解这些化合物的生物合成途径。&lt;/p&gt;
 &lt;p&gt;网址：&lt;a class=&#34;link&#34; href=&#34;https://antismash.secondarymetabolites.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -1703,18 +1703,18 @@ BiG-FAM 有助于查询假定的 BGC，以便根据公开数据与其他已知�
         </item>
         <item>
         <title>微生物组的生物合成基因簇（BGCs）分析</title>
-        <link>/p/bgcs/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/bgcs/</link>
         <pubDate>Tue, 07 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/bgcs/</guid>
-        <description>&lt;img src="/p/bgcs/images/BGC_overview.png" alt="Featured image of post 微生物组的生物合成基因簇（BGCs）分析" /&gt;&lt;script src=&#34;/p/bgcs/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/bgcs/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/bgcs/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/bgcs/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/bgcs/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/bgcs/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/bgcs/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/bgcs/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/bgcs/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/bgcs/images/BGC_overview.png" alt="Featured image of post 微生物组的生物合成基因簇（BGCs）分析" /&gt;&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/bgcs/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/bgcs/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/bgcs/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/bgcs/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/bgcs/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/bgcs/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/bgcs/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/bgcs/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;天然产物（natural product，NP）是指生物体内的组成成分或其代谢产物，具有广泛的应用价值。
 其中，来源于微生物的次级代谢产物，在生物医学、工业和农业中扮演着重要角色[1]。&lt;/p&gt;

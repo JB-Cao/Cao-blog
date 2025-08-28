@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Amplicon on Cao&#39;s blog</title>
-        <link>/tags/amplicon/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/amplicon/</link>
         <description>Recent content in Amplicon on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Tue, 14 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/amplicon/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 14 Jan 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/amplicon/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>使用Kraken进行16S/ITS物种注释（超快）</title>
-        <link>/p/kraken-16s-its/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/kraken-16s-its/</link>
         <pubDate>Tue, 14 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/kraken-16s-its/</guid>
-        <description>&lt;img src="/p/kraken-16s-its/images/k16s1.png" alt="Featured image of post 使用Kraken进行16S/ITS物种注释（超快）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/kraken-16s-its/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/kraken-16s-its/images/k16s1.png" alt="Featured image of post 使用Kraken进行16S/ITS物种注释（超快）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;上次记录了一下qiime2的&lt;a class=&#34;link&#34; href=&#34;../amplicon-workflow&#34; &gt;扩增子分析流程&lt;/a&gt;。但是实际使用时，在最后一步物种注释时卡住了，如果使用常用的&lt;code&gt;feature-classifier&lt;/code&gt;方法，我尝试使用unite数据库鉴定了100条ITS序列，居然用了半个小时！尴尬的是，我有整整10万条ASV序列，这得跑到猴年马月。我想到做宏基因组时，千万级数量的reads用kraken做物种注释也不需要这么久，肯定有快的方法的。&lt;/p&gt;
 &lt;p&gt;然后发现Kraken用于16S已经有文章了：
 Lu, J., Salzberg, S.L. Ultrafast and accurate 16S rRNA microbial community analysis using Kraken 2. Microbiome 8, 124 (2020). &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1186/s40168-020-00900-2&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -266,11 +266,11 @@ Lu, J., Salzberg, S.L. Ultrafast and accurate 16S rRNA microbial community analy
         </item>
         <item>
         <title>扩增子(Amplicon)数据分析流程|Qiime2</title>
-        <link>/p/amplicon-workflow/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/amplicon-workflow/</link>
         <pubDate>Mon, 23 Dec 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/amplicon-workflow/</guid>
-        <description>&lt;img src="/p/amplicon-workflow/images/16s.webp" alt="Featured image of post 扩增子(Amplicon)数据分析流程|Qiime2" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/amplicon-workflow/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/amplicon-workflow/images/16s.webp" alt="Featured image of post 扩增子(Amplicon)数据分析流程|Qiime2" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;我学习微生物组分析的过程是从shot-gun 宏基因组数据分析开始的，反而没怎么做过相对更早更成熟的扩增子测序的上游分析😂，最近刚好有需求，还是自己学习并搭建一下自己用的比较舒服的流程吧。&lt;/p&gt;
 &lt;p&gt;扩增子（Amplicon）分析是研究微生物群落组成与功能的核心方法之一，特别是在生态学、医学和环境科学领域。通过对目标基因区域（如16S rRNA、18S rRNA、ITS）的特异性扩增与测序，扩增子分析能够高效揭示样本中微生物的多样性和群落结构。相比宏基因组测序，扩增子分析具有成本低、处理流程简化等优势，适用于大规模样本研究。&lt;/p&gt;
 &lt;p&gt;扩增子分析的核心原理是通过聚合酶链式反应 (PCR) 技术，对目标微生物基因片段进行特异性扩增和测序，以解析微生物群落组成及其多样性。通常选择的目标片段为具有保守区域和高变异区域的基因，如细菌的16S rRNA基因、真菌的ITS区等。保守区域用作引物设计的靶点，高变异区域用于区分不同物种。&lt;/p&gt;

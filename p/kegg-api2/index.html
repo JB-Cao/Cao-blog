@@ -4,16 +4,16 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='KEGG是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息，这里就要介绍非常重要的操作：通过api查询和下载KEGG数据库内容。'>
 <title>KEGG 数据库及API (2)</title>
 
-<link rel='canonical' href='/p/kegg-api2/'>
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/kegg-api2/'>
 
-<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='KEGG 数据库及API (2)'>
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='KEGG 数据库及API (2)'>
 <meta property='og:description' content='KEGG是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息，这里就要介绍非常重要的操作：通过api查询和下载KEGG数据库内容。'>
-<meta property='og:url' content='/p/kegg-api2/'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/kegg-api2/'>
 <meta property='og:site_name' content='Cao&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='database' /><meta property='article:tag' content='software' /><meta property='article:published_time' content='2023-08-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-08-12T00:00:00&#43;00:00'/><meta property='og:image' content='/p/kegg-api2/images/hsa00600.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='database' /><meta property='article:tag' content='software' /><meta property='article:published_time' content='2023-08-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-08-12T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/kegg-api2/images/hsa00600.png' />
 <meta name="twitter:title" content="KEGG 数据库及API (2)">
 <meta name="twitter:description" content="KEGG是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息，这里就要介绍非常重要的操作：通过api查询和下载KEGG数据库内容。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='/p/kegg-api2/images/hsa00600.png' />
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/kegg-api2/images/hsa00600.png' />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -57,13 +57,13 @@
         
             
             <figure class="site-avatar">
-                <a href="/">
+                <a href="/Cao-blog/">
                 
                     
                     
                     
                         
-                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -76,7 +76,7 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
             <h2 class="site-description">work hard, live happily.</h2>
         </div>
     </header><ol class="social-menu">
@@ -154,7 +154,7 @@
         
         
         <li >
-            <a href='/' >
+            <a href='/Cao-blog/' >
                 
                 
                 
@@ -174,7 +174,7 @@
         
         
         <li >
-            <a href='/about/' >
+            <a href='/Cao-blog/about/' >
                 
                 
                 
@@ -193,7 +193,7 @@
         
         
         <li >
-            <a href='/archives/' >
+            <a href='/Cao-blog/archives/' >
                 
                 
                 
@@ -213,7 +213,7 @@
         
         
         <li >
-            <a href='/mindmap/' >
+            <a href='/Cao-blog/mindmap/' >
                 
                 
                 
@@ -225,7 +225,7 @@
         
         
         <li >
-            <a href='/search/' >
+            <a href='/Cao-blog/search/' >
                 
                 
                 
@@ -258,9 +258,9 @@
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="/" selected>English</option>
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
                         
-                            <option value="/zh-cn/" >中文</option>
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
                         
                     </select>
                 </li>
@@ -349,9 +349,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/kegg-api2/">
-                <img src="/p/kegg-api2/images/hsa00600_hu_cd7291b746f8a09e.png"
-                        srcset="/p/kegg-api2/images/hsa00600_hu_cd7291b746f8a09e.png 800w, /p/kegg-api2/images/hsa00600_hu_a39eae8d0d16ea66.png 1600w"
+            <a href="/Cao-blog/p/kegg-api2/">
+                <img src="/Cao-blog/p/kegg-api2/images/hsa00600_hu_cd7291b746f8a09e.png"
+                        srcset="/Cao-blog/p/kegg-api2/images/hsa00600_hu_cd7291b746f8a09e.png 800w, /Cao-blog/p/kegg-api2/images/hsa00600_hu_a39eae8d0d16ea66.png 1600w"
                         width="800" 
                         height="585" 
                         loading="lazy"
@@ -365,7 +365,7 @@
     
     <header class="article-category">
         
-            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+            <a href="/Cao-blog/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
                 metagenomic
             </a>
         
@@ -374,7 +374,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/kegg-api2/">KEGG 数据库及API (2)</a>
+            <a href="/Cao-blog/p/kegg-api2/">KEGG 数据库及API (2)</a>
         </h2>
     
         
@@ -1265,9 +1265,9 @@
     
     <section class="article-tags">
         
-            <a href="/tags/database/">Database</a>
+            <a href="/Cao-blog/tags/database/">Database</a>
         
-            <a href="/tags/software/">Software</a>
+            <a href="/Cao-blog/tags/software/">Software</a>
         
     </section>
 
@@ -1325,11 +1325,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/kegg-api/">
+    <a href="/Cao-blog/p/kegg-api/">
         
         
             <div class="article-image">
-                <img src="/p/kegg-api/images/M00007.815aba0217a235e2a597c896bd52eefc_hu_13bd92c01c92a463.png" 
+                <img src="/Cao-blog/p/kegg-api/images/M00007.815aba0217a235e2a597c896bd52eefc_hu_13bd92c01c92a463.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1349,11 +1349,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/gcf-big-fam/">
+    <a href="/Cao-blog/p/gcf-big-fam/">
         
         
             <div class="article-image">
-                <img src="/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28.0fbb5b0c2b31df564edb14075af07c92_hu_b51a4a4f8db8bb65.png" 
+                <img src="/Cao-blog/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28.0fbb5b0c2b31df564edb14075af07c92_hu_b51a4a4f8db8bb65.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1373,11 +1373,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/instrain/">
+    <a href="/Cao-blog/p/instrain/">
         
         
             <div class="article-image">
-                <img src="/p/instrain/images/OverviewFigure1_v1.210f4876fc2ad1d4aaa1deb758403f1d_hu_533598e87412281c.webp" 
+                <img src="/Cao-blog/p/instrain/images/OverviewFigure1_v1.210f4876fc2ad1d4aaa1deb758403f1d_hu_533598e87412281c.webp" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1397,11 +1397,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/gtdb/">
+    <a href="/Cao-blog/p/gtdb/">
         
         
             <div class="article-image">
-                <img src="/p/gtdb/images/gtdb.e86e8d7c25f7c58539f53e381fd6bff6_hu_452ee57541a3e655.png" 
+                <img src="/Cao-blog/p/gtdb/images/gtdb.e86e8d7c25f7c58539f53e381fd6bff6_hu_452ee57541a3e655.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1421,11 +1421,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/ani/">
+    <a href="/Cao-blog/p/ani/">
         
         
             <div class="article-image">
-                <img src="/p/ani/images/ani3.68da08c94ea4c007938042e49c0e07d5_hu_fe3e6b2cf8eeb457.png" 
+                <img src="/Cao-blog/p/ani/images/ani3.68da08c94ea4c007938042e49c0e07d5_hu_fe3e6b2cf8eeb457.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1602,7 +1602,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

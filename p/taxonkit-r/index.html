@@ -4,16 +4,16 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='TaxonKit是一个用于处理生物分类学数据的命令行工具，我把Taxonkit工具整合进了R包pctax，也开发了一些配套的系统发育分析和可视化方法。'>
 <title>R调用Taxonkit展示系统发育信息</title>
 
-<link rel='canonical' href='/p/taxonkit-r/'>
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/taxonkit-r/'>
 
-<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='R调用Taxonkit展示系统发育信息'>
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='R调用Taxonkit展示系统发育信息'>
 <meta property='og:description' content='TaxonKit是一个用于处理生物分类学数据的命令行工具，我把Taxonkit工具整合进了R包pctax，也开发了一些配套的系统发育分析和可视化方法。'>
-<meta property='og:url' content='/p/taxonkit-r/'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/taxonkit-r/'>
 <meta property='og:site_name' content='Cao&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='software' /><meta property='article:published_time' content='2024-05-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-05-16T00:00:00&#43;00:00'/><meta property='og:image' content='/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='software' /><meta property='article:published_time' content='2024-05-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-05-16T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1.png' />
 <meta name="twitter:title" content="R调用Taxonkit展示系统发育信息">
 <meta name="twitter:description" content="TaxonKit是一个用于处理生物分类学数据的命令行工具，我把Taxonkit工具整合进了R包pctax，也开发了一些配套的系统发育分析和可视化方法。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1.png' />
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1.png' />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -57,13 +57,13 @@
         
             
             <figure class="site-avatar">
-                <a href="/">
+                <a href="/Cao-blog/">
                 
                     
                     
                     
                         
-                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -76,7 +76,7 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
             <h2 class="site-description">work hard, live happily.</h2>
         </div>
     </header><ol class="social-menu">
@@ -154,7 +154,7 @@
         
         
         <li >
-            <a href='/' >
+            <a href='/Cao-blog/' >
                 
                 
                 
@@ -174,7 +174,7 @@
         
         
         <li >
-            <a href='/about/' >
+            <a href='/Cao-blog/about/' >
                 
                 
                 
@@ -193,7 +193,7 @@
         
         
         <li >
-            <a href='/archives/' >
+            <a href='/Cao-blog/archives/' >
                 
                 
                 
@@ -213,7 +213,7 @@
         
         
         <li >
-            <a href='/mindmap/' >
+            <a href='/Cao-blog/mindmap/' >
                 
                 
                 
@@ -225,7 +225,7 @@
         
         
         <li >
-            <a href='/search/' >
+            <a href='/Cao-blog/search/' >
                 
                 
                 
@@ -258,9 +258,9 @@
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="/" selected>English</option>
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
                         
-                            <option value="/zh-cn/" >中文</option>
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
                         
                     </select>
                 </li>
@@ -337,9 +337,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/taxonkit-r/">
-                <img src="/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1_hu_cf88b2ddc24c14c8.png"
-                        srcset="/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1_hu_cf88b2ddc24c14c8.png 800w, /p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1_hu_4e07031f26314b9a.png 1600w"
+            <a href="/Cao-blog/p/taxonkit-r/">
+                <img src="/Cao-blog/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1_hu_cf88b2ddc24c14c8.png"
+                        srcset="/Cao-blog/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1_hu_cf88b2ddc24c14c8.png 800w, /Cao-blog/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1_hu_4e07031f26314b9a.png 1600w"
                         width="800" 
                         height="571" 
                         loading="lazy"
@@ -353,11 +353,11 @@
     
     <header class="article-category">
         
-            <a href="/categories/r/" style="background-color: #bebada; color: #fff;">
+            <a href="/Cao-blog/categories/r/" style="background-color: #bebada; color: #fff;">
                 R
             </a>
         
-            <a href="/categories/utils/" style="background-color: #bebada; color: #fff;">
+            <a href="/Cao-blog/categories/utils/" style="background-color: #bebada; color: #fff;">
                 utils
             </a>
         
@@ -366,7 +366,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/taxonkit-r/">R调用Taxonkit展示系统发育信息</a>
+            <a href="/Cao-blog/p/taxonkit-r/">R调用Taxonkit展示系统发育信息</a>
         </h2>
     
         
@@ -439,18 +439,18 @@
     <section class="article-content">
     
     
-    <script src="/p/taxonkit-r/index.en_files/htmlwidgets/htmlwidgets.js"></script>
-<script src="/p/taxonkit-r/index.en_files/sankeyNetwork-binding/sankeyNetwork.js"></script>
-<script src="/p/taxonkit-r/index.en_files/d3/d3.min.js"></script>
-<script src="/p/taxonkit-r/index.en_files/sankey/sankey.js"></script>
-<script src="/p/taxonkit-r/index.en_files/htmlwidgets/htmlwidgets.js"></script>
-<script src="/p/taxonkit-r/index.en_files/plotly-binding/plotly.js"></script>
-<script src="/p/taxonkit-r/index.en_files/typedarray/typedarray.min.js"></script>
-<script src="/p/taxonkit-r/index.en_files/jquery/jquery.min.js"></script>
-<link href="/p/taxonkit-r/index.en_files/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
-<script src="/p/taxonkit-r/index.en_files/crosstalk/js/crosstalk.min.js"></script>
-<link href="/p/taxonkit-r/index.en_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="/p/taxonkit-r/index.en_files/plotly-main/plotly-latest.min.js"></script>
+    <script src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/sankeyNetwork-binding/sankeyNetwork.js"></script>
+<script src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/d3/d3.min.js"></script>
+<script src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/sankey/sankey.js"></script>
+<script src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/plotly-binding/plotly.js"></script>
+<script src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/typedarray/typedarray.min.js"></script>
+<script src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/jquery/jquery.min.js"></script>
+<link href="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+<script src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/crosstalk/js/crosstalk.min.js"></script>
+<link href="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/plotly-main/plotly-latest.min.js"></script>
 <h2 id="introduction">Introduction</h2>
 <p><a class="link" href="https://bioinf.shenwei.me/taxonkit/chinese/"  target="_blank" rel="noopener"
     >TaxonKit</a>是一个用于处理生物分类学数据的命令行工具。
@@ -684,7 +684,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">ape</span><span class="o">:::</span><span class="nf">plot.phylo</span><span class="p">(</span><span class="n">tax_tree</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 <h3 id="可视化">可视化</h3>
 <p><code>pctax</code>还提供了一些系统发育信息展示方法：</p>
 <ol>
@@ -708,7 +708,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">p</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 <p>添加主要Phylum的strip：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -728,7 +728,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">add_strip</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">some_tax</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 <p>当然，更多系统发育树的绘制可以参考我之前写的<a class="link" href="../r-tree" >R绘制优美的进化树（基础）</a>和<a class="link" href="../r-tree2" >R绘制优美的进化树（进阶）</a>，或者使用iPhylo网站来交互式绘图：<a class="link" href="../iphylo" >iPhylo 生成并绘制优美的分类树</a></p>
 <ol start="2">
 <li>桑基图：</li>
@@ -819,7 +819,7 @@
     
     <section class="article-tags">
         
-            <a href="/tags/software/">Software</a>
+            <a href="/Cao-blog/tags/software/">Software</a>
         
     </section>
 
@@ -877,11 +877,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/sqlite-r/">
+    <a href="/Cao-blog/p/sqlite-r/">
         
         
             <div class="article-image">
-                <img src="/p/sqlite-r/images/R-C.2a115216bd159624507224fa388dbda7_hu_b1bb55cee70d9e55.png" 
+                <img src="/Cao-blog/p/sqlite-r/images/R-C.2a115216bd159624507224fa388dbda7_hu_b1bb55cee70d9e55.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -901,11 +901,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/iphylo/">
+    <a href="/Cao-blog/p/iphylo/">
         
         
             <div class="article-image">
-                <img src="/p/iphylo/images/iphy.0244b30a5110c9d253d682d90a87289b_hu_773ae5a961053499.png" 
+                <img src="/Cao-blog/p/iphylo/images/iphy.0244b30a5110c9d253d682d90a87289b_hu_773ae5a961053499.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -925,11 +925,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/utools/">
+    <a href="/Cao-blog/p/utools/">
         
         
             <div class="article-image">
-                <img src="/p/utools/images/utools.97035cdcecc640dcdccf84ed242f9308_hu_fdfcd0da9eca9776.png" 
+                <img src="/Cao-blog/p/utools/images/utools.97035cdcecc640dcdccf84ed242f9308_hu_fdfcd0da9eca9776.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -949,11 +949,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/grsa-bib/">
+    <a href="/Cao-blog/p/grsa-bib/">
         
         
             <div class="article-image">
-                <img src="/p/grsa-bib/images/BIB.3d989d4353ebbae8b423677a90ed31c2_hu_685d05494814d61f.png" 
+                <img src="/Cao-blog/p/grsa-bib/images/BIB.3d989d4353ebbae8b423677a90ed31c2_hu_685d05494814d61f.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -973,11 +973,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/maaslin-3/">
+    <a href="/Cao-blog/p/maaslin-3/">
         
         
             <div class="article-image">
-                <img src="/p/maaslin-3/images/git1.885b8d5fb66876cf1bfb7fe1b81657d1_hu_f82cc6bebbab7b23.png" 
+                <img src="/Cao-blog/p/maaslin-3/images/git1.885b8d5fb66876cf1bfb7fe1b81657d1_hu_f82cc6bebbab7b23.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1154,7 +1154,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

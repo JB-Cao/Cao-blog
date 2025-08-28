@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Docker on Cao&#39;s blog</title>
-        <link>/tags/docker/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/docker/</link>
         <description>Recent content in Docker on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 05 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/docker/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 05 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/docker/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>容器（Docker &amp; Singularity）使用入门</title>
-        <link>/p/docker-singularity/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/docker-singularity/</link>
         <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/docker-singularity/</guid>
-        <description>&lt;img src="/p/docker-singularity/images/docker.webp" alt="Featured image of post 容器（Docker &amp; Singularity）使用入门" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/docker-singularity/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/docker-singularity/images/docker.webp" alt="Featured image of post 容器（Docker &amp; Singularity）使用入门" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在生物信息学（生信）研究领域，数据处理和分析任务日益复杂，对计算资源的需求也越来越高。为了提高研究效率、确保环境一致性和可重复性，容器技术应运而生。Docker和Singularity作为两种主流的容器解决方案，在生信领域得到了广泛应用。本文将简单介绍这两种容器的基本概念、使用方法，至少在面对一些提供了Docker安装方式的软件（有可能其他安装方法都报错😂）时可以作为使用的一个选择。&lt;/p&gt;
 &lt;p&gt;容器是一种轻量级的虚拟化技术，它允许在单个操作系统实例上运行多个隔离的应用程序。容器将应用程序及其所有依赖项（如库、配置文件等）打包成一个独立的运行环境，称为容器。这种技术使得应用程序可以在不同的环境中一致地运行，而无需担心底层基础设施的差异。&lt;/p&gt;
 &lt;img src=&#34;images/docker.webp&#34; title=&#34;&#34;/&gt;

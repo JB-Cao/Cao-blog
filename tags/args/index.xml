@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>ARGs on Cao&#39;s blog</title>
-        <link>/tags/args/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/args/</link>
         <description>Recent content in ARGs on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Fri, 02 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/args/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 02 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/args/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Critical Care: ICU医护人员肠道抗生素耐药基因显著增加</title>
-        <link>/p/critical-care/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/critical-care/</link>
         <pubDate>Fri, 02 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/critical-care/</guid>
-        <description>&lt;img src="/p/critical-care/images/fig1.png" alt="Featured image of post Critical Care: ICU医护人员肠道抗生素耐药基因显著增加" /&gt;&lt;p&gt;抗生素耐药性（Antimicrobial Resistance, AMR）是21世纪全球公共卫生面临的重大挑战之一。随着抗生素的广泛使用，耐药菌株和抗生素耐药基因（Antibiotic Resistance Genes, ARGs）在医院环境中迅速扩散，尤其是在重症监护病房（ICU）这样高风险的医疗场所。ICU医护人员因长期暴露于高浓度抗生素和耐药菌的环境中，其肠道微生物群是否受到显著影响，成为一个备受关注的研究课题。2025年发表在《Critical Care》期刊上的一篇多中心、跨区域研究通过宏基因组学技术，系统比较了ICU医护人员与健康对照组的肠道ARG丰度及微生物群组成，揭示了ICU医护人员肠道ARG显著升高的现象。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/critical-care/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/critical-care/images/fig1.png" alt="Featured image of post Critical Care: ICU医护人员肠道抗生素耐药基因显著增加" /&gt;&lt;p&gt;抗生素耐药性（Antimicrobial Resistance, AMR）是21世纪全球公共卫生面临的重大挑战之一。随着抗生素的广泛使用，耐药菌株和抗生素耐药基因（Antibiotic Resistance Genes, ARGs）在医院环境中迅速扩散，尤其是在重症监护病房（ICU）这样高风险的医疗场所。ICU医护人员因长期暴露于高浓度抗生素和耐药菌的环境中，其肠道微生物群是否受到显著影响，成为一个备受关注的研究课题。2025年发表在《Critical Care》期刊上的一篇多中心、跨区域研究通过宏基因组学技术，系统比较了ICU医护人员与健康对照组的肠道ARG丰度及微生物群组成，揭示了ICU医护人员肠道ARG显著升高的现象。&lt;/p&gt;
 &lt;h2 id=&#34;paper-info&#34;&gt;Paper Info&lt;/h2&gt;
 &lt;img src=&#34;images/title.png&#34; title=&#34;&#34;/&gt;
 &lt;ul&gt;
@@ -198,16 +198,16 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;scale_fill_pc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/critical-care/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/critical-care/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
 </description>
         </item>
         <item>
         <title>全球尺度的抗生素耐药基因（ARG）研究</title>
-        <link>/p/global-arg/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/global-arg/</link>
         <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/global-arg/</guid>
-        <description>&lt;img src="/p/global-arg/images/global1.png" alt="Featured image of post 全球尺度的抗生素耐药基因（ARG）研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/global-arg/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/global-arg/images/global1.png" alt="Featured image of post 全球尺度的抗生素耐药基因（ARG）研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;抗生素耐药性是对人类健康和疾病临床治疗日益严重的全球性威胁。在过去十年中，已在所有环境中检测到抗生素抗性基因(ARG)，包括自然、工程和临床及栖息地。包括抗生素的临床使用在内的人为活动，被广泛认为是ARGs传播的主要驱动力。很早之前也写过一篇介绍&lt;a class=&#34;link&#34; href=&#34;../antibiotics-resistance&#34; &gt;抗生素，ARG以及相应生信分析方法&lt;/a&gt;的文章，这里想要介绍一下几篇全球尺度的ARG相关研究，他们已经整理好的数据还可以作为自己研究数据的背景参考。&lt;/p&gt;
 &lt;h3 id=&#34;arg的全球健康风险评估&#34;&gt;ARG的全球健康风险评估&lt;/h3&gt;
 &lt;p&gt;这是一篇2022年发表在NC上的文章《Assessment of global health risk of antibiotic resistance genes》，研究者使用4572个宏基因组数据集来揭示2561个ARG及其宿主在全球栖息地的分布和传播。他们实施了一个框架，通过考虑四个指标（人类可及性、流动性、人类致病性和临床可用性）来定量评估每个ARG和样本的健康风险。有23.78%的ARGs对健康构成威胁，尤其是那些具有多重耐药性的ARGs。&lt;/p&gt;
@@ -262,14 +262,14 @@
         </item>
         <item>
         <title>抗生素抗性基因（ARG）基础学习</title>
-        <link>/p/antibiotics-resistance/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/</link>
         <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/antibiotics-resistance/</guid>
-        <description>&lt;img src="/p/antibiotics-resistance/images/ARG_mechanism.png" alt="Featured image of post 抗生素抗性基因（ARG）基础学习" /&gt;&lt;script src=&#34;/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/images/ARG_mechanism.png" alt="Featured image of post 抗生素抗性基因（ARG）基础学习" /&gt;&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;h3 id=&#34;抗生素&#34;&gt;抗生素&lt;/h3&gt;
 &lt;p&gt;抗生素是一类药物，用于治疗或预防由细菌引起的感染。它们通过抑制细菌的生长或杀死细菌，帮助人体抵抗细菌感染。&lt;/p&gt;

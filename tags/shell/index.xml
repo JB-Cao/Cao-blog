@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Shell on Cao&#39;s blog</title>
-        <link>/tags/shell/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/shell/</link>
         <description>Recent content in Shell on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Mon, 15 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/shell/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 15 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/shell/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>一些实用的shell脚本</title>
-        <link>/p/shell/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/shell/</link>
         <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/shell/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/p/shell/</guid>
         <description>&lt;p&gt;记录分享一些自己在linux下常用的shell脚本和小软件。&lt;/p&gt;
 &lt;p&gt;脚本建议使用方式：新建一个储存脚本的目录如~/script，把脚本复制为相应文件，chmod +x 使脚本可执行，然后添加到PATH中方便使用。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

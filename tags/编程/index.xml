@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>编程 on Cao&#39;s blog</title>
-        <link>/tags/%E7%BC%96%E7%A8%8B/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E7%BC%96%E7%A8%8B/</link>
         <description>Recent content in 编程 on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Sun, 16 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 16 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>R进阶使用技巧</title>
-        <link>/p/r-tips/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/r-tips/</link>
         <pubDate>Sun, 16 Jun 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/r-tips/</guid>
-        <description>&lt;img src="/p/r-tips/images/r-tips.png" alt="Featured image of post R进阶使用技巧" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/r-tips/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/r-tips/images/r-tips.png" alt="Featured image of post R进阶使用技巧" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;分享一些R进阶使用的技巧，相当于是之前写的&lt;a class=&#34;link&#34; href=&#34;../r-learning&#34; &gt;R语言学习&lt;/a&gt;的实践和总结了。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -867,11 +867,11 @@ a+或a+b—读和末尾添加。&lt;/li&gt;
         </item>
         <item>
         <title>R-shiny应用开发（基础）</title>
-        <link>/p/rshiny/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/rshiny/</link>
         <pubDate>Mon, 27 Mar 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/rshiny/</guid>
-        <description>&lt;img src="/p/rshiny/Rshiny.jpg" alt="Featured image of post R-shiny应用开发（基础）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/rshiny/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/rshiny/Rshiny.jpg" alt="Featured image of post R-shiny应用开发（基础）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Shiny 是一个 R 包，可轻松地直接从 R 构建交互式 Web 应用程序。还可以在网页上托管独立应用程序或将它们嵌入 R Markdown 文档或构建仪表板，还可以使用 CSS 主题、html 小部件和 JavaScript 操作扩展您的 Shiny 应用程序。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1659,11 +1659,11 @@ tableOutput() 对于小型、固定的摘要（例如模型系数）最有用；
         </item>
         <item>
         <title>R语言学习</title>
-        <link>/p/r-learning/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/r-learning/</link>
         <pubDate>Thu, 16 Mar 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/r-learning/</guid>
-        <description>&lt;img src="/p/r-learning/images/data2viz.png" alt="Featured image of post R语言学习" /&gt;&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/r-learning/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/r-learning/images/data2viz.png" alt="Featured image of post R语言学习" /&gt;&lt;h2 id=&#34;简介&#34;&gt;简介&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;linux&lt;/strong&gt;, &lt;strong&gt;python&lt;/strong&gt;和&lt;strong&gt;R语言&lt;/strong&gt;应该是生信学习中最重要的几个部分。&lt;/p&gt;
 &lt;p&gt;linux是一种操作系统，由于许多生物信息学软件仅提供支持linux平台的命令行版本，而不是图形化界面，所以掌握该操作系统的基础文件管理，安装使用软件，输入输出逻辑，简单shell脚本编写等十分重要。&lt;/p&gt;
 &lt;p&gt;python与R都是免费开源多平台的编程语言，并且都是较为容易学习上手的模仿自然语言语法的编程语言，且支持面向对象编程，两者在数据科学上都有着非常重要的应用。Python的生态系统非常丰富，拥有大量的数据科学库和框架，例如：NumPy、Pandas、Matplotlib、Seaborn、Scikit-learn、PyTorch、TensorFlow等，这些库可以帮助数据科学家快速处理和分析数据，构建模型。&lt;/p&gt;

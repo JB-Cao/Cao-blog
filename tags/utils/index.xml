@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Utils on Cao&#39;s blog</title>
-        <link>/tags/utils/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/utils/</link>
         <description>Recent content in Utils on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Mon, 26 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/utils/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 26 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/utils/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>批量下载NCBI genome相关数据</title>
-        <link>/p/ncbi-genome/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/ncbi-genome/</link>
         <pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/ncbi-genome/</guid>
-        <description>&lt;img src="/p/ncbi-genome/images/datasets_schema_taxonomy.svg" alt="Featured image of post 批量下载NCBI genome相关数据" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/ncbi-genome/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/ncbi-genome/images/datasets_schema_taxonomy.svg" alt="Featured image of post 批量下载NCBI genome相关数据" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在生物信息学研究中，从NCBI下载基因组数据是一项基础的任务。无论是进行基因组比较分析、注释研究还是构建本地数据库，高效获取目标基因组数据都是第一步。&lt;/p&gt;
 &lt;p&gt;目前已有一些成熟的工具可以实现这一需求，例如：&lt;/p&gt;
 &lt;ul&gt;
@@ -421,11 +421,11 @@ genomic.gbff：GenBank格式文件&lt;/p&gt;
         </item>
         <item>
         <title>论文作者和单位太多？如何快速整理和修改</title>
-        <link>/p/author_affiliation/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/author_affiliation/</link>
         <pubDate>Tue, 06 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/author_affiliation/</guid>
-        <description>&lt;img src="/p/author_affiliation/images/Screenshot%202025-05-06%20at%2017.22.32.png" alt="Featured image of post 论文作者和单位太多？如何快速整理和修改" /&gt;&lt;h2 id=&#34;motivation&#34;&gt;Motivation&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/author_affiliation/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/author_affiliation/images/Screenshot%202025-05-06%20at%2017.22.32.png" alt="Featured image of post 论文作者和单位太多？如何快速整理和修改" /&gt;&lt;h2 id=&#34;motivation&#34;&gt;Motivation&lt;/h2&gt;
 &lt;p&gt;SCI论文投稿时，我们要整理好作者和对应的单位，一般用数字上标对应下面的单位信息，然后用一些特殊符号如“#，*”来代表贡献相同的作者或者通讯作者。&lt;/p&gt;
 &lt;p&gt;一般一个课题组出来的成果，只有几个作者的情况我们手打一下就好了。但现在的研究更多都是交叉性质的，可能会涉及到很多课题组合作，一些大的研究可能还会有几十个作者和单位，比如下面一篇cell，一页纸都写不完。&lt;/p&gt;
 &lt;img src=&#34;images/Screenshot 2025-05-06 at 17.22.32.png&#34; title=&#34;&#34;/&gt;
@@ -600,11 +600,11 @@ genomic.gbff：GenBank格式文件&lt;/p&gt;
         </item>
         <item>
         <title>SQLite使用基础以及在R中操作数据库</title>
-        <link>/p/sqlite-r/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/sqlite-r/</link>
         <pubDate>Wed, 26 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/sqlite-r/</guid>
-        <description>&lt;img src="/p/sqlite-r/images/R-C.png" alt="Featured image of post SQLite使用基础以及在R中操作数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/sqlite-r/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/sqlite-r/images/R-C.png" alt="Featured image of post SQLite使用基础以及在R中操作数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在生物信息学分析中，许多软件的中间文件或输出结果是数据库格式，例如 &lt;code&gt;.db&lt;/code&gt; 文件。同时，很多生物数据库的存储和下载格式也是数据库格式。因此，掌握数据库的基本操作，不仅有助于数据存储，还能提高数据查询和处理的效率。&lt;/p&gt;
 &lt;p&gt;SQLite 是一款轻量级的嵌入式关系型数据库管理系统，它不需要单独的服务器进程，而是直接将数据库存储在单个文件中。SQLite 具有以下特点：&lt;/p&gt;
 &lt;ol&gt;
@@ -1044,11 +1044,11 @@ SQL 语句主要分为几大类：&lt;/li&gt;
         </item>
         <item>
         <title>Zotero 7.0正式版，大更新！</title>
-        <link>/p/zotero-7-0/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/zotero-7-0/</link>
         <pubDate>Thu, 15 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/zotero-7-0/</guid>
-        <description>&lt;img src="/p/zotero-7-0/images/library.png" alt="Featured image of post Zotero 7.0正式版，大更新！" /&gt;&lt;p&gt;Zotero 7.0 beta 版已经测试好久了，最近终于正式上线了。官方说Zotero 7是Zotero发布18年来最大的一次更新，它在设计、性能和功能性上都有了显著的提升。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/zotero-7-0/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/zotero-7-0/images/library.png" alt="Featured image of post Zotero 7.0正式版，大更新！" /&gt;&lt;p&gt;Zotero 7.0 beta 版已经测试好久了，最近终于正式上线了。官方说Zotero 7是Zotero发布18年来最大的一次更新，它在设计、性能和功能性上都有了显著的提升。&lt;/p&gt;
 &lt;p&gt;如果你已经在使用Zotero，可以通过Zotero内部的“帮助”菜单下的“检查更新&amp;hellip;”来升级。
 Windows用户建议安装64位Zotero以获得最佳性能。Apple Silicon Mac的用户在从Zotero 6进行应用内升级后，Zotero 7会继续在Rosetta下运行，重新启动后将获得原生性能。&lt;/p&gt;
 &lt;p&gt;官网下载：&lt;a class=&#34;link&#34; href=&#34;https://www.zotero.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -1195,11 +1195,11 @@ Zotero PDF Translate是由@windingwind 开发的，用于文献管理软件Zoter
         </item>
         <item>
         <title>更新一下你的Conda吧</title>
-        <link>/p/conda/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/conda/</link>
         <pubDate>Wed, 17 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/conda/</guid>
-        <description>&lt;img src="/p/conda/images/conda.png" alt="Featured image of post 更新一下你的Conda吧" /&gt;&lt;p&gt;做生信分析时有时候要安装很多软件，软件之间的版本依赖关系复杂，这时候就需要用到Conda来安装软件。我一年前下载的conda，最近感觉安装软件越来越慢了，有试过一段时间的mamba（一个快速、强大、跨平台的包管理器），但是某个版本开始不兼容我已有的conda，会报错，我也没有仔细去解决。就一直在忍受着conda的慢。。。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/conda/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/conda/images/conda.png" alt="Featured image of post 更新一下你的Conda吧" /&gt;&lt;p&gt;做生信分析时有时候要安装很多软件，软件之间的版本依赖关系复杂，这时候就需要用到Conda来安装软件。我一年前下载的conda，最近感觉安装软件越来越慢了，有试过一段时间的mamba（一个快速、强大、跨平台的包管理器），但是某个版本开始不兼容我已有的conda，会报错，我也没有仔细去解决。就一直在忍受着conda的慢。。。&lt;/p&gt;
 &lt;p&gt;终于在前几天，在安装测试几个大型pipeline时受不了了，准备整理一下自己的环境，想试试最新的mamba。结果发现conda在去年十月份有一个重大更新，在这个 23.10.0 版本中，将 conda 的默认求解器更改为 &lt;code&gt;conda-libmamba-solver&lt;/code&gt;！
 以前的“经典”求解器基于 pycosat/Picosat，并且在可预见的将来仍将是 conda 的一部分，并且可以使用后备方案。&lt;/p&gt;
 &lt;p&gt;conda 更新日志：&lt;a class=&#34;link&#34; href=&#34;https://docs.conda.io/projects/conda/en/stable/release-notes.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -1454,66 +1454,66 @@ Zotero PDF Translate是由@windingwind 开发的，用于文献管理软件Zoter
         </item>
         <item>
         <title>Mermaid 入门</title>
-        <link>/p/mermaid/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/mermaid/</link>
         <pubDate>Mon, 29 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/mermaid/</guid>
-        <description>&lt;img src="/p/mermaid/images/mermaid.png" alt="Featured image of post Mermaid 入门" /&gt;&lt;script src=&#34;/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/mermaid/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/mermaid/images/mermaid.png" alt="Featured image of post Mermaid 入门" /&gt;&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/dagre/dagre-d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/mermaid/dist/mermaid.slim.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-styles/styles.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/chromatography/chromatography.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/mermaid/index.en_files/DiagrammeR-binding/DiagrammeR.js&#34;&gt;&lt;/script&gt;
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Mermaid是一个基于 JavaScript 的图表绘制工具，可渲染 Markdown 启发的文本定义以动态创建和修改图表，允许使用文本和代码创建图表和可视化。&lt;/p&gt;
 &lt;p&gt;官方文档：&lt;a class=&#34;link&#34; href=&#34;https://mermaid.js.org/intro/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;

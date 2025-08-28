@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>公众号 on Cao&#39;s blog</title>
-        <link>/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/</link>
         <description>Recent content in 公众号 on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 11 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 11 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>公众号长期数据统计（笨方法）</title>
-        <link>/p/wechat/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/wechat/</link>
         <pubDate>Thu, 11 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/wechat/</guid>
-        <description>&lt;img src="/p/wechat/images/wechat.png" alt="Featured image of post 公众号长期数据统计（笨方法）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/wechat/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/wechat/images/wechat.png" alt="Featured image of post 公众号长期数据统计（笨方法）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;我创建&lt;code&gt;bio llbug&lt;/code&gt;这个公众号也一年多了，从最初的几篇文章到现在，已经有了50多篇长文，粉丝量也逐渐上升。&lt;/p&gt;
 &lt;p&gt;有时候想具体看看自己的粉丝量变化趋势，或者想看看自己哪些文章受欢迎等，需要到微信公众号平台的数据板块查看：&lt;/p&gt;
 &lt;img src=&#34;images/wec.png&#34; title=&#34;&#34;/&gt;

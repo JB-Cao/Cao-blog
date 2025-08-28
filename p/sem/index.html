@@ -4,16 +4,16 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='中介分析是一种统计方法，用于研究自变量(X)通过一个或多个中介变量(M)影响因变量(Y)的机制。本文介绍了中介分析的基本概念和R语言中的实现方法，并探讨了结构方程模型（SEM）的应用。'>
 <title>中介分析与结构方程模型（SEM）学习</title>
 
-<link rel='canonical' href='/p/sem/'>
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/sem/'>
 
-<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='中介分析与结构方程模型（SEM）学习'>
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='中介分析与结构方程模型（SEM）学习'>
 <meta property='og:description' content='中介分析是一种统计方法，用于研究自变量(X)通过一个或多个中介变量(M)影响因变量(Y)的机制。本文介绍了中介分析的基本概念和R语言中的实现方法，并探讨了结构方程模型（SEM）的应用。'>
-<meta property='og:url' content='/p/sem/'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/sem/'>
 <meta property='og:site_name' content='Cao&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='统计模型' /><meta property='article:tag' content='R' /><meta property='article:published_time' content='2025-06-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-06-13T00:00:00&#43;00:00'/><meta property='og:image' content='/p/sem/images/sem_model.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='统计模型' /><meta property='article:tag' content='R' /><meta property='article:published_time' content='2025-06-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-06-13T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/sem/images/sem_model.jpg' />
 <meta name="twitter:title" content="中介分析与结构方程模型（SEM）学习">
 <meta name="twitter:description" content="中介分析是一种统计方法，用于研究自变量(X)通过一个或多个中介变量(M)影响因变量(Y)的机制。本文介绍了中介分析的基本概念和R语言中的实现方法，并探讨了结构方程模型（SEM）的应用。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='/p/sem/images/sem_model.jpg' />
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/sem/images/sem_model.jpg' />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -57,13 +57,13 @@
         
             
             <figure class="site-avatar">
-                <a href="/">
+                <a href="/Cao-blog/">
                 
                     
                     
                     
                         
-                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -76,7 +76,7 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
             <h2 class="site-description">work hard, live happily.</h2>
         </div>
     </header><ol class="social-menu">
@@ -154,7 +154,7 @@
         
         
         <li >
-            <a href='/' >
+            <a href='/Cao-blog/' >
                 
                 
                 
@@ -174,7 +174,7 @@
         
         
         <li >
-            <a href='/about/' >
+            <a href='/Cao-blog/about/' >
                 
                 
                 
@@ -193,7 +193,7 @@
         
         
         <li >
-            <a href='/archives/' >
+            <a href='/Cao-blog/archives/' >
                 
                 
                 
@@ -213,7 +213,7 @@
         
         
         <li >
-            <a href='/mindmap/' >
+            <a href='/Cao-blog/mindmap/' >
                 
                 
                 
@@ -225,7 +225,7 @@
         
         
         <li >
-            <a href='/search/' >
+            <a href='/Cao-blog/search/' >
                 
                 
                 
@@ -258,9 +258,9 @@
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="/" selected>English</option>
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
                         
-                            <option value="/zh-cn/" >中文</option>
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
                         
                     </select>
                 </li>
@@ -344,9 +344,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/sem/">
-                <img src="/p/sem/images/sem_model_hu_5c03c4c2d81919ea.jpg"
-                        srcset="/p/sem/images/sem_model_hu_5c03c4c2d81919ea.jpg 800w, /p/sem/images/sem_model_hu_cf64c120f485e5a.jpg 1600w"
+            <a href="/Cao-blog/p/sem/">
+                <img src="/Cao-blog/p/sem/images/sem_model_hu_5c03c4c2d81919ea.jpg"
+                        srcset="/Cao-blog/p/sem/images/sem_model_hu_5c03c4c2d81919ea.jpg 800w, /Cao-blog/p/sem/images/sem_model_hu_cf64c120f485e5a.jpg 1600w"
                         width="800" 
                         height="564" 
                         loading="lazy"
@@ -360,7 +360,7 @@
     
     <header class="article-category">
         
-            <a href="/categories/utils/" style="background-color: #bebada; color: #fff;">
+            <a href="/Cao-blog/categories/utils/" style="background-color: #bebada; color: #fff;">
                 utils
             </a>
         
@@ -369,7 +369,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/sem/">中介分析与结构方程模型（SEM）学习</a>
+            <a href="/Cao-blog/p/sem/">中介分析与结构方程模型（SEM）学习</a>
         </h2>
     
         
@@ -536,7 +536,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">med.sum</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/sem/index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/sem/index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 <p>ACME stands for average causal mediation effects.间接因果效应，表示X通过M对Y的效应大小
 通过<code>med.sum$d0</code>和<code>med.sum$d0.p</code>可以获得ACME的效应和p值</p>
 <p>ADE stands for average direct effects.直接效应，表示X直接对Y的作用大小
@@ -585,7 +585,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">psych</span><span class="o">::</span><span class="nf">mediate.diagram</span><span class="p">(</span><span class="n">m2</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/sem/index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/sem/index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 <p>这里的</p>
 <ul>
 <li>c = the total effect of X on Y</li>
@@ -684,7 +684,7 @@
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">med_res1</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/sem/index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/sem/index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 <p>结果解释：主要关注以下指标的p值是否显著，及点估计和置信区间估计：
 ACME(average)，平均因果中介效应，p=0.474，表明中介效应不显著。
 ADE(average)，平均直接效应，p=0.004，表明直接效应显著。
@@ -1025,7 +1025,7 @@ Total Effect，总效应，p=0.006，表明总效应显著。
 </span></span><span class="line"><span class="cl"><span class="n">semMediation</span><span class="o">::</span><span class="nf">mediationPlot</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/sem/index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/sem/index_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 <p><a class="link" href="https://zhuanlan.zhihu.com/p/53206137"  target="_blank" rel="noopener"
     >https://zhuanlan.zhihu.com/p/53206137</a></p>
 <h2 id="生物例子">生物例子</h2>
@@ -1189,7 +1189,7 @@ Total Effect，总效应，p=0.006，表明总效应显著。
 </span></span><span class="line"><span class="cl">         <span class="n">edge.label.cex</span> <span class="o">=</span> <span class="m">1.1</span><span class="p">,</span> <span class="n">curvePivot</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">fade</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/sem/index_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/sem/index_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1198,7 +1198,7 @@ Total Effect，总效应，p=0.006，表明总效应显著。
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">semMediation</span><span class="o">::</span><span class="nf">mediationPlot</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/sem/index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/sem/index_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 <p>运行上述代码后，我们就得到了一个可视化的SEM模型图，该模型描述了微生物和环境因子之间的关系。</p>
 <h2 id="references">References</h2>
 <ol>
@@ -1217,9 +1217,9 @@ Total Effect，总效应，p=0.006，表明总效应显著。
     
     <section class="article-tags">
         
-            <a href="/tags/%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B/">统计模型</a>
+            <a href="/Cao-blog/tags/%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B/">统计模型</a>
         
-            <a href="/tags/r/">R</a>
+            <a href="/Cao-blog/tags/r/">R</a>
         
     </section>
 
@@ -1277,11 +1277,11 @@ Total Effect，总效应，p=0.006，表明总效应显著。
             
                 
 <article class="has-image">
-    <a href="/p/sqlite-r/">
+    <a href="/Cao-blog/p/sqlite-r/">
         
         
             <div class="article-image">
-                <img src="/p/sqlite-r/images/R-C.2a115216bd159624507224fa388dbda7_hu_b1bb55cee70d9e55.png" 
+                <img src="/Cao-blog/p/sqlite-r/images/R-C.2a115216bd159624507224fa388dbda7_hu_b1bb55cee70d9e55.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1301,12 +1301,12 @@ Total Effect，总效应，p=0.006，表明总效应显著。
             
                 
 <article class="has-image">
-    <a href="/p/ncbi-genome/">
+    <a href="/Cao-blog/p/ncbi-genome/">
         
         
             <div class="article-image">
                 
-                    <img src="/p/ncbi-genome/images/datasets_schema_taxonomy.svg" loading="lazy" data-key="ncbi-genome" data-hash="/p/ncbi-genome/images/datasets_schema_taxonomy.svg"/>
+                    <img src="/Cao-blog/p/ncbi-genome/images/datasets_schema_taxonomy.svg" loading="lazy" data-key="ncbi-genome" data-hash="/Cao-blog/p/ncbi-genome/images/datasets_schema_taxonomy.svg"/>
                 
             </div>
         
@@ -1320,11 +1320,11 @@ Total Effect，总效应，p=0.006，表明总效应显著。
             
                 
 <article class="has-image">
-    <a href="/p/author_affiliation/">
+    <a href="/Cao-blog/p/author_affiliation/">
         
         
             <div class="article-image">
-                <img src="/p/author_affiliation/images/Screenshot%202025-05-06%20at%2017.22.32.68374d4ccca746f39a99a95af7bb02cd_hu_2c131010f3a2860a.png" 
+                <img src="/Cao-blog/p/author_affiliation/images/Screenshot%202025-05-06%20at%2017.22.32.68374d4ccca746f39a99a95af7bb02cd_hu_2c131010f3a2860a.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1344,11 +1344,11 @@ Total Effect，总效应，p=0.006，表明总效应显著。
             
                 
 <article class="has-image">
-    <a href="/p/docker-singularity/">
+    <a href="/Cao-blog/p/docker-singularity/">
         
         
             <div class="article-image">
-                <img src="/p/docker-singularity/images/docker.93bb574a4f019bad268cedef7444a9ab_hu_eb6e2e0797ec04b8.webp" 
+                <img src="/Cao-blog/p/docker-singularity/images/docker.93bb574a4f019bad268cedef7444a9ab_hu_eb6e2e0797ec04b8.webp" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1368,11 +1368,11 @@ Total Effect，总效应，p=0.006，表明总效应显著。
             
                 
 <article class="has-image">
-    <a href="/p/iphylo/">
+    <a href="/Cao-blog/p/iphylo/">
         
         
             <div class="article-image">
-                <img src="/p/iphylo/images/iphy.0244b30a5110c9d253d682d90a87289b_hu_773ae5a961053499.png" 
+                <img src="/Cao-blog/p/iphylo/images/iphy.0244b30a5110c9d253d682d90a87289b_hu_773ae5a961053499.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1549,7 +1549,7 @@ Total Effect，总效应，p=0.006，表明总效应显著。
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

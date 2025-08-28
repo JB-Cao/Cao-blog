@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>uncompleted on Cao&#39;s blog</title>
-        <link>/categories/uncompleted/</link>
+        <link>https://jb-cao.github.io/Cao-blog/categories/uncompleted/</link>
         <description>Recent content in uncompleted on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 09 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/categories/uncompleted/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 09 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/categories/uncompleted/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Attack on Titan</title>
-        <link>/p/attack-on-titan/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/attack-on-titan/</link>
         <pubDate>Thu, 09 Nov 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/attack-on-titan/</guid>
-        <description>&lt;img src="/p/attack-on-titan/images/titan.jpg" alt="Featured image of post Attack on Titan" /&gt;&lt;p&gt;十年巨人落下帷幕，谨以此文记录，感谢陪伴&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/attack-on-titan/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/attack-on-titan/images/titan.jpg" alt="Featured image of post Attack on Titan" /&gt;&lt;p&gt;十年巨人落下帷幕，谨以此文记录，感谢陪伴&lt;/p&gt;
 &lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;《进击的巨人》（進撃の巨人，Attack on Titan）是一部由日本漫画家谏山创（Hajime Isayama）创作的漫画作品。 这部漫画首次于2009年开始在讲谈社的漫画杂志《别册少年Magazine》上连载，一直持续到2021年4月9日，共计139话。 《进击的巨人》因其引人入胜的故事情节、复杂的人物关系、哲学性质的探讨以及不断的悬念而备受欢迎。 它不仅仅是一部充满冒险与战斗的漫画，还包括了一些关于社会政治、人性和自由意志的深刻主题。&lt;/p&gt;
 &lt;p&gt;这部漫画也被改编成了电视动画、小说、电子游戏等多种媒体形式，并在全球范围内积累了广泛的粉丝基础。 它的完结也引发了广泛的讨论和反响，成为了漫画界的经典之一。&lt;/p&gt;
@@ -602,11 +602,11 @@
         </item>
         <item>
         <title>R微生物组分析流程（pctax包）</title>
-        <link>/p/r-pctax/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/r-pctax/</link>
         <pubDate>Tue, 20 Jun 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/r-pctax/</guid>
-        <description>&lt;img src="/p/r-pctax/index.en_files/figure-html/rda-1.png" alt="Featured image of post R微生物组分析流程（pctax包）" /&gt;&lt;h1 id=&#34;pctax&#34;&gt;pctax&lt;/h1&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/r-pctax/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/r-pctax/index.en_files/figure-html/rda-1.png" alt="Featured image of post R微生物组分析流程（pctax包）" /&gt;&lt;h1 id=&#34;pctax&#34;&gt;pctax&lt;/h1&gt;
 &lt;p&gt;&lt;code&gt;pctax&lt;/code&gt; provides a comprehensive suite of tools for analyzing microbiome data.&lt;/p&gt;
 &lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

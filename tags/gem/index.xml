@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>GEM on Cao&#39;s blog</title>
-        <link>/tags/gem/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/gem/</link>
         <description>Recent content in GEM on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 17 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/gem/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 17 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/gem/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>METABOLIC：微生物基因组群落规模功能网络分析</title>
-        <link>/p/metabolic/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metabolic/</link>
         <pubDate>Wed, 17 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/metabolic/</guid>
-        <description>&lt;img src="/p/metabolic/images/MW-score_table_example.jpg" alt="Featured image of post METABOLIC：微生物基因组群落规模功能网络分析" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metabolic/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metabolic/images/MW-score_table_example.jpg" alt="Featured image of post METABOLIC：微生物基因组群落规模功能网络分析" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;img src=&#34;images/METABOLIC.webp&#34; title=&#34;&#34;/&gt;
 &lt;p&gt;METabolic And BiogeOchemistry anaLyses In miCrobes (METABOLIC) 是一款基于微生物群的生物化学分析软件。该软件能够预测任何给定基因组数据集的代谢和生物地球化学功能性状特征。这些基因组数据集可以是宏基因组组装基因组 (MAG)、单细胞扩增基因组 (SAG) 或分离菌株测序基因组。&lt;/p&gt;
 &lt;p&gt;METABOLIC有两个主要实现，分别是METABOLIC-G和METABOLIC-C。 METABOLIC-G.pl 允许生成输入基因组的代谢谱和生物地球化学循环图，并且不需要输入测序读数。 METABOLIC-C.pl 生成与 METABOLIC-G.pl 相同的输出，但由于它允许输入宏基因组读取数据，因此它将生成与群落代谢有关的信息。它还可以计算基因组覆盖度。解析信息并生成元素/生物地球化学循环路径（当前为氮、碳、硫和“其他”）的图表。&lt;/p&gt;
@@ -311,11 +311,11 @@ KEGG 标识符搜索结果 - 每个基因组的 KEGG 标识符编号和命中，
         </item>
         <item>
         <title>从宏基因组构建基因组规模代谢模型（GEM）</title>
-        <link>/p/gem/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/gem/</link>
         <pubDate>Wed, 17 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/gem/</guid>
-        <description>&lt;img src="/p/gem/images/carveme.jpeg" alt="Featured image of post 从宏基因组构建基因组规模代谢模型（GEM）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/gem/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/gem/images/carveme.jpeg" alt="Featured image of post 从宏基因组构建基因组规模代谢模型（GEM）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;基因组规模代谢模型（Genome-scale metabolic model，GEM）是通过整合基因组数据、代谢途径和生化反应信息，模拟和分析生物体代谢网络的一种强大工具。GEM不仅能帮助我们理解生物体的代谢功能和代谢网络的复杂性，还可以用于预测基因敲除效应、代谢工程、药物开发等多种应用。我们应该可以从宏基因组组装的MAGs出发来做GEM建模。&lt;/p&gt;
 &lt;p&gt;多个基因组规模的代谢重建软件平台已经开发出来并且正在不断更新。这些工具已广泛应用于重建数百种微生物的代谢模型，从重要的人类病原体到工业相关物种。2019年，Mendoza等人对以下7个基因组规模重建软件平台进行了系统评估，文章发表在genome biology上[1]，每个工具在不同的方面显示出优势和不足。&lt;/p&gt;
 &lt;img src=&#34;images/GEM_table.png&#34; title=&#34;&#34;/&gt;

@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Pages on Cao&#39;s blog</title>
-        <link>/page/</link>
+        <link>https://jb-cao.github.io/Cao-blog/page/</link>
         <description>Recent content in Pages on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Mon, 25 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 25 Aug 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/page/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>About</title>
-        <link>/about/</link>
+        <link>https://jb-cao.github.io/Cao-blog/about/</link>
         <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
         
-        <guid>/about/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/about/</guid>
         <description>&lt;h2 id=&#34;-about-me&#34;&gt;🤺 About Me&lt;/h2&gt;
 &lt;!-- profile logo 个人资料徽标 --&gt;
 &lt;p&gt;&lt;a href=&#34;https://github.com/Asa12138/&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/GitHub-181717?logo=github&amp;amp;logoColor=fff&amp;amp;style=flat&#34;/&gt;&lt;/a&gt; 
@@ -171,18 +171,18 @@ the HTML documentation.&lt;/p&gt;
         </item>
         <item>
         <title>Archives</title>
-        <link>/archives/</link>
+        <link>https://jb-cao.github.io/Cao-blog/archives/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>/archives/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/archives/</guid>
         <description></description>
         </item>
         <item>
         <title>Mindmap</title>
-        <link>/mindmap/</link>
+        <link>https://jb-cao.github.io/Cao-blog/mindmap/</link>
         <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
         
-        <guid>/mindmap/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/mindmap/</guid>
         <description>&lt;h2 id=&#34;生信学习&#34;&gt;生信学习&lt;/h2&gt;
 &lt;h3 id=&#34;编程基础&#34;&gt;编程基础&lt;/h3&gt;
 &lt;ul&gt;
@@ -356,10 +356,10 @@ the HTML documentation.&lt;/p&gt;
         </item>
         <item>
         <title>Search</title>
-        <link>/search/</link>
+        <link>https://jb-cao.github.io/Cao-blog/search/</link>
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
-        <guid>/search/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/search/</guid>
         <description></description>
         </item>
         

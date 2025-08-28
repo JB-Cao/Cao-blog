@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>ChatGPT on Cao&#39;s blog</title>
-        <link>/tags/chatgpt/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/chatgpt/</link>
         <description>Recent content in ChatGPT on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 23 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/chatgpt/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 23 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/chatgpt/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>ChatGPT帮我调整stack主题</title>
-        <link>/p/chatgpt-stack/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/chatgpt-stack/</link>
         <pubDate>Thu, 23 Mar 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/chatgpt-stack/</guid>
-        <description>&lt;img src="/p/chatgpt-stack/ChatGPT.jpg" alt="Featured image of post ChatGPT帮我调整stack主题" /&gt;&lt;p&gt;在&lt;a class=&#34;link&#34; href=&#34;https://github.com/rstudio/blogdown&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+        <guid>https://jb-cao.github.io/Cao-blog/p/chatgpt-stack/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/chatgpt-stack/ChatGPT.jpg" alt="Featured image of post ChatGPT帮我调整stack主题" /&gt;&lt;p&gt;在&lt;a class=&#34;link&#34; href=&#34;https://github.com/rstudio/blogdown&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Rblogdown&lt;/a&gt;使用&lt;a class=&#34;link&#34; href=&#34;https://github.com/CaiJimmy/hugo-theme-stack&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;stack-theme&lt;/a&gt;遇到了几个问题，应该是Rblogdown与原生hugo间的不太兼容。&lt;/p&gt;
 &lt;p&gt;我很快发现了问题是Rmd产生的md文件可能跟stack主题不太匹配，一开始想看看yaml文件能不能修改解决，但找了不少地方都没找到😭。&lt;/p&gt;

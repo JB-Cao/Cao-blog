@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Binning on Cao&#39;s blog</title>
-        <link>/tags/binning/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/binning/</link>
         <description>Recent content in Binning on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/binning/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 22 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/binning/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>宏基因组分箱（binning）｜4. DAS Tool优化binning结果</title>
-        <link>/p/binning-4-das-tool-binning/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/binning-4-das-tool-binning/</link>
         <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/binning-4-das-tool-binning/</guid>
-        <description>&lt;img src="/p/binning-4-das-tool-binning/images/workflow.png" alt="Featured image of post 宏基因组分箱（binning）｜4. DAS Tool优化binning结果" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/binning-4-das-tool-binning/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/binning-4-das-tool-binning/images/workflow.png" alt="Featured image of post 宏基因组分箱（binning）｜4. DAS Tool优化binning结果" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在宏基因组学研究中，准确地将组装后的基因组片段（contigs）归属到各自的微生物基因组中，是解析微生物群落功能和生态关系的关键步骤。然而，很多分箱（binning）方法在面对复杂的微生物群落时，常常难以重建出高质量的基因组，且不同工具在不同样本和生态环境中的表现差异显著。&lt;/p&gt;
 &lt;p&gt;为了解决这一问题，研究人员开发了DAS Tool（Dereplication, Aggregation and Scoring Tool），这是一种自动化的方法，能够整合多个已有的分箱算法的结果，生成优化的、非冗余的高质量基因组集合。在多个复杂环境样本中，DAS Tool展示了比任何单一分箱工具更强的能力，能够恢复更多接近完整的基因组，包括一些之前未被发现的谱系。本文将介绍使用DAS Tool优化宏基因组分箱结果，提升基因组重建的质量和数量。&lt;/p&gt;
 &lt;img src=&#34;images/logo.png&#34; title=&#34;&#34; width=&#34;60%&#34;/&gt;
@@ -449,11 +449,11 @@ DAS Tool 通过迭代方式从所有候选 bin 中优先选择得分最高的，
         </item>
         <item>
         <title>宏基因组分箱（binning）｜3. BASALT优化binning流程</title>
-        <link>/p/binning3/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/binning3/</link>
         <pubDate>Tue, 18 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/binning3/</guid>
-        <description>&lt;img src="/p/binning3/images/workflow.png" alt="Featured image of post 宏基因组分箱（binning）｜3. BASALT优化binning流程" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/binning3/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/binning3/images/workflow.png" alt="Featured image of post 宏基因组分箱（binning）｜3. BASALT优化binning流程" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在微生物组学研究中，基因组binning（分箱，即将测序数据中的reads或contigs分类到不同的基因组中）是一个关键步骤。发表于2018年的MetaWRAP一直没有重大更新，这篇文章将介绍一个较新的binning流程：BASALT及其具体使用方法。&lt;/p&gt;
 &lt;p&gt;BASALT （Binning Across a Series of AssembLies Toolkit）是一个高效的基因组binning工具，旨在处理复杂的微生物组数据，特别是在多个组装（assemblies）之间进行binning时表现出色。它通过整合多个组装结果，提高了binning的准确性和完整性，尤其适用于处理高度复杂的微生物群落数据。&lt;/p&gt;
 &lt;p&gt;BASALT的文章于2024年发表于Nature Communications，软件主页：&lt;a class=&#34;link&#34; href=&#34;https://github.com/EMBL-PKU/BASALT&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -913,11 +913,11 @@ DAS Tool 通过迭代方式从所有候选 bin 中优先选择得分最高的，
         </item>
         <item>
         <title>宏基因组分箱（binning）｜2. MetaWRAP实战深入binning</title>
-        <link>/p/binning2/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/binning2/</link>
         <pubDate>Thu, 30 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/binning2/</guid>
-        <description>&lt;img src="/p/binning2/images/metawrap.png" alt="Featured image of post 宏基因组分箱（binning）｜2. MetaWRAP实战深入binning" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/binning2/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/binning2/images/metawrap.png" alt="Featured image of post 宏基因组分箱（binning）｜2. MetaWRAP实战深入binning" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;上一篇里通过Metabat2了解了宏基因组分箱的关键步骤，这篇文章将介绍一个更全面的binning流程：MetaWRAP的具体使用方法。&lt;/p&gt;
 &lt;p&gt;MetaWRAP 是一个集成的宏基因组分析工具包，旨在简化和提高宏基因组数据的处理、分析和解释。它结合了多个独立的宏基因组分析工具，提供了一系列模块来处理从原始数据质控到基因组注释的各个步骤，侧重于宏基因组Binning。本质来说，MetaWRAP并不是一种新的binning方法，而是一个整合其他binning方法的refiner。&lt;/p&gt;
 &lt;p&gt;MetaWRAP的文章于2018年发表于Microbiome，软件主页：&lt;a class=&#34;link&#34; href=&#34;https://github.com/bxlab/metaWRAP&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -1773,11 +1773,11 @@ DAS Tool 通过迭代方式从所有候选 bin 中优先选择得分最高的，
         </item>
         <item>
         <title>宏基因组分箱（binning）｜1.Metabat实战了解binning</title>
-        <link>/p/binning/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/binning/</link>
         <pubDate>Wed, 29 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/binning/</guid>
-        <description>&lt;img src="/p/binning/images/binning.png" alt="Featured image of post 宏基因组分箱（binning）｜1.Metabat实战了解binning" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/binning/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/binning/images/binning.png" alt="Featured image of post 宏基因组分箱（binning）｜1.Metabat实战了解binning" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;宏基因组学是直接从环境样本（如土壤、水、肠道内容物等）中回收遗传物质并进行研究的学科，无需对个体生物进行分离或培养。这一领域的研究为我们提供了对微生物群落多样性及其功能的深入理解。可以查看我之前写的&lt;a class=&#34;link&#34; href=&#34;https://asa-blog.netlify.app/p/metagenomic-workflow&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;宏基因组分析流程&lt;/a&gt;，当时想着在另一篇里介绍binning，结果拖了一年，哈哈😂，现在补上。&lt;/p&gt;
 &lt;p&gt;宏基因组分箱（Metagenomics Binning）是一个将宏基因组测序获得的DNA序列分类为离散组或“bins”的过程，这些组基于序列间的相似性来定义。分箱的目的是将DNA序列分配给其来源的生物或分类群，从而更好地了解样本中存在的微生物群落的多样性和功能。&lt;/p&gt;

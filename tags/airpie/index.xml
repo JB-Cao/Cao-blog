@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>AirPie on Cao&#39;s blog</title>
-        <link>/tags/airpie/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/airpie/</link>
         <description>Recent content in AirPie on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 03 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/airpie/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 03 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/airpie/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>浙江大学蒋超课题组合作ES&amp;T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘</title>
-        <link>/p/es-t/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/es-t/</link>
         <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/es-t/</guid>
-        <description>&lt;img src="/p/es-t/images/qt_graphical_abstract.png" alt="Featured image of post 浙江大学蒋超课题组合作ES&amp;T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘" /&gt;&lt;p&gt;我们实验室的子诺师姐开发了一种新型的用于个体生物和化学暴露组纵向测绘的可穿戴被动采样器：AirPie。
+        <guid>https://jb-cao.github.io/Cao-blog/p/es-t/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/es-t/images/qt_graphical_abstract.png" alt="Featured image of post 浙江大学蒋超课题组合作ES&amp;T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘" /&gt;&lt;p&gt;我们实验室的子诺师姐开发了一种新型的用于个体生物和化学暴露组纵向测绘的可穿戴被动采样器：AirPie。
 目前可以在一个驱蚊扣差不多大小的device上分析出数千种化合物和微生物信号，非常🐮。&lt;/p&gt;
 &lt;p&gt;我们将该采样器应用于某封闭环境，对19名参与者的个体化学和生物暴露组进行了全面的纵向剖析，并与相应的转录组数据进行了整合分析，以揭示环境暴露对个体健康的影响。&lt;/p&gt;
 &lt;p&gt;我完成了其中生物暴露部分的实验与分析工作。这项研究目前已经发表在ES&amp;amp;T上：&lt;/p&gt;

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Genome on Cao&#39;s blog</title>
-        <link>/tags/genome/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/genome/</link>
         <description>Recent content in Genome on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Mon, 26 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/genome/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 26 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/genome/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>批量下载NCBI genome相关数据</title>
-        <link>/p/ncbi-genome/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/ncbi-genome/</link>
         <pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/ncbi-genome/</guid>
-        <description>&lt;img src="/p/ncbi-genome/images/datasets_schema_taxonomy.svg" alt="Featured image of post 批量下载NCBI genome相关数据" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/ncbi-genome/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/ncbi-genome/images/datasets_schema_taxonomy.svg" alt="Featured image of post 批量下载NCBI genome相关数据" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在生物信息学研究中，从NCBI下载基因组数据是一项基础的任务。无论是进行基因组比较分析、注释研究还是构建本地数据库，高效获取目标基因组数据都是第一步。&lt;/p&gt;
 &lt;p&gt;目前已有一些成熟的工具可以实现这一需求，例如：&lt;/p&gt;
 &lt;ul&gt;
@@ -421,11 +421,11 @@ genomic.gbff：GenBank格式文件&lt;/p&gt;
         </item>
         <item>
         <title>使用Orthofinder进行系统发育直系同源推断</title>
-        <link>/p/orthofinder/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/orthofinder/</link>
         <pubDate>Wed, 31 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/orthofinder/</guid>
-        <description>&lt;img src="/p/orthofinder/images/Workflow.png" alt="Featured image of post 使用Orthofinder进行系统发育直系同源推断" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/orthofinder/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/orthofinder/images/Workflow.png" alt="Featured image of post 使用Orthofinder进行系统发育直系同源推断" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;确定基因序列之间的系统发育关系是比较生物学研究的基础。它为理解地球上生命的进化和多样性提供了框架，并能够在生物体之间推断生物知识。鉴于此过程对生物研究多个领域的核心重要性，人们开发了一系列不同的软件工具，试图在给定用户提供的基因序列集的情况下识别这些关系。&lt;/p&gt;
 &lt;p&gt;在基因组学和进化生物学中，直系同源、旁系同源和正交群是重要的概念：&lt;/p&gt;
 &lt;ol&gt;
@@ -997,11 +997,11 @@ genomic.gbff：GenBank格式文件&lt;/p&gt;
         </item>
         <item>
         <title>GTDB基因组分类数据库及GTDB-Tk工具</title>
-        <link>/p/gtdb/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/gtdb/</link>
         <pubDate>Mon, 20 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/gtdb/</guid>
-        <description>&lt;img src="/p/gtdb/images/gtdb.png" alt="Featured image of post GTDB基因组分类数据库及GTDB-Tk工具" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/gtdb/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/gtdb/images/gtdb.png" alt="Featured image of post GTDB基因组分类数据库及GTDB-Tk工具" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;GTDB（Genome Taxonomy Database）是一个专注于基因组分类学的数据库，旨在提供高质量的细菌、古细菌、叶绿体和线粒体的分类信息。通过使用全基因组信息，GTDB提供了多级别的分类，包括域、界、纲、目、科、属等级别。其系统发育分类系统使得研究人员能够深入了解生物的演化和功能。GTDB主要以细菌中普遍存在的120个单拷贝蛋白质（bac120）和古菌中53个（arc53，从R07-RS207开始）标记蛋白为基础，在对多分组类别消歧后，根据相对演化散度标准化和分级，得到基因组分类结果。&lt;/p&gt;
 &lt;p&gt;GTDB定期更新，与其他生物信息数据库整合，为基因组学研究和微生物生态学等领域的研究提供了全面且可靠的分类信息。GTDB数据库已经于2018/2020连续发表两篇Nature Biotechnology，2021年又发表在Nature Microbiology和Nucleic Acids
 Research上，是目前最权威的微生物分类数据库之一。
@@ -1691,11 +1691,11 @@ GTDB-Tk 不提供合并树的工具，但可以通过操作 Newick文件来人�
         </item>
         <item>
         <title>使用FastANI与Skani计算平均核苷酸一致性(ANI)</title>
-        <link>/p/ani/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/ani/</link>
         <pubDate>Sun, 19 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/ani/</guid>
-        <description>&lt;img src="/p/ani/images/ani3.png" alt="Featured image of post 使用FastANI与Skani计算平均核苷酸一致性(ANI)" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/ani/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/ani/images/ani3.png" alt="Featured image of post 使用FastANI与Skani计算平均核苷酸一致性(ANI)" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;ANI 是指平均核苷酸一致性（Average Nucleotide Identity），它是一种用来比较两种基因组之间相似度的方法。
 ANI 主要用于微生物基因组学和系统生物学，以评估不同细菌或古菌基因组之间的相似性。
 它被广泛应用于种的分类、基因组分类以及新物种的鉴定。&lt;/p&gt;

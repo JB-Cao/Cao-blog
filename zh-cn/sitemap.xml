@@ -2,177 +2,177 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/zh-cn/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/</loc>
     <lastmod>2024-08-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/"
+                href="https://jb-cao.github.io/Cao-blog/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/"
                 />
   </url><url>
-    <loc>/zh-cn/page/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/page/</loc>
     <lastmod>2024-08-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/page/"
+                href="https://jb-cao.github.io/Cao-blog/page/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/page/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/page/"
                 />
   </url><url>
-    <loc>/zh-cn/%E5%85%B3%E4%BA%8E/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/%E5%85%B3%E4%BA%8E/</loc>
     <lastmod>2024-08-27T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/about/"
+                href="https://jb-cao.github.io/Cao-blog/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/%E5%85%B3%E4%BA%8E/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/%E5%85%B3%E4%BA%8E/"
                 />
   </url><url>
-    <loc>/zh-cn/archives/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/archives/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/archives/"
+                href="https://jb-cao.github.io/Cao-blog/archives/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/archives/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/archives/"
                 />
   </url><url>
-    <loc>/zh-cn/mindmap/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/mindmap/</loc>
     <lastmod>2019-05-28T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/mindmap/"
+                href="https://jb-cao.github.io/Cao-blog/mindmap/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/mindmap/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/mindmap/"
                 />
   </url><url>
-    <loc>/zh-cn/categories/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/"
+                href="https://jb-cao.github.io/Cao-blog/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/categories/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/categories/"
                 />
   </url><url>
-    <loc>/zh-cn/categories/metagenomic/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/categories/metagenomic/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/metagenomic/"
+                href="https://jb-cao.github.io/Cao-blog/categories/metagenomic/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/categories/metagenomic/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/categories/metagenomic/"
                 />
   </url><url>
-    <loc>/zh-cn/categories/microbial-ecology/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/categories/microbial-ecology/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/microbial-ecology/"
+                href="https://jb-cao.github.io/Cao-blog/categories/microbial-ecology/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/categories/microbial-ecology/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/categories/microbial-ecology/"
                 />
   </url><url>
-    <loc>/zh-cn/categories/paper/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/categories/paper/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/paper/"
+                href="https://jb-cao.github.io/Cao-blog/categories/paper/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/categories/paper/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/categories/paper/"
                 />
   </url><url>
-    <loc>/zh-cn/categories/r/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/categories/r/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/r/"
+                href="https://jb-cao.github.io/Cao-blog/categories/r/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/categories/r/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/categories/r/"
                 />
   </url><url>
-    <loc>/zh-cn/tags/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/tags/"
+                href="https://jb-cao.github.io/Cao-blog/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/tags/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/tags/"
                 />
   </url><url>
-    <loc>/zh-cn/categories/uncompleted/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/categories/uncompleted/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/uncompleted/"
+                href="https://jb-cao.github.io/Cao-blog/categories/uncompleted/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/categories/uncompleted/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/categories/uncompleted/"
                 />
   </url><url>
-    <loc>/zh-cn/categories/utils/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/categories/utils/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/categories/utils/"
+                href="https://jb-cao.github.io/Cao-blog/categories/utils/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/categories/utils/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/categories/utils/"
                 />
   </url><url>
-    <loc>/zh-cn/search/</loc>
+    <loc>https://jb-cao.github.io/Cao-blog/zh-cn/search/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="/search/"
+                href="https://jb-cao.github.io/Cao-blog/search/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-cn"
-                href="/zh-cn/search/"
+                href="https://jb-cao.github.io/Cao-blog/zh-cn/search/"
                 />
   </url>
 </urlset>

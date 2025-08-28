@@ -4,16 +4,16 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='介绍绘制进化树用的ggtree以及一些拓展包的基础用法，因为gg系列绘图的逻辑基本是搭积木，这种介绍性的文章能够帮助快速的找到想要的“积木”以及拼接的方法，剩下的就是随心所欲设计想要的图了。'>
 <title>R绘制优美的进化树（基础）</title>
 
-<link rel='canonical' href='/p/r-tree/'>
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/r-tree/'>
 
-<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='R绘制优美的进化树（基础）'>
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='R绘制优美的进化树（基础）'>
 <meta property='og:description' content='介绍绘制进化树用的ggtree以及一些拓展包的基础用法，因为gg系列绘图的逻辑基本是搭积木，这种介绍性的文章能够帮助快速的找到想要的“积木”以及拼接的方法，剩下的就是随心所欲设计想要的图了。'>
-<meta property='og:url' content='/p/r-tree/'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/r-tree/'>
 <meta property='og:site_name' content='Cao&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='可视化' /><meta property='article:tag' content='进化树' /><meta property='article:tag' content='phylogenetic tree' /><meta property='article:published_time' content='2023-04-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-04-14T00:00:00&#43;00:00'/><meta property='og:image' content='/index.cn_files/figure-html/unnamed-chunk-15-1.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='可视化' /><meta property='article:tag' content='进化树' /><meta property='article:tag' content='phylogenetic tree' /><meta property='article:published_time' content='2023-04-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-04-14T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/index.cn_files/figure-html/unnamed-chunk-15-1.png' />
 <meta name="twitter:title" content="R绘制优美的进化树（基础）">
 <meta name="twitter:description" content="介绍绘制进化树用的ggtree以及一些拓展包的基础用法，因为gg系列绘图的逻辑基本是搭积木，这种介绍性的文章能够帮助快速的找到想要的“积木”以及拼接的方法，剩下的就是随心所欲设计想要的图了。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='/index.cn_files/figure-html/unnamed-chunk-15-1.png' />
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/index.cn_files/figure-html/unnamed-chunk-15-1.png' />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -57,13 +57,13 @@
         
             
             <figure class="site-avatar">
-                <a href="/">
+                <a href="/Cao-blog/">
                 
                     
                     
                     
                         
-                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -76,7 +76,7 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
             <h2 class="site-description">work hard, live happily.</h2>
         </div>
     </header><ol class="social-menu">
@@ -154,7 +154,7 @@
         
         
         <li >
-            <a href='/' >
+            <a href='/Cao-blog/' >
                 
                 
                 
@@ -174,7 +174,7 @@
         
         
         <li >
-            <a href='/about/' >
+            <a href='/Cao-blog/about/' >
                 
                 
                 
@@ -193,7 +193,7 @@
         
         
         <li >
-            <a href='/archives/' >
+            <a href='/Cao-blog/archives/' >
                 
                 
                 
@@ -213,7 +213,7 @@
         
         
         <li >
-            <a href='/mindmap/' >
+            <a href='/Cao-blog/mindmap/' >
                 
                 
                 
@@ -225,7 +225,7 @@
         
         
         <li >
-            <a href='/search/' >
+            <a href='/Cao-blog/search/' >
                 
                 
                 
@@ -258,9 +258,9 @@
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="/" selected>English</option>
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
                         
-                            <option value="/zh-cn/" >中文</option>
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
                         
                     </select>
                 </li>
@@ -347,9 +347,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/r-tree/">
+            <a href="/Cao-blog/p/r-tree/">
                 
-                    <img src="/index.cn_files/figure-html/unnamed-chunk-15-1.png" loading="lazy" alt="Featured image of post R绘制优美的进化树（基础）" />
+                    <img src="/Cao-blog/index.cn_files/figure-html/unnamed-chunk-15-1.png" loading="lazy" alt="Featured image of post R绘制优美的进化树（基础）" />
                 
             </a>
         </div>
@@ -359,7 +359,7 @@
     
     <header class="article-category">
         
-            <a href="/categories/r/" style="background-color: #bebada; color: #fff;">
+            <a href="/Cao-blog/categories/r/" style="background-color: #bebada; color: #fff;">
                 R
             </a>
         
@@ -368,7 +368,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/r-tree/">R绘制优美的进化树（基础）</a>
+            <a href="/Cao-blog/p/r-tree/">R绘制优美的进化树（基础）</a>
         </h2>
     
         
@@ -604,7 +604,7 @@
 </span></span><span class="line"><span class="cl">      <span class="n">color</span><span class="o">=</span><span class="s">&#34;black&#34;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="m">1</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 <h4 id="layout">layout</h4>
 <p>整棵树的布局方式有很多’rectangular’, ‘dendrogram’, ‘slanted’, ‘ellipse’, ‘roundrect’, ‘fan’, ‘circular’, ‘inward_circular’, ‘radial’, ‘equal_angle’, ‘daylight’ or ‘ape’，也可以用其它一些参数调节：</p>
 <div class="highlight"><div class="chroma">
@@ -682,7 +682,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">main_p</span><span class="o">+</span><span class="nf">geom_tiplab</span><span class="p">(</span><span class="n">align</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span><span class="n">linetype</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span><span class="n">linesize</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">&#34;red&#34;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -693,7 +693,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">main_p</span><span class="o">+</span><span class="nf">geom_tiplab</span><span class="p">(</span><span class="n">align</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">&#34;blue&#34;</span><span class="p">,</span><span class="n">as_ylab</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-5-2.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-5-2.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -704,7 +704,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span><span class="o">+</span><span class="nf">geom_nodelab</span><span class="p">(</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">node</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-5-3.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-5-3.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -715,7 +715,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">main_p</span><span class="o">+</span><span class="nf">geom_treescale</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="m">6</span><span class="p">,</span> <span class="n">linesize</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-5-4.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-5-4.png" width="672" />
 <h3 id="manipulate">manipulate</h3>
 <p>我们可以使用<code>tidytree::as_tibble</code>或者<code>ggtree::fortify</code>把整个树（phylo对象）转为一个易于阅读的dataframe。</p>
 <p>parent和node两列展示了整个树的连接关系,branch.length是每个枝（连接parent和node）的枝长，label是node的label，一般每个tip（端点）都会有一个label，内部的点可能没有label（比如这个示例），我们也可以手动加上。</p>
@@ -882,7 +882,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="o">+</span><span class="n">p2</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 <p>其他一些操作:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -948,7 +948,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">gheatmap</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">anno[</span><span class="s">&#34;Group&#34;</span><span class="n">]</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">0.2</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 <p>或者使用aplot包进行会自动对齐tip的组图（用cowplot无法实现），但缺点就是组图时候的一些细节不好调节，且要考虑清楚各个分面insert的关系和宽度。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -968,7 +968,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">ap1</span><span class="o">%&gt;%</span> <span class="nf">insert_left</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">width</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">insert_right</span><span class="p">(</span><span class="n">ap2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">2</span><span class="p">)</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 <p>目前感觉最好用的tip注释方法就是 <strong>ggtreeExtra</strong>，有统一的注释逻辑<code>geom_fruit</code>,按照图层一个一个添加，比较易学和调节。具体能用来注释的图层有’geom_bar’, ‘geom_col’, ‘geom_boxplot’, ‘geom_violin’，‘ggstar’,’ggimage’等。</p>
 <p>每一个geom图层就像一个积木块一样，我们要做的就是挑选合适的积木，用同样的方法搭上去即可（也是整个ggplot的绘图逻辑，优雅），对每个geom图层，我们同样可以使用ggplot的各种scale方法调节颜色、大小、形状等。</p>
 <div class="highlight"><div class="chroma">
@@ -1049,7 +1049,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">p1</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 <p>要注意的是！在添加多个图层时，有时候我们要用多次的fill或color属性，但是ggplot的scale_fill_manual会对全局生效，结果就会比较奇怪，所以我们在图层之间一般要使用<code>ggnewscale</code>包来产生一个新的scale，之后就可以分别调节了。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1083,7 +1083,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">p2</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1126,7 +1126,7 @@
 </span></span><span class="line"><span class="cl">      <span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 <p>当然还可以加一些有趣的比如 <strong>image注释</strong> 。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1166,7 +1166,7 @@
 </span></span><span class="line"><span class="cl">    <span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 <p>生物剪影，<a class="link" href="https://yulab-smu.top/treedata-book/phylopic.org"  target="_blank" rel="noopener"
     >Phylopic</a> 包含 3200 多个生物剪影，涵盖很多门类。</p>
 <div class="highlight"><div class="chroma">
@@ -1229,7 +1229,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1242,7 +1242,7 @@
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_point2</span><span class="p">(</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">test</span><span class="o">!=</span><span class="m">0</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="n">test</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-19-2.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-19-2.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1253,7 +1253,7 @@
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_cladelab</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">internal_anno</span><span class="p">,</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="n">node</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">name</span><span class="p">,</span><span class="n">angle</span><span class="o">=</span><span class="n">angle1</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1272,7 +1272,7 @@
 </span></span><span class="line"><span class="cl">            <span class="n">label</span> <span class="o">=</span> <span class="s">&#34;group2&#34;</span><span class="p">,</span> <span class="n">offset.text</span><span class="o">=</span><span class="m">.1</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-20-2.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-20-2.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1285,7 +1285,7 @@
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_highlight</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">internal_anno</span><span class="p">,</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="n">node</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">name</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1300,7 +1300,7 @@
 </span></span><span class="line"><span class="cl">  <span class="nf">geom_balance</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="m">56</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">&#39;darkgreen&#39;</span><span class="p">,</span>  <span class="n">alpha</span><span class="o">=</span><span class="m">0.6</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-21-2.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-21-2.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1331,7 +1331,7 @@
 </span></span><span class="line"><span class="cl">          <span class="nf">scale_size_continuous</span><span class="p">(</span><span class="n">range</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 <p>另外一些是通过内部节点改变整个树分布的方法：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1343,7 +1343,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">scaleClade</span><span class="p">(</span><span class="n">col_p</span><span class="p">,</span> <span class="n">node</span><span class="o">=</span><span class="m">53</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="m">.1</span><span class="p">)</span> 
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1354,7 +1354,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">collapse</span><span class="p">(</span><span class="n">col_p</span><span class="p">,</span> <span class="n">node</span><span class="o">=</span><span class="m">53</span><span class="p">,</span><span class="n">mode</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;mix&#34;</span><span class="p">,</span><span class="s">&#34;max&#34;</span><span class="p">,</span><span class="s">&#34;min&#34;</span><span class="p">,</span><span class="s">&#34;none&#34;</span><span class="p">)</span><span class="n">[1]</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="s">&#34;red3&#34;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.4</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-2.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-2.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1365,7 +1365,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">ggtree</span><span class="o">::</span><span class="nf">rotate</span><span class="p">(</span><span class="n">col_p</span><span class="p">,</span><span class="n">node</span> <span class="o">=</span> <span class="m">52</span><span class="p">)</span><span class="o">+</span><span class="nf">geom_nodelab</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">node</span><span class="o">==</span><span class="m">52</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="n">node</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-3.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-3.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1376,7 +1376,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">ggtree</span><span class="o">::</span><span class="nf">flip</span><span class="p">(</span><span class="n">col_p</span><span class="p">,</span><span class="m">53</span><span class="p">,</span><span class="m">68</span><span class="p">)</span><span class="o">+</span><span class="nf">geom_nodelab</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">node</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-4.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-4.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1387,7 +1387,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">open_tree</span><span class="p">(</span><span class="n">col_p</span><span class="p">,</span> <span class="m">180</span><span class="p">)</span><span class="o">%&gt;%</span><span class="nf">rotate_tree</span><span class="p">(</span><span class="m">90</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-5.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-5.png" width="672" />
 <p>掌握以上这些方法，基本上可以绘制出用在文章的树了（当然一定要自己好好找配色，调整细节！！！）</p>
 <p>下次进阶！</p>
 <h2 id="reference">Reference</h2>
@@ -1409,11 +1409,11 @@
     
     <section class="article-tags">
         
-            <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/">可视化</a>
+            <a href="/Cao-blog/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/">可视化</a>
         
-            <a href="/tags/%E8%BF%9B%E5%8C%96%E6%A0%91/">进化树</a>
+            <a href="/Cao-blog/tags/%E8%BF%9B%E5%8C%96%E6%A0%91/">进化树</a>
         
-            <a href="/tags/phylogenetic-tree/">Phylogenetic Tree</a>
+            <a href="/Cao-blog/tags/phylogenetic-tree/">Phylogenetic Tree</a>
         
     </section>
 
@@ -1471,11 +1471,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/iphylo/">
+    <a href="/Cao-blog/p/iphylo/">
         
         
             <div class="article-image">
-                <img src="/p/iphylo/images/iphy.0244b30a5110c9d253d682d90a87289b_hu_773ae5a961053499.png" 
+                <img src="/Cao-blog/p/iphylo/images/iphy.0244b30a5110c9d253d682d90a87289b_hu_773ae5a961053499.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1495,11 +1495,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/r-tree2/">
+    <a href="/Cao-blog/p/r-tree2/">
         
         
             <div class="article-image">
-                <img src="/p/r-tree2/images/example3.2d1a5ae3bdd0028f7084e9e4be97252d_hu_b76111f320dd40af.png" 
+                <img src="/Cao-blog/p/r-tree2/images/example3.2d1a5ae3bdd0028f7084e9e4be97252d_hu_b76111f320dd40af.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1519,11 +1519,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/sample-map/">
+    <a href="/Cao-blog/p/sample-map/">
         
         
             <div class="article-image">
-                <img src="/p/sample-map/images/leaf2.780d9a2ee8ea7ffe7f76cd25c264adad_hu_f2384a1b8d31b7dc.png" 
+                <img src="/Cao-blog/p/sample-map/images/leaf2.780d9a2ee8ea7ffe7f76cd25c264adad_hu_f2384a1b8d31b7dc.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1543,11 +1543,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/synteny/">
+    <a href="/Cao-blog/p/synteny/">
         
         
             <div class="article-image">
-                <img src="/p/synteny/images/emales.4bc315eea41464bbcfd1eab9c4798b89_hu_712745c117876c99.png" 
+                <img src="/Cao-blog/p/synteny/images/emales.4bc315eea41464bbcfd1eab9c4798b89_hu_712745c117876c99.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1567,11 +1567,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/r-vis-pkg/">
+    <a href="/Cao-blog/p/r-vis-pkg/">
         
         
             <div class="article-image">
-                <img src="/p/r-vis-pkg/index.en_files/figure-html/unnamed-chunk-2-1.6932b469ee89c8b2a23202f3e6e7f6b2_hu_68db91eb2bec9b13.png" 
+                <img src="/Cao-blog/p/r-vis-pkg/index.en_files/figure-html/unnamed-chunk-2-1.6932b469ee89c8b2a23202f3e6e7f6b2_hu_68db91eb2bec9b13.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1748,7 +1748,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

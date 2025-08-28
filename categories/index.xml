@@ -2,73 +2,73 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Categories on Cao&#39;s blog</title>
-        <link>/categories/</link>
+        <link>https://jb-cao.github.io/Cao-blog/categories/</link>
         <description>Recent content in Categories on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 31 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 31 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/categories/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>metagenomic</title>
-        <link>/categories/metagenomic/</link>
+        <link>https://jb-cao.github.io/Cao-blog/categories/metagenomic/</link>
         <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
         
-        <guid>/categories/metagenomic/</guid>
-        <description>&lt;img src="/categories/metagenomic/metagenomic.jpg" alt="Featured image of post metagenomic" /&gt;</description>
+        <guid>https://jb-cao.github.io/Cao-blog/categories/metagenomic/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/categories/metagenomic/metagenomic.jpg" alt="Featured image of post metagenomic" /&gt;</description>
         </item>
         <item>
         <title>R</title>
-        <link>/categories/r/</link>
+        <link>https://jb-cao.github.io/Cao-blog/categories/r/</link>
         <pubDate>Wed, 02 Jul 2025 00:00:00 +0000</pubDate>
         
-        <guid>/categories/r/</guid>
-        <description>&lt;img src="/categories/r/R.jpg" alt="Featured image of post R" /&gt;</description>
+        <guid>https://jb-cao.github.io/Cao-blog/categories/r/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/categories/r/R.jpg" alt="Featured image of post R" /&gt;</description>
         </item>
         <item>
         <title>paper</title>
-        <link>/categories/paper/</link>
+        <link>https://jb-cao.github.io/Cao-blog/categories/paper/</link>
         <pubDate>Thu, 26 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>/categories/paper/</guid>
-        <description>&lt;img src="/categories/paper/paper.jpg" alt="Featured image of post paper" /&gt;</description>
+        <guid>https://jb-cao.github.io/Cao-blog/categories/paper/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/categories/paper/paper.jpg" alt="Featured image of post paper" /&gt;</description>
         </item>
         <item>
         <title>utils</title>
-        <link>/categories/utils/</link>
+        <link>https://jb-cao.github.io/Cao-blog/categories/utils/</link>
         <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>/categories/utils/</guid>
-        <description>&lt;img src="/categories/utils/sem_model.jpg" alt="Featured image of post utils" /&gt;</description>
+        <guid>https://jb-cao.github.io/Cao-blog/categories/utils/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/categories/utils/sem_model.jpg" alt="Featured image of post utils" /&gt;</description>
         </item>
         <item>
         <title>microbial-ecology</title>
-        <link>/categories/microbial-ecology/</link>
+        <link>https://jb-cao.github.io/Cao-blog/categories/microbial-ecology/</link>
         <pubDate>Thu, 13 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>/categories/microbial-ecology/</guid>
-        <description>&lt;img src="/categories/microbial-ecology/comm.jpg" alt="Featured image of post microbial-ecology" /&gt;</description>
+        <guid>https://jb-cao.github.io/Cao-blog/categories/microbial-ecology/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/categories/microbial-ecology/comm.jpg" alt="Featured image of post microbial-ecology" /&gt;</description>
         </item>
         <item>
         <title>Python</title>
-        <link>/categories/python/</link>
+        <link>https://jb-cao.github.io/Cao-blog/categories/python/</link>
         <pubDate>Wed, 21 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>/categories/python/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/categories/python/</guid>
         <description></description>
         </item>
         <item>
         <title>随笔</title>
-        <link>/categories/%E9%9A%8F%E7%AC%94/</link>
+        <link>https://jb-cao.github.io/Cao-blog/categories/%E9%9A%8F%E7%AC%94/</link>
         <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
         
-        <guid>/categories/%E9%9A%8F%E7%AC%94/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/categories/%E9%9A%8F%E7%AC%94/</guid>
         <description></description>
         </item>
         <item>
         <title>uncompleted</title>
-        <link>/categories/uncompleted/</link>
+        <link>https://jb-cao.github.io/Cao-blog/categories/uncompleted/</link>
         <pubDate>Thu, 09 Nov 2023 00:00:00 +0000</pubDate>
         
-        <guid>/categories/uncompleted/</guid>
-        <description>&lt;img src="/categories/uncompleted/Task.png" alt="Featured image of post uncompleted" /&gt;</description>
+        <guid>https://jb-cao.github.io/Cao-blog/categories/uncompleted/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/categories/uncompleted/Task.png" alt="Featured image of post uncompleted" /&gt;</description>
         </item>
         
     </channel>

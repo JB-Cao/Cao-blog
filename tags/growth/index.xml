@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Growth on Cao&#39;s blog</title>
-        <link>/tags/growth/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/growth/</link>
         <description>Recent content in Growth on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Mon, 15 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/growth/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 15 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/growth/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>从宏基因组量化细菌生长动态</title>
-        <link>/p/growth/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/growth/</link>
         <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/growth/</guid>
-        <description>&lt;img src="/p/growth/images/PTR.jpeg" alt="Featured image of post 从宏基因组量化细菌生长动态" /&gt;&lt;h2 id=&#34;introduciton&#34;&gt;Introduciton&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/growth/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/growth/images/PTR.jpeg" alt="Featured image of post 从宏基因组量化细菌生长动态" /&gt;&lt;h2 id=&#34;introduciton&#34;&gt;Introduciton&lt;/h2&gt;
 &lt;p&gt;了解细菌在各种环境中的生长动态对于人类健康和环境监测等广泛领域至关重要。传统研究细菌生长的方法往往依赖于培养技术，这不仅耗时，而且对易培养的物种有偏向。然而，随着宏基因组测序技术的兴起，我们现在可以直接从环境样本中探讨整个微生物群落的生长动态。&lt;/p&gt;
 &lt;p&gt;宏基因组学通过测序样本中所有微生物的集体基因组，提供了微生物群落的全面快照。这种方法使研究人员能够绕过培养步骤，捕捉细菌在自然栖息地中的多样性和动态。通过分析宏基因组数据，我们可以推断细菌的生长速率、种群变化和群落相互作用。&lt;/p&gt;
 &lt;p&gt;本文主要介绍从宏基因组数据推断细菌生长速率的方法和简要应用。&lt;/p&gt;

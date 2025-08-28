@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Network on Cao&#39;s blog</title>
-        <link>/tags/network/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/network/</link>
         <description>Recent content in Network on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 26 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/network/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 26 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/network/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>预印本｜MetaNet: a scalable and integrated tool for reproducible omics network analysis</title>
-        <link>/p/metanet-biorxiv/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-biorxiv/</link>
         <pubDate>Thu, 26 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-biorxiv/</guid>
-        <description>&lt;img src="/p/metanet-biorxiv/images/fig4.png" alt="Featured image of post 预印本｜MetaNet: a scalable and integrated tool for reproducible omics network analysis" /&gt;&lt;p&gt;MetaNet是一个用于组学网络分析的R包，提供了多种功能，包括网络构建、可视化、比较和稳定性分析等。最近我把MetaNet的预印本放到了bioRxiv上，欢迎大家阅读和使用。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-biorxiv/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-biorxiv/images/fig4.png" alt="Featured image of post 预印本｜MetaNet: a scalable and integrated tool for reproducible omics network analysis" /&gt;&lt;p&gt;MetaNet是一个用于组学网络分析的R包，提供了多种功能，包括网络构建、可视化、比较和稳定性分析等。最近我把MetaNet的预印本放到了bioRxiv上，欢迎大家阅读和使用。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;预印本地址：&lt;a class=&#34;link&#34; href=&#34;https://www.biorxiv.org/content/10.1101/2025.06.26.661636v1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.biorxiv.org/content/10.1101/2025.06.26.661636v1&lt;/a&gt;&lt;/li&gt;
@@ -209,11 +209,11 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
         </item>
         <item>
         <title>使用MetaNet绘制KEGG通路网络图</title>
-        <link>/p/metanet-kegg/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-kegg/</link>
         <pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-kegg/</guid>
-        <description>&lt;img src="/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1.png" alt="Featured image of post 使用MetaNet绘制KEGG通路网络图" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-kegg/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1.png" alt="Featured image of post 使用MetaNet绘制KEGG通路网络图" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.genome.jp/kegg/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;KEGG&lt;/a&gt;（Kyoto Encyclopedia of Genes and Genomes）是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息。它提供了基因、蛋白质、代谢物和信号通路等生物分子的综合信息，帮助研究人员理解生物体内分子之间的相互作用和功能。&lt;/p&gt;
 &lt;p&gt;之前的文章详细介绍了&lt;a class=&#34;link&#34; href=&#34;../kegg-api&#34; &gt;KEGG 数据库及API&lt;/a&gt;的基础使用。其中KEGG pathway是我们经常需要使用的功能之一，它提供了生物体内代谢通路和信号传导通路的详细信息。&lt;/p&gt;
@@ -266,7 +266,7 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot_pathway_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path_net_c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;我们也可以使用&lt;code&gt;update_pathway_xml_ls()&lt;/code&gt;函数来获取或更新所有的KEGG通路XML文件。这个函数会下载最新的KEGG通路XML文件到指定的目录。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -313,7 +313,7 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                 &lt;span class=&#34;n&#34;&gt;edge.width&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;添加注释文件，比如基因上调和下调信息。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -349,7 +349,7 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                 &lt;span class=&#34;n&#34;&gt;edge.width&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;还可以使用&lt;code&gt;MetaNet&lt;/code&gt;对网络进行各种操作筛选，比如我想获取某个基因的下游网络：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -403,7 +403,7 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot_pathway_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path_net_c2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vertex.color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h2 id=&#34;ggkegg&#34;&gt;ggkegg&lt;/h2&gt;
 &lt;p&gt;但目前MetaNet不支持一些巨大的代谢网络如ko01100，因为其xml文件不是标准网络信息，可以使用更强大的&lt;code&gt;ggkegg&lt;/code&gt;包来绘制，代码稍微复杂一点：&lt;/p&gt;
 &lt;p&gt;ggkegg是一个基于&lt;code&gt;ggplot2&lt;/code&gt;的KEGG通路绘图包，提供了更灵活的绘图功能和更美观的图形输出。它可以处理更复杂的KEGG通路数据，并支持多种自定义样式。&lt;/p&gt;
@@ -493,11 +493,11 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
         </item>
         <item>
         <title>使用MetaNet进行网络比较</title>
-        <link>/p/metanet-comparison/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-comparison/</link>
         <pubDate>Fri, 23 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-comparison/</guid>
-        <description>&lt;img src="/p/metanet-comparison/index.en_files/figure-html/unnamed-chunk-4-1.png" alt="Featured image of post 使用MetaNet进行网络比较" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-comparison/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-comparison/index.en_files/figure-html/unnamed-chunk-4-1.png" alt="Featured image of post 使用MetaNet进行网络比较" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;MetaNet是一个用于组学网络分析的R包，提供了多种功能，包括网络构建、可视化、比较和稳定性分析等。&lt;/p&gt;
 &lt;p&gt;之前发布的推文中，有多位同学提到如何进行网络的比较，我也根据他们的一些建议改进了MetaNet的一些函数。
 本文将介绍如何使用MetaNet进行网络比较，并展示一些示例代码和结果。&lt;/p&gt;
@@ -584,7 +584,7 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;c_net_plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;g_diff&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;params_list&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;par_ls&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-comparison/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-comparison/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;960&#34; /&gt;
 &lt;h2 id=&#34;c_net_compare&#34;&gt;c_net_compare&lt;/h2&gt;
 &lt;p&gt;基于上述的网络运算，MetaNet提供了&lt;code&gt;c_net_compare&lt;/code&gt;函数来比较两个网络的差异部分。该函数可以计算两个网络之间的并集、交集、网络拓扑指标以及计算的网络相似性，并返回一个包含这些信息的列表。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -650,7 +650,7 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c_net_comp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-comparison/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-comparison/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;网络相似性计算了三种，一个是基于共有节点的jaccard相似性，一个是基于共有边的jaccard相似性，还有一个是基于网络邻接矩阵的相似性。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -754,7 +754,7 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot_net_degree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net_p1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net_p2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-comparison/index.en_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-comparison/index.en_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h2 id=&#34;c_net_highlight&#34;&gt;c_net_highlight&lt;/h2&gt;
 &lt;p&gt;我们也可以自行调用以下这些函数：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;c_net_neighbors&lt;/code&gt;函数可以获取指定节点的邻居节点，&lt;/p&gt;
@@ -788,16 +788,16 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-comparison/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-comparison/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;768&#34; /&gt;
 </description>
         </item>
         <item>
         <title>使用MetaNet添加更多节点形状</title>
-        <link>/p/metanet-shape/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-shape/</link>
         <pubDate>Thu, 22 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-shape/</guid>
-        <description>&lt;img src="/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-6-1.png" alt="Featured image of post 使用MetaNet添加更多节点形状" /&gt;&lt;p&gt;MetaNet默认使用的是&lt;code&gt;igraph&lt;/code&gt;的绘图系统，其中自带的节点形状是非常有限的，只有&lt;code&gt;circle&lt;/code&gt;、&lt;code&gt;square&lt;/code&gt;、&lt;code&gt;csquare&lt;/code&gt;、&lt;code&gt;rectangle&lt;/code&gt;、&lt;code&gt;crectangle&lt;/code&gt;、&lt;code&gt;vrectangle&lt;/code&gt;、&lt;code&gt;pie&lt;/code&gt;、&lt;code&gt;none&lt;/code&gt;这几种形状，MetaNet在此基础上添加了更多常用形状，并且可以根据本文方法添加自定义形状。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-shape/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-6-1.png" alt="Featured image of post 使用MetaNet添加更多节点形状" /&gt;&lt;p&gt;MetaNet默认使用的是&lt;code&gt;igraph&lt;/code&gt;的绘图系统，其中自带的节点形状是非常有限的，只有&lt;code&gt;circle&lt;/code&gt;、&lt;code&gt;square&lt;/code&gt;、&lt;code&gt;csquare&lt;/code&gt;、&lt;code&gt;rectangle&lt;/code&gt;、&lt;code&gt;crectangle&lt;/code&gt;、&lt;code&gt;vrectangle&lt;/code&gt;、&lt;code&gt;pie&lt;/code&gt;、&lt;code&gt;none&lt;/code&gt;这几种形状，MetaNet在此基础上添加了更多常用形状，并且可以根据本文方法添加自定义形状。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;软件主页：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Asa12138/MetaNet&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/Asa12138/MetaNet&lt;/a&gt; &lt;strong&gt;大家可以帮忙在github上点点star⭐️&lt;/strong&gt;，谢谢🙏&lt;/li&gt;
@@ -846,7 +846,7 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;可以看到&lt;code&gt;csquare&lt;/code&gt;、&lt;code&gt;rectangle&lt;/code&gt;、&lt;code&gt;crectangle&lt;/code&gt;、&lt;code&gt;vrectangle&lt;/code&gt;等形状都是矩形的变种，主要是线的连接方式不同，有时候是难以区分的。&lt;/p&gt;
 &lt;p&gt;sphere是一个三维的球体，还是很好看的，可以模拟STRING 数据库的节点形状。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -863,7 +863,7 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h2 id=&#34;metanet节点形状&#34;&gt;MetaNet节点形状&lt;/h2&gt;
 &lt;p&gt;MetaNet在igraph的基础上添加了更多的形状，主要是&lt;code&gt;diamond&lt;/code&gt;、&lt;code&gt;triangle1&lt;/code&gt;、&lt;code&gt;triangle2&lt;/code&gt;、&lt;code&gt;star&lt;/code&gt;、&lt;code&gt;polygon&lt;/code&gt;等形状。&lt;/p&gt;
 &lt;p&gt;MetaNet的形状默认是跟v_group变量绑定的（查看之前的推文 &lt;a class=&#34;link&#34; href=&#34;../metanet-3&#34; &gt;3.网络注释与操作&lt;/a&gt;），所以当设定了多个大分组时，需要一些易于区分的形状来区分不同的组。&lt;/p&gt;
@@ -886,7 +886,7 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;c_net_plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;g2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vertex.color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pcutils&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;get_cols&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;也可以指定&lt;code&gt;star&lt;/code&gt;、&lt;code&gt;ploygon&lt;/code&gt;等形状。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -900,7 +900,7 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;           &lt;span class=&#34;n&#34;&gt;legend&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
 `star`、`ploygon`两种形状可以指定边数，vertex.norays参数可以指定边数，默认是5角星和5边形。
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -914,7 +914,7 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;           &lt;span class=&#34;n&#34;&gt;vertex.norays&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;sample&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;vcount&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;g2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;replace&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;legend&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h2 id=&#34;添加自定义形状&#34;&gt;添加自定义形状&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;add_shape&lt;/code&gt; 可用于向igraph/MetaNet添加新的顶点形状，提供新形状的剪切和打印功能即可。也可以在参数中列出剪裁和/或绘图函数可以使用的绘图/顶点/边参数。&lt;/p&gt;
 &lt;p&gt;拿上述的star做一个例子，构建以下add_metanet_shape_star函数，并运行后，就可以添加上述的star形状了，并且支持color，size，frame.color等参数的修改。&lt;/p&gt;
@@ -1122,11 +1122,11 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
         </item>
         <item>
         <title>MetaNet：多组学网络分析工具｜8.网络稳定性分析</title>
-        <link>/p/metanet-8/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-8/</link>
         <pubDate>Wed, 16 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-8/</guid>
-        <description>&lt;img src="/p/metanet-8/images/nc.png" alt="Featured image of post MetaNet：多组学网络分析工具｜8.网络稳定性分析" /&gt;&lt;p&gt;除了之前讲的网络拓扑特征（数学指标）外，网络的稳定性也是生物研究的重点。网络稳定性是理解分子调控，代谢网络，生态系统等稳健性的重要因素。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-8/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-8/images/nc.png" alt="Featured image of post MetaNet：多组学网络分析工具｜8.网络稳定性分析" /&gt;&lt;p&gt;除了之前讲的网络拓扑特征（数学指标）外，网络的稳定性也是生物研究的重点。网络稳定性是理解分子调控，代谢网络，生态系统等稳健性的重要因素。&lt;/p&gt;
 &lt;p&gt;我们收集了许多方法在MetaNet中来计算和反映网络的稳定性和复杂性，这些算法都是&lt;strong&gt;并行计算&lt;/strong&gt;的，这可以快得多。所有网络稳定性计算都提供并行版本，使用&lt;code&gt;parallel::detectCores()&lt;/code&gt;获取设备核数，并设置&lt;code&gt;threads &amp;gt;1&lt;/code&gt;使用并行计算。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;软件主页：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Asa12138/MetaNet&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -1369,11 +1369,11 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>MetaNet：多组学网络分析工具｜7.网络模块分析</title>
-        <link>/p/metanet-7/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-7/</link>
         <pubDate>Tue, 15 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-7/</guid>
-        <description>&lt;img src="/p/metanet-7/index.en_files/figure-html/unnamed-chunk-5-1.png" alt="Featured image of post MetaNet：多组学网络分析工具｜7.网络模块分析" /&gt;&lt;p&gt;在复杂网络分析中，模块（module）或社区（community）是指网络中连接更为紧密的子图结构。这些模块通常代表功能相关的节点群组，在生物网络中可能对应特定的功能单元或调控模块。MetaNet工具包提供了全面的功能，本文将详细介绍其核心方法和应用场景。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-7/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-5-1.png" alt="Featured image of post MetaNet：多组学网络分析工具｜7.网络模块分析" /&gt;&lt;p&gt;在复杂网络分析中，模块（module）或社区（community）是指网络中连接更为紧密的子图结构。这些模块通常代表功能相关的节点群组，在生物网络中可能对应特定的功能单元或调控模块。MetaNet工具包提供了全面的功能，本文将详细介绍其核心方法和应用场景。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;软件主页：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Asa12138/MetaNet&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/Asa12138/MetaNet&lt;/a&gt; &lt;strong&gt;大家可以帮忙在github上点点star⭐️&lt;/strong&gt;，谢谢🙏&lt;/li&gt;
@@ -1417,7 +1417,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test_module_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mark_module&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-7/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;网络科学领域已开发出多种模块检测算法，各有其优势和适用场景：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;短随机游走法&lt;/strong&gt;：基于随机游走的动态过程识别社区&lt;/li&gt;
@@ -1537,7 +1537,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net_modu3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;plot_module&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-7/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;1536&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;1536&#34; /&gt;
 &lt;p&gt;看看网络的components，一些太小的sub_graphs会影响模块，如果您不关心这些小型组件，则可以过滤掉它们。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1577,7 +1577,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net_modu4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;plot_module&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-7/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;&lt;code&gt;plot_module_tree()&lt;/code&gt;函数可展示模块的树状关系，揭示模块间的层次结构。当模块数量过多时，&lt;code&gt;combine_n_module()&lt;/code&gt;可将模块合并到指定数量，便于高层次分析。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1603,7 +1603,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;p1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p2&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-7/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;h3 id=&#34;模块pattern分析&#34;&gt;模块pattern分析&lt;/h3&gt;
 &lt;p&gt;在生物网络中，模块常对应功能相关的分子集合。我们还可以使用此网络模块指示具有相似表达/丰度的群集。但是我们应该首先过滤正边，因为模块检测仅考虑拓扑结构而不是边缘类型。过滤正相关边和模块检测后，将找到一些模块，很像是WGCNA里的基因模块，我们还可以使用&lt;code&gt;module_eigen&lt;/code&gt;查看每个模块表达模式。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -1628,7 +1628,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net_pos_modu&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;plot_module&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-7/index.en_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;&lt;code&gt;module_eigen()&lt;/code&gt;和&lt;code&gt;module_expression()&lt;/code&gt;可计算和可视化模块特征基因及表达模式：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1666,7 +1666,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;p1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;patchwork&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;plot_layout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;heights&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1.4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-7/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;1152&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;1152&#34; /&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1685,7 +1685,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;p3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;p4&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-7/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;960&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;960&#34; /&gt;
 &lt;p&gt;使用&lt;code&gt;links_stat()&lt;/code&gt;对边进行汇总，发现大多数边都是从一个模块到同一个模块的（意味着模块检测正常）。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1695,7 +1695,7 @@ $$&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;links_stat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net_modu2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;group&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;module&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-7/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h2 id=&#34;拓扑角色分析&#34;&gt;拓扑角色分析&lt;/h2&gt;
 &lt;p&gt;在我们确定了网络的这些模块后，可以根据Zi-Pi计算每个节点的拓扑角色。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Within-module connectivity (Zi)&lt;/strong&gt;:&lt;/p&gt;
@@ -1775,7 +1775,7 @@ S. Liu, H. Yu, Y. Yu, J. Huang, et al., Ecological stability of microbial commun
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net_modu6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mark_module&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;labels_num&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;group_legend_title&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Roles&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-7/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1788,7 +1788,7 @@ S. Liu, H. Yu, Y. Yu, J. Huang, et al., Ecological stability of microbial commun
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;zp_plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net_modu4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-7/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;1152&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;1152&#34; /&gt;
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;Koutrouli M, Karatzas E, Paez-Espino D and Pavlopoulos GA (2020) A Guide to Conquer the Biological Network Era Using Graph Theory. Front. Bioeng. Biotechnol. 8:34. doi: 10.3389/fbioe.2020.00034&lt;/li&gt;
@@ -1802,11 +1802,11 @@ S. Liu, H. Yu, Y. Yu, J. Huang, et al., Ecological stability of microbial commun
         </item>
         <item>
         <title>MetaNet：多组学网络分析工具｜6.网络拓扑指标分析</title>
-        <link>/p/metanet-6/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-6/</link>
         <pubDate>Mon, 14 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-6/</guid>
-        <description>&lt;img src="/p/metanet-6/images/node_topo.png" alt="Featured image of post MetaNet：多组学网络分析工具｜6.网络拓扑指标分析" /&gt;&lt;p&gt;本文我们介绍网络的各种拓扑指标计算和分析。网络拓扑（Network Topology）是指网络中节点与边的连接模式所呈现的全局或局部结构特征。在生物组学研究中，拓扑分析能揭示分子互作网络的功能组织规律，是理解复杂生物系统的关键手段。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-6/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-6/images/node_topo.png" alt="Featured image of post MetaNet：多组学网络分析工具｜6.网络拓扑指标分析" /&gt;&lt;p&gt;本文我们介绍网络的各种拓扑指标计算和分析。网络拓扑（Network Topology）是指网络中节点与边的连接模式所呈现的全局或局部结构特征。在生物组学研究中，拓扑分析能揭示分子互作网络的功能组织规律，是理解复杂生物系统的关键手段。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;软件主页：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Asa12138/MetaNet&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/Asa12138/MetaNet&lt;/a&gt; &lt;strong&gt;大家可以帮忙在github上点点star⭐️&lt;/strong&gt;，谢谢🙏&lt;/li&gt;
@@ -2142,7 +2142,7 @@ S. Liu, H. Yu, Y. Yu, J. Huang, et al., Ecological stability of microbial commun
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;go&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vertex_size_range&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;legend&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;main&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Size map to degree&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-6/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-6/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h2 id=&#34;随机网络&#34;&gt;随机网络&lt;/h2&gt;
 &lt;p&gt;随机网络（Random Network）是网络科学中的一类基础网络模型，其核心特征是网络连接遵循某种随机生成规则。Erdős-Rényi（ER）模型是最著名的代表：&lt;/p&gt;
 &lt;ul&gt;
@@ -2178,7 +2178,7 @@ S. Liu, H. Yu, Y. Yu, J. Huang, et al., Ecological stability of microbial commun
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;rand_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;random_net&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-6/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-6/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;&lt;strong&gt;批量生成与统计比较&lt;/strong&gt;&lt;br&gt;
 通过&lt;code&gt;rand_net_par()&lt;/code&gt;生成多个随机网络并计算拓扑指标分布，再使用&lt;code&gt;compare_rand()&lt;/code&gt;进行显著性比较：&lt;/li&gt;
@@ -2197,7 +2197,7 @@ S. Liu, H. Yu, Y. Yu, J. Huang, et al., Ecological stability of microbial commun
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;index&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Average_path_length&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Clustering_coefficient&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-6/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-6/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h2 id=&#34;复杂网络&#34;&gt;复杂网络&lt;/h2&gt;
 &lt;p&gt;在组学研究中构建的网络大多属于复杂网络，其核心特征包括无标度性、小世界性、模块化和层次性，具体定义如下所示：&lt;/p&gt;
 &lt;img src=&#34;images/co1.png&#34; title=&#34;&#34;/&gt;
@@ -2217,7 +2217,7 @@ S. Liu, H. Yu, Y. Yu, J. Huang, et al., Ecological stability of microbial commun
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;fit_power&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-6/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;60%&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-6/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;60%&#34; /&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;&lt;strong&gt;小世界性量化&lt;/strong&gt;&lt;br&gt;
 通过&lt;code&gt;smallworldness()&lt;/code&gt;计算小世界指数σ：&lt;/li&gt;
@@ -2246,11 +2246,11 @@ $$
         </item>
         <item>
         <title>MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具</title>
-        <link>/p/metanet-5/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-5/</link>
         <pubDate>Sun, 13 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-5/</guid>
-        <description>&lt;img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1.png" alt="Featured image of post MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具" /&gt;&lt;p&gt;上一篇推文介绍了MetaNet进行网络可视化以及各种布局方法，本文将介绍一些扩展绘图方法以及兼容工具。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-5/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1.png" alt="Featured image of post MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具" /&gt;&lt;p&gt;上一篇推文介绍了MetaNet进行网络可视化以及各种布局方法，本文将介绍一些扩展绘图方法以及兼容工具。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;软件主页：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Asa12138/MetaNet&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/Asa12138/MetaNet&lt;/a&gt; &lt;strong&gt;大家可以帮忙在github上点点star⭐️&lt;/strong&gt;，谢谢🙏&lt;/li&gt;
@@ -2306,7 +2306,7 @@ $$
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ggig&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-5/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-5/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;这样你就可以使用&lt;code&gt;labs()&lt;/code&gt;、&lt;code&gt;theme()&lt;/code&gt;、&lt;code&gt;ggsave()&lt;/code&gt;和&lt;code&gt;cowplot::plot_grid()&lt;/code&gt;等函数来制作更好的图形。&lt;/p&gt;
 &lt;h3 id=&#34;gephi集成&#34;&gt;Gephi集成&lt;/h3&gt;
 &lt;p&gt;处理大型数据集时，我推荐使用Gephi进行布局，运行比较快且美观。MetaNet提供了通过graphml格式文件与Gephi的接口：&lt;/p&gt;
@@ -2334,7 +2334,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;n&#34;&gt;group_legend_title&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Phylum&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-5/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-5/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h3 id=&#34;cytoscape集成&#34;&gt;Cytoscape集成&lt;/h3&gt;
 &lt;p&gt;Cytoscape是另一个优秀的网络可视化软件，包含许多插件。将test.graphml导入Cytoscape进行布局，然后导出为cyjs文件，MetaNet可以读取：&lt;/p&gt;
 &lt;img src=&#34;images/cytoscape.png&#34; title=&#34;&#34;/&gt;
@@ -2352,7 +2352,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;n&#34;&gt;group_legend_title&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Phylum&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-5/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-5/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h3 id=&#34;networkd3交互式可视化&#34;&gt;NetworkD3交互式可视化&lt;/h3&gt;
 &lt;p&gt;NetworkD3可以生成基于JavaScript的交互式网络图，输出对象是适合网页的htmlwidgets：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2377,7 +2377,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;c_net_plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;test_module_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mark_module&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;module_label&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;module_label_just&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-5/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-5/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h3 id=&#34;pie节点&#34;&gt;pie节点&lt;/h3&gt;
 &lt;p&gt;把网络里的节点直接画成pie图，不用在AI里面一个个拖过去了：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2428,7 +2428,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;pie_legend&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;color_legend&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vertex_size_range&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;18&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-5/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-5/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h3 id=&#34;韦恩图网络&#34;&gt;韦恩图网络&lt;/h3&gt;
 &lt;p&gt;当集合里的点数量合适时，韦恩图网络算是个不错的展示方法&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2475,7 +2475,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;v_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h3 id=&#34;两列边列表&#34;&gt;两列边列表&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2495,7 +2495,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;c_net_plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;twocol_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;g_layout_polygon&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;twocol_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;labels_num&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;all&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-5/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-5/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h3 id=&#34;网络树&#34;&gt;网络树&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2521,7 +2521,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;edge.arrow.size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;edge.arrow.width&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rescale&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-5/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-5/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h3 id=&#34;奥运五环图&#34;&gt;奥运五环图&lt;/h3&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2531,7 +2531,7 @@ $$
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;olympic_rings_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-5/index.en_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-5/index.en_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;这个也是上次讲的分组布局的应用了，g_layout函数布局，用下面的代码就可以绘制：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2576,11 +2576,11 @@ $$
         </item>
         <item>
         <title>MetaNet：多组学网络分析工具｜4.布局和可视化</title>
-        <link>/p/metanet-4/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-4/</link>
         <pubDate>Sat, 12 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-4/</guid>
-        <description>&lt;img src="/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1.png" alt="Featured image of post MetaNet：多组学网络分析工具｜4.布局和可视化" /&gt;&lt;p&gt;之前已经介绍了网络计算，构建以及各种注释了。本文将详细介绍MetaNet中的各种可视化方法，从基础绘图到高级布局技巧。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-4/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1.png" alt="Featured image of post MetaNet：多组学网络分析工具｜4.布局和可视化" /&gt;&lt;p&gt;之前已经介绍了网络计算，构建以及各种注释了。本文将详细介绍MetaNet中的各种可视化方法，从基础绘图到高级布局技巧。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;软件主页：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Asa12138/MetaNet&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/Asa12138/MetaNet&lt;/a&gt; &lt;strong&gt;大家可以帮忙在github上点点star⭐️&lt;/strong&gt;，谢谢🙏&lt;/li&gt;
@@ -2619,7 +2619,7 @@ $$
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;绘图设置&#34;&gt;绘图设置&lt;/h2&gt;
 &lt;p&gt;在构建网络时，MetaNet已经设置了一些与可视化相关的内部属性。我们可以使用&lt;code&gt;c_net_set()&lt;/code&gt;函数自定义这些属性以满足研究需求。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/p/metanet-4/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;&lt;img src=&#34;/p/metanet-4/index.en_files/figure-html/unnamed-chunk-2-2.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-2-2.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;如果需要更灵活地自定义网络图，可以使用&lt;code&gt;c_net_plot()&lt;/code&gt;函数，它包含许多灵活的绘图参数：&lt;/p&gt;
 &lt;img src=&#34;images/arg1.png&#34; title=&#34;&#34;/&gt;
 &lt;img src=&#34;images/arg2.png&#34; title=&#34;&#34;/&gt;
@@ -2671,7 +2671,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;          &lt;span class=&#34;n&#34;&gt;lty_legend_title&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Omics relationship&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-4/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h3 id=&#34;使用params_list&#34;&gt;使用params_list&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;params_list&lt;/code&gt;是&lt;code&gt;c_net_plot()&lt;/code&gt;中的一个特殊参数，它是一个包含参数的列表，可以方便地用于绘制一系列具有相同属性的网络图：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2728,7 +2728,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;c_net_plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;multi1_with_anno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;params_list&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;params_list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-4/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2745,7 +2745,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;c_net_plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;multi1_with_anno2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;params_list&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;params_list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-4/index.en_files/figure-html/unnamed-chunk-4-2.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-4-2.png&#34; width=&#34;768&#34; /&gt;
 &lt;h2 id=&#34;网络布局&#34;&gt;网络布局&lt;/h2&gt;
 &lt;p&gt;布局是网络可视化的重要组成部分，一个好的布局可以清晰地呈现信息。&lt;/p&gt;
 &lt;p&gt;在MetaNet中，我们使用&lt;code&gt;coors&lt;/code&gt;对象来存储布局的坐标。&lt;code&gt;coors&lt;/code&gt;是一个具有&amp;quot;name&amp;quot;, &amp;ldquo;X&amp;rdquo;, &amp;ldquo;Y&amp;quot;三列的dataframe。&lt;/p&gt;
@@ -2761,7 +2761,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;c_net_plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-4/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;可用的基础布局方法包括：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;igraph布局：&lt;code&gt;in_circle()&lt;/code&gt;, &lt;code&gt;nicely()&lt;/code&gt;, &lt;code&gt;on_grid()&lt;/code&gt;, &lt;code&gt;on_sphere()&lt;/code&gt;, &lt;code&gt;randomly()&lt;/code&gt;, &lt;code&gt;with_dh()&lt;/code&gt;, &lt;code&gt;with_fr()&lt;/code&gt;, &lt;code&gt;with_gem()&lt;/code&gt;, &lt;code&gt;with_graphopt()&lt;/code&gt;, &lt;code&gt;with_kk()&lt;/code&gt;, &lt;code&gt;with_lgl()&lt;/code&gt;, &lt;code&gt;with_mds()&lt;/code&gt;&lt;/li&gt;
@@ -2908,7 +2908,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;multi1_with_anno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;g_coors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-4/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2927,7 +2927,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;multi1_with_anno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;g_coors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-4/index.en_files/figure-html/unnamed-chunk-9-2.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-9-2.png&#34; width=&#34;768&#34; /&gt;
 &lt;h4 id=&#34;tkplot手动调整大布局&#34;&gt;tkplot手动调整大布局&lt;/h4&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3048,7 +3048,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-4/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;1152&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;1152&#34; /&gt;
 &lt;p&gt;尝试画个五角星⭐️：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3108,7 +3108,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;spatstat_layout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;win_star&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;order_by&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;v_class&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;甚至可以画成地图：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -3132,7 +3132,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;st_geometry&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;africa_sf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;col&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;sandybrown&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;main&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Africa Outline (1:50m)&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-4/index.en_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3141,7 +3141,7 @@ $$
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;spatstat_layout&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;africa_sf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;regular&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;order_by&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;v_class&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-4/index.en_files/figure-html/unnamed-chunk-14-2.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-14-2.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;MetaNet使用的是igraph的绘图方式，R的基础绘图，所以需要用&lt;code&gt;pdf&lt;/code&gt;,&lt;code&gt;png&lt;/code&gt;等设备保存图片。下一节介绍MetaNet和其他绘图方式如ggplot2，D3等的转换，以及MetaNet配合Gephi，Cytoscape等交互式软件使用。&lt;/p&gt;
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
 &lt;ol&gt;
@@ -3154,11 +3154,11 @@ $$
         </item>
         <item>
         <title>MetaNet：多组学网络分析工具｜3.网络注释与操作</title>
-        <link>/p/metanet-3/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-3/</link>
         <pubDate>Fri, 11 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-3/</guid>
-        <description>&lt;img src="/p/metanet-3/images/anno.png" alt="Featured image of post MetaNet：多组学网络分析工具｜3.网络注释与操作" /&gt;&lt;p&gt;上一篇推文已经介绍了使用R包MetaNet进行网络计算和构建，本文将介绍如何对我们构建好的网络进行各种操作，包括添加注释和属性，筛选合并等。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-3/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-3/images/anno.png" alt="Featured image of post MetaNet：多组学网络分析工具｜3.网络注释与操作" /&gt;&lt;p&gt;上一篇推文已经介绍了使用R包MetaNet进行网络计算和构建，本文将介绍如何对我们构建好的网络进行各种操作，包括添加注释和属性，筛选合并等。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;软件主页：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Asa12138/MetaNet&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/Asa12138/MetaNet&lt;/a&gt; &lt;strong&gt;大家可以帮忙在github上点点star⭐️&lt;/strong&gt;，谢谢🙏&lt;/li&gt;
@@ -3592,7 +3592,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;multi2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lty_legend&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;After filtering network&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-3/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-3/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h3 id=&#34;网络合并&#34;&gt;网络合并&lt;/h3&gt;
 &lt;p&gt;如果你有多个网络并想将它们组合在一起，你可以使用&lt;code&gt;c_net_union()&lt;/code&gt;函数：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -3656,7 +3656,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;links_stat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;topN&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;group&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Phylum&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;e_type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;all&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-3/index.en_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-3/index.en_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -3679,7 +3679,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ske_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;vertex.label&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;NA&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;/p/metanet-3/index.en_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;768&#34; /&gt;&lt;img src=&#34;/p/metanet-3/index.en_files/figure-html/unnamed-chunk-14-2.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-3/index.en_files/figure-html/unnamed-chunk-14-1.png&#34; width=&#34;768&#34; /&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-3/index.en_files/figure-html/unnamed-chunk-14-2.png&#34; width=&#34;768&#34; /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;网络保存导出&#34;&gt;网络保存导出&lt;/h2&gt;
 &lt;p&gt;MetaNet支持多种格式的网络导出：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -3715,11 +3715,11 @@ $$
         </item>
         <item>
         <title>MetaNet：多组学网络分析工具｜2.网络计算和构建</title>
-        <link>/p/metanet-2/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-2/</link>
         <pubDate>Thu, 10 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-2/</guid>
-        <description>&lt;img src="/p/metanet-2/images/pairwise_relationship.png" alt="Featured image of post MetaNet：多组学网络分析工具｜2.网络计算和构建" /&gt;&lt;p&gt;上一篇推文简单介绍了网络基本概念和用于组学网络分析的R包MetaNet，这里我们具体介绍网络分析第一步，网络计算和构建。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-2/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-2/images/pairwise_relationship.png" alt="Featured image of post MetaNet：多组学网络分析工具｜2.网络计算和构建" /&gt;&lt;p&gt;上一篇推文简单介绍了网络基本概念和用于组学网络分析的R包MetaNet，这里我们具体介绍网络分析第一步，网络计算和构建。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;软件主页：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Asa12138/MetaNet&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/Asa12138/MetaNet&lt;/a&gt; &lt;strong&gt;大家可以帮忙在github上点点star⭐️&lt;/strong&gt;，谢谢🙏&lt;/li&gt;
@@ -4162,7 +4162,7 @@ $$
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-2/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-2/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;对于多表分析，可以使用&lt;code&gt;multi_net_build()&lt;/code&gt;计算和构建网络：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -4176,7 +4176,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;multi1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-2/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-2/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h3 id=&#34;rmt优化&#34;&gt;RMT优化&lt;/h3&gt;
 &lt;p&gt;基于相关性的关联网络方法因其简单的计算过程和噪声容限而最常用。然而，大多数涉及关联网络分析的研究使用任意阈值(通常使用r&amp;gt;0.6, p&amp;lt;0.05)，因此构建的网络是主观的而非客观的。&lt;/p&gt;
 &lt;img src=&#34;https://bookdown.org/Asa12138/metanet_book/images/2-1.RMT.png&#34; title=&#34;&#34; width=&#34;80%&#34;/&gt;
@@ -4211,7 +4211,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dnet&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-2/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-2/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h3 id=&#34;其他&#34;&gt;其他&lt;/h3&gt;
 &lt;p&gt;如果已经有其他格式的网络，如pajek、lgl、graphml、dimacs、graphdb、gml和dl，可以使用&lt;code&gt;c_net_load&lt;/code&gt;将其读取为metanet对象。也可以使用&lt;code&gt;graph_from_*&lt;/code&gt;函数获取igraph对象，然后使用&lt;code&gt;c_net_update&lt;/code&gt;将其转换为metanet对象。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -4251,11 +4251,11 @@ $$
         </item>
         <item>
         <title>MetaNet：多组学网络分析工具｜1.基础介绍</title>
-        <link>/p/metanet-1/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-1/</link>
         <pubDate>Thu, 27 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-1/</guid>
-        <description>&lt;img src="/p/metanet-1/images/bio_net.png" alt="Featured image of post MetaNet：多组学网络分析工具｜1.基础介绍" /&gt;&lt;p&gt;网络分析是各种组学数据分析的重要组成部分。我在刚接触生信时对这类分析还挺感兴趣的，一边学一边写了个R包MetaNet。因为同类型工具有不少，包括在线网站，交互界面等，也就一直没有推广，主要是给自己用的。但现在整着整着感觉也比较系统了，也有一些别的工具不好实现的功能，想发出来让大家用用看。&lt;strong&gt;大家也可以帮忙在github上点点star⭐️&lt;/strong&gt;，谢谢🙏&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-1/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-1/images/bio_net.png" alt="Featured image of post MetaNet：多组学网络分析工具｜1.基础介绍" /&gt;&lt;p&gt;网络分析是各种组学数据分析的重要组成部分。我在刚接触生信时对这类分析还挺感兴趣的，一边学一边写了个R包MetaNet。因为同类型工具有不少，包括在线网站，交互界面等，也就一直没有推广，主要是给自己用的。但现在整着整着感觉也比较系统了，也有一些别的工具不好实现的功能，想发出来让大家用用看。&lt;strong&gt;大家也可以帮忙在github上点点star⭐️&lt;/strong&gt;，谢谢🙏&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;软件主页：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Asa12138/MetaNet&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://github.com/Asa12138/MetaNet&lt;/a&gt;&lt;/li&gt;
@@ -4491,7 +4491,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;c_net_plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;co_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;coors&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-1/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-1/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;再来一个多组学网络构建：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -4537,7 +4537,7 @@ $$
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;multi1_with_anno&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-1/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-1/index.en_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;后续我会发推文具体介绍MetaNet分析流程的每个功能模块，大家也可以先直接看详细英文版教程：&lt;a class=&#34;link&#34; href=&#34;https://bookdown.org/Asa12138/metanet_book/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://bookdown.org/Asa12138/metanet_book/&lt;/a&gt;，我也尽可能为每个函数编写了详细的help文件和examples，欢迎大家提出宝贵意见。&lt;/p&gt;
 &lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;

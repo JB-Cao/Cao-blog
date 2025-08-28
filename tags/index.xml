@@ -2,488 +2,488 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Tags on Cao&#39;s blog</title>
-        <link>/tags/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/</link>
         <description>Recent content in Tags on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 31 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 31 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Microbiome</title>
-        <link>/tags/microbiome/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/microbiome/</link>
         <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/microbiome/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/microbiome/</guid>
         <description></description>
         </item>
         <item>
         <title>16S</title>
-        <link>/tags/16s/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/16s/</link>
         <pubDate>Thu, 24 Jul 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/16s/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/16s/</guid>
         <description></description>
         </item>
         <item>
         <title>Statistics</title>
-        <link>/tags/statistics/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/statistics/</link>
         <pubDate>Thu, 24 Jul 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/statistics/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/statistics/</guid>
         <description></description>
         </item>
         <item>
         <title>Indoor</title>
-        <link>/tags/indoor/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/indoor/</link>
         <pubDate>Wed, 16 Jul 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/indoor/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/indoor/</guid>
         <description></description>
         </item>
         <item>
         <title>Contamination</title>
-        <link>/tags/contamination/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/contamination/</link>
         <pubDate>Thu, 26 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/contamination/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/contamination/</guid>
         <description></description>
         </item>
         <item>
         <title>Network</title>
-        <link>/tags/network/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/network/</link>
         <pubDate>Thu, 26 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/network/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/network/</guid>
         <description></description>
         </item>
         <item>
         <title>R</title>
-        <link>/tags/r/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/r/</link>
         <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/r/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/r/</guid>
         <description></description>
         </item>
         <item>
         <title>统计模型</title>
-        <link>/tags/%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B/</link>
         <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E7%BB%9F%E8%AE%A1%E6%A8%A1%E5%9E%8B/</guid>
         <description></description>
         </item>
         <item>
         <title>KEGG</title>
-        <link>/tags/kegg/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/kegg/</link>
         <pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/kegg/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/kegg/</guid>
         <description></description>
         </item>
         <item>
         <title>Genome</title>
-        <link>/tags/genome/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/genome/</link>
         <pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/genome/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/genome/</guid>
         <description></description>
         </item>
         <item>
         <title>Map</title>
-        <link>/tags/map/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/map/</link>
         <pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/map/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/map/</guid>
         <description></description>
         </item>
         <item>
         <title>Utils</title>
-        <link>/tags/utils/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/utils/</link>
         <pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/utils/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/utils/</guid>
         <description></description>
         </item>
         <item>
         <title>可视化</title>
-        <link>/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</link>
         <pubDate>Mon, 26 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/</guid>
         <description></description>
         </item>
         <item>
         <title>ARGs</title>
-        <link>/tags/args/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/args/</link>
         <pubDate>Fri, 02 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/args/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/args/</guid>
         <description></description>
         </item>
         <item>
         <title>Paper</title>
-        <link>/tags/paper/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/paper/</link>
         <pubDate>Fri, 02 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/paper/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/paper/</guid>
         <description></description>
         </item>
         <item>
         <title>BGCs</title>
-        <link>/tags/bgcs/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/bgcs/</link>
         <pubDate>Sun, 27 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/bgcs/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/bgcs/</guid>
         <description></description>
         </item>
         <item>
         <title>Synteny</title>
-        <link>/tags/synteny/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/synteny/</link>
         <pubDate>Thu, 24 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/synteny/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/synteny/</guid>
         <description></description>
         </item>
         <item>
         <title>Binning</title>
-        <link>/tags/binning/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/binning/</link>
         <pubDate>Tue, 22 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/binning/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/binning/</guid>
         <description></description>
         </item>
         <item>
         <title>Database</title>
-        <link>/tags/database/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/database/</link>
         <pubDate>Wed, 26 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/database/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/database/</guid>
         <description></description>
         </item>
         <item>
         <title>Function</title>
-        <link>/tags/function/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/function/</link>
         <pubDate>Thu, 13 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/function/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/function/</guid>
         <description></description>
         </item>
         <item>
         <title>Docker</title>
-        <link>/tags/docker/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/docker/</link>
         <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/docker/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/docker/</guid>
         <description></description>
         </item>
         <item>
         <title>Virus</title>
-        <link>/tags/virus/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/virus/</link>
         <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/virus/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/virus/</guid>
         <description></description>
         </item>
         <item>
         <title>Amplicon</title>
-        <link>/tags/amplicon/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/amplicon/</link>
         <pubDate>Tue, 14 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/amplicon/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/amplicon/</guid>
         <description></description>
         </item>
         <item>
         <title>Phylogenetic Tree</title>
-        <link>/tags/phylogenetic-tree/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/phylogenetic-tree/</link>
         <pubDate>Thu, 02 Jan 2025 00:00:00 +0000</pubDate>
         
-        <guid>/tags/phylogenetic-tree/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/phylogenetic-tree/</guid>
         <description></description>
         </item>
         <item>
         <title>Latin_name</title>
-        <link>/tags/latin_name/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/latin_name/</link>
         <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/latin_name/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/latin_name/</guid>
         <description></description>
         </item>
         <item>
         <title>Software</title>
-        <link>/tags/software/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/software/</link>
         <pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/software/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/software/</guid>
         <description></description>
         </item>
         <item>
         <title>Evolution</title>
-        <link>/tags/evolution/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/evolution/</link>
         <pubDate>Thu, 29 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/evolution/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/evolution/</guid>
         <description></description>
         </item>
         <item>
         <title>Genetics</title>
-        <link>/tags/genetics/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/genetics/</link>
         <pubDate>Thu, 29 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/genetics/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/genetics/</guid>
         <description></description>
         </item>
         <item>
         <title>Python</title>
-        <link>/tags/python/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/python/</link>
         <pubDate>Wed, 21 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/python/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/python/</guid>
         <description></description>
         </item>
         <item>
         <title>Acr</title>
-        <link>/tags/acr/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/acr/</link>
         <pubDate>Wed, 31 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/acr/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/acr/</guid>
         <description></description>
         </item>
         <item>
         <title>Crispr</title>
-        <link>/tags/crispr/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/crispr/</link>
         <pubDate>Wed, 31 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/crispr/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/crispr/</guid>
         <description></description>
         </item>
         <item>
         <title>Orthology</title>
-        <link>/tags/orthology/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/orthology/</link>
         <pubDate>Wed, 31 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/orthology/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/orthology/</guid>
         <description></description>
         </item>
         <item>
         <title>Conda</title>
-        <link>/tags/conda/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/conda/</link>
         <pubDate>Wed, 17 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/conda/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/conda/</guid>
         <description></description>
         </item>
         <item>
         <title>GEM</title>
-        <link>/tags/gem/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/gem/</link>
         <pubDate>Wed, 17 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/gem/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/gem/</guid>
         <description></description>
         </item>
         <item>
         <title>Growth</title>
-        <link>/tags/growth/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/growth/</link>
         <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/growth/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/growth/</guid>
         <description></description>
         </item>
         <item>
         <title>Shell</title>
-        <link>/tags/shell/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/shell/</link>
         <pubDate>Mon, 15 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/shell/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/shell/</guid>
         <description></description>
         </item>
         <item>
         <title>公众号</title>
-        <link>/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/</link>
         <pubDate>Thu, 11 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/</guid>
         <description></description>
         </item>
         <item>
         <title>IDE</title>
-        <link>/tags/ide/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/ide/</link>
         <pubDate>Fri, 05 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/ide/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/ide/</guid>
         <description></description>
         </item>
         <item>
         <title>编程</title>
-        <link>/tags/%E7%BC%96%E7%A8%8B/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E7%BC%96%E7%A8%8B/</link>
         <pubDate>Sun, 16 Jun 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E7%BC%96%E7%A8%8B/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E7%BC%96%E7%A8%8B/</guid>
         <description></description>
         </item>
         <item>
         <title>Slurm</title>
-        <link>/tags/slurm/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/slurm/</link>
         <pubDate>Fri, 24 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/slurm/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/slurm/</guid>
         <description></description>
         </item>
         <item>
         <title>Community Assembly</title>
-        <link>/tags/community-assembly/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/community-assembly/</link>
         <pubDate>Thu, 23 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/community-assembly/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/community-assembly/</guid>
         <description></description>
         </item>
         <item>
         <title>AirPie</title>
-        <link>/tags/airpie/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/airpie/</link>
         <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/airpie/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/airpie/</guid>
         <description></description>
         </item>
         <item>
         <title>Csl</title>
-        <link>/tags/csl/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/csl/</link>
         <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/csl/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/csl/</guid>
         <description></description>
         </item>
         <item>
         <title>文献管理</title>
-        <link>/tags/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/</link>
         <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/</guid>
         <description></description>
         </item>
         <item>
         <title>工具</title>
-        <link>/tags/%E5%B7%A5%E5%85%B7/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E5%B7%A5%E5%85%B7/</link>
         <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E5%B7%A5%E5%85%B7/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E5%B7%A5%E5%85%B7/</guid>
         <description></description>
         </item>
         <item>
         <title>节日</title>
-        <link>/tags/%E8%8A%82%E6%97%A5/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E8%8A%82%E6%97%A5/</link>
         <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E8%8A%82%E6%97%A5/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E8%8A%82%E6%97%A5/</guid>
         <description></description>
         </item>
         <item>
         <title>Ordination</title>
-        <link>/tags/ordination/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/ordination/</link>
         <pubDate>Fri, 17 Nov 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/ordination/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/ordination/</guid>
         <description></description>
         </item>
         <item>
         <title>Soil</title>
-        <link>/tags/soil/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/soil/</link>
         <pubDate>Wed, 15 Nov 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/soil/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/soil/</guid>
         <description></description>
         </item>
         <item>
         <title>进击的巨人</title>
-        <link>/tags/%E8%BF%9B%E5%87%BB%E7%9A%84%E5%B7%A8%E4%BA%BA/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E8%BF%9B%E5%87%BB%E7%9A%84%E5%B7%A8%E4%BA%BA/</link>
         <pubDate>Thu, 09 Nov 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E8%BF%9B%E5%87%BB%E7%9A%84%E5%B7%A8%E4%BA%BA/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E8%BF%9B%E5%87%BB%E7%9A%84%E5%B7%A8%E4%BA%BA/</guid>
         <description></description>
         </item>
         <item>
         <title>Package</title>
-        <link>/tags/package/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/package/</link>
         <pubDate>Tue, 04 Jul 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/package/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/package/</guid>
         <description></description>
         </item>
         <item>
         <title>功能基因</title>
-        <link>/tags/%E5%8A%9F%E8%83%BD%E5%9F%BA%E5%9B%A0/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E5%8A%9F%E8%83%BD%E5%9F%BA%E5%9B%A0/</link>
         <pubDate>Tue, 04 Jul 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E5%8A%9F%E8%83%BD%E5%9F%BA%E5%9B%A0/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E5%8A%9F%E8%83%BD%E5%9F%BA%E5%9B%A0/</guid>
         <description></description>
         </item>
         <item>
         <title>Antibiotics</title>
-        <link>/tags/antibiotics/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/antibiotics/</link>
         <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/antibiotics/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/antibiotics/</guid>
         <description></description>
         </item>
         <item>
         <title>进化树</title>
-        <link>/tags/%E8%BF%9B%E5%8C%96%E6%A0%91/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E8%BF%9B%E5%8C%96%E6%A0%91/</link>
         <pubDate>Fri, 14 Apr 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E8%BF%9B%E5%8C%96%E6%A0%91/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E8%BF%9B%E5%8C%96%E6%A0%91/</guid>
         <description></description>
         </item>
         <item>
         <title>招聘</title>
-        <link>/tags/%E6%8B%9B%E8%81%98/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E6%8B%9B%E8%81%98/</link>
         <pubDate>Mon, 10 Apr 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E6%8B%9B%E8%81%98/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E6%8B%9B%E8%81%98/</guid>
         <description></description>
         </item>
         <item>
         <title>地图</title>
-        <link>/tags/%E5%9C%B0%E5%9B%BE/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E5%9C%B0%E5%9B%BE/</link>
         <pubDate>Thu, 06 Apr 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E5%9C%B0%E5%9B%BE/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E5%9C%B0%E5%9B%BE/</guid>
         <description></description>
         </item>
         <item>
         <title>物种多样性</title>
-        <link>/tags/%E7%89%A9%E7%A7%8D%E5%A4%9A%E6%A0%B7%E6%80%A7/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E7%89%A9%E7%A7%8D%E5%A4%9A%E6%A0%B7%E6%80%A7/</link>
         <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E7%89%A9%E7%A7%8D%E5%A4%9A%E6%A0%B7%E6%80%A7/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E7%89%A9%E7%A7%8D%E5%A4%9A%E6%A0%B7%E6%80%A7/</guid>
         <description></description>
         </item>
         <item>
         <title>摄影</title>
-        <link>/tags/%E6%91%84%E5%BD%B1/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E6%91%84%E5%BD%B1/</link>
         <pubDate>Sat, 25 Mar 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E6%91%84%E5%BD%B1/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E6%91%84%E5%BD%B1/</guid>
         <description></description>
         </item>
         <item>
         <title>群青</title>
-        <link>/tags/%E7%BE%A4%E9%9D%92/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E7%BE%A4%E9%9D%92/</link>
         <pubDate>Sat, 25 Mar 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E7%BE%A4%E9%9D%92/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E7%BE%A4%E9%9D%92/</guid>
         <description></description>
         </item>
         <item>
         <title>花鸟</title>
-        <link>/tags/%E8%8A%B1%E9%B8%9F/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E8%8A%B1%E9%B8%9F/</link>
         <pubDate>Sat, 25 Mar 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/%E8%8A%B1%E9%B8%9F/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/%E8%8A%B1%E9%B8%9F/</guid>
         <description></description>
         </item>
         <item>
         <title>ChatGPT</title>
-        <link>/tags/chatgpt/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/chatgpt/</link>
         <pubDate>Thu, 23 Mar 2023 00:00:00 +0000</pubDate>
         
-        <guid>/tags/chatgpt/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/tags/chatgpt/</guid>
         <description></description>
         </item>
         

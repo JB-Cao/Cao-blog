@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Slurm on Cao&#39;s blog</title>
-        <link>/tags/slurm/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/slurm/</link>
         <description>Recent content in Slurm on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Fri, 24 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/slurm/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 24 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/slurm/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Slurm集群使用基础</title>
-        <link>/p/slurm/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/slurm/</link>
         <pubDate>Fri, 24 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/slurm/</guid>
-        <description>&lt;img src="/p/slurm/images/slurm.png" alt="Featured image of post Slurm集群使用基础" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/slurm/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/slurm/images/slurm.png" alt="Featured image of post Slurm集群使用基础" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;我们在做生物信息分析时，对于大规模的上游数据的处理，一般需要在大型服务器或集群上进行。我最早接触并使用的是一个基于SLURM调度系统的集群，在此记录一下基础使用方法。&lt;/p&gt;
 &lt;p&gt;高性能计算集群（High-Performance Computing Cluster，简称HPC集群）是一种计算系统，通过将多台计算机（通常称为节点）连接在一起，协同工作来解决需要大量计算资源的问题。这些集群被广泛应用于科学研究、工程计算、金融建模、大数据分析等领域。&lt;/p&gt;
 &lt;img src=&#34;images/slurm.png&#34; title=&#34;&#34;/&gt;

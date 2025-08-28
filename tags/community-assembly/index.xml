@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Community Assembly on Cao&#39;s blog</title>
-        <link>/tags/community-assembly/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/community-assembly/</link>
         <description>Recent content in Community Assembly on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 23 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/community-assembly/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 23 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/community-assembly/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微生物群落构建（community assembly）</title>
-        <link>/p/community-assembly/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/community-assembly/</link>
         <pubDate>Thu, 23 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/community-assembly/</guid>
-        <description>&lt;img src="/p/community-assembly/comm.jpg" alt="Featured image of post 微生物群落构建（community assembly）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/community-assembly/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/community-assembly/comm.jpg" alt="Featured image of post 微生物群落构建（community assembly）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;了解控制群落多样性、功能、演替和生物地理学的机制是生态学，尤其是微生物生态学中的一个核心。推荐阅读综述：&lt;/p&gt;
 &lt;p&gt;Zhou, J. &amp;amp; Ning, D. Stochastic Community Assembly: Does It Matter in Microbial Ecology? Microbiol Mol Biol Rev 81, e00002-17 (2017).
 This review is very comprehensive (&lt;a class=&#34;link&#34; href=&#34;#ref-zhouStochasticCommunityAssembly2017&#34; &gt;&lt;em&gt;1&lt;/em&gt;&lt;/a&gt;)！&lt;/p&gt;
@@ -71,7 +71,7 @@ MNTD 即mean-nearest-taxon-distance (最近种间平均进化距离) ， 关于 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;stackplot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;com_p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;scale_fill_pc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/community-assembly/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/community-assembly/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;h4 id=&#34;icamp&#34;&gt;iCAMP&lt;/h4&gt;
 &lt;p&gt;现在大家经常用的&lt;strong&gt;iCAMP&lt;/strong&gt;包就是基于这个理论框架进行分析的 (&lt;a class=&#34;link&#34; href=&#34;#ref-ningQuantitativeFrameworkReveals2020&#34; &gt;&lt;em&gt;4&lt;/em&gt;&lt;/a&gt;)，其进行了一定的升级优化：提出了系统发育分箱零模型。下次用在自己项目中的话可以进一步分享。&lt;/p&gt;
 &lt;h3 id=&#34;2stnstmst-stochasticity-ratio&#34;&gt;2.ST，NST，MST （stochasticity ratio）&lt;/h3&gt;
@@ -131,7 +131,7 @@ MNTD 即mean-nearest-taxon-distance (最近种间平均进化距离) ， 关于 
 &lt;/div&gt;
 &lt;/div&gt;&lt;pre&gt;&lt;code&gt;## [1] FALSE
 &lt;/code&gt;&lt;/pre&gt;
-&lt;img src=&#34;/p/community-assembly/index_files/figure-html/NST-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/community-assembly/index_files/figure-html/NST-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;h4 id=&#34;example&#34;&gt;example&lt;/h4&gt;
 &lt;img src=&#34;images/nst_e.png&#34; style=&#34;width:50.0%&#34; /&gt;
 &lt;blockquote&gt;
@@ -182,7 +182,7 @@ MNTD 即mean-nearest-taxon-distance (最近种间平均进化距离) ， 关于 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ncm_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/community-assembly/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/community-assembly/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;p&gt;R2代表了中性群落模型的整体拟合优度，&lt;strong&gt;R2越高表明越接近中性模型，即群落的构建受随机性过程的影响越大，受确定性过程的影响越小。&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;值得注意，&lt;strong&gt;R方不是某个数值的平方，可以是负值&lt;/strong&gt;。因为拟合程度没有下限，可以无限差，R方的范围是(−∞,1]。R方的取值，有以下的可能性：&lt;/p&gt;

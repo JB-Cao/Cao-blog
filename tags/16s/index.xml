@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>16S on Cao&#39;s blog</title>
-        <link>/tags/16s/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/16s/</link>
         <description>Recent content in 16S on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 24 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/16s/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 24 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/16s/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>有关Rarefaction的探讨，一篇10年前的文章</title>
-        <link>/p/rarefaction-10/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/rarefaction-10/</link>
         <pubDate>Thu, 24 Jul 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/rarefaction-10/</guid>
-        <description>&lt;img src="/p/rarefaction-10/images/fig1.png" alt="Featured image of post 有关Rarefaction的探讨，一篇10年前的文章" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/rarefaction-10/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/rarefaction-10/images/fig1.png" alt="Featured image of post 有关Rarefaction的探讨，一篇10年前的文章" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;最近有审稿人的comments中建议阅读大佬Susan Holmes (2014) 的经典论文《Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible》，参考在自己的分析中。这篇文章深入探讨了微生物组数据分析中常用的稀释（rarefying）方法的缺陷，并提出了更合适的统计模型。虽然这篇文章已经发表了10多年，但其观点仍然具有重要的参考价值。&lt;/p&gt;
 &lt;h2 id=&#34;-微生物组测序的统计挑战&#34;&gt;🌱 微生物组测序的统计挑战&lt;/h2&gt;
 &lt;p&gt;高通量 DNA 测序技术让微生物组研究进入爆发期。通过测定来自不同环境或样本（如人体肠道、土壤、水体）的 16S rRNA 序列或宏基因组原始读数，研究者可以获得一个 OTU（操作分类单位，又可视作微生物“物种”）在各样本中的丰度矩阵。&lt;/p&gt;
@@ -95,11 +95,11 @@
         </item>
         <item>
         <title>扩增子(Amplicon)数据分析流程|Qiime2</title>
-        <link>/p/amplicon-workflow/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/amplicon-workflow/</link>
         <pubDate>Mon, 23 Dec 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/amplicon-workflow/</guid>
-        <description>&lt;img src="/p/amplicon-workflow/images/16s.webp" alt="Featured image of post 扩增子(Amplicon)数据分析流程|Qiime2" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/amplicon-workflow/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/amplicon-workflow/images/16s.webp" alt="Featured image of post 扩增子(Amplicon)数据分析流程|Qiime2" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;我学习微生物组分析的过程是从shot-gun 宏基因组数据分析开始的，反而没怎么做过相对更早更成熟的扩增子测序的上游分析😂，最近刚好有需求，还是自己学习并搭建一下自己用的比较舒服的流程吧。&lt;/p&gt;
 &lt;p&gt;扩增子（Amplicon）分析是研究微生物群落组成与功能的核心方法之一，特别是在生态学、医学和环境科学领域。通过对目标基因区域（如16S rRNA、18S rRNA、ITS）的特异性扩增与测序，扩增子分析能够高效揭示样本中微生物的多样性和群落结构。相比宏基因组测序，扩增子分析具有成本低、处理流程简化等优势，适用于大规模样本研究。&lt;/p&gt;
 &lt;p&gt;扩增子分析的核心原理是通过聚合酶链式反应 (PCR) 技术，对目标微生物基因片段进行特异性扩增和测序，以解析微生物群落组成及其多样性。通常选择的目标片段为具有保守区域和高变异区域的基因，如细菌的16S rRNA基因、真菌的ITS区等。保守区域用作引物设计的靶点，高变异区域用于区分不同物种。&lt;/p&gt;
@@ -918,11 +918,11 @@
         </item>
         <item>
         <title>常用扩增子数据库</title>
-        <link>/p/amplicon/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/amplicon/</link>
         <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/amplicon/</guid>
-        <description>&lt;img src="/p/amplicon/images/nbt1.png" alt="Featured image of post 常用扩增子数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/amplicon/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/amplicon/images/nbt1.png" alt="Featured image of post 常用扩增子数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;扩增子测序是一种主要用于研究微生物群落结构的分子生物学技术。它主要用于分析环境样本中的微生物群落，特别是对细菌和古菌的16S rRNA基因以及真菌的18S rRNA基因进行测序。这项技术广泛用于研究土壤、水体、空气、生物体内等不同环境中微生物的多样性和丰度。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;基本步骤：&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
@@ -1070,11 +1070,11 @@
         </item>
         <item>
         <title>地球微生物组计划介绍（EMP）</title>
-        <link>/p/emp/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/emp/</link>
         <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/emp/</guid>
-        <description>&lt;img src="/p/emp/images/emp1.png" alt="Featured image of post 地球微生物组计划介绍（EMP）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/emp/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/emp/images/emp1.png" alt="Featured image of post 地球微生物组计划介绍（EMP）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;The Earth Microbiome Project (EMP) 是一个旨在描述和解释地球上微生物多样性的国际性科学计划。这个项目的目标是通过对地球各种环境中的微生物群落进行大规模的DNA测序和元数据采集，构建一个全球微生物群落的参考数据库，以更好地理解和研究微生物的生态学、功能和进化。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;

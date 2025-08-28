@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Software on Cao&#39;s blog</title>
-        <link>/tags/software/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/software/</link>
         <description>Recent content in Software on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Sun, 01 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/software/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sun, 01 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/software/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>使用InStrain进行宏基因组群体分析</title>
-        <link>/p/instrain/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/instrain/</link>
         <pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/instrain/</guid>
-        <description>&lt;img src="/p/instrain/images/OverviewFigure1_v1.webp" alt="Featured image of post 使用InStrain进行宏基因组群体分析" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/instrain/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/instrain/images/OverviewFigure1_v1.webp" alt="Featured image of post 使用InStrain进行宏基因组群体分析" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;微生物群体中存在遗传异质性，新的遗传多态性可以通过突变迅速出现，其频率会因漂变、选择或链接选择而变化。在人类个体的微生物群系中，每天可能会产生数十亿到数万亿的新突变。这些差异可能具有临床意义，例如，肠杆菌科的抗生素抗性可能由仅三个点突变引起。&lt;/p&gt;
 &lt;p&gt;传统方法通过分离和分析多个细胞来研究这些变异，现代则使用基因组解析宏基因组分析，从环境中提取和测序DNA，并通过计算工具组装和分箱这些DNA序列。虽然短读长测序无法准确确定群体中的完整单倍型，但这种技术可以同时分析微生物群体中的所有物种，识别基因变异及其频率，并衡量群体内的异质性。&lt;/p&gt;
 &lt;p&gt;inStrain 是一种用于分析宏基因组中共存基因组群体的工具，于2021年发表在Nature Biotechnology上[1]。inStrain可进行高度准确的基因组比较、覆盖度、微多样性和连锁分析，以及通过基因定位和同义非同义识别进行灵敏的 SNP 检测。在与现有方法进行基准测试时，发现inStrain大大提高了基因组比较的准确性。&lt;/p&gt;
@@ -644,11 +644,11 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>使用FastANI与Skani计算平均核苷酸一致性(ANI)</title>
-        <link>/p/ani/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/ani/</link>
         <pubDate>Sun, 19 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/ani/</guid>
-        <description>&lt;img src="/p/ani/images/ani3.png" alt="Featured image of post 使用FastANI与Skani计算平均核苷酸一致性(ANI)" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/ani/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/ani/images/ani3.png" alt="Featured image of post 使用FastANI与Skani计算平均核苷酸一致性(ANI)" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;ANI 是指平均核苷酸一致性（Average Nucleotide Identity），它是一种用来比较两种基因组之间相似度的方法。
 ANI 主要用于微生物基因组学和系统生物学，以评估不同细菌或古菌基因组之间的相似性。
 它被广泛应用于种的分类、基因组分类以及新物种的鉴定。&lt;/p&gt;
@@ -1290,22 +1290,22 @@ ANI 被定义为两个微生物基因组之间共享的直系同源基因对的�
         </item>
         <item>
         <title>R调用Taxonkit展示系统发育信息</title>
-        <link>/p/taxonkit-r/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/taxonkit-r/</link>
         <pubDate>Thu, 16 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/taxonkit-r/</guid>
-        <description>&lt;img src="/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1.png" alt="Featured image of post R调用Taxonkit展示系统发育信息" /&gt;&lt;script src=&#34;/p/taxonkit-r/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/taxonkit-r/index.en_files/sankeyNetwork-binding/sankeyNetwork.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/taxonkit-r/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/taxonkit-r/index.en_files/sankey/sankey.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/taxonkit-r/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/taxonkit-r/index.en_files/plotly-binding/plotly.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/taxonkit-r/index.en_files/typedarray/typedarray.min.js&#34;&gt;&lt;/script&gt;
-&lt;script src=&#34;/p/taxonkit-r/index.en_files/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/taxonkit-r/index.en_files/crosstalk/css/crosstalk.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/taxonkit-r/index.en_files/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/taxonkit-r/index.en_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/taxonkit-r/index.en_files/plotly-main/plotly-latest.min.js&#34;&gt;&lt;/script&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/taxonkit-r/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1.png" alt="Featured image of post R调用Taxonkit展示系统发育信息" /&gt;&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/sankeyNetwork-binding/sankeyNetwork.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/d3/d3.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/sankey/sankey.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/htmlwidgets/htmlwidgets.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/plotly-binding/plotly.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/typedarray/typedarray.min.js&#34;&gt;&lt;/script&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/jquery/jquery.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/crosstalk/css/crosstalk.min.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/crosstalk/js/crosstalk.min.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/plotly-main/plotly-latest.min.js&#34;&gt;&lt;/script&gt;
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://bioinf.shenwei.me/taxonkit/chinese/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;TaxonKit&lt;/a&gt;是一个用于处理生物分类学数据的命令行工具。
@@ -1539,7 +1539,7 @@ ANI 被定义为两个微生物基因组之间共享的直系同源基因对的�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ape&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;plot.phylo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tax_tree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;h3 id=&#34;可视化&#34;&gt;可视化&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;pctax&lt;/code&gt;还提供了一些系统发育信息展示方法：&lt;/p&gt;
 &lt;ol&gt;
@@ -1563,7 +1563,7 @@ ANI 被定义为两个微生物基因组之间共享的直系同源基因对的�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;添加主要Phylum的strip：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1583,7 +1583,7 @@ ANI 被定义为两个微生物基因组之间共享的直系同源基因对的�
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;add_strip&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;some_tax&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/taxonkit-r/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;当然，更多系统发育树的绘制可以参考我之前写的&lt;a class=&#34;link&#34; href=&#34;../r-tree&#34; &gt;R绘制优美的进化树（基础）&lt;/a&gt;和&lt;a class=&#34;link&#34; href=&#34;../r-tree2&#34; &gt;R绘制优美的进化树（进阶）&lt;/a&gt;，或者使用iPhylo网站来交互式绘图：&lt;a class=&#34;link&#34; href=&#34;../iphylo&#34; &gt;iPhylo 生成并绘制优美的分类树&lt;/a&gt;&lt;/p&gt;
 &lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;桑基图：&lt;/li&gt;
@@ -1670,11 +1670,11 @@ ANI 被定义为两个微生物基因组之间共享的直系同源基因对的�
         </item>
         <item>
         <title>使用uTools提高办公效率</title>
-        <link>/p/utools/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/utools/</link>
         <pubDate>Tue, 14 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/utools/</guid>
-        <description>&lt;img src="/p/utools/images/utools.png" alt="Featured image of post 使用uTools提高办公效率" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/utools/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/utools/images/utools.png" alt="Featured image of post 使用uTools提高办公效率" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;首先这不是一个广告，哈哈哈，我目前还没有接过任何广告。&lt;/p&gt;
 &lt;p&gt;感觉这个软件确实比较好用且适合自己（我是在macOS上使用，但它的跨平台做的不错，大部分功能都适配于Windows/macOS/Linux）。我用了大概2个多月，有种相见恨晚的感觉，想着分享一下。&lt;/p&gt;
 &lt;p&gt;uTools 是一个免费的桌面插件平台，具有强大的搜索、管理和拓展功能。
@@ -1779,11 +1779,11 @@ uTools 是免费软件，并且是开源的，这意味着你可以放心使用�
         </item>
         <item>
         <title>使用BiG-SCAPE挖掘微生物组BGCs</title>
-        <link>/p/big-scape-bgcs/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/big-scape-bgcs/</link>
         <pubDate>Mon, 13 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/big-scape-bgcs/</guid>
-        <description>&lt;img src="/p/big-scape-bgcs/images/big3.png" alt="Featured image of post 使用BiG-SCAPE挖掘微生物组BGCs" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/big-scape-bgcs/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/big-scape-bgcs/images/big3.png" alt="Featured image of post 使用BiG-SCAPE挖掘微生物组BGCs" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在生物信息学领域，对（宏）基因组进行生物合成基因簇（BGCs）的挖掘，编码次生代谢产物的生产已成为自然产物发现的关键策略。在单个基因组水平上，这一过程由诸如antiSMASH之类的工具执行。&lt;/p&gt;
 &lt;p&gt;当研究大量基因组和宏基因组时，进行大规模分析变得至关重要。BiG-SCAPE（生物合成基因相似性聚类与勘探引擎）是一种计算BGC之间距离的工具，以便将BGC的多样性映射到序列相似性网络上，然后将其用于自动重建基因簇家族，即编码高度相似或相同分子的基因簇组。BiG-SCAPE对这些相似性网络的交互式可视化有助于有效地探索BGC的多样性，并将其与MIBiG存储库中的参考数据知识联系起来。&lt;/p&gt;
 &lt;h3 id=&#34;简要工作原理&#34;&gt;简要工作原理&lt;/h3&gt;
@@ -2449,11 +2449,11 @@ uTools 是免费软件，并且是开源的，这意味着你可以放心使用�
         </item>
         <item>
         <title>ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics</title>
-        <link>/p/grsa-bib/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/grsa-bib/</link>
         <pubDate>Sat, 30 Mar 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/grsa-bib/</guid>
-        <description>&lt;img src="/p/grsa-bib/images/BIB.png" alt="Featured image of post ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics" /&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/grsa-bib/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/grsa-bib/images/BIB.png" alt="Featured image of post ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics" /&gt;
 
 
 
@@ -2578,11 +2578,11 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>KEGG 数据库及API (2)</title>
-        <link>/p/kegg-api2/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/kegg-api2/</link>
         <pubDate>Sat, 12 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/kegg-api2/</guid>
-        <description>&lt;img src="/p/kegg-api2/images/hsa00600.png" alt="Featured image of post KEGG 数据库及API (2)" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/kegg-api2/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/kegg-api2/images/hsa00600.png" alt="Featured image of post KEGG 数据库及API (2)" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.genome.jp/kegg/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;KEGG&lt;/a&gt;（Kyoto Encyclopedia of Genes and Genomes）是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息。它提供了基因、蛋白质、代谢物和信号通路等生物分子的综合信息，帮助研究人员理解生物体内分子之间的相互作用和功能。&lt;/p&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;../kegg-api&#34; &gt;上一篇&lt;/a&gt;文章已经介绍了各种KEGG重要的子数据库，在这里就要介绍非常重要的操作：通过api查询和下载KEGG数据库内容。&lt;/p&gt;
@@ -3396,11 +3396,11 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>KEGG 数据库及API (1)</title>
-        <link>/p/kegg-api/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/kegg-api/</link>
         <pubDate>Fri, 11 Aug 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/kegg-api/</guid>
-        <description>&lt;img src="/p/kegg-api/images/M00007.png" alt="Featured image of post KEGG 数据库及API (1)" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/kegg-api/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/kegg-api/images/M00007.png" alt="Featured image of post KEGG 数据库及API (1)" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.genome.jp/kegg/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;KEGG&lt;/a&gt;（Kyoto Encyclopedia of Genes and Genomes）是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息。它提供了基因、蛋白质、代谢物和信号通路等生物分子的综合信息，帮助研究人员理解生物体内分子之间的相互作用和功能。&lt;/p&gt;
 &lt;p&gt;KEGG数据库包含以下几个主要模块：&lt;/p&gt;

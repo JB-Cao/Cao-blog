@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Latin_name on Cao&#39;s blog</title>
-        <link>/tags/latin_name/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/latin_name/</link>
         <description>Recent content in Latin_name on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 20 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/latin_name/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 20 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/latin_name/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>微生物学名-中文名称转换（可批量）</title>
-        <link>/p/latin_name/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/latin_name/</link>
         <pubDate>Wed, 20 Nov 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/latin_name/</guid>
-        <description>&lt;img src="/p/latin_name/images/R-C.jpeg" alt="Featured image of post 微生物学名-中文名称转换（可批量）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/latin_name/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/latin_name/images/R-C.jpeg" alt="Featured image of post 微生物学名-中文名称转换（可批量）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;对于微生物研究，虽然平时我们用的都是正式的拉丁学名，但有时我们还是需要查阅一些相关生物的正式中文名称（有时候还需要大批量的转换），方便做中文的展示或者写中文论文使用。&lt;/p&gt;
 &lt;p&gt;目前常用的方法有：&lt;/p&gt;
 &lt;ol&gt;

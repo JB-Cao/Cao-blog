@@ -4,16 +4,16 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Reporter score是一种改良的微生物富集分析的新方法，这里分享其原理和一个实现的R包。'>
 <title>Reporter Score 微生物功能富集分析</title>
 
-<link rel='canonical' href='/p/reporter-score/'>
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/reporter-score/'>
 
-<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='Reporter Score 微生物功能富集分析'>
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='Reporter Score 微生物功能富集分析'>
 <meta property='og:description' content='Reporter score是一种改良的微生物富集分析的新方法，这里分享其原理和一个实现的R包。'>
-<meta property='og:url' content='/p/reporter-score/'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/reporter-score/'>
 <meta property='og:site_name' content='Cao&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='function' /><meta property='article:tag' content='KEGG' /><meta property='article:published_time' content='2023-05-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-05-10T00:00:00&#43;00:00'/><meta property='og:image' content='/p/reporter-score/images/misuse2.jpeg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='function' /><meta property='article:tag' content='KEGG' /><meta property='article:published_time' content='2023-05-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-05-10T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/reporter-score/images/misuse2.jpeg' />
 <meta name="twitter:title" content="Reporter Score 微生物功能富集分析">
 <meta name="twitter:description" content="Reporter score是一种改良的微生物富集分析的新方法，这里分享其原理和一个实现的R包。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='/p/reporter-score/images/misuse2.jpeg' />
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/reporter-score/images/misuse2.jpeg' />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -57,13 +57,13 @@
         
             
             <figure class="site-avatar">
-                <a href="/">
+                <a href="/Cao-blog/">
                 
                     
                     
                     
                         
-                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -76,7 +76,7 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
             <h2 class="site-description">work hard, live happily.</h2>
         </div>
     </header><ol class="social-menu">
@@ -154,7 +154,7 @@
         
         
         <li >
-            <a href='/' >
+            <a href='/Cao-blog/' >
                 
                 
                 
@@ -174,7 +174,7 @@
         
         
         <li >
-            <a href='/about/' >
+            <a href='/Cao-blog/about/' >
                 
                 
                 
@@ -193,7 +193,7 @@
         
         
         <li >
-            <a href='/archives/' >
+            <a href='/Cao-blog/archives/' >
                 
                 
                 
@@ -213,7 +213,7 @@
         
         
         <li >
-            <a href='/mindmap/' >
+            <a href='/Cao-blog/mindmap/' >
                 
                 
                 
@@ -225,7 +225,7 @@
         
         
         <li >
-            <a href='/search/' >
+            <a href='/Cao-blog/search/' >
                 
                 
                 
@@ -258,9 +258,9 @@
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="/" selected>English</option>
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
                         
-                            <option value="/zh-cn/" >中文</option>
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
                         
                     </select>
                 </li>
@@ -332,9 +332,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/reporter-score/">
-                <img src="/p/reporter-score/images/misuse2_hu_d7ba5424f9dd06a1.jpeg"
-                        srcset="/p/reporter-score/images/misuse2_hu_d7ba5424f9dd06a1.jpeg 800w, /p/reporter-score/images/misuse2_hu_b8c5a139a2cd6363.jpeg 1600w"
+            <a href="/Cao-blog/p/reporter-score/">
+                <img src="/Cao-blog/p/reporter-score/images/misuse2_hu_d7ba5424f9dd06a1.jpeg"
+                        srcset="/Cao-blog/p/reporter-score/images/misuse2_hu_d7ba5424f9dd06a1.jpeg 800w, /Cao-blog/p/reporter-score/images/misuse2_hu_b8c5a139a2cd6363.jpeg 1600w"
                         width="800" 
                         height="360" 
                         loading="lazy"
@@ -348,7 +348,7 @@
     
     <header class="article-category">
         
-            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+            <a href="/Cao-blog/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
                 metagenomic
             </a>
         
@@ -357,7 +357,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/reporter-score/">Reporter Score 微生物功能富集分析</a>
+            <a href="/Cao-blog/p/reporter-score/">Reporter Score 微生物功能富集分析</a>
         </h2>
     
         
@@ -430,8 +430,8 @@
     <section class="article-content">
     
     
-    <script src="/p/reporter-score/index.en_files/kePrint/kePrint.js"></script>
-<link href="/p/reporter-score/index.en_files/lightable/lightable.css" rel="stylesheet" />
+    <script src="https://jb-cao.github.io/Cao-blog/p/reporter-score/index.en_files/kePrint/kePrint.js"></script>
+<link href="https://jb-cao.github.io/Cao-blog/p/reporter-score/index.en_files/lightable/lightable.css" rel="stylesheet" />
 <h2 id="introduction">Introduction</h2>
 <p><strong>功能富集分析</strong>是一种用于分析基因集合或基因组数据中功能模式富集程度的计算方法。它可以帮助揭示在特定生物学背景下，哪些功能模块、代谢通路、基因家族等在统计上富集或显著过表示。</p>
 <p>功能富集分析通常包括以下步骤：</p>
@@ -823,7 +823,7 @@ $$</p>
 </span></span><span class="line"><span class="cl">    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&#34;CG vs EG&#34;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/reporter-score/index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/reporter-score/index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -834,7 +834,7 @@ $$</p>
 </span></span><span class="line"><span class="cl">    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&#34;CG vs EG&#34;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/reporter-score/index.en_files/figure-html/unnamed-chunk-9-2.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/reporter-score/index.en_files/figure-html/unnamed-chunk-9-2.png" width="672" />
 <p>5.挑选一条通路进行绘制</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -844,7 +844,7 @@ $$</p>
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot_KOs_in_pathway</span><span class="p">(</span><span class="n">map_id</span> <span class="o">=</span> <span class="s">&#34;map00780&#34;</span><span class="p">,</span><span class="n">ko_stat</span> <span class="o">=</span> <span class="n">ko_stat</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/reporter-score/index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/reporter-score/index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 <h2 id="reference">Reference</h2>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-patilUncoveringTranscriptionalRegulation2005" class="csl-entry">
@@ -864,9 +864,9 @@ $$</p>
     
     <section class="article-tags">
         
-            <a href="/tags/function/">Function</a>
+            <a href="/Cao-blog/tags/function/">Function</a>
         
-            <a href="/tags/kegg/">KEGG</a>
+            <a href="/Cao-blog/tags/kegg/">KEGG</a>
         
     </section>
 
@@ -924,11 +924,11 @@ $$</p>
             
                 
 <article class="has-image">
-    <a href="/p/kegg-2024-12/">
+    <a href="/Cao-blog/p/kegg-2024-12/">
         
         
             <div class="article-image">
-                <img src="/p/kegg-2024-12/images/gkae909fig3.ffe3f27542a7e621852ef33fba8c1a08_hu_bf6ad4594c76018.jpeg" 
+                <img src="/Cao-blog/p/kegg-2024-12/images/gkae909fig3.ffe3f27542a7e621852ef33fba8c1a08_hu_bf6ad4594c76018.jpeg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -948,11 +948,11 @@ $$</p>
             
                 
 <article class="has-image">
-    <a href="/p/function-tools/">
+    <a href="/Cao-blog/p/function-tools/">
         
         
             <div class="article-image">
-                <img src="/p/function-tools/images/mobileOG.34f036e8b976e8ff6e41a3950eb316d9_hu_31f8b9932a3c75a.png" 
+                <img src="/Cao-blog/p/function-tools/images/mobileOG.34f036e8b976e8ff6e41a3950eb316d9_hu_31f8b9932a3c75a.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -972,11 +972,11 @@ $$</p>
             
                 
 <article class="has-image">
-    <a href="/p/gsea/">
+    <a href="/Cao-blog/p/gsea/">
         
         
             <div class="article-image">
-                <img src="/p/gsea/images/gsea_intro.a9d9729869cb5d458404f04ee3fcd680_hu_7b336a40841c7dfa.jpg" 
+                <img src="/Cao-blog/p/gsea/images/gsea_intro.a9d9729869cb5d458404f04ee3fcd680_hu_7b336a40841c7dfa.jpg" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -996,11 +996,11 @@ $$</p>
             
                 
 <article class="has-image">
-    <a href="/p/25-nature-4/">
+    <a href="/Cao-blog/p/25-nature-4/">
         
         
             <div class="article-image">
-                <img src="/p/25-nature-4/images/1-2.7f04df50146143db7f38e3c60bbebaa9_hu_4ebeb6bc608a4e31.png" 
+                <img src="/Cao-blog/p/25-nature-4/images/1-2.7f04df50146143db7f38e3c60bbebaa9_hu_4ebeb6bc608a4e31.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1020,11 +1020,11 @@ $$</p>
             
                 
 <article class="has-image">
-    <a href="/p/25-nature-3/">
+    <a href="/Cao-blog/p/25-nature-3/">
         
         
             <div class="article-image">
-                <img src="/p/25-nature-3/images/fig1.20d52f738dfd506b0754bda8d4b0ead0_hu_d6f6d5c8a568f26d.png" 
+                <img src="/Cao-blog/p/25-nature-3/images/fig1.20d52f738dfd506b0754bda8d4b0ead0_hu_d6f6d5c8a568f26d.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1201,7 +1201,7 @@ $$</p>
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

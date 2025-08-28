@@ -4,16 +4,16 @@
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='我将常用的各种函数整成了一个包：pcutils，包含各种绘图方法，这里介绍一下柱形图绘制及其各种变换，如饼图，环形图，河流图等。'>
 <title>R绘制柱形图及其变换</title>
 
-<link rel='canonical' href='/p/r-bar-chart/'>
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/r-bar-chart/'>
 
-<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='R绘制柱形图及其变换'>
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='R绘制柱形图及其变换'>
 <meta property='og:description' content='我将常用的各种函数整成了一个包：pcutils，包含各种绘图方法，这里介绍一下柱形图绘制及其各种变换，如饼图，环形图，河流图等。'>
-<meta property='og:url' content='/p/r-bar-chart/'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/r-bar-chart/'>
 <meta property='og:site_name' content='Cao&#39;s blog'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='R' /><meta property='article:tag' content='可视化' /><meta property='article:published_time' content='2023-06-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-06-19T00:00:00&#43;00:00'/><meta property='og:image' content='/p/r-bar-chart/images/barchart.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='R' /><meta property='article:tag' content='可视化' /><meta property='article:published_time' content='2023-06-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-06-19T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/r-bar-chart/images/barchart.png' />
 <meta name="twitter:title" content="R绘制柱形图及其变换">
 <meta name="twitter:description" content="我将常用的各种函数整成了一个包：pcutils，包含各种绘图方法，这里介绍一下柱形图绘制及其各种变换，如饼图，环形图，河流图等。"><meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content='/p/r-bar-chart/images/barchart.png' />
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/r-bar-chart/images/barchart.png' />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
 <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -57,13 +57,13 @@
         
             
             <figure class="site-avatar">
-                <a href="/">
+                <a href="/Cao-blog/">
                 
                     
                     
                     
                         
-                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
                             height="300" class="site-logo" loading="lazy" alt="Avatar">
                     
                 
@@ -76,7 +76,7 @@
         
         
         <div class="site-meta">
-            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
             <h2 class="site-description">work hard, live happily.</h2>
         </div>
     </header><ol class="social-menu">
@@ -154,7 +154,7 @@
         
         
         <li >
-            <a href='/' >
+            <a href='/Cao-blog/' >
                 
                 
                 
@@ -174,7 +174,7 @@
         
         
         <li >
-            <a href='/about/' >
+            <a href='/Cao-blog/about/' >
                 
                 
                 
@@ -193,7 +193,7 @@
         
         
         <li >
-            <a href='/archives/' >
+            <a href='/Cao-blog/archives/' >
                 
                 
                 
@@ -213,7 +213,7 @@
         
         
         <li >
-            <a href='/mindmap/' >
+            <a href='/Cao-blog/mindmap/' >
                 
                 
                 
@@ -225,7 +225,7 @@
         
         
         <li >
-            <a href='/search/' >
+            <a href='/Cao-blog/search/' >
                 
                 
                 
@@ -258,9 +258,9 @@
 
                     <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
                         
-                            <option value="/" selected>English</option>
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
                         
-                            <option value="/zh-cn/" >中文</option>
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
                         
                     </select>
                 </li>
@@ -336,9 +336,9 @@
     <article class="has-image main-article">
     <header class="article-header">
         <div class="article-image">
-            <a href="/p/r-bar-chart/">
-                <img src="/p/r-bar-chart/images/barchart_hu_ef17cc1f73a26c1f.png"
-                        srcset="/p/r-bar-chart/images/barchart_hu_ef17cc1f73a26c1f.png 800w, /p/r-bar-chart/images/barchart_hu_1e43c01df9ed6e2.png 1600w"
+            <a href="/Cao-blog/p/r-bar-chart/">
+                <img src="/Cao-blog/p/r-bar-chart/images/barchart_hu_ef17cc1f73a26c1f.png"
+                        srcset="/Cao-blog/p/r-bar-chart/images/barchart_hu_ef17cc1f73a26c1f.png 800w, /Cao-blog/p/r-bar-chart/images/barchart_hu_1e43c01df9ed6e2.png 1600w"
                         width="800" 
                         height="663" 
                         loading="lazy"
@@ -352,7 +352,7 @@
     
     <header class="article-category">
         
-            <a href="/categories/r/" style="background-color: #bebada; color: #fff;">
+            <a href="/Cao-blog/categories/r/" style="background-color: #bebada; color: #fff;">
                 R
             </a>
         
@@ -361,7 +361,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/r-bar-chart/">R绘制柱形图及其变换</a>
+            <a href="/Cao-blog/p/r-bar-chart/">R绘制柱形图及其变换</a>
         </h2>
     
         
@@ -434,20 +434,20 @@
     <section class="article-content">
     
     
-    <script src="/p/r-bar-chart/index.en_files/htmlwidgets/htmlwidgets.js"></script>
-<script src="/p/r-bar-chart/index.en_files/plotly-binding/plotly.js"></script>
-<script src="/p/r-bar-chart/index.en_files/typedarray/typedarray.min.js"></script>
-<script src="/p/r-bar-chart/index.en_files/jquery/jquery.min.js"></script>
-<link href="/p/r-bar-chart/index.en_files/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
-<script src="/p/r-bar-chart/index.en_files/crosstalk/js/crosstalk.min.js"></script>
-<link href="/p/r-bar-chart/index.en_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="/p/r-bar-chart/index.en_files/plotly-main/plotly-latest.min.js"></script>
-<script src="/p/r-bar-chart/index.en_files/htmlwidgets/htmlwidgets.js"></script>
-<script src="/p/r-bar-chart/index.en_files/d3/d3.min.js"></script>
-<link href="/p/r-bar-chart/index.en_files/colorbrewer/colorbrewer.css" rel="stylesheet" />
-<script src="/p/r-bar-chart/index.en_files/colorbrewer/colorbrewer.js"></script>
-<link href="/p/r-bar-chart/index.en_files/streamgraph/streamgraph.css" rel="stylesheet" />
-<script src="/p/r-bar-chart/index.en_files/streamgraph-binding/streamgraph.js"></script>
+    <script src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/plotly-binding/plotly.js"></script>
+<script src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/typedarray/typedarray.min.js"></script>
+<script src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/jquery/jquery.min.js"></script>
+<link href="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+<script src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/crosstalk/js/crosstalk.min.js"></script>
+<link href="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/plotly-main/plotly-latest.min.js"></script>
+<script src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/d3/d3.min.js"></script>
+<link href="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/colorbrewer/colorbrewer.css" rel="stylesheet" />
+<script src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/colorbrewer/colorbrewer.js"></script>
+<link href="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/streamgraph/streamgraph.css" rel="stylesheet" />
+<script src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/streamgraph-binding/streamgraph.js"></script>
 <p>我自己在用R做各种分析时有不少需要反复用到的基础功能，比如一些简单的统计呀，画一些简单的图如柱形图，箱形图等等，虽说具体实现的代码也不麻烦，但有一些细节如给箱形图加上显著性分组，将柱形图按照metadata合并或分面等事情还是不太想每次用的时候去找之前的代码。</p>
 <p>索性将常用的各种函数整成了一个包：<a class="link" href="https://github.com/Asa12138/pcutils"  target="_blank" rel="noopener"
     >pcutils</a>，
@@ -561,7 +561,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">stackplot</span><span class="p">(</span><span class="n">class</span><span class="p">,</span><span class="n">legend_title</span> <span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">)</span><span class="o">+</span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-1.png" width="864" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-1.png" width="864" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -574,7 +574,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-2.png" width="864" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-2.png" width="864" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -589,7 +589,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-3.png" width="864" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-3.png" width="864" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -602,7 +602,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-4.png" width="864" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-4.png" width="864" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -615,7 +615,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-5.png" width="864" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-5.png" width="864" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -628,7 +628,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-6.png" width="864" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-6.png" width="864" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -641,7 +641,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-7.png" width="864" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-7.png" width="864" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -654,7 +654,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-8.png" width="864" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-8.png" width="864" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -667,7 +667,7 @@
 </span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-9.png" width="864" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-9.png" width="864" />
 <h3 id="polar-coordinate">Polar coordinate</h3>
 <p>ggplot2没有提供直接绘制饼图的geom对象，但柱形图可以通过极坐标变换生成饼图或环形图等图形，使用<code>coord_polar()</code>函数可以实现极坐标变换。</p>
 <div class="highlight"><div class="chroma">
@@ -706,7 +706,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">p</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-4-1.png" width="864" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-4-1.png" width="864" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -715,7 +715,7 @@
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">p</span><span class="o">+</span><span class="nf">coord_polar</span><span class="p">(</span><span class="n">theta</span> <span class="o">=</span> <span class="s">&#34;y&#34;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-4-2.png" width="864" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-4-2.png" width="864" />
 <p>为了方便自己日常使用，我将这一类通过柱形图极坐标变换得到的图形整合进了<code>gghuan</code>函数中：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -731,7 +731,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">gghuan</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">get_cols</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="s">&#34;col3&#34;</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-5-1.png" width="480" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-5-1.png" width="480" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -746,7 +746,7 @@
 </span></span><span class="line"><span class="cl">    <span class="n">text_params2</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s">&#34;#006d2c&#34;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">5</span><span class="p">))</span><span class="o">+</span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">get_cols</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="s">&#34;col3&#34;</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-5-2.png" width="480" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-5-2.png" width="480" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -759,7 +759,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">gghuan</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="m">3</span><span class="p">)</span> <span class="o">+</span> <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">get_cols</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="s">&#34;col3&#34;</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-5-3.png" width="480" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-5-3.png" width="480" />
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -770,7 +770,7 @@
 </span></span><span class="line"><span class="cl"><span class="nf">gghuan</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="m">2</span><span class="p">)</span> <span class="o">+</span> <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">get_cols</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="s">&#34;col3&#34;</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-5-4.png" width="480" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-5-4.png" width="480" />
 <p>多层的环形图一般用来画具有某种层次关系的表格，比如物种分类信息。</p>
 <p>下面使用函数<code>gghuan2</code>来完成多层环形图绘制:</p>
 <div class="highlight"><div class="chroma">
@@ -808,7 +808,7 @@
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">gghuan2</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">percentage</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span><span class="o">+</span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-6-1.png" width="768" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-6-1.png" width="768" />
 <p>这个多层环形图长得跟旭日图也比较像了,不过想画旭日图的话也可以用<code>my_sunburst</code>函数，
 输入的数据格式仍然相同：</p>
 <div class="highlight"><div class="chroma">
@@ -832,7 +832,7 @@
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">areaplot</span><span class="p">(</span><span class="n">class</span><span class="p">,</span><span class="n">legend_title</span> <span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">)</span><span class="o">+</span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-8-1.png" width="864" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-8-1.png" width="864" />
 <p>更有意思的是，如果连接的线是曲线，并且流动的曲线扩展到整个柱子，就能画出流动图（河流图，Streamgraph）了。</p>
 <p>这里用streamgraph包的例子</p>
 <div class="highlight"><div class="chroma">
@@ -885,7 +885,7 @@
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">my_sankey</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">mode</span> <span class="o">=</span> <span class="s">&#34;gg&#34;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 <p>如果柱子之间再拆开一点的话，这便是我们熟悉的桑基图了：</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -895,7 +895,7 @@
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">my_sankey</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">mode</span> <span class="o">=</span> <span class="s">&#34;gg&#34;</span><span class="p">,</span><span class="n">space</span> <span class="o">=</span> <span class="m">1e4</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+</div><img src="https://jb-cao.github.io/Cao-blog/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 <p>总之，一个简单的柱形图也可以变化出各式各样的衍生图形。</p>
 <p>但所有的可视化方法都是为展示数据服务的，
 我整合这些函数也是希望可以更关注数据本身，花更少的精力在调节图形上，先快速对我们的数据有整体的把握。</p>
@@ -908,9 +908,9 @@
     
     <section class="article-tags">
         
-            <a href="/tags/r/">R</a>
+            <a href="/Cao-blog/tags/r/">R</a>
         
-            <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/">可视化</a>
+            <a href="/Cao-blog/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/">可视化</a>
         
     </section>
 
@@ -968,11 +968,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/r-vis-pkg/">
+    <a href="/Cao-blog/p/r-vis-pkg/">
         
         
             <div class="article-image">
-                <img src="/p/r-vis-pkg/index.en_files/figure-html/unnamed-chunk-2-1.6932b469ee89c8b2a23202f3e6e7f6b2_hu_68db91eb2bec9b13.png" 
+                <img src="/Cao-blog/p/r-vis-pkg/index.en_files/figure-html/unnamed-chunk-2-1.6932b469ee89c8b2a23202f3e6e7f6b2_hu_68db91eb2bec9b13.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -992,11 +992,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/ggh4x-ggplot2/">
+    <a href="/Cao-blog/p/ggh4x-ggplot2/">
         
         
             <div class="article-image">
-                <img src="/p/ggh4x-ggplot2/images/README-facets-1.b352e5b8f0a77d2c374dae87631d4672_hu_63b65d67d03f4a4f.png" 
+                <img src="/Cao-blog/p/ggh4x-ggplot2/images/README-facets-1.b352e5b8f0a77d2c374dae87631d4672_hu_63b65d67d03f4a4f.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1016,11 +1016,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/r-venn/">
+    <a href="/Cao-blog/p/r-venn/">
         
         
             <div class="article-image">
-                <img src="/p/r-venn/images/venn.98fcfaf23c6f08bbdcde8d4cb4e8c63d_hu_76d177c362f67a7b.png" 
+                <img src="/Cao-blog/p/r-venn/images/venn.98fcfaf23c6f08bbdcde8d4cb4e8c63d_hu_76d177c362f67a7b.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1040,11 +1040,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/r-treemap/">
+    <a href="/Cao-blog/p/r-treemap/">
         
         
             <div class="article-image">
-                <img src="/p/r-treemap/images/cengji.cf6ab7ddbf6b954c2022d6249abcd50a_hu_52c4d6c1588b2175.png" 
+                <img src="/Cao-blog/p/r-treemap/images/cengji.cf6ab7ddbf6b954c2022d6249abcd50a_hu_52c4d6c1588b2175.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1064,11 +1064,11 @@
             
                 
 <article class="has-image">
-    <a href="/p/r-box/">
+    <a href="/Cao-blog/p/r-box/">
         
         
             <div class="article-image">
-                <img src="/p/r-box/index.en_files/figure-html/unnamed-chunk-6-1.24e7e930b03e1dea4782b8ed1d48d6b6_hu_c6008d46c882d1e7.png" 
+                <img src="/Cao-blog/p/r-box/index.en_files/figure-html/unnamed-chunk-6-1.24e7e930b03e1dea4782b8ed1d48d6b6_hu_c6008d46c882d1e7.png" 
                         width="250" 
                         height="150" 
                         loading="lazy"
@@ -1245,7 +1245,7 @@
                 src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
                 
                 >
-            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
 <script>
     (function () {
         const customFont = document.createElement('link');

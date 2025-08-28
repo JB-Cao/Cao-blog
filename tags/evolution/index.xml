@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Evolution on Cao&#39;s blog</title>
-        <link>/tags/evolution/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/evolution/</link>
         <description>Recent content in Evolution on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 29 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/evolution/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 29 Aug 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/evolution/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>群体遗传学基础学习</title>
-        <link>/p/pop-genetic/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/pop-genetic/</link>
         <pubDate>Thu, 29 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/pop-genetic/</guid>
-        <description>&lt;img src="/p/pop-genetic/images/hw-law.png" alt="Featured image of post 群体遗传学基础学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/pop-genetic/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/pop-genetic/images/hw-law.png" alt="Featured image of post 群体遗传学基础学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;群体遗传学（Population Genetics）是研究在群体水平上基因频率的变化及其影响因素的学科。它结合了遗传学、进化生物学和统计学的方法来分析基因在群体中的分布和变化。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;群体&lt;/strong&gt;（Population）指的是一组同一物种的个体，它们生活在同一地理区域内，并能够相互交配和繁殖。这个群体的个体共享一个共同的基因库（gene pool），即所有个体的基因及其等位基因的集合。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;群体&lt;/strong&gt;有几个特征：&lt;/p&gt;

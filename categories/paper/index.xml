@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>paper on Cao&#39;s blog</title>
-        <link>/categories/paper/</link>
+        <link>https://jb-cao.github.io/Cao-blog/categories/paper/</link>
         <description>Recent content in paper on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 26 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="/categories/paper/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 26 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/categories/paper/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>预印本｜MetaNet: a scalable and integrated tool for reproducible omics network analysis</title>
-        <link>/p/metanet-biorxiv/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-biorxiv/</link>
         <pubDate>Thu, 26 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-biorxiv/</guid>
-        <description>&lt;img src="/p/metanet-biorxiv/images/fig4.png" alt="Featured image of post 预印本｜MetaNet: a scalable and integrated tool for reproducible omics network analysis" /&gt;&lt;p&gt;MetaNet是一个用于组学网络分析的R包，提供了多种功能，包括网络构建、可视化、比较和稳定性分析等。最近我把MetaNet的预印本放到了bioRxiv上，欢迎大家阅读和使用。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-biorxiv/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-biorxiv/images/fig4.png" alt="Featured image of post 预印本｜MetaNet: a scalable and integrated tool for reproducible omics network analysis" /&gt;&lt;p&gt;MetaNet是一个用于组学网络分析的R包，提供了多种功能，包括网络构建、可视化、比较和稳定性分析等。最近我把MetaNet的预印本放到了bioRxiv上，欢迎大家阅读和使用。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;预印本地址：&lt;a class=&#34;link&#34; href=&#34;https://www.biorxiv.org/content/10.1101/2025.06.26.661636v1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.biorxiv.org/content/10.1101/2025.06.26.661636v1&lt;/a&gt;&lt;/li&gt;
@@ -209,11 +209,11 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
         </item>
         <item>
         <title>Critical Care: ICU医护人员肠道抗生素耐药基因显著增加</title>
-        <link>/p/critical-care/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/critical-care/</link>
         <pubDate>Fri, 02 May 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/critical-care/</guid>
-        <description>&lt;img src="/p/critical-care/images/fig1.png" alt="Featured image of post Critical Care: ICU医护人员肠道抗生素耐药基因显著增加" /&gt;&lt;p&gt;抗生素耐药性（Antimicrobial Resistance, AMR）是21世纪全球公共卫生面临的重大挑战之一。随着抗生素的广泛使用，耐药菌株和抗生素耐药基因（Antibiotic Resistance Genes, ARGs）在医院环境中迅速扩散，尤其是在重症监护病房（ICU）这样高风险的医疗场所。ICU医护人员因长期暴露于高浓度抗生素和耐药菌的环境中，其肠道微生物群是否受到显著影响，成为一个备受关注的研究课题。2025年发表在《Critical Care》期刊上的一篇多中心、跨区域研究通过宏基因组学技术，系统比较了ICU医护人员与健康对照组的肠道ARG丰度及微生物群组成，揭示了ICU医护人员肠道ARG显著升高的现象。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/critical-care/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/critical-care/images/fig1.png" alt="Featured image of post Critical Care: ICU医护人员肠道抗生素耐药基因显著增加" /&gt;&lt;p&gt;抗生素耐药性（Antimicrobial Resistance, AMR）是21世纪全球公共卫生面临的重大挑战之一。随着抗生素的广泛使用，耐药菌株和抗生素耐药基因（Antibiotic Resistance Genes, ARGs）在医院环境中迅速扩散，尤其是在重症监护病房（ICU）这样高风险的医疗场所。ICU医护人员因长期暴露于高浓度抗生素和耐药菌的环境中，其肠道微生物群是否受到显著影响，成为一个备受关注的研究课题。2025年发表在《Critical Care》期刊上的一篇多中心、跨区域研究通过宏基因组学技术，系统比较了ICU医护人员与健康对照组的肠道ARG丰度及微生物群组成，揭示了ICU医护人员肠道ARG显著升高的现象。&lt;/p&gt;
 &lt;h2 id=&#34;paper-info&#34;&gt;Paper Info&lt;/h2&gt;
 &lt;img src=&#34;images/title.png&#34; title=&#34;&#34;/&gt;
 &lt;ul&gt;
@@ -399,16 +399,16 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;scale_fill_pc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/critical-care/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/critical-care/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
 </description>
         </item>
         <item>
         <title>浙江大学蒋超实验室在JHM发文揭示日常使用量的一次性纸杯释放的微塑料或可能影响孕期健康</title>
-        <link>/p/jhm/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/jhm/</link>
         <pubDate>Fri, 16 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/jhm/</guid>
-        <description>&lt;img src="/p/jhm/images/graphical_abstract.png" alt="Featured image of post 浙江大学蒋超实验室在JHM发文揭示日常使用量的一次性纸杯释放的微塑料或可能影响孕期健康" /&gt;&lt;p&gt;CQ师姐做的一个纸杯微塑料项目，非常有意思，揭示了日常生活中真实来源的孕期微塑料暴露，对生殖和代谢性能的影响和调控机制。我参与了其中的部分实验和分析，学习了养小鼠，灌胃，解剖和部分塑料的定性定量等实验，还画了一个小鼠解剖热图，收获颇丰。&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/jhm/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/jhm/images/graphical_abstract.png" alt="Featured image of post 浙江大学蒋超实验室在JHM发文揭示日常使用量的一次性纸杯释放的微塑料或可能影响孕期健康" /&gt;&lt;p&gt;CQ师姐做的一个纸杯微塑料项目，非常有意思，揭示了日常生活中真实来源的孕期微塑料暴露，对生殖和代谢性能的影响和调控机制。我参与了其中的部分实验和分析，学习了养小鼠，灌胃，解剖和部分塑料的定性定量等实验，还画了一个小鼠解剖热图，收获颇丰。&lt;/p&gt;
 &lt;h2 id=&#34;paper-info&#34;&gt;Paper Info&lt;/h2&gt;
 &lt;img src=&#34;images/title.png&#34; title=&#34;&#34;/&gt;
 &lt;ul&gt;
@@ -477,11 +477,11 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
         </item>
         <item>
         <title>浙江大学蒋超课题组合作ES&amp;T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘</title>
-        <link>/p/es-t/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/es-t/</link>
         <pubDate>Wed, 03 Apr 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/es-t/</guid>
-        <description>&lt;img src="/p/es-t/images/qt_graphical_abstract.png" alt="Featured image of post 浙江大学蒋超课题组合作ES&amp;T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘" /&gt;&lt;p&gt;我们实验室的子诺师姐开发了一种新型的用于个体生物和化学暴露组纵向测绘的可穿戴被动采样器：AirPie。
+        <guid>https://jb-cao.github.io/Cao-blog/p/es-t/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/es-t/images/qt_graphical_abstract.png" alt="Featured image of post 浙江大学蒋超课题组合作ES&amp;T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘" /&gt;&lt;p&gt;我们实验室的子诺师姐开发了一种新型的用于个体生物和化学暴露组纵向测绘的可穿戴被动采样器：AirPie。
 目前可以在一个驱蚊扣差不多大小的device上分析出数千种化合物和微生物信号，非常🐮。&lt;/p&gt;
 &lt;p&gt;我们将该采样器应用于某封闭环境，对19名参与者的个体化学和生物暴露组进行了全面的纵向剖析，并与相应的转录组数据进行了整合分析，以揭示环境暴露对个体健康的影响。&lt;/p&gt;
 &lt;p&gt;我完成了其中生物暴露部分的实验与分析工作。这项研究目前已经发表在ES&amp;amp;T上：&lt;/p&gt;
@@ -544,11 +544,11 @@ CRAN发布(&lt;a class=&#34;link&#34; href=&#34;https://cran.r-project.org/web/p
         </item>
         <item>
         <title>ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics</title>
-        <link>/p/grsa-bib/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/grsa-bib/</link>
         <pubDate>Sat, 30 Mar 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/grsa-bib/</guid>
-        <description>&lt;img src="/p/grsa-bib/images/BIB.png" alt="Featured image of post ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics" /&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/grsa-bib/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/grsa-bib/images/BIB.png" alt="Featured image of post ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics" /&gt;
 
 
 

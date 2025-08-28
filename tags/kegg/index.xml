@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>KEGG on Cao&#39;s blog</title>
-        <link>/tags/kegg/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/kegg/</link>
         <description>Recent content in KEGG on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 12 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/kegg/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 12 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/kegg/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>使用MetaNet绘制KEGG通路网络图</title>
-        <link>/p/metanet-kegg/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/metanet-kegg/</link>
         <pubDate>Thu, 12 Jun 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/metanet-kegg/</guid>
-        <description>&lt;img src="/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1.png" alt="Featured image of post 使用MetaNet绘制KEGG通路网络图" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/metanet-kegg/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1.png" alt="Featured image of post 使用MetaNet绘制KEGG通路网络图" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.genome.jp/kegg/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;KEGG&lt;/a&gt;（Kyoto Encyclopedia of Genes and Genomes）是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息。它提供了基因、蛋白质、代谢物和信号通路等生物分子的综合信息，帮助研究人员理解生物体内分子之间的相互作用和功能。&lt;/p&gt;
 &lt;p&gt;之前的文章详细介绍了&lt;a class=&#34;link&#34; href=&#34;../kegg-api&#34; &gt;KEGG 数据库及API&lt;/a&gt;的基础使用。其中KEGG pathway是我们经常需要使用的功能之一，它提供了生物体内代谢通路和信号传导通路的详细信息。&lt;/p&gt;
@@ -65,7 +65,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot_pathway_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path_net_c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;我们也可以使用&lt;code&gt;update_pathway_xml_ls()&lt;/code&gt;函数来获取或更新所有的KEGG通路XML文件。这个函数会下载最新的KEGG通路XML文件到指定的目录。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -112,7 +112,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                 &lt;span class=&#34;n&#34;&gt;edge.width&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;添加注释文件，比如基因上调和下调信息。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -148,7 +148,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                 &lt;span class=&#34;n&#34;&gt;edge.width&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;0.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;还可以使用&lt;code&gt;MetaNet&lt;/code&gt;对网络进行各种操作筛选，比如我想获取某个基因的下游网络：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -202,7 +202,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot_pathway_net&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path_net_c2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vertex.color&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pal&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;h2 id=&#34;ggkegg&#34;&gt;ggkegg&lt;/h2&gt;
 &lt;p&gt;但目前MetaNet不支持一些巨大的代谢网络如ko01100，因为其xml文件不是标准网络信息，可以使用更强大的&lt;code&gt;ggkegg&lt;/code&gt;包来绘制，代码稍微复杂一点：&lt;/p&gt;
 &lt;p&gt;ggkegg是一个基于&lt;code&gt;ggplot2&lt;/code&gt;的KEGG通路绘图包，提供了更灵活的绘图功能和更美观的图形输出。它可以处理更复杂的KEGG通路数据，并支持多种自定义样式。&lt;/p&gt;
@@ -292,11 +292,11 @@
         </item>
         <item>
         <title>KEGG更新（2024.12）|作为现实世界模型的生物系统数据库</title>
-        <link>/p/kegg-2024-12/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/kegg-2024-12/</link>
         <pubDate>Fri, 20 Dec 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/kegg-2024-12/</guid>
-        <description>&lt;img src="/p/kegg-2024-12/images/gkae909fig3.jpeg" alt="Featured image of post KEGG更新（2024.12）|作为现实世界模型的生物系统数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/kegg-2024-12/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/kegg-2024-12/images/gkae909fig3.jpeg" alt="Featured image of post KEGG更新（2024.12）|作为现实世界模型的生物系统数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.genome.jp/kegg/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;KEGG&lt;/a&gt;（Kyoto Encyclopedia of Genes and Genomes）是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息。之前也写过推文详细介绍过&lt;a class=&#34;link&#34; href=&#34;../kegg-api/&#34; &gt;KEGG数据库和API&lt;/a&gt;，但最近又有一些重要的更新，并在NAR上发表：&lt;/p&gt;
 &lt;p&gt;Minoru Kanehisa, Miho Furumichi, Yoko Sato, Yuriko Matsuura, Mari Ishiguro-Watanabe, KEGG: biological systems database as a model of the real world, Nucleic Acids Research, 2024;, gkae909, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1093/nar/gkae909&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -328,12 +328,12 @@
         </item>
         <item>
         <title>Reporter Score 微生物功能富集分析</title>
-        <link>/p/reporter-score/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/reporter-score/</link>
         <pubDate>Wed, 10 May 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/reporter-score/</guid>
-        <description>&lt;img src="/p/reporter-score/images/misuse2.jpeg" alt="Featured image of post Reporter Score 微生物功能富集分析" /&gt;&lt;script src=&#34;/p/reporter-score/index.en_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/reporter-score/index.en_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/reporter-score/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/reporter-score/images/misuse2.jpeg" alt="Featured image of post Reporter Score 微生物功能富集分析" /&gt;&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/reporter-score/index.en_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/reporter-score/index.en_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;功能富集分析&lt;/strong&gt;是一种用于分析基因集合或基因组数据中功能模式富集程度的计算方法。它可以帮助揭示在特定生物学背景下，哪些功能模块、代谢通路、基因家族等在统计上富集或显著过表示。&lt;/p&gt;
 &lt;p&gt;功能富集分析通常包括以下步骤：&lt;/p&gt;
@@ -725,7 +725,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;title&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;CG vs EG&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/reporter-score/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/reporter-score/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -736,7 +736,7 @@ $$&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;title&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;CG vs EG&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/reporter-score/index.en_files/figure-html/unnamed-chunk-9-2.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/reporter-score/index.en_files/figure-html/unnamed-chunk-9-2.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;5.挑选一条通路进行绘制&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -746,7 +746,7 @@ $$&lt;/p&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot_KOs_in_pathway&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;map_id&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;map00780&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ko_stat&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ko_stat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/reporter-score/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/reporter-score/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
 &lt;div id=&#34;refs&#34; class=&#34;references csl-bib-body&#34;&gt;
 &lt;div id=&#34;ref-patilUncoveringTranscriptionalRegulation2005&#34; class=&#34;csl-entry&#34;&gt;

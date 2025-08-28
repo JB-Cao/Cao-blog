@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Virus on Cao&#39;s blog</title>
-        <link>/tags/virus/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/virus/</link>
         <description>Recent content in Virus on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 05 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/virus/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 05 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/virus/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>宏基因组中病毒序列的宿主预测</title>
-        <link>/p/virus-host/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/virus-host/</link>
         <pubDate>Wed, 05 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/virus-host/</guid>
-        <description>&lt;img src="/p/virus-host/images/IPEV.png" alt="Featured image of post 宏基因组中病毒序列的宿主预测" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/virus-host/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/virus-host/images/IPEV.png" alt="Featured image of post 宏基因组中病毒序列的宿主预测" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在宏基因组学的研究领域中，对病毒序列宿主的预测已经成为一项极具挑战性但又至关重要的任务。病毒是一种非细胞生命形态的微生物，它们必须依赖宿主细胞才能进行繁殖和生存。然而，在复杂的生态环境中，病毒所感染的宿主往往是未知的。病毒宿主预测就是通过各种技术手段和方法，利用病毒基因组中的信息来推测其可能感染的宿主（如细菌等微生物）的过程。&lt;/p&gt;
 &lt;p&gt;目前已有的宿主预测方法已经有很多了，比如2022年前就有以下工具：&lt;/p&gt;
 &lt;table&gt;
@@ -721,11 +721,11 @@
         </item>
         <item>
         <title>一些基于宏基因组的巨型病毒研究</title>
-        <link>/p/giant-virus-res/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/giant-virus-res/</link>
         <pubDate>Mon, 02 Dec 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/giant-virus-res/</guid>
-        <description>&lt;img src="/p/giant-virus-res/images/gvmags2.png" alt="Featured image of post 一些基于宏基因组的巨型病毒研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/giant-virus-res/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/giant-virus-res/images/gvmags2.png" alt="Featured image of post 一些基于宏基因组的巨型病毒研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;上次已经介绍了&lt;a class=&#34;link&#34; href=&#34;https://asa-blog.netlify.app/p/giant-virus/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;巨型病毒&lt;/a&gt;的一些基本内容，也讲到了不依赖培养的方法是从环境样本中发现巨型病毒基因组成的不可或缺的工具。可以通过基因组解析宏基因组学来从环境序列数据中获取 NCLDV 基因组并进行深入研究如功能基因，宿主，进化等等。这次介绍一些基于宏基因组的巨型病毒研究：&lt;/p&gt;
 &lt;h2 id=&#34;全球宏基因组学揭示巨型病毒多样性和宿主相互作用&#34;&gt;全球宏基因组学揭示巨型病毒多样性和宿主相互作用&lt;/h2&gt;
@@ -782,11 +782,11 @@
         </item>
         <item>
         <title>巨型病毒(Giant virus)生物学和多样性研究</title>
-        <link>/p/giant-virus/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/giant-virus/</link>
         <pubDate>Mon, 02 Dec 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/giant-virus/</guid>
-        <description>&lt;img src="/p/giant-virus/images/gv2.png" alt="Featured image of post 巨型病毒(Giant virus)生物学和多样性研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/giant-virus/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/giant-virus/images/gv2.png" alt="Featured image of post 巨型病毒(Giant virus)生物学和多样性研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;大型和巨型病毒是双链 DNA 病毒的一部分，即&lt;strong&gt;核质大DNA病毒&lt;/strong&gt; (NCLDV, nucleocytoplasmic large DNA viruses)，构成病毒门 Nucleocytoviricota。
 该门的病毒感染多种真核宿主，从已知最小的单细胞领鞭毛虫到多细胞动物。 NCLDV 通常在宿主细胞质中构建的所谓&lt;strong&gt;病毒工厂&lt;/strong&gt;中复制，或使用宿主细胞核复制，有时组装其后代。这些病毒的标志性特征是&lt;strong&gt;基因组范围从 70 kb 到 2.5 Mb 不等，病毒粒子长度可达 2 μm 以上&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;“巨型病毒”一词最初是在 20 世纪 90 年代创造的，当时感染藻类的病毒明显具有异常大的基因组，此外，在 2000 年代初期，第一个基因组在兆碱基范围内的病毒被发现；最初的光学显微镜观察得出这样的假设：其颗粒对应于变形虫革兰氏阳性细菌病原体。更详细的超微结构分析揭示了典型的二十面体形状的病毒粒子，并且基因组测序产生了 1.2 Mb 的病毒基因组。
@@ -897,10 +897,10 @@
         </item>
         <item>
         <title>近期的一些环境病毒组研究（2024.10）</title>
-        <link>/p/env-virus/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/env-virus/</link>
         <pubDate>Thu, 07 Nov 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/env-virus/</guid>
+        <guid>https://jb-cao.github.io/Cao-blog/p/env-virus/</guid>
         <description>&lt;h2 id=&#34;极地环境病毒组&#34;&gt;极地环境病毒组&lt;/h2&gt;
 &lt;p&gt;文献：Rahlff, J., Westmeijer, G., Weissenbach, J. et al. Surface microlayer-mediated virome dissemination in the Central Arctic. Microbiome 12, 218 (2024). &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1186/s40168-024-01902-0&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://doi.org/10.1186/s40168-024-01902-0&lt;/a&gt;&lt;/p&gt;
@@ -990,11 +990,11 @@ A phylogenomic framework for charting the diversity and evolution of giant virus
         </item>
         <item>
         <title>使用PhaGCN2/vConTACT2进行病毒分类注释</title>
-        <link>/p/vcontact2/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/vcontact2/</link>
         <pubDate>Wed, 14 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/vcontact2/</guid>
-        <description>&lt;img src="/p/vcontact2/images/PhaGCN2.jpeg" alt="Featured image of post 使用PhaGCN2/vConTACT2进行病毒分类注释" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/vcontact2/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/vcontact2/images/PhaGCN2.jpeg" alt="Featured image of post 使用PhaGCN2/vConTACT2进行病毒分类注释" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在微生物群落的研究中，分类和注释数量庞大的未培养古细菌和细菌病毒一直是一个难题，主要原因是缺乏统一的分类框架。&lt;/p&gt;
 &lt;p&gt;目前，用于病毒分类的多种基于基因组的方法已经被提出，主要集中在细菌、古细菌和真核生物病毒的分类上。&lt;/p&gt;
 &lt;ol&gt;
@@ -1478,11 +1478,11 @@ A phylogenomic framework for charting the diversity and evolution of giant virus
         </item>
         <item>
         <title>病毒相关内容学习</title>
-        <link>/p/learn-virus/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/learn-virus/</link>
         <pubDate>Tue, 13 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/learn-virus/</guid>
-        <description>&lt;img src="/p/learn-virus/images/Virus_Baltimore_Classification.png" alt="Featured image of post 病毒相关内容学习" /&gt;&lt;h2 id=&#34;什么是病毒&#34;&gt;什么是病毒？&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/learn-virus/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/learn-virus/images/Virus_Baltimore_Classification.png" alt="Featured image of post 病毒相关内容学习" /&gt;&lt;h2 id=&#34;什么是病毒&#34;&gt;什么是病毒？&lt;/h2&gt;
 &lt;p&gt;病毒是一种非常微小的、非细胞结构的病原体，它只能在宿主细胞内生长繁殖。与细菌不同，病毒本身没有完整的细胞结构，也无法进行独立的生命活动（如代谢、繁殖）。它们由遗传物质（DNA或RNA）和蛋白质外壳组成，少数病毒还带有脂质包膜。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;病毒的基本特征：&lt;/li&gt;
@@ -1819,11 +1819,11 @@ ICTV的分类系统从最广泛的域（Realm）开始，逐步细化到种（Sp
         </item>
         <item>
         <title>VirRep: 人类肠道微生物组识别病毒新方法</title>
-        <link>/p/virrep/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/virrep/</link>
         <pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/virrep/</guid>
-        <description>&lt;img src="/p/virrep/images/workflow.png" alt="Featured image of post VirRep: 人类肠道微生物组识别病毒新方法" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/virrep/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/virrep/images/workflow.png" alt="Featured image of post VirRep: 人类肠道微生物组识别病毒新方法" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;病毒在生态系统中扮演着关键角色，宏基因组中病毒序列的鉴定十分重要。我之前已经介绍过了从宏基因组中&lt;a class=&#34;link&#34; href=&#34;https://asa-blog.netlify.app/p/virus&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;鉴定病毒序列的常用方法&lt;/a&gt;，包括geNomad，DeepVirFinder，VirSorter2等，以及后续的质量评估方法。&lt;/p&gt;
 &lt;p&gt;这方面的方法发展还是很快的，最近（2024/07/04），复旦大学赵兴明、华中科技大学陈卫华与团队在Genome Biology上发表研究，开发出一种人类肠道微生物基因组语言混合表征学习框架VriRep，能够整合基因组语义信息和序列同源性表征DNA序列，从而更精准地识别人类肠道环境中的病毒基因组。&lt;/p&gt;
@@ -2057,11 +2057,11 @@ VirRep 和四种无需对齐的方法（即 INHERIT、DeepVirFinder、PPR-Meta�
         </item>
         <item>
         <title>从宏基因组中鉴定病毒序列</title>
-        <link>/p/virus/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/virus/</link>
         <pubDate>Thu, 20 Jun 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/virus/</guid>
-        <description>&lt;img src="/p/virus/images/genomad.png" alt="Featured image of post 从宏基因组中鉴定病毒序列" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/virus/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/virus/images/genomad.png" alt="Featured image of post 从宏基因组中鉴定病毒序列" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在环境微生物学和生态学研究中，宏基因组学（Metagenomics）技术的应用已经彻底改变了我们对微生物群落的理解。宏基因组学通过对环境样本中的全部遗传物质进行测序和分析，可以全面揭示微生物群落的组成、功能和相互作用。然而，在这些复杂的微生物群落中，病毒序列的鉴定仍然是一个巨大的挑战。&lt;/p&gt;
 &lt;p&gt;病毒在生态系统中扮演着关键角色，它们通过感染宿主微生物调控微生物群落的动态和功能。病毒的存在和活动对宿主的进化、生物地球化学循环以及环境健康有着深远的影响。尽管病毒在生态系统中至关重要，但由于它们的基因组多样性高、没有通用的保守基因、以及基因组片段化严重，传统的宏基因组分析方法常常难以有效地识别和解析病毒序列。&lt;/p&gt;
 &lt;p&gt;为了克服这些挑战，研究人员开发了一系列专门的工具和方法，用于从宏基因组数据中提取和鉴定病毒序列。这些方法结合了序列比对、结构特征分析和机器学习等技术，显著提高了病毒序列的鉴定效率和准确性。通过这些方法，科学家们不仅能够更全面地了解环境病毒的多样性，还能揭示病毒与其宿主之间的复杂关系，为生态学、进化生物学和公共卫生等领域的研究提供重要的参考。&lt;/p&gt;

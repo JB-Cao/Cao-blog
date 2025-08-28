@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Antibiotics on Cao&#39;s blog</title>
-        <link>/tags/antibiotics/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/antibiotics/</link>
         <description>Recent content in Antibiotics on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Tue, 16 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/antibiotics/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 16 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/antibiotics/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>抗生素抗性基因（ARG）基础学习</title>
-        <link>/p/antibiotics-resistance/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/</link>
         <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/antibiotics-resistance/</guid>
-        <description>&lt;img src="/p/antibiotics-resistance/images/ARG_mechanism.png" alt="Featured image of post 抗生素抗性基因（ARG）基础学习" /&gt;&lt;script src=&#34;/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/images/ARG_mechanism.png" alt="Featured image of post 抗生素抗性基因（ARG）基础学习" /&gt;&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;h3 id=&#34;抗生素&#34;&gt;抗生素&lt;/h3&gt;
 &lt;p&gt;抗生素是一类药物，用于治疗或预防由细菌引起的感染。它们通过抑制细菌的生长或杀死细菌，帮助人体抵抗细菌感染。&lt;/p&gt;

@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>文献管理 on Cao&#39;s blog</title>
-        <link>/tags/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/</link>
         <description>Recent content in 文献管理 on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Tue, 23 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 23 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>CSL格式原理和应用</title>
-        <link>/p/csl/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/csl/</link>
         <pubDate>Tue, 23 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/csl/</guid>
-        <description>&lt;img src="/p/csl/images/csl_editor.png" alt="Featured image of post CSL格式原理和应用" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/csl/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/csl/images/csl_editor.png" alt="Featured image of post CSL格式原理和应用" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;文献管理工具是科研必不可少的伙伴，我自己用的是Zetero。在学术写作中，&amp;ldquo;文内引用&amp;rdquo;（citation）和&amp;quot;参考文献列表&amp;quot;（bibliography）是两个重要的概念，学会管理它们十分重要。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;文内引用（Citation）是文章正文中用来指向引用的源材料的标记，目的是表明你引用了哪些资料。主要有两种常见格式：

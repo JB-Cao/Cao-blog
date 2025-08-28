@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>microbial-ecology on Cao&#39;s blog</title>
-        <link>/categories/microbial-ecology/</link>
+        <link>https://jb-cao.github.io/Cao-blog/categories/microbial-ecology/</link>
         <description>Recent content in microbial-ecology on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 13 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="/categories/microbial-ecology/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 13 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/categories/microbial-ecology/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>功能基因探索：木质纤维素（lignocellulose）降解</title>
-        <link>/p/lignocellulose/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/lignocellulose/</link>
         <pubDate>Thu, 13 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/lignocellulose/</guid>
-        <description>&lt;img src="/p/lignocellulose/images/fig2.png" alt="Featured image of post 功能基因探索：木质纤维素（lignocellulose）降解" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/lignocellulose/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/lignocellulose/images/fig2.png" alt="Featured image of post 功能基因探索：木质纤维素（lignocellulose）降解" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;陆生植物将大部分光合作用固定的碳转化为木质纤维素（lignocellulose），这是一种由纤维素（cellulose）、半纤维素（hemicellulose）、果胶（pectin）和木质素（lignin）等聚合物组成的复合物。在植物生命周期中，这种复杂的基质为其提供结构完整性，并抵御植食性动物和病原体的侵害，因此大部分木质纤维素生物质由腐生生物和碎屑食性生物在碎屑食物网中分解。木质纤维素可作为生物燃料生产的原料，但由于纤维素的准结晶性、半纤维素对纤维素微纤维的复杂包覆以及木质素对多糖组分的穿插和包裹，其难以被酶解处理。在工业过程中，通常通过剧烈的化学和物理预处理来克服这种抗降解性，而生物体则能在生理耐受条件下实现木质纤维素的分解。&lt;/p&gt;
 &lt;h2 id=&#34;降解机制的多样性&#34;&gt;降解机制的多样性&lt;/h2&gt;
 &lt;p&gt;生物体通过多种方式降解木质纤维素，包括氧化攻击、半纤维素酶的作用以及动物的机械破坏，这些方式降低了木质纤维素的抗降解性，从而为解聚酶提供了更好的作用条件。碳水化合物活性酶及其底物结合蛋白的信息被整合在CAZy数据库中。近年来，肽模式识别技术被用于基于功能预测将糖苷水解酶（GH）和辅助活性酶（AA）家族分类为亚家族，并为挖掘基因组数据中的新酶提供工具。本文重点关注CAZy分类中的糖苷水解酶（GHs）和辅助活性酶（AAs），后者作为氧化还原酶，常与GHs协同作用。&lt;/p&gt;
@@ -95,11 +95,11 @@ dbCAN定期更新，与CAZy数据库保持同步，确保注释结果的准确�
         </item>
         <item>
         <title>微生物的耐酸机制研究</title>
-        <link>/p/acid/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/acid/</link>
         <pubDate>Wed, 12 Mar 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/acid/</guid>
-        <description>&lt;img src="/p/acid/images/fig1.png" alt="Featured image of post 微生物的耐酸机制研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/acid/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/acid/images/fig1.png" alt="Featured image of post 微生物的耐酸机制研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在进化过程中，细菌发展出多种机制以应对不同的环境压力，如酸性、温度和抗生素等。其中，酸性环境是细菌最常面临的极端条件之一。耐酸细菌是一类能够在pH 2.0至5.0（也有说6.0的）的强酸性环境中生存的极端微生物（另外还有生长的最适pH在4以下的微生物叫嗜酸微生物，它们不仅耐酸，还依赖酸性环境生长）。这些酸性环境可能由自然过程（如酸性矿山排水、海洋火山喷口和酸性硫泉）或人类活动（如工业废水排放）形成。工业废水中含有大量有机物、悬浮固体和氨氮，其低pH值为耐酸细菌的生存提供了条件。&lt;/p&gt;
 &lt;p&gt;耐酸细菌通过多种机制适应酸性环境，包括生理适应、代谢响应和质子消耗机制。在&lt;strong&gt;生理适应&lt;/strong&gt;方面，细菌通过改变细胞膜组成和流动性来减少质子的内流。例如，降低不饱和脂质的浓度，并通过环丙烷脂肪酸磷脂合成酶修饰磷脂尾结构。此外，外膜蛋白（OMPs）可通过多磷酸盐或尸胺被阻断，而HdeA和HdeB等伴侣蛋白则能在酸性压力下释放底物蛋白。在大肠杆菌中，Hsp31伴侣蛋白和DNA结合蛋白Dps也在酸性压力下保护DNA的完整性。&lt;/p&gt;
 &lt;p&gt;在&lt;strong&gt;代谢响应&lt;/strong&gt;方面，细菌通过质子外排和质子消耗机制应对酸性压力。例如，大肠杆菌K-12在轻度酸性压力下通过氧化电子传递链介导质子外排。此外，细胞膜在细菌适应极端环境中起关键作用，溶质通过ATP驱动的初级运输或质子动力驱动的次级运输系统跨膜运输。某些耐酸细菌（如大肠杆菌和丙酸杆菌）甚至能在pH 2.5的极端条件下存活数小时，主要通过进入稳定期并激活多种耐酸机制来实现。&lt;/p&gt;
@@ -176,11 +176,11 @@ dbCAN定期更新，与CAZy数据库保持同步，确保注释结果的准确�
         </item>
         <item>
         <title>全球尺度的抗生素耐药基因（ARG）研究</title>
-        <link>/p/global-arg/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/global-arg/</link>
         <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/global-arg/</guid>
-        <description>&lt;img src="/p/global-arg/images/global1.png" alt="Featured image of post 全球尺度的抗生素耐药基因（ARG）研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/global-arg/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/global-arg/images/global1.png" alt="Featured image of post 全球尺度的抗生素耐药基因（ARG）研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;抗生素耐药性是对人类健康和疾病临床治疗日益严重的全球性威胁。在过去十年中，已在所有环境中检测到抗生素抗性基因(ARG)，包括自然、工程和临床及栖息地。包括抗生素的临床使用在内的人为活动，被广泛认为是ARGs传播的主要驱动力。很早之前也写过一篇介绍&lt;a class=&#34;link&#34; href=&#34;../antibiotics-resistance&#34; &gt;抗生素，ARG以及相应生信分析方法&lt;/a&gt;的文章，这里想要介绍一下几篇全球尺度的ARG相关研究，他们已经整理好的数据还可以作为自己研究数据的背景参考。&lt;/p&gt;
 &lt;h3 id=&#34;arg的全球健康风险评估&#34;&gt;ARG的全球健康风险评估&lt;/h3&gt;
 &lt;p&gt;这是一篇2022年发表在NC上的文章《Assessment of global health risk of antibiotic resistance genes》，研究者使用4572个宏基因组数据集来揭示2561个ARG及其宿主在全球栖息地的分布和传播。他们实施了一个框架，通过考虑四个指标（人类可及性、流动性、人类致病性和临床可用性）来定量评估每个ARG和样本的健康风险。有23.78%的ARGs对健康构成威胁，尤其是那些具有多重耐药性的ARGs。&lt;/p&gt;
@@ -235,11 +235,11 @@ dbCAN定期更新，与CAZy数据库保持同步，确保注释结果的准确�
         </item>
         <item>
         <title>一些基于宏基因组的巨型病毒研究</title>
-        <link>/p/giant-virus-res/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/giant-virus-res/</link>
         <pubDate>Mon, 02 Dec 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/giant-virus-res/</guid>
-        <description>&lt;img src="/p/giant-virus-res/images/gvmags2.png" alt="Featured image of post 一些基于宏基因组的巨型病毒研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/giant-virus-res/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/giant-virus-res/images/gvmags2.png" alt="Featured image of post 一些基于宏基因组的巨型病毒研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;上次已经介绍了&lt;a class=&#34;link&#34; href=&#34;https://asa-blog.netlify.app/p/giant-virus/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;巨型病毒&lt;/a&gt;的一些基本内容，也讲到了不依赖培养的方法是从环境样本中发现巨型病毒基因组成的不可或缺的工具。可以通过基因组解析宏基因组学来从环境序列数据中获取 NCLDV 基因组并进行深入研究如功能基因，宿主，进化等等。这次介绍一些基于宏基因组的巨型病毒研究：&lt;/p&gt;
 &lt;h2 id=&#34;全球宏基因组学揭示巨型病毒多样性和宿主相互作用&#34;&gt;全球宏基因组学揭示巨型病毒多样性和宿主相互作用&lt;/h2&gt;
@@ -296,11 +296,11 @@ dbCAN定期更新，与CAZy数据库保持同步，确保注释结果的准确�
         </item>
         <item>
         <title>巨型病毒(Giant virus)生物学和多样性研究</title>
-        <link>/p/giant-virus/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/giant-virus/</link>
         <pubDate>Mon, 02 Dec 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/giant-virus/</guid>
-        <description>&lt;img src="/p/giant-virus/images/gv2.png" alt="Featured image of post 巨型病毒(Giant virus)生物学和多样性研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/giant-virus/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/giant-virus/images/gv2.png" alt="Featured image of post 巨型病毒(Giant virus)生物学和多样性研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;大型和巨型病毒是双链 DNA 病毒的一部分，即&lt;strong&gt;核质大DNA病毒&lt;/strong&gt; (NCLDV, nucleocytoplasmic large DNA viruses)，构成病毒门 Nucleocytoviricota。
 该门的病毒感染多种真核宿主，从已知最小的单细胞领鞭毛虫到多细胞动物。 NCLDV 通常在宿主细胞质中构建的所谓&lt;strong&gt;病毒工厂&lt;/strong&gt;中复制，或使用宿主细胞核复制，有时组装其后代。这些病毒的标志性特征是&lt;strong&gt;基因组范围从 70 kb 到 2.5 Mb 不等，病毒粒子长度可达 2 μm 以上&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;“巨型病毒”一词最初是在 20 世纪 90 年代创造的，当时感染藻类的病毒明显具有异常大的基因组，此外，在 2000 年代初期，第一个基因组在兆碱基范围内的病毒被发现；最初的光学显微镜观察得出这样的假设：其颗粒对应于变形虫革兰氏阳性细菌病原体。更详细的超微结构分析揭示了典型的二十面体形状的病毒粒子，并且基因组测序产生了 1.2 Mb 的病毒基因组。
@@ -411,11 +411,11 @@ dbCAN定期更新，与CAZy数据库保持同步，确保注释结果的准确�
         </item>
         <item>
         <title>微生物的低温适应/抗寒机制研究</title>
-        <link>/p/psychrophilic/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/psychrophilic/</link>
         <pubDate>Thu, 07 Nov 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/psychrophilic/</guid>
-        <description>&lt;img src="/p/psychrophilic/images/cold-adaption.png" alt="Featured image of post 微生物的低温适应/抗寒机制研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/psychrophilic/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/psychrophilic/images/cold-adaption.png" alt="Featured image of post 微生物的低温适应/抗寒机制研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;img src=&#34;images/cold-adaption.png&#34; title=&#34;&#34;/&gt;
 &lt;p&gt;整个太阳系的绝大多数区域，包括地球环境，都以极端温度为特征。值得注意的是，地球生物圈约 80% 的区域周期性或永久寒冷，温度低于 5°C。因此可以认为低温地区是地球上主要的“极端”环境。
 这些环境已被称为嗜冷生物或冷适应生物的多种生物成功定殖，主要包括细菌、古菌、酵母菌、蓝藻和原生生物等微生物。嗜冷微生物通过一系列结构和功能适应，克服低温带来的生存限制，使其能够在这种特殊环境中繁衍生息。&lt;/p&gt;
@@ -527,11 +527,11 @@ dbCAN定期更新，与CAZy数据库保持同步，确保注释结果的准确�
         </item>
         <item>
         <title>群体遗传学基础学习</title>
-        <link>/p/pop-genetic/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/pop-genetic/</link>
         <pubDate>Thu, 29 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/pop-genetic/</guid>
-        <description>&lt;img src="/p/pop-genetic/images/hw-law.png" alt="Featured image of post 群体遗传学基础学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/pop-genetic/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/pop-genetic/images/hw-law.png" alt="Featured image of post 群体遗传学基础学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;群体遗传学（Population Genetics）是研究在群体水平上基因频率的变化及其影响因素的学科。它结合了遗传学、进化生物学和统计学的方法来分析基因在群体中的分布和变化。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;群体&lt;/strong&gt;（Population）指的是一组同一物种的个体，它们生活在同一地理区域内，并能够相互交配和繁殖。这个群体的个体共享一个共同的基因库（gene pool），即所有个体的基因及其等位基因的集合。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;群体&lt;/strong&gt;有几个特征：&lt;/p&gt;
@@ -798,11 +798,11 @@ dbCAN定期更新，与CAZy数据库保持同步，确保注释结果的准确�
         </item>
         <item>
         <title>病毒相关内容学习</title>
-        <link>/p/learn-virus/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/learn-virus/</link>
         <pubDate>Tue, 13 Aug 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/learn-virus/</guid>
-        <description>&lt;img src="/p/learn-virus/images/Virus_Baltimore_Classification.png" alt="Featured image of post 病毒相关内容学习" /&gt;&lt;h2 id=&#34;什么是病毒&#34;&gt;什么是病毒？&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/learn-virus/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/learn-virus/images/Virus_Baltimore_Classification.png" alt="Featured image of post 病毒相关内容学习" /&gt;&lt;h2 id=&#34;什么是病毒&#34;&gt;什么是病毒？&lt;/h2&gt;
 &lt;p&gt;病毒是一种非常微小的、非细胞结构的病原体，它只能在宿主细胞内生长繁殖。与细菌不同，病毒本身没有完整的细胞结构，也无法进行独立的生命活动（如代谢、繁殖）。它们由遗传物质（DNA或RNA）和蛋白质外壳组成，少数病毒还带有脂质包膜。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;病毒的基本特征：&lt;/li&gt;
@@ -1139,11 +1139,11 @@ ICTV的分类系统从最广泛的域（Realm）开始，逐步细化到种（Sp
         </item>
         <item>
         <title>Anti-CRISPR 相关内容学习</title>
-        <link>/p/anti-crispr/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/anti-crispr/</link>
         <pubDate>Wed, 31 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/anti-crispr/</guid>
-        <description>&lt;img src="/p/anti-crispr/images/acr_mechanism.jpg" alt="Featured image of post Anti-CRISPR 相关内容学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/anti-crispr/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/anti-crispr/images/acr_mechanism.jpg" alt="Featured image of post Anti-CRISPR 相关内容学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;CRISPR-Cas系统是微生物为免受噬菌体和外来遗传元件入侵进化而来的获得性免疫系统，在约45%的细菌和87%的古细菌基因组中都发现了CRISPR-Cas系统的存在，具体可以看之前写的&lt;a class=&#34;link&#34; href=&#34;../crispr&#34; &gt;CRISPR 相关学习&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;在噬菌体与宿主共进化的过程中，通过在宿主CRISPR-Cas系统的Protospacer seed sequence区域引入突变，降低了RNP复合物与靶标核酸的结合亲和力，从而逃避宿主CRISPR-Cas系统介导的免疫。宿主CRISPR-Cas系统具有不断获取新Spacer的能力，因此噬菌体进化出积极的反防御系统，通过与核酸序列无关的机制使CRISPR-Cas效应复合物失活。&lt;/p&gt;
 &lt;p&gt;最初在铜绿假单胞菌的噬菌体中观察到了这种anti-CRISPR现象，尽管这些噬菌体携带与宿主Ⅰ-F型CRISPR-Cas系统Spacer序列匹配的靶标核酸，依然能成功侵染宿主并传播。Bondy-Denomy等研究者在这些噬菌体的基因组中发现了编码5个Acr蛋白（AcrⅠF1、AcrⅠF2、AcrⅠF3、AcrⅠF4和AcrⅠF5）的基因，这些蛋白能帮助噬菌体逃避Ⅰ-F型CRISPR-Cas系统的免疫。&lt;/p&gt;
@@ -1235,11 +1235,11 @@ anti-CRISPRdb （&lt;a class=&#34;link&#34; href=&#34;http://guolab.whu.edu.cn/a
         </item>
         <item>
         <title>微生物群落构建（community assembly）</title>
-        <link>/p/community-assembly/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/community-assembly/</link>
         <pubDate>Thu, 23 May 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/community-assembly/</guid>
-        <description>&lt;img src="/p/community-assembly/comm.jpg" alt="Featured image of post 微生物群落构建（community assembly）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/community-assembly/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/community-assembly/comm.jpg" alt="Featured image of post 微生物群落构建（community assembly）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;了解控制群落多样性、功能、演替和生物地理学的机制是生态学，尤其是微生物生态学中的一个核心。推荐阅读综述：&lt;/p&gt;
 &lt;p&gt;Zhou, J. &amp;amp; Ning, D. Stochastic Community Assembly: Does It Matter in Microbial Ecology? Microbiol Mol Biol Rev 81, e00002-17 (2017).
 This review is very comprehensive (&lt;a class=&#34;link&#34; href=&#34;#ref-zhouStochasticCommunityAssembly2017&#34; &gt;&lt;em&gt;1&lt;/em&gt;&lt;/a&gt;)！&lt;/p&gt;
@@ -1298,7 +1298,7 @@ MNTD 即mean-nearest-taxon-distance (最近种间平均进化距离) ， 关于 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;stackplot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;com_p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;scale_fill_pc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/community-assembly/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/community-assembly/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;h4 id=&#34;icamp&#34;&gt;iCAMP&lt;/h4&gt;
 &lt;p&gt;现在大家经常用的&lt;strong&gt;iCAMP&lt;/strong&gt;包就是基于这个理论框架进行分析的 (&lt;a class=&#34;link&#34; href=&#34;#ref-ningQuantitativeFrameworkReveals2020&#34; &gt;&lt;em&gt;4&lt;/em&gt;&lt;/a&gt;)，其进行了一定的升级优化：提出了系统发育分箱零模型。下次用在自己项目中的话可以进一步分享。&lt;/p&gt;
 &lt;h3 id=&#34;2stnstmst-stochasticity-ratio&#34;&gt;2.ST，NST，MST （stochasticity ratio）&lt;/h3&gt;
@@ -1358,7 +1358,7 @@ MNTD 即mean-nearest-taxon-distance (最近种间平均进化距离) ， 关于 
 &lt;/div&gt;
 &lt;/div&gt;&lt;pre&gt;&lt;code&gt;## [1] FALSE
 &lt;/code&gt;&lt;/pre&gt;
-&lt;img src=&#34;/p/community-assembly/index_files/figure-html/NST-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/community-assembly/index_files/figure-html/NST-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;h4 id=&#34;example&#34;&gt;example&lt;/h4&gt;
 &lt;img src=&#34;images/nst_e.png&#34; style=&#34;width:50.0%&#34; /&gt;
 &lt;blockquote&gt;
@@ -1409,7 +1409,7 @@ MNTD 即mean-nearest-taxon-distance (最近种间平均进化距离) ， 关于 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ncm_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/community-assembly/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/community-assembly/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;576&#34; /&gt;
 &lt;p&gt;R2代表了中性群落模型的整体拟合优度，&lt;strong&gt;R2越高表明越接近中性模型，即群落的构建受随机性过程的影响越大，受确定性过程的影响越小。&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;值得注意，&lt;strong&gt;R方不是某个数值的平方，可以是负值&lt;/strong&gt;。因为拟合程度没有下限，可以无限差，R方的范围是(−∞,1]。R方的取值，有以下的可能性：&lt;/p&gt;
@@ -1483,11 +1483,11 @@ $$&lt;/p&gt;
         </item>
         <item>
         <title>CRISPR 相关内容学习</title>
-        <link>/p/crispr/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/crispr/</link>
         <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/crispr/</guid>
-        <description>&lt;img src="/p/crispr/images/stress.png" alt="Featured image of post CRISPR 相关内容学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/crispr/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/crispr/images/stress.png" alt="Featured image of post CRISPR 相关内容学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;CRISPR规律成簇间隔短回文重复：clustered regularly interspaced short
 palindromic repeats&lt;/p&gt;
 &lt;p&gt;CRISPR是存在于细菌基因组中的一种元件，其中含有曾经攻击过该细菌的病毒的基因片段。细菌透过这些基因片段来侦测并抵抗相同病毒的攻击，并摧毁其DNA，这类基因组是细菌（和古菌）免疫系统的关键组成部分。CRISPR-Cas 系统存在于大约 40% 的细菌和 85% 的古细菌基因组中，但不存在于真核生物基因组中。&lt;/p&gt;
@@ -1659,11 +1659,11 @@ RNA），其与重复部分互补并涉及CRISPR（cr）RNA加工和干扰。然
         </item>
         <item>
         <title>土壤微生物组综述（soil microbiome）</title>
-        <link>/p/soil-microbiome/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/soil-microbiome/</link>
         <pubDate>Wed, 15 Nov 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/soil-microbiome/</guid>
-        <description>&lt;img src="/p/soil-microbiome/images/soil2.png" alt="Featured image of post 土壤微生物组综述（soil microbiome）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/soil-microbiome/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/soil-microbiome/images/soil2.png" alt="Featured image of post 土壤微生物组综述（soil microbiome）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;土壤是地球上最重要的生态系统之一，其中包含着丰富的微生物群落。土壤微生物群落是土壤生态系统中的重要组成部分，对土壤的生物地球化学循环和生态系统功能具有重要影响。土壤微生物群落与土壤性质之间存在着复杂的相互作用，这些相互作用对土壤生态系统的稳定性和功能产生了重要影响。&lt;/p&gt;
 &lt;h2 id=&#34;the-interplay-between-microbial-communities-and-soil-properties&#34;&gt;The interplay between microbial communities and soil properties&lt;/h2&gt;
 &lt;ol&gt;
@@ -1709,14 +1709,14 @@ RNA），其与重复部分互补并涉及CRISPR（cr）RNA加工和干扰。然
         </item>
         <item>
         <title>抗生素抗性基因（ARG）基础学习</title>
-        <link>/p/antibiotics-resistance/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/</link>
         <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/antibiotics-resistance/</guid>
-        <description>&lt;img src="/p/antibiotics-resistance/images/ARG_mechanism.png" alt="Featured image of post 抗生素抗性基因（ARG）基础学习" /&gt;&lt;script src=&#34;/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/images/ARG_mechanism.png" alt="Featured image of post 抗生素抗性基因（ARG）基础学习" /&gt;&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://jb-cao.github.io/Cao-blog/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;h3 id=&#34;抗生素&#34;&gt;抗生素&lt;/h3&gt;
 &lt;p&gt;抗生素是一类药物，用于治疗或预防由细菌引起的感染。它们通过抑制细菌的生长或杀死细菌，帮助人体抵抗细菌感染。&lt;/p&gt;
@@ -2492,11 +2492,11 @@ SARG
         </item>
         <item>
         <title>物种多样性研究的理论和方法</title>
-        <link>/p/biodiversity/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/biodiversity/</link>
         <pubDate>Sat, 01 Apr 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/biodiversity/</guid>
-        <description>&lt;img src="/p/biodiversity/images/diversity.png" alt="Featured image of post 物种多样性研究的理论和方法" /&gt;&lt;p&gt;Theories and Methods of Species Diversity Research&lt;/p&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/biodiversity/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/biodiversity/images/diversity.png" alt="Featured image of post 物种多样性研究的理论和方法" /&gt;&lt;p&gt;Theories and Methods of Species Diversity Research&lt;/p&gt;
 &lt;p&gt;这是我在一门研究生课程上的课程任务，查阅了一些文献总结整理了物种多样性研究理论与方法，比较基础，没有对一些理论和模型深入讲解，仅做分享。&lt;/p&gt;
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;blockquote&gt;

@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>paper on 曹的小屋</title>
-        <link>/zh-cn/categories/paper/</link>
+        <link>https://jb-cao.github.io/Cao-blog/zh-cn/categories/paper/</link>
         <description>Recent content in paper on 曹的小屋</description>
         <generator>Hugo -- gohugo.io</generator>
-        <language>zh-cn</language><atom:link href="/zh-cn/categories/paper/index.xml" rel="self" type="application/rss+xml" />
+        <language>zh-cn</language><atom:link href="https://jb-cao.github.io/Cao-blog/zh-cn/categories/paper/index.xml" rel="self" type="application/rss+xml" />
     </channel>
 </rss>

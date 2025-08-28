@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Crispr on Cao&#39;s blog</title>
-        <link>/tags/crispr/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/crispr/</link>
         <description>Recent content in Crispr on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 31 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/crispr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 31 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/crispr/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>Anti-CRISPR 相关内容学习</title>
-        <link>/p/anti-crispr/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/anti-crispr/</link>
         <pubDate>Wed, 31 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/anti-crispr/</guid>
-        <description>&lt;img src="/p/anti-crispr/images/acr_mechanism.jpg" alt="Featured image of post Anti-CRISPR 相关内容学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/anti-crispr/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/anti-crispr/images/acr_mechanism.jpg" alt="Featured image of post Anti-CRISPR 相关内容学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;CRISPR-Cas系统是微生物为免受噬菌体和外来遗传元件入侵进化而来的获得性免疫系统，在约45%的细菌和87%的古细菌基因组中都发现了CRISPR-Cas系统的存在，具体可以看之前写的&lt;a class=&#34;link&#34; href=&#34;../crispr&#34; &gt;CRISPR 相关学习&lt;/a&gt;。&lt;/p&gt;
 &lt;p&gt;在噬菌体与宿主共进化的过程中，通过在宿主CRISPR-Cas系统的Protospacer seed sequence区域引入突变，降低了RNP复合物与靶标核酸的结合亲和力，从而逃避宿主CRISPR-Cas系统介导的免疫。宿主CRISPR-Cas系统具有不断获取新Spacer的能力，因此噬菌体进化出积极的反防御系统，通过与核酸序列无关的机制使CRISPR-Cas效应复合物失活。&lt;/p&gt;
 &lt;p&gt;最初在铜绿假单胞菌的噬菌体中观察到了这种anti-CRISPR现象，尽管这些噬菌体携带与宿主Ⅰ-F型CRISPR-Cas系统Spacer序列匹配的靶标核酸，依然能成功侵染宿主并传播。Bondy-Denomy等研究者在这些噬菌体的基因组中发现了编码5个Acr蛋白（AcrⅠF1、AcrⅠF2、AcrⅠF3、AcrⅠF4和AcrⅠF5）的基因，这些蛋白能帮助噬菌体逃避Ⅰ-F型CRISPR-Cas系统的免疫。&lt;/p&gt;
@@ -104,11 +104,11 @@ anti-CRISPRdb （&lt;a class=&#34;link&#34; href=&#34;http://guolab.whu.edu.cn/a
         </item>
         <item>
         <title>CRISPR 相关内容学习</title>
-        <link>/p/crispr/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/crispr/</link>
         <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
         
-        <guid>/p/crispr/</guid>
-        <description>&lt;img src="/p/crispr/images/stress.png" alt="Featured image of post CRISPR 相关内容学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/crispr/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/crispr/images/stress.png" alt="Featured image of post CRISPR 相关内容学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;CRISPR规律成簇间隔短回文重复：clustered regularly interspaced short
 palindromic repeats&lt;/p&gt;
 &lt;p&gt;CRISPR是存在于细菌基因组中的一种元件，其中含有曾经攻击过该细菌的病毒的基因片段。细菌透过这些基因片段来侦测并抵抗相同病毒的攻击，并摧毁其DNA，这类基因组是细菌（和古菌）免疫系统的关键组成部分。CRISPR-Cas 系统存在于大约 40% 的细菌和 85% 的古细菌基因组中，但不存在于真核生物基因组中。&lt;/p&gt;

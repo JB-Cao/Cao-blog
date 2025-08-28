@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Orthology on Cao&#39;s blog</title>
-        <link>/tags/orthology/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/orthology/</link>
         <description>Recent content in Orthology on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Wed, 31 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/orthology/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 31 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/orthology/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>使用Orthofinder进行系统发育直系同源推断</title>
-        <link>/p/orthofinder/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/orthofinder/</link>
         <pubDate>Wed, 31 Jul 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/orthofinder/</guid>
-        <description>&lt;img src="/p/orthofinder/images/Workflow.png" alt="Featured image of post 使用Orthofinder进行系统发育直系同源推断" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/orthofinder/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/orthofinder/images/Workflow.png" alt="Featured image of post 使用Orthofinder进行系统发育直系同源推断" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;确定基因序列之间的系统发育关系是比较生物学研究的基础。它为理解地球上生命的进化和多样性提供了框架，并能够在生物体之间推断生物知识。鉴于此过程对生物研究多个领域的核心重要性，人们开发了一系列不同的软件工具，试图在给定用户提供的基因序列集的情况下识别这些关系。&lt;/p&gt;
 &lt;p&gt;在基因组学和进化生物学中，直系同源、旁系同源和正交群是重要的概念：&lt;/p&gt;
 &lt;ol&gt;

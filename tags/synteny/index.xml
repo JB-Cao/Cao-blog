@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>Synteny on Cao&#39;s blog</title>
-        <link>/tags/synteny/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/synteny/</link>
         <description>Recent content in Synteny on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Thu, 24 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/synteny/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 24 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/synteny/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>基因组同线性（synteny）分析和可视化</title>
-        <link>/p/synteny/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/synteny/</link>
         <pubDate>Thu, 24 Apr 2025 00:00:00 +0000</pubDate>
         
-        <guid>/p/synteny/</guid>
-        <description>&lt;img src="/p/synteny/images/emales.png" alt="Featured image of post 基因组同线性（synteny）分析和可视化" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/synteny/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/synteny/images/emales.png" alt="Featured image of post 基因组同线性（synteny）分析和可视化" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;在基因组学研究中，比较基因组学（Comparative Genomics）是一项核心方法，它通过对不同物种或同一物种不同个体的基因组进行比较，揭示基因的功能、结构和进化历史。在这一领域中，“同线性（synteny）”和“共线性（collinearity）”是关键概念，它们在理解基因组结构的保守性和演化过程中起着重要作用。&lt;/p&gt;
 &lt;img src=&#34;images/intro.jpg&#34; title=&#34;&#34;/&gt;
 &lt;p&gt;在基因组比较中，“同线性”和“共线性”常被用来描述不同物种或同一物种不同个体之间基因组结构的保守性。同线性指的是在不同基因组中，一组同源基因位于各自染色体上的相似位置，而不考虑这些基因的排列顺序。共线性则进一步要求这些同源基因在染色体上的排列顺序也保持一致。简而言之，共线性是同线性的一种更严格形式。&lt;/p&gt;

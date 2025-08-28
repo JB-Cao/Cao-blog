@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
         <title>工具 on Cao&#39;s blog</title>
-        <link>/tags/%E5%B7%A5%E5%85%B7/</link>
+        <link>https://jb-cao.github.io/Cao-blog/tags/%E5%B7%A5%E5%85%B7/</link>
         <description>Recent content in 工具 on Cao&#39;s blog</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>en</language>
-        <lastBuildDate>Tue, 16 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Tue, 16 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/%E5%B7%A5%E5%85%B7/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>R快速翻译和绘图中文支持</title>
-        <link>/p/translator/</link>
+        <link>https://jb-cao.github.io/Cao-blog/p/translator/</link>
         <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
         
-        <guid>/p/translator/</guid>
-        <description>&lt;img src="/p/translator/images/fanyi.png" alt="Featured image of post R快速翻译和绘图中文支持" /&gt;&lt;h2 id=&#34;motivation&#34;&gt;Motivation&lt;/h2&gt;
+        <guid>https://jb-cao.github.io/Cao-blog/p/translator/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/translator/images/fanyi.png" alt="Featured image of post R快速翻译和绘图中文支持" /&gt;&lt;h2 id=&#34;motivation&#34;&gt;Motivation&lt;/h2&gt;
 &lt;p&gt;在数据分析中，有时候面对大量的英文单词描述可能无法快速获得全部信息，需要去进一步查询或翻译。&lt;/p&gt;
 &lt;p&gt;我们可以用代码自行调用一些翻译api完成这一步，CRAN和github上有不少帮助翻译的R包，比如&lt;code&gt;fanyi&lt;/code&gt;, &lt;code&gt;ecce&lt;/code&gt;, &lt;code&gt;translateR&lt;/code&gt; 等。&lt;/p&gt;
 &lt;h3 id=&#34;fanyi&#34;&gt;fanyi&lt;/h3&gt;
@@ -286,7 +286,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-mysql&#34; data-lang=&#34;mysql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/translator/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/translator/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;有些中文字体的英文支持不太好，如果要中英文混合显示可以使用中英文混合字体，比如知名度很高的YaHei Consolas混合字体。或者使用开源项目: FontForge, 来合并中英文字体。&lt;/p&gt;
 &lt;p&gt;我上次写了一个简单的函数用来“画”春联&lt;code&gt;chunlian&lt;/code&gt;(见&lt;a class=&#34;link&#34; href=&#34;../new_year&#34; &gt;R画春联&lt;/a&gt;)，就是这样来调用一个下载好的毛笔字体的：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -297,7 +297,7 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;chunlian&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;新年快乐&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bg_shape&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;23&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bg_size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;50&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text_size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;25&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/translator/index.en_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/translator/index.en_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;我也写了一个用来翻译ggplot的各种文字（包括x，y，label，legend，title等）的函数&lt;code&gt;pcutils::ggplot_translator()&lt;/code&gt;，并且内置了&lt;code&gt;showtext_auto&lt;/code&gt;，所以一般可以直接画出正常显示的其他语言。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -329,7 +329,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##  see `how_to_set_font_for_plot()`.
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;img src=&#34;/p/translator/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/translator/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;
 </description>
         </item>
         
