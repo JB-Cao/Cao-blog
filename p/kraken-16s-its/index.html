@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Qiime2物种注释可真慢呀😂，赶紧找了Kraken的替代方法，Kraken用于16S是现成的。但是ITS的Unite数据库需要自己构建，自己折腾了一下解决了。'>
+<title>使用Kraken进行16S/ITS物种注释（超快）</title>
+
+<link rel='canonical' href='/p/kraken-16s-its/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='使用Kraken进行16S/ITS物种注释（超快）'>
+<meta property='og:description' content='Qiime2物种注释可真慢呀😂，赶紧找了Kraken的替代方法，Kraken用于16S是现成的。但是ITS的Unite数据库需要自己构建，自己折腾了一下解决了。'>
+<meta property='og:url' content='/p/kraken-16s-its/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='amplicon' /><meta property='article:published_time' content='2025-01-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-01-14T00:00:00&#43;00:00'/><meta property='og:image' content='/p/kraken-16s-its/images/k16s1.png' />
+<meta name="twitter:title" content="使用Kraken进行16S/ITS物种注释（超快）">
+<meta name="twitter:description" content="Qiime2物种注释可真慢呀😂，赶紧找了Kraken的替代方法，Kraken用于16S是现成的。但是ITS的Unite数据库需要自己构建，自己折腾了一下解决了。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/kraken-16s-its/images/k16s1.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#kraken效果">Kraken效果</a>
+      <ol>
+        <li><a href="#速度快">速度快</a></li>
+        <li><a href="#更精确">更精确</a></li>
+      </ol>
+    </li>
+    <li><a href="#kraken-16s">Kraken-16S</a></li>
+    <li><a href="#kraken-its">Kraken-ITS</a></li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/kraken-16s-its/">
+                <img src="/p/kraken-16s-its/images/k16s1_hu_dff6452ece23f24a.png"
+                        srcset="/p/kraken-16s-its/images/k16s1_hu_dff6452ece23f24a.png 800w, /p/kraken-16s-its/images/k16s1_hu_ac2a2adaadb5cbea.png 1600w"
+                        width="800" 
+                        height="771" 
+                        loading="lazy"
+                        alt="Featured image of post 使用Kraken进行16S/ITS物种注释（超快）" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/kraken-16s-its/">使用Kraken进行16S/ITS物种注释（超快）</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Qiime2物种注释可真慢呀😂，赶紧找了Kraken的替代方法，Kraken用于16S是现成的。但是ITS的Unite数据库需要自己构建，自己折腾了一下解决了。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 14, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>上次记录了一下qiime2的<a class="link" href="../amplicon-workflow" >扩增子分析流程</a>。但是实际使用时，在最后一步物种注释时卡住了，如果使用常用的<code>feature-classifier</code>方法，我尝试使用unite数据库鉴定了100条ITS序列，居然用了半个小时！尴尬的是，我有整整10万条ASV序列，这得跑到猴年马月。我想到做宏基因组时，千万级数量的reads用kraken做物种注释也不需要这么久，肯定有快的方法的。</p>
+<p>然后发现Kraken用于16S已经有文章了：
+Lu, J., Salzberg, S.L. Ultrafast and accurate 16S rRNA microbial community analysis using Kraken 2. Microbiome 8, 124 (2020). <a class="link" href="https://doi.org/10.1186/s40168-020-00900-2"  target="_blank" rel="noopener"
+    >https://doi.org/10.1186/s40168-020-00900-2</a></p>
+<p>Kraken 2现在支持16S rRNA数据库，可以直接与QIIME和类似系统进行比较。Kraken 2通过其独特的无对齐算法，能够在极短的时间内完成大量序列的分类，并且支持多线程处理，显著提升了分析效率。此外，Kraken 2还结合了Bracken工具，能够更精确地估计物种的相对丰度，尤其是在处理复杂微生物群落时表现出色。</p>
+<p>但是Kraken2要用在ITS上的话目前是官方没有支持的，需要手动构建相应数据库，这个折腾了一会，具体方法放在后面了。</p>
+<h2 id="kraken效果">Kraken效果</h2>
+<h3 id="速度快">速度快</h3>
+<img src="images/k16s1.png" title=""/>
+<p>Kraken 2在速度上的表现非常突出。根据Lu和Salzberg的研究，Kraken 2在生成16S rRNA数据库时，比QIIME 2快得多。例如，使用单线程时，Kraken 2生成Greengenes数据库仅需9分钟，而QIIME 2则需要78分钟。对于更大的SILVA数据库，Kraken 2仅需34分钟，而QIIME 2则需要超过58小时。在分类速度上，Kraken 2同样表现出色，单线程下仅需1分钟即可完成一个样本的分类，而QIIME 2则需要35分钟（使用16线程时）。对于大规模数据分析，Kraken 2的速度优势尤为明显，能够显著缩短分析时间。</p>
+<h3 id="更精确">更精确</h3>
+<img src="images/k16s2.png" title=""/>
+<p>Kraken 2不仅在速度上占优，其分类精度也优于QIIME 2。研究显示，Kraken 2在分类16S rRNA序列时，能够更准确地识别物种，尤其是在处理复杂微生物群落时。Bracken工具进一步提升了Kraken 2的精度，能够更准确地估计物种的相对丰度。通过重新分配Kraken 2在属或更高分类水平上的分类结果，Bracken能够将分类结果细化到种水平，从而提供更精确的物种丰度估计。此外，Kraken 2的每读长分类功能使其能够为每个读长提供详细的分类信息，进一步提高了分析的准确性。</p>
+<img src="images/k16s3.png" title=""/>
+<p>总的来说，Kraken 2和Bracken的组合为16S rRNA数据分析提供了一个快速、高效且精确的解决方案，特别适合处理大规模微生物群落数据。</p>
+<h2 id="kraken-16s">Kraken-16S</h2>
+<p>Kraken2是直接支持16S常用的三大数据库的(greengenes，rdp，silva)，用起来也非常简单：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#直接构建数据库，TYPE可选greengenes，rdp，silva</span>
+</span></span><span class="line"><span class="cl">kraken2-build --db <span class="nv">$DBNAME</span> --special TYPE
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#构建完成后就可以鉴定了，内存够的话，1min内都有结果</span>
+</span></span><span class="line"><span class="cl">kraken2 rep-seqs/dna-sequences.fasta --db <span class="nv">$DBNAME</span> --out kraken_output --threads <span class="m">4</span> --report kraken_report.txt -c 0.05
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#可以借助taxonkit得到类似qiime2标准注释文件</span>
+</span></span><span class="line"><span class="cl">cut -f3 kraken_output &gt;tmpid
+</span></span><span class="line"><span class="cl">taxonkit lineage tmpid --data-dir <span class="nv">$DBNAME</span>/taxonomy/<span class="p">|</span>taxonkit reformat --data-dir <span class="nv">$DBNAME</span>/taxonomy/ -P &gt;tmpres
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">paste kraken_output tmpres <span class="p">|</span>cut -f2,8&gt;kraken_taxonomy
+</span></span><span class="line"><span class="cl">rm tmpid tmpres
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="kraken-its">Kraken-ITS</h2>
+<p>ITS一般用Unite数据库注释，但这个kraken2不支持，我尝试将Unite数据库整理为greengenes的格式，然后用<code>build_gg_taxonomy.pl</code>生成names.dmp, nodes.dmp, seqid2taxid并建立kraken数据库，最后进行ITS序列鉴定是可行的。</p>
+<p>具体步骤如下：</p>
+<ol>
+<li>
+<p>Unite官网下载fasta文件，<a class="link" href="https://unite.ut.ee/repository.php"  target="_blank" rel="noopener"
+    >https://unite.ut.ee/repository.php</a> ，点击General FASTA release下载解压，我用的是sh_general_release_dynamic_all_04.04.2024.fasta文件。</p>
+</li>
+<li>
+<p>运行以下命令建立数据库，注意<code>split_fasta.py</code>和<code>build_gg_taxonomy.pl</code>在后面，记得拷贝过去用。</p>
+</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 手动构建目录结构</span>
+</span></span><span class="line"><span class="cl">mkdir ~/db/kraken_unite/
+</span></span><span class="line"><span class="cl"><span class="nb">pushd</span> ~/db/kraken_unite/
+</span></span><span class="line"><span class="cl">mkdir -p data taxonomy library
+</span></span><span class="line"><span class="cl"><span class="nb">pushd</span> data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用split_fasta.py把unite数据库提供的fasta格式整理为greengenes的</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GG_VERSION</span><span class="o">=</span>unite_all_04.04.2024
+</span></span><span class="line"><span class="cl">./split_fasta.py -i ../sh_general_release_dynamic_all_04.04.2024.fasta -o <span class="si">${</span><span class="nv">GG_VERSION</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用build_gg_taxonomy.pl进一步生成names.dmp, nodes.dmp, seqid2taxid</span>
+</span></span><span class="line"><span class="cl">perl ../build_gg_taxonomy.pl <span class="s2">&#34;</span><span class="si">${</span><span class="nv">GG_VERSION</span><span class="si">}</span><span class="s2">_taxonomy.txt&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">popd</span>
+</span></span><span class="line"><span class="cl">mv data/names.dmp data/nodes.dmp taxonomy/
+</span></span><span class="line"><span class="cl">mv data/seqid2taxid.map .
+</span></span><span class="line"><span class="cl">mv <span class="s2">&#34;data/</span><span class="si">${</span><span class="nv">GG_VERSION</span><span class="si">}</span><span class="s2">.fa&#34;</span> library/unite.fna
+</span></span><span class="line"><span class="cl"><span class="nb">popd</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用kraken2-build构建用于注释的数据库</span>
+</span></span><span class="line"><span class="cl">kraken2-build --db ~/db/kraken_unite --build --threads <span class="m">4</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>鉴定获得output文件</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#1秒出结果</span>
+</span></span><span class="line"><span class="cl">kraken2 rep-seqs/dna-sequences.fasta --db ~/db/kraken_unite/ --out kraken_output --threads <span class="m">4</span> --report kraken_report.txt -c 0.05
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>借助taxonkit获取标准注释文件，taxonkit这软件也很好用。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cut -f3 kraken_output &gt;tmpid
+</span></span><span class="line"><span class="cl">taxonkit lineage tmpid --data-dir ~/db/kraken_unite/taxonomy/<span class="p">|</span>taxonkit reformat  --data-dir ~/db/kraken_unite/taxonomy/ -P &gt;tmpres
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">paste kraken_output tmpres <span class="p">|</span>cut -f2,8&gt;kraken_taxonomy
+</span></span><span class="line"><span class="cl">rm tmpid tmpres
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后的结果就是类似下面的形式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">0229a5c7f887dad960b40a0505cf9776	k__Fungi;p__Ascomycota;c__Saccharomycetes;o__Saccharomycetales;f__Saccharomycetales_fam_Incertae_sedis;g__Candida;s__Candida Candida_albicans
+</span></span><span class="line"><span class="cl">f88d9001e10f6d37672514972e6a199e	k__Fungi;p__Ascomycota;c__Saccharomycetes;o__Saccharomycetales;f__Saccharomycetales_fam_Incertae_sedis;g__Candida;s__Candida Candida_albicans
+</span></span><span class="line"><span class="cl">c3519270e269b92d3577ed450032bbc4	k__Fungi;p__Ascomycota;c__Eurotiomycetes;o__Eurotiales;f__Aspergillaceae;g__Penicillium;s__
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>补充脚本信息：</p>
+<p>1.split_fasta.py：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="ch">#!/share/home/jianglab/pengchen/miniconda3/bin/python3.9</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">argparse</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">process_fasta</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">unite_fa</span><span class="p">,</span> <span class="n">unite_taxonomy</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">infile</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">unite_fa</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fa_out</span><span class="p">,</span> <span class="nb">open</span><span class="p">(</span><span class="n">unite_taxonomy</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">tax_out</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">infile</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;&gt;&#39;</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># Extract information from the header</span>
+</span></span><span class="line"><span class="cl">                <span class="n">header</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                <span class="n">parts</span> <span class="o">=</span> <span class="n">header</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">accession</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="n">taxonomy</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="n">formatted_taxonomy</span> <span class="o">=</span> <span class="n">taxonomy</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="s1">&#39;; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="s1">&#39;; &#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="c1"># Write to unite.fa</span>
+</span></span><span class="line"><span class="cl">                <span class="n">fa_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;&gt;</span><span class="si">{</span><span class="n">accession</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="c1"># Write to unite_taxonomy.txt</span>
+</span></span><span class="line"><span class="cl">                <span class="n">tax_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">accession</span><span class="si">}</span><span class="se">\t</span><span class="si">{</span><span class="n">formatted_taxonomy</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="c1"># Write sequence lines to unite.fa</span>
+</span></span><span class="line"><span class="cl">                <span class="n">fa_out</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&#34;Process a fasta file to generate unite.fa and unite_taxonomy.txt.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;-i&#34;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;Input fasta file&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&#34;-o&#34;</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&#34;Output prefix for unite.fa and unite_taxonomy.txt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">input_file</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">i</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output_prefix</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">o</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">unite_fa</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">output_prefix</span><span class="si">}</span><span class="s2">.fa&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">unite_taxonomy</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">output_prefix</span><span class="si">}</span><span class="s2">_taxonomy.txt&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">process_fasta</span><span class="p">(</span><span class="n">input_file</span><span class="p">,</span> <span class="n">unite_fa</span><span class="p">,</span> <span class="n">unite_taxonomy</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>2.build_gg_taxonomy.pl : <a class="link" href="https://github.com/DerrickWood/kraken2/blob/master/scripts/build_gg_taxonomy.pl"  target="_blank" rel="noopener"
+    >https://github.com/DerrickWood/kraken2/blob/master/scripts/build_gg_taxonomy.pl</a></p>
+<p>3.taxonkit: <a class="link" href="https://github.com/shenwei356/taxonkit"  target="_blank" rel="noopener"
+    >https://github.com/shenwei356/taxonkit</a></p>
+<h2 id="references">References</h2>
+<ol>
+<li>Lu, J., Salzberg, S.L. Ultrafast and accurate 16S rRNA microbial community analysis using Kraken 2. Microbiome 8, 124 (2020). <a class="link" href="https://doi.org/10.1186/s40168-020-00900-2"  target="_blank" rel="noopener"
+    >https://doi.org/10.1186/s40168-020-00900-2</a></li>
+<li><a class="link" href="https://github.com/DerrickWood/kraken2/wiki/Manual#custom-databases"  target="_blank" rel="noopener"
+    >https://github.com/DerrickWood/kraken2/wiki/Manual#custom-databases</a></li>
+<li><a class="link" href="https://github.com/DerrickWood/kraken2/issues/97"  target="_blank" rel="noopener"
+    >https://github.com/DerrickWood/kraken2/issues/97</a></li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/amplicon/">Amplicon</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/amplicon-workflow/">
+        
+        
+            <div class="article-image">
+                <img src="/p/amplicon-workflow/images/16s.bcbe2093c9bd1ab8c0fb58e70955d744_hu_1bf2d570565b0539.webp" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 扩增子(Amplicon)数据分析流程|Qiime2"
+                        data-key="amplicon-workflow" 
+                        data-hash="md5-vL4gk8m9GrjA&#43;1jnCVXXRA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">扩增子(Amplicon)数据分析流程|Qiime2</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-4/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-4/images/1-2.7f04df50146143db7f38e3c60bbebaa9_hu_4ebeb6bc608a4e31.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（4）"
+                        data-key="25-nature-4" 
+                        data-hash="md5-fwTfUBRhQ9t/OOPGC766qQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（4）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-3/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-3/images/fig1.20d52f738dfd506b0754bda8d4b0ead0_hu_d6f6d5c8a568f26d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（3）"
+                        data-key="25-nature-3" 
+                        data-hash="md5-INUvc439UGsHVL2o1LDq0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（3）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-2/images/2-1-2.f13dbba185acaee28c931cc543f77916_hu_94453c680a4ffc60.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（2）"
+                        data-key="25-nature-2" 
+                        data-hash="md5-8T27oYWsruKMkxzFQ/d5Fg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（2）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature/images/1-1-1.7ec2e930cb5bff1118bfef6c33cf66bd_hu_e11798ac155eaa9a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（1）"
+                        data-key="25-nature" 
+                        data-hash="md5-fsLpMMtb/xEYv&#43;9sM89mvQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（1）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

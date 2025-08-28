@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='VirRep是最近发表在Genome Biology伤的一种人类肠道微生物组识别病毒新方法，能够整合基因组语义信息和序列同源性表征DNA序列，从而更精准地识别人类肠道环境中的病毒基因组。'>
+<title>VirRep: 人类肠道微生物组识别病毒新方法</title>
+
+<link rel='canonical' href='/p/virrep/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='VirRep: 人类肠道微生物组识别病毒新方法'>
+<meta property='og:description' content='VirRep是最近发表在Genome Biology伤的一种人类肠道微生物组识别病毒新方法，能够整合基因组语义信息和序列同源性表征DNA序列，从而更精准地识别人类肠道环境中的病毒基因组。'>
+<meta property='og:url' content='/p/virrep/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='microbiome' /><meta property='article:tag' content='virus' /><meta property='article:published_time' content='2024-07-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-07-10T00:00:00&#43;00:00'/><meta property='og:image' content='/p/virrep/images/workflow.png' />
+<meta name="twitter:title" content="VirRep: 人类肠道微生物组识别病毒新方法">
+<meta name="twitter:description" content="VirRep是最近发表在Genome Biology伤的一种人类肠道微生物组识别病毒新方法，能够整合基因组语义信息和序列同源性表征DNA序列，从而更精准地识别人类肠道环境中的病毒基因组。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/virrep/images/workflow.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#原文简介">原文简介</a>
+      <ol>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#virrep-能够稳健地检测各种序列长度的病毒">VirRep 能够稳健地检测各种序列长度的病毒</a></li>
+        <li><a href="#专用表征学习提高了病毒识别的灵敏度和特异性">专用表征学习提高了病毒识别的灵敏度和特异性</a></li>
+        <li><a href="#virrep-非常适用于批量和富含-vlp-的人类肠道宏基因组样本">VirRep 非常适用于批量和富含 VLP 的人类肠道宏基因组样本</a></li>
+        <li><a href="#virrep-识别与结直肠癌相关的病毒种类">VirRep 识别与结直肠癌相关的病毒种类</a></li>
+      </ol>
+    </li>
+    <li><a href="#软件使用">软件使用</a>
+      <ol>
+        <li><a href="#installation">Installation</a></li>
+        <li><a href="#usage">Usage</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/virrep/">
+                <img src="/p/virrep/images/workflow_hu_84fa34d97b7bb460.png"
+                        srcset="/p/virrep/images/workflow_hu_84fa34d97b7bb460.png 800w, /p/virrep/images/workflow_hu_32be7322523bfaac.png 1600w"
+                        width="800" 
+                        height="345" 
+                        loading="lazy"
+                        alt="Featured image of post VirRep: 人类肠道微生物组识别病毒新方法" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/virrep/">VirRep: 人类肠道微生物组识别病毒新方法</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            VirRep是最近发表在Genome Biology伤的一种人类肠道微生物组识别病毒新方法，能够整合基因组语义信息和序列同源性表征DNA序列，从而更精准地识别人类肠道环境中的病毒基因组。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 10, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>病毒在生态系统中扮演着关键角色，宏基因组中病毒序列的鉴定十分重要。我之前已经介绍过了从宏基因组中<a class="link" href="https://asa-blog.netlify.app/p/virus"  target="_blank" rel="noopener"
+    >鉴定病毒序列的常用方法</a>，包括geNomad，DeepVirFinder，VirSorter2等，以及后续的质量评估方法。</p>
+<p>这方面的方法发展还是很快的，最近（2024/07/04），复旦大学赵兴明、华中科技大学陈卫华与团队在Genome Biology上发表研究，开发出一种人类肠道微生物基因组语言混合表征学习框架VriRep，能够整合基因组语义信息和序列同源性表征DNA序列，从而更精准地识别人类肠道环境中的病毒基因组。</p>
+<img src="images/paper.png" title=""/>
+<p>工具主页：<a class="link" href="https://github.com/Dongyq815/VirRep"  target="_blank" rel="noopener"
+    >https://github.com/Dongyq815/VirRep</a></p>
+<h2 id="原文简介">原文简介</h2>
+<p>原文：<a class="link" href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03320-9"  target="_blank" rel="noopener"
+    >https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03320-9</a></p>
+<p>从宏基因组中识别病毒是探索人类肠道病毒组成的常见步骤。VirRep是一种混合语言表征学习框架，用于从人类肠道宏基因组中识别病毒。
+VirRep 结合了上下文感知编码器和进化感知编码器，通过结合 k-mer 模式和序列同源性来改进序列表征。
+<strong>对不同病毒比例的模拟和真实数据集进行基准测试表明，VirRep 的性能优于最先进的方法</strong>。
+当应用于结直肠癌队列的粪便宏基因组时，VirRep 识别出 39 种与该疾病相关的高质量病毒种类，其中许多病毒无法通过现有方法检测到。</p>
+<h3 id="overview">Overview</h3>
+<p>VirRep 是一种混合语言表征学习框架，旨在从人类肠道宏基因组中识别病毒。</p>
+<p>如图 1a 所示，它以 1 kb 长的 DNA 序列及其反向互补链作为输入，其中较长的序列将被分割成 1 kb 长的序列片段。
+VirRep 首先将每个序列片段及其反向互补链转换为连续 7-mers的短序列。以标记化的 7-mers序列作为输入，连体神经网络将生成 1 kb 长的序列片段属于病毒的概率，该概率是根据其两条链的病毒分数的平均值计算的。
+对于长度超过 1 kb 的序列，VirRep 将预测定义为其所有片段的病毒概率的平均值。
+鉴于温和噬菌体经常将其基因组整合到宿主中并在人类肠道中普遍存在，VirRep 还引入了迭代片段延伸机制来检测宿主基因组内的病毒区域。</p>
+<p>VirRep 结合了上下文感知编码器（语义编码器）和进化感知编码器（对齐编码器），以利用 k-mer 模式和序列同源性的优势来提高分类性能（图 1b，方法）。
+语义编码器是一个类似 BERT 的神经网络，它通过捕获序列中不同位置的 k-mers 之间的依赖关系来生成全局上下文表征。
+比对编码器利用 BiLSTM网络作为主干，通过隐式编码输入序列和原核基因组之间的序列相似性来产生进化表征。
+VirRep 集成这两种表征形式以生成信息丰富的序列表征形式。编制了一个大型非冗余的人类肠道微生物基因组数据集来训练 VirRep，包括来自 GVD、GPD、CHVD 和 MGV 的~140,000 个病毒基因组（统称为 GGCM），以及 UHGG 中不同细菌和古菌物种的 4600 多个基因组。</p>
+<img src="images/workflow.png" title=""/>
+<h3 id="virrep-能够稳健地检测各种序列长度的病毒">VirRep 能够稳健地检测各种序列长度的病毒</h3>
+<p>在多个人类肠道病毒组数据集上评估 VirRep，其中每个数据集中的病毒根据序列长度分为 5 组（1.5 k–3 k、3 k–5 k、5 k–10 k、10 k–20） k，&gt;20 k）。作为阴性对照，还收集了等量的由人类肠道宏基因组组装的原核序列。
+将 VirRep 与几种流行的病毒识别方法进行了比较，包括最近提出的混合方法（geNomad）、两种基于比对的方法（VIBRANT 和 VirSorter2）和五种免比对方法（VirFinder、DeepVirFinder、PPR-Meta、Seeker 和 INHERIT）。</p>
+<p>首先评估了 GGCM 测试数据集上每种方法的性能。对于不同长度的病毒序列（1.5 k–3 k：0.90、3 k–5 k：0.92、5 k–10 k：0.94、10 k–），VirRep 显着优于其他方法，具有最高的 MCC（马修斯相关系数）值20 k：0.96，&gt;20 k：0.98；图 2a)。
+通过更多的评估指标（包括 F1、精确率和召回率），VirRep 在保持较低误报率的同时实现了更高的召回率，从而带来更好的整体性能。
+例如，与第二好的方法 geNomad 相比，VirRep 将短于 10 kb 的序列的病毒检出率提高了 2.5-44.2%，同时保持了相当的精度。
+与性能最佳的免对齐方法 INHERIT 相比，它的精度提高了 2.5% 至 6.8%，召回率相似。在其他三个数据集（即 IMG/VR-gut、DEVoC 和 GPIC 数据集）上也可以找到类似的结果，其中 VirRep 优于所有其他方法（图 2b-d)。</p>
+<img src="images/2a.png" title=""/>
+<p>进一步研究了 GGCM 测试数据集上五组不同长度的每种方法的运行时间。每种方法在每个长度间隔对 5000 个序列运行五次。
+VirRep 和四种无需对齐的方法（即 INHERIT、DeepVirFinder、PPR-Meta、Seeker）在 NVIDIA A100 GPU 上加速，而 geNomad 和两种基于对齐的方法（VirSorter2 和 VIBRANT）则使用 16 个线程运行。
+一般来说，VirRep 比 geNomad 快大约 3-6 倍，比性能最佳的无比对方法 (IHERIT) 快 12-13 倍，比性能最佳的基于比对的方法 (VirSorter2) 快 33-130 倍。(图 2g)。</p>
+<img src="images/2g.png" title=""/>
+<h3 id="专用表征学习提高了病毒识别的灵敏度和特异性">专用表征学习提高了病毒识别的灵敏度和特异性</h3>
+<p>两个专用编码器可以有效地整合学习的 k-mer 模式和序列同源性，生成信息丰富的序列表征，从而通过利用免比对和基于比对的方法实现更灵敏和更精确的病毒识别。
+预训练有助于将学习到的 k-mer 组成模式的一般规则快速转移并适应下游任务。
+第一阶段的微调使 VirRep 能够学习多视图序列表征。
+两个编码器连同预训练和第一阶段微调极大地提高了 VirRep 的整体性能。</p>
+<img src="images/3a.png" title=""/>
+<h3 id="virrep-非常适用于批量和富含-vlp-的人类肠道宏基因组样本">VirRep 非常适用于批量和富含 VLP 的人类肠道宏基因组样本</h3>
+<p>评估了 VirRep 和其他方法在大量宏基因组上的性能（即病毒比例为 5% 和 10% 的数据集；图 4a）。
+发现 VirRep 在这两个病毒比例较低的数据集上明显优于其他方法。 VirRep 的平均 AUPRC（精确召回曲线下面积）值超过 0.94，比最近提出的混合方法 geNomad 好 3.0 和 2.0%，比性能最好的免对齐方法 INHERIT 好 8.1 和 4.6% 。
+还在两个数据集上测试了 VirRep，其中病毒序列占整个社区的一半或以上。这些数据集是为了模拟富含 VLP 的宏基因组而构建的。尽管大多数评估方法在这两种情况下都表现良好，但 VirRep 获得了最高的 AUPRC 分数（图 4a）。</p>
+<p>此外，将 VirRep 与结合至少两种方法的几种方法进行了比较，其中每种方法结合了至少一种基于比对的方法和一种无比对的方法。与此类组合方法相比，VirRep 单独获得了更好或相当的结果（图 4b）。
+这种改善在低病毒比例样本中尤其显著。
+对于富含 VLP 的宏基因组，VirRep 仍然实现了最佳的整体性能，尽管改进并不像在批量宏基因组样本上那么明显。</p>
+<p>总之，无论样品中的病毒比例如何，VirRep 都优于最先进的方法及其组合，这表明它非常适合从大量样品和富含 VLP 的宏基因组样品中鉴定病毒基因组。</p>
+<img src="images/4a.png" title=""/>
+<h3 id="virrep-识别与结直肠癌相关的病毒种类">VirRep 识别与结直肠癌相关的病毒种类</h3>
+<p>最近的研究表明肠道微生物组与结直肠癌 (CRC) 的发生有关，但肠道病毒组是否与该疾病有关却知之甚少。
+受到 VirRep 在识别人类肠道病毒方面的有效性的启发，应用 VirRep 扫描了 74 名 CRC 患者和 54 名健康个体的真实人类肠道宏基因组。</p>
+<p>使用 VirRep 获得了包含 18,067 个病毒群体（VP，在物种水平）的非冗余集合，与竞争方法相比，增加了 22.3–4285.2%（图 5a） 。使用 CheckV 来评估每个 VP 的完整性。结果，VirRep 鉴定出了最多数量的完整且高质量（完整性 &gt; 90%）的病毒基因组（图 5a）。</p>
+<p>使用blocked Wilcoxon 秩和检验进行差异分析。控制 P&lt;0.001 和 FDR&lt;0.05，我们从 2076 个完整且高质量的 VP 中鉴定出 39 个与 CRC 相关的病毒种类（图 5b）。VirRep 识别出了与 CRC 相关最多的 VP，并且基于该标记集开发的模型实现了最高的诊断功效（图 5c）。39 种病毒中有 23 种仍未被至少一半的竞争方法检测到，其中 2 种被所有方法漏掉（附加文件 1：图 S14）。这两种病毒都是原噬菌体，因为它们是从较长的基因组片段中鉴定出来的。据观察，其中一种 VP1279 在 CRC 患者中含量丰富，而另一种 VP2811 在健康个体中含量更高。
+它们都编码几个病毒标志基因，包括终止酶大亚基、主要衣壳蛋白和门户蛋白（图 5d）。系统发育分析表明，它们均属于Caudoviricetes 纲内的未分类科（图5e）。</p>
+<img src="images/5a.png" title=""/>
+<h2 id="软件使用">软件使用</h2>
+<p>目前软件我运行有点问题，所以没有具体的使用测试结果，可能是环境依赖问题，我在github上提了issue，等待后续解决方案，目前可以先看README文件，了解软件的安装和使用方法：</p>
+<h3 id="installation">Installation</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建conda环境</span>
+</span></span><span class="line"><span class="cl">conda create -n vr python
+</span></span><span class="line"><span class="cl">conda activate vr
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1.conda 安装依赖包, 或者用2.pip</span>
+</span></span><span class="line"><span class="cl">conda install -c bioconda biopython numpy pandas tqdm scipy scikit-learn packaging
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.pip 安装依赖包</span>
+</span></span><span class="line"><span class="cl">pip install biopython numpy pandas tqdm scipy scikit-learn packaging
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. conda安装pytorch，如果之前没有装过的话，这一步很久的</span>
+</span></span><span class="line"><span class="cl">conda install pytorch torchvision torchaudio pytorch-cuda<span class="o">=</span>11.8 -c pytorch -c nvidia
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. pip安装torch，如果之前没有装过的话，这一步很久的</span>
+</span></span><span class="line"><span class="cl">pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>下载软件包：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone  clone https://github.com/Dongyq815/VirRep.git
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> VirRep
+</span></span><span class="line"><span class="cl">python src/VirRep.py -h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 由于代码要求model文件夹在当前目录下，所以无法添加环境变量，只能在VirRep/src/目录下直接运行</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> VirRep/src
+</span></span><span class="line"><span class="cl">python VirRep.py -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="usage">Usage</h3>
+<p>VirRep 的输入是一个包含要预测的序列的 fasta 文件，输出由一个记录预测得分的 .tsv 文件和一个包含预测病毒序列的 fasta 文件组成。分数越高表明病毒序列的可能性越高。</p>
+<ol>
+<li>使用VirRep对测试数据集进行GPU加速运行：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python VirRep.py -i ../test/test.fasta -o vr_out -w <span class="m">2</span> --use-amp --min-score 1000-5000:0.9,5001-10000:0.8,10001-Inf:0.7
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>输出目录（vr_out）中的文件：</p>
+<ul>
+<li><strong>test_viruses.fna</strong>：识别出的病毒序列</li>
+<li><strong>test_score.tsv</strong>：每个病毒序列的评分表及其他特征</li>
+</ul>
+<p><strong>注意</strong><br>
+输出文件名附带后缀||full或||partial，表示病毒序列是否从较大的片段中提取。</p>
+<ol start="2">
+<li>跳过迭代段扩展机制运行VirRep：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python VirRep.py -i ../test/test.fasta -o vr_out --use-amp --provirus-off -w <span class="m">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用于在基准数据集上与其他方法比较，所有输入序列将在输出的.tsv文件中报告得分。</p>
+<ol start="3">
+<li>在批量宏基因组上运行VirRep</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python VirRep.py -i ../test/toy.fasta -o vr_out --use-amp --conservative -w <span class="m">2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>该模式使用保守设置以减少假阳性，只输出高置信度的病毒序列。</p>
+<p>运行以下命令查看所有选项：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python VirRep.py -h
+</span></span><span class="line"><span class="cl">usage: VirRep.py <span class="o">[</span>-h<span class="o">]</span> -i INPUT_FILE -o OUTPUT_DIR <span class="o">[</span>--label LABEL<span class="o">]</span> <span class="o">[</span>-m MODEL<span class="o">]</span> <span class="o">[</span>--use-amp<span class="o">]</span> <span class="o">[</span>--conservative<span class="o">]</span> <span class="o">[</span>-l MINLEN<span class="o">]</span> <span class="o">[</span>--provirus-off<span class="o">]</span>
+</span></span><span class="line"><span class="cl">                 <span class="o">[</span>-b BASELINE<span class="o">]</span> <span class="o">[</span>--max-gap MAX_GAP<span class="o">]</span> <span class="o">[</span>--max-frac MAX_FRAC<span class="o">]</span> <span class="o">[</span>--provirus-minlen PROVIRUS_MINLEN<span class="o">]</span>
+</span></span><span class="line"><span class="cl">                 <span class="o">[</span>--provirus-minfrac PROVIRUS_MINFRAC<span class="o">]</span> <span class="o">[</span>-c MIN_SCORE<span class="o">]</span> <span class="o">[</span>-k MINLEN_KEEP<span class="o">]</span> <span class="o">[</span>-n BATCH_SIZE<span class="o">]</span> <span class="o">[</span>-w NUM_WORKERS<span class="o">]</span> <span class="o">[</span>--cpu<span class="o">]</span>
+</span></span><span class="line"><span class="cl">                 <span class="o">[</span>--cpu-threads CPU_THREADS<span class="o">]</span> <span class="o">[</span>--gpu-device GPU_DEVICE<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">A hybrid language representation learning framework <span class="k">for</span> identifying viruses from human gut metagenomes.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">optional arguments:
+</span></span><span class="line"><span class="cl">  -h, --help: 显示帮助信息
+</span></span><span class="line"><span class="cl">  -i INPUT_FILE, --input-file INPUT_FILE: 输入fasta格式文件
+</span></span><span class="line"><span class="cl">  -o OUTPUT_DIR, --output-dir OUTPUT_DIR: 输出目录
+</span></span><span class="line"><span class="cl">  --label LABEL: 输出文件名前缀
+</span></span><span class="line"><span class="cl">  -m MODEL, --model MODEL: 模型路径
+</span></span><span class="line"><span class="cl">  --use-amp: 使用自动混合精度以提高计算效率
+</span></span><span class="line"><span class="cl">  --conservative: 使用保守设置
+</span></span><span class="line"><span class="cl">  -l MINLEN, --minlen MINLEN: 预测序列的最小长度
+</span></span><span class="line"><span class="cl">  --provirus-off: 跳过迭代段扩展程序
+</span></span><span class="line"><span class="cl">  -b BASELINE, --baseline BASELINE: 启动段扩展的基准得分
+</span></span><span class="line"><span class="cl">  --max-gap MAX_GAP: 合并相邻扩展区域的最大距离
+</span></span><span class="line"><span class="cl">  --max-frac MAX_FRAC: 合并相邻区域的最大比率
+</span></span><span class="line"><span class="cl">  --provirus-minlen PROVIRUS_MINLEN: 被认为是前病毒的区域的最小长度
+</span></span><span class="line"><span class="cl">  --provirus-minfrac PROVIRUS_MINFRAC: 被认为是前病毒的区域长度的最小比率
+</span></span><span class="line"><span class="cl">  -c MIN_SCORE, --min-score MIN_SCORE: 最终保留的病毒候选序列的最低得分
+</span></span><span class="line"><span class="cl">  -k MINLEN_KEEP, --minlen-keep MINLEN_KEEP: 最终保留的病毒命中的最小长度
+</span></span><span class="line"><span class="cl">  -n BATCH_SIZE, --batch-size BATCH_SIZE: 一次评分的1kb段数
+</span></span><span class="line"><span class="cl">  -w NUM_WORKERS, --num-workers NUM_WORKERS: 用于数据加载的子进程数
+</span></span><span class="line"><span class="cl">  --cpu: 在CPU上运行VirRep
+</span></span><span class="line"><span class="cl">  --cpu-threads CPU_THREADS: 在CPU上运行VirRep的线程数
+</span></span><span class="line"><span class="cl">  --gpu-device GPU_DEVICE: 运行VirRep的GPU设备编号
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/microbiome/">Microbiome</a>
+        
+            <a href="/tags/virus/">Virus</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/virus-host/">
+        
+        
+            <div class="article-image">
+                <img src="/p/virus-host/images/IPEV.78086c186ccdcca626f22273564f07d4_hu_df4169bfbc6d92eb.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 宏基因组中病毒序列的宿主预测"
+                        data-key="virus-host" 
+                        data-hash="md5-eAhsGGzNzKYm8iJzVk8H1A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">宏基因组中病毒序列的宿主预测</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/virus/">
+        
+        
+            <div class="article-image">
+                <img src="/p/virus/images/genomad.7524574c14ac60e91704fe391b0e1659_hu_cbc71fd967078866.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 从宏基因组中鉴定病毒序列"
+                        data-key="virus" 
+                        data-hash="md5-dSRXTBSsYOkXBP45Gw4WWQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">从宏基因组中鉴定病毒序列</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-4/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-4/images/1-2.7f04df50146143db7f38e3c60bbebaa9_hu_4ebeb6bc608a4e31.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（4）"
+                        data-key="25-nature-4" 
+                        data-hash="md5-fwTfUBRhQ9t/OOPGC766qQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（4）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-3/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-3/images/fig1.20d52f738dfd506b0754bda8d4b0ead0_hu_d6f6d5c8a568f26d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（3）"
+                        data-key="25-nature-3" 
+                        data-hash="md5-INUvc439UGsHVL2o1LDq0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（3）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-2/images/2-1-2.f13dbba185acaee28c931cc543f77916_hu_94453c680a4ffc60.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（2）"
+                        data-key="25-nature-2" 
+                        data-hash="md5-8T27oYWsruKMkxzFQ/d5Fg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（2）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

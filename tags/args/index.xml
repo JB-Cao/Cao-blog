@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>ARGs on Cao&#39;s blog</title>
+        <link>/tags/args/</link>
+        <description>Recent content in ARGs on Cao&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Fri, 02 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/args/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Critical Care: ICU医护人员肠道抗生素耐药基因显著增加</title>
+        <link>/p/critical-care/</link>
+        <pubDate>Fri, 02 May 2025 00:00:00 +0000</pubDate>
+        
+        <guid>/p/critical-care/</guid>
+        <description>&lt;img src="/p/critical-care/images/fig1.png" alt="Featured image of post Critical Care: ICU医护人员肠道抗生素耐药基因显著增加" /&gt;&lt;p&gt;抗生素耐药性（Antimicrobial Resistance, AMR）是21世纪全球公共卫生面临的重大挑战之一。随着抗生素的广泛使用，耐药菌株和抗生素耐药基因（Antibiotic Resistance Genes, ARGs）在医院环境中迅速扩散，尤其是在重症监护病房（ICU）这样高风险的医疗场所。ICU医护人员因长期暴露于高浓度抗生素和耐药菌的环境中，其肠道微生物群是否受到显著影响，成为一个备受关注的研究课题。2025年发表在《Critical Care》期刊上的一篇多中心、跨区域研究通过宏基因组学技术，系统比较了ICU医护人员与健康对照组的肠道ARG丰度及微生物群组成，揭示了ICU医护人员肠道ARG显著升高的现象。&lt;/p&gt;
+&lt;h2 id=&#34;paper-info&#34;&gt;Paper Info&lt;/h2&gt;
+&lt;img src=&#34;images/title.png&#34; title=&#34;&#34;/&gt;
+&lt;ul&gt;
+&lt;li&gt;标题：Elevated antibiotic resistance gene abundance of ICU healthcare workers, a multicentre, cross-sectional study&lt;/li&gt;
+&lt;li&gt;译名：多中心横断面研究揭示ICU医护人员抗生素耐药基因丰度升高&lt;/li&gt;
+&lt;li&gt;期刊：Critical Care (IF：8.8)&lt;/li&gt;
+&lt;li&gt;发表时间：2025年4月30日&lt;/li&gt;
+&lt;li&gt;链接：&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1186/s13054-025-05408-5&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1186/s13054-025-05408-5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;引言&#34;&gt;引言&lt;/h2&gt;
+&lt;p&gt;抗生素耐药性被世界卫生组织列为全球十大公共卫生威胁之一。据《Lancet》2024年报道，1990年至2021年间，全球因AMR导致的死亡人数持续上升，预计未来几十年将进一步加剧。医院作为抗生素使用最密集的场所，是ARG传播的主要来源。ICU尤为突出，因其患者病情危重、抗生素使用频繁、耐药菌（如ESKAPE病原体：粪肠球菌、肺炎克雷伯菌等）高发，导致环境中的ARG浓度远高于外部环境。&lt;/p&gt;
+&lt;p&gt;ICU医护人员每天接触高危患者、污染表面及空气中的耐药菌，面临较高的职业暴露风险。先前的研究表明，医护人员可能通过直接接触、空气传播或交叉污染成为耐药菌的携带者。然而，传统研究多依赖细菌培养技术，样本量小，难以全面揭示ARG的传播动态。宏基因组学技术的兴起为研究ARG提供了更精确的工具，使研究人员能够深入分析医护人员肠道微生物群的耐药基因特征。&lt;/p&gt;
+&lt;p&gt;该研究提出一个核心问题：ICU医护人员的肠道ARG丰度是否高于健康人群？此外，ICU职业暴露的时长是否与ARG丰度相关？通过多中心、跨区域的样本采集和宏基因组学分析，研究旨在填补这一领域的知识空白，为医院感染防控提供科学依据。&lt;/p&gt;
+&lt;h2 id=&#34;研究设计与方法&#34;&gt;研究设计与方法&lt;/h2&gt;
+&lt;p&gt;这项前瞻性、多中心、横断面研究在中国浙江和河南的八家医疗中心开展，时间为2024年1月至2月。研究对象包括191名ICU医护人员（医生、护士、护理助理）和99名健康对照组，共290人。健康对照组来自常规体检人群，无医疗相关工作背景。研究通过粪便样本的宏基因组测序，比较两组的肠道ARG丰度、ARG多样性及微生物群组成。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;纳入标准&lt;/strong&gt;：年龄大于18岁，签署知情同意书。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;排除标准&lt;/strong&gt;：存在胃肠道疾病、恶性肿瘤、精神疾病；近6个月使用广谱抗生素（如万古霉素、头孢吡肟等）；孕妇；健康对照组需无医疗相关工作经历。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;研究团队收集粪便样本，提取DNA后使用Illumina NovaSeq X Plus平台进行双末端测序（2×150 bp）。通过Fastp去除低质量读数，Bowtie2过滤人类基因组序列，Kraken2进行分类学分析，RGI结合CARD数据库识别ARG。ARG丰度以每千碱基每百万映射读数（RPKM）标准化，ARG丰富度以识别的ARG总数量化。研究还通过Kraken2和RGI的读数ID匹配，追踪ARG的细菌宿主。&lt;/p&gt;
+&lt;p&gt;主要结局为比较ICU医护人员与健康对照组的ARG丰度（以RPKM为指标）。使用广义线性模型（GLM）进行分析，矫正了年龄、性别和BMI等混杂因素。次要结局为探索ICU职业暴露时长与ARG丰度的关系，使用限制性立方样条（RCS）模型。亚组分析和敏感性分析进一步验证结果的稳健性，分析工具包括R软件及其相关包（如pctax、rms）。&lt;/p&gt;
+&lt;h2 id=&#34;结果&#34;&gt;结果&lt;/h2&gt;
+&lt;h3 id=&#34;icu医护人员肠道arg丰度显著升高&#34;&gt;ICU医护人员肠道ARG丰度显著升高&lt;/h3&gt;
+&lt;img src=&#34;images/fig1.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;研究发现，ICU医护人员的总ARG丰度显著高于健康对照组（调整后倍数变化=1.22，95%置信区间：1.12-1.34，p&amp;lt;0.001）。具体而言，来源于粪肠球菌、肺炎克雷伯菌和肠杆菌属（包括大肠杆菌）的ARG丰度在医护人员中显著增加。特别值得注意的是，与喹诺酮类抗生素耐药相关的qnrE1基因（log2倍数变化=14.03，p-adj=0.02）以及与β-内酰胺类抗生素耐药相关的ACT-12（log2倍数变化=11.23，p-adj=0.03）和MIR-12（log2倍数变化=11.17，p-adj=0.04）基因在医护人员中显著上调。&lt;/p&gt;
+&lt;h3 id=&#34;arg多样性与微生物群组成差异&#34;&gt;ARG多样性与微生物群组成差异&lt;/h3&gt;
+&lt;img src=&#34;images/fig2.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;ICU医护人员的ARG α多样性（丰富度和Shannon指数）显著高于对照组（p&amp;lt;0.001，p=0.02），β多样性也存在显著差异（Adonis R²=0.0396，p=0.001）。243个ARG在医护人员中显著上调，而仅9个ARG下调。此外，医护人员的肠道细菌组成显示出更高的α多样性（p=0.04）和β多样性（Adonis R²=0.0419，p=0.001），其中克雷伯菌属（如Klebsiella grimontii，log2倍数变化=5.93，p-adj=0.004）和乳酸乳球菌（log2倍数变化=5.78，p-adj=0.009）显著上调。&lt;/p&gt;
+&lt;h3 id=&#34;职业暴露时长与arg丰度无关&#34;&gt;职业暴露时长与ARG丰度无关&lt;/h3&gt;
+&lt;img src=&#34;images/fig3.png&#34; title=&#34;&#34; width=&#34;70%&#34;/&gt;
+&lt;p&gt;出乎意料的是，研究未发现ICU职业暴露时长与ARG丰度之间的显著线性或非线性关系（p for overall=0.96，p for nonlinear=0.84）。这表明ARG丰度的增加可能在医护人员职业生涯的早期即已发生。&lt;/p&gt;
+&lt;h3 id=&#34;4-亚组与敏感性分析&#34;&gt;4. 亚组与敏感性分析&lt;/h3&gt;
+&lt;img src=&#34;images/fig4.png&#34; title=&#34;&#34;/&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性别差异&lt;/strong&gt;：男性医护人员的ARG丰度与职业暴露的关联更强（β=0.29，p&amp;lt;0.001）相比女性（β=0.13，p=0.03）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;地区差异&lt;/strong&gt;：河南的医护人员ARG丰度高于浙江（倍数变化=1.20 vs. 1.12）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;职业差异&lt;/strong&gt;：护理助理的ARG丰度最高（倍数变化=1.33），其次为医生（1.18）和护士（1.08）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;讨论&#34;&gt;讨论&lt;/h2&gt;
+&lt;h3 id=&#34;临床意义&#34;&gt;临床意义&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;感染防控的新视角&lt;/strong&gt;：ICU医护人员作为潜在的ARG携带者，可能在医院内外的耐药菌传播中扮演重要角色。研究提示需加强对医护人员的感染防控措施，如优化手部卫生、加强环境消毒。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;精准医疗的潜力&lt;/strong&gt;：宏基因组学技术为监测ARG提供了高分辨率工具，可用于识别高风险人群和制定针对性的干预措施。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;职业健康保障&lt;/strong&gt;：医护人员肠道微生物群的变化可能影响其长期健康，需进一步研究这些变化的临床意义。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;公共卫生意义&#34;&gt;公共卫生意义&lt;/h3&gt;
+&lt;p&gt;研究结果支持“One Health”框架，强调人类、动物和环境健康的互联性。医院作为ARG的“热点”，其防控策略应扩展到医护人员和社区。减少不必要的抗生素使用、加强耐药性监测是应对AMR的关键。&lt;/p&gt;
+&lt;h3 id=&#34;局限性&#34;&gt;局限性&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;地域局限&lt;/strong&gt;：研究仅限于中国人群，结论的普遍性需进一步验证。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;因果关系&lt;/strong&gt;：作为观察性研究，无法确定职业暴露与ARG升高之间的因果关系。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;未测混杂因素&lt;/strong&gt;：如旅行史、住院史等可能影响结果。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;临床相关性&lt;/strong&gt;：ARG的升高是否导致实际感染风险尚不明确。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;未来研究方向&#34;&gt;未来研究方向&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;纵向研究&lt;/strong&gt;：通过长期随访，探索ARG丰度变化的动态和影响因素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;全球合作&lt;/strong&gt;：开展跨国研究，验证不同地区医护人员的ARG特征。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;干预措施&lt;/strong&gt;：测试感染防控策略（如益生菌干预、环境净化）对ARG丰度的影响。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;健康影响&lt;/strong&gt;：研究ARG升高对医护人员健康的潜在影响，如免疫功能或代谢疾病风险。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;小结&#34;&gt;小结&lt;/h2&gt;
+&lt;p&gt;这项多中心研究揭示了ICU医护人员肠道ARG丰度和微生物群多样性的显著升高，提示职业暴露可能是重要驱动因素。尽管未发现暴露时长与ARG丰度的直接关联，但研究强调了医院环境在耐药基因传播中的关键作用。宏基因组学技术的应用为理解AMR动态提供了新视角，未来需进一步探索其临床和公共卫生意义，以优化感染防控策略，保护医护人员和患者的健康。&lt;/p&gt;
+&lt;h2 id=&#34;card数据库中药物类型整理&#34;&gt;CARD数据库中药物类型整理&lt;/h2&gt;
+&lt;p&gt;为了方便分析，我整合了CARD数据库的描述信息到ReporterScore包中，可以通过以下代码调取：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ReporterScore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;remotes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;install_github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Asa12138/ReporterScore&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ReporterScore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;CARDinfo&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;load_CARDinfo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CARDinfo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ARO_index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##         ARO Accession CVTERM ID Model Sequence ID Model ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3005099   ARO:3005099     43314              6143     3831
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002523   ARO:3002523     38923              8144     1781
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002524   ARO:3002524     38924                85      746
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002525   ARO:3002525     38925              4719     1246
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002526   ARO:3002526     38926               228     1415
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002527   ARO:3002527     38927              5510     2832
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##                                                     Model Name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3005099 23S rRNA (adenine(2058)-N(6))-methyltransferase Erm(A)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002523                                             AAC(2&amp;#39;)-Ia
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002524                                             AAC(2&amp;#39;)-Ib
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002525                                             AAC(2&amp;#39;)-Ic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002526                                             AAC(2&amp;#39;)-Id
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002527                                             AAC(2&amp;#39;)-Ie
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##                                                       ARO Name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3005099 23S rRNA (adenine(2058)-N(6))-methyltransferase Erm(A)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002523                                             AAC(2&amp;#39;)-Ia
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002524                                             AAC(2&amp;#39;)-Ib
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002525                                             AAC(2&amp;#39;)-Ic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002526                                             AAC(2&amp;#39;)-Id
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002527                                             AAC(2&amp;#39;)-Ie
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##         Protein Accession DNA Accession                         AMR Gene Family
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3005099        AAB60941.1    AF002716.1 Erm 23S ribosomal RNA methyltransferase
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002523        AAA03550.1      L06156.2                                 AAC(2&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002524        AAC44793.1      U41471.1                                 AAC(2&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002525        CCP42991.1    AL123456.3                                 AAC(2&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002526        AAB41701.1      U72743.1                                 AAC(2&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002527        CAC32082.1    AL583926.1                                 AAC(2&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##                                                                   Drug Class
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3005099 lincosamide antibiotic;macrolide antibiotic;streptogramin antibiotic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002523                                            aminoglycoside antibiotic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002524                                            aminoglycoside antibiotic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002525                                            aminoglycoside antibiotic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002526                                            aminoglycoside antibiotic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002527                                            aminoglycoside antibiotic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##                 Resistance Mechanism CARD Short Name length     Drug_Class
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3005099 antibiotic target alteration  Spyo_ErmA_MLSb    732            MLS
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002523      antibiotic inactivation      AAC(2&amp;#39;)-Ia    537 Aminoglycoside
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002524      antibiotic inactivation      AAC(2&amp;#39;)-Ib    588 Aminoglycoside
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002525      antibiotic inactivation      AAC(2&amp;#39;)-Ic    546 Aminoglycoside
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002526      antibiotic inactivation      AAC(2&amp;#39;)-Id    633 Aminoglycoside
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002527      antibiotic inactivation      AAC(2&amp;#39;)-Ie    549 Aminoglycoside
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;注意CARD数据库中Drug Class，一个ARO可以对应很多种药物类型，不是很方便整合，所以我根据《Assessment of global health risk of antibiotic resistance genes》中的规则新增了一列“Drug_Class”。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ARGs were manually reclassified based on the drugs to which they confer resistance. ARGs referring to penam, cephalosporin, carbapenem, cephamycin, penem and monobactam were grouped into the beta-lactam class. ARGs referring to macrolides, lincosamides and streptogramins were grouped into the MLS class. ARGs referring to more than one drug class were grouped into the multidrug class.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pcutils&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;gghuan&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dplyr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;count&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CARDinfo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ARO_index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Drug_Class&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;scale_fill_pc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src=&#34;/p/critical-care/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+</description>
+        </item>
+        <item>
+        <title>全球尺度的抗生素耐药基因（ARG）研究</title>
+        <link>/p/global-arg/</link>
+        <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>/p/global-arg/</guid>
+        <description>&lt;img src="/p/global-arg/images/global1.png" alt="Featured image of post 全球尺度的抗生素耐药基因（ARG）研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;抗生素耐药性是对人类健康和疾病临床治疗日益严重的全球性威胁。在过去十年中，已在所有环境中检测到抗生素抗性基因(ARG)，包括自然、工程和临床及栖息地。包括抗生素的临床使用在内的人为活动，被广泛认为是ARGs传播的主要驱动力。很早之前也写过一篇介绍&lt;a class=&#34;link&#34; href=&#34;../antibiotics-resistance&#34; &gt;抗生素，ARG以及相应生信分析方法&lt;/a&gt;的文章，这里想要介绍一下几篇全球尺度的ARG相关研究，他们已经整理好的数据还可以作为自己研究数据的背景参考。&lt;/p&gt;
+&lt;h3 id=&#34;arg的全球健康风险评估&#34;&gt;ARG的全球健康风险评估&lt;/h3&gt;
+&lt;p&gt;这是一篇2022年发表在NC上的文章《Assessment of global health risk of antibiotic resistance genes》，研究者使用4572个宏基因组数据集来揭示2561个ARG及其宿主在全球栖息地的分布和传播。他们实施了一个框架，通过考虑四个指标（人类可及性、流动性、人类致病性和临床可用性）来定量评估每个ARG和样本的健康风险。有23.78%的ARGs对健康构成威胁，尤其是那些具有多重耐药性的ARGs。&lt;/p&gt;
+&lt;p&gt;这篇NC用来鉴定ARG的方法是RGI工具+CRAD数据库跑reads，应该是比较常见的做法，文章也提供了所有sample的metadata以及鉴定出来的ARG丰度表，都在&lt;a class=&#34;link&#34; href=&#34;https://figshare.com/articles/dataset/Supplementary_Tables/19189652&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://figshare.com/articles/dataset/Supplementary_Tables/19189652&lt;/a&gt;里，可以搞下来和自己的数据比较。&lt;/p&gt;
+&lt;h4 id=&#34;arg分布的全球模式&#34;&gt;ARG分布的全球模式&lt;/h4&gt;
+&lt;img src=&#34;images/global1.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;研究者用4572个宏基因组样本展示ARG分布全球模式，样本源于空气、水生、陆地、工程、人类和其他宿主六类栖息地。从中依据综合抗生素研究数据库确定2561个ARG，可抵抗24种药物类别抗生素，2401个仅对一种药物耐药，160个对多种药物耐药，25个ARG在超75%样本中被发现，近一半ARGs在不同栖息地共享，表明人为活动对ARGs全球传播很关键。&lt;/p&gt;
+&lt;p&gt;人为活动影响ARGs传播方面，按总体人口密度将采样点分两组，高强度活动区域ARG总丰度和特定抗性基因显著更高，不同ARGs与人为活动相关性不同影响其对人类健康风险，后续从人类可及性、流动性、人类致病性和临床可用性四个指标评估ARGs健康风险。&lt;/p&gt;
+&lt;p&gt;在ARGs的人类可及性上，检查人类与其他三个主要栖息地共享的ARG，建筑环境与人类栖息地共享最多，多数为多药和β - 内酰胺类药物抗性，确定人类栖息地中ARG的平均丰度和流行率后计算人类可及性，发现只有一小部分ARGs对人类高度可及并有潜在风险。&lt;/p&gt;
+&lt;p&gt;对于ARG宿主和移动遗传元件（MGEs）在不同栖息地的分布，实施严格质量标准提高ARGs宿主识别准确性，确定7555个MAG为ARG宿主，个体ARGs宿主在不同生境差异显著，多数宿主特定于一个栖息地，人工和人类相关栖息地宿主不如自然栖息地多样，可能是人为活动选择性压力所致 。&lt;/p&gt;
+&lt;h4 id=&#34;arg的健康风险评估&#34;&gt;ARG的健康风险评估&lt;/h4&gt;
+&lt;img src=&#34;images/global2.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;研究者分析ARGs特征以确定其人类可及性、流动性和人类致病性，进而评估其从环境转移到人类并推动耐药病原体进化的潜力，还通过系统评估ARGs对人类健康的风险确定其临床相关性。全球抗生素使用数据显示青霉素和头孢菌素这两种β - 内酰胺类抗生素使用最多，在检测到的2561个ARG中，对临床可用抗生素耐药性的基因占比较大。&lt;/p&gt;
+&lt;p&gt;研究者用四个计算指标（人类可及性、流动性、人类致病性和临床可用性）评估每个ARG的整体健康风险，除临床可用性外其他指标仅涵盖约一半ARG ，计算风险指数RI = HA × MO × HP × CA 。结果表明抗生素使用增加了ARGs对人类健康的风险并可能导致临床感染治疗失败，属于Q1的ARG数量显著多于其他等级，Q3和Q4的ARGs很少被病原体基因组携带，证明了健康风险评估工作的有效性。基于四个主要栖息地（水生、陆地、工程、与人类相关）发现与人类相关的栖息地构成抗生素耐药性的最高风险 。&lt;/p&gt;
+&lt;h3 id=&#34;城市微生物群落和arg的全球宏基因组图谱&#34;&gt;城市微生物群落和ARG的全球宏基因组图谱&lt;/h3&gt;
+&lt;p&gt;《A global metagenomic map of urban microbiomes and antimicrobial resistance》，这是一项关于全球公共室内环境（公共交通工具）微生物图谱的重要研究，于2021年发表在Cell上。&lt;/p&gt;
+&lt;p&gt;研究呈现了一个全球地图集，涵盖60个城市公共交通系统的4728个宏基因组样本，是全球首个系统性城市微生物生态系统目录。该图谱包含注释的微生物菌株地理空间信息、功能特征、抗菌素耐药性标记及遗传元素，有10928种病毒、1302种细菌、2种古菌以及838532种未在参考数据库发现的CRISPR序列。研究发现4246种已知城市微生物，97%的样本中有31种不同于人类共生生物的物种；不同城市抗菌素耐药性基因的类型和密度差异明显；城市因气候和地理差异呈现出独特的微生物分类特征。这些结果构成高分辨率全球宏基因组图谱，有助于发现生物体和基因，凸显公共卫生和法医应用潜力，还为城市抗菌素耐药性负担提供了新的视角。&lt;/p&gt;
+&lt;h4 id=&#34;城市微生物群特征&#34;&gt;城市微生物群特征&lt;/h4&gt;
+&lt;img src=&#34;images/cell1.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;研究者调查全球城市环境微生物种类分布，发现分类群流行率双峰分布，据此定义亚核心组、外围组和真正核心类群，确定1145种微生物构成亚核心城市微生物群、31种为真正核心微生物群，亚核心群主要是细菌，全球城市常见三个细菌门为变形杆菌、放线杆菌和厚壁菌门。&lt;/p&gt;
+&lt;p&gt;虽几乎所有样本都有核心城市微生物群，但城市间在分类和定位上有差异，计算Jaccard距离并使用UMAP降维可视化，发现亚群大致对应气候而非地表类型，功能代谢剖面有地理空间差异，时间可能影响分类变化。MAVRIC分析表明城市是影响分类组成的最重要因素，其次是地区，对分类数据进行PCA分析，两个显著主成分与城市气候有关，样本相似性有邻域效应。&lt;/p&gt;
+&lt;p&gt;全球范围内，多数样品含放线菌门、拟杆菌门、厚壁菌门和变形菌门，不同大陆相对丰度有别，功能途径在各大陆间更稳定，抗菌素耐药性种类因大陆而异。比较样本分类剖面和功能剖面距离，分类图谱平均Jensen-Shannon divergence高于功能。&lt;/p&gt;
+&lt;p&gt;创建GeoDNA和MetaGraph用于搜索原始序列，训练随机森林分类器预测样本来源，对培训集中未出现的城市特征预测表明城市特异性分类特征可预测样本来源，且城市特有的分类群分布不均，制定分数反映分类群在城市中的流行程度，其分布呈区域和城市双峰分布 。&lt;/p&gt;
+&lt;h4 id=&#34;arg形成了不同的clsuter&#34;&gt;ARG形成了不同的clsuter&lt;/h4&gt;
+&lt;img src=&#34;images/cell2.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;抗生素多样性和AMR的量化是全球抗生素管理的关键，仅从基因序列预测抗生素耐药性有挑战，检测准确性取决于抗生素类别。作为全球城市环境中抗生素耐药性调查的第一步，研究者用MegaRES本体和比对软件将reads映射到已知抗生素耐药性基因，用20类抗生素耐药基因的RPKM量化其相对丰度，2210份样本中部分序列与AMR基因对齐，但无一致的AMR基因核心集。&lt;/p&gt;
+&lt;p&gt;常见抗生素耐药基因类别有大环内酯类等，其中MLS仅在部分样本中发现，还量化了耐药基因的可能机制，常见三种耐药机制在一些样本中未发现。抗生素耐药基因丰度普遍低于功能基因，但一些样本含众多不同AMR基因序列，高AMR多样性集群在城市中分布不均，不同城市情况有差异。&lt;/p&gt;
+&lt;p&gt;检测到AMR基因的病例平均深度表明整体分布不受读取深度显著影响，训练随机森林模型预测城市分类，其准确率优于随机概率但远低于分类预测器，因AMR基因更具移动性，可能代表较弱的城市特异性特征。此前研究表明质粒可携带大量AMR基因，生态竞争可致同一样本多个类群产生耐药性，在城市环境中研究较少。&lt;/p&gt;
+&lt;p&gt;研究者鉴定相同样本中出现的AMR基因簇，测量基因对间Jaccard距离并聚类，发现三个大基因群和许多小基因群，这些集群常由多抗性类别基因组成且大型集群基因更多。对数据集中所有抗性基因集进行稀疏分析（泛抗性组），发现其与被检测物种发现率相似，呈现开放斜率，未来分析可能发现更多抗性基因。此外，AMR基因在地理位置相近样本中表现出邻域效应，同一城市样本的AMR基因组间Jaccard距离随距离增大而增大，总体影响微弱但显著 。&lt;/p&gt;
+&lt;h3 id=&#34;土壤arg的全球生物地理学及预测&#34;&gt;土壤ARG的全球生物地理学及预测&lt;/h3&gt;
+&lt;p&gt;这是2022年发表在Science Advances上的《Global biogeography and projection of soil antibiotic resistance genes》，该研究生成了一张全球土壤抗生素抗性基因丰度图，其中确定的微生物宿主、农业活动和人为因素解释了印度、东亚、西欧和美国的抗生素抗性基因热点。研究者的结果突显了来自携带抗生素抗性基因的土壤临床病原体的健康威胁，并确定了在全球范围内控制土壤抗生素抗性的重点地区。&lt;/p&gt;
+&lt;p&gt;这篇文章用的也是比较常用的软件ARG-OAP跑的reads，应该也是可以方便整合自己的数据的。&lt;/p&gt;
+&lt;h4 id=&#34;土壤arg的空间格局&#34;&gt;土壤ARG的空间格局&lt;/h4&gt;
+&lt;img src=&#34;images/soil1.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;研究者的1088个土壤观测结果显示，共有23种抗生素抗性基因类型和558个亚型。样本中平均有12.42种基因类型和49.24个亚型，多为编码多重耐药性、MLS、万古霉素和膦胺霉素的基因，最常检测到的亚型是mexF 。抗生素抗性基因归一化丰度平均为121.20 ppm，主要由多重耐药性基因主导。&lt;/p&gt;
+&lt;p&gt;通过PERMANOVA分析，不同栖息地抗生素抗性基因组成存在显著差异，农业栖息地丰度较高，不同大陆间也有明显差异，澳大利亚最丰富，且从低纬度到极地丰度呈增加趋势。研究者鉴定出9种可移动遗传元件类型和157个亚型，有助于土壤抗生素抗性基因的存在和持久性。其总归一化丰度平均为55.26 ppm，转座酶占主导。抗生素抗性基因归一化丰度与多种可移动遗传元件显著相关。&lt;/p&gt;
+&lt;p&gt;土壤微生物归一化丰度平均为232,179.53 ppm，细菌是主导分类群，变形菌门在门水平上占优，放线菌门次之 。研究者鉴定出携带抗生素抗性基因或可移动遗传元件的微生物占总物种的20.97%，但归一化丰度仅1.36%。这些微生物宿主涵盖多个分类层级，其组成与土壤微生物群落组成有差异，在各分类水平上都有不同表现，且抗生素耐药微生物组中一些物种是多重耐药基因和转座酶的核心宿主，抗生素抗性基因及其微生物宿主、可移动遗传元件及其微生物宿主之间均呈正相关 。&lt;/p&gt;
+&lt;h4 id=&#34;土壤arg的地理驱动因素&#34;&gt;土壤ARG的地理驱动因素&lt;/h4&gt;
+&lt;img src=&#34;images/soil2.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;为研究土壤抗生素抗性基因丰度空间模式的地理机制，研究者将潜在环境约束整合到16个主成分中，抗生素抗性基因丰度变异性主要受与人类活动相关主成分（57.52%）控制，代表人类输入、畜牧业和农业污染的贡献，气候和植被（17.18%）及土壤养分（7.07%）主成分贡献较小，且气候和植被因素影响相互关联。&lt;/p&gt;
+&lt;p&gt;分析表明抗生素抗性基因丰度与多数人为因素呈正向关联，如畜牧业生产随其丰度增加而显著增加，土壤养分增加在中等范围内会提高丰度，气候参数影响较复杂，温度降低丰度减少，降水增加丰度增加。&lt;/p&gt;
+&lt;p&gt;通过结构方程模型检查地理属性对抗生素抗性基因归一化丰度的因果效应，发现其影响通过微生物因素介导，人为因素引入携带相关基因和元件的微生物间接提高丰度，气候变量也通过土壤养分等多种因素间接影响。&lt;/p&gt;
+&lt;p&gt;研究者利用169个空间协变量，基于四种机器学习算法预测土壤抗生素抗性基因归一化丰度，经优化后随机森林最优，构建了0.083°分辨率的归一化丰度图谱，显示西欧、东亚、南亚和美国东部等地丰度最高，高纬度地区也有较高丰度，与纬度梯度一致，应用变异系数量化不确定性，在西伯利亚等地显示较高不确定性，但模型表现稳健。&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Zhang, Z. et al. Assessment of global health risk of antibiotic resistance genes. Nat. Commun. 13, 1553 (2022).&lt;/li&gt;
+&lt;li&gt;Danko, D. et al. A global metagenomic map of urban microbiomes and antimicrobial resistance. Cell 184, 3376-3393.e17 (2021).&lt;/li&gt;
+&lt;li&gt;Zheng, D. et al. Global biogeography and projection of soil antibiotic resistance genes. Sci. Adv. 8, eabq8015 (2022).&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>抗生素抗性基因（ARG）基础学习</title>
+        <link>/p/antibiotics-resistance/</link>
+        <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
+        
+        <guid>/p/antibiotics-resistance/</guid>
+        <description>&lt;img src="/p/antibiotics-resistance/images/ARG_mechanism.png" alt="Featured image of post 抗生素抗性基因（ARG）基础学习" /&gt;&lt;script src=&#34;/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;/p/antibiotics-resistance/index_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/p/antibiotics-resistance/index_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;h3 id=&#34;抗生素&#34;&gt;抗生素&lt;/h3&gt;
+&lt;p&gt;抗生素是一类药物，用于治疗或预防由细菌引起的感染。它们通过抑制细菌的生长或杀死细菌，帮助人体抵抗细菌感染。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;An antibiotic is a type of antimicrobial substance active against bacteria.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;figure&gt;
+&lt;img src=&#34;images/antibiotic_mechanism.png&#34; style=&#34;width:90.0%&#34; alt=&#34;图1: Mechanisms of Antibiotics (YouTube (Antibiotics - Lecture 3))&#34; /&gt;
+&lt;figcaption aria-hidden=&#34;true&#34;&gt;图1: Mechanisms of Antibiotics (YouTube (Antibiotics - Lecture 3))&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;抗生素可以通过不同的机制对细菌产生作用。以下是几种常见的抗生素类型及其作用机制（图1）：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;青霉素类抗生素：作用于细菌细胞壁的合成，干扰其结构，导致细菌细胞壁破裂，细菌死亡。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;大环内酯类抗生素：通过阻断细菌蛋白质的合成过程，阻碍细菌的生长和复制。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;氨基糖苷类抗生素：抑制细菌蛋白质的合成，通过与细菌的核糖体结合，阻碍蛋白质合成的进行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;四环素类抗生素：抑制细菌的蛋白质合成，通过与细菌的核糖体结合，阻碍蛋白质链的延伸。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;氟喹诺酮类抗生素：抑制细菌DNA的复制和转录过程，阻断细菌的生长。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;抗生素抗性&#34;&gt;抗生素抗性&lt;/h3&gt;
+&lt;figure&gt;
+&lt;img src=&#34;images/ARG_mechanism.png&#34; style=&#34;width:90.0%&#34; alt=&#34;图2: Mechanisms of Antibiotic Resistance (Courtesy of E. Wistrand-Yuen.)&#34; /&gt;
+&lt;figcaption aria-hidden=&#34;true&#34;&gt;图2: Mechanisms of Antibiotic Resistance (Courtesy of E. Wistrand-Yuen.)&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;抗生素抗性&lt;/strong&gt;是指细菌或其他微生物对抗生素的治疗效果降低或完全失效的现象。当细菌暴露在抗生素的作用下，一些细菌可能具有抗药性，能够存活和继续繁殖，导致感染的持续存在或进一步扩散。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Antibiotic resistance is the ability of a microorganism to withstand the effects of antibiotic(s).&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;抗生素抗性可以是天然的，即细菌天生具有抗药性。然而，更为严重的是通过基因突变或水平基因转移等机制，细菌可以获得抗药性。&lt;/p&gt;
+&lt;p&gt;同样，为了对付抗生素的作用机制有多种耐药机制，&lt;a class=&#34;link&#34; href=&#34;https://card.mcmaster.ca/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;&lt;strong&gt;CARD数据库&lt;/strong&gt;&lt;/a&gt; (&lt;a class=&#34;link&#34; href=&#34;#ref-alcockCARD2020Antibiotic2020&#34; &gt;&lt;em&gt;1&lt;/em&gt;&lt;/a&gt;) 将其分为7类：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;导致抗生素耐药性的抗生素靶标的突变改变或酶促修饰。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;抗生素作用靶点的更换或替代，该过程会导致抗生素耐药性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;保护抗生素作用靶点免受抗生素结合，该过程将导致抗生素耐药性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;抗生素的酶促灭活赋予耐药性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通过将抗生素转运出细胞而产生的抗生素耐药性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;通常通过减少孔蛋白的产生来降低对抗生素的渗透性，可以提供耐药性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基因缺失（通常是孔蛋白）赋予抗生素耐药性的机制。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;抗生素抗性基因（Antibiotics resistance genes，ARGs）&lt;/strong&gt; 是指存在于细菌或其他微生物基因组中的基因，使它们具有对抗生素的抵抗能力。 这些基因编码了一系列的蛋白质或其他分子机制，使细菌能够对抗生素产生耐药性。&lt;/p&gt;
+&lt;p&gt;ARG被视为是一种新出现的生物污染物，由ARG引起的抗生素耐药性被认为是当代医学最重要的挑战之一，也是严重的公共卫生问题。抗生素耐药性阻碍了临床上对细菌感染的有效治疗，并成为流行病威胁和高死亡率的原因。&lt;/p&gt;
+&lt;p&gt;根据获得的欧盟和欧洲经济活动国家的数据，抗生素抗性细菌（ARB）在2015年造成671,689人感染，每年导致超过33,000人死亡 (&lt;a class=&#34;link&#34; href=&#34;#ref-cassiniAttributableDeathsDisabilityadjusted2019&#34; &gt;&lt;em&gt;2&lt;/em&gt;&lt;/a&gt;)。&lt;/p&gt;
+&lt;p&gt;ARGs在环境中的广泛传播提高了其作为污染物的危害性。 抗生素在人类、兽医和农业用途中的大量使用导致它们不断释放到环境中，同时，ARG也被引入各种环境中，如临床（医院、诊所）和兽医环境、人体（胃肠道微生物组）以及废水处理厂和自然环境（土壤、水、空气）等。&lt;/p&gt;
+&lt;p&gt;移动遗传元件（MGE）如质粒、转座子、整合子被证明与ARG的转移传播具有很强的相关性 (&lt;a class=&#34;link&#34; href=&#34;#ref-wangEnhancedRemovalAntibiotic2021&#34; &gt;&lt;em&gt;3&lt;/em&gt;&lt;/a&gt;)，将 ARG 与移动遗传元件联系起来是十分重要的。&lt;/p&gt;
+&lt;h2 id=&#34;methods--tools&#34;&gt;Methods &amp;amp; Tools&lt;/h2&gt;
+&lt;p&gt;生物信息学在ARG研究上的主要目标是开发分析流程，用于准确检测抗性组（抗性基因的补充延伸）并随后根据基因组和宏基因组数据准确预测抗菌谱（AMR 的表型范围和易感性）以及ARG宿主等信息。&lt;/p&gt;
+&lt;p&gt;目前已开发出很多的ARG相关的生物信息学软件工具（表1)和数据库（表2），注释管理不一致，每个工具和数据库都有不同的重点领域和不同的预测范围。&lt;/p&gt;
+&lt;h3 id=&#34;tools&#34;&gt;Tools&lt;/h3&gt;
+&lt;figure&gt;
+&lt;img src=&#34;images/ARG_workflow.png&#34; style=&#34;width:90.0%&#34; alt=&#34;图3: 宏基因组测序数据ARG分析的工作流程&#34; /&gt;
+&lt;figcaption aria-hidden=&#34;true&#34;&gt;图3: 宏基因组测序数据ARG分析的工作流程&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;目前使用宏基因组测序数据对存在于微生物群落中的ARG进行识别鉴定的计算工作流程主要有两种：基于组装的contigs的分析和基于原始reads的比对分析（图3）。&lt;/p&gt;
+&lt;p&gt;且大多数方法从宏基因组数据中获得的序列(原始reads或contigs)通常不能明确地确定其属于物种起源，分析的范围通常仅限于基于同源性就能识别的ARG家族，而缺乏高度依赖环境的抗性决定因素，如点突变的分析。&lt;/p&gt;
+&lt;table class=&#34; lightable-classic&#34; style=&#34;font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+Table 1: 用于鉴定、预测ARGs的生信软件
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+软件名
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+描述
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+ARG-ANNOT
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+使用 BLAST 针对抗菌素耐药性 (AMR) 参考序列和 SNP 的精选数据库检测细菌基因组中现有的和假定的新抗生素耐药性基因。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+ARGs-OAP
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+用于从宏基因组序列中快速注释和分类抗生素抗性基因样序列（使用 BLASTX 针对 SARG 数据库）的在线管道。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+BacAnt
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+允许同时注释 ARG、整合子和转座子的，可用于比较基因组分析的应用程序
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+DeepARG
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+通过深度学习方法，分别为短读序列和全基因长度序列构建了两个深度学习模型 DeepARG-SS 和 DeepARG-LS，提供了准确的抗菌素耐药性注释。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Mykrobe predictor
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+快速筛选金黄色葡萄球菌和结核分枝杆菌原始 FASTQ 测序结果中的 AMR 基因和 SNP，并对 12 种抗菌药物进行抗生素谱预测。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+ResFinder
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+通过 BLAST 针对 AMR 参考序列的精选数据库，在全基因组数据中识别水平获得的 AMR 基因。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+RGI
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+根据综合抗生素耐药性数据库 (CARD) 中的同源性和 SNP 模型，从蛋白质或核苷酸数据中预测耐药性组。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+SEAR
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+使用 ARG-ANNOT 数据库检测基因组或宏基因组测序数据中水平获得的 AMR 基因。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+SRST
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+一种快速测序读取映射工具，用于快速准确地检测 MLST、毒力、AMR 或其他标记。包括 ResFinder 和 ARG-ANNOT 参考数据库。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+AMRFinder
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+NCBI开发的一种使用高质量精选 AMR 基因参考数据库识别 AMR 基因的工具。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;database&#34;&gt;Database&lt;/h3&gt;
+&lt;p&gt;近年来随着ARG数据的快速增长，数据管理、分析和访问需要更完善的数据库来承载。&lt;/p&gt;
+&lt;p&gt;ARG命名本身就是一个难题，同义词经常使用，名称冲突，基因名称有时基于核苷酸序列有时基于蛋白质序列，一些基因家族使用通用名称，而另一些则命名每个等位基因，加上各种ARG数据库非正式地交换有关 AMR 管理、命名和分类的信息，导致管理较为混乱。&lt;/p&gt;
+&lt;p&gt;当然，没有一个ARG数据库是完整的，ARG在各种病原体间移动与突变会增加大量数据，突变数据的管理是最具挑战性的任务。&lt;/p&gt;
+&lt;table class=&#34; lightable-classic&#34; style=&#34;font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+Table 2: ARGs综合信息数据库
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+数据库
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+描述
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+ARDB
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+一个手动管理的数据库，其中每个基因和抗性类型都用抗性概况、作用机制、本体论和序列和蛋白质数据库的外部链接进行注释。自 2009 年以来未更新，所有数据均已整理到 CARD 中。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+ARG-ANNOT
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+AMR 参考序列和 SNP 的精选数据库。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+CARD
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+手动管理的抗性基因和突变、其产物和相关表型数据库，涵盖 AMR 的所有机制。由抗生素耐药性本体论 (ARO) 组织管理。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+CBMAR
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+提供对 β-内酰胺酶家族的分子和生化表征有用的信息。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+MvirDB
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+通过整合来自多个来源的数据，专注于对生物防御应用至关重要的毒素、毒力因子和抗生素抗性基因。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+NCBI BioProject PRJNA313047
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+以抗性为重点的 AMR 基因序列整理。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+PATRIC
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+细菌感染性疾病信息系统，以ARDB和CARD为基础，辅以AMR元数据，对完整的病原体基因组进行注释。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Resfams
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+蛋白质家族和相关配置文件隐藏马尔可夫模型 (HMM) 的精选数据库，确认具有抗生素抗性功能并按本体组织。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+ResFinder
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+水平获得的 AMR 基因数据库。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+SARG
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+抗生素抗性基因、亚型和参考序列，整合来自ARDB和CARD的信息。
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;很多ARG数据库已经很久没有管理升级了，目前CARD是注释比较全面，管理完善，很多ARG条目经过实验验证的数据库。&lt;/p&gt;
+&lt;p&gt;CARD提供参考 DNA 和蛋白质序列、检测模型和基于细菌抗菌素耐药性(AMR)分子基础的生物信息学工具，设计了抗生素抗性本体论 (ARO)。&lt;/p&gt;
+&lt;p&gt;ARO 分为三个主要分支：抗生素耐药性决定因素(ARO:3000000)、抗生素分子(ARO:1000003)和抗生素耐药机制(ARO:1000002)，最新的CARD现在已经有6000多个本体术语，这些还得到了很多研究论文的支持。&lt;/p&gt;
+&lt;p&gt;CARD 开发了抗性基因标识符（RGI) 软件（v5.0）。&lt;/p&gt;
+&lt;p&gt;RGI软件利用四种CARD模型类型来预测抵抗组：蛋白质同源模型（使用BLASTP或DIAMOND检测AMR基因的功能同源物）、蛋白质变异模型（用于准确区分易感内在基因和获得赋予AMR的突变的内在基因，基CARD的精选SNP矩阵）、rRNA突变模型（用于检测抗药性rRNA靶序列）和蛋白质过度表达模型（检测与AMR相关的外排亚基，但也突出显示存在时赋予过度表达的突变）。&lt;/p&gt;
+&lt;p&gt;所以我一般用的也是RGI+CARD来做宏基因组的ARG鉴定。当然鉴定后的下游分析就跟其他的功能基因类似，有很多可以做的，最好跟实验设计紧紧联系说明问题。&lt;/p&gt;
+&lt;h3 id=&#34;rgi&#34;&gt;RGI&lt;/h3&gt;
+&lt;p&gt;RGI（Resistance Gene Identifier）是一个用于检测和注释细菌基因组中抗生素抗性基因的工具。&lt;/p&gt;
+&lt;p&gt;地址：&lt;a class=&#34;link&#34; href=&#34;https://github.com/arpcard/rgi&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/arpcard/rgi&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;RGI有网页版应用&lt;a class=&#34;link&#34; href=&#34;https://card.mcmaster.ca/analyze/rgi&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://card.mcmaster.ca/analyze/rgi&lt;/a&gt;，可以选择两种输入，右侧调节参数：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Enter a GenBank accession(s):&lt;/li&gt;
+&lt;li&gt;Upload FASTA sequence file(s):&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;GenBank: JN420336.1，试试这个 Klebsiella pneumoniae plasmid pNDM-MAR, complete sequence，肺炎克雷伯菌质粒 pNDM-MAR，完整序列， 267242 bp。&lt;/p&gt;
+&lt;p&gt;结果会返回一个表，多个旭日图： &lt;img src=&#34;images/rig_web.png&#34; style=&#34;width:90.0%&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;当然我们要做宏基因组分析的话肯定要用命令行版本的rgi软件：&lt;/p&gt;
+&lt;p&gt;安装方法：&lt;/p&gt;
+&lt;p&gt;最简单的方式就是conda新建环境后直接安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# searches rgi package and show available versions&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ conda search --channel bioconda rgi
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# install rgi package&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ conda install --channel bioconda rgi
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# install rgi specific version&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ conda install --channel bioconda &lt;span class=&#34;nv&#34;&gt;rgi&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;3.1.1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# remove rgi package&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;$ conda remove --channel bioconda rgi
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果上述方法有问题的话（比如我当时的环境），可以考虑源码编译：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 克隆仓库，&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git clone https://github.com/arpcard/rgi
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 在rgi文件夹内新建环境&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conda env create -f conda_env.yml
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conda activate rgi
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 在rgi文件夹内build&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python setup.py build
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python setup.py &lt;span class=&#34;nb&#34;&gt;test&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;python setup.py install
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#test&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; tests
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pytest -v -rxs
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#这里可能会有几个问题，需要把card.json，和由card_database_v3.1.4.fasta创建的card_reference.fasta放在合适位置&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看安装情况&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rgi main -h
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#成功的话会输出帮助文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;usage: rgi main &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-h&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; -i INPUT_SEQUENCE -o OUTPUT_FILE &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-t &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;contig,protein&lt;span class=&#34;o&#34;&gt;}]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-a &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;DIAMOND,BLAST&lt;span class=&#34;o&#34;&gt;}]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-n THREADS&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;--include_loose&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;--include_nudge&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;--local&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;--clean&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;--keep&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;--debug&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;--low_quality&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-d &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;wgs,plasmid,chromosome,NA&lt;span class=&#34;o&#34;&gt;}]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-v&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-g &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;PRODIGAL,PYRODIGAL&lt;span class=&#34;o&#34;&gt;}]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;--split_prodigal_jobs&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Resistance Gene Identifier - 6.0.2 - Main
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#下载card数据库&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://card.mcmaster.ca/latest/data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -xvf data ./card.json
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#在本地或工作目录中加载card数据库&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rgi load --card_json /path/to/card.json --local
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#查看本地数据库版本&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rgi database --version --local
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#注意不加--local的话数据库会加载到全局环境中，在任意目录都可以运行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;安装成功后，就可以来对我们的序列进行鉴定了，常用的有两种模式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;基因组或组装序列（DNA/蛋白质）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rgi main --input_sequence /path/to/nucleotide_input.fasta
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  --output_file /path/to/output_file --local --clean
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;部分可选参数：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    -h, --help 显示此帮助信息并退出
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    -i 输入序列, --input_sequence 输入序列
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        输入文件必须在 FASTA（重叠群和蛋白质）或 gzip 格式！例如 myFile.fasta
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    -o 输出文件, --output_file 输出文件，输出文件夹和文件名
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    -t &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;contig,protein&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, --input_type &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;contig,protein&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        指定数据输入类型（默认 &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; contig）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    -a &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;DIAMOND,BLAST&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, --alignment_tool &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;DIAMOND,BLAST&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        指定比对工具（默认 &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; BLAST）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    -n 线程，--num_threads 线程
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        BLAST 搜索中使用的线程数 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;CPU&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;（默认值&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;16）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --include_loose 除了严格和完美之外还包括宽松的命中点击（默认值：False）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --include_nudge 包括从宽松到严格命中的命中（默认值：False）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --local 使用本地数据库（默认：使用数据库可执行目录）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --clean 删除临时文件（默认值：False）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;结果表格每列的内容如下：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Field&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Content&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ORF_ID&lt;/td&gt;
+          &lt;td&gt;开放阅读框架标识符（RGI 内部）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Contig&lt;/td&gt;
+          &lt;td&gt;源序列&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Start&lt;/td&gt;
+          &lt;td&gt;ORF起始坐标&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Stop&lt;/td&gt;
+          &lt;td&gt;ORF的结束坐标&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Orientation&lt;/td&gt;
+          &lt;td&gt;ORF链&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Cut_Off&lt;/td&gt;
+          &lt;td&gt;RGI 检测范式（完美、严格、松散）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Pass_Bitscore&lt;/td&gt;
+          &lt;td&gt;严格检测模型 bitscore 截断&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Best_Hit_Bitscore&lt;/td&gt;
+          &lt;td&gt;与 CARD 中的最高命中匹配的 Bitscore 值&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Best_Hit_ARO&lt;/td&gt;
+          &lt;td&gt;CARD 中的最高命中匹配的 ARO 术语&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Best_Identities&lt;/td&gt;
+          &lt;td&gt;与 CARD 中的最高命中匹配的同一性百分比&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ARO&lt;/td&gt;
+          &lt;td&gt;ARO 匹配到 CARD 中的最高命中的Accession号&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Model_type&lt;/td&gt;
+          &lt;td&gt;CARD检测模型类型&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;SNPs_in_Best_Hit_ARO&lt;/td&gt;
+          &lt;td&gt;在 CARD 中最高命中的 ARO 术语中观察到的突变&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Other_SNPs&lt;/td&gt;
+          &lt;td&gt;以模型 ID 指示的其他匹配项的 ARO 术语观察到的突变&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Drug Class&lt;/td&gt;
+          &lt;td&gt;ARO分类&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Resistance Mechanism&lt;/td&gt;
+          &lt;td&gt;ARO分类&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;AMR Gene Family&lt;/td&gt;
+          &lt;td&gt;ARO分类&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Predicted_DNA&lt;/td&gt;
+          &lt;td&gt;ORF预测核苷酸序列&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Predicted_Protein&lt;/td&gt;
+          &lt;td&gt;ORF预测的蛋白质序列&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;CARD_Protein_Sequence&lt;/td&gt;
+          &lt;td&gt;CARD中top hit的蛋白质序列&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Percentage Length of Reference Sequence&lt;/td&gt;
+          &lt;td&gt;ORF蛋白长度/CARD参考蛋白长度&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;ID&lt;/td&gt;
+          &lt;td&gt;HSP 标识符（RGI 内部）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Model_id&lt;/td&gt;
+          &lt;td&gt;CARD检测型号id&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Nudged&lt;/td&gt;
+          &lt;td&gt;TRUE = 命中从松散微调到严格&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Note&lt;/td&gt;
+          &lt;td&gt;其他注意事项的原因&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;宏基因组reads，基因组reads&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;rgi bwt --read_one /path/to/fastq/R1.fastq.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  --read_two /path/to/fastq/R2.fastq.gz --output_file output_prefix
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  --local
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;部分可选参数：
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    -h, --help 显示此帮助信息并退出
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    -1 READ_ONE, --read_one READ_ONE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    -2 READ_TWO，--read_two READ_TWO
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    -a &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;kma,bowtie2,bwa&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;, --aligner &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;kma,bowtie2,bwa&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        选择读取对齐器（默认&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;kma）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    -n 线程，--threads 线程
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        要使用的线程 &lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;CPU&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; 数（默认值&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;16）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    -o 输出文件, --output_file 输出文件
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        输出文件名的名称
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --debug 调试模式（默认&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;False）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --clean 删除临时文件（默认&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;False）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --local 使用本地数据库（默认：使用可执行目录中的数据库）
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    --include_wildcard 包含wild数据库（默认&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;False）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;最终结果有5个文件：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;File&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;output_prefix.allele_mapping_data.txt&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;RGI bwt read mapping results at allele level&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;output_prefix.gene_mapping_data.txt&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;RGI bwt read mapping results at gene level&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;output_prefix.artifacts_mapping_stats.txt&lt;/td&gt;
+          &lt;td&gt;Statistics for read mapping artifacts&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;output_prefix.overall_mapping_stats.txt&lt;/td&gt;
+          &lt;td&gt;Statistics for overall read mapping results&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;output_prefix.reference_mapping_stats.txt&lt;/td&gt;
+          &lt;td&gt;Statistics for reference matches&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;常用的进一步分析的是 at allele level，这个表格每列的内容如下：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Field&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;strong&gt;Contents&lt;/strong&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Reference Sequence&lt;/td&gt;
+          &lt;td&gt;read映射到的参考等位基因&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;ARO Term&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;ARO Term&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;ARO Accession&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;ARO Accession&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Reference Model Type&lt;/td&gt;
+          &lt;td&gt;CARD 检测模型类型&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Reference DB&lt;/td&gt;
+          &lt;td&gt;参考等位基因来自 CARD 或 WildCARD&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Reference Allele Source&lt;/td&gt;
+          &lt;td&gt;See below&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Resistomes &amp;amp; Variants: Observed in Genome(s)&lt;/td&gt;
+          &lt;td&gt;这个等位基因序列是否在 CARD 患病率基因组序列中被观察到？&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Resistomes &amp;amp; Variants: Observed in Plasmid(s)&lt;/td&gt;
+          &lt;td&gt;是否已在 CARD Prevalence 质粒序列中观察到该等位基因序列？&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Resistomes &amp;amp; Variants: Observed Pathogen(s)&lt;/td&gt;
+          &lt;td&gt;CARD 携带此等位基因序列的流行病原体。 如果 Reference DB 是 CARD，将显示在 CARD 检测模型中用作参考的病原体。 使用 k-mers 验证病原体来源。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Completely Mapped Reads&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;完全映射到等位基因的read数量&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Mapped Reads with Flanking Sequence&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;未完全映射到等位基因的read数量&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;All Mapped Reads&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;前两列的总和&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Percent Coverage&lt;/td&gt;
+          &lt;td&gt;读数覆盖的参考等位基因百分比&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Length Coverage (bp)&lt;/td&gt;
+          &lt;td&gt;Base pairs of reference allele covered by reads&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Average MAPQ (Completely Mapped Reads)&lt;/td&gt;
+          &lt;td&gt;平均 MAPQ 值，映射质量得分量化了读取错位的可能性。 Heng Li 和 Richard Durbin 在他们描述 MAQ 的论文中介绍了它们，并且通常以 Phred 量表进行报告。&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Mate Pair Linkage&lt;/td&gt;
+          &lt;td&gt;对于配对双端测序，如果姐妹读取映射到不同的 AMR 基因，则会列出&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Reference Length&lt;/td&gt;
+          &lt;td&gt;参考等位基因的长度 (bp)&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;AMR Gene Family&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;ARO分类&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Drug Class&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;ARO分类&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;Resistance Mechanism&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;ARO分类&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Depth&lt;/td&gt;
+          &lt;td&gt;覆盖深度（仅在使用 kma 时报告）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;SNPs&lt;/td&gt;
+          &lt;td&gt;从映射读取中观察到的单核苷酸多态性（仅在使用 kma 时报告）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Consensus Sequence DNA&lt;/td&gt;
+          &lt;td&gt;使用映射读取的核苷酸一致序列（仅在使用 kma 时报告）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Consensus Sequence Protein&lt;/td&gt;
+          &lt;td&gt;从 DNA 翻译的蛋白质共有序列（仅在使用 kma 时报告）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references csl-bib-body&#34;&gt;
+&lt;div id=&#34;ref-alcockCARD2020Antibiotic2020&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;1. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;B. P. Alcock, A. R. Raphenya, T. T. Y. Lau, K. K. Tsang, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1093/nar/gkz935&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CARD 2020: Antibiotic resistome surveillance with the comprehensive antibiotic resistance database&lt;/a&gt;. &lt;em&gt;Nucleic Acids Research&lt;/em&gt;. &lt;strong&gt;48&lt;/strong&gt;, D517–D525 (2020).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-cassiniAttributableDeathsDisabilityadjusted2019&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;2. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;A. Cassini, L. D. Högberg, D. Plachouras, A. Quattrocchi, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1016/S1473-3099%2818%2930605-4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Attributable deaths and disability-adjusted life-years caused by infections with antibiotic-resistant bacteria in the EU and the european economic area in 2015: A population-level modelling analysis&lt;/a&gt;. &lt;em&gt;The Lancet. Infectious Diseases&lt;/em&gt;. &lt;strong&gt;19&lt;/strong&gt;, 56–66 (2019).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-wangEnhancedRemovalAntibiotic2021&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;3. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;J. Wang, J. Gu, X. Wang, Z. Song, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1016/j.jhazmat.2021.125135&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Enhanced removal of antibiotic resistance genes and mobile genetic elements during swine manure composting inoculated with mature compost&lt;/a&gt;. &lt;em&gt;Journal of Hazardous materials&lt;/em&gt;. &lt;strong&gt;411&lt;/strong&gt;, 125135 (2021).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='BiG-SLiCE是一款专为高效聚类大规模BGCs而设计的工具。'>
+<title>使用BiG-SLiCE高效聚类大规模BGCs</title>
+
+<link rel='canonical' href='/p/big-slice-bgcs/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='使用BiG-SLiCE高效聚类大规模BGCs'>
+<meta property='og:description' content='BiG-SLiCE是一款专为高效聚类大规模BGCs而设计的工具。'>
+<meta property='og:url' content='/p/big-slice-bgcs/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='BGCs' /><meta property='article:published_time' content='2025-02-27T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-02-27T00:00:00&#43;00:00'/><meta property='og:image' content='/p/big-slice-bgcs/images/bgc_intro.png' />
+<meta name="twitter:title" content="使用BiG-SLiCE高效聚类大规模BGCs">
+<meta name="twitter:description" content="BiG-SLiCE是一款专为高效聚类大规模BGCs而设计的工具。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/big-slice-bgcs/images/bgc_intro.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#installation">Installation</a></li>
+    <li><a href="#usage">Usage</a>
+      <ol>
+        <li><a href="#big-slice-运行模式">BiG-SLiCE 运行模式</a>
+          <ol>
+            <li><a href="#heading"><strong>[模式1] 聚类分析</strong></a></li>
+            <li><a href="#heading-1"><strong>[模式2] GCF查询</strong></a></li>
+            <li><a href="#heading-2"><strong>[模式1+2] 通用参数</strong></a></li>
+            <li><a href="#cpuram优化"><strong>CPU/RAM优化</strong></a></li>
+            <li><a href="#misc-其他可选参数">[Misc] 其他可选参数：</a></li>
+          </ol>
+        </li>
+        <li><a href="#example">Example</a></li>
+        <li><a href="#input-files">Input files</a></li>
+        <li><a href="#output">Output</a></li>
+      </ol>
+    </li>
+    <li><a href="#bgc-atlas">BGC Atlas</a>
+      <ol>
+        <li><a href="#使用案例">使用案例</a></li>
+      </ol>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/big-slice-bgcs/">
+                <img src="/p/big-slice-bgcs/images/bgc_intro_hu_541b503c498284b6.png"
+                        srcset="/p/big-slice-bgcs/images/bgc_intro_hu_541b503c498284b6.png 800w, /p/big-slice-bgcs/images/bgc_intro_hu_f14f4ce7a99ed0f6.png 1600w"
+                        width="800" 
+                        height="336" 
+                        loading="lazy"
+                        alt="Featured image of post 使用BiG-SLiCE高效聚类大规模BGCs" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/big-slice-bgcs/">使用BiG-SLiCE高效聚类大规模BGCs</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            BiG-SLiCE是一款专为高效聚类大规模BGCs而设计的工具。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Feb 27, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>随着基因组挖掘技术的进步，生物合成基因簇（BGCs）的研究已成为天然产物发现的核心环节。目前，超过20万个公开的微生物基因组中蕴藏着丰富的化学多样性信息。然而，现有的工具在处理大规模BGCs时，常因基于网络的聚类方法效率低下而面临瓶颈。</p>
+<p>BiG-SLiCE（Biosynthetic Gene clusters - Super Linear Clustering Engine） 应运而生，这是一款专为高效聚类大规模BGCs而设计的工具。它通过将BGCs映射到欧几里得空间，以近乎线性的方式将BGCs分组为基因簇家族（GCFs）。在短短10天内，BiG-SLiCE成功分析了来自209,206个微生物基因组和宏基因组组装基因组（MAGs）的1,225,071个BGCs，并构建了全球次级代谢多样性的分布图谱，揭示了未被开发的生物合成潜力。此外，BiG-SLiCE还提供了“查询模式”，能够快速将新测序的BGCs归类到已有的GCFs中，并配备了强大的可视化引擎，便于用户探索数据。这一工具不仅加速了天然产物的发现，还为构建全球可搜索的BGC网络奠定了基础。</p>
+<p>BiG-SLiCE的开源地址：https://github.com/medema-group/bigslice</p>
+<img src="images/bgc_intro.png" title=""/>
+<p>BGCs（以及GCFs）与催化酶及其编码途径产生的化合物直接相关，因此可以作为探索微生物次级代谢化学空间的代理。通过编目所有已测序微生物基因组中的GCFs，可以全面了解现有的化学多样性，并为未来的先导化合物发现提供方向。例如，可以重点关注具有新颖潜力的物种，或识别已知抗生素生产BGC的天然变体。然而，进行此类全球分析需要能够处理海量数据的聚类算法。尽管过去五年中工具的处理能力有所提升（从2014年的11,000–33,000个BGCs到2019年的73,260个），但与当前可用数据量相比仍显不足。截至2020年3月27日，antiSMASH-DB和IMG-ABC两大BGC数据库共包含565,096个BGCs，预测自85,221个细菌基因组。若考虑未覆盖的基因组和宏基因组，这一数字将更大。例如，NCBI RefSeq数据库中的约180,000个细菌基因组可能产生超过1,000,000个BGCs。</p>
+<p>处理如此大规模的数据集，即使是目前最快的工具（如BiG-SCAPE）在36核CPU上也需要约37,000小时运行时间，这在实际中几乎不可行。主要瓶颈在于构建相似性网络和聚类分析时使用的成对BGC比较方法，其时间复杂度为O(n²)。因此，迫切需要一种能够更好适应基因组数据增长的替代方法。为此，研究者开发了<strong>BiG-SLiCE</strong>（Biosynthetic Genes Super-Linear Clustering Engine），它将BGCs映射到欧几里得空间，采用分区聚类算法，时间复杂度接近线性[∼O(n)]，从而能够快速分析大规模BGC数据集，实现真正全球化的GCF分析。</p>
+<img src="images/method.png" title=""/>
+<p>为了实现大规模分析，<strong>BiG-SLiCE</strong>在设计时将<strong>可扩展性和速度</strong>作为首要目标。与之前的工具<strong>BiG-SCAPE</strong>（能够敏感捕捉BGCs之间域结构和序列相似性的细微差异）不同，BiG-SLiCE能够在36核CPU、128GB内存的机器上，以不到一周的时间处理超过120万个BGCs的输入数据，同时保持足够的灵敏度以区分输入BGCs中的关键生物合成“信号”。此外，为了便于用户探索和分析结果，BiG-SLiCE还提供了交互式、易于使用的可视化输出，且对软硬件要求极低。</p>
+<h2 id="installation">Installation</h2>
+<p>安装方法非常简单，用以下两种选一个即可</p>
+<ol>
+<li><strong>从PyPI安装（稳定版）</strong></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install bigslice
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li><strong>从源码安装（开发版——仅适用于熟悉操作的用户）</strong></li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install git+https://github.com/medema-group/bigslice.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后下载最新的HMM模型（约271MB压缩文件）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">download_bigslice_hmmdb
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果感觉下载太慢了，也可以手动下载：<a class="link" href="https://github.com/medema-group/bigslice/releases/download/v2.0.0rc/bigslice-models.2022-11-30.tar.gz"  target="_blank" rel="noopener"
+    >https://github.com/medema-group/bigslice/releases/download/v2.0.0rc/bigslice-models.2022-11-30.tar.gz</a>，下载后重命名为bigslice_models.tar.gz放到<code>whcih download_bigslice_hmmdb</code>的统一目录下再运行即可，就会跳过下载步骤。</p>
+<p>最后检查安装是否成功</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bigslice --version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>成功安装后，将显示如下信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">==============
+</span></span><span class="line"><span class="cl">BiG-SLiCE version 2.0.0
+</span></span><span class="line"><span class="cl">HMM databases version: bigslice-models-2022-11-30
+</span></span><span class="line"><span class="cl">Biosynthetic-pfam md5: 37495cac452bf1dd8aff2c4ad92065fe
+</span></span><span class="line"><span class="cl">Sub-pfam md5: 2e6b41d06f3c318c61dffb022798091e
+</span></span><span class="line"><span class="cl">==============
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="usage">Usage</h2>
+<h3 id="big-slice-运行模式">BiG-SLiCE 运行模式</h3>
+<h4 id="heading"><strong>[模式1] 聚类分析</strong></h4>
+<p>解析输入数据集，构建GCF模型（BIRCH聚类），并根据指定阈值（T）进行成员分配。</p>
+<p><strong>参数说明</strong>：</p>
+<ul>
+<li><code>-i|--input_folder &lt;folder_path&gt;</code>：输入文件夹路径，需包含 <code>datasets.tsv</code> 文件及数据集子文件夹。</li>
+<li><code>--resume</code>：继续上一次的聚类运行（不要与 <code>--input_folder</code> 同时使用）。</li>
+<li><code>--complete</code>：构建GCF模型时，仅使用完整的BGCs（antiSMASH &gt; 4.2 标注为 <code>on_contig_edge = False</code> 的BGCs）。</li>
+<li><code>--threshold</code>：用于GCF模型构建（BIRCH算法）和成员分配的聚类阈值（T）。与 <code>--threshold_pct</code> 互斥，使用 <code>-1</code> 关闭此参数（默认：300）。</li>
+<li><code>--threshold_pct</code>：基于数据间成对距离的随机采样计算聚类阈值（T），取第N百分位值作为阈值。与 <code>--threshold</code> 互斥，使用 <code>-1</code> 关闭此参数（默认：-1）。</li>
+</ul>
+<h4 id="heading-1"><strong>[模式2] GCF查询</strong></h4>
+<p>基于[模式1]生成的GCF模型，从输入文件夹中的BGC GenBank文件中提取特征并进行成员分配。</p>
+<p><strong>参数说明</strong>：</p>
+<ul>
+<li><code>--query &lt;folder_path&gt;</code>：输入文件夹路径，需包含所有BGC的GenBank文件（支持antiSMASH4的 <code>clusterXXX.gbk</code>、antiSMASH5的 <code>regionXXX.gbk</code> 或MIBiG ≥ 2.0的 <code>BGCXXXXXXX.gbk</code>）。</li>
+<li><code>--query_name</code>：为查询运行指定唯一名称，便于在输出可视化中追踪。</li>
+</ul>
+<h4 id="heading-2"><strong>[模式1+2] 通用参数</strong></h4>
+<p>适用于聚类和查询模式的参数。</p>
+<p><strong>参数说明</strong>：</p>
+<ul>
+<li><code>--run_id</code>：指定运行ID进行查询（或继续聚类），而非使用最新运行（可在输出可视化中查看运行ID列表）。</li>
+<li><code>--n_ranks &lt;N_RANKS&gt;</code>：为每个BGC的成员分配过程取N个最佳GCF匹配（默认：5）。</li>
+<li><code>--program_db_folder &lt;PROGRAM_DB_FOLDER&gt;</code>：HMM库路径（默认：<code>/mnt/local_scratch/kauts001/general-env/bin/bigslice-models</code>）。</li>
+</ul>
+<h4 id="cpuram优化"><strong>CPU/RAM优化</strong></h4>
+<ul>
+<li><code>-t|--num_threads</code>：并行运行的作业数（默认：56）。</li>
+<li><code>--hmmscan_chunk_size</code>：将 <code>biosyn_pfam</code> 扫描拆分为每组N个BGCs的块（默认：100）。</li>
+<li><code>--subpfam_chunk_size</code>：将 <code>sub_pfam</code> 扫描拆分为每组N个BGCs的块（默认：100）。</li>
+<li><code>--extraction_chunk_size &lt;EXTRACTION_CHUNK_SIZE&gt;</code>：将特征提取拆分为每组N个BGCs的块（默认：100）。</li>
+<li><code>--scratch</code>：不将Sqlite3数据库加载到内存中（降低RAM使用，但可能降低速度）。</li>
+</ul>
+<h4 id="misc-其他可选参数">[Misc] 其他可选参数：</h4>
+<ul>
+<li><code>-h, --help</code>
+显示帮助信息。</li>
+<li><code>--export-tsv &lt;folder_path&gt;</code>
+将现有的预计算输出数据导出为TSV格式文件（指定目标文件夹路径）。</li>
+<li><code>--program_db_folder PROGRAM_DB_FOLDER</code>
+指定HMM库的路径（默认路径：/share/home/jianglab/pengchen/miniconda3/envs/antismash_5.2.0/bin/bigslice-models）。</li>
+<li><code>--version</code>
+显示BiG-SLiCE的版本信息。</li>
+</ul>
+<h3 id="example">Example</h3>
+<p>可以使用提供的示例输入文件夹进行“最小化”测试运行：</p>
+<p>下载<a class="link" href="https://github.com/medema-group/bigslice/tree/master/misc/input_folder_template"  target="_blank" rel="noopener"
+    >https://github.com/medema-group/bigslice/tree/master/misc/input_folder_template</a>这个文件夹，里面只有1个dataset，1个genome，2个gbk。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bigslice -i input_folder_template/ test_out/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里我遇到了一个问题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">AttributeError: &#39;pyhmmer.plan7.TopHits&#39; object has no attribute &#39;query_accession&#39;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>应该是pyhmmer的版本问题，我尝试安装v0.10.7版本后解决：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pip install pyhmmer==0.10.7
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过以上步骤，可以轻松安装并运行 BiG-SLiCE，开始大规模 BGC 聚类分析！我测试了运行了2min，消耗内存160MB</p>
+<h3 id="input-files">Input files</h3>
+<p>为了充分利用BiG-SLiCE的强大功能，其输入的BGC文件需要按数据集和基因组的结构进行组织。一个典型的输入文件夹可能如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">input_folder/
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├── datasets.tsv
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├── dataset_1/
+</span></span><span class="line"><span class="cl">│   ├── genome_1A/
+</span></span><span class="line"><span class="cl">│   │   ├── genome_1A.region001.gbk
+</span></span><span class="line"><span class="cl">│   │   ├── genome_1A.region002.gbk
+</span></span><span class="line"><span class="cl">│   │   └── ...
+</span></span><span class="line"><span class="cl">│   ├── genome_1B/
+</span></span><span class="line"><span class="cl">│   └── ...
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├── dataset_2/
+</span></span><span class="line"><span class="cl">│   ├── genome_2A/
+</span></span><span class="line"><span class="cl">│   └── ...
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">├── dataset_3/
+</span></span><span class="line"><span class="cl">│   ├── genome_3A/
+</span></span><span class="line"><span class="cl">│   └── ...
+</span></span><span class="line"><span class="cl">│
+</span></span><span class="line"><span class="cl">└── taxonomy/
+</span></span><span class="line"><span class="cl">    ├── taxonomy_dataset_1.tsv
+</span></span><span class="line"><span class="cl">    ├── taxonomy_dataset_2.tsv
+</span></span><span class="line"><span class="cl">    └── ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>datasets.tsv 文件</li>
+</ul>
+<p>该文件需要严格命名为 datasets.tsv，并放置在输入文件夹的根目录中。它是一个描述所有BGC元数据的文件，BiG-SLiCE使用它来解析输入文件夹中的所有BGC数据。该文件应该是一个以制表符分隔的文件（.tsv），每一行按以下顺序包含以下内容：
+•	数据集名称
+•	数据集文件夹的路径（相对于输入文件夹根目录的路径）
+•	分类信息文件路径（见 &lt;taxonomy_X.tsv&gt; 文件）
+•	数据集描述</p>
+<p>以 # 开头的行将被解析器跳过，因此可以用来定义表头等。可以从代码库下载一个模板 datasets.tsv 文件作为起始点。</p>
+<ul>
+<li>&lt;dataset_X&gt; 文件夹</li>
+</ul>
+<p>数据集是BiG-SLiCE中用来分组基因组和BGCs的灵活分类方案。例如，可以根据样本来源将Metagenome-Assembled Genomes（MAGs）归为一个数据集，也可以根据原始文献将基因组和MAGs归类，用于元分析研究。每个数据集文件夹下应直接包含基因组文件夹。</p>
+<ul>
+<li>&lt;genome_X&gt; 文件夹与 &lt;genome_X.regionXXX.gbk&gt; 文件</li>
+</ul>
+<p>这些文件夹是由antiSMASH运行产生的输出文件夹，包含 &lt;genome_name&gt;.regionXXX.gbk（antiSMASH 5）或 &lt;genome_name&gt;.clusterXXX.gbk（antiSMASH 4）文件。此外，MIBiG &gt;= 2.0格式的文件（名为 BGCXXXXXXX.gbk，可以通过“Download GenBank summary file”获取）也被BiG-SLiCE接受。请确保不修改这些命名格式，因为BiG-SLiCE依赖它们快速区分集群文件（clustergbks）和常规基因组文件。</p>
+<ul>
+<li>&lt;taxonomy_X.tsv&gt; 文件</li>
+</ul>
+<p>虽然可以从antiSMASH 5（和MIBiG &gt;= 2.0）生成的cluster genbank文件中提取分类信息（因为这些文件保留了原始基因组的注释），但这些信息并没有统一的方式来为提供的分类名（通常是分号分隔的 ;）指定等级（如：界、门、纲、目、科、属、种等）。为了确保最佳的注释质量和分析结果，BiG-SLiCE要求用户为每个数据集手动提供分类学元数据（如果可能的话），并以制表符分隔的文件（.tsv）格式包含以下内容（按照此顺序）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Genome folder name (ends with &#39;/&#39;)
+</span></span><span class="line"><span class="cl">Kingdom / Domain name
+</span></span><span class="line"><span class="cl">Class name
+</span></span><span class="line"><span class="cl">Order name
+</span></span><span class="line"><span class="cl">Family name
+</span></span><span class="line"><span class="cl">Genus name
+</span></span><span class="line"><span class="cl">Species name
+</span></span><span class="line"><span class="cl">Organism / Strain name
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>为了确保所有数据集中的分类名称一致，建议使用相同的参考数据库为分类名称指定等级。为了帮助用户自动化这一过程，BiG-SLiCE提供了一些Python脚本，可以基于原始输入基因组（而非集群基因组文件）使用GTDB工具包为分类信息赋予等级（此脚本仅适用于完整的古菌和细菌基因组，下载脚本）。如果基因组来自NCBI RefSeq/GenBank（即具有GCF_*或GCA_*号的基因组），可以使用此脚本从GTDB API提取分类信息。</p>
+<h3 id="output">Output</h3>
+<p>输出文件夹结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">test_out/
+</span></span><span class="line"><span class="cl">├── app
+</span></span><span class="line"><span class="cl">│   ├── config.py
+</span></span><span class="line"><span class="cl">│   ├── controllers
+</span></span><span class="line"><span class="cl">│   ├── __init__.py
+</span></span><span class="line"><span class="cl">│   ├── __pycache__
+</span></span><span class="line"><span class="cl">│   ├── run.py
+</span></span><span class="line"><span class="cl">│   ├── static
+</span></span><span class="line"><span class="cl">│   └── views
+</span></span><span class="line"><span class="cl">├── LICENSE.txt
+</span></span><span class="line"><span class="cl">├── requirements.txt
+</span></span><span class="line"><span class="cl">├── result
+</span></span><span class="line"><span class="cl">│   ├── cache
+</span></span><span class="line"><span class="cl">│   ├── data.db
+</span></span><span class="line"><span class="cl">│   └── tmp
+</span></span><span class="line"><span class="cl">└── start_server.sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>直接这样的输出db文件是很难查看的，新版介绍可以用<code>--export-tsv</code>导出表格，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">bigslice</span> <span class="n">test_out</span><span class="o">/</span> <span class="o">--</span><span class="k">export</span><span class="o">-</span><span class="n">tsv</span> <span class="n">test_out</span><span class="o">/</span><span class="n">result_tsv</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但是目前有<code>AttributeError: 'tuple' object has no attribute 'values'</code>的报错，官方还没解决。但是可以自己使用sqlite3对结果的data.db文件进行查看和文件导出。</p>
+<p>或者使用用户交互输出：</p>
+<p>BiG-SLiCE的输出文件夹包含处理后的输入数据（以SQLite3数据库文件的形式）以及一些脚本，这些脚本支持一个小型的Web应用程序来可视化这些数据。要运行该可视化引擎，按照以下步骤操作：</p>
+<ol>
+<li>安装Web应用的依赖包：
+首先，确保安装了所需的依赖包。运行以下命令来安装requirements.txt中列出的所有依赖：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">pip install -r &lt;output_folder&gt;/requirements.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>启动Flask服务器：
+然后，通过以下命令启动Flask服务器：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">bash &lt;output_folder&gt;/start_server.sh &lt;port(可选)&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>默认情况下，服务器会在端口5000上启动。如果需要自定义端口，可以在命令中指定端口号。</p>
+<ol start="3">
+<li>打开浏览器访问：
+启动服务器后，浏览器将显示如下信息：</li>
+</ol>
+<p>Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)</p>
+<p>在浏览器中输入 http://0.0.0.0:5000 即可访问Web应用进行数据可视化。</p>
+<p>通过上述步骤，您可以轻松启动BiG-SLiCE的可视化应用，查看处理结果和数据分析图表，如下图所示：</p>
+<img src="images/web.png" title=""/>
+<h2 id="bgc-atlas">BGC Atlas</h2>
+<p>上次提到过的<a class="link" href="../bgc-atlas" >BGC Atlas</a>，那个数据库用的就是BiG-SLiCE的输出结果。该数据库可供下载的有这几个文件：</p>
+<ul>
+<li>
+<p>complete-bgcs.tar.gz
+A tarball containing the GBK files for only the complete BGC (3.5GB).</p>
+</li>
+<li>
+<p>all-bgcs.tar.gz
+A tarball containing the GBK files for all BGCs (13GB).</p>
+</li>
+<li>
+<p>bigslice_2.0.0_T0.4_16April.tar.gz
+A tarball containing the BiG-SliCE clustering of complete BGCs (2.0 GB).</p>
+</li>
+<li>
+<p>atlas_17_07_2004.sql
+The sql dump of the BGC-Atlas database (2.0 GB).</p>
+</li>
+</ul>
+<p>bigslice_2.0.0_T0.4_16April.tar.gz文件解压后就是BiG-SLiCE的输出文件夹，里面有result文件夹，里面有data.db文件，这个就是BiG-SLiCE处理后的数据库文件。</p>
+<p>另外atlas_17_07_2004.sql里面有所有用到的宏基因组metadata，但它是个PostgreSQL database dump，作为文本文件可以直接打开，但不好转换为数据库或是表格，需要用一下postgresql。</p>
+<h3 id="使用案例">使用案例</h3>
+<p>比如我们自己产生的BGC想要和BGC Atlas进行比较，就可以用[模式2] GCF查询：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bigslice --query gbk_files/ --query_name test_MAGs bigslice_2.0.0_T0.4_16April/ -t <span class="m">8</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后就会在big_slice_test_out目录下产生一个report文件夹（如果原来没有的话），report文件夹下可以找到自己本次运行的结果。可以考虑用户交互输出或用数据库软件查看结果。</p>
+<p>主要是查看distance（membership_value）这一列，按默认定义的话&lt;0.4才可以认为我们的query和数据库已有的部分聚成了GCF。</p>
+<p>然后我们可以查看相应的GCF中有哪些BGCs以及所对应的metadata：</p>
+<p>比如我们的BGC和BGC Atlas中的GCF 13734的distance&lt;0.4，可以认为也是GCF 13734的一员，然后快速的方法是去官网查询<a class="link" href="https://bgc-atlas.cs.uni-tuebingen.de/bgcs?gcf=13734"  target="_blank" rel="noopener"
+    >https://bgc-atlas.cs.uni-tuebingen.de/bgcs?gcf=13734</a>，可以看到一共有258条核心BGC，我们可以下载相应的metadata（一次最多1000条），然后和我们的进行比较分析。</p>
+<p>但上述方法只适合查询的BGC不多的情况，很多的话最好还是考虑用代码处理atlas_17_07_2004.sql文件，获取metadata，需要使用postgresql进行处理：</p>
+<p>假设你已经会用并成功运行了postgresql（有点难）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 运行</span>
+</span></span><span class="line"><span class="cl">brew services start postgresql
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建</span>
+</span></span><span class="line"><span class="cl">createdb -U asa atlas_db
+</span></span><span class="line"><span class="cl"><span class="c1"># 导入</span>
+</span></span><span class="line"><span class="cl">psql -U asa -d atlas_db -f atlas_17_07_2004.sql
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 查看表
+</span></span><span class="line"><span class="cl">atlas_db=# \dt
+</span></span><span class="line"><span class="cl">                List of relations
+</span></span><span class="line"><span class="cl"> Schema |          Name           | Type  | Owner 
+</span></span><span class="line"><span class="cl">--------+-------------------------+-------+-------
+</span></span><span class="line"><span class="cl"> public | antismash_runs          | table | asa
+</span></span><span class="line"><span class="cl"> public | antismash_runs_bk       | table | asa
+</span></span><span class="line"><span class="cl"> public | assembly2biome          | table | asa
+</span></span><span class="line"><span class="cl"> public | assembly2longestbiome   | table | asa
+</span></span><span class="line"><span class="cl"> public | bigscape_clustering     | table | asa
+</span></span><span class="line"><span class="cl"> public | bigscape_networks       | table | asa
+</span></span><span class="line"><span class="cl"> public | bigslice_gcf            | table | asa
+</span></span><span class="line"><span class="cl"> public | bigslice_gcf_membership | table | asa
+</span></span><span class="line"><span class="cl"> public | biomes                  | table | asa
+</span></span><span class="line"><span class="cl"> public | mgnify_asms             | table | asa
+</span></span><span class="line"><span class="cl"> public | mgnify_asms_old         | table | asa
+</span></span><span class="line"><span class="cl"> public | mibig_membership        | table | asa
+</span></span><span class="line"><span class="cl"> public | protoclusters           | table | asa
+</span></span><span class="line"><span class="cl"> public | protoclusters_bk        | table | asa
+</span></span><span class="line"><span class="cl"> public | regions                 | table | asa
+</span></span><span class="line"><span class="cl"> public | regions_backup          | table | asa
+</span></span><span class="line"><span class="cl"> public | regions_bk              | table | asa
+</span></span><span class="line"><span class="cl"> public | sample_metadata         | table | asa
+</span></span><span class="line"><span class="cl"> public | sample_metadata_old     | table | asa
+</span></span><span class="line"><span class="cl">(19 rows)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">atlas_db=# SELECT * FROM assembly2longestbiome limit 10;
+</span></span><span class="line"><span class="cl">   assembly   |                  longest_biome                  
+</span></span><span class="line"><span class="cl">--------------+-------------------------------------------------
+</span></span><span class="line"><span class="cl"> MGYA00002187 | root:Host-associated:Animal:Digestive system
+</span></span><span class="line"><span class="cl"> MGYA00002188 | root:Environmental:Terrestrial:Soil:Forest soil
+</span></span><span class="line"><span class="cl"> MGYA00002318 | root:Host-associated:Animal:Digestive system
+</span></span><span class="line"><span class="cl"> MGYA00002319 | root:Host-associated:Animal:Digestive system
+</span></span><span class="line"><span class="cl"> MGYA00002320 | root:Host-associated:Animal:Digestive system
+</span></span><span class="line"><span class="cl"> MGYA00003147 | root:Host-associated
+</span></span><span class="line"><span class="cl"> MGYA00003148 | root:Host-associated
+</span></span><span class="line"><span class="cl"> MGYA00004354 | root:Environmental
+</span></span><span class="line"><span class="cl"> MGYA00004355 | root:Environmental
+</span></span><span class="line"><span class="cl"> MGYA00004356 | root:Environmental
+</span></span><span class="line"><span class="cl">(10 rows)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#导出csv</span>
+</span></span><span class="line"><span class="cl">psql -U asa -d atlas_db -c <span class="s2">&#34;COPY assembly2longestbiome TO STDOUT WITH CSV HEADER&#34;</span> &gt; assembly2longestbiome.csv
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后就可以查看csv并和自己的数据整合分析。</p>
+<h2 id="reference">Reference</h2>
+<p>Satria A Kautsar, Justin J J van der Hooft, Dick de Ridder, Marnix H Medema, BiG-SLiCE: A highly scalable tool maps the diversity of 1.2 million biosynthetic gene clusters, GigaScience, Volume 10, Issue 1, January 2021, giaa154. <a class="link" href="https://doi.org/10.1093/gigascience/giaa154"  target="_blank" rel="noopener"
+    >https://doi.org/10.1093/gigascience/giaa154</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/bgcs/">BGCs</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/bgc-atlas/">
+        
+        
+            <div class="article-image">
+                <img src="/p/bgc-atlas/images/bgc_atlas.ce859a75d3c77671b93620cb101b8dab_hu_8c90de7050bc2072.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post BGC Atlas助力宏基因组中生物合成基因簇的发现与分析"
+                        data-key="bgc-atlas" 
+                        data-hash="md5-zoWaddPHdnG5NiDLEBuNqw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">BGC Atlas助力宏基因组中生物合成基因簇的发现与分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/gcf-big-fam/">
+        
+        
+            <div class="article-image">
+                <img src="/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28.0fbb5b0c2b31df564edb14075af07c92_hu_b51a4a4f8db8bb65.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 生物合成基因簇家族（GCF）数据库 BiG-FAM"
+                        data-key="gcf-big-fam" 
+                        data-hash="md5-D7tbDCsx31ZO2xQHWvB8kg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">生物合成基因簇家族（GCF）数据库 BiG-FAM</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/big-scape-bgcs/">
+        
+        
+            <div class="article-image">
+                <img src="/p/big-scape-bgcs/images/big3.86718ea7b399b8d9a43ae949b1e57aec_hu_9d6c5c9129296f9b.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用BiG-SCAPE挖掘微生物组BGCs"
+                        data-key="big-scape-bgcs" 
+                        data-hash="md5-hnGOp7OZuNmkOulJseV67A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用BiG-SCAPE挖掘微生物组BGCs</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/antismash/">
+        
+        
+            <div class="article-image">
+                <img src="/p/antismash/images/clusterrules.47257539b8908db7847fa469bc771f3a_hu_83a545554dac4fd0.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用antiSMASH数据库及软件分析微生物组"
+                        data-key="antismash" 
+                        data-hash="md5-RyV1ObiQjbeEf6RpvHcfOg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用antiSMASH数据库及软件分析微生物组</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/bgcs/">
+        
+        
+            <div class="article-image">
+                <img src="/p/bgcs/images/BGC_overview.4db78f9b5a67a0da3a6a63dbb6ddb3c8_hu_2fad323ceee85f54.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 微生物组的生物合成基因簇（BGCs）分析"
+                        data-key="bgcs" 
+                        data-hash="md5-TbePm1pnoNo6amPbtt2zyA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">微生物组的生物合成基因簇（BGCs）分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='生信学习 编程基础 R语言学习 Python学习 Linux学习 Slurm集群使用基础 Julia初尝试 Quarto初尝试 尝试开发一个自己的Python库 R语言精进 R-统计分析 R绘制优美的地图 R绘制优美的进化树（基础） R绘制优美的进化树（进阶） R绘制柱形图及其变换 R绘制箱形图及其变换 R绘制Venn图及其变换 R展示层级数据（桑基/旭日/珠包/Treemap图等） R进阶使用小技巧 R快速翻译和绘图中文支持 R调用Taxonkit展示系统发育信息 R语言爬虫（rvest包） R语言机器学习（基础） R包开发（基础） R-shiny应用开发（基础） R医学数据分析 R整理和分析文献信息 一些有趣的绘图R包 ggh4x包拓展ggplot2绘图 统计学 R-统计分析 差异丰度分析（differential abundance analysis） 降维/排序分析（ordination analysis） 结构方程模型（SEM）学习 组学数据去除批次效应（batch effect） 宏基因组分析 宏基因组分析流程（Metagenomic workflow）202405｜持续更新 功能基因预测/注释通用工具 R微生物组分析流程（pctax包） Mmseqs2的基础使用 使用InStrain进行宏基因组群体分析 使用Orthofinder进行系统发育直系同源推断 扩增子(Amplicon)数据分析流程|Qiime2 使用Kraken进行16S/ITS物种注释（超快） 基因组同线性（synteny）分析和可视化 MAGs 宏基因组分箱（binning）｜1.Metabat实战了解binning 宏基因组分箱（binning）｜2. MetaWRAP实战深入binning 宏基因组分箱（binning）｜3. BASALT优化binning流程 宏基因组分箱（binning）｜4. DAS Tool优化binning结果 GTDB基因组分类数据库及GTDB-Tk工具 使用FastANI与Skani计算平均核苷酸一致性(ANI) METABOLIC：微生物基因组群落规模功能网络分析 从宏基因组构建基因组规模代谢模型（GEM） BGCs BGCkit：组学数据BGC分析流程 微生物组的生物合成基因簇（BGCs）分析 使用antiSMASH数据库及软件分析微生物组 使用BiG-SCAPE挖掘微生物组BGCs 使用BiG-SLiCE高效聚类大规模BGCs BGC Atlas助力宏基因组中生物合成基因簇的发现与分析 生物合成基因簇家族（GCF）数据库 BiG-FAM Virus 病毒相关内容学习 从宏基因组中鉴定病毒序列 VirRep: 人类肠道微生物组识别病毒新方法 VirSorter2&#43; DRAM鉴定病毒和辅助代谢基因 使用PhaGCN2/vConTACT2进行病毒分类注释 宏基因组中病毒序列的宿主预测 CRISPR 相关学习 CRISPR analysis Anti-CRISPR 相关内容学习 巨型病毒(Giant virus)生物学和多样性研究 一些基于宏基因组的巨型病毒研究 近期的一些环境病毒组研究（2024.10） 数据库 上传测序数据至ENA数据库 Antibiotics resistance gene 抗生素抗性基因（ARG） KEGG 数据库及API (1) KEGG 数据库及API (2) KEGG更新（2024.12）|作为现实世界模型的生物系统数据库 地球微生物组计划介绍（EMP） 常用扩增子数据库 使用antiSMASH数据库及软件分析微生物组 使用BiG-SCAPE挖掘微生物组BGCs BGC Atlas助力宏基因组中生物合成基因簇的发现与分析 生物合成基因簇家族（GCF）数据库 BiG-FAM GTDB基因组分类数据库及GTDB-Tk工具 微生物生态学 群体遗传学基础学习 物种多样性研究的理论和方法 微生物群落构建（community assembly） 微生物组的生物合成基因簇（BGCs）分析 生物营养策略（Trophic strategy） 功能基因-碳元素循环（C-cycling） 功能基因-氮元素循环（N-cycling） 全球尺度的抗生素耐药基因（ARG）研究 Antibiotics resistance gene 抗生素抗性基因（ARG） 功能基因探索：木质纤维素（lignocellulose）降解 微生物的耐酸机制研究 微生物的低温适应/抗寒机制研究 网络分析 MetaNet：多组学网络分析工具｜1.基础介绍 MetaNet：多组学网络分析工具｜2.网络计算和构建 MetaNet：多组学网络分析工具｜3.网络注释与操作 MetaNet：多组学网络分析工具｜4.布局和可视化 MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具 MetaNet：多组学网络分析工具｜6.网络拓扑指标分析 MetaNet：多组学网络分析工具｜7.网络模块分析 MetaNet：多组学网络分析工具｜8.网络稳定性分析 富集分析 基因集富集分析(GSEA)简介 Reporter Score 微生物功能富集分析 使用ReporterScore包进行富集分析 ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics 其他工具 一些实用的shell脚本 Positron初尝试，新一代数据科学IDE（R&#43;Python&#43;&hellip;） 使用uTools提高办公效率 Slurm集群使用基础 容器（Docker &amp; Singularity）使用入门 SQLite使用基础以及在R中操作数据库 Mermaid 入门 CSL格式原理和应用 iPhylo 生成并绘制优美的分类树 更新一下你的Conda吧 Zotero 7.0正式版，大更新！ 微生物学名-中文名称转换（可批量） 学术成果 ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics ES&amp;T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘 BiB: iPhylo 生成并绘制优美的分类树（物种&#43;化学） Critical Care: ICU医护人员肠道抗生素耐药基因显著增加 JHM: 示日常使用量的一次性纸杯释放的微塑料或可能影响孕期健康 随笔 紫金春日 ChatGPT帮我调整stack主题 gut 2023 肠道大会个人总结 龙年启科研新篇 Attack on Titan 公众号长期数据统计（笨方法） '>
+<title>Mindmap</title>
+
+<link rel='canonical' href='/mindmap/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='Mindmap'>
+<meta property='og:description' content='生信学习 编程基础 R语言学习 Python学习 Linux学习 Slurm集群使用基础 Julia初尝试 Quarto初尝试 尝试开发一个自己的Python库 R语言精进 R-统计分析 R绘制优美的地图 R绘制优美的进化树（基础） R绘制优美的进化树（进阶） R绘制柱形图及其变换 R绘制箱形图及其变换 R绘制Venn图及其变换 R展示层级数据（桑基/旭日/珠包/Treemap图等） R进阶使用小技巧 R快速翻译和绘图中文支持 R调用Taxonkit展示系统发育信息 R语言爬虫（rvest包） R语言机器学习（基础） R包开发（基础） R-shiny应用开发（基础） R医学数据分析 R整理和分析文献信息 一些有趣的绘图R包 ggh4x包拓展ggplot2绘图 统计学 R-统计分析 差异丰度分析（differential abundance analysis） 降维/排序分析（ordination analysis） 结构方程模型（SEM）学习 组学数据去除批次效应（batch effect） 宏基因组分析 宏基因组分析流程（Metagenomic workflow）202405｜持续更新 功能基因预测/注释通用工具 R微生物组分析流程（pctax包） Mmseqs2的基础使用 使用InStrain进行宏基因组群体分析 使用Orthofinder进行系统发育直系同源推断 扩增子(Amplicon)数据分析流程|Qiime2 使用Kraken进行16S/ITS物种注释（超快） 基因组同线性（synteny）分析和可视化 MAGs 宏基因组分箱（binning）｜1.Metabat实战了解binning 宏基因组分箱（binning）｜2. MetaWRAP实战深入binning 宏基因组分箱（binning）｜3. BASALT优化binning流程 宏基因组分箱（binning）｜4. DAS Tool优化binning结果 GTDB基因组分类数据库及GTDB-Tk工具 使用FastANI与Skani计算平均核苷酸一致性(ANI) METABOLIC：微生物基因组群落规模功能网络分析 从宏基因组构建基因组规模代谢模型（GEM） BGCs BGCkit：组学数据BGC分析流程 微生物组的生物合成基因簇（BGCs）分析 使用antiSMASH数据库及软件分析微生物组 使用BiG-SCAPE挖掘微生物组BGCs 使用BiG-SLiCE高效聚类大规模BGCs BGC Atlas助力宏基因组中生物合成基因簇的发现与分析 生物合成基因簇家族（GCF）数据库 BiG-FAM Virus 病毒相关内容学习 从宏基因组中鉴定病毒序列 VirRep: 人类肠道微生物组识别病毒新方法 VirSorter2&#43; DRAM鉴定病毒和辅助代谢基因 使用PhaGCN2/vConTACT2进行病毒分类注释 宏基因组中病毒序列的宿主预测 CRISPR 相关学习 CRISPR analysis Anti-CRISPR 相关内容学习 巨型病毒(Giant virus)生物学和多样性研究 一些基于宏基因组的巨型病毒研究 近期的一些环境病毒组研究（2024.10） 数据库 上传测序数据至ENA数据库 Antibiotics resistance gene 抗生素抗性基因（ARG） KEGG 数据库及API (1) KEGG 数据库及API (2) KEGG更新（2024.12）|作为现实世界模型的生物系统数据库 地球微生物组计划介绍（EMP） 常用扩增子数据库 使用antiSMASH数据库及软件分析微生物组 使用BiG-SCAPE挖掘微生物组BGCs BGC Atlas助力宏基因组中生物合成基因簇的发现与分析 生物合成基因簇家族（GCF）数据库 BiG-FAM GTDB基因组分类数据库及GTDB-Tk工具 微生物生态学 群体遗传学基础学习 物种多样性研究的理论和方法 微生物群落构建（community assembly） 微生物组的生物合成基因簇（BGCs）分析 生物营养策略（Trophic strategy） 功能基因-碳元素循环（C-cycling） 功能基因-氮元素循环（N-cycling） 全球尺度的抗生素耐药基因（ARG）研究 Antibiotics resistance gene 抗生素抗性基因（ARG） 功能基因探索：木质纤维素（lignocellulose）降解 微生物的耐酸机制研究 微生物的低温适应/抗寒机制研究 网络分析 MetaNet：多组学网络分析工具｜1.基础介绍 MetaNet：多组学网络分析工具｜2.网络计算和构建 MetaNet：多组学网络分析工具｜3.网络注释与操作 MetaNet：多组学网络分析工具｜4.布局和可视化 MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具 MetaNet：多组学网络分析工具｜6.网络拓扑指标分析 MetaNet：多组学网络分析工具｜7.网络模块分析 MetaNet：多组学网络分析工具｜8.网络稳定性分析 富集分析 基因集富集分析(GSEA)简介 Reporter Score 微生物功能富集分析 使用ReporterScore包进行富集分析 ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics 其他工具 一些实用的shell脚本 Positron初尝试，新一代数据科学IDE（R&#43;Python&#43;&hellip;） 使用uTools提高办公效率 Slurm集群使用基础 容器（Docker &amp; Singularity）使用入门 SQLite使用基础以及在R中操作数据库 Mermaid 入门 CSL格式原理和应用 iPhylo 生成并绘制优美的分类树 更新一下你的Conda吧 Zotero 7.0正式版，大更新！ 微生物学名-中文名称转换（可批量） 学术成果 ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics ES&amp;T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘 BiB: iPhylo 生成并绘制优美的分类树（物种&#43;化学） Critical Care: ICU医护人员肠道抗生素耐药基因显著增加 JHM: 示日常使用量的一次性纸杯释放的微塑料或可能影响孕期健康 随笔 紫金春日 ChatGPT帮我调整stack主题 gut 2023 肠道大会个人总结 龙年启科研新篇 Attack on Titan 公众号长期数据统计（笨方法） '>
+<meta property='og:url' content='/mindmap/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Page' /><meta property='article:published_time' content='2019-05-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-05-28T00:00:00&#43;00:00'/><meta property='og:image' content='/' />
+<meta name="twitter:title" content="Mindmap">
+<meta name="twitter:description" content="生信学习 编程基础 R语言学习 Python学习 Linux学习 Slurm集群使用基础 Julia初尝试 Quarto初尝试 尝试开发一个自己的Python库 R语言精进 R-统计分析 R绘制优美的地图 R绘制优美的进化树（基础） R绘制优美的进化树（进阶） R绘制柱形图及其变换 R绘制箱形图及其变换 R绘制Venn图及其变换 R展示层级数据（桑基/旭日/珠包/Treemap图等） R进阶使用小技巧 R快速翻译和绘图中文支持 R调用Taxonkit展示系统发育信息 R语言爬虫（rvest包） R语言机器学习（基础） R包开发（基础） R-shiny应用开发（基础） R医学数据分析 R整理和分析文献信息 一些有趣的绘图R包 ggh4x包拓展ggplot2绘图 统计学 R-统计分析 差异丰度分析（differential abundance analysis） 降维/排序分析（ordination analysis） 结构方程模型（SEM）学习 组学数据去除批次效应（batch effect） 宏基因组分析 宏基因组分析流程（Metagenomic workflow）202405｜持续更新 功能基因预测/注释通用工具 R微生物组分析流程（pctax包） Mmseqs2的基础使用 使用InStrain进行宏基因组群体分析 使用Orthofinder进行系统发育直系同源推断 扩增子(Amplicon)数据分析流程|Qiime2 使用Kraken进行16S/ITS物种注释（超快） 基因组同线性（synteny）分析和可视化 MAGs 宏基因组分箱（binning）｜1.Metabat实战了解binning 宏基因组分箱（binning）｜2. MetaWRAP实战深入binning 宏基因组分箱（binning）｜3. BASALT优化binning流程 宏基因组分箱（binning）｜4. DAS Tool优化binning结果 GTDB基因组分类数据库及GTDB-Tk工具 使用FastANI与Skani计算平均核苷酸一致性(ANI) METABOLIC：微生物基因组群落规模功能网络分析 从宏基因组构建基因组规模代谢模型（GEM） BGCs BGCkit：组学数据BGC分析流程 微生物组的生物合成基因簇（BGCs）分析 使用antiSMASH数据库及软件分析微生物组 使用BiG-SCAPE挖掘微生物组BGCs 使用BiG-SLiCE高效聚类大规模BGCs BGC Atlas助力宏基因组中生物合成基因簇的发现与分析 生物合成基因簇家族（GCF）数据库 BiG-FAM Virus 病毒相关内容学习 从宏基因组中鉴定病毒序列 VirRep: 人类肠道微生物组识别病毒新方法 VirSorter2&#43; DRAM鉴定病毒和辅助代谢基因 使用PhaGCN2/vConTACT2进行病毒分类注释 宏基因组中病毒序列的宿主预测 CRISPR 相关学习 CRISPR analysis Anti-CRISPR 相关内容学习 巨型病毒(Giant virus)生物学和多样性研究 一些基于宏基因组的巨型病毒研究 近期的一些环境病毒组研究（2024.10） 数据库 上传测序数据至ENA数据库 Antibiotics resistance gene 抗生素抗性基因（ARG） KEGG 数据库及API (1) KEGG 数据库及API (2) KEGG更新（2024.12）|作为现实世界模型的生物系统数据库 地球微生物组计划介绍（EMP） 常用扩增子数据库 使用antiSMASH数据库及软件分析微生物组 使用BiG-SCAPE挖掘微生物组BGCs BGC Atlas助力宏基因组中生物合成基因簇的发现与分析 生物合成基因簇家族（GCF）数据库 BiG-FAM GTDB基因组分类数据库及GTDB-Tk工具 微生物生态学 群体遗传学基础学习 物种多样性研究的理论和方法 微生物群落构建（community assembly） 微生物组的生物合成基因簇（BGCs）分析 生物营养策略（Trophic strategy） 功能基因-碳元素循环（C-cycling） 功能基因-氮元素循环（N-cycling） 全球尺度的抗生素耐药基因（ARG）研究 Antibiotics resistance gene 抗生素抗性基因（ARG） 功能基因探索：木质纤维素（lignocellulose）降解 微生物的耐酸机制研究 微生物的低温适应/抗寒机制研究 网络分析 MetaNet：多组学网络分析工具｜1.基础介绍 MetaNet：多组学网络分析工具｜2.网络计算和构建 MetaNet：多组学网络分析工具｜3.网络注释与操作 MetaNet：多组学网络分析工具｜4.布局和可视化 MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具 MetaNet：多组学网络分析工具｜6.网络拓扑指标分析 MetaNet：多组学网络分析工具｜7.网络模块分析 MetaNet：多组学网络分析工具｜8.网络稳定性分析 富集分析 基因集富集分析(GSEA)简介 Reporter Score 微生物功能富集分析 使用ReporterScore包进行富集分析 ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics 其他工具 一些实用的shell脚本 Positron初尝试，新一代数据科学IDE（R&#43;Python&#43;&hellip;） 使用uTools提高办公效率 Slurm集群使用基础 容器（Docker &amp; Singularity）使用入门 SQLite使用基础以及在R中操作数据库 Mermaid 入门 CSL格式原理和应用 iPhylo 生成并绘制优美的分类树 更新一下你的Conda吧 Zotero 7.0正式版，大更新！ 微生物学名-中文名称转换（可批量） 学术成果 ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics ES&amp;T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘 BiB: iPhylo 生成并绘制优美的分类树（物种&#43;化学） Critical Care: ICU医护人员肠道抗生素耐药基因显著增加 JHM: 示日常使用量的一次性纸杯释放的微塑料或可能影响孕期健康 随笔 紫金春日 ChatGPT帮我调整stack主题 gut 2023 肠道大会个人总结 龙年启科研新篇 Attack on Titan 公众号长期数据统计（笨方法） "><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li  class='current' >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#生信学习">生信学习</a>
+      <ol>
+        <li><a href="#编程基础">编程基础</a></li>
+        <li><a href="#r语言精进">R语言精进</a></li>
+        <li><a href="#统计学">统计学</a></li>
+        <li><a href="#宏基因组分析">宏基因组分析</a>
+          <ol>
+            <li><a href="#mags">MAGs</a></li>
+            <li><a href="#bgcs">BGCs</a></li>
+            <li><a href="#virus">Virus</a></li>
+          </ol>
+        </li>
+        <li><a href="#数据库">数据库</a></li>
+        <li><a href="#微生物生态学">微生物生态学</a></li>
+        <li><a href="#网络分析">网络分析</a></li>
+        <li><a href="#富集分析">富集分析</a></li>
+      </ol>
+    </li>
+    <li><a href="#其他工具">其他工具</a></li>
+    <li><a href="#学术成果">学术成果</a></li>
+    <li><a href="#随笔">随笔</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/mindmap/">Mindmap</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 28, 2019</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+        <footer class="article-translations">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+            <div>
+                
+                    <a href="/zh-cn/mindmap/" class="link">中文</a>
+                
+            </div>
+        </footer>
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="生信学习">生信学习</h2>
+<h3 id="编程基础">编程基础</h3>
+<ul>
+<li><a class="link" href="../p/r-learning" >R语言学习</a></li>
+<li><a class="link" href="" >Python学习</a></li>
+<li><a class="link" href="" >Linux学习</a></li>
+<li><a class="link" href="../p/slurm" >Slurm集群使用基础</a></li>
+<li><a class="link" href="../p/julia" >Julia初尝试</a></li>
+<li><a class="link" href="../p/quarto" >Quarto初尝试</a></li>
+<li><a class="link" href="../p/python-pkg" >尝试开发一个自己的Python库</a></li>
+</ul>
+<h3 id="r语言精进">R语言精进</h3>
+<ul>
+<li><a class="link" href="../p/r-statistics" >R-统计分析</a></li>
+<li><a class="link" href="../p/r-map" >R绘制优美的地图</a></li>
+<li><a class="link" href="../p/r-tree" >R绘制优美的进化树（基础）</a></li>
+<li><a class="link" href="../p/r-tree2" >R绘制优美的进化树（进阶）</a></li>
+<li><a class="link" href="../p/r-bar-chart" >R绘制柱形图及其变换</a></li>
+<li><a class="link" href="../p/r-box" >R绘制箱形图及其变换</a></li>
+<li><a class="link" href="../p/r-venn" >R绘制Venn图及其变换</a></li>
+<li><a class="link" href="../p/treemap" >R展示层级数据（桑基/旭日/珠包/Treemap图等）</a></li>
+<li><a class="link" href="../p/r-tips" >R进阶使用小技巧</a></li>
+<li><a class="link" href="../p/translator" >R快速翻译和绘图中文支持</a></li>
+<li><a class="link" href="../p/taxonkit-r" >R调用Taxonkit展示系统发育信息</a></li>
+<li><a class="link" href="../p/r-rvest" >R语言爬虫（rvest包）</a></li>
+<li><a class="link" href="../p/r-machine-learning" >R语言机器学习（基础）</a></li>
+<li><a class="link" href="../p/r-package" >R包开发（基础）</a></li>
+<li><a class="link" href="../p/rshiny" >R-shiny应用开发（基础）</a></li>
+<li><a class="link" href="../p/r-medicine" >R医学数据分析</a></li>
+<li><a class="link" href="../p/r-paper-list" >R整理和分析文献信息</a></li>
+<li><a class="link" href="../p/r-vis-pkg" >一些有趣的绘图R包</a></li>
+<li><a class="link" href="../p/ggh4x-ggplot2" >ggh4x包拓展ggplot2绘图</a></li>
+</ul>
+<h3 id="统计学">统计学</h3>
+<ul>
+<li><a class="link" href="../p/r-statistics" >R-统计分析</a></li>
+<li><a class="link" href="../p/differential-abundance-analysis" >差异丰度分析（differential abundance analysis）</a></li>
+<li><a class="link" href="../p/ordination-analysis" >降维/排序分析（ordination analysis）</a></li>
+<li><a class="link" href="../p/sem" >结构方程模型（SEM）学习</a></li>
+<li><a class="link" href="../p/batch-effect" >组学数据去除批次效应（batch effect）</a></li>
+</ul>
+<h3 id="宏基因组分析">宏基因组分析</h3>
+<ul>
+<li><a class="link" href="../p/metagenomic-workflow" >宏基因组分析流程（Metagenomic workflow）202405｜持续更新</a></li>
+<li><a class="link" href="../p/function-tools" >功能基因预测/注释通用工具</a></li>
+<li><a class="link" href="../p/r-pctax" >R微生物组分析流程（pctax包）</a></li>
+<li><a class="link" href="../p/mmseqs2" >Mmseqs2的基础使用</a></li>
+<li><a class="link" href="../p/instrain" >使用InStrain进行宏基因组群体分析</a></li>
+<li><a class="link" href="../p/orthofinder" >使用Orthofinder进行系统发育直系同源推断</a></li>
+<li><a class="link" href="../p/amplicon-workflow" >扩增子(Amplicon)数据分析流程|Qiime2</a></li>
+<li><a class="link" href="../p/kraken-16s-its" >使用Kraken进行16S/ITS物种注释（超快）</a></li>
+<li><a class="link" href="../p/synteny" >基因组同线性（synteny）分析和可视化</a></li>
+</ul>
+<h4 id="mags">MAGs</h4>
+<ul>
+<li><a class="link" href="../p/binning" >宏基因组分箱（binning）｜1.Metabat实战了解binning</a></li>
+<li><a class="link" href="../p/binning2" >宏基因组分箱（binning）｜2. MetaWRAP实战深入binning</a></li>
+<li><a class="link" href="../p/binning3" >宏基因组分箱（binning）｜3. BASALT优化binning流程</a></li>
+<li><a class="link" href="../p/binning-4-das-tool-binning" >宏基因组分箱（binning）｜4. DAS Tool优化binning结果</a></li>
+<li><a class="link" href="../p/gtdb" >GTDB基因组分类数据库及GTDB-Tk工具</a></li>
+<li><a class="link" href="../p/ani" >使用FastANI与Skani计算平均核苷酸一致性(ANI)</a></li>
+<li><a class="link" href="../p/metabolic" >METABOLIC：微生物基因组群落规模功能网络分析</a></li>
+<li><a class="link" href="../p/gem" >从宏基因组构建基因组规模代谢模型（GEM）</a></li>
+</ul>
+<h4 id="bgcs">BGCs</h4>
+<ul>
+<li><a class="link" href="../p/bgckit-bgc" >BGCkit：组学数据BGC分析流程</a></li>
+<li><a class="link" href="../p/bgcs" >微生物组的生物合成基因簇（BGCs）分析</a></li>
+<li><a class="link" href="../p/antismash" >使用antiSMASH数据库及软件分析微生物组</a></li>
+<li><a class="link" href="../p/big-scape-bgcs" >使用BiG-SCAPE挖掘微生物组BGCs</a></li>
+<li><a class="link" href="../p/big-slice-bgcs" >使用BiG-SLiCE高效聚类大规模BGCs</a></li>
+<li><a class="link" href="../p/bgc-atlas" >BGC Atlas助力宏基因组中生物合成基因簇的发现与分析</a></li>
+<li><a class="link" href="../p/gcf-big-fam" >生物合成基因簇家族（GCF）数据库 BiG-FAM</a></li>
+</ul>
+<h4 id="virus">Virus</h4>
+<ul>
+<li><a class="link" href="../p/learn-virus" >病毒相关内容学习</a></li>
+<li><a class="link" href="../p/virus" >从宏基因组中鉴定病毒序列</a></li>
+<li><a class="link" href="../p/virrep" >VirRep: 人类肠道微生物组识别病毒新方法</a></li>
+<li><a class="link" href="../p/virsorter2-dram" >VirSorter2+ DRAM鉴定病毒和辅助代谢基因</a></li>
+<li><a class="link" href="../p/vcontact2" >使用PhaGCN2/vConTACT2进行病毒分类注释</a></li>
+<li><a class="link" href="../p/virus-host" >宏基因组中病毒序列的宿主预测</a></li>
+<li><a class="link" href="../p/crispr" >CRISPR 相关学习</a></li>
+<li><a class="link" href="../p/crispr-analysis" >CRISPR analysis</a></li>
+<li><a class="link" href="../p/anti-crispr" >Anti-CRISPR 相关内容学习</a></li>
+<li><a class="link" href="../p/giant-virus" >巨型病毒(Giant virus)生物学和多样性研究</a></li>
+<li><a class="link" href="../p/giant-virus-res" >一些基于宏基因组的巨型病毒研究</a></li>
+<li><a class="link" href="../p/env-virus" >近期的一些环境病毒组研究（2024.10）</a></li>
+</ul>
+<h3 id="数据库">数据库</h3>
+<ul>
+<li><a class="link" href="../p/ena" >上传测序数据至ENA数据库</a></li>
+<li><a class="link" href="../p/antibiotics-resistance" >Antibiotics resistance gene 抗生素抗性基因（ARG）</a></li>
+<li><a class="link" href="../p/kegg-api" >KEGG 数据库及API (1)</a></li>
+<li><a class="link" href="../p/kegg-api2" >KEGG 数据库及API (2)</a></li>
+<li><a class="link" href="../p/kegg-2024-12" >KEGG更新（2024.12）|作为现实世界模型的生物系统数据库</a></li>
+<li><a class="link" href="../p/emp" >地球微生物组计划介绍（EMP）</a></li>
+<li><a class="link" href="../p/amplicon" >常用扩增子数据库</a></li>
+<li><a class="link" href="../p/antismash" >使用antiSMASH数据库及软件分析微生物组</a></li>
+<li><a class="link" href="../p/big-scape-bgcs" >使用BiG-SCAPE挖掘微生物组BGCs</a></li>
+<li><a class="link" href="../p/bgc-atlas" >BGC Atlas助力宏基因组中生物合成基因簇的发现与分析</a></li>
+<li><a class="link" href="../p/gcf-big-fam" >生物合成基因簇家族（GCF）数据库 BiG-FAM</a></li>
+<li><a class="link" href="../p/gtdb" >GTDB基因组分类数据库及GTDB-Tk工具</a></li>
+</ul>
+<h3 id="微生物生态学">微生物生态学</h3>
+<ul>
+<li><a class="link" href="../p/pop-genetic" >群体遗传学基础学习</a></li>
+<li><a class="link" href="../p/biodiversity" >物种多样性研究的理论和方法</a></li>
+<li><a class="link" href="../p/community-assembly" >微生物群落构建（community assembly）</a></li>
+<li><a class="link" href="../p/bgcs" >微生物组的生物合成基因簇（BGCs）分析</a></li>
+<li><a class="link" href="../p/trophic-strategy" >生物营养策略（Trophic strategy）</a></li>
+<li><a class="link" href="../p/c-cycling" >功能基因-碳元素循环（C-cycling）</a></li>
+<li><a class="link" href="../p/n-cycling" >功能基因-氮元素循环（N-cycling）</a></li>
+<li><a class="link" href="../p/global-arg" >全球尺度的抗生素耐药基因（ARG）研究</a></li>
+<li><a class="link" href="../p/antibiotics-resistance" >Antibiotics resistance gene 抗生素抗性基因（ARG）</a></li>
+<li><a class="link" href="../p/lignocellulose" >功能基因探索：木质纤维素（lignocellulose）降解</a></li>
+<li><a class="link" href="../p/acid" >微生物的耐酸机制研究</a></li>
+<li><a class="link" href="../p/psychrophilic" >微生物的低温适应/抗寒机制研究</a></li>
+</ul>
+<h3 id="网络分析">网络分析</h3>
+<ul>
+<li><a class="link" href="../p/metanet-1" >MetaNet：多组学网络分析工具｜1.基础介绍</a></li>
+<li><a class="link" href="../p/metanet-2" >MetaNet：多组学网络分析工具｜2.网络计算和构建</a></li>
+<li><a class="link" href="../p/metanet-3" >MetaNet：多组学网络分析工具｜3.网络注释与操作</a></li>
+<li><a class="link" href="../p/metanet-4" >MetaNet：多组学网络分析工具｜4.布局和可视化</a></li>
+<li><a class="link" href="../p/metanet-5" >MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具</a></li>
+<li><a class="link" href="../p/metanet-6" >MetaNet：多组学网络分析工具｜6.网络拓扑指标分析</a></li>
+<li><a class="link" href="../p/metanet-7" >MetaNet：多组学网络分析工具｜7.网络模块分析</a></li>
+<li><a class="link" href="../p/metanet-8" >MetaNet：多组学网络分析工具｜8.网络稳定性分析</a></li>
+</ul>
+<h3 id="富集分析">富集分析</h3>
+<ul>
+<li><a class="link" href="../p/gsea" >基因集富集分析(GSEA)简介</a></li>
+<li><a class="link" href="../p/reporter-score" >Reporter Score 微生物功能富集分析</a></li>
+<li><a class="link" href="../p/reporterscore-package" >使用ReporterScore包进行富集分析</a></li>
+<li><a class="link" href="../p/grsa-bib" >ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics</a></li>
+</ul>
+<h2 id="其他工具">其他工具</h2>
+<ul>
+<li><a class="link" href="../p/shell" >一些实用的shell脚本</a></li>
+<li><a class="link" href="../p/positron-ide-r-python" >Positron初尝试，新一代数据科学IDE（R+Python+&hellip;）</a></li>
+<li><a class="link" href="../p/utools" >使用uTools提高办公效率</a></li>
+<li><a class="link" href="../p/slurm" >Slurm集群使用基础</a></li>
+<li><a class="link" href="../p/docker-singularity" >容器（Docker &amp; Singularity）使用入门</a></li>
+<li><a class="link" href="../p/sqlite-r" >SQLite使用基础以及在R中操作数据库</a></li>
+<li><a class="link" href="../p/mermaid" >Mermaid 入门</a></li>
+<li><a class="link" href="../p/csl" >CSL格式原理和应用</a></li>
+<li><a class="link" href="../p/iphylo" >iPhylo 生成并绘制优美的分类树</a></li>
+<li><a class="link" href="../p/conda" >更新一下你的Conda吧</a></li>
+<li><a class="link" href="../p/zotero-7-0" >Zotero 7.0正式版，大更新！</a></li>
+<li><a class="link" href="../p/latin_name" >微生物学名-中文名称转换（可批量）</a></li>
+</ul>
+<h2 id="学术成果">学术成果</h2>
+<ul>
+<li><a class="link" href="../p/grsa-bib" >ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics</a></li>
+<li><a class="link" href="../p/es-t" >ES&amp;T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘</a></li>
+<li><a class="link" href="../p/iphylo" >BiB: iPhylo 生成并绘制优美的分类树（物种+化学）</a></li>
+<li><a class="link" href="../p/critical-care" >Critical Care: ICU医护人员肠道抗生素耐药基因显著增加</a></li>
+<li><a class="link" href="../p/jhm" >JHM: 示日常使用量的一次性纸杯释放的微塑料或可能影响孕期健康</a></li>
+</ul>
+<h2 id="随笔">随笔</h2>
+<ul>
+<li><a class="link" href="../p/spring" >紫金春日</a></li>
+<li><a class="link" href="../p/chatgpt-stack" >ChatGPT帮我调整stack主题</a></li>
+<li><a class="link" href="../p/gut-2023" >gut 2023 肠道大会个人总结</a></li>
+<li><a class="link" href="../p/new_year" >龙年启科研新篇</a></li>
+<li><a class="link" href="../p/attack-on-titan" >Attack on Titan</a></li>
+<li><a class="link" href="../p/wechat" >公众号长期数据统计（笨方法）</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

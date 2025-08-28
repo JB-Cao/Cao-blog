@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='我将常用的各种函数整成了一个包：pcutils，包含各种绘图方法，这里介绍一下柱形图绘制及其各种变换，如饼图，环形图，河流图等。'>
+<title>R绘制柱形图及其变换</title>
+
+<link rel='canonical' href='/p/r-bar-chart/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='R绘制柱形图及其变换'>
+<meta property='og:description' content='我将常用的各种函数整成了一个包：pcutils，包含各种绘图方法，这里介绍一下柱形图绘制及其各种变换，如饼图，环形图，河流图等。'>
+<meta property='og:url' content='/p/r-bar-chart/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='R' /><meta property='article:tag' content='可视化' /><meta property='article:published_time' content='2023-06-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-06-19T00:00:00&#43;00:00'/><meta property='og:image' content='/p/r-bar-chart/images/barchart.png' />
+<meta name="twitter:title" content="R绘制柱形图及其变换">
+<meta name="twitter:description" content="我将常用的各种函数整成了一个包：pcutils，包含各种绘图方法，这里介绍一下柱形图绘制及其各种变换，如饼图，环形图，河流图等。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/r-bar-chart/images/barchart.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#plot">Plot</a>
+      <ol>
+        <li><a href="#stackplot">Stackplot</a></li>
+        <li><a href="#polar-coordinate">Polar coordinate</a></li>
+        <li><a href="#streamgraph">Streamgraph</a></li>
+        <li><a href="#sankey">Sankey</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/r-bar-chart/">
+                <img src="/p/r-bar-chart/images/barchart_hu_ef17cc1f73a26c1f.png"
+                        srcset="/p/r-bar-chart/images/barchart_hu_ef17cc1f73a26c1f.png 800w, /p/r-bar-chart/images/barchart_hu_1e43c01df9ed6e2.png 1600w"
+                        width="800" 
+                        height="663" 
+                        loading="lazy"
+                        alt="Featured image of post R绘制柱形图及其变换" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/r/" style="background-color: #bebada; color: #fff;">
+                R
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/r-bar-chart/">R绘制柱形图及其变换</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            我将常用的各种函数整成了一个包：pcutils，包含各种绘图方法，这里介绍一下柱形图绘制及其各种变换，如饼图，环形图，河流图等。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 19, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <script src="/p/r-bar-chart/index.en_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="/p/r-bar-chart/index.en_files/plotly-binding/plotly.js"></script>
+<script src="/p/r-bar-chart/index.en_files/typedarray/typedarray.min.js"></script>
+<script src="/p/r-bar-chart/index.en_files/jquery/jquery.min.js"></script>
+<link href="/p/r-bar-chart/index.en_files/crosstalk/css/crosstalk.min.css" rel="stylesheet" />
+<script src="/p/r-bar-chart/index.en_files/crosstalk/js/crosstalk.min.js"></script>
+<link href="/p/r-bar-chart/index.en_files/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="/p/r-bar-chart/index.en_files/plotly-main/plotly-latest.min.js"></script>
+<script src="/p/r-bar-chart/index.en_files/htmlwidgets/htmlwidgets.js"></script>
+<script src="/p/r-bar-chart/index.en_files/d3/d3.min.js"></script>
+<link href="/p/r-bar-chart/index.en_files/colorbrewer/colorbrewer.css" rel="stylesheet" />
+<script src="/p/r-bar-chart/index.en_files/colorbrewer/colorbrewer.js"></script>
+<link href="/p/r-bar-chart/index.en_files/streamgraph/streamgraph.css" rel="stylesheet" />
+<script src="/p/r-bar-chart/index.en_files/streamgraph-binding/streamgraph.js"></script>
+<p>我自己在用R做各种分析时有不少需要反复用到的基础功能，比如一些简单的统计呀，画一些简单的图如柱形图，箱形图等等，虽说具体实现的代码也不麻烦，但有一些细节如给箱形图加上显著性分组，将柱形图按照metadata合并或分面等事情还是不太想每次用的时候去找之前的代码。</p>
+<p>索性将常用的各种函数整成了一个包：<a class="link" href="https://github.com/Asa12138/pcutils"  target="_blank" rel="noopener"
+    >pcutils</a>，
+网址：https://github.com/Asa12138/pcutils</p>
+<p>最近也成功将pcutils提交到<a class="link" href="https://cran.r-project.org/web/packages/pcutils/index.html"  target="_blank" rel="noopener"
+    >CRAN</a>了。将包提交到CRAN或Bioconductor也是一件有意思的事（有机会下次讲讲）。</p>
+<p>但目前还是建议从github安装，包含的功能会多一些:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;devtools&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#39;Asa12138/pcutils&#39;</span><span class="p">,</span><span class="n">dependencies</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当然，今天主要要来讲的是柱形图以及其各种变换形式图形的绘制。</p>
+<h2 id="introduction">Introduction</h2>
+<p>柱形图（Bar chart）是一种常用的数据可视化图表，用于展示离散类别数据的分布和比较不同类别之间的数量或频率关系。柱形图通过在水平或垂直轴上绘制矩形柱来表示数据。</p>
+<p>在柱形图中，每个类别对应一个矩形柱，其高度表示该类别的数据量或频率。类别通常显示在水平轴上，而数量或频率则显示在垂直轴上。矩形柱的宽度通常是固定的，相互之间没有间隔，这样便于比较不同类别之间的差异。</p>
+<p>柱形图常用于以下情况：</p>
+<ol>
+<li>展示不同类别的数量或频率关系。</li>
+<li>比较多个类别之间的数据。</li>
+<li>强调特定类别的重要性或异常值。</li>
+</ol>
+<p>之前强力推荐过的绘图教程网站：https://r-graph-gallery.com/ ，上面也提供了很多柱形图从基础到不断美化的画法：</p>
+<figure>
+<img src="images/ex_bar1.png" style="width:90.0%" alt="From data to Viz 示例柱形图" />
+<figcaption aria-hidden="true">From data to Viz 示例柱形图</figcaption>
+</figure>
+<figure>
+<img src="images/ex_bar2.png" style="width:90.0%" alt="From data to Viz 示例柱形图2" />
+<figcaption aria-hidden="true">From data to Viz 示例柱形图2</figcaption>
+</figure>
+<p>再次建议大家在上面看看具体实现的代码。</p>
+<h2 id="plot">Plot</h2>
+<h3 id="stackplot">Stackplot</h3>
+<p>因为常做的是微生物组等组学数据的分析，所以一般会用到两个表，一个是abundance table（行为基因名/物种名，列为样本名），另一个是metadata（行为样本名，列为各种实验分组或表型数据），
+要做的柱形图也经常是堆积柱形图，用来看composition的情况。</p>
+<p>我们都知道要用ggplot画图，一般都要把我们的表格从宽格式变为长格式，
+具体的转换方法也有很多，我常用的是<code>reshape2</code>的<code>melt</code>，
+但是柱形图太常用了，我便把格式转换和分组映射包含在了函数<code>stackplot</code>中，方便自己的每一次画图。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">pcutils</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#?stackplot</span>
+</span></span><span class="line"><span class="cl"><span class="nf">data</span><span class="p">(</span><span class="n">otutab</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#将species level表上升到class level</span>
+</span></span><span class="line"><span class="cl"><span class="n">class</span><span class="o">=</span><span class="nf">hebing</span><span class="p">(</span><span class="n">otutab</span><span class="p">,</span><span class="n">taxonomy</span><span class="o">$</span><span class="n">Class</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="s">&#34;sum&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">class</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>##                       NS1 NS2 NS3 NS4 NS5 NS6 WS1 WS2 WS3 WS4 WS5 WS6 CS1 CS2
+## c__Acidobacteria_Gp10   0  10   2  12   0   0  15   0  27   0  36  11  30   0
+## c__Acidobacteria_Gp11   9   0  15   0   7   8  21   0   2   0   5  10   1  12
+## c__Acidobacteria_Gp17   8  12   3   4   7   0  11   4   0  12   9   9  11  14
+## c__Acidobacteria_Gp25  11  18   2   0   3   0   0   0   2   5   9   5   3   0
+## c__Acidobacteria_Gp3   13   0  10   0  12  18  16  14  14   0  20  12   8   5
+##                       CS3 CS4 CS5 CS6
+## c__Acidobacteria_Gp10  20  13   3  19
+## c__Acidobacteria_Gp11   9   0   0   0
+## c__Acidobacteria_Gp17   3  16   0  14
+## c__Acidobacteria_Gp25  23   0   3   6
+## c__Acidobacteria_Gp3    8   0  10   9
+##  [ reached 'max' / getOption(&quot;max.print&quot;) -- omitted 1 rows ]
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>##      Id Group     env1     env2     env3      env4     env5        env6
+## NS1 NS1    NS 3.057248 10.23571 5.554576  8.084997 25.00795 -1.15456682
+## NS2 NS2    NS 4.830219 11.13453 5.613455  8.556829 16.67690  0.81168745
+## NS3 NS3    NS 3.753133 10.06232 5.582916 10.226572 21.68926  1.40733211
+## NS4 NS4    NS 4.262264 10.84401 5.258419  9.002256 24.81046  1.47805320
+## NS5 NS5    NS 2.476135  7.52584 6.255314  9.357587 19.70553  0.05813095
+## NS6 NS6    NS 5.131004 10.82761 5.180966  8.141506 18.39021 -1.70032569
+##          lat     long
+## NS1 38.72412 118.2493
+## NS2 38.31086 115.2322
+## NS3 36.82439 118.1361
+## NS4 37.59774 117.1563
+## NS5 35.94188 118.9504
+## NS6 37.68713 116.2984
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#基础绘制，无分组信息，单纯展示每个样本Top7的相对丰度,Top7以外的自动归为Other</span>
+</span></span><span class="line"><span class="cl"><span class="nf">stackplot</span><span class="p">(</span><span class="n">class</span><span class="p">,</span><span class="n">legend_title</span> <span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">)</span><span class="o">+</span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-1.png" width="864" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#按分组合并丰度值，展示合并后的相对丰度变化</span>
+</span></span><span class="line"><span class="cl"><span class="nf">stackplot</span><span class="p">(</span><span class="n">class</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;Group&#34;</span><span class="p">,</span><span class="n">legend_title</span> <span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-2.png" width="864" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#geom_bar可指定的参数可以传入bar_params中</span>
+</span></span><span class="line"><span class="cl"><span class="nf">stackplot</span><span class="p">(</span><span class="n">class</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;Group&#34;</span><span class="p">,</span><span class="n">bar_params</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="nf">position_dodge</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">legend_title</span> <span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-3.png" width="864" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#展示每一个部分的数字？number = T</span>
+</span></span><span class="line"><span class="cl"><span class="nf">stackplot</span><span class="p">(</span><span class="n">class</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;Group&#34;</span><span class="p">,</span><span class="n">number</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-4.png" width="864" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#如果想把分组中的单个样本展示出来的话，可以设置style = &#34;sample&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">stackplot</span><span class="p">(</span><span class="n">class</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;Group&#34;</span><span class="p">,</span><span class="n">style</span> <span class="o">=</span> <span class="s">&#34;sample&#34;</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-5.png" width="864" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#如果想看的是绝对量而不是相对丰度：relative = F</span>
+</span></span><span class="line"><span class="cl"><span class="nf">stackplot</span><span class="p">(</span><span class="n">class</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;Group&#34;</span><span class="p">,</span><span class="n">style</span> <span class="o">=</span> <span class="s">&#34;sample&#34;</span><span class="p">,</span><span class="n">relative</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-6.png" width="864" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#我们有时候可以希望按照某个物种/基因的丰度排序，设置group_order：</span>
+</span></span><span class="line"><span class="cl"><span class="nf">stackplot</span><span class="p">(</span><span class="n">class</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;Id&#34;</span><span class="p">,</span><span class="n">group_order</span> <span class="o">=</span> <span class="s">&#34;c__Actinobacteria&#34;</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-7.png" width="864" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#或者是直接更改每一个fill的上下顺序，设置stack_order：</span>
+</span></span><span class="line"><span class="cl"><span class="nf">stackplot</span><span class="p">(</span><span class="n">class</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;Id&#34;</span><span class="p">,</span><span class="n">stack_order</span> <span class="o">=</span> <span class="s">&#34;Other&#34;</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-8.png" width="864" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#或是做出流动的效果，时间数据最佳：flow=T</span>
+</span></span><span class="line"><span class="cl"><span class="nf">stackplot</span><span class="p">(</span><span class="n">class</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;Id&#34;</span><span class="p">,</span><span class="n">group_order</span> <span class="o">=</span> <span class="s">&#34;c__Actinobacteria&#34;</span><span class="p">,</span><span class="n">flow</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">,</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-3-9.png" width="864" />
+<h3 id="polar-coordinate">Polar coordinate</h3>
+<p>ggplot2没有提供直接绘制饼图的geom对象，但柱形图可以通过极坐标变换生成饼图或环形图等图形，使用<code>coord_polar()</code>函数可以实现极坐标变换。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建示例数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">category</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;A&#34;</span><span class="p">,</span> <span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="s">&#34;C&#34;</span><span class="p">,</span> <span class="s">&#34;D&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">value</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="m">20</span><span class="p">,</span> <span class="m">15</span><span class="p">,</span> <span class="m">35</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 绘制饼图</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">value</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="n">category</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_bar</span><span class="p">(</span><span class="n">width</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">stat</span> <span class="o">=</span> <span class="s">&#34;identity&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme_void</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 显示图形</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-4-1.png" width="864" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">p</span><span class="o">+</span><span class="nf">coord_polar</span><span class="p">(</span><span class="n">theta</span> <span class="o">=</span> <span class="s">&#34;y&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-4-2.png" width="864" />
+<p>为了方便自己日常使用，我将这一类通过柱形图极坐标变换得到的图形整合进了<code>gghuan</code>函数中：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#help(gghuan)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#输入数据格式很简单第一列是类别，第二列是数字（对应的某个值）即可。</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="o">=</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">type</span> <span class="o">=</span> <span class="kc">letters</span><span class="n">[1</span><span class="o">:</span><span class="m">6</span><span class="n">]</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">10</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gghuan</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="o">+</span> <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">get_cols</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="s">&#34;col3&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-5-1.png" width="480" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#大胆调节每一个设置</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gghuan</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">bar_params</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s">&#34;black&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">text_params</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s">&#34;#b15928&#34;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">3</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">text_params2</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s">&#34;#006d2c&#34;</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">5</span><span class="p">))</span><span class="o">+</span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">get_cols</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="s">&#34;col3&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-5-2.png" width="480" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#改变绘图风格：mode=1~3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#mode=3就是饼图</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gghuan</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="m">3</span><span class="p">)</span> <span class="o">+</span> <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">get_cols</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="s">&#34;col3&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-5-3.png" width="480" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#mode=2就是环状柱形图，相当于coord_polar(theta = &#34;x&#34;)的变换</span>
+</span></span><span class="line"><span class="cl"><span class="nf">gghuan</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="m">2</span><span class="p">)</span> <span class="o">+</span> <span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">get_cols</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="s">&#34;col3&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-5-4.png" width="480" />
+<p>多层的环形图一般用来画具有某种层次关系的表格，比如物种分类信息。</p>
+<p>下面使用函数<code>gghuan2</code>来完成多层环形图绘制:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#提供一个具有一定层级关系的表格（除最后一列外有多少列就有多少个环，最后一列为丰度）</span>
+</span></span><span class="line"><span class="cl"><span class="nf">cbind</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="nf">rowSums</span><span class="p">(</span><span class="n">otutab</span><span class="p">))</span><span class="n">[1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="m">8</span><span class="p">)</span><span class="n">]</span><span class="o">%&gt;%</span><span class="n">dplyr</span><span class="o">::</span><span class="nf">arrange_all</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">test</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>##                                  Kingdom            Phylum
+## s__un_g__Actinoplanes        k__Bacteria p__Actinobacteria
+## s__Lentzea_flaviverrucosa    k__Bacteria p__Actinobacteria
+## s__un_g__Streptomyces        k__Bacteria p__Actinobacteria
+## s__un_f__Thermomonosporaceae k__Bacteria p__Actinobacteria
+## s__Flavobacterium_terrae     k__Bacteria  p__Bacteroidetes
+## s__un_g__Rhizobium           k__Bacteria p__Proteobacteria
+##                                               Class   num
+## s__un_g__Actinoplanes             c__Actinobacteria  8518
+## s__Lentzea_flaviverrucosa         c__Actinobacteria  9508
+## s__un_g__Streptomyces             c__Actinobacteria 10813
+## s__un_f__Thermomonosporaceae      c__Actinobacteria 26147
+## s__Flavobacterium_terrae          c__Flavobacteriia 16484
+## s__un_g__Rhizobium           c__Alphaproteobacteria  7789
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">gghuan2</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">percentage</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span><span class="o">+</span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span> <span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-6-1.png" width="768" />
+<p>这个多层环形图长得跟旭日图也比较像了,不过想画旭日图的话也可以用<code>my_sunburst</code>函数，
+输入的数据格式仍然相同：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">my_sunburst</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"visdat":{"10e694159cb82":["function () ","plotlyVisDat"]},"cur_data":"10e694159cb82","attrs":{"10e694159cb82":{"labels":["p__Actinobacteria","p__Bacteroidetes","p__Proteobacteria","c__Actinobacteria","c__Flavobacteriia","c__Alphaproteobacteria","c__Betaproteobacteria","c__Gammaproteobacteria"],"parents":["k__Bacteria","k__Bacteria","k__Bacteria","p__Actinobacteria","p__Bacteroidetes","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria"],"values":[54986,16484,74430,54986,16484,7789,36154,30487],"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"sunburst"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"labels":["p__Actinobacteria","p__Bacteroidetes","p__Proteobacteria","c__Actinobacteria","c__Flavobacteriia","c__Alphaproteobacteria","c__Betaproteobacteria","c__Gammaproteobacteria"],"parents":["k__Bacteria","k__Bacteria","k__Bacteria","p__Actinobacteria","p__Bacteroidetes","p__Proteobacteria","p__Proteobacteria","p__Proteobacteria"],"values":[54986,16484,74430,54986,16484,7789,36154,30487],"type":"sunburst","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(255,255,255,1)"}},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<h3 id="streamgraph">Streamgraph</h3>
+<p>我们前面已经用<code>stackplot</code>设置flow=T实现了在柱形图的分割间加上了连接的线，
+那我们进一步想想,如果这个连接的线扩展到整个柱子，而柱子越来越细时，就成了一个面积图（areaplot）:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">areaplot</span><span class="p">(</span><span class="n">class</span><span class="p">,</span><span class="n">legend_title</span> <span class="o">=</span><span class="s">&#34;Class&#34;</span><span class="p">)</span><span class="o">+</span><span class="nf">scale_fill_manual</span><span class="p">(</span><span class="n">values</span> <span class="o">=</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">10</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-8-1.png" width="864" />
+<p>更有意思的是，如果连接的线是曲线，并且流动的曲线扩展到整个柱子，就能画出流动图（河流图，Streamgraph）了。</p>
+<p>这里用streamgraph包的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#Install</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#devtools::install_github(&#34;hrbrmstr/streamgraph&#34;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">streamgraph</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># Create data:</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">year</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">1990</span><span class="p">,</span><span class="m">2016</span><span class="p">)</span> <span class="p">,</span> <span class="n">each</span><span class="o">=</span><span class="m">10</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">name</span><span class="o">=</span><span class="nf">rep</span><span class="p">(</span><span class="kc">letters</span><span class="n">[1</span><span class="o">:</span><span class="m">10</span><span class="n">]</span> <span class="p">,</span> <span class="m">27</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">value</span><span class="o">=</span><span class="nf">sample</span><span class="p">(</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">0.0001</span><span class="p">)</span> <span class="p">,</span> <span class="m">270</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># Basic stream graph: just give the 3 arguments</span>
+</span></span><span class="line"><span class="cl"><span class="n">pp</span> <span class="o">&lt;-</span> <span class="nf">streamgraph</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s">&#34;name&#34;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="s">&#34;value&#34;</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s">&#34;year&#34;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="s">&#34;300px&#34;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="s">&#34;1000px&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pp</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div id="htmlwidget-2" class="streamgraph html-widget " style="width:1000px;height:300px;"></div>
+<div id="htmlwidget-f7f33b1b0b02474e3d27-legend" style="width:1000px" class="streamgraph html-widget -legend"><center><label style='padding-right:5px' for='htmlwidget-f7f33b1b0b02474e3d27-select'></label><select id='htmlwidget-f7f33b1b0b02474e3d27-select' style='visibility:hidden;'></select></center></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"data":{"key":["a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j","a","b","c","d","e","f","g","h","i","j"],"value":[0.7952,0.3718,0.1214,0.6906,0.8968,0.0691,0.9151,0.7048,0.0643,0.4265,0.316,0.5239,0.5712,0.8233,0.6365,0.6199,0.4063,0.8236,0.9785,0.6793,0.7703,0.2144,0.9948,0.3316,0.3441,0.6592,0.7459,0.6301,0.4662,0.1761,0.8253,0.9301,0.5511,0.0372,0.273,0.06,0.3341,0.4685,0.0104,0.9016,0.6233,0.9669,0.3267,0.8948,0.3035,0.3209,0.2728,0.1561,0.0222,0.4841,0.9843,0.4071,0.7664,0.6271,0.9159,0.4103,0.0716,0.1796,0.054,0.8239,0.5388,0.881,0.093,0.6207,0.82,0.6635,0.3619,0.1315,0.7353,0.6107,0.6326,0.2128,0.1341,0.2925,0.0453,0.3751,0.8429,0.7438,0.0025,0.6626,0.4326,0.0374,0.7342,0.2192,0.7997,0.4024,0.7859,0.4493,0.9158,0.2794,0.1478,0.5864,0.9838,0.6204,0.8567,0.2419,0.6167,0.1149,0.0344,0.7344,0.538,0.6588,0.6821,0.8529,0.143,0.2863,0.8595,0.233,0.4274,0.4578,0.9348,0.5333,0.3887,0.0579,0.9199,0.1623,0.113,0.3416,0.7655,0.9973,0.5066,0.3363,0.6504,0.1809,0.8848,0.8801,0.3278,0.6798,0.121,0.9684,0.5998,0.2673,0.2567,0.7394,0.2724,0.3405,0.3368,0.3357,0.0582,0.8793,0.0906,0.8908,0.0082,0.3535,0.4874,0.2663,0.2465,0.7704,0.9232,0.1655,0.4345,0.4564,0.0689,0.692,0.5733,0.0016,0.8051,0.6698,0.9979,0.9726,0.1122,0.8505,0.6417,0.3006,0.9481,0.2569,0.6421,0.648,0.4187,0.1506,0.6179,0.02,0.8501,0.0036,0.9344,0.6456,0.4716,0.1172,0.5475,0.4355,0.7801,0.347,0.7314,0.935,0.2762,0.6344,0.3374,0.3568,0.9611,0.4974,0.2937,0.7617,0.0173,0.6377,0.1485,0.911,0.5555,0.6366,0.9259,0.3462,0.3211,0.7409,0.0352,0.8748,0.0677,0.852,0.1371,0.0823,0.2934,0.8844,0.6797,0.402,0.9541,0.4444,0.6214,0.6117,0.9759,0.9682,0.7444,0.9977,0.7285,0.9904,0.5072,0.9676,0.3782,0.9657,0.2899,0.7803,0.4722,0.6476,0.4825,0.7062,0.1119,0.9429,0.4654,0.5189,0.0054,0.2719,0.3644,0.0005,0.5332,0.6242,0.9345,0.4413,0.6736,0.2753,0.6153,0.308,0.771,0.8154,0.4064,0.9195,0.8414,0.5882,0.6274,0.4329,0.5625,0.3157,0.1183,0.5313,0.2986,0.7195,0.7733,0.1603,0.8719,0.7678,0.1385,0.8155,0.3802,0.9078],"date":["1990-01-01","1990-01-01","1990-01-01","1990-01-01","1990-01-01","1990-01-01","1990-01-01","1990-01-01","1990-01-01","1990-01-01","1991-01-01","1991-01-01","1991-01-01","1991-01-01","1991-01-01","1991-01-01","1991-01-01","1991-01-01","1991-01-01","1991-01-01","1992-01-01","1992-01-01","1992-01-01","1992-01-01","1992-01-01","1992-01-01","1992-01-01","1992-01-01","1992-01-01","1992-01-01","1993-01-01","1993-01-01","1993-01-01","1993-01-01","1993-01-01","1993-01-01","1993-01-01","1993-01-01","1993-01-01","1993-01-01","1994-01-01","1994-01-01","1994-01-01","1994-01-01","1994-01-01","1994-01-01","1994-01-01","1994-01-01","1994-01-01","1994-01-01","1995-01-01","1995-01-01","1995-01-01","1995-01-01","1995-01-01","1995-01-01","1995-01-01","1995-01-01","1995-01-01","1995-01-01","1996-01-01","1996-01-01","1996-01-01","1996-01-01","1996-01-01","1996-01-01","1996-01-01","1996-01-01","1996-01-01","1996-01-01","1997-01-01","1997-01-01","1997-01-01","1997-01-01","1997-01-01","1997-01-01","1997-01-01","1997-01-01","1997-01-01","1997-01-01","1998-01-01","1998-01-01","1998-01-01","1998-01-01","1998-01-01","1998-01-01","1998-01-01","1998-01-01","1998-01-01","1998-01-01","1999-01-01","1999-01-01","1999-01-01","1999-01-01","1999-01-01","1999-01-01","1999-01-01","1999-01-01","1999-01-01","1999-01-01","2000-01-01","2000-01-01","2000-01-01","2000-01-01","2000-01-01","2000-01-01","2000-01-01","2000-01-01","2000-01-01","2000-01-01","2001-01-01","2001-01-01","2001-01-01","2001-01-01","2001-01-01","2001-01-01","2001-01-01","2001-01-01","2001-01-01","2001-01-01","2002-01-01","2002-01-01","2002-01-01","2002-01-01","2002-01-01","2002-01-01","2002-01-01","2002-01-01","2002-01-01","2002-01-01","2003-01-01","2003-01-01","2003-01-01","2003-01-01","2003-01-01","2003-01-01","2003-01-01","2003-01-01","2003-01-01","2003-01-01","2004-01-01","2004-01-01","2004-01-01","2004-01-01","2004-01-01","2004-01-01","2004-01-01","2004-01-01","2004-01-01","2004-01-01","2005-01-01","2005-01-01","2005-01-01","2005-01-01","2005-01-01","2005-01-01","2005-01-01","2005-01-01","2005-01-01","2005-01-01","2006-01-01","2006-01-01","2006-01-01","2006-01-01","2006-01-01","2006-01-01","2006-01-01","2006-01-01","2006-01-01","2006-01-01","2007-01-01","2007-01-01","2007-01-01","2007-01-01","2007-01-01","2007-01-01","2007-01-01","2007-01-01","2007-01-01","2007-01-01","2008-01-01","2008-01-01","2008-01-01","2008-01-01","2008-01-01","2008-01-01","2008-01-01","2008-01-01","2008-01-01","2008-01-01","2009-01-01","2009-01-01","2009-01-01","2009-01-01","2009-01-01","2009-01-01","2009-01-01","2009-01-01","2009-01-01","2009-01-01","2010-01-01","2010-01-01","2010-01-01","2010-01-01","2010-01-01","2010-01-01","2010-01-01","2010-01-01","2010-01-01","2010-01-01","2011-01-01","2011-01-01","2011-01-01","2011-01-01","2011-01-01","2011-01-01","2011-01-01","2011-01-01","2011-01-01","2011-01-01","2012-01-01","2012-01-01","2012-01-01","2012-01-01","2012-01-01","2012-01-01","2012-01-01","2012-01-01","2012-01-01","2012-01-01","2013-01-01","2013-01-01","2013-01-01","2013-01-01","2013-01-01","2013-01-01","2013-01-01","2013-01-01","2013-01-01","2013-01-01","2014-01-01","2014-01-01","2014-01-01","2014-01-01","2014-01-01","2014-01-01","2014-01-01","2014-01-01","2014-01-01","2014-01-01","2015-01-01","2015-01-01","2015-01-01","2015-01-01","2015-01-01","2015-01-01","2015-01-01","2015-01-01","2015-01-01","2015-01-01","2016-01-01","2016-01-01","2016-01-01","2016-01-01","2016-01-01","2016-01-01","2016-01-01","2016-01-01","2016-01-01","2016-01-01"]},"markers":null,"annotations":null,"offset":"silhouette","interactive":true,"interpolate":"cardinal","palette":"Spectral","text":"black","tooltip":"black","x_tick_interval":10,"x_tick_units":"year","x_tick_format":"%Y","y_tick_count":5,"y_tick_format":",g","top":20,"right":40,"bottom":30,"left":50,"legend":false,"legend_label":"","fill":"brewer","label_col":"black","x_scale":"date","sort":true,"order":"none"},"evals":[],"jsHooks":[]}</script>
+<h3 id="sankey">Sankey</h3>
+<p>如果我们的数据是每个柱子间有联系的（层级关系或其他包含关系均可），用柱子间的面作为这种通量的量化，
+我们就得到了一个这样的图形，</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">my_sankey</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">mode</span> <span class="o">=</span> <span class="s">&#34;gg&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<p>如果柱子之间再拆开一点的话，这便是我们熟悉的桑基图了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">my_sankey</span><span class="p">(</span><span class="n">test</span><span class="p">,</span><span class="n">mode</span> <span class="o">=</span> <span class="s">&#34;gg&#34;</span><span class="p">,</span><span class="n">space</span> <span class="o">=</span> <span class="m">1e4</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-bar-chart/index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<p>总之，一个简单的柱形图也可以变化出各式各样的衍生图形。</p>
+<p>但所有的可视化方法都是为展示数据服务的，
+我整合这些函数也是希望可以更关注数据本身，花更少的精力在调节图形上，先快速对我们的数据有整体的把握。</p>
+<p><code>pcutils</code>的初衷还是迎合我自己的编程与数据分析习惯的，所以可能并不适合所有人，大家也可以直接fork并修改我的源码，欢迎大家提出建议与意见。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/r/">R</a>
+        
+            <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/">可视化</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/r-vis-pkg/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-vis-pkg/index.en_files/figure-html/unnamed-chunk-2-1.6932b469ee89c8b2a23202f3e6e7f6b2_hu_68db91eb2bec9b13.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 一些有趣的绘图R包"
+                        data-key="r-vis-pkg" 
+                        data-hash="md5-aTK0ae6JyLKiMgLz5uf2sg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">一些有趣的绘图R包</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/ggh4x-ggplot2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/ggh4x-ggplot2/images/README-facets-1.b352e5b8f0a77d2c374dae87631d4672_hu_63b65d67d03f4a4f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post ggh4x包拓展ggplot2绘图"
+                        data-key="ggh4x-ggplot2" 
+                        data-hash="md5-s1LluPCnfSw3Ta6HYx1Gcg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ggh4x包拓展ggplot2绘图</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/r-venn/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-venn/images/venn.98fcfaf23c6f08bbdcde8d4cb4e8c63d_hu_76d177c362f67a7b.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post R绘制Venn图及其变换"
+                        data-key="r-venn" 
+                        data-hash="md5-mPz68jxvCLvc3o1MtOjGPQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">R绘制Venn图及其变换</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/r-treemap/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-treemap/images/cengji.cf6ab7ddbf6b954c2022d6249abcd50a_hu_52c4d6c1588b2175.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post R展示层级数据（桑基/旭日/珠包/Treemap图等）"
+                        data-key="r-treemap" 
+                        data-hash="md5-z2q33b9rlUwgItYkmrzVCg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">R展示层级数据（桑基/旭日/珠包/Treemap图等）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/r-box/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-box/index.en_files/figure-html/unnamed-chunk-6-1.24e7e930b03e1dea4782b8ed1d48d6b6_hu_c6008d46c882d1e7.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post R绘制箱形图及其变换"
+                        data-key="r-box" 
+                        data-hash="md5-JOfpMLA&#43;HepHgrjtHUjWtg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">R绘制箱形图及其变换</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

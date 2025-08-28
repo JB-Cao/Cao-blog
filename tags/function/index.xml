@@ -1,0 +1,1706 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Function on Cao&#39;s blog</title>
+        <link>/tags/function/</link>
+        <description>Recent content in Function on Cao&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Thu, 13 Mar 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/function/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>功能基因探索：木质纤维素（lignocellulose）降解</title>
+        <link>/p/lignocellulose/</link>
+        <pubDate>Thu, 13 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>/p/lignocellulose/</guid>
+        <description>&lt;img src="/p/lignocellulose/images/fig2.png" alt="Featured image of post 功能基因探索：木质纤维素（lignocellulose）降解" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;陆生植物将大部分光合作用固定的碳转化为木质纤维素（lignocellulose），这是一种由纤维素（cellulose）、半纤维素（hemicellulose）、果胶（pectin）和木质素（lignin）等聚合物组成的复合物。在植物生命周期中，这种复杂的基质为其提供结构完整性，并抵御植食性动物和病原体的侵害，因此大部分木质纤维素生物质由腐生生物和碎屑食性生物在碎屑食物网中分解。木质纤维素可作为生物燃料生产的原料，但由于纤维素的准结晶性、半纤维素对纤维素微纤维的复杂包覆以及木质素对多糖组分的穿插和包裹，其难以被酶解处理。在工业过程中，通常通过剧烈的化学和物理预处理来克服这种抗降解性，而生物体则能在生理耐受条件下实现木质纤维素的分解。&lt;/p&gt;
+&lt;h2 id=&#34;降解机制的多样性&#34;&gt;降解机制的多样性&lt;/h2&gt;
+&lt;p&gt;生物体通过多种方式降解木质纤维素，包括氧化攻击、半纤维素酶的作用以及动物的机械破坏，这些方式降低了木质纤维素的抗降解性，从而为解聚酶提供了更好的作用条件。碳水化合物活性酶及其底物结合蛋白的信息被整合在CAZy数据库中。近年来，肽模式识别技术被用于基于功能预测将糖苷水解酶（GH）和辅助活性酶（AA）家族分类为亚家族，并为挖掘基因组数据中的新酶提供工具。本文重点关注CAZy分类中的糖苷水解酶（GHs）和辅助活性酶（AAs），后者作为氧化还原酶，常与GHs协同作用。&lt;/p&gt;
+&lt;h3 id=&#34;纤维素和半纤维素的酶解&#34;&gt;纤维素和半纤维素的酶解&lt;/h3&gt;
+&lt;img src=&#34;images/fig1-1.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;在自然界中，纤维素和半纤维素的降解通过多种碳水化合物活性酶的协同作用实现。糖苷水解酶（GHs）是主要酶类，负责切断纤维素和半纤维素中的糖苷键。多糖酯酶通过去除甲基、乙酰基和酚酯基团辅助GHs发挥作用。在某些情况下，多糖裂解酶也参与解聚过程。不同生物类群中，GH酶的组合因物种、进化压力和环境生态位的不同而存在显著差异。例如，丝状真菌主要产生GH7家族酶，而原核生物则依赖GH48家族酶。尽管GH7家族酶曾被认为仅存在于真菌中，但最新研究表明它们也存在于其他真核生物中。尽管该家族酶在序列和结构上具有高度相似性，但其表面性质可能存在显著差异。其他GH家族则表现出更大的序列和功能多样性。&lt;/p&gt;
+&lt;h3 id=&#34;多糖的氧化解聚&#34;&gt;多糖的氧化解聚&lt;/h3&gt;
+&lt;p&gt;近年来，一种新的氧化酶学机制被发现，用于切断多糖链，这类酶被称为裂解多糖单加氧酶（LPMOs）。其中一些最初被归类为GH61家族纤维素酶，另一些则属于碳水化合物结合模块家族33。目前，降解纤维素的LPMOs被归入AA9家族（主要为真菌酶）和AA10家族（主要为细菌酶）。LPMOs不仅能作用于结晶纤维素，还能降解半纤维素。它们通过平坦活性位点中的铜原子直接氧化攻击聚合物链。此外，非酶解机制如褐腐真菌中的铁依赖芬顿化学反应也能降解纤维素。&lt;/p&gt;
+&lt;h3 id=&#34;木质素的解聚&#34;&gt;木质素的解聚&lt;/h3&gt;
+&lt;img src=&#34;images/fig1-2.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;木质素是一种异质性烷基芳香族聚合物，由三种甲氧基化程度不同的芳香醇组成。自然界中存在多种木质素修饰策略，但能降解木质素的生物远少于降解纤维素的生物。白腐担子菌和一些木质素降解细菌通过分泌过氧化物酶和漆酶等氧化酶降解木质素，生成一系列异质性芳香族化合物，最终被分泌生物或其他微生物代谢。褐腐真菌虽缺乏木质素降解酶，但利用小分子活性物质解聚木质素，切断丙基侧链并脱甲氧基，随后在其他部位重新聚合，以释放纤维素组分并促进降解。修饰后的木质素不被褐腐真菌代谢，而是残留在土壤中。&lt;/p&gt;
+&lt;h2 id=&#34;木质纤维素降解生物的多样性&#34;&gt;木质纤维素降解生物的多样性&lt;/h2&gt;
+&lt;img src=&#34;images/fig2.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;纤维素由多种海洋生物合成，其降解机制可能起源古老。木质素降解的演化则与二叠纪末期有机碳埋藏量的下降同步。陆生植物出现时，生命之树的主要分支已分化，因此木质纤维素降解能力具有多源性，并在生命之树的多个小分支中持续演化。例如，昆虫-原生生物共生关系（促进木质纤维素消化）在侏罗纪晚期出现，而依赖细菌共生的木材消化能力则是双壳类家族Teredinidae和Xylophagainae最后共同祖先的特征。在自然界中，具有互补酶的生物共生体和群落广泛参与生物质的降解。降解过程在多种（有时极端的）环境条件下进行，涉及pH、氧化还原电位、温度和压力的广泛范围，这反映了参与生物的多样性。&lt;/p&gt;
+&lt;h3 id=&#34;原核生物&#34;&gt;原核生物&lt;/h3&gt;
+&lt;p&gt;近年来，强大的宏组学技术使得从富含木质纤维素的环境（如堆肥）中挖掘原核生物群落的遗传多样性成为可能，从而发现可能在工业条件下表现优异的新型木质纤维素降解酶。通过比较宏转录组分析，研究人员已识别出在高负荷条件下能够降解稻草的堆肥微生物群落中高表达的基因。利用宏基因组学和宏蛋白质学对复杂群落中木质纤维素降解微生物的研究，揭示了群落成员的结构、功能及其在营养供应等环境条件变化下的遗传和功能响应。&lt;/p&gt;
+&lt;p&gt;宏组学还为肠道微生物群落的复杂相互关系提供了新见解。白蚁是消化共生的典型例子。在低等白蚁中，细菌和古菌生活在肠道内吞噬木质颗粒的鞭毛虫的细胞质和表面，也存在于粘稠的肠道液体中。拟杆菌门、厚壁菌门、螺旋体门、变形菌门和Elusibacteria是该微生物群的主要成员，参与将生物质转化为甲烷、氢气和乙酸的代谢途径。在低等白蚁Reticulitermes中，通过16S rRNA探针检测到超过4700种细菌系统型。高等白蚁的后肠仅含有原核生物，这些微生物促进经白蚁酶预处理的木质颗粒的分解。后肠液体的纤维素酶活性较低，但与木质颗粒相关的细菌表现出强纤维素酶活性。&lt;/p&gt;
+&lt;p&gt;一些土壤细菌被证实能够氧化木质素，主要属于放线菌门、α-变形菌门或γ-变形菌门，其中一些也存在于白蚁肠道和钻木昆虫中。近年来，原核生物中木质素降解酶的研究取得进展，染料脱色过氧化物酶家族的酶在革兰氏阳性放线菌Rhodococcus jostii RHA1、Amycolatopsis sp. 75iv2和革兰氏阴性γ-变形菌Pseudomonas fluorescens Pf-5中显示出对Mn(II)和β-芳基醚木质素模型化合物的氧化活性。细菌漆酶在链霉菌A3(2)中被证明是酸沉淀木质素生成所必需的。此外，Sphingobium SYK-6中的谷胱甘肽依赖性β-醚酶已被表征，但其在木质纤维素降解中的作用仍需进一步研究。&lt;/p&gt;
+&lt;p&gt;古菌也存在于堆肥和白蚁肠道中，但其木质纤维素降解机制研究较少。一些古菌能在高温下降解木质纤维素，例如在Pyrococcus中发现的GH12内切葡聚糖酶。古菌中已鉴定出五个可能氧化木质素的漆酶基因，其中三个属于盐杆菌目，一个属于热变形菌目。&lt;/p&gt;
+&lt;p&gt;海洋中的自由生活木质降解原核生物分为隧道细菌和侵蚀细菌，其植物细胞壁降解模式不同。隧道细菌为革兰氏阴性杆菌，侵蚀细菌属于黄杆菌-噬纤维菌群。由于两者均未在纯培养中生长，其独立作用机制尚不清楚，但其降解速率较真菌缓慢，主要降解纤维素和半纤维素，而对木质素的改变较小。深水中的木材会招募特定的耐压细菌群落，这些群落与以木材为食的钻孔动物粪便中的细菌明显不同。&lt;/p&gt;
+&lt;h3 id=&#34;单细胞真核生物和原生生物&#34;&gt;单细胞真核生物和原生生物&lt;/h3&gt;
+&lt;p&gt;一些自由生活的原生生物被发现具有内源性纤维素酶。黏菌Dictyostelium的基因组编码一种推测的GH7纤维二糖水解酶，而绿藻Chlamydomonas则利用内切葡聚糖酶降解胞外纤维素。甲藻Alexandrium产生一种与白蚁共生菌相似的纤维素酶，但其功能可能更倾向于辅助细胞分裂而非消化。然而，致病性卵菌Phytophthora则分泌一系列针对半纤维素和纤维素的细胞壁降解酶，包括GH家族1、5、6、7、10以及AA9和AA10的成员。低等白蚁的肠道中寄宿多达19种鞭毛虫类原生生物，这些原生生物吞噬木质颗粒，并在其消化液泡中含有多种酶，如内切葡聚糖酶、GH7纤维二糖水解酶、β-葡萄糖苷酶、木聚糖酶、甘露糖苷酶和阿拉伯糖苷酶。&lt;/p&gt;
+&lt;h3 id=&#34;真菌&#34;&gt;真菌&lt;/h3&gt;
+&lt;p&gt;生物质降解真菌依赖复杂的降解机制，主要包括两类过程：一是直接酶解（如纤维二糖水解酶的作用），二是生成氧化性物质（如自由基）作用于生物质。随着对担子菌门基因组研究的新进展，传统上分类为白腐菌或褐腐菌的真菌可能不再完全符合这些类别，因为其代谢物表达和降解模式存在渐变。然而，在典型的白腐菌降解中，真菌主要采用酶解攻击模式。由于降解酶体积过大，无法穿透完整的细胞壁，白腐菌仅从木质纤维素表面开始攻击。白腐菌使用的酶包括完整的纤维素酶，以及能够氧化木质素成分的酶，如木质素酶、锰过氧化物酶、多功能过氧化物酶或漆酶，或这些酶的组合。一些白腐菌还被发现具有大量LPMO基因。&lt;/p&gt;
+&lt;p&gt;褐腐菌从白腐菌的祖先中多次独立演化而来，在这些进化过程中，木质素降解酶系统和关键纤维素酶逐渐丢失。至少三个褐腐菌目（Gloeophyllales、Polyporales和Boletales）演化出螯合剂介导的芬顿（CMF）系统，替代了大部分纤维素酶机制，从而提供了一种高效的生物质解聚和生物修饰途径。CMF系统是生物系统中唯一基于氧自由基化学的底物降解机制，能够在距离生物体数微米的位置进行非酶解降解。CMF系统的高效性被认为使褐腐菌在生态位竞争中占据优势，例如在针叶木材降解中取代了白腐菌。&lt;/p&gt;
+&lt;p&gt;一些子囊菌也能降解木材细胞壁，形成沿S2基本纤维方向排列的菱形腔链，导致软腐。软腐真菌已知能产生完整的纤维素酶，但其木质素降解能力存在争议，据报道其分泌的未指定胞外过氧化物酶和氧化酶功能较白腐菌更为有限。&lt;/p&gt;
+&lt;h3 id=&#34;动物&#34;&gt;动物&lt;/h3&gt;
+&lt;p&gt;许多无脊椎动物表达内源性纤维素酶。植物寄生线虫、蟑螂和白蚁是最早被证实携带纤维素酶基因的动物，但近年来，这些基因（主要属于GH5、9和45家族）也在其他类群中被明确发现，如其他昆虫、腹足类、甲壳类和环节动物。由于许多昆虫或甲壳类缺乏类似反刍动物和白蚁的大型消化肠道腔室来培养肠道共生微生物，因此这些草食性和碎屑食性动物需要依赖内源性纤维素酶。它们通过口器或外壳对底物进行机械破碎，部分克服了木质纤维素的抗降解性。&lt;/p&gt;
+&lt;p&gt;钻木双壳类（如船蛆）通过外壳的研磨作用摄入木质颗粒。它们缺乏显著的肠道微生物群，而是在鳃的特化细胞内寄宿γ-变形菌内共生体。在船蛆Bankia setacea中，这些细菌产生的木质纤维素降解酶被选择性运输到肠道，包括GH家族5、6、9、10、11、45和53以及碳水化合物酯酶家族1、3、4、6和15的代表，以及AA10家族的LPMOs。这种细菌与消化部位的分离可能使宿主能够捕获释放的糖类，而无需与肠道微生物群竞争。内共生细菌还被证明能够在体内固氮，从而补充木材中有限的有机氮源。船蛆的深海近缘类群Xylophagainae具有类似的共生和降解机制，但能够在极端压力下运作。在摄食陆地植物碎屑的双壳类Corbicula的消化腺和晶杆中，也检测到内源性GH9、10和45酶，但其晶杆在高度木质化底物降解中的作用尚待阐明。&lt;/p&gt;
+&lt;p&gt;在白蚁中，内源性纤维素酶（由唾液腺和中肠产生）与后肠中鞭毛虫和细菌产生的微生物酶协同作用，后者还通过氧化降解木质素基质部分接触纤维素纤维。其他无脊椎动物中内源性酚氧化酶样酶在木质素降解中的作用尚不明确，但近期研究表明活化血蓝蛋白可能参与酚氧化。甲壳类中被证实具有内源性半纤维素酶（如昆布多糖酶），而在白蚁中，半纤维素酶（如木聚糖酶、半乳聚糖酶）主要来自细菌，尽管甘露聚糖酶活性被归因于白蚁的共生原生生物。&lt;/p&gt;
+&lt;p&gt;大多数白蚁依赖肠道微生物群，有时这些微生物甚至存在于鞭毛虫的细胞或细胞核内。而大白蚁亚科则在其巢穴中培养担子菌Termitomyces，该真菌产生多种能够水解复杂多糖的GHs。白蚁工蚁携带能够消化真菌释放的寡糖的细菌。&lt;/p&gt;
+&lt;p&gt;食木甲壳类Chelura（端足类）和Limnoria（等足类）产生属于多个CAZy家族的内源性酶，其中GH5、7和9成员在消化腺转录组中最为显著。它们是已知唯一产生GH7酶的后生动物，其消化道缺乏常驻微生物，因此不具备白蚁中复杂的肠道化学结构。这些动物具有类似酶反应器的肠道，为研究酶功能提供了一个不受微生物相互作用干扰的理想模型。&lt;/p&gt;
+&lt;p&gt;木质纤维素消化在脊椎动物中是一种罕见的饮食策略，但少数陆生（如河狸、熊猫和豪猪）和水生脊椎动物在其正常饮食中摄入大量木质纤维素。除熊猫外，尚不清楚这是否为专性食木性，而熊猫对其饮食的适应性出人意料地差。目前正在研究促进脊椎动物木质纤维素消化的微生物组。新热带淡水生态系统中的鲶鱼科鱼类（如Panaque spp.）是食木性动物。通过16S rRNA基因分析发现，P. nigrolineatus的胃肠道拥有一个包含纤维素降解和固氮微生物近缘种的微生物群落。该群落中的纤维素降解细菌已被表征，并发现其与固氮菌在脊椎动物胃肠道内共生。&lt;/p&gt;
+&lt;h2 id=&#34;cazy数据库&#34;&gt;CAZy数据库&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;http://www.cazy.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CAZy&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;CAZy（Carbohydrate-Active Enzymes，碳水化合物活性酶）数据库是一个专门收录与碳水化合物降解、修饰和合成相关酶的综合性数据库。它基于酶的功能和结构特征，将碳水化合物活性酶分为多个家族，包括糖苷水解酶（Glycoside Hydrolases, GHs）、糖基转移酶（Glycosyl Transferases, GTs）、多糖裂解酶（Polysaccharide Lyases, PLs）、碳水化合物酯酶（Carbohydrate Esterases, CEs）以及辅助活性酶（Auxiliary Activities, AAs）。这些酶在木质纤维素降解、生物质转化以及工业生物技术中具有重要作用。&lt;/p&gt;
+&lt;p&gt;CAZy数据库通过系统化的分类和注释，为研究人员提供了丰富的基因和酶功能信息。例如，糖苷水解酶（GHs）家族包含多种能够切断纤维素和半纤维素中糖苷键的酶，而辅助活性酶（AAs）家族则包括氧化还原酶，常与GHs协同作用以增强降解效率。CAZy数据库不仅收录了已知酶的序列和结构信息，还提供了基于基因组和宏基因组数据的预测工具，帮助研究人员识别新型碳水化合物活性酶。&lt;/p&gt;
+&lt;p&gt;在木质纤维素降解研究中，CAZy数据库被广泛应用于基因功能注释和酶家族分类。通过结合宏基因组学、宏转录组学和宏蛋白质组学数据，研究人员可以挖掘环境中微生物群落的遗传潜力，识别具有工业应用价值的新型酶。例如，利用CAZy数据库，科学家能够快速筛选出参与纤维素、半纤维素和木质素降解的关键酶基因，并进一步研究其功能和应用潜力。&lt;/p&gt;
+&lt;h2 id=&#34;dbcan&#34;&gt;dbCAN&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;http://bcb.unl.edu/dbCAN2/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;dbCAN&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;dbCAN（Database for automated Carbohydrate-active enzyme ANnotation）是一个专门用于自动化注释碳水化合物活性酶（CAZymes）的数据库和工具集。它基于CAZy数据库的分类框架，结合了多种计算方法，能够快速、准确地从基因组、宏基因组或蛋白质组数据中识别和注释CAZymes。dbCAN的目标是为研究人员提供一个高效的工具，帮助他们挖掘和分析与碳水化合物代谢相关的基因和酶。&lt;/p&gt;
+&lt;h3 id=&#34;主要特点与功能&#34;&gt;主要特点与功能&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;基于CAZy分类框架&lt;/strong&gt;&lt;br&gt;
+dbCAN延续了CAZy数据库的分类体系，将碳水化合物活性酶分为六大类：糖苷水解酶（GHs）、糖基转移酶（GTs）、多糖裂解酶（PLs）、碳水化合物酯酶（CEs）、辅助活性酶（AAs）以及碳水化合物结合模块（CBMs）。这种分类方式便于研究人员快速理解酶的功能和分类。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;自动化注释工具&lt;/strong&gt;&lt;br&gt;
+dbCAN提供了一套自动化注释工具，包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;HMMER&lt;/strong&gt;：基于隐马尔可夫模型（HMM）的搜索工具，用于识别CAZymes家族。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;DIAMOND&lt;/strong&gt;：一种快速的序列比对工具，用于初步筛选CAZymes。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hotpep&lt;/strong&gt;：基于短肽模式的搜索工具，用于补充HMMER和DIAMOND的结果。&lt;br&gt;
+这些工具可以单独或联合使用，以提高注释的准确性和全面性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;用户友好的在线平台&lt;/strong&gt;&lt;br&gt;
+dbCAN提供了一个在线平台，用户可以通过上传基因组或蛋白质序列文件，快速获得CAZymes的注释结果。平台支持多种输入格式，并生成详细的注释报告，包括酶家族分类、功能预测和序列比对信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;数据库更新与扩展&lt;/strong&gt;&lt;br&gt;
+dbCAN定期更新，与CAZy数据库保持同步，确保注释结果的准确性和时效性。此外，dbCAN还整合了其他相关数据库的信息，如UniProt和PDB，为用户提供更全面的酶功能信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;基因组与宏基因组分析&lt;/strong&gt;：dbCAN广泛应用于基因组和宏基因组数据中CAZymes的挖掘，帮助研究人员识别与碳水化合物降解、修饰和合成相关的基因。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;功能驱动研究&lt;/strong&gt;：通过dbCAN注释，研究人员可以快速筛选出特定功能的酶家族，进一步研究其催化机制和底物特异性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Dashora, K. et al. Leveraging multiomics approaches for producing lignocellulose degrading enzymes. Cell. Mol. Life Sci. 79, 132 (2022).&lt;/li&gt;
+&lt;li&gt;Andlar, M. et al. Lignocellulose degradation: an overview of fungi and fungal enzymes involved in lignocellulose degradation. Eng. Life Sci. 18, 768–778 (2018).&lt;/li&gt;
+&lt;li&gt;Cragg, S. M. et al. Lignocellulose degradation mechanisms across the tree of life. Curr. Opin. Chem. Biol. 29, 108–119 (2015).&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>微生物的耐酸机制研究</title>
+        <link>/p/acid/</link>
+        <pubDate>Wed, 12 Mar 2025 00:00:00 +0000</pubDate>
+        
+        <guid>/p/acid/</guid>
+        <description>&lt;img src="/p/acid/images/fig1.png" alt="Featured image of post 微生物的耐酸机制研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;在进化过程中，细菌发展出多种机制以应对不同的环境压力，如酸性、温度和抗生素等。其中，酸性环境是细菌最常面临的极端条件之一。耐酸细菌是一类能够在pH 2.0至5.0（也有说6.0的）的强酸性环境中生存的极端微生物（另外还有生长的最适pH在4以下的微生物叫嗜酸微生物，它们不仅耐酸，还依赖酸性环境生长）。这些酸性环境可能由自然过程（如酸性矿山排水、海洋火山喷口和酸性硫泉）或人类活动（如工业废水排放）形成。工业废水中含有大量有机物、悬浮固体和氨氮，其低pH值为耐酸细菌的生存提供了条件。&lt;/p&gt;
+&lt;p&gt;耐酸细菌通过多种机制适应酸性环境，包括生理适应、代谢响应和质子消耗机制。在&lt;strong&gt;生理适应&lt;/strong&gt;方面，细菌通过改变细胞膜组成和流动性来减少质子的内流。例如，降低不饱和脂质的浓度，并通过环丙烷脂肪酸磷脂合成酶修饰磷脂尾结构。此外，外膜蛋白（OMPs）可通过多磷酸盐或尸胺被阻断，而HdeA和HdeB等伴侣蛋白则能在酸性压力下释放底物蛋白。在大肠杆菌中，Hsp31伴侣蛋白和DNA结合蛋白Dps也在酸性压力下保护DNA的完整性。&lt;/p&gt;
+&lt;p&gt;在&lt;strong&gt;代谢响应&lt;/strong&gt;方面，细菌通过质子外排和质子消耗机制应对酸性压力。例如，大肠杆菌K-12在轻度酸性压力下通过氧化电子传递链介导质子外排。此外，细胞膜在细菌适应极端环境中起关键作用，溶质通过ATP驱动的初级运输或质子动力驱动的次级运输系统跨膜运输。某些耐酸细菌（如大肠杆菌和丙酸杆菌）甚至能在pH 2.5的极端条件下存活数小时，主要通过进入稳定期并激活多种耐酸机制来实现。&lt;/p&gt;
+&lt;p&gt;耐酸细菌的机制在工业生物过程、有机酸生产、微生物燃料电池和工业废水生物处理中具有广泛应用。工业废水中含有大量有机物和有毒重金属，直接排放会对环境和人类健康造成严重危害。传统的化学处理方法（如混凝、沉淀和氧化）存在污泥产生、副产物生成和化学品消耗高等问题，而生物修复则是一种更环保的替代方案。耐酸细菌通过生物吸附、生物积累、生物降解和生物沉淀等机制修复酸性矿山排水或污染污泥中的重金属和石油烃化合物（如邻二甲苯、苯和甲苯）。&lt;/p&gt;
+&lt;h2 id=&#34;非典型环境&#34;&gt;非典型环境&lt;/h2&gt;
+&lt;p&gt;耐酸细菌是一类能够在pH 5.0及以下的极端酸性环境中繁衍生息的极端微生物。这些酸性环境可能由自然过程（如酸性矿山排水、海洋火山喷口和酸性硫泉）或人类活动（如工业革命后的工业废水排放）形成。&lt;/p&gt;
+&lt;h3 id=&#34;耐酸细菌的非典型环境与生态系统&#34;&gt;耐酸细菌的非典型环境与生态系统&lt;/h3&gt;
+&lt;p&gt;耐酸细菌主要存在于硫或黄铁矿氧化形成的pH低于5.0的酸性环境中。硫和亚铁在耐酸细菌的作用下分别被氧化为硫酸和三价铁。酸性黄铁矿区域常见于煤矿和硫矿周围，这些区域通常具有较高的硫化物浓度。由于重金属含量高而有机质含量低，这些区域的pH可低至1.0。参与硫酸盐氧化反应的极端耐酸细菌包括&lt;strong&gt;Sulfobacillus thermosulfidooxidans&lt;/strong&gt;、&lt;strong&gt;Thiobacillus acidophilus&lt;/strong&gt;和&lt;strong&gt;Thiobacillus thiooxidans&lt;/strong&gt;等。此外，海底火山区域和热液喷口释放的大量还原硫也为耐酸细菌提供了适宜的生存环境。在金属氧化物中，锌和铜的硫化物最为丰富，而耐酸细菌如&lt;strong&gt;Acidithiobacillus&lt;/strong&gt;、&lt;strong&gt;Ferrimicrobium&lt;/strong&gt;、&lt;strong&gt;Sulfobacillus&lt;/strong&gt;、&lt;strong&gt;Acidimicrobium&lt;/strong&gt;和&lt;strong&gt;Leptospirillum&lt;/strong&gt;等能够氧化铁和硫化物矿物。&lt;/p&gt;
+&lt;p&gt;工业废水、农业用地和市政排放的污染物通常含有高浓度的有机物和无机物（如重金属、异生物质、微塑料以及硝酸盐、磷酸盐和总氮），这些污染物导致废水pH降低，从而形成极端酸性环境。&lt;strong&gt;Acidophilus&lt;/strong&gt;、&lt;strong&gt;Brevibacterium&lt;/strong&gt;、&lt;strong&gt;Leptospirillum&lt;/strong&gt;、&lt;strong&gt;Stenotrophomonas&lt;/strong&gt;和&lt;strong&gt;Thermogymnomonas&lt;/strong&gt;等极端耐酸细菌能够在低pH废水中生存。研究表明，酸性矿山排水、海洋火山喷口、酸性硫泉和工业废水是耐酸细菌的主要栖息地。&lt;/p&gt;
+&lt;h3 id=&#34;耐酸细菌在微生物生态中的作用&#34;&gt;耐酸细菌在微生物生态中的作用&lt;/h3&gt;
+&lt;p&gt;由于酸性环境中溶解有机碳浓度较低，耐酸细菌通常被认为是寡营养型生物。在深矿等无阳光环境中，化能自养型耐酸细菌通过氧化硫化物和铁矿物生存。例如，&lt;strong&gt;Leptospirillum ferrooxidans&lt;/strong&gt;在铁循环中起关键作用，它是一种专性化能自养菌，能够好氧氧化铁。在酸性矿山中，&lt;strong&gt;Ferroplasma&lt;/strong&gt;、&lt;strong&gt;Leptospirillum&lt;/strong&gt;和&lt;strong&gt;Acidithiobacillus&lt;/strong&gt;等属的细菌广泛存在，其基因组测序显示存在编码固氮酶的基因。&lt;/p&gt;
+&lt;p&gt;废水中的重金属是导致低pH的主要原因，而耐酸细菌通过产生脲酶中和酸性环境。脲酶通过生成氨（NH₃）与细胞内质子结合，从而降低细胞内pH。工业废水中的氨去除包括硝化和反硝化两个步骤：化能自养细菌将氨转化为亚硝酸盐（NO₂⁻）和硝酸盐（NO₃⁻），随后硝酸盐通过反硝化过程转化为氮气（N₂）。耐酸细菌的氮源主要包括氨、亚硝酸盐、硝酸盐和其他溶解有机氮化合物。硝酸盐还原为氨的过程涉及两个独立的酶促反应：NADH₂-硝酸还原酶催化NO₃⁻还原为NO₂⁻，铁氧还蛋白-亚硝酸还原酶催化NO₂⁻还原为NH₃，这一过程需要大量能量。&lt;/p&gt;
+&lt;h2 id=&#34;耐酸的细胞机制&#34;&gt;耐酸的细胞机制&lt;/h2&gt;
+&lt;p&gt;耐酸细菌在稳定期能够在低pH环境中存活数小时。为了适应极端酸性环境，多种细菌进化出了不同的细胞机制。当细菌暴露于酸性环境时，外膜和周质空间首先受到损害，因为外膜直接接触外部环境。在压力响应下，膜生物能量学、质子渗透和脂质生理学发生改变，从而降低膜的流动性和质子的通透性。细菌的耐酸细胞机制包括细胞膜修饰、F₁F₀-ATPase质子泵、生物膜形成、碱生成（脲酶活性）以及大分子的保护和修复。&lt;/p&gt;
+&lt;h3 id=&#34;细胞膜修饰&#34;&gt;细胞膜修饰&lt;/h3&gt;
+&lt;img src=&#34;images/fig1.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;外膜结构的改变主要发生在脂肪酸链或头基组成上。通过多磷酸盐或尸胺阻断外膜蛋白（OMPs），可以进一步减少质子的内流。例如，多磷酸盐阴离子（polyP）阻断PhoE3孔蛋白，而尸胺阻断OmpC3和OmpF3孔蛋白。在&lt;strong&gt;Picrophilus oshimae&lt;/strong&gt;中，刚性单层膜和庞大的异戊二烯核心使其对质子不渗透。耐酸细菌通过改变脂肪酸的组成或结构来调节膜流动性。例如，环丙烷脂肪酸磷脂合成酶（CFAS）降低不饱和脂质的浓度，并对不饱和磷脂尾进行甲基化。&lt;/p&gt;
+&lt;p&gt;为维持pH稳态，耐酸细菌利用反向膜电位。在&lt;strong&gt;Acidithiobacillus thioxidans&lt;/strong&gt;和&lt;strong&gt;Acidithiobacillus ferrooxidans&lt;/strong&gt;中，丰富的次级转运蛋白（如H⁺-ATPase、同向转运蛋白和反向转运蛋白）帮助维持pH稳态。&lt;strong&gt;Picophilus torridus&lt;/strong&gt;和&lt;strong&gt;Thermoplasma acidophilum&lt;/strong&gt;则通过利用跨膜质子电化学梯度进行主动运输来调节酸性环境。膜通道的大小和通透性也是维持pH稳态的重要机制。例如，在&lt;strong&gt;Acidithiobacillus ferrooxidans&lt;/strong&gt;中，当pH从3.5降至1.5时，外膜蛋白Omp40上调，其外部L3环调节孔蛋白入口的大小和离子选择性。&lt;/p&gt;
+&lt;p&gt;有机酸（如乙酸和乳酸）对耐酸细菌有害，因为这些质子化酸能够轻易通过细胞膜。&lt;strong&gt;Picophilus torridus&lt;/strong&gt;的基因组揭示了编码有机酸降解途径的基因，包括丙酰-CoA合成酶、两种乙酰-CoA合成酶和乳酸-2-单加氧酶，这些酶将乳酸转化为丙酮酸。&lt;/p&gt;
+&lt;h3 id=&#34;伴侣蛋白与dna保护&#34;&gt;伴侣蛋白与DNA保护&lt;/h3&gt;
+&lt;p&gt;HdeA和HdeB是两种周质伴侣蛋白，能够耐受酸性压力。HdeA的主要功能是防止酸诱导的蛋白质积累，并帮助蛋白质溶解和复性。HdeB具有类似功能。在大肠杆菌中，热休克伴侣蛋白Hsp31在酸性压力下结合并稳定未折叠的蛋白质中间体，随后允许蛋白质自发复性或依赖ATP的伴侣蛋白辅助复性。在酸性环境中，DNA结合蛋白Dps保护DNA免受损害。&lt;/p&gt;
+&lt;h3 id=&#34;ff-atpase质子泵&#34;&gt;F₁F₀-ATPase质子泵&lt;/h3&gt;
+&lt;p&gt;质子动力势（PMF）是细胞内质子梯度的体现，由细胞质与外部环境之间的电荷分离产生。依赖PMF的质子泵是细菌耐酸系统的重要组成部分，在维持pH稳态中起关键作用。在酸性环境中，H⁺的积累降低细胞内pH，随后质子泵开始消耗ATP。通过F₁F₀-ATPase进入细胞的质子在末端氧化酶处还原分子氧，导致代谢活动暂停。例如，&lt;strong&gt;Sulfolobus acidocaldarius&lt;/strong&gt;通过F₁F₀-ATPase将质子排出细胞，从而在酸性环境中生存。在多种耐酸细菌（如&lt;strong&gt;Streptococcus pneumoniae&lt;/strong&gt;和&lt;strong&gt;Lactobacillus acidophilus&lt;/strong&gt;）中，F₁F₀操纵子因酸性pH的刺激而被转录。&lt;strong&gt;Streptococcus mutans&lt;/strong&gt;则通过上调F₁F₀-ATPase应对酸性压力。因此，耐酸细菌通过F₁F₀-ATPase质子泵催化ATP水解，排出过量H⁺，从而耐受外部酸性环境并维持pH稳态。&lt;/p&gt;
+&lt;h3 id=&#34;生物膜形成&#34;&gt;生物膜形成&lt;/h3&gt;
+&lt;img src=&#34;images/fig2.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;许多细菌通过形成生物膜（biofilm）以社区形式附着在表面，从而抵御酸性压力。生物膜形成是一种独特的耐酸机制，涉及细胞群体间的信号交流。在某些细菌中，生物膜对酸性环境具有强耐受性，而其浮游细胞则对酸性敏感。生物膜之所以能够耐受酸性压力，是因为某些蛋白质仅在生物膜形成时表达。例如，在&lt;strong&gt;Pseudomonas aeruginosa&lt;/strong&gt;中，&lt;strong&gt;vfr&lt;/strong&gt;和&lt;strong&gt;gacA&lt;/strong&gt;基因调控&lt;strong&gt;luxR&lt;/strong&gt;同源基因&lt;strong&gt;lasR&lt;/strong&gt;，后者激活&lt;strong&gt;lasI&lt;/strong&gt;表达，生成3-oxo-C12-HSL，与受体蛋白LasR结合形成复合物，从而调控生物膜形成。负调控因子&lt;strong&gt;rsaL&lt;/strong&gt;则抑制&lt;strong&gt;lasR&lt;/strong&gt;表达。这种LasR蛋白-AHL复合物正向驱动与生物膜形成、致病性和次级代谢相关的多个结构基因的表达。&lt;/p&gt;
+&lt;p&gt;在&lt;strong&gt;Streptococcus mutans&lt;/strong&gt;中，&lt;strong&gt;luxS&lt;/strong&gt;合成并分泌AL2，同时抑制&lt;strong&gt;irvA&lt;/strong&gt;的转录。然而，当细胞遭遇酸性压力时，&lt;strong&gt;irvA&lt;/strong&gt;基因的表达显著增加，进而抑制&lt;strong&gt;mutA&lt;/strong&gt;和&lt;strong&gt;mutR&lt;/strong&gt;的转录。&lt;strong&gt;Streptococcus mutans&lt;/strong&gt;的群体感应系统通过调控生物膜形成实现耐酸性。ABC转运蛋白编码基因&lt;strong&gt;comAB&lt;/strong&gt;的产物切割&lt;strong&gt;comC&lt;/strong&gt;基因的产物，生成群体感应肽（CSP）。当CSP达到临界浓度时，传感器激酶ComD（由&lt;strong&gt;comD&lt;/strong&gt;编码）磷酸化&lt;strong&gt;comE&lt;/strong&gt;，启动替代σ因子&lt;strong&gt;comX&lt;/strong&gt;的转录。在&lt;strong&gt;Streptococcus pneumoniae&lt;/strong&gt;中，磷酸化的&lt;strong&gt;comE&lt;/strong&gt;激活两个特异性操纵子&lt;strong&gt;comAB&lt;/strong&gt;和&lt;strong&gt;comCDE&lt;/strong&gt;，以及&lt;strong&gt;comX&lt;/strong&gt;基因，后者诱导遗传竞争性和其他依赖细胞密度的表型。&lt;/p&gt;
+&lt;h3 id=&#34;碱生成脲酶活性&#34;&gt;碱生成——脲酶活性&lt;/h3&gt;
+&lt;img src=&#34;images/fig3.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;耐酸细菌通过胞外代谢产生碱性化合物来中和酸性环境。脲酶将尿素水解为氨和二氧化碳（CO₂）。脲酶通过生成氨与细胞内的质子结合，从而降低细胞内pH，起到中和酸性的作用。脲酶系统由&lt;strong&gt;ureIABCEFGD&lt;/strong&gt;操纵子组成，耐酸细菌通过调控这一系统在pH低至2.5的环境中存活。例如，在&lt;strong&gt;Helicobacter pylori&lt;/strong&gt;和&lt;strong&gt;Streptococcus salivarius&lt;/strong&gt;中，&lt;strong&gt;ureI&lt;/strong&gt;基因帮助将尿素从外部转运至细胞质。因此，脲酶通过生成碱性产物氨，保护细胞免受酸性环境的损害。&lt;strong&gt;Streptococcus sanguis&lt;/strong&gt;和&lt;strong&gt;Streptococcus suis&lt;/strong&gt;也依赖脲酶活性抵御酸性压力。此外，苹果酸乳酸发酵是&lt;strong&gt;Streptococcus mutans&lt;/strong&gt;和&lt;strong&gt;Oenococcus oeni&lt;/strong&gt;产生碱的另一种方式，其在细胞质内通过碱生成过程应对酸性压力，同时生成并排出CO₂。因此，碱生成机制是耐酸细菌在酸性环境中生存的有效策略。&lt;/p&gt;
+&lt;h3 id=&#34;大分子的保护与修复&#34;&gt;大分子的保护与修复&lt;/h3&gt;
+&lt;p&gt;在酸性压力条件下，膜蛋白的稳定性至关重要。特定蛋白质在酸性环境中被诱导，以保护DNA和其他蛋白质。例如，&lt;strong&gt;dps&lt;/strong&gt;蛋白通过形成笼状结构结合铁并减少过氧化氢的毒性来保护DNA，而&lt;strong&gt;recA&lt;/strong&gt;则在DNA修复和激活SOS响应中起关键作用。&lt;strong&gt;Oenococcus oeni&lt;/strong&gt;的热休克蛋白Lo18通过减少蛋白质聚集来增强细菌的耐酸性，从而稳定膜结构并保护蛋白质。&lt;strong&gt;Ffh&lt;/strong&gt;蛋白参与膜内蛋白质转运途径，并帮助蛋白质向细胞外运输。此外，多种伴侣蛋白（如DnaK、DnaJ、GroEL、GroES、GrpE、Clp蛋白酶和EF-Tu）在酸性压力下作为分子伴侣参与蛋白质修复。&lt;/p&gt;
+&lt;p&gt;DNA损伤的修复则依赖于&lt;strong&gt;uvrABCD&lt;/strong&gt;、DNA聚合酶和DNA连接酶。例如，在&lt;strong&gt;Streptococcus mutans&lt;/strong&gt;中，&lt;strong&gt;uvrA&lt;/strong&gt;在pH 5.0的酸性压力下修复DNA损伤。&lt;strong&gt;Escherichia coli&lt;/strong&gt;的DnaK和&lt;strong&gt;Deinococcus radiodurans&lt;/strong&gt;的IrrE也参与酸性压力下的DNA修复机制。在&lt;strong&gt;Bacillus caldontenax&lt;/strong&gt;中，&lt;strong&gt;uvrA&lt;/strong&gt;和&lt;strong&gt;uvrB&lt;/strong&gt;协同识别并修复DNA损伤。&lt;/p&gt;
+&lt;h2 id=&#34;耐酸的遗传机制&#34;&gt;耐酸的遗传机制&lt;/h2&gt;
+&lt;p&gt;除了细胞层面的相互作用，耐酸细菌还通过耐酸基因适应酸性环境。这些基因调控的耐酸机制包括四种依赖吡哆醛-5&amp;rsquo;-磷酸（PLP）的氨基酸脱羧酶酸耐受系统：谷氨酸依赖酸耐受系统（GDAR）、精氨酸依赖酸耐受系统（ADAR）、赖氨酸依赖酸耐受系统（LDAR）和鸟氨酸依赖酸耐受系统（ODAR）。这些系统协同作用，确保耐酸细菌在极端低pH环境中的代谢和生长。&lt;/p&gt;
+&lt;img src=&#34;images/fig4.png&#34; title=&#34;&#34;/&gt;
+&lt;h3 id=&#34;谷氨酸依赖酸耐受系统gdar&#34;&gt;谷氨酸依赖酸耐受系统（GDAR）&lt;/h3&gt;
+&lt;p&gt;GDAR系统由&lt;strong&gt;gadA&lt;/strong&gt;和&lt;strong&gt;gadB&lt;/strong&gt;基因编码的两种Gad酶以及&lt;strong&gt;gadC&lt;/strong&gt;基因编码的谷氨酸/γ-氨基丁酸（GABA）反向转运蛋白组成。GadC将细胞外的质子化谷氨酸转运至细胞内，同时将细胞内的GABA转运至细胞外。通过谷氨酸与GABA的交换，细胞内质子被消耗，从而提高细胞内pH，保护细胞免受酸冲击。在&lt;strong&gt;Lactobacillus reuteri&lt;/strong&gt;中，GadC通过交换GABA和谷氨酸发挥作用。此外，GadC还将谷氨酰胺转运至细胞内，在酸激活的&lt;strong&gt;ybaS&lt;/strong&gt;基因帮助下转化为谷氨酸和氨。在&lt;strong&gt;Escherichia coli&lt;/strong&gt;中，&lt;strong&gt;ybaS&lt;/strong&gt;基因编码的谷氨酰胺酶将L-谷氨酰胺转化为L-谷氨酸，并通过生成氨中和H⁺。GDAR系统在pH低至2.0的极端酸性环境中对多种耐酸细菌的生存至关重要。&lt;/p&gt;
+&lt;h3 id=&#34;精氨酸依赖酸耐受系统adar&#34;&gt;精氨酸依赖酸耐受系统（ADAR）&lt;/h3&gt;
+&lt;p&gt;ADAR系统在酸性条件下（通常pH∼5.0）被最大程度诱导，主要存在于厌氧环境中生长的耐酸细菌中。该系统由&lt;strong&gt;adiA&lt;/strong&gt;基因编码的胞质可诱导精氨酸脱羧酶、&lt;strong&gt;adiY&lt;/strong&gt;基因编码的调控蛋白以及&lt;strong&gt;adiC&lt;/strong&gt;基因编码的反向转运蛋白组成。精氨酸通过AdiC进入细胞，在AdiA的催化下转化为胍丁胺，随后胍丁胺被转运至细胞外。这一交换过程消耗细胞内质子，从而保护细胞。在&lt;strong&gt;Escherichia coli&lt;/strong&gt;中，AdiC通过交换精氨酸和胍丁胺发挥作用。此外，ADAR系统还受ArcD反向转运蛋白调控，精氨酸通过ArcD进入细胞，经精氨酸脱亚胺酶（ADI）代谢为氨和瓜氨酸，最终生成ATP。在&lt;strong&gt;Streptococcus pyogenes&lt;/strong&gt;中，ADAR系统是抵御酸性压力的主要机制。&lt;/p&gt;
+&lt;h3 id=&#34;赖氨酸依赖酸耐受系统ldar&#34;&gt;赖氨酸依赖酸耐受系统（LDAR）&lt;/h3&gt;
+&lt;p&gt;LDAR系统在pH 5.5的厌氧条件下被诱导，由&lt;strong&gt;cadBA&lt;/strong&gt;操纵子组成，包括&lt;strong&gt;cadA&lt;/strong&gt;和&lt;strong&gt;cadB&lt;/strong&gt;基因，受&lt;strong&gt;cadC&lt;/strong&gt;基因产物调控。CadC通过与赖氨酸特异性渗透酶LysP的相互作用诱导&lt;strong&gt;cadBA&lt;/strong&gt;操纵子。在&lt;strong&gt;Escherichia coli&lt;/strong&gt;中，CadC通过LysP间接感知赖氨酸。赖氨酸通过CadB进入细胞，在CadA的催化下转化为尸胺，随后被CadB转运至细胞外。在&lt;strong&gt;Edwardsiella tarda&lt;/strong&gt;中，&lt;strong&gt;cadBA&lt;/strong&gt;操纵子帮助细菌在低pH环境中生存。&lt;/p&gt;
+&lt;h3 id=&#34;鸟氨酸依赖酸耐受系统odar&#34;&gt;鸟氨酸依赖酸耐受系统（ODAR）&lt;/h3&gt;
+&lt;p&gt;ODAR系统在低pH条件下诱导&lt;strong&gt;speF&lt;/strong&gt;和&lt;strong&gt;potE&lt;/strong&gt;基因。鸟氨酸通过PotE进入细胞，转化为腐胺后被转运至细胞外。在&lt;strong&gt;Escherichia coli&lt;/strong&gt;中，PotE通过交换鸟氨酸和腐胺发挥作用。这些脱羧酶在特定低pH范围内表现出最佳酶活性，例如&lt;strong&gt;gadA/gadB&lt;/strong&gt;在pH 1.7-2.8范围内，&lt;strong&gt;adiA&lt;/strong&gt;在pH 4.9-5.2范围内，&lt;strong&gt;ldcI&lt;/strong&gt;在pH 5.7，&lt;strong&gt;speF&lt;/strong&gt;在pH 6.5。因此，耐酸细菌在pH 4.0-7.0范围内表现出强酸应激响应，酶活性随pH升高而降低。&lt;/p&gt;
+&lt;h3 id=&#34;耐酸基因与细菌的进化与多样性&#34;&gt;耐酸基因与细菌的进化与多样性&lt;/h3&gt;
+&lt;p&gt;为适应高度酸性环境，不同耐酸细菌发展出多种耐酸机制。耐酸基因从1924年发现的&lt;strong&gt;Streptococcus mutans&lt;/strong&gt;逐渐进化而来。在酸性环境中，细胞质酸化导致蛋白质和DNA结构损伤，进而诱导蛋白修复伴侣DnaK和信号识别基因&lt;strong&gt;ffh&lt;/strong&gt;的表达，增加氨基酸代谢和氨生成，并上调H⁺-ATPase和DNA损伤修复蛋白RecA。此外，&lt;strong&gt;Streptococcus mutans&lt;/strong&gt;通过群体感应系统&lt;strong&gt;irvA&lt;/strong&gt;和&lt;strong&gt;luxS&lt;/strong&gt;调控生物膜形成，增强耐酸性。在&lt;strong&gt;Streptococcus pyogenes&lt;/strong&gt;中，ADAR系统和F₁F₀-ATPase是主要的耐酸机制。&lt;strong&gt;Salmonella enterica&lt;/strong&gt;则通过ADAR和LDAR系统在低pH环境中生存。&lt;strong&gt;cadBA&lt;/strong&gt;操纵子在&lt;strong&gt;arc&lt;/strong&gt;操纵子之后进化，参与赖氨酸脱羧和精氨酸脱羧机制。近年来，更复杂的耐酸操纵子（如&lt;strong&gt;gad&lt;/strong&gt;操纵子）被广泛发现，这些系统通过水平基因转移和重组进化，从简单系统逐渐发展为广泛分布的复杂系统。&lt;/p&gt;
+&lt;h2 id=&#34;耐酸细菌在工业与生物修复中的应用&#34;&gt;耐酸细菌在工业与生物修复中的应用&lt;/h2&gt;
+&lt;p&gt;耐酸细菌的耐酸机制在工业生物过程和工业废水处理（如矿山废水和石油泄漏）中具有广泛应用（Feng等，2021）。这些机制还可用于提高有机酸的生产效率。开发有效的工具以增强耐酸机制，对扩大工业耐酸细菌的应用至关重要。&lt;/p&gt;
+&lt;h3 id=&#34;工业生物过程与生物发电中的耐酸菌株&#34;&gt;工业生物过程与生物发电中的耐酸菌株&lt;/h3&gt;
+&lt;p&gt;耐酸细菌在工业生物过程中发挥重要作用。例如，在乳酸发酵过程中，&lt;strong&gt;Lactobacillus&lt;/strong&gt;通过大分子修复和谷氨酰胺酶依赖的酸耐受系统应对酸性压力。低pH激活谷氨酸脱羧酶系统，增加γ-氨基丁酸（GABA）的生成，从而筛选高效乳酸菌。&lt;strong&gt;Lactobacillus reuteri&lt;/strong&gt;通过GadA/GadB将谷氨酸转化为GABA，并由GadC转运至细胞外。此外，&lt;strong&gt;Lactobacillus lactis&lt;/strong&gt;通过减少细胞内质子、消耗H⁺和改变细胞膜成分来耐受酸性环境。分子伴侣GroES和GroEL蛋白以及&lt;strong&gt;murG&lt;/strong&gt;、&lt;strong&gt;gshA&lt;/strong&gt;和&lt;strong&gt;gshB&lt;/strong&gt;基因通过遗传工程提高其耐酸性。&lt;/p&gt;
+&lt;p&gt;在乙酸和丁酸生产中，发酵细菌如&lt;strong&gt;Clostridium tyrobutyricum&lt;/strong&gt;和&lt;strong&gt;Acetobacter pasteurianus&lt;/strong&gt;通过&lt;strong&gt;gadA&lt;/strong&gt;、&lt;strong&gt;gadB&lt;/strong&gt;、&lt;strong&gt;gadC&lt;/strong&gt;和&lt;strong&gt;uvrA&lt;/strong&gt;等基因抵御酸性压力。RNA-Seq转录组学分析揭示了&lt;strong&gt;Acetobacter pasteurianus&lt;/strong&gt;通过&lt;strong&gt;yro2&lt;/strong&gt;、&lt;strong&gt;mrh1&lt;/strong&gt;、&lt;strong&gt;COX20&lt;/strong&gt;、&lt;strong&gt;PEP3&lt;/strong&gt;和&lt;strong&gt;RTT109&lt;/strong&gt;等基因修饰细胞膜并保护细胞。丙酸生产菌&lt;strong&gt;Propionibacteria acidipropionici&lt;/strong&gt;则通过GDAR和ADAR系统以及&lt;strong&gt;atpA&lt;/strong&gt;基因编码的F₁F₀-ATPase质子泵维持pH稳态，从而提高丙酸产量。&lt;/p&gt;
+&lt;h3 id=&#34;废水处理与生物发电&#34;&gt;废水处理与生物发电&lt;/h3&gt;
+&lt;p&gt;耐酸细菌广泛用于处理市政污水、农业用地和工业废水。此外，它们还可用于生物发电。微生物燃料电池（MFC）是一种生物电化学装置，利用耐酸细菌催化废水中的可降解化合物生成生物电。在MFC中，耐酸细菌位于阳极室，氧化废水中的有机和无机底物，生成二氧化碳、质子和电子。质子通过质子交换膜传递至阴极，电子通过外部电路传递至阴极，最终还原氧气。&lt;strong&gt;Acidithiobacillus&lt;/strong&gt;和&lt;strong&gt;Ferroplasma&lt;/strong&gt;等菌株在pH 1.5-3.0范围内以四硫酸盐为电子供体产生生物电。然而，MFC的发电效率受高内电阻限制，需通过系统架构的优化提高电力输出。&lt;/p&gt;
+&lt;h3 id=&#34;在生物修复中的应用&#34;&gt;在生物修复中的应用&lt;/h3&gt;
+&lt;p&gt;耐酸细菌在生物修复中广泛应用，尤其是在酸性压力条件下。生物修复是指细菌将有害有机物质矿化或转化为无毒物质，进而参与自然生物地球化学循环的过程。酸性矿山排水（AMD）含有高浓度的铝、铅、砷和锌等重金属，其高酸性进一步溶解其他金属和类金属，增加矿物溶解。耐酸细菌如&lt;strong&gt;Clostridium spp.&lt;/strong&gt; 和&lt;strong&gt;Desulfovibrio spp.&lt;/strong&gt; 通过上流式厌氧污泥床反应器修复酸性矿山排水，其中&lt;strong&gt;Desulfovibrio spp.&lt;/strong&gt; 利用F₁F₀-ATPase质子泵排出细胞内H⁺以耐受酸性环境。&lt;/p&gt;
+&lt;p&gt;废水中的有机污染物和有毒重金属可通过耐酸细菌的酶促反应降解。水解酶、脱氢酶、脱卤酶、蛋白酶和脂肪酶等代谢酶将有机污染物转化为无毒代谢物，实现环境友好型降解。耐酸细菌还可通过生物吸附、生物积累、生物转化和生物沉淀等机制修复重金属污染。例如，生物膜形成的耐酸细菌在去除金属方面更为高效，其胞外聚合物（EPS）通过带负电荷的功能基团吸附金属阳离子。&lt;strong&gt;Desulfovibrio desulfuricans&lt;/strong&gt;产生的EPS有助于锌的生物吸附和生物沉淀，而&lt;strong&gt;Lysinibacillus sphaericus RTA-01&lt;/strong&gt;则通过纳米吸附去除水溶液中的Cr⁶⁺。&lt;/p&gt;
+&lt;p&gt;硫酸盐氧化和硫酸盐还原耐酸细菌分别参与生物浸出和生物沉淀过程。&lt;strong&gt;Acidithiobacillus ferrooxidans&lt;/strong&gt;和&lt;strong&gt;Acidithiobacillus thiooxidans&lt;/strong&gt;等细菌通过生物浸出将低品位铁矿石中的金属氧化为低毒可溶性化合物。&lt;strong&gt;Clostridium spp.&lt;/strong&gt; 和&lt;strong&gt;Desulfovibrio spp.&lt;/strong&gt; 的混合培养物可高效去除铜、镉和镍等重金属。&lt;strong&gt;Pseudomonas aeruginosa&lt;/strong&gt;通过产生金属螯合剂（如铁载体）提高金属溶解性。&lt;/p&gt;
+&lt;p&gt;耐酸细菌还可用于处理工业废水。&lt;strong&gt;Acidophilus&lt;/strong&gt;、&lt;strong&gt;Brevibacterium&lt;/strong&gt;、&lt;strong&gt;Leptospirillum&lt;/strong&gt;和&lt;strong&gt;Stenotrophomonas&lt;/strong&gt;等极端耐酸细菌可用于酸性矿山排水的生物处理。&lt;strong&gt;Lysinibacillus sphaericus RTA-01&lt;/strong&gt;和&lt;strong&gt;Bacillus pumilus CTO-05&lt;/strong&gt;可去除橡胶加工废水中的硝酸盐和磷酸盐。基因复制和耐酸基因的插入有助于提高细菌的生物修复能力。&lt;/p&gt;
+&lt;p&gt;多环芳烃（PAHs）是酸性废水中的常见污染物。&lt;strong&gt;Acidocella sp.&lt;strong&gt;和&lt;/strong&gt;Acidiphilium facilis&lt;/strong&gt;可在pH 2.0的极端条件下降解甲苯、萘、菲和蒽等石油烃。&lt;strong&gt;Pseudomonas putida&lt;/strong&gt;也可用于降解邻二甲苯、苯和甲苯等化合物。生物修复效率受温度、pH、营养物可用性、溶解氧和电子受体等多种因素影响。&lt;strong&gt;ybaS&lt;/strong&gt;、&lt;strong&gt;cfa&lt;/strong&gt;、&lt;strong&gt;dnaK&lt;/strong&gt;和&lt;strong&gt;rpoS&lt;/strong&gt;等耐酸基因在PAHs的降解中起关键作用。因此，提高耐酸基因的表达是增强生物修复和降解效率的关键。&lt;/p&gt;
+&lt;h3 id=&#34;通过工程酸耐受性基因提高酸耐受性&#34;&gt;通过工程酸耐受性基因提高酸耐受性&lt;/h3&gt;
+&lt;p&gt;通过基因工程技术改造耐酸基因，可显著提高细菌的耐酸性。基因组改组和原生质体融合是高效的技术手段。例如，&lt;strong&gt;Propionibacterium acidipropionici&lt;/strong&gt;通过紫外线诱变和原生质体融合，获得耐酸菌株，丙酸产量提高了65%。&lt;strong&gt;Lactococcus lactis&lt;/strong&gt;通过表达&lt;strong&gt;Escherichia coli&lt;/strong&gt;的谷胱甘肽合成酶和&lt;strong&gt;Propionibacterium freudenreichii&lt;/strong&gt;的海藻糖生物合成途径，增强了耐酸性。&lt;strong&gt;Propionibacterium acidipropionici&lt;/strong&gt;工程化&lt;strong&gt;atpA&lt;/strong&gt;基因，利用F₁F₀-ATPase泵出过量质子，维持细胞内pH；&lt;strong&gt;Propionibacterium jensenii ATCC 4868&lt;/strong&gt;引入&lt;strong&gt;arcA&lt;/strong&gt;、&lt;strong&gt;arcC&lt;/strong&gt;、&lt;strong&gt;gadB&lt;/strong&gt;、&lt;strong&gt;gdh&lt;/strong&gt;和&lt;strong&gt;ybaS&lt;/strong&gt;基因，提高了丙酸生产效率。&lt;/p&gt;
+&lt;p&gt;耐酸基因的引入为细菌提供了额外的耐酸机制，基因工程菌株在生物修复和有机污染物降解中具有重要应用。未来需进一步探索耐酸基因的作用，并利用先进基因工程技术进行深入表征，以实现工业废水、重金属和有机污染物的高效、可持续生物修复。&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Mallick, S., Das, S. Acid-tolerant bacteria and prospects in industrial and environmental applications. Appl Microbiol Biotechnol 107, 3355–3374 (2023). &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1007/s00253-023-12529-w&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1007/s00253-023-12529-w&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Mirete, S., Morgante, V., González-Pastor, J.E. (2017). Acidophiles: Diversity and Mechanisms of Adaptation to Acidic Environments. In: Stan-Lotter, H., Fendrihan, S. (eds) Adaption of Microbial Life to Environmental Extremes. Springer, Cham. &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1007/978-3-319-48327-6_9&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1007/978-3-319-48327-6_9&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Guan, N., Liu, L. Microbial response to acid stress: mechanisms and applications. Appl Microbiol Biotechnol 104, 51–65 (2020). &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1007/s00253-019-10226-1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1007/s00253-019-10226-1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Lund PA, De Biase D, Liran O, Scheler O, Mira NP, Cetecioglu Z, Fernández EN, Bover-Cid S, Hall R, Sauer M, O&amp;rsquo;Byrne C. Understanding How Microorganisms Respond to Acid pH Is Central to Their Control and Successful Exploitation. Front Microbiol. 2020 Sep 24;11:556140. doi: 10.3389/fmicb.2020.556140. PMID: 33117305; PMCID: PMC7553086.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>微生物的低温适应/抗寒机制研究</title>
+        <link>/p/psychrophilic/</link>
+        <pubDate>Thu, 07 Nov 2024 00:00:00 +0000</pubDate>
+        
+        <guid>/p/psychrophilic/</guid>
+        <description>&lt;img src="/p/psychrophilic/images/cold-adaption.png" alt="Featured image of post 微生物的低温适应/抗寒机制研究" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;img src=&#34;images/cold-adaption.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;整个太阳系的绝大多数区域，包括地球环境，都以极端温度为特征。值得注意的是，地球生物圈约 80% 的区域周期性或永久寒冷，温度低于 5°C。因此可以认为低温地区是地球上主要的“极端”环境。
+这些环境已被称为嗜冷生物或冷适应生物的多种生物成功定殖，主要包括细菌、古菌、酵母菌、蓝藻和原生生物等微生物。嗜冷微生物通过一系列结构和功能适应，克服低温带来的生存限制，使其能够在这种特殊环境中繁衍生息。&lt;/p&gt;
+&lt;p&gt;自1887年首次发现冷栖生物以来，研究者通过生理学、微生物学和分子生物学等方法研究了它们的适应性、生物地理分布及生态角色。近年来，基因组学、转录组学、蛋白质组学和宏基因组等“组学”技术进一步揭示了其独特的适应机制和关键功能，为冷生态系统的微生物群落结构和功能提供了更全面的视角。&lt;/p&gt;
+&lt;p&gt;低温环境不仅带来热能降低的问题，还伴随着溶剂粘度增加、氧气及活性氧物质溶解度增加、渗透压增强、冰冻、干燥等多重物理化学限制，同时这些环境通常还具有营养缺乏、高盐、氧化应激等压力。例如，深海和冰下环境的微生物还要承受高压，而高海拔和极地环境则会面临光照极端变化。因此，嗜冷微生物需要多种协同适应策略来应对复杂的环境压力。&lt;/p&gt;
+&lt;p&gt;嗜冷微生物的低温适应机制包括一系列生理和结构上的精妙适应，这些适应往往具有多功能性，可应对多种环境压力。每种微生物根据其特定需求和环境条件，采用不同的组合策略，而不是使用所有可能的适应工具（表1）。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;生物产物&lt;/th&gt;
+          &lt;th&gt;提出的冷适应功能&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;膜脂肪酸：不饱和脂肪酸，长链多不饱和脂肪酸 (LC-PUFA)&lt;/td&gt;
+          &lt;td&gt;不饱和脂肪酸：维持膜流动性；长链多不饱和脂肪酸 (LC-PUFA)：维持膜流动性？&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;膜色素：类胡萝卜素&lt;/td&gt;
+          &lt;td&gt;维持膜流动性？抗冻保护？&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;兼容溶质&lt;/td&gt;
+          &lt;td&gt;渗透保护：抵御冰冻引起的渗透应激；干燥保护：抵御冰冻引起的干燥；降低冰点；降低胶态玻璃转变温度；稳定蛋白质和膜&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;抗冻蛋白&lt;/td&gt;
+          &lt;td&gt;冰晶生长抑制（热滞后效应）；冰再结晶抑制；膜稳定性？冰附着？&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;促冰核蛋白&lt;/td&gt;
+          &lt;td&gt;细胞外冰晶核化；防止/减少损害性细胞内冰形成；小冰晶形成？释放结晶潜热？&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;细胞外聚合物&lt;/td&gt;
+          &lt;td&gt;冰晶生长抑制；渗透保护：抵御冰冻引起的渗透应激；干燥保护：抵御冰冻引起的干燥；冰再结晶抑制&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;生物表面活性剂&lt;/td&gt;
+          &lt;td&gt;冰再结晶抑制？渗透保护？&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;冷适应酶&lt;/td&gt;
+          &lt;td&gt;维持适当的代谢通量&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;分子伴侣蛋白&lt;/td&gt;
+          &lt;td&gt;促进蛋白质折叠和稳定性；解构RNA/DNA二级结构&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;储存化合物：聚羟基烷酸酯，青藻素&lt;/td&gt;
+          &lt;td&gt;克服碳和氮吸收缺陷&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&#34;细胞被膜&#34;&gt;细胞被膜&lt;/h2&gt;
+&lt;p&gt;细胞膜及其各种组件发挥着提供形状、支撑和保护以及调节物质进出细胞的运动的关键功能。它保护细胞免受周围环境的影响并抵抗膨胀压力；作为半透膜发挥营养吸收、产物输出和溶质运输的作用；并参与细胞分裂、传感、信号传导和粘附。低温会对细胞膜的特性和功能产生不利影响，导致膜流动性、渗透性和扩散率降低，此外还会降低嵌入蛋白质的流动性和功能，增加膨胀压力，甚至因冰形成和/或冻结而导致物理细胞破裂。虽然细胞膜的冷适应特征早已为人所知，但其他包膜成分、外膜、肽聚糖层甚至外部细胞涂层的适应策略现在也开始被了解。&lt;/p&gt;
+&lt;h3 id=&#34;细胞膜&#34;&gt;细胞膜&lt;/h3&gt;
+&lt;p&gt;冷适应微生物通过“膜黏度调节”机制，通过改变脂肪酸组成来适应低温。具体来说，它们会增加膜中不饱和脂肪酸、短链、支链或顺式异构脂肪酸的含量，从而降低膜的相变温度，维持膜的流动性和功能。这一策略反映在许多嗜冷微生物基因组中，通常富含脂肪酸合成、去饱和酶及其他参与膜生物合成的基因，帮助细胞在低温下维持正常功能。此外，某些嗜冷微生物上调膜运输蛋白的表达，补偿低温引起的扩散和运输速度下降。&lt;/p&gt;
+&lt;p&gt;关于长链多不饱和脂肪酸（LC-PUFAs），虽然它们有助于维持膜流动性，但其主要作用可能在于抗氧化保护。LC-PUFAs如EPA、DHA和ARA在冷水生物中含量较高，尤其在低温下生成更多，能够在膜表面形成疏水屏障，减少活性氧进入细胞。除了抗氧化，它们在膜蛋白的稳定、细胞分裂等方面也有潜在功能。&lt;/p&gt;
+&lt;h3 id=&#34;膜色素&#34;&gt;膜色素&lt;/h3&gt;
+&lt;p&gt;色素，特别是类胡萝卜素，在调节细胞膜流动性方面也可能具有作用。嗜冷微生物常产生色素，如从冰芯、冰川、海洋表层水和高海拔土壤中分离的样本中均观察到了色素生成。研究发现，一些极地类胡萝卜素在低温下生成量增加，可能通过平衡不饱和脂肪酸的流动性作用来稳定膜。然而，一些研究发现低温下某些极地细菌的色素含量反而减少，说明色素作用可能因环境而异。&lt;/p&gt;
+&lt;p&gt;这些色素在低温适应中可能具有多种功能，包括光保护（与其他分子如苔藓氨基酸一起抵御强光和紫外线）、抗氧化（对抗低温环境中的活性氧）、光捕获（光合微生物）以及抗菌。同时，它们还可能作为冷冻保护剂，增强冻融循环的耐受性。由于这些多重功能，色素水平的变化在不同环境中可能有所不同，因此需要进一步研究其在冷适应微生物中的确切作用和机制。&lt;/p&gt;
+&lt;h3 id=&#34;细胞壁&#34;&gt;细胞壁&lt;/h3&gt;
+&lt;p&gt;相较于细胞膜，细胞壁其他成分的冷适应研究相对较少，但最近的一些研究揭示了可能的适应策略。对于细胞壁的适应性变化，一些嗜冷细菌在低温下显示出肽聚糖生物合成基因的上调以及肽聚糖层的增厚。这种增强的肽聚糖层可以形成更强的物理屏障，有助于保护嗜冷菌在冰晶形成、冻融循环或渗透压升高时不受损伤。例如，Planococcus halocryophilus Or1在外细胞表面展现出厚化的外层，这种特有的结构由肽聚糖、碳酸钙和胆碱的疏水性外壳组成，提供了额外的保护。&lt;/p&gt;
+&lt;p&gt;对于革兰氏阴性细菌的细胞壁外膜，冷适应特征主要表现为脂多糖（LPS）结构的变化。研究表明，许多嗜冷菌在低温下产生的LPS为粗糙型（即缺少特异性O链成分），且其链长较短。尽管仅有少数嗜冷菌的LPS结构已被分析，但这种LPS的变化可能有助于在低温下增加外膜的灵活性和稳定性。此外，与细胞膜相似，LPS中的脂质A成分表现出较高的短链和/或不饱和脂肪酸含量，增强了膜的流动性。而核心寡糖部分的高负电荷则有助于捕获冷环境中常见的二价阳离子。&lt;/p&gt;
+&lt;p&gt;与其他细胞包膜成分的研究一致，转录组分析显示，在低温下，LPS生物合成相关基因（主要是糖基转移酶）和外膜蛋白的基因表达上调。例如，突变某些核心LPS糖基转移酶基因会降低南极细菌在低温下的生长能力，这进一步证明了LPS结构在低温适应中的关键作用。&lt;/p&gt;
+&lt;h2 id=&#34;冷冻保护&#34;&gt;冷冻保护&lt;/h2&gt;
+&lt;p&gt;零度以下的温度会导致结冰，从而导致冷冻损伤、渗透压、脱水甚至细胞破裂和死亡。在自然环境中，与细胞外部相比，细胞内部结冰的开始通常延迟，因为前者体积较小且密集且高度拥挤。当温度高速下降时，确实会发生细胞内冰晶的形成，这通常对细胞是致命的，但在自然环境中，冷却通常相对缓慢，因此冰的形成主要局限于细胞外空间（Fonseca et al. 2016） ）。细胞外冰的形成可导致物理破坏性膜破裂，其发生是在排除溶质并除去可用液态水的情况下发生的。这导致细胞外溶质浓度升高并引起细胞内/外渗透压失衡。反过来，这会导致与细胞内部渗透收缩和脱水相关的压力，不仅对细胞功能和存活产生负面影响，而且还会阻止细胞内冰的形成，并导致非晶态无定形（胶体玻璃态）状态，从而抑制细胞新陈代谢（Fonseca 等人，2016）。此外，在相对较高的零度以下温度下，在经历冻融循环的部分冷冻环境中以及在温度波动期间，细胞还可能受到有害的冰再结晶应力，这是一种热力学驱动的过程，导致冰晶聚结和大的、以较小的晶体为代价来致命地破坏冰晶（Bar Dolev 等人，2016b）。&lt;/p&gt;
+&lt;h3 id=&#34;兼容溶质&#34;&gt;兼容溶质&lt;/h3&gt;
+&lt;p&gt;兼容溶质是低分子量、无毒的有机渗透调节物质，许多嗜冷微生物的基因组中包含大量的兼容溶质合成、摄取和降解基因，常见的兼容溶质包括甜菜碱、海藻糖、甘油、蔗糖、肌氨酸、甘露醇和山梨醇等。这些溶质在低温环境中可积累至摩尔浓度，有助于恢复渗透平衡，从而抵消冻融过程中因水分流失和细胞收缩带来的影响。此外，兼容溶质可以降低溶液的冰点，并显著降低细胞质的胶体玻璃转变温度（Tg），例如，在细菌细胞中添加甘油可将细胞质的Tg降低达30°C，同时提高解冻后的存活率。&lt;/p&gt;
+&lt;p&gt;除了渗透平衡的调节外，兼容溶质还可通过自由基清除作用，在低温下保护蛋白质和膜结构。它们能够避免蛋白质聚集，增强蛋白质折叠稳定性，可能是由于其对蛋白质表面的优先排斥作用或水分捕获效应，促进蛋白质的稳定和结构紧致。&lt;/p&gt;
+&lt;h3 id=&#34;冰结合蛋白抗冻蛋白&#34;&gt;冰结合蛋白：抗冻蛋白&lt;/h3&gt;
+&lt;p&gt;抗冻蛋白（AFPs），也称为冰结构蛋白或热滞后蛋白，是一种具有非胶体特性的生物抗冻剂，能够结合冰晶并抑制冰的生长和再结晶。这类蛋白最早在南极鱼类的血液中发现，现已在多种细菌、真菌、硅藻、植物、昆虫和甲壳类动物中被发现。自然界中存在多种结构多样的AFPs，通常带有糖基化或脂质修饰，分子量从约2至50 kDa不等。例如，南极细菌Marinomonas primoryensis中存在一种多结构域的冰黏附蛋白，分子量高达1.5 MDa。AFPs通过不可逆地结合特定的冰晶面，阻止次级成核事件，导致冰晶形成独特的形态。由于Kelvin效应，AFPs的吸附导致冰晶表面局部弯曲，从而阻碍冰的进一步生长，形成热滞后（TH）效应，即冻结点低于融解平衡点，生成的热滞后区域内冰晶生长被抑制。&lt;/p&gt;
+&lt;p&gt;TH活动的温度范围从0.1°C到13°C不等，并且在加入其他AFPs、溶质和离子时可增强。AFPs还是有效的冰再结晶抑制剂（IRI），常以亚微摩尔浓度即能发挥比TH更强的效果。这种IRI作用通常是许多嗜冷微生物分泌AFPs的主要功能，例如南极藻类和冰川冰细菌中的AFPs能有效稳定盐水口袋，维持细胞周围的液态环境。此外，AFPs还可能通过其膜稳定和结构保护作用维持细胞膜的完整性，并可能帮助附着在冰面上，使细胞更好地接近光合区的氧气和营养物质。&lt;/p&gt;
+&lt;h3 id=&#34;冰结合蛋白冰成核蛋白&#34;&gt;冰结合蛋白：冰成核蛋白&lt;/h3&gt;
+&lt;p&gt;冰成核蛋白（INPs）是一类大分子膜结合蛋白，能促进冰的形成。它们通过在接近零度以下的高温环境中引发异质性冰结晶，被认为通过提供模板来使水分子按冰状结构有序排列，从而稳定水分子（Lorv et al. 2014; Pandey et al. 2016; Pummer et al. 2015）。这种作用降低了冰形成的活化能，使冰可以在-2°C左右开始结晶（Li et al. 1997）。INPs由多种生物产生，通常以大的胞外重复多聚体形式存在，且更大的复合体表现出更高的成核活性（Bar Dolev et al. 2016a）。&lt;/p&gt;
+&lt;p&gt;在嗜冷微生物中，INPs被认为通过引导冰的成核至胞外空间来抵御低温损伤（Lorv et al. 2014），从而避免在细胞内形成具有潜在致命破坏力的冰晶。INPs还促进了胞外小冰晶的形成，相较于大冰晶对细胞的损害更小。此外，冰结晶过程中释放的潜热也有助于防止温度的进一步下降（Pummer et al. 2015）。除了在冷适应中的作用，INPs在一些植物病原体中也起到营养挖掘的作用，通过诱发植物的冻害破坏细胞，进而获取植物内部的养分。&lt;/p&gt;
+&lt;img src=&#34;images/INPs.png&#34; title=&#34;&#34;/&gt;
+&lt;h3 id=&#34;细胞外聚合物&#34;&gt;细胞外聚合物&lt;/h3&gt;
+&lt;p&gt;胞外聚合物物质（EPS）是一类多功能的高分子生物聚合物复合物，由各种生物体分泌到其局部环境中。EPS具有复杂多样的结构，主要由碳水化合物（均一或非均一多糖）构成，但也包含蛋白质和较少量的核酸、脂类、酚类和腐殖质。EPS由多种生物产生，可以附着在细胞表面，也可以释放到周围环境中，形成水合凝胶。这些凝胶在生物膜的形成以及细胞环境的物理、化学和生物特性调节中起着重要作用。它们具有多种功能，包括细胞黏附、养分吸收，还在渗透保护、活性氧清除、胞外蛋白保护及抗冻保护等方面发挥重要作用。有关详细综述，请参考Deming和Young (2017)及Ewert和Deming (2013)等文献。&lt;/p&gt;
+&lt;p&gt;在冷适应方面，宏基因组研究已在南极和北极冰架池中发现了大量EPS合成相关基因（Varin et al. 2012），且研究发现，冷适应细菌在低温甚至冰点以下会产生高浓度的EPS（Caruso et al. 2018; Feng et al. 2014; Marx et al. 2009; Mykytczuk et al. 2013）。EPS水合凝胶基质被认为通过在细胞周围形成保护性外壳以充当溶质扩散屏障，并物理阻止冰的形成，从而在低温下保护细胞（Caruso et al. 2018; Deming和Young 2017; Ewert和Deming 2013; Krembs et al. 2011）。这种扩散屏障限制了冰冻诱导的渗透压应激和干燥损伤。此外，EPS的凝胶状状态降低了冰成核的自由能，而溶质排斥至周围液相中则抑制了冰晶的生长，从而保护细胞免受冰损伤，并增加了可居住的液态空间。有趣的是，最近研究表明，冷适应生物产生的EPS具有类似抗冻蛋白（AFP）一样的冰结合功能和冰重结晶抑制（IRI）活性（Casillo et al. 2017a）。相比其他冷适应机制，EPS的研究尚不充分，其在应对低温中的重要作用才刚开始被揭示，未来的研究将有助于更好地理解EPS在冷适应中的多种相互关联的生理和生态功能及其与成分和结构的关系。&lt;/p&gt;
+&lt;h3 id=&#34;生物表面活性剂&#34;&gt;生物表面活性剂&lt;/h3&gt;
+&lt;p&gt;生物表面活性剂是微生物来源的表面活性两亲化合物，可降低液体、固体和气体之间的表面和界面张力。通常，与生物乳化剂例如EPS相比，它们具有低分子量，生物乳化剂往往具有高分子量，并且可以由糖、氨基酸、脂肪酸和/或官能团例如羧酸组成。它们是结构多样的化合物，但最常见的是糖脂（鼠李糖脂、槐糖脂、海藻糖脂和甘露糖赤藓糖醇脂等）、脂肽（表面活性素、伊图林、风霉素、粘胶素等）、磷脂、脂肪酸和中性脂类。在自然界中，它们被认为在增强难溶性疏水底物的生物利用度、调节生物膜结构和表面附着/分离、细菌发病机制和群体感应以及充当抗菌剂和抗真菌剂方面发挥作用。关于冷适应，从南极酵母中分离出的糖脂生物表面活性剂被证明具有 IRI 活性（Kitamoto 等人，2001 年），而生物表面活性剂也被认为具有渗透调节剂的作用（Perfumo 等人，2018 年）。有趣的是，尽管生物表面活性剂的生产似乎在适应寒冷的生物体中广泛存在（Gesheva et al. 2010; Malavenda et al. 2015; Perfumo et al. 2018; Vollú et al. 2014），但调查其在寒冷适应中潜在作用的研究却很少。显然需要进一步的研究来阐明这些化合物是否构成细胞适应寒冷的工具包的一部分，并阐明它们在其中的确切作用和作用机制。&lt;/p&gt;
+&lt;h2 id=&#34;酶&#34;&gt;酶&lt;/h2&gt;
+&lt;p&gt;低温环境下，冷适应微生物面临的主要挑战之一是低温对反应速率的不利影响。根据阿伦尼乌斯定律，所有反应（包括酶促反应）都受温度影响，温度的降低会导致反应速率呈指数下降（Arrhenius 1889）。事实上，对于大多数未适应的酶，从37°C降低到0°C会导致活性降低16–80倍。相比之下，大多数嗜冷生物产生的酶适应其环境，能够在寒冷的栖息地中保持高特异性活性，以维持适当的代谢速率（Collins et al. 2002a；Collins and Gerday 2017；Fields et al. 2015；Gerday 2013；Santiago et al. 2016；Siddiqui 2015）。&lt;/p&gt;
+&lt;p&gt;除少数例外（如Oswald et al. 2014；Roulling et al. 2016），大多数研究的冷适应酶在低至中等温度下表现出较高的催化活性，最佳活性温度较低，且相比中温和嗜热同源酶，其稳定性较差。这些“冷酶”通过减少活化焓（ΔH*）来降低活化能（ΔG*）和反应的温度依赖性，这意味着在催化循环中断裂的焓相互作用数量和/或强度减少（Lonhienne et al. 2000）。此外，较低的负值活化熵（ΔS*）暗示着活化过程中的重排更大，同时在活化过程中热容变化更负，这表明地态具有更高的热容和更多的振动模式（Arcus et al. 2016）；而较高的Km值则暗示底物亲和力较低。这些特征共同说明了嗜冷酶的酶-底物复合物（ES）呈现出不稳定的状态，具有更高的自由能，从而导致观察到的较低ΔG*和增强的催化速率。&lt;/p&gt;
+&lt;p&gt;多项研究利用多种技术调查了嗜冷酶中这种结构不稳定或柔性。值得注意的是，蛋白质的柔性是一种复杂的参数，难以测量。深入的比较研究以表征蛋白质运动的特定幅度、时间框架、涉及区域和温度依赖性将是必要的，且NMR等强有力的技术对更好地理解这一参数至关重要。尽管存在当前的限制，目前普遍接受的观点是，嗜冷酶确实显示出更高的结构柔性，且通过增加特定区域（如催化位点附近）或整个蛋白质的柔性或弹性来克服低温的挑战。这种柔性使得所需的构象变化在低能量成本下得以进行，但也导致稳定性降低。在结构水平上，这种增加的柔性主要通过减少和/或减弱稳定性相互作用（如氢键、盐桥、芳香相互作用、二硫键、离子结合位点等）或减弱疏水核心来实现。此外，还报道了低脯氨酸含量、环状区域甘氨酸含量增加及疏水残基的更高暴露度等特征。这些修饰允许在低温下增加所需的柔性，但也导致嗜冷酶普遍具有较低的稳定性（Collins和Gerday 2017）。重要的是，研究发现不同的酶可能采用不同的结构适应策略，每种酶根据其特性、环境和需求使用独特或组合的修饰方式。&lt;/p&gt;
+&lt;h2 id=&#34;分子伴侣&#34;&gt;分子伴侣&lt;/h2&gt;
+&lt;p&gt;蛋白质和RNA/DNA伴侣蛋白分别促进蛋白质和RNA/DNA的高效折叠，在抗击蛋白质错误折叠和聚集、以及低温下稳定RNA和DNA二级结构方面发挥重要作用。DNA和RNA伴侣蛋白对维持高效的转录、翻译和DNA复制至关重要。它们作为冷休克反应的一部分，在中温和嗜热微生物中短暂产生，但在嗜冷生物中常常持续过表达或在低温下上调（Lim et al. 2000）。与冷适应微生物中的蛋白质伴侣蛋白有关的研究表明，存在持续过表达、生产冷适应变体以及与此相对的未过表达和低温抑制等现象（Ferrer et al. 2003；Godin-Roulling et al. 2015）。&lt;/p&gt;
+&lt;p&gt;值得注意的是，尽管蛋白质错误折叠和沉淀在低温下通常会大大减少，主要是由于疏水相互作用的减弱，但在温度范围较低的条件下，蛋白质还面临着另一个现象：冷变性（Collins and Gerday 2017；Romero-Romero et al. 2011）。冷变性被认为是由于低温下的优先水合作用和疏水性及离子相互作用的减弱，令人感兴趣的是，嗜冷酶可能比其高温适应的同源酶更容易发生这种情况（D’Amico et al. 2003）。然而，冷变性的潜在机制仍未完全明了，未来的研究应关注这一问题。&lt;/p&gt;
+&lt;h2 id=&#34;代谢调整&#34;&gt;代谢调整&lt;/h2&gt;
+&lt;p&gt;近期利用现代组学方法，如基因组学、转录组学和蛋白质组学的研究揭示了多种冷适应微生物的共同特征（参见例如Tribelli和Lopez（2018）中的最新综述）。特别是，研究表明低温下有多种代谢调整，包括主要代谢途径的下调，以及用简化或替代的次级代谢途径进行替代，还有储备化合物的积累和代谢。氧化代谢过程，特别是糖酵解、磷酸戊糖途径、TCA循环和/或电子传递链，以及涉及金属离子和钼红酶代谢的途径，在一些嗜冷生物中被报告在低温下被下调（Medigue et al. 2005; Piette et al. 2011; Tribelli et al. 2015）。虽然这一现象尚未完全理解，但研究表明它们被替代为替代/简化途径，如草酰乙酸、甲基乙二醛或2-甲基柠檬酸循环、乙醇氧化途径、醋酸代谢或丙酰-CoA分解代谢（Ayala-del-Río et al. 2010; Tribelli和Lopez 2018），实际使用的替代途径依赖于微生物及其生态位。这样的代谢重编程策略可能通过避免产生ROS的途径来减轻低温固有的氧化应激，同时可能对能量节约和长期生存具有重要作用。&lt;/p&gt;
+&lt;p&gt;筛选研究表明，冷栖息地中聚羟基烷酸酯（PHA）生产者的含量较高（Ciesielski et al. 2014; Goh和Tan 2012; Pärnänen et al. 2015），许多嗜冷生物能够积累和降解PHA（López et al. 2009; Methé et al. 2005; Ting et al. 2010）和/或类氰藻肽（Duchaud et al. 2007; Methé et al. 2005; Vollmers et al. 2013）化合物。这些化合物可以作为细胞内的碳、氮、还原当量和能量的动态储备，并被认为在克服低温对碳和氮吸收的挑战中起着重要作用。然而，也有研究提出PHA在抗冻保护、抗氧化应激、维持细胞的氧化还原平衡和细胞运动性方面的功能（Methé et al. 2005; Tribelli和Lopez 2018）。&lt;/p&gt;
+&lt;img src=&#34;images/psychrophilic.png&#34; title=&#34;&#34;/&gt;
+&lt;h2 id=&#34;参考文献&#34;&gt;参考文献&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Collins, T., Margesin, R. Psychrophilic lifestyles: mechanisms of adaptation and biotechnological tools. Appl Microbiol Biotechnol 103, 2857–2871 (2019). &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1007/s00253-019-09659-5&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1007/s00253-019-09659-5&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Goyal, D., Swaroop, S., Prakash, O., Pandey, J. (2022). Survival Strategies in Cold-Adapted Microorganisms. In: Goel, R., Soni, R., Suyal, D.C., Khan, M. (eds) Survival Strategies in Cold-adapted Microorganisms. Springer, Singapore. &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1007/978-981-16-2625-8_8&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1007/978-981-16-2625-8_8&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Corsaro, M.M., Casillo, A., Parrilli, E., Tutino, M.L. (2017). Molecular Structure of Lipopolysaccharides of Cold-Adapted Bacteria. In: Margesin, R. (eds) Psychrophiles: From Biodiversity to Biotechnology. Springer, Cham. &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1007/978-3-319-57057-0_13&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1007/978-3-319-57057-0_13&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Choudhary, P., Bhatt, S. &amp;amp; Chatterjee, S. From freezing to functioning: cellular strategies of cold-adapted bacteria for surviving in extreme environments. Arch Microbiol 206, 329 (2024). &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1007/s00203-024-04058-5&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1007/s00203-024-04058-5&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>功能基因预测/注释通用工具</title>
+        <link>/p/function-tools/</link>
+        <pubDate>Tue, 06 Aug 2024 00:00:00 +0000</pubDate>
+        
+        <guid>/p/function-tools/</guid>
+        <description>&lt;img src="/p/function-tools/images/mobileOG.png" alt="Featured image of post 功能基因预测/注释通用工具" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;自己整理一些常用的功能基因预测/注释通用工具，因为数量较多，不会写的很仔细，对于每个单独的工具可以进一步找相关教程学习。&lt;/p&gt;
+&lt;h2 id=&#34;基因结构鉴定工具&#34;&gt;基因结构鉴定工具&lt;/h2&gt;
+&lt;h3 id=&#34;prodigal&#34;&gt;Prodigal&lt;/h3&gt;
+&lt;p&gt;参考教程：&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/zd200572/article/details/135991053&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;一文读懂Prodigal教程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;介绍&lt;/strong&gt;：
+Prodigal（Prokaryotic Dynamic Programming Gene-finding Algorithm）是一款用于原核生物基因预测的高效工具，广泛应用于基因组和宏基因组数据分析。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 下载并解压源代码包：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://github.com/hyattpd/Prodigal/releases/download/v2.6.3/prodigal.linux
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;chmod +x prodigal.linux
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo mv prodigal.linux /usr/local/bin/prodigal
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 或者直接用 conda 安装：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conda install prodigal
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;简单使用&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;基因组序列文件中预测基因：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;prodigal -i input.fasta -o genes.gbk -a proteins.faa
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;genemark&#34;&gt;GeneMark&lt;/h3&gt;
+&lt;p&gt;参考教程：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/developer/article/1625152&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GeneMark-ES&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://cloud.tencent.com/developer/article/2075645&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GeneMarkS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;介绍&lt;/strong&gt;：
+GeneMark是一款通用的基因预测工具，适用于原核和真核生物，能够识别复杂的基因结构。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;前往GeneMark官网（&lt;a class=&#34;link&#34; href=&#34;http://exon.gatech.edu/GeneMark/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://exon.gatech.edu/GeneMark/&lt;/a&gt;）下载相应的版本。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解压并配置环境变量：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -xzvf genemark.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;:/path/to/genemark
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;简单使用&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;对基因组序列文件进行基因预测：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;gmhmmp -m MetaGeneMark_v1.mod -o genes.gff input.fasta
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;prokka&#34;&gt;Prokka&lt;/h3&gt;
+&lt;p&gt;参考教程：&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/woodcorpse/article/details/106552667&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;基因注释Prokka&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;介绍&lt;/strong&gt;：
+Prokka 是一个快速的基因组功能注释工具，能够对细菌、古菌和病毒基因组进行注释。它集成了多个工具，用于基因预测和功能注释，输出标准化的注释结果。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conda install prokka
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;简单使用&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;对基因组序列进行注释：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;prokka input.fasta --outdir annotation_output --prefix sample
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;rna鉴定工具&#34;&gt;RNA鉴定工具&lt;/h2&gt;
+&lt;h3 id=&#34;trnascan-se&#34;&gt;tRNAscan-SE&lt;/h3&gt;
+&lt;p&gt;参考教程：&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/92489a720134&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;tRNAscan-SE安装使用教程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;介绍&lt;/strong&gt;：
+tRNAscan-SE 是一款广泛应用的tRNA基因预测工具，能够高效、准确地识别基因组中的tRNA基因。该工具结合了多个算法，以提高预测准确性。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;：
+安装有点麻烦，需要仔细:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;下载并解压源代码包：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 自己找一下最新版看看&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget http://trna.ucsc.edu/tRNAscan-SE.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -xzvf tRNAscan-SE.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; tRNAscan-SE
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./configure  --prefix&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;make &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make install
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#需要调用infernal&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -c http://eddylab.org/infernal/infernal-1.1.2-linux-intel-gcc.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar xzvf infernal-1.1.2-linux-intel-gcc.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; infernal-1.1.2-linux-intel-gcc/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;./configure  --prefix&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;pwd&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;make &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; make install
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cp binaries/*  bin
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 添加bashrc&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;export PATH=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;:/path/to/tRNAscan-SE/bin&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; ~/.bashrc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;export PERL5LIB=/path/to/tRNAscan-SE/lib:&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PERL5LIB&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; ~/.bashrc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;source&lt;/span&gt; ~/.bashrc
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 需要编辑/path/to/tRNAscan-SE/tRNAscan-SE.conf文件，下面这几行需要修改&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bin_dir: /path/to/tRNAscan-SE/bin
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;lib_dir: /path/to/tRNAscan-SE/lib
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;infernal_dir: /path/to/infernal-1.1.2-linux-intel-gcc/bin
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;简单使用&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;对基因组序列进行tRNA基因预测：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tRNAscan-SE -o output.txt input.fasta
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;aragorn&#34;&gt;ARAGORN&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;介绍&lt;/strong&gt;：
+ARAGORN是一款用于快速和高效识别基因组序列中tRNA和tmRNA基因的工具。它的设计目的是在大规模基因组分析中提供精确的tRNA/tmRNA基因定位。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Conda安装&lt;/strong&gt;：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conda install -c bioconda aragorn
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;简单使用&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;识别tRNA和tmRNA基因：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;aragorn -i input.fasta -o output.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;barrnap&#34;&gt;Barrnap&lt;/h3&gt;
+&lt;p&gt;参考教程：&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/8f4061c38508&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Barrnap预测rRNA基因&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;介绍&lt;/strong&gt;：
+Barrnap是一款快速、小巧的rRNA基因预测工具，专为16S、23S和5S rRNA基因的检测而设计，适用于细菌和古菌。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://github.com/tseemann/barrnap/archive/v0.9.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -xzvf v0.9.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; barrnap-0.9
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sudo cp bin/barrnap /usr/local/bin/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#或者conda安装：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conda install -c bioconda -c conda-forge barrnap
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;简单使用&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;对基因组序列进行rRNA基因预测：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;barrnap input.fasta &amp;gt; output.gff
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;比对软件&#34;&gt;比对软件&lt;/h2&gt;
+&lt;p&gt;我们要对鉴定到的基因进行功能注释，有一些功能数据库具有配套的比对软件，但更多的数据库是只提供序列的，我们需要自己使用一些软件建库比对。&lt;/p&gt;
+&lt;h3 id=&#34;blast&#34;&gt;BLAST&lt;/h3&gt;
+&lt;p&gt;参考教程：&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/de28be1a3bea&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;BLAST教程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;介绍&lt;/strong&gt;：
+BLAST（Basic Local Alignment Search Tool）是一个广泛使用的基因和蛋白质序列比对工具，能够快速地在数据库中查找与查询序列相似的序列。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-*.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -xzvf ncbi-blast-*.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ncbi-blast-*
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 配置环境变量：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;PATH&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$PATH&lt;/span&gt;:/path/to/ncbi-blast-*/bin
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 或者conda安装：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conda install -c bioconda blast
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;简单使用&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建本地数据库：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;makeblastdb -in database.fasta -dbtype nucl -out mydb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;进行序列比对：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;blastn -query query.fasta -db mydb -out results.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;diamond&#34;&gt;DIAMOND&lt;/h3&gt;
+&lt;p&gt;参考教程：&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/u012110870/article/details/102804629&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;DIAMOND: 超快的蛋白序列比对软件&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;介绍&lt;/strong&gt;：
+DIAMOND是一个快速的蛋白质序列比对工具，设计用于比对大规模数据集，速度比BLAST快几个数量级。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://github.com/bbuchfink/diamond/releases/download/v2.0.14/diamond-linux64.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -xzvf diamond-linux64.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 或者conda安装&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conda install -c bioconda diamond
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;简单使用&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建本地数据库：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;diamond makedb --in database.fasta -d mydb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;进行序列比对：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;diamond blastp -d mydb -q query.fasta -o results.m8
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;mmseqs2&#34;&gt;MMseqs2&lt;/h3&gt;
+&lt;p&gt;参考教程：&lt;a class=&#34;link&#34; href=&#34;https://blog.csdn.net/zrc_xiaoguo/article/details/134747183&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MMseqs2蛋白质序列快速高效比对工具&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;介绍&lt;/strong&gt;：
+MMseqs2（Many-against-Many sequence searching）是一个快速高效的序列搜索和聚类工具，适用于大规模数据集，这个可以好好学习一下使用，因为速度算是非常快的。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget https://mmseqs.com/latest/mmseqs-linux.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tar -xzvf mmseqs-linux.tar.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 或者conda安装&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conda install -c conda-forge -c bioconda mmseqs2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;简单使用&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建本地数据库：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mmseqs createdb input.fasta mydb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;进行序列比对：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mmseqs search mydb query.fasta result tmp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mmseqs convertalis mydb query.fasta result results.m8
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在基因组和宏基因组研究中，除了BLAST、DIAMOND和MMseqs2等常用比对软件外，还有一些基于隐马尔可夫模型（HMM）的比对工具，这些工具能够提供更敏感和准确的比对，特别是对于蛋白质家族和结构域的检测。&lt;/p&gt;
+&lt;p&gt;在基因组和宏基因组研究中，基因和功能注释的比对工具是不可或缺的。以下是一些常用的工具，包括HMM（隐马尔可夫模型）相关的比对软件：&lt;/p&gt;
+&lt;h3 id=&#34;hmmer&#34;&gt;HMMER&lt;/h3&gt;
+&lt;p&gt;参考教程：&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/da21884850ad&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;hmmer 简明教程&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;介绍&lt;/strong&gt;：
+HMMER是一款基于HMM的工具，适用于检测蛋白质家族和结构域。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Conda安装&lt;/strong&gt;：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conda install -c bioconda hmmer
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;简单使用&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建HMM模型：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hmmbuild mymodel.hmm myalignment.sto
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;进行HMM比对：
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hmmsearch --tblout results.tbl mymodel.hmm query.fasta
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;功能数据库&#34;&gt;功能数据库&lt;/h2&gt;
+&lt;h3 id=&#34;kegg&#34;&gt;KEGG&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://www.kegg.jp/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;KEGG&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: KEGG (Kyoto Encyclopedia of Genes and Genomes) 是一个综合数据库，提供有关基因组、化学物质和系统功能的信息。它包含了代谢通路、药物、疾病、代谢物等多种数据。KEGG 用于基因和代谢途径的注释，帮助研究人员理解生物体的复杂功能和相互作用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;eggnog&#34;&gt;eggNOG&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;http://eggnogdb.embl.de/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;eggNOG&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: eggNOG (evolutionary genealogy of genes: Non-supervised Orthologous Groups) 是一个用于功能注释和进化学分类的数据库。它通过无监督的方式构建直系同源基因组群，提供高质量的功能预测和注释，广泛应用于基因功能研究和比较基因组学。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;pfam&#34;&gt;Pfam&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;http://pfam.xfam.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Pfam&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: Pfam 是一个蛋白质家族数据库，提供已知蛋白质结构域和功能位点的详细信息。每个结构域在数据库中都以隐马尔可夫模型（HMMs）的形式存储，Pfam 用于注释蛋白质序列，帮助研究人员理解蛋白质的结构和功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;cog&#34;&gt;COG&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://www.ncbi.nlm.nih.gov/research/cog/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;COG&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: COG (Clusters of Orthologous Groups) 数据库针对细菌和古菌，组织和分类了直系同源基因群。COG 提供了跨物种的基因和蛋白质功能注释，帮助研究者识别基因的保守性和功能演化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;interpro&#34;&gt;InterPro&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://www.ebi.ac.uk/interpro/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;InterPro&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: InterPro 是一个综合数据库，整合了多个蛋白质家族、结构域和功能位点的资源。它通过统一的注释标准，帮助研究人员分析和理解蛋白质序列的功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;uniprot&#34;&gt;UniProt&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://www.uniprot.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;UniProt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: UniProt 是一个全面的蛋白质序列和功能数据库。它提供了丰富的蛋白质信息，包括序列、功能注释、相互作用、结构等，广泛应用于生物信息学和系统生物学研究。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;cazy&#34;&gt;CAZy&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;http://www.cazy.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CAZy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: CAZy (Carbohydrate-Active enZymes) 数据库专注于碳水化合物活性酶，包括糖苷水解酶、糖苷转移酶、多糖裂解酶等。CAZy 用于注释和分类这些酶，帮助研究人员理解碳水化合物代谢和功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;merops&#34;&gt;MEROPS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://www.ebi.ac.uk/merops/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MEROPS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: MEROPS 是一个肽酶和肽酶抑制剂的数据库。它分类和注释了各种肽酶及其抑制剂，提供了序列、功能和结构信息，帮助研究人员研究蛋白质降解和调控机制。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;tigrfams&#34;&gt;TIGRFAMs&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://tigrfams.jcvi.org/cgi-bin/index.cgi&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;TIGRFAMs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: TIGRFAMs 是一个用于功能和进化注释的蛋白质家族模型数据库。它基于 HMMs，为每个蛋白质家族提供详细的功能注释，广泛用于基因组和代谢途径的研究。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;card&#34;&gt;CARD&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://card.mcmaster.ca/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CARD&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: CARD（The Comprehensive Antibiotic Resistance Database） 是经过严格筛选的、经过同行评审的耐药性决定因素和相关抗生素的集合，由抗生素耐药性本体论 (ARO) 和 AMR 基因检测模型组织而成。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mobileog-db&#34;&gt;mobileOG-db&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://github.com/clb21565/mobileOG-db&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;mobileOG-db&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: mobileOG-db 是一个用于注释移动基因组的数据库。它基于 HMMs，为每个移动基因组提供详细的功能注释，广泛用于基因组和代谢途径的研究。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&#34;images/mobileOG.png&#34; title=&#34;&#34;/&gt;
+&lt;h3 id=&#34;iceberg3&#34;&gt;ICEberg3&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://tool2-mml.sjtu.edu.cn/ICEberg3/index.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;ICEberg3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: 整合和接合元件（ICE）是重要的移动遗传元件，在细菌进化中发挥着重要作用。它们可以整合到细菌染色体中并拥有完整的接合机制，从而实现细菌细胞之间的自我传播。通过促进不同货物基因的水平转移，ICE赋予宿主有益的特征，如抗生素抗性、发病机制、防御系统、金属抗性、化合物降解和共生，这对细菌多样性和适应有显着贡献。ICEberg 3.0 提供了三个主要增强功能：(i) 具有手动管理功能的新 ICE、IME 和 CIME 数据。 (ii) ICE 货运功能分类。 (iii) 将其重点扩展到涵盖人类微生物组中的 ICE。这些更新通过捕获 ICE 的不同功能和特征，能够有效地促进对细菌进化的理解。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;phastest&#34;&gt;PHASTEST&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://phastest.ca/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PHASTEST&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: PHASTEST旨在支持细菌基因组和质粒中原噬菌体序列的快速识别、注释和可视化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;bacmet&#34;&gt;BacMet&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;http://bacmet.biomedicine.gu.se/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;BacMet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: BacMet 是一种易于使用的抗菌剂和金属抗性基因的生物信息学资源。 BacMet 由两个数据库组成：手动管理的基因数据库，具有经实验证实的抗性功能；基于与具有实验证实功能的基因的序列相似性的预测抗性基因的数据库。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mibpopdb&#34;&gt;mibPOPdb&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;http://mibpop.genome-mining.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;mibPOPdb&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: mibPOPdb 数据库是一个手动管理的综合资源，致力于持久性有机污染物 (POP) 研究的微生物生物修复。数据是从科学文献中系统地、手动地收集的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;元素循环&#34;&gt;元素循环&lt;/h2&gt;
+&lt;h3 id=&#34;碳循环&#34;&gt;碳循环&lt;/h3&gt;
+&lt;p&gt;碳循环是指碳在生物圈、大气圈、水圈和岩石圈中的循环过程。它通过光合作用、呼吸作用、分解和燃烧等途径，维持着地球上的碳平衡。碳循环的重要性在于它对气候变化和生态系统健康的影响。&lt;/p&gt;
+&lt;p&gt;相关信息可以在KEGG找到大部分，甲烷循环部分具有数据库&lt;a class=&#34;link&#34; href=&#34;https://github.com/qichao1984/MCycDB&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MCycDB&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;ncycdb&#34;&gt;NCycDB&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://github.com/Tu-Lab/NCyc&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;NCycDB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: NCycDB 是一个专注于氮循环的基因和酶的数据库，包含与氮循环相关的功能基因信息。它有助于研究氮在生态系统中的转化过程，理解氮循环的分子机制。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;pcycdb&#34;&gt;PCycDB&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://github.com/ZengJiaxiong/Phosphorus-cycling-database&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PCycDB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: PCycDB 是一个关于磷循环的数据库，提供了磷循环相关基因和酶的信息。该数据库有助于研究磷的生物地球化学循环，了解磷在环境中的迁移和转化过程。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;scycdb&#34;&gt;SCycDB&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://github.com/Tu-Lab/SCycDB&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;SCycDB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: SCycDB 专注于硫循环，包含硫循环相关的基因和酶信息。它帮助研究者理解硫在生态系统中的循环过程，分析硫的生物地球化学作用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;asgenedb&#34;&gt;AsgeneDB&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://github.com/Asgene/AsgeneDB&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;AsgeneDB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: AsgeneDB 是一个关于氨基酸循环的数据库，包含氨基酸循环相关的基因和酶信息。它有助于研究氨基酸在生态系统中的循环过程，理解氨基酸的生物地球化学作用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;fegenie&#34;&gt;FeGenie&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://github.com/Arkadiy-Garber/FeGenie&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;FeGenie&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: FeGenie 是一个关于铁循环的数据库，包含铁循环相关的基因和酶信息。它有助于研究铁在生态系统中的循环过程，理解铁的生物地球化学作用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;plasticdb&#34;&gt;PlasticDB&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;官网&lt;/strong&gt;: &lt;a class=&#34;link&#34; href=&#34;https://plasticdb.org&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PlasticDB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;介绍&lt;/strong&gt;: PlasticDB 是一个关于塑料循环的数据库，包含塑料循环相关的基因和酶信息。它有助于研究塑料在生态系统中的循环过程，理解塑料的生物地球化学作用。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>基因集富集分析(GSEA)简介</title>
+        <link>/p/gsea/</link>
+        <pubDate>Wed, 13 Sep 2023 00:00:00 +0000</pubDate>
+        
+        <guid>/p/gsea/</guid>
+        <description>&lt;img src="/p/gsea/images/gsea_intro.jpg" alt="Featured image of post 基因集富集分析(GSEA)简介" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Gene Set Enrichment Analysis (GSEA)
+是一种用于分析基因表达数据的计算生物学方法，旨在揭示与特定生物学过程、通路或功能相关的基因表达模式。GSEA
+最初由麻省理工学院的研究人员开发 (&lt;a class=&#34;link&#34; href=&#34;#ref-subramanianGeneSetEnrichment2005&#34; &gt;&lt;em&gt;1&lt;/em&gt;&lt;/a&gt;)，它不同于传统的基因差异分析方法，如
+t 检验或ANOVA，这些方法通常关注单个基因的表达差异。 相反，GSEA
+专注于整个基因集的表达趋势，这些基因集通常与特定的生物学过程或通路相关联。&lt;/p&gt;
+&lt;p&gt;在典型的实验中，从属于两类之一的样本集合中生成数千个基因的 mRNA
+表达谱，例如，对药物敏感和耐药的肿瘤。
+基因可以根据它们在类别之间的差异表达在排序列表L中排序。挑战在于从这个列表中提取含义。
+一种常见的方法是关注 L
+顶部和底部的少数基因（即那些表现出最大差异的基因），以辨别明显的生物学线索。这种方法有一些主要的局限性:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;在校正多个假设检验后，没有任何单个基因可以满足统计显著性的阈值，因为相对于微阵列技术固有的噪声，相关的生物学差异是适度（不是很明显）的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;或者，人们可能会留下一长串具有统计学意义的基因（太多了），而没有任何统一的生物学主题。解释可能是令人畏惧的和临时的，取决于生物学家的专业领域。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;单基因分析可能会错过对通路的重要影响。细胞过程常常影响协同作用的基因组。&lt;strong&gt;编码代谢途径成员的所有基因增加
+20% 可能会显着改变通过该途径的通量，并且可能比单个基因增加 20
+倍更重要&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;当不同的群体研究相同的生物系统时，两项研究中具有统计学意义的基因列表可能显示出令人沮丧的很少的重叠（但是通路可能有重叠）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;以下是 GSEA 的简要介绍和工作原理：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;基因集定义：首先，GSEA
+需要一个事先定义好的基因集合，这些基因通常按照其在特定生物学通路、功能类别或疾病过程中的作用进行组织。这些基因集可以来自公共数据库，如Gene
+Ontology、KEGG
+Pathway、Reactome，或者是研究者自己根据文献和领域知识构建的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基因表达数据：GSEA
+需要分析的基因表达数据，通常是从微阵列或RNA测序实验中获得的。这些数据包括不同条件或样本中基因的表达水平。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;排列(permutation)检验：GSEA
+的核心思想是通过对基因集的成员在整个基因表达数据中的排列来确定它们的富集程度。具体来说，GSEA
+将所有基因根据其在不同条件下的表达水平进行排序。然后，它从基因集的一端开始，计算该基因集中的基因在排序列表中的偏离程度。如果基因集中的基因在排序列表的某个位置中集中排列，说明该基因集富集在特定的生物学过程或通路中。这个过程通过构建一个富集分数（Enrichment
+Score）来量化。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;统计显著性：对于每个基因集，GSEA
+计算一个富集分数，并基于随机排列检验来估计其统计显著性。如果一个基因集的富集分数在随机排列中的分布表现出显著差异，那么就认为这个基因集在样本中富集。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;结果可视化：最后，GSEA
+会生成结果报告，其中包括富集分数、基因集的统计显著性以及相关通路或功能的信息。这些结果可视化为富集图谱，用于展示不同基因集的富集情况。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure&gt;
+&lt;img src=&#34;images/gsea_intro.jpg&#34; style=&#34;width:80.0%&#34; alt=&#34;图1&#34; /&gt;
+&lt;figcaption aria-hidden=&#34;true&#34;&gt;图1&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;总之，GSEA
+是一种用于揭示基因表达数据中生物学意义的强大工具，它可以帮助研究人员理解不同生物学过程、通路或功能在不同条件下的活动变化。它已经广泛应用于生物医学研究中，特别是在基因表达分析和疾病机制研究中发挥了重要作用。&lt;/p&gt;
+&lt;h2 id=&#34;alogrithm&#34;&gt;Alogrithm&lt;/h2&gt;
+&lt;p&gt;• Step 1: 计算富集分数（Enrichment
+Score，ES）。计算一个富集分数（ES），反映了一个基因集合S在整个排序列表L的极端位置（顶部或底部）上过度表示的程度。分数的计算是通过遍历列表L来实现的，在遇到基因集S中的基因时，增加一个运行总和统计量；在遇到不在基因集S中的基因时，减少这个统计量。增量的大小取决于基因与表型的相关性。富集分数是在随机漫步中遇到的与零的最大偏差；它对应于一种加权的Kolmogorov–Smirnov-like统计量。&lt;/p&gt;
+&lt;p&gt;• Step 2:
+估计ES的显著性水平。通过使用经验性的基于表型的置换测试过程来估计ES的统计显著性（名义P值），该过程保留了基因表达数据的复杂相关结构。具体来说，对表型标签进行排列并重新计算基因集在排列后数据中的ES，这样生成了ES的零分布。然后，计算观察到的ES的经验性名义P值相对于这个零分布。重要的是，类别标签的排列保留了基因与基因之间的相关性，因此提供了一个更符合生物学的显著性评估，而不是通过排列基因而获得的评估。&lt;/p&gt;
+&lt;p&gt;实际上GSEA好像提供了两种排列方法 (&lt;a class=&#34;link&#34; href=&#34;#ref-reimandPathwayEnrichmentAnalysis2019&#34; &gt;&lt;em&gt;2&lt;/em&gt;&lt;/a&gt;)，另一种是基因排列，直接将观察到的路径
+ES 与通过使用匹配大小（例如 1,000
+次）的随机采样基因集重复分析而获得的分数分布进行比较，表型排列应与大量重复一起使用（例如，每个条件至少十次）。
+与基因集排列方法相比，表型排列方法的主要优点是，它在排列过程中保持了具有生物学重要基因相关性的基因集结构。
+表型排列的计算成本很高，并且对于当前版本的
+GSEA，需要自定义编程来分别计算数千个表型随机化的 ES 和差异表达统计数据。&lt;/p&gt;
+&lt;p&gt;• Step 3:
+多重假设检验的调整。当评估整个基因集合数据库时，会调整估计的显著性水平以考虑多重假设检验。首先，对每个基因集的ES进行归一化，以考虑集合的大小，得到一个归一化富集分数（NES）。然后，通过计算与每个NES相对应的虚假发现率（FDR）来控制假阳性比例。FDR是给定NES的一个集合代表虚假阳性发现的估计概率；它是通过比较观察到的NES和零分布的尾部来计算的。&lt;/p&gt;
+&lt;h3 id=&#34;leading-edge-subset&#34;&gt;Leading-Edge Subset&lt;/h3&gt;
+&lt;p&gt;基因集可以通过使用多种方法来定义，但并非基因集的所有成员通常都会参与生物过程。通常，提取有助于
+ES 的高分基因集的核心成员是有用的。&lt;/p&gt;
+&lt;p&gt;将Leading-Edge Subset (前沿子集)定义为基因集 S 中出现在排序列表 L
+中或之前运行总和达到与零的最大偏差的那些基因（图
+1B）。前沿子集可以解释为解释富集信号的基因集的核心。&lt;/p&gt;
+&lt;h3 id=&#34;msigdb&#34;&gt;MSigDB&lt;/h3&gt;
+&lt;p&gt;他们在发表GSEA时同时创建了&lt;a class=&#34;link&#34; href=&#34;https://www.gsea-msigdb.org/gsea/msigdb/index.jsp&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;MSigDB&lt;/a&gt;
+(Molecular Signatures Database)，分子特征数据库 (MSigDB)
+是一个包含数以万计的注释基因集的资源，可与 GSEA
+软件一起使用，分为人类和小鼠集合。&lt;/p&gt;
+&lt;p&gt;比如说人类分子特征数据库 (MSigDB) 中的 33591 个基因集分为 9
+个主要集合和几个子集合，可以自己去下载研究相关的重要基因集：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Collection&lt;/th&gt;
+          &lt;th style=&#34;text-align: left&#34;&gt;Description&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;H: hallmark gene sets&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Hallmark gene sets summarize and represent specific well-defined biological states or processes and display coherent expression. These gene sets were generated by a computational methodology based on identifying overlaps between gene sets in other MSigDB collections and retaining genes that display coordinate expression. details&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C1: positional gene sets&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gene sets corresponding to human chromosome cytogenetic bands. details&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C2: curated gene sets&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gene sets in this collection are curated from various sources, including online pathway databases and the biomedical literature. Many sets are also contributed by individual domain experts. The gene set page for each gene set lists its source. The C2 collection is divided into the following two subcollections: Chemical and genetic perturbations (CGP) and Canonical pathways (CP). details&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C3: regulatory target gene sets&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gene sets representing potential targets of regulation by transcription factors or microRNAs. The sets consist of genes grouped by elements they share in their non-protein coding regions. The elements represent known or likely cis-regulatory elements in promoters and 3’-UTRs. The C3 collection is divided into two subcollections: microRNA targets (MIR) and transcription factor targets (TFT). details&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C4: computational gene sets&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Computational gene sets defined by mining large collections of cancer-oriented microarray data. The C4 collection is divided into two subcollections: CGN and CM. details&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C5: ontology gene sets&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gene sets that contain genes annotated by the same ontology term. The C5 collection is divided into two subcollections, the first derived from the Gene Ontology resource (GO) which contains BP, CC, and MF components and a second derived from the Human Phenotype Ontology (HPO). details&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C6: oncogenic signature gene sets&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gene sets that represent signatures of cellular pathways which are often dis-regulated in cancer. The majority of signatures were generated directly from microarray data from NCBI GEO or from internal unpublished profiling experiments involving perturbation of known cancer genes. details&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C7: immunologic signature gene sets&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gene sets that represent cell states and perturbations within the immune system. details&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;C8: cell type signature gene sets&lt;/td&gt;
+          &lt;td style=&#34;text-align: left&#34;&gt;Gene sets that contain curated cluster markers for cell types identified in single-cell sequencing studies of human tissue. details&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Table 1: Gene sets in the Human Molecular Signatures Database .&lt;/p&gt;
+&lt;h2 id=&#34;example&#34;&gt;Example&lt;/h2&gt;
+&lt;p&gt;这里介绍在R中完成GSEA的方法&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;对GSEA分析的geneList排序&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;明确我们用来排序的指标（metric）。
+目前大部分分析是只比较两组间差异的，所以会将基因按照在两类样本中的差异表达程度（一般是log2FoldChange）排序，但实际上这里可以使用多种指标比如相关性，p值，也可以直接进行多组的分析比较（当然一定要明确排序两端代表的生物学意义）。尽量不要进行原始基因表格的筛选，比如只取DEGs，因为GSEA本身就是一个无阈值的富集方法，相比fisher.test等阈值方法考虑的会更多一些。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#直接使用DOSE提供的一个geneList，已经通过log2FoldChange从大到小排序过了，而且这个向量的name是每一个entrez gene id, value是log2FoldChange值。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DOSE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;geneList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;DOSE&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;geneList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;pre&gt;&lt;code&gt;##     4312     8318    10874    55143    55388      991 
+## 4.572613 4.514594 4.418218 4.144075 3.876258 3.677857
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;使用R包进行GSEA富集&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;如果要使用GSEA官网提供的带GUI软件，可以参考这篇nature
+protocol，里面详细介绍了每一步的操作 (&lt;a class=&#34;link&#34; href=&#34;#ref-reimandPathwayEnrichmentAnalysis2019&#34; &gt;&lt;em&gt;2&lt;/em&gt;&lt;/a&gt;)。&lt;/p&gt;
+&lt;p&gt;这里我们使用更方便一点的R包来进行。clusterProfiler包内的gseGO()和gseKEGG()函数可以很方便地对GO与KEGG通路进行GSEA。
+如果明确我们要富集的基因集的话，也可以自己构建并使用clusterProfiler::GSEA()富集。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;clusterProfiler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;KEGG_kk_entrez&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;gseKEGG&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;geneList&lt;/span&gt;  &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;geneList&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                          &lt;span class=&#34;n&#34;&gt;organism&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;hsa&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pvalueCutoff&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0.25&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;#实际为padj阈值,可调整。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;但上面这行代码在我的机器上结果是– No gene can be
+mapped….，可能是我机器上的clusterProfiler包内部数据库问题。&lt;/p&gt;
+&lt;p&gt;但是没有关系，我一般也会自己从kegg上把想分析的通路信息都爬下来，操作见上一篇关于&lt;a class=&#34;link&#34; href=&#34;../kegg-api2&#34; &gt;kegg
+api的介绍&lt;/a&gt;，
+具体的代码都集成在&lt;a class=&#34;link&#34; href=&#34;../reporterscore-package&#34; &gt;ReporterScore&lt;/a&gt;里面了，下面直接使用ReporterScore进行GSEA分析。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ReporterScore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#加载human kegg数据库&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;load_org_pathway&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;org&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;hsa&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#这里包含了human所有gene-kegg_pathway的对应关系，可以使用download_org_pathway()进行更新。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hsa_kegg_pathway&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;all_org_gene&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;pre&gt;&lt;code&gt;##   pathway_id kegg_gene_id gene_symbol                      gene_desc  KO_id
+## 1   hsa00010         3101         HK3                   hexokinase 3 K00844
+## 2   hsa00010         3098         HK1                   hexokinase 1 K00844
+## 3   hsa00010         3099         HK2                   hexokinase 2 K00844
+## 4   hsa00010        80201       HKDC1 hexokinase domain containing 1 K00844
+## 5   hsa00010         2645         GCK                    glucokinase K12407
+## 6   hsa00010         2821         GPI  glucose-6-phosphate isomerase K01810
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 假设我们的gene table如下，行名是gene symbol，使用t.test比较WT-OE两组差异&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;ko.test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;genedf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Group&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;method&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;t.test&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;da_res&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 统计结果如下&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;da_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;pre&gt;&lt;code&gt;##               KO_id   average_WT        sd_WT   average_OE        sd_OE
+## MME             MME 0.0026728975 0.0011094132 0.0020694937 0.0014922004
+## PEX11A       PEX11A 0.0004554658 0.0001951678 0.0024480601 0.0014916566
+## DSC2           DSC2 0.0027767713 0.0006253559 0.0025519275 0.0004966801
+## PLIN5         PLIN5 0.0005779169 0.0008952163 0.0005197504 0.0001435245
+## MIRLET7A2 MIRLET7A2 0.0020807307 0.0007731661 0.0014321838 0.0004273716
+## NCBP2L       NCBP2L 0.0021064422 0.0005243558 0.0017419317 0.0005382770
+##                diff_mean Highest      p.value    p.adjust
+## MME       -0.00060340387      WT 0.2200529827 0.321714887
+## PEX11A     0.00199259427      OE 0.0001376795 0.001449258
+## DSC2      -0.00022484380      WT 0.2852910552 0.392962886
+## PLIN5     -0.00005816647      WT 0.8072016928 0.865027977
+## MIRLET7A2 -0.00064854693      WT 0.0095033556 0.028624565
+## NCBP2L    -0.00036451047      WT 0.0707452991 0.134260284
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# GSEA富集,logFC排序,从gene水平富集到hsa的通路&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;gsea_res&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;KO_gsea&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;da_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;weight&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;logFC&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;hsa&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;feature&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;gene&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# GSEA结果如下：&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gsea_res&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;@&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;pre&gt;&lt;code&gt;##                ID
+## hsa05235 hsa05235
+## hsa05162 hsa05162
+## hsa05323 hsa05323
+## hsa05322 hsa05322
+## hsa04660 hsa04660
+## hsa04142 hsa04142
+##                                                                            Description
+## hsa05235 PD-L1 expression and PD-1 checkpoint pathway in cancer - Homo sapiens (human)
+## hsa05162                                                Measles - Homo sapiens (human)
+## hsa05323                                   Rheumatoid arthritis - Homo sapiens (human)
+## hsa05322                           Systemic lupus erythematosus - Homo sapiens (human)
+## hsa04660                      T cell receptor signaling pathway - Homo sapiens (human)
+## hsa04142                                               Lysosome - Homo sapiens (human)
+##          setSize enrichmentScore       NES      pvalue  p.adjust    qvalue rank
+## hsa05235      13       0.8015443  1.885221 0.005680812 0.3204232 0.3178287  118
+## hsa05162      18       0.7355862  1.857939 0.006161984 0.3204232 0.3178287   14
+## hsa05323      14       0.7751069  1.850851 0.005438948 0.3204232 0.3178287    1
+## hsa05322      15       0.7364826  1.787932 0.011670053 0.3798506 0.3767749  101
+## hsa04660      15       0.7348533  1.783977 0.012174699 0.3798506 0.3767749   43
+## hsa04142      20      -0.5462876 -1.628928 0.018884445 0.4909956 0.4870199   40
+##                            leading_edge                     core_enrichment
+## hsa05235 tags=46%, list=12%, signal=41% CD28/TICAM1/MAPK13/ALK/RPS6KB2/TLR9
+## hsa05162  tags=11%, list=1%, signal=11%                           CD28/TAB2
+## hsa05323    tags=7%, list=0%, signal=7%                                CD28
+## hsa05322 tags=27%, list=10%, signal=24%              CD28/H4C13/H3C15/H2BW2
+## hsa04660  tags=13%, list=4%, signal=13%                         CD28/MAPK13
+## hsa04142  tags=15%, list=4%, signal=15%               AP1M2/SLC17A5/SLC11A2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ID&lt;/strong&gt;：某条通路基因集的名字&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;：通路的文字描述&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;setSize&lt;/strong&gt;：gene set（S）中的基因数目（经过条件筛选后的值）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;enrichmentScore&lt;/strong&gt;：富集评分&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;NES&lt;/strong&gt;：校正后的归一化的ES值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;pvalue&lt;/strong&gt;：对富集得分ES的统计学分析，用来表征富集结果的可信度&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;p.adjust&lt;/strong&gt;：对pvalue进行BH调整后的值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;qvalue&lt;/strong&gt;：即多重假设检验校正之后的pvalue。对NES可能存在的假阳性结果的概率估计，因此FDR越小说明富集越显著；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;rank&lt;/strong&gt;：取到ES值时，对应基因在排序好的基因列表中所处的位置&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;leading_edge&lt;/strong&gt;：该处有3个统计值&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ES&amp;gt;0在左边，ES&amp;lt;0在右边&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;tags=xx%表示peak gene在S中的位置。指示有贡献的gene数量。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;list=xx%表示peak gene在L中的位置。指示ES在哪里得到。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;signal计算：$(Tag%)(1-Gene%)(\frac{N}{N-Nh})$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;N：L中的gene数量&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Nh：S中的gene数量&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;结果可视化
+使用enrichplot包对富集结果进行可视化。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#对于单条通路&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;enrichplot&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;gseaplot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gsea_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;geneSetID&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;hsa05235&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src=&#34;/p/gsea/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#多条通路展示&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;enrichplot&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;gseaplot2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gsea_res&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;geneSetID&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hsa05235&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hsa05162&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;hsa04660&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src=&#34;/p/gsea/index.en_files/figure-html/unnamed-chunk-6-2.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;strong&gt;第1部分 - ES折线图&lt;/strong&gt;：在ES折线图中，离垂直距离x=0轴最远的峰值便是基因集的ES值。峰出现在排序基因集的前端（ES值大于0）则说明通路上调，出现在后端（ES值小于0）则说明通路下调。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第2部分 - 基因集成员位置图&lt;/strong&gt;：在该图中，用竖线标记了基因集中各成员出现在基因排序列表中的位置。若竖线集中分布在基因排序列表的前端或后端，说明该基因集通路上调或下调；若竖线较均匀分布在基因排序列表中，则说明该基因集通路在比较的两个数据中无明显变化。 红色部分对应的基因在实验组中高表达，蓝色部分对应的基因在对照组中高表达， leading edge subset 是（0,0）到曲线峰值ES出现对应的这部分基因成员。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;第3部分 - 排序后所有基因rank值分布&lt;/strong&gt;：该图展示了排序后的所有基因rank值（由log2FoldChange值计算得出）的分布，以灰色面积图显展示。&lt;/p&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;links：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/581172803&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://zhuanlan.zhihu.com/p/581172803&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://zhuanlan.zhihu.com/p/518144716&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://zhuanlan.zhihu.com/p/518144716&lt;/a&gt;&lt;/p&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references csl-bib-body&#34;&gt;
+&lt;div id=&#34;ref-subramanianGeneSetEnrichment2005&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;1. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;A. Subramanian, P. Tamayo, V. K. Mootha, S. Mukherjee, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1073/pnas.0506580102&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Gene set enrichment analysis: A knowledge-based approach for interpreting genome-wide expression profiles&lt;/a&gt;. &lt;em&gt;Proceedings of the National Academy of Sciences&lt;/em&gt;. &lt;strong&gt;102&lt;/strong&gt;, 15545–15550 (2005).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-reimandPathwayEnrichmentAnalysis2019&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;2. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;J. Reimand, R. Isserlin, V. Voisin, M. Kucera, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1038/s41596-018-0103-9&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Pathway enrichment analysis and visualization of omics data using g:Profiler, GSEA, cytoscape and EnrichmentMap&lt;/a&gt;. &lt;em&gt;Nature Protocols&lt;/em&gt;. &lt;strong&gt;14&lt;/strong&gt;, 482–517 (2019).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+        </item>
+        <item>
+        <title>Reporter Score 微生物功能富集分析</title>
+        <link>/p/reporter-score/</link>
+        <pubDate>Wed, 10 May 2023 00:00:00 +0000</pubDate>
+        
+        <guid>/p/reporter-score/</guid>
+        <description>&lt;img src="/p/reporter-score/images/misuse2.jpeg" alt="Featured image of post Reporter Score 微生物功能富集分析" /&gt;&lt;script src=&#34;/p/reporter-score/index.en_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;/p/reporter-score/index.en_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;功能富集分析&lt;/strong&gt;是一种用于分析基因集合或基因组数据中功能模式富集程度的计算方法。它可以帮助揭示在特定生物学背景下，哪些功能模块、代谢通路、基因家族等在统计上富集或显著过表示。&lt;/p&gt;
+&lt;p&gt;功能富集分析通常包括以下步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;数据预处理：根据研究问题和数据类型，选择适当的基因集合或基因组数据，例如基因表达数据、基因注释数据或基因列表。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;注释和功能分类：将基因集合与已知的功能注释数据库进行比较，例如基因本体论（Gene Ontology）、KEGG（Kyoto Encyclopedia of Genes and Genomes）通路数据库等。这一步将基因与特定的功能或生物过程相关联。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;统计分析：使用合适的统计方法，如超几何分布、Fisher’s exact test、GSEA（基因集富集分析）等，评估每个功能的富集程度。这些方法会计算一个得分或P值，用于判断功能是否在给定基因集合中富集。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;结果解释和可视化：根据统计分析的结果，识别在给定条件下显著富集的功能模块，并将结果进行解释和可视化。这可以帮助研究人员理解基因集合或基因组数据中的生物学特征和功能。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;功能富集分析可应用于多个研究领域，如基因表达分析、蛋白质组学、微生物组学等。它可以帮助研究人员理解基因集合的生物学意义，从而揭示生物过程、代谢通路、细胞组分等在特定条件下的调控机制，并为进一步的实验设计和研究提供有价值的指导。&lt;/p&gt;
+&lt;p&gt;$$
+P=1-\sum_{i=0}^{m-1}\frac{C_M^iC_{N-M}^{n-i}}{C_N^n}
+$$&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;P：&lt;/strong&gt; 某pathway的富集显著性；
+&lt;strong&gt;N：&lt;/strong&gt; 注释上KEGG的所有基因的数量；
+&lt;strong&gt;n：&lt;/strong&gt; 所有显著差异的基因数量；
+&lt;strong&gt;M：&lt;/strong&gt; 所有基因中注释到某pathway的基因数量；
+&lt;strong&gt;m：&lt;/strong&gt; 所有差异基因中注释到某pathway的基因数量&lt;/p&gt;
+&lt;p&gt;R函数phyper:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;phyper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;-1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;phyper&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;-1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lower.tail&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;data.frame&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gene.not.interest&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;N&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;M&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;gene.in.interest&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;row.names&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;In_category&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;not_in_category&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;fisher.test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;alternative&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;greater&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;table class=&#34; lightable-classic&#34; style=&#34;font-family: Cambria; margin-left: auto; margin-right: auto;&#34;&gt;
+&lt;caption&gt;
+Table 1: Methods for microbial enrichment analysis.
+&lt;/caption&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Method
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Type
+&lt;/th&gt;
+&lt;th style=&#34;text-align:left;&#34;&gt;
+Notes
+&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Hypergeometric test / Fisher’ exact test
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+algorithm
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+The most common method used in enrichment analysis. There are many enrichment analysis platforms or software developed based on it, including DAVID, clusterprofile, etc.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Gene set enrichment analysis (GSEA)
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+software
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Gene Set Enrichment Analysis (GSEA) is a computational method that determines whether an a priori defined set of genes shows statistically significant, concordant differences between two biological states (e.g. phenotypes).
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Clusterprofiler
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+R package
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+ClusterProfiler automates the process of biological-term classification and the enrichment analysis of gene clusters, which calculates enrichment test for GO terms and KEGG pathways based on hypergeometric distribution.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Reporter score
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+algorithm
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+The plus or minus sign of reporter score does not represent regulation direction.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Reporter feature analysis
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+algorithm
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Reporter feature can achieve enrichment ananlysis for non-directional, mixed-directional up/down-regulation, and distinct-directional up/down-regulation classes.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Piano
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+R package
+&lt;/td&gt;
+&lt;td style=&#34;text-align:left;&#34;&gt;
+Piano is a R package that implements the Reporter Features algorithm. Piano performs gene set analysis using various statistical methods, from different gene level statistics and a wide range of gene-set collections. Furthermore, the Piano package contains functions for combining the results of multiple runs of gene set analyses.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Reporter score&lt;/strong&gt;是一种改良的微生物富集分析的新方法，此方法最初是为了揭示代谢网络中的转录调控模式而开发的，目前已被引入微生物研究中进行功能富集分析。&lt;/p&gt;
+&lt;h2 id=&#34;method&#34;&gt;Method&lt;/h2&gt;
+&lt;p&gt;Reporter score算法最初由Patil和Nielsen于2005年开发，用于识别代谢调节热点的代谢物 (&lt;a class=&#34;link&#34; href=&#34;#ref-patilUncoveringTranscriptionalRegulation2005&#34; &gt;&lt;em&gt;1&lt;/em&gt;&lt;/a&gt;)。&lt;/p&gt;
+&lt;p&gt;应用于宏基因组分析，则是基于基因的KO（KEGG orthology，同源基因）注释，获得KO的差异信息，再”上升”至KEGG pathway的功能层面。主要步骤如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;使用Wilcoxon秩和检验获得两分组间每个KO差异显著性的P值（即$P_{koi}$，i代表某个KO）；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;采用逆正态分布，将每个KO的P值转化为Z值（$Z_{koi}$）,公式：$Z_{koi}=\theta ^{-1}(1-P_{koi})$；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;将KO”上升”为pathway：$Z_{koi}$，计算通路的Z值,$Z_{pathway}=\frac{1}{\sqrt{k}}\sum Z_{koi}$，其中k表示对应通路共注释到k个KO；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;评估显著程度：置换（permutation）1000次，获得$Z_{pathway}$的随机分布，公式：$Z_{adjustedpathway}=(Z_{pathway}-\mu _k)/\sigma _k$，$μ_k$为随机分布的均值，$σ_k$为随机分布的标准差。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;最终获得的$Z_{adjustedpathway}$，即为每条代谢通路富集的Reporter score值，&lt;strong&gt;Reporter score是非方向性的，Reporter score越大代表富集越显著，但不能指示通路的上下调信息&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;misuse&#34;&gt;Misuse&lt;/h2&gt;
+&lt;p&gt;最近有一篇文章就讨论了reporter-score的正负号误用问题 (&lt;a class=&#34;link&#34; href=&#34;#ref-liuMisuseReporterScore2023&#34; &gt;&lt;em&gt;2&lt;/em&gt;&lt;/a&gt;)：&lt;/p&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://mp.weixin.qq.com/s?__biz=MzUzMjA4Njc1MA==&amp;amp;mid=2247507105&amp;amp;idx=1&amp;amp;sn=d5a0f0aaf176e245de7976f0a48f87a8#rd&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://mp.weixin.qq.com/s?__biz=MzUzMjA4Njc1MA==&amp;mid=2247507105&amp;idx=1&amp;sn=d5a0f0aaf176e245de7976f0a48f87a8#rd&lt;/a&gt;&lt;/p&gt;
+&lt;img src=&#34;images/misuse2.jpeg&#34; style=&#34;width:90.0%&#34; /&gt;
+&lt;p&gt;主要结论是 &lt;strong&gt;reporter score&lt;/strong&gt;算法（上述）是一种忽略通路中KOs上/下调节信息的富集方法，直接将reporter score的符号视为通路的调节方向是不正确的。&lt;/p&gt;
+&lt;p&gt;但是我们应该可以将其改为能够考虑通路内KO上下调的方式，我称为directed 模式, 参考自&lt;a class=&#34;link&#34; href=&#34;https://github.com/wangpeng407/ReporterScore&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/wangpeng407/ReporterScore&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;具体步骤如下:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;使用Wilcoxon秩和检验或者t.test获得两分组间每个KO差异显著性的P值（即$P_{koi}$，i代表某个KO），再将P值除以2，即将(0,1]的范围变为(0,0.5]，$P_{koi}=P_{koi}/2$；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;采用逆正态分布，将每个KO的P值转化为Z值（$Z_{koi}$）,公式：$Z_{koi}=\theta ^{-1}(1-P_{koi})$，由于上述P值小于0.5，则Z值将全部大于0；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;考虑每个KO是上调还是下调，计算$\Delta KO_i$，&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;$$
+\Delta KO_i=\overline {KO_{i_{g1}}}-\overline {KO_{i_{g2}}}
+$$&lt;/p&gt;
+&lt;p&gt;其中，$\overline {KO_{i_{g1}}}$ 是组1的$KO_i$ 的平均丰度,$\overline {KO_{i_{g2}}}$ 是组2的$KO_i$ 的平均丰度，然后：&lt;/p&gt;
+&lt;p&gt;$$
+Z_{koi} =
+\begin{cases}
+-Z_{koi},  &amp;amp; (\Delta KO_i&amp;lt;0) \
+Z_{koi}, &amp;amp; (\Delta KO_i \ge 0)
+\end{cases}
+$$&lt;/p&gt;
+&lt;p&gt;这样的话$Z_{koi}$大于0为上调，$Z_{koi}$小于0为下调。&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;将KO”上升”为pathway：$Z_{koi}$，计算通路的Z值,$Z_{pathway}=\frac{1}{\sqrt{k}}\sum Z_{koi}$，其中k表示对应通路共注释到k个KO；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;评估显著程度：置换（permutation）1000次，获得$Z_{pathway}$的随机分布，公式：$Z_{adjustedpathway}=(Z_{pathway}-\mu _k)/\sigma _k$，$μ_k$为随机分布的均值，$σ_k$为随机分布的标准差。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;最终获得的$Z_{adjustedpathway}$，即为每条代谢通路富集的Reporter score值，在这种模式下，Reporter score是方向性的，更大的正值代表显著上调富集，更小的负值代表显著下调富集。&lt;/p&gt;
+&lt;p&gt;但是这种方法的缺点是当一条通路显著上调KO和显著下调KO差不多时，最终的Reporter score绝对值可能会趋近0，成为没有被显著富集的通路。&lt;/p&gt;
+&lt;h2 id=&#34;rpackage&#34;&gt;Rpackage&lt;/h2&gt;
+&lt;p&gt;因为我看目前没有现成的工具完成Reporter Score分析（除了一些云平台，但可能不太方便），所以我参考&lt;a class=&#34;link&#34; href=&#34;https://github.com/wangpeng407/ReporterScore&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/wangpeng407/ReporterScore&lt;/a&gt; 写了一个R包帮助分析（虽然也不是特别复杂）&lt;/p&gt;
+&lt;p&gt;地址：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Asa12138/ReporterScore&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/Asa12138/ReporterScore&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;安装方法：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;install.packages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;devtools&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;devtools&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;install_github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;Asa12138/ReporterScore&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dependencies&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;T&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用方法：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ReporterScore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dplyr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ggplot2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#准备KO丰度表和实验metadata&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;KO_test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;KO_abundance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;pre&gt;&lt;code&gt;##                CG1         CG2         CG3         CG4         CG5         CG6
+## K03169 0.002653545 0.005096380 0.002033923 0.000722349 0.003468322 0.001483028
+## K07133 0.000308237 0.000280458 0.000596527 0.000859854 0.000308719 0.000878098
+## K03088 0.002147068 0.002030742 0.003797459 0.004161979 0.002076596 0.003091182
+##                CG7         CG8         CG9        CG10        CG11        CG12
+## K03169 0.002261685 0.004114644 0.002494258 0.002793671 0.004053729 0.002437170
+## K07133 0.000525566 0.000356138 0.000445409 0.000268306 0.000293546 0.000465780
+## K03088 0.003098506 0.002558730 0.002896506 0.002618472 0.002367986 0.002082786
+##               CG13        CG14        CG15         EG1         EG2         EG3
+## K03169 0.002187500 0.001988374 0.002304885 0.003317368 0.001150671 0.002610814
+## K07133 0.000507992 0.000409447 0.000327910 0.002916018 0.004820742 0.001973789
+## K03088 0.002680792 0.003066870 0.002975895 0.002257401 0.002889640 0.001997586
+##                EG4         EG5         EG6         EG7         EG8         EG9
+## K03169 0.000900673 0.001545374 0.001640295 0.001445024 0.001096728 0.001026556
+## K07133 0.003359927 0.001913932 0.001384079 0.001321643 0.002376473 0.004391014
+## K03088 0.002613441 0.002803388 0.002251835 0.002981244 0.002944061 0.003113215
+##               EG10        EG11        EG12        EG13        EG14        EG15
+## K03169 0.001513195 0.001812732 0.003256782 0.006723067 0.001769819 0.001233307
+## K07133 0.002479040 0.003484868 0.000790457 0.000127818 0.000634529 0.004746572
+## K03088 0.003177522 0.002790092 0.001607913 0.002574928 0.001662157 0.002614489
+##  [ reached &#39;max&#39; / getOption(&amp;quot;max.print&amp;quot;) -- omitted 3 rows ]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Group_tab&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;pre&gt;&lt;code&gt;##     Group
+## CG1    CG
+## CG2    CG
+## CG3    CG
+## CG4    CG
+## CG5    CG
+## CG6    CG
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;分组检验获得P值,threads多线程可加速&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ko_pvalue&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;ko_test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;KO_abundance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Group&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Group_tab&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;threads&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;verbose&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;pre&gt;&lt;code&gt;## Compared groups: CG and EG
+## Total KO number: 4535
+## Time use: 1.348
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ko_pvalue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;pre&gt;&lt;code&gt;##    KO_id       avg_CG        sd_CG       avg_EG        sd_EG      diff_mean
+## 1 K03169 0.0026728975 0.0011094132 0.0020694937 0.0014922004  0.00060340387
+## 2 K07133 0.0004554658 0.0001951678 0.0024480601 0.0014916566 -0.00199259427
+## 3 K03088 0.0027767713 0.0006253559 0.0025519275 0.0004966801  0.00022484380
+## 4 K03530 0.0005779169 0.0008952163 0.0005197504 0.0001435245  0.00005816647
+## 5 K06147 0.0020807307 0.0007731661 0.0014321838 0.0004273716  0.00064854693
+## 6 K05349 0.0021064422 0.0005243558 0.0017419317 0.0005382770  0.00036451047
+##         p.value
+## 1 0.03671754164
+## 2 0.00002654761
+## 3 0.48636476395
+## 4 0.01125600770
+## 5 0.00987482265
+## 6 0.12614740102
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;2.将P值矫正并转为Z-Score，这里提供两种方法（mixed就是经典的方法，另一种是directed方法）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;ko_stat&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;pvalue2zs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ko_pvalue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;directed&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;pre&gt;&lt;code&gt;## ================================================================================ 
+## 
+## 	Chi-squared test for given probabilities
+## 
+## data:  up_down_ratio
+## X-squared = 21.823, df = 1, p-value = 0.000002991
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ko_stat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;pre&gt;&lt;code&gt;##    KO_id       avg_CG        sd_CG       avg_EG        sd_EG      diff_mean
+## 1 K03169 0.0026728975 0.0011094132 0.0020694937 0.0014922004  0.00060340387
+## 2 K07133 0.0004554658 0.0001951678 0.0024480601 0.0014916566 -0.00199259427
+## 3 K03088 0.0027767713 0.0006253559 0.0025519275 0.0004966801  0.00022484380
+## 4 K03530 0.0005779169 0.0008952163 0.0005197504 0.0001435245  0.00005816647
+## 5 K06147 0.0020807307 0.0007731661 0.0014321838 0.0004273716  0.00064854693
+## 6 K05349 0.0021064422 0.0005243558 0.0017419317 0.0005382770  0.00036451047
+##         p.value sign     type      q.value    Z_score
+## 1 0.01835877082    1 Enriched 0.0669268695  1.4990767
+## 2 0.00001327381   -1 Depleted 0.0004777517 -3.3033110
+## 3 0.24318238198    1 Enriched 0.3058325297  0.5076981
+## 4 0.00562800385    1 Enriched 0.0304570375  1.8741186
+## 5 0.00493741133    1 Enriched 0.0277461715  1.9150013
+## 6 0.06307370051    1 Enriched 0.1607865272  0.9912305
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;3.将KO”上升”为pathway，计算ReporterScore：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;reporter_s&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;get_reporter_score&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ko_stat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;pre&gt;&lt;code&gt;## =================================Checking file================================= 
+## ==================================load KOlist================================== 
+## ===================KOlist download time: 2023-05-12 00:07:41=================== 
+## ============================Calculating each pathway============================ 
+## ID number: 479
+## Time use: 4.641
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;reporter_s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;pre&gt;&lt;code&gt;##         ID ReporterScore                              Description K_num
+## 1 map00010    -1.6255358             Glycolysis / Gluconeogenesis   106
+## 2 map00020    -1.8906022                Citrate cycle (TCA cycle)    67
+## 3 map00030    -0.8261448                Pentose phosphate pathway    88
+## 4 map00040    -0.6685755 Pentose and glucuronate interconversions    89
+## 5 map00051    -2.2494558          Fructose and mannose metabolism   112
+## 6 map00052    -0.4196662                     Galactose metabolism    78
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;结果进行绘图&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot_report&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;reporter_s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rs_threshold&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;-7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y_text_size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;str_width&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;40&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;title&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;CG vs EG&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src=&#34;/p/reporter-score/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot_report&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;reporter_s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;rs_threshold&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;-7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;mode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;y_text_size&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;str_width&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;40&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;labs&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;title&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;CG vs EG&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src=&#34;/p/reporter-score/index.en_files/figure-html/unnamed-chunk-9-2.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;5.挑选一条通路进行绘制&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot_KOs_in_pathway&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;map_id&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;map00780&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ko_stat&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ko_stat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src=&#34;/p/reporter-score/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references csl-bib-body&#34;&gt;
+&lt;div id=&#34;ref-patilUncoveringTranscriptionalRegulation2005&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;1. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;K. R. Patil, J. Nielsen, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1073/pnas.0406811102&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Uncovering transcriptional regulation of metabolism by using metabolic network topology&lt;/a&gt;. &lt;em&gt;Proceedings of the National Academy of Sciences of the United States of America&lt;/em&gt;. &lt;strong&gt;102&lt;/strong&gt;, 2685–2689 (2005).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-liuMisuseReporterScore2023&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;2. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;L. Liu, R. Zhu, D. Wu, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1002/imt2.95&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Misuse of reporter score in microbial enrichment analysis&lt;/a&gt;. &lt;em&gt;iMeta&lt;/em&gt;. &lt;strong&gt;2&lt;/strong&gt;, e95 (2023).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

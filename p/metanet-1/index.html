@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='网络分析是各种组学数据分析的重要组成部分，我在生信学习过程中写了个R包MetaNet用于多组学网络分析，这里先简单介绍一下。'>
+<title>MetaNet：多组学网络分析工具｜1.基础介绍</title>
+
+<link rel='canonical' href='/p/metanet-1/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='MetaNet：多组学网络分析工具｜1.基础介绍'>
+<meta property='og:description' content='网络分析是各种组学数据分析的重要组成部分，我在生信学习过程中写了个R包MetaNet用于多组学网络分析，这里先简单介绍一下。'>
+<meta property='og:url' content='/p/metanet-1/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='network' /><meta property='article:tag' content='R' /><meta property='article:published_time' content='2025-03-27T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-27T00:00:00&#43;00:00'/><meta property='og:image' content='/p/metanet-1/images/bio_net.png' />
+<meta name="twitter:title" content="MetaNet：多组学网络分析工具｜1.基础介绍">
+<meta name="twitter:description" content="网络分析是各种组学数据分析的重要组成部分，我在生信学习过程中写了个R包MetaNet用于多组学网络分析，这里先简单介绍一下。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/metanet-1/images/bio_net.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a>
+      <ol>
+        <li><a href="#基本类型">基本类型</a></li>
+        <li><a href="#组学应用">组学应用</a></li>
+        <li><a href="#常用工具">常用工具</a></li>
+      </ol>
+    </li>
+    <li><a href="#metanet">MetaNet</a>
+      <ol>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#快速使用">快速使用</a></li>
+      </ol>
+    </li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/metanet-1/">
+                <img src="/p/metanet-1/images/bio_net_hu_70cbfcc58cf63d65.png"
+                        srcset="/p/metanet-1/images/bio_net_hu_70cbfcc58cf63d65.png 800w, /p/metanet-1/images/bio_net_hu_ce1907e0571aa0d5.png 1600w"
+                        width="800" 
+                        height="641" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜1.基础介绍" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/r/" style="background-color: #bebada; color: #fff;">
+                R
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/metanet-1/">MetaNet：多组学网络分析工具｜1.基础介绍</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            网络分析是各种组学数据分析的重要组成部分，我在生信学习过程中写了个R包MetaNet用于多组学网络分析，这里先简单介绍一下。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 27, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>网络分析是各种组学数据分析的重要组成部分。我在刚接触生信时对这类分析还挺感兴趣的，一边学一边写了个R包MetaNet。因为同类型工具有不少，包括在线网站，交互界面等，也就一直没有推广，主要是给自己用的。但现在整着整着感觉也比较系统了，也有一些别的工具不好实现的功能，想发出来让大家用用看。<strong>大家也可以帮忙在github上点点star⭐️</strong>，谢谢🙏</p>
+<ul>
+<li>软件主页：<a class="link" href="https://github.com/Asa12138/MetaNet"  target="_blank" rel="noopener"
+    >https://github.com/Asa12138/MetaNet</a></li>
+<li>详细英文版教程：<a class="link" href="https://bookdown.org/Asa12138/metanet_book/"  target="_blank" rel="noopener"
+    >https://bookdown.org/Asa12138/metanet_book/</a></li>
+</ul>
+<p>ps，我是看到&quot;生信益站&quot;有篇推文翻译了一下我的MetaNet的README文件，收获了近2万阅读量😂想起来搞一下这个。最近可能也会先提交一个preprint。</p>
+<h2 id="introduction">Introduction</h2>
+<p>网络（Network）或图（Graph）是用于描述复杂系统中元素间相互关系的数学结构，广泛应用于生物学、计算机科学、社会学等领域。网络由<strong>节点（Node/Vertex）</strong> 和 <strong>边（Edge）</strong> 组成，其中节点代表系统中的实体（如基因、蛋白质、用户），边表示它们之间的连接关系（如相互作用、通信、调控）。</p>
+<h3 id="基本类型">基本类型</h3>
+<img src="images/net_type.png" title=""/>
+<ul>
+<li>
+<p><strong>1. 无向图（Undirected Graph）</strong><br>
+无向图中的连接没有方向性，节点之间的关系是双向的。例如，在社交网络中，两个人成为好友意味着彼此互为邻居。在生物学中，基因共表达网络就是一种典型的无向图，连接表示两个基因的表达水平具有相关性。</p>
+</li>
+<li>
+<p><strong>2. 有向图（Directed Graph）</strong><br>
+有向图中的连接带有方向，表示单向关系。例如，在信号通路中，一个蛋白质可能激活或抑制另一个蛋白质，这种调控关系具有明确的指向性。生物学中常用不同箭头样式表示不同类型的调控作用（如激活、抑制）。</p>
+</li>
+<li>
+<p><strong>3. 加权图（Weighted Graph）</strong><br>
+加权图的每条连接都有一个权重值，用于表示关系的强度或重要性。例如，在蛋白质相互作用网络中，权重可以反映实验验证的可靠性；在基因共表达网络中，权重可能代表相关性的大小。</p>
+</li>
+<li>
+<p><strong>4. 二分图（Bipartite Graph）</strong><br>
+二分图的节点可以分成两组，连接只存在于不同组的节点之间。例如，在药物-靶点网络中，药物和靶点属于不同的组，连接表示某种药物作用于某个靶点。</p>
+</li>
+<li>
+<p><strong>5. 多重边图（Multi-edge Graph）</strong><br>
+多重边图允许同一对节点之间存在多条连接。例如，在知识图谱中，两个实体之间可能有多种不同类型的关系（如基因A既调控基因B，又与基因B有物理相互作用）。</p>
+</li>
+<li>
+<p><strong>6. 超图（Hypergraph）</strong><br>
+超图的连接可以同时关联多个节点，适用于描述复杂的高阶关系。例如，在代谢网络中，一个生化反应可能涉及多个底物和产物，超图可以更自然地表示这种多分子参与的相互作用。</p>
+</li>
+<li>
+<p><strong>7. 树（Tree）</strong><br>
+树是一种特殊的无向图，其中任意两个节点之间只有一条路径相连，且没有环路。例如，进化树描述物种之间的演化关系，基因本体树则用于表示功能分类的层级结构。</p>
+</li>
+<li>
+<p><strong>8. 连通图（Connected Graph）</strong><br>
+在连通图中，任意两个节点之间至少存在一条路径。如果网络不连通，则可能由多个独立子图组成，例如某些微生物群落网络可能包含多个互不关联的物种群体。</p>
+</li>
+<li>
+<p><strong>9. 完全图（Complete Graph）</strong><br>
+完全图中每对不同的节点之间都有一条连接。虽然在实际生物网络中较少见，但在某些模拟分析中，完全图可以作为理论参考模型。</p>
+</li>
+<li>
+<p><strong>10. 团（Clique）</strong><br>
+团是指无向图中一个节点子集，其中每对节点之间都有连接。在蛋白质相互作用网络中，高度紧密的团可能代表蛋白质复合物或功能模块。</p>
+</li>
+</ul>
+<h3 id="组学应用">组学应用</h3>
+<p>在生物医学，尤其是近期的组学研究中，网络可以捕获任何类型的生物实体之间的关联，例如蛋白质，基因，小分子，代谢产物，配体，疾病，药物甚至数据库记录。网络分析提供系统级视角解析复杂机制，覆盖从分子到生态系统的多层次研究，是整合多组学数据的重要方法。</p>
+<img src="images/bio_net.png" title=""/>
+<ul>
+<li>
+<p><strong>1. 蛋白质-蛋白质相互作用网络（PPIs）</strong>
+蛋白质-蛋白质相互作用网络通过实验或计算方法揭示蛋白质间的物理结合或功能协作关系，是研究细胞信号转导、复合体形成和疾病机制的重要工具。例如，癌症相关蛋白通常在PPI网络中呈现高度连接性，帮助识别关键调控节点和潜在药物靶点。</p>
+</li>
+<li>
+<p><strong>2. 序列相似性网络（SSNs）</strong>
+序列相似性网络基于基因或蛋白质序列的相似性构建，用于分析基因家族进化、功能分化和水平基因转移。通过设定相似性阈值，可聚类同源基因并预测新功能，广泛应用于酶家族分类（如P450超家族）和宏基因组数据分析。</p>
+</li>
+<li>
+<p><strong>3. 基因调控网络（GRNs）</strong>
+基因调控网络描述转录因子与靶基因间的调控关系，整合ChIP-seq、RNA-seq等数据以揭示发育、疾病或环境响应中的调控逻辑。例如，干细胞多能性网络中的核心转录因子（如OCT4、SOX2）通过GRN分析被确定为命运决定的关键因子。</p>
+</li>
+<li>
+<p><strong>4. 代谢网络（Metabolic Networks）</strong>
+代谢网络以生化反应为基础，节点代表代谢物，边表示酶催化的反应，用于模拟代谢通量并优化生物合成途径。在微生物工程中，此类网络指导设计高产菌株，如抗生素或生物燃料的微生物生产。</p>
+</li>
+<li>
+<p><strong>5. 基因共表达网络（Gene Co-expression Networks）</strong>
+基因共表达网络通过转录组数据（如RNA-seq）计算基因表达相关性，挖掘功能模块或生物标记物。例如，WGCNA算法可识别与特定性状相关的共表达模块，如植物抗逆性或肿瘤亚型特征基因群。</p>
+</li>
+<li>
+<p><strong>6. 物种互作网络（Species Interaction Networks）</strong>
+物种互作网络（如食物网、共生网络）量化生态系统中物种间的捕食、竞争或互利关系，评估生态稳定性和多样性。网络拓扑分析可预测物种灭绝的级联效应，助力保护生物学研究。</p>
+</li>
+</ul>
+<p>当然还有其他很多很多重要的生物学研究中的网络了。</p>
+<h3 id="常用工具">常用工具</h3>
+<ul>
+<li>Cytoscape是最流行的生物网络可视化分析平台，支持多种网络类型和插件扩展。</li>
+<li>Gephi是专注于大规模网络可视化的工具，提供多种布局算法和动态网络分析功能。</li>
+<li>igraph是高效的网络分析库，支持R/Python等语言。</li>
+<li>STRING是综合蛋白质相互作用数据库，提供实验验证和预测的相互作用数据。</li>
+<li>BioGRID是全面的PPI数据库，包含超过100万条蛋白质相互作用记录。</li>
+<li>GENIE3基于机器学习算法推断基因调控网络，适用于单细胞RNA-seq数据。</li>
+<li>iRegulon整合ChIP-seq和motif数据预测转录调控网络。KEGG Mapper是基于KEGG数据库的代谢网络分析工具。</li>
+<li>COBRA Toolbox是MATLAB平台的代谢网络建模工具，支持通量平衡分析。</li>
+<li>WGCNA是加权基因共表达网络分析的标准工具。</li>
+<li>EcoNet是专为生态网络设计的分析工具。</li>
+<li>NetworkX是Python的通用复杂网络分析库。</li>
+<li>NetworkAnalyst是在线网络分析平台，支持多种网络类型。</li>
+</ul>
+<h2 id="metanet">MetaNet</h2>
+<p>MetaNet 是一个专注于生物组学（omics）数据的综合性网络分析 R 包。旨在帮助研究人员快速构建、分析和可视化多组学数据的复杂网络，支持高通量数据的处理（如超过 10,000 个节点的网络）。以下是其主要特点：</p>
+<ol>
+<li>
+<p><strong>多组学整合分析</strong><br>
+支持多种组学数据（如微生物组、转录组等）的联合网络分析，便于挖掘跨组学关联。</p>
+</li>
+<li>
+<p><strong>高效计算</strong><br>
+• 快速计算相关性网络（如物种间互作），通过并行计算加速分析。<br>
+• 优化大数据处理能力，适用于大规模网络。</p>
+</li>
+<li>
+<p><strong>可视化与兼容性</strong><br>
+• 提供多种网络布局算法，支持交互式可视化。<br>
+• 可导出至常用工具（如 Gephi、Cytoscape）或与 <code>ggplot2</code> 集成绘图。</p>
+</li>
+<li>
+<p><strong>拓扑分析</strong><br>
+计算丰富的网络拓扑指标（包括生态网络稳定性），适用于复杂网络研究。</p>
+</li>
+</ol>
+<h3 id="安装">安装</h3>
+<p>可以从 CRAN 安装稳定版：<code>install.packages(&quot;MetaNet&quot;)</code></p>
+<p>最新的开发版本可以在 <a class="link" href="https://github.com/Asa12138/MetaNet"  target="_blank" rel="noopener"
+    >https://github.com/Asa12138/MetaNet</a> 中找到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;Asa12138/MetaNet&#34;</span><span class="p">,</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>依赖包 <code>pcutils</code>和<code>igraph</code>（需提前安装），推荐配合 <code>dplyr</code> 进行数据操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">MetaNet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ========data manipulation</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">pcutils</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="快速使用">快速使用</h3>
+<p>下图是 MetaNet 的整体开发框架，包括数据处理，网络构建，网络分析，网络可视化和其他功能，核心是一个继承igraph的metanet对象：</p>
+<img src="https://bookdown.org/Asa12138/metanet_book/images/1.metanet.png" title=""/>
+<p>下面以一个微生物共丰度网络为例（是我最早也是做得最多的分析）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 加载示例数据（otu表，来自pcutils包）</span>
+</span></span><span class="line"><span class="cl"><span class="nf">data</span><span class="p">(</span><span class="s">&#34;otutab&#34;</span><span class="p">,</span> <span class="n">package</span> <span class="o">=</span> <span class="s">&#34;pcutils&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 转置数据（微生物组分析通常需要行为样本，列为物种/OTU）</span>
+</span></span><span class="line"><span class="cl"><span class="nf">t</span><span class="p">(</span><span class="n">otutab</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">totu</span>  <span class="c1"># totu: 转置后的矩阵，行=样本，列=物种/OTU</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 计算物种间相关性矩阵（使用Spearman秩相关）</span>
+</span></span><span class="line"><span class="cl"><span class="nf">c_net_calculate</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">totu</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">method</span> <span class="o">=</span> <span class="s">&#34;spearman&#34;</span>  <span class="c1"># 可选&#34;pearson&#34;/&#34;spearman&#34;/&#34;kendall&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">corr</span>  <span class="c1"># corr: 存储相关系数和p值的矩阵</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 构建共现网络（基于阈值筛选）</span>
+</span></span><span class="line"><span class="cl"><span class="nf">c_net_build</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">corr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">r_threshold</span> <span class="o">=</span> <span class="m">0.65</span><span class="p">,</span>      <span class="c1"># 保留|r| ≥ 0.65的边</span>
+</span></span><span class="line"><span class="cl">  <span class="n">p_threshold</span> <span class="o">=</span> <span class="m">0.05</span><span class="p">,</span>     <span class="c1"># 保留p &lt; 0.05的边（统计显著性）</span>
+</span></span><span class="line"><span class="cl">  <span class="n">delete_single</span> <span class="o">=</span> <span class="kc">TRUE</span>    <span class="c1"># 删除无连接的孤立节点</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">co_net</span>  <span class="c1"># co_net: 生成的metanet网络对象</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加网络属性（注释节点信息）</span>
+</span></span><span class="line"><span class="cl"><span class="n">co_net</span> <span class="o">&lt;-</span> <span class="nf">c_net_set</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">co_net</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">taxonomy</span><span class="p">,</span>               <span class="c1"># 数据框：物种分类信息（如Phylum列）</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">data.frame</span><span class="p">(</span><span class="s">&#34;Abundance&#34;</span> <span class="o">=</span> <span class="nf">colSums</span><span class="p">(</span><span class="n">totu</span><span class="p">)),</span>  <span class="c1"># 节点属性：总丰度</span>
+</span></span><span class="line"><span class="cl">  <span class="n">vertex_class</span> <span class="o">=</span> <span class="s">&#34;Phylum&#34;</span><span class="p">,</span> <span class="c1"># 用Phylum分类作为节点颜色分组</span>
+</span></span><span class="line"><span class="cl">  <span class="n">vertex_size</span> <span class="o">=</span> <span class="s">&#34;Abundance&#34;</span> <span class="c1"># 用Abundance值调整节点大小</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 计算网络布局（可视化坐标）</span>
+</span></span><span class="line"><span class="cl"><span class="n">coors</span> <span class="o">&lt;-</span> <span class="nf">c_net_layout</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">co_net</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">method</span> <span class="o">=</span> <span class="nf">nicely</span><span class="p">()</span>       <span class="c1"># 使用默认美观布局</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 绘制网络图（默认显示节点、边和分类颜色）</span>
+</span></span><span class="line"><span class="cl"><span class="nf">c_net_plot</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="n">coors</span><span class="p">)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/metanet-1/index.en_files/figure-html/unnamed-chunk-2-1.png" width="768" />
+<p>再来一个多组学网络构建：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">data</span><span class="p">(</span><span class="s">&#34;multi_test&#34;</span><span class="p">,</span> <span class="n">package</span> <span class="o">=</span> <span class="s">&#34;MetaNet&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># build a multi-network</span>
+</span></span><span class="line"><span class="cl"><span class="n">multi1</span> <span class="o">&lt;-</span> <span class="nf">multi_net_build</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">Microbiome</span> <span class="o">=</span> <span class="n">micro</span><span class="p">,</span> <span class="n">Metabolome</span> <span class="o">=</span> <span class="n">metab</span><span class="p">,</span> <span class="n">Transcriptome</span> <span class="o">=</span> <span class="n">transc</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">r_threshold</span> <span class="o">=</span> <span class="m">0.6</span><span class="p">,</span>      <span class="c1"># 保留|r| ≥ 0.6的边</span>
+</span></span><span class="line"><span class="cl">  <span class="n">p_threshold</span> <span class="o">=</span> <span class="m">0.05</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># set vertex_class</span>
+</span></span><span class="line"><span class="cl"><span class="n">multi1_with_anno</span> <span class="o">&lt;-</span> <span class="nf">c_net_set</span><span class="p">(</span><span class="n">multi1</span><span class="p">,</span> <span class="n">micro_g</span><span class="p">,</span> <span class="n">metab_g</span><span class="p">,</span> <span class="n">transc_g</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                              <span class="n">vertex_class</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Phylum&#34;</span><span class="p">,</span> <span class="s">&#34;kingdom&#34;</span><span class="p">,</span> <span class="s">&#34;type&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># set vertex_size</span>
+</span></span><span class="line"><span class="cl"><span class="n">multi1_with_anno</span> <span class="o">&lt;-</span> <span class="nf">c_net_set</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">data.frame</span><span class="p">(</span><span class="s">&#34;Abundance1&#34;</span> <span class="o">=</span> <span class="nf">colSums</span><span class="p">(</span><span class="n">micro</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">data.frame</span><span class="p">(</span><span class="s">&#34;Abundance2&#34;</span> <span class="o">=</span> <span class="nf">colSums</span><span class="p">(</span><span class="n">metab</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">data.frame</span><span class="p">(</span><span class="s">&#34;Abundance3&#34;</span> <span class="o">=</span> <span class="nf">colSums</span><span class="p">(</span><span class="n">transc</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">vertex_size</span> <span class="o">=</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;Abundance&#34;</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/metanet-1/index.en_files/figure-html/unnamed-chunk-3-1.png" width="768" />
+<p>后续我会发推文具体介绍MetaNet分析流程的每个功能模块，大家也可以先直接看详细英文版教程：<a class="link" href="https://bookdown.org/Asa12138/metanet_book/"  target="_blank" rel="noopener"
+    >https://bookdown.org/Asa12138/metanet_book/</a>，我也尽可能为每个函数编写了详细的help文件和examples，欢迎大家提出宝贵意见。</p>
+<h2 id="references">References</h2>
+<ol>
+<li>Koutrouli M, Karatzas E, Paez-Espino D and Pavlopoulos GA (2020) A Guide to Conquer the Biological Network Era Using Graph Theory. Front. Bioeng. Biotechnol. 8:34. doi: 10.3389/fbioe.2020.00034</li>
+<li>Faust, K., and Raes, J. (2012). Microbial interactions: from networks to models. Nat. Rev. Microbiol. <a class="link" href="https://doi.org/10.1038/nrmicro2832"  target="_blank" rel="noopener"
+    >https://doi.org/10.1038/nrmicro2832</a>.</li>
+<li>Deng, Y., Jiang, Y., Yang, Y., He, Z., Luo, F., and Zhou, J. (2012). Molecular ecological network analyses. BMC Bioinf. <a class="link" href="https://doi.org/10.1186/1471-2105-13-113"  target="_blank" rel="noopener"
+    >https://doi.org/10.1186/1471-2105-13-113</a>.</li>
+<li>Girvan, M., and Newman, M.E.J. (2002). Community structure in social and biological networks. Proc. Natl. Acad. Sci. 99, 7821–7826. <a class="link" href="https://doi.org/10.1073/pnas.122653799"  target="_blank" rel="noopener"
+    >https://doi.org/10.1073/pnas.122653799</a>.</li>
+<li>Shannon, P., Markiel, A., Ozier, O., Baliga, N.S., Wang, J.T., Ramage, D., Amin, N., Schwikowski, B., and Ideker, T. (2003). Cytoscape: a software environment for integrated models of biomolecular interaction networks. Genome Res. 13, 2498–2504. <a class="link" href="https://doi.org/10.1101/gr.1239303"  target="_blank" rel="noopener"
+    >https://doi.org/10.1101/gr.1239303</a>.</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/network/">Network</a>
+        
+            <a href="/tags/r/">R</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-8/images/nc.80f498412d2ea6135a9712c93dbb8eba_hu_86d7f3e82c9046db.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜8.网络稳定性分析"
+                        data-key="metanet-8" 
+                        data-hash="md5-gPSYQS0uphNalxLJPbuOug==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜8.网络稳定性分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-7/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-7/index.en_files/figure-html/unnamed-chunk-5-1.347acced76b5c6eb13665a5b490dbdd9_hu_7eb69229f62ded98.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜7.网络模块分析"
+                        data-key="metanet-7" 
+                        data-hash="md5-NHrM7Xa1xusTZlpbSQ292Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜7.网络模块分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-6/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-6/images/node_topo.1683b9dd5f4336e37158c4c2ba8c763d_hu_ba1f45afac1b002f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜6.网络拓扑指标分析"
+                        data-key="metanet-6" 
+                        data-hash="md5-FoO53V9DNuNxWMTCuox2PQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜6.网络拓扑指标分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-5/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1.7bec6bde92fa4911f3756ff861af16b6_hu_aaab0c1c731476bb.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具"
+                        data-key="metanet-5" 
+                        data-hash="md5-e&#43;xr3pL6SRHzdW/4Ya8Wtg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-4/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1.3a81938f6b8eb0c165afcedca73c47a3_hu_692adc1cabce892a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜4.布局和可视化"
+                        data-key="metanet-4" 
+                        data-hash="md5-OoGTj2uOsMFlr87cpzxHow==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜4.布局和可视化</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

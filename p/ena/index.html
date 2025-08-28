@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='把测序原始数据上传至ENA数据库是常见的项目需要。在此以双端fastq测序文件的提交流程为例，讲解具体步骤。'>
+<title>上传测序数据至ENA数据库</title>
+
+<link rel='canonical' href='/p/ena/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='上传测序数据至ENA数据库'>
+<meta property='og:description' content='把测序原始数据上传至ENA数据库是常见的项目需要。在此以双端fastq测序文件的提交流程为例，讲解具体步骤。'>
+<meta property='og:url' content='/p/ena/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='database' /><meta property='article:published_time' content='2024-05-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-05-17T00:00:00&#43;00:00'/><meta property='og:image' content='/p/ena/images/ena5.png' />
+<meta name="twitter:title" content="上传测序数据至ENA数据库">
+<meta name="twitter:description" content="把测序原始数据上传至ENA数据库是常见的项目需要。在此以双端fastq测序文件的提交流程为例，讲解具体步骤。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/ena/images/ena5.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a>
+      <ol>
+        <li><a href="#数据提交">数据提交</a></li>
+      </ol>
+    </li>
+    <li><a href="#install-webin-cli">Install Webin-CLI</a></li>
+    <li><a href="#submission">Submission</a>
+      <ol>
+        <li><a href="#stage-1-pre-register-study-and-sample">Stage 1: Pre-register Study and Sample</a></li>
+        <li><a href="#stage-2-prepare-the-files">Stage 2: Prepare the Files</a>
+          <ol>
+            <li><a href="#准备manifest文件">准备manifest文件</a></li>
+          </ol>
+        </li>
+        <li><a href="#stage-3-validate-and-submit-files">Stage 3: Validate and Submit Files</a>
+          <ol>
+            <li><a href="#-ascp-提交">-ascp 提交</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/ena/">
+                <img src="/p/ena/images/ena5_hu_5518fe1cce648cdf.png"
+                        srcset="/p/ena/images/ena5_hu_5518fe1cce648cdf.png 800w, /p/ena/images/ena5_hu_a85d6838bc0663c0.png 1600w"
+                        width="800" 
+                        height="493" 
+                        loading="lazy"
+                        alt="Featured image of post 上传测序数据至ENA数据库" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/utils/" style="background-color: #bebada; color: #fff;">
+                utils
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/ena/">上传测序数据至ENA数据库</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            把测序原始数据上传至ENA数据库是常见的项目需要。在此以双端fastq测序文件的提交流程为例，讲解具体步骤。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 17, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>European Nucleotide Archive (ENA) 是一个由欧洲分子生物学实验室 (EMBL) 欧洲生物信息学研究所 (EBI) 维护的公共数据库。ENA 收集、存储和提供核酸序列数据，是全球生物学和生物信息学研究的重要资源之一。以下是 ENA 的几个关键点：</p>
+<ol>
+<li>
+<p><strong>数据收集和存储</strong>：ENA 接收并存储来自全球各地的核酸序列数据。这些数据包括DNA和RNA的序列，以及相关的元数据，如序列的来源、生物学特征和实验信息。</p>
+</li>
+<li>
+<p><strong>数据访问</strong>：ENA 提供公开访问接口，允许研究人员和公众免费下载和检索数据。用户可以通过网页界面、编程接口 (API) 和批量下载工具访问数据。</p>
+</li>
+<li>
+<p><strong>数据整合</strong>：ENA 与其他主要的生物序列数据库（如美国的GenBank和日本的DDBJ）合作，确保数据在全球范围内的整合和共享。这种合作被称为国际核酸序列数据库协作 (INSDC)。</p>
+</li>
+<li>
+<p><strong>数据提交</strong>：研究人员可以向 ENA 提交他们的核酸序列数据。ENA 提供了详细的指南和工具，帮助研究人员提交数据并确保数据的质量和一致性。</p>
+</li>
+<li>
+<p><strong>用途广泛</strong>：ENA 中的数据被广泛用于各种生物学研究领域，包括基因组学、转录组学、宏基因组学和进化生物学等。</p>
+</li>
+</ol>
+<h3 id="数据提交">数据提交</h3>
+<p>由于项目需要，我们要把测序原始数据上传至ENA数据库。在此以双端fastq测序文件的提交流程为例，讲解具体步骤。</p>
+<p>官方教程：
+<a class="link" href="https://ena-docs.readthedocs.io/en/latest/submit/general-guide.html"  target="_blank" rel="noopener"
+    >https://ena-docs.readthedocs.io/en/latest/submit/general-guide.html</a></p>
+<p>在 European Nucleotide Archive (ENA) 提交数据时，有三种不同的提交方式，每种方式适用于不同类型的数据提交。
+根据你的需求，可能需要使用一种或多种提交方式：</p>
+<ol>
+<li>
+<p><strong>交互式提交 (Interactive Submissions)</strong>：</p>
+<ul>
+<li><strong>方法</strong>：通过在浏览器中直接填写网页表单，并下载可以离线填写的模板电子表格，然后将其上传到 ENA。</li>
+<li><strong>适用场景</strong>：这是最易于访问的提交方式，适合大多数用户，尤其是那些不熟悉命令行或编程的用户。</li>
+<li><strong>优点</strong>：操作简单，界面友好，适合初次提交或数据量较少的提交者。</li>
+</ul>
+</li>
+<li>
+<p><strong>命令行提交 (Command Line Submissions)</strong>：</p>
+<ul>
+<li><strong>方法</strong>：使用 ENA 的专用程序 Webin-CLI 进行提交。这个工具可以在提交之前完全验证你的数据，确保数据的准确性和完整性。</li>
+<li><strong>适用场景</strong>：适合需要高控制力和数据验证的用户，特别是有一定技术背景的用户。</li>
+<li><strong>优点</strong>：提供最大化的控制和数据验证，适合批量提交和大规模数据。</li>
+</ul>
+</li>
+<li>
+<p><strong>编程提交 (Programmatic Submissions)</strong>：</p>
+<ul>
+<li><strong>方法</strong>：通过准备 XML 文档来完成提交，可以使用 cURL 程序或 Webin Portal 将数据发送到 ENA。</li>
+<li><strong>适用场景</strong>：适合需要自动化提交的用户，尤其是那些有编程能力并且需要频繁提交数据的用户。</li>
+<li><strong>优点</strong>：支持自动化和高效的数据提交流程，适合大规模数据和高频率的提交需求。</li>
+</ul>
+</li>
+</ol>
+<p>我们这里使用的是<strong>1+2方法</strong>，这样是最通用，灵活且方便的流程。
+使用网页注册project和sample，再使用Webin-CLI提交数据。</p>
+<h2 id="install-webin-cli">Install Webin-CLI</h2>
+<p>使用 Webin-CLI 提交数据到 European Nucleotide Archive (ENA) 需要按以下步骤进行。确保你已经安装了 Java 1.8 或更高版本，并下载了最新版本的 Webin-CLI。</p>
+<ul>
+<li>步骤 1: 安装 Java</li>
+</ul>
+<p>如果你还没有安装 Java，请从以下链接下载并安装 Java 1.8 或更新版本：
+<a class="link" href="https://java.com/en/download/"  target="_blank" rel="noopener"
+    >下载 Java</a></p>
+<p>检查版本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">java -version
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>步骤 2: 下载 Webin-CLI</li>
+</ul>
+<p>从 GitHub 下载最新版本的 Webin-CLI：
+<a class="link" href="https://github.com/enasequence/webin-cli/releases"  target="_blank" rel="noopener"
+    >下载 Webin-CLI</a></p>
+<p>在终端或命令行中使用 <code>java</code> 命令运行 Webin-CLI。
+运行 Webin-CLI 并显示帮助信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">java -jar webin-cli-2.0.0.jar -help
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>-context</code>： 提交类型：
+<ul>
+<li>`-context genome</li>
+<li>`-context transcriptome</li>
+<li>`-context sequence</li>
+<li>`-context reads</li>
+</ul>
+</li>
+<li><code>-userName</code>：Webin 提交帐户名称。</li>
+<li><code>-password</code>：Webin 提交帐户密码。</li>
+<li><code>-centerName</code>：提交者的中心名称（对于经纪商账户是强制性的）。</li>
+<li><code>-manifest</code>：清单文件名。</li>
+<li><code>-outputDir</code>：输出文件的目录。</li>
+<li><code>-inputDir</code>：清单文件中声明的文件的输入目录。</li>
+<li><code>-validate</code>：验证清单文件中定义的文件。</li>
+<li><code>-submit</code>：验证并提交清单文件中定义的文件。</li>
+<li><code>-test</code>：使用 Webin 测试服务而不是生产服务。请注意， Webin 上传区域在测试和生产服务之间共享，并且该测试提交 文件将不会存档。</li>
+<li><code>-ascp</code>：使用 Aspera Cli 而不是 FTP 文件传输（如果可用）。Aspera应该安装，可执行文件“ascp”的路径应该在 PATH 变量中。</li>
+<li><code>-version</code>：打印程序的版本号并存在。</li>
+<li><code>-help</code>：有关不同选项的详细信息。</li>
+</ul>
+<h2 id="submission">Submission</h2>
+<p>准备好软件后，我们就可以开始提交流程了：</p>
+<img src="images/ena.png" title=""/>
+<h3 id="stage-1-pre-register-study-and-sample">Stage 1: Pre-register Study and Sample</h3>
+<p>首先进入官网<a class="link" href="https://www.ebi.ac.uk/ena/submit/webin/login"  target="_blank" rel="noopener"
+    >The European Bioinformatics Institute &lt; EMBL-EBI</a>，这里一般实验室有自己的账号，登陆。</p>
+<p>我们会进入这个页面：</p>
+<img src="images/ena2.png" title=""/>
+<ol>
+<li>注册study</li>
+</ol>
+<p>按要求填写，保存好我们的project id文件。</p>
+<ol start="2">
+<li>注册sample</li>
+</ol>
+<p>这一步要下载一个checklist（tsv），用excel打开按要求填好每一个sample的信息，注意不要删掉本来的内容。比如：</p>
+<ul>
+<li>taxid：可在这里查询<a class="link" href="https://www.ebi.ac.uk/ena/browser/view/408169?show=tax-tree"  target="_blank" rel="noopener"
+    >https://www.ebi.ac.uk/ena/browser/view/408169?show=tax-tree</a>。比如我们是环境样本，空气就是Taxon: 655179</li>
+<li>scientific_name：air metagenome</li>
+<li>sample_alias, sample_title, sample_description, project name</li>
+<li>有些是有填写格式的，比如时间，经纬度要注意</li>
+</ul>
+<p>都填完以后还是把这个tsv上传回去，提交好后就有每个sample的ACCESSION了。</p>
+<h3 id="stage-2-prepare-the-files">Stage 2: Prepare the Files</h3>
+<p>原始fastq文件需要进行压缩(.fq.gz):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">for</span> i in <span class="sb">`</span>ls *.fq<span class="sb">`</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="si">${</span><span class="nv">i</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">gzip <span class="nv">$i</span> -c &gt; <span class="si">${</span><span class="nv">i</span><span class="si">}</span>.gz
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="准备manifest文件">准备manifest文件</h4>
+<p>作为提交的一部分，每个刚刚注册的Sample（一个单端测序文件，或一对双端测序文件）都必须使用一个清单文件描述。</p>
+<p>manifest文件使用Webin-CLI的<code>-manifest &lt;filename&gt;</code>参数指定，每个manifest文件需包含以下内容：</p>
+<ul>
+<li>通用实验信息
+<ul>
+<li>Study accession or unique name (alias)</li>
+<li>Sample accession or unique name (alias)</li>
+<li>Experiment name</li>
+<li>Sequencing platform</li>
+<li>Sequencing instrument</li>
+<li>Library name (optional)</li>
+<li>Library source</li>
+<li>Library selection</li>
+<li>Library strategy</li>
+<li>Free text library description (optional)</li>
+<li>Insert size for paired reads (optional)</li>
+</ul>
+</li>
+<li>测序文件，以下的一项
+<ul>
+<li>BAM file</li>
+<li>CRAM file</li>
+<li>Single Fastq file</li>
+<li>Paired Fastq files</li>
+<li>Multi-fastq files</li>
+</ul>
+</li>
+</ul>
+<p>单独填写每一个样本的manifest文件比较麻烦，可以用一段简单的R脚本帮助编写：</p>
+<p>首先，根据我们之前注册时已经得到的信息整理出一个excel（列名不要改变，FASTQ这列如果是双端就用<code>; </code>隔开）：</p>
+<img src="images/ena3.png" title=""/>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># manifest for ENA</span>
+</span></span><span class="line"><span class="cl"><span class="n">fq_submit</span><span class="o">=</span><span class="n">readxl</span><span class="o">::</span><span class="nf">read_excel</span><span class="p">(</span><span class="s">&#34;Checklist_GSC-MIxS_human_associated_NULL.xlsx&#34;</span><span class="p">)</span><span class="o">%&gt;%</span><span class="nf">as.data.frame</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">dir.create</span><span class="p">(</span><span class="s">&#34;manifest&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span> <span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="nf">seq_len</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">fq_submit</span><span class="p">)))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">df</span><span class="o">=</span><span class="n">fq_submit[i</span><span class="p">,</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">  <span class="n">filename</span><span class="o">=</span><span class="nf">paste0</span><span class="p">(</span><span class="n">df[</span><span class="p">,</span><span class="s">&#34;SAMPLE&#34;</span><span class="n">]</span><span class="p">,</span><span class="s">&#34;_manifest&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">tmp</span><span class="o">=</span><span class="nf">c</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">for</span> <span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="nf">seq_len</span><span class="p">(</span><span class="nf">ncol</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span><span class="o">=</span><span class="nf">colnames</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="n">[i]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">value</span><span class="o">=</span><span class="n">df[1</span><span class="p">,</span><span class="n">i]</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span><span class="p">(</span><span class="nf">grepl</span><span class="p">(</span><span class="s">&#34;;&#34;</span><span class="p">,</span><span class="n">value</span><span class="p">))</span><span class="n">value</span><span class="o">=</span><span class="nf">strsplit</span><span class="p">(</span><span class="n">value</span><span class="p">,</span><span class="s">&#34;;\\s&#34;</span><span class="p">)</span><span class="n">[[1]]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tmp</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="nf">paste0</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="s">&#34;\t&#34;</span><span class="p">,</span><span class="n">value</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">writeLines</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="nf">file.path</span><span class="p">(</span><span class="s">&#34;manifest/&#34;</span><span class="p">,</span><span class="n">filename</span><span class="p">),</span><span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;\n&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样会在manifest文件夹下生成每一个样本的manifest文件，内容如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">STUDY   PRJEB67959
+</span></span><span class="line"><span class="cl">SAMPLE  ERS17964118
+</span></span><span class="line"><span class="cl">NAME    P9_2C-ILLUMINA sequencing
+</span></span><span class="line"><span class="cl">PLATFORM    ILLUMINA
+</span></span><span class="line"><span class="cl">INSTRUMENT  Illumina NovaSeq 6000
+</span></span><span class="line"><span class="cl">INSERT_SIZE 200
+</span></span><span class="line"><span class="cl">LIBRARY_SOURCE  METAGENOMIC
+</span></span><span class="line"><span class="cl">LIBRARY_SELECTION   RANDOM
+</span></span><span class="line"><span class="cl">LIBRARY_STRATEGY    WGS
+</span></span><span class="line"><span class="cl">FASTQ   P9_2C.clean.1.fq.gz
+</span></span><span class="line"><span class="cl">FASTQ   P9_2C.clean.2.fq.gz
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="stage-3-validate-and-submit-files">Stage 3: Validate and Submit Files</h3>
+<p>终于到了上传的这一步了，ENA建议在上传前先用<code>-validate</code>验证清单文件中定义的文件（只验证不提交）。</p>
+<p>我们拿一个样本试一试，没问题：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">i</span><span class="o">=</span>ERS17964118_manifest
+</span></span><span class="line"><span class="cl">java -jar ~/biosoft/webin-cli-6.7.0.jar -context reads <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-userName Webin-XXXXX -password XXXXXXX <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-manifest <span class="si">${</span><span class="nv">i</span><span class="si">}</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-outputDir test_submit_out <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-inputDir ./ <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-validate
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>正式提交，用for循环提交每一个样本(<code>-submit</code>也会在提交前验证)：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">for</span> i in <span class="sb">`</span>ls manifest/*_manifest<span class="sb">`</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;Processing: </span><span class="nv">$i</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;Start time: </span><span class="k">$(</span>date +<span class="s1">&#39;%Y-%m-%d %T&#39;</span><span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 执行上传命令，并捕获退出状态码</span>
+</span></span><span class="line"><span class="cl">    java -jar ~/biosoft/webin-cli-6.7.0.jar -context reads <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    	-userName Webin-XXXXX -password XXXXXXX <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    	-manifest <span class="si">${</span><span class="nv">i</span><span class="si">}</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    	-outputDir test_submit_out <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    	-inputDir ./ <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    	-submit
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 检查上传是否成功（退出状态码 0 表示成功）</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> -eq <span class="m">0</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;Upload SUCCESS: </span><span class="nv">$i</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">        mv <span class="s2">&#34;</span><span class="nv">$i</span><span class="s2">&#34;</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">i</span><span class="si">}</span><span class="s2">_done&#34;</span>  <span class="c1"># 仅在上传成功后重命名</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">&#34;Upload FAILED: </span><span class="nv">$i</span><span class="s2"> (文件未重命名)&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;End time: </span><span class="k">$(</span>date +<span class="s1">&#39;%Y-%m-%d %T&#39;</span><span class="k">)</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;----------------------------------&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>上面那个命令validate可以执行并通过，但默认是ftp协议传输，如果你的提交没问题那就跳过下面ascp这部分：</p>
+<h4 id="-ascp-提交">-ascp 提交</h4>
+<p>我使用默认的ftp好像有点问题，进度条都没有，应该是我们服务器的问题。</p>
+<p>那就试一下<code>-ascp</code>参数，但是我之前装好的ascp不能用了，好像是最近aspera改过一次：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ascp: /lib/libc.so.6: version `GLIBC_2.28&#39; not found (required by ascp)
+</span></span><span class="line"><span class="cl">ascp: /lib/libc.so.6: version `GLIBC_2.25&#39; not found (required by ascp)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>没办法，重装，官网下载安装没用，应该是服务器配置不匹配。</p>
+<p>只能试试conda，<code>conda install -c hcc aspera-cli -y</code>。
+虽然很慢，但最后conda安装的可以用。</p>
+<p>加上<code>-ascp</code>参数，大功告成，上传速度也非常快：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">for</span> i in <span class="sb">`</span>ls manifest/*_manifest<span class="sb">`</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">java -jar ~/biosoft/webin-cli-6.7.0.jar -context reads <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-userName Webin-XXXXX -password XXXXXXX <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-manifest <span class="si">${</span><span class="nv">i</span><span class="si">}</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-outputDir test_submit_out <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-inputDir ./ <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>	-submit -ascp
+</span></span><span class="line"><span class="cl">mv <span class="si">${</span><span class="nv">i</span><span class="si">}</span> <span class="si">${</span><span class="nv">i</span><span class="si">}</span>_done
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后，我们可以回到官网页面：<a class="link" href="https://www.ebi.ac.uk/ena/submit/webin/login"  target="_blank" rel="noopener"
+    >The European Bioinformatics Institute &lt; EMBL-EBI</a>。点击左侧的Dashboard，再点击Raw Reads里的Runs Report，就可以查看每一个样本提交状态了，没问题：</p>
+<img src="images/ena4.png" title=""/>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/database/">Database</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/sqlite-r/">
+        
+        
+            <div class="article-image">
+                <img src="/p/sqlite-r/images/R-C.2a115216bd159624507224fa388dbda7_hu_b1bb55cee70d9e55.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post SQLite使用基础以及在R中操作数据库"
+                        data-key="sqlite-r" 
+                        data-hash="md5-KhFSFr0VliRQciT6OI29pw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SQLite使用基础以及在R中操作数据库</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/sem/">
+        
+        
+            <div class="article-image">
+                <img src="/p/sem/images/sem_model.35f8a0757e6999b02657ef452ee4eaf5_hu_ea3e9e66fd7e7f23.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 中介分析与结构方程模型（SEM）学习"
+                        data-key="sem" 
+                        data-hash="md5-NfigdX5pmbAmV&#43;9FLuTq9Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">中介分析与结构方程模型（SEM）学习</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/ncbi-genome/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/p/ncbi-genome/images/datasets_schema_taxonomy.svg" loading="lazy" data-key="ncbi-genome" data-hash="/p/ncbi-genome/images/datasets_schema_taxonomy.svg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">批量下载NCBI genome相关数据</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/author_affiliation/">
+        
+        
+            <div class="article-image">
+                <img src="/p/author_affiliation/images/Screenshot%202025-05-06%20at%2017.22.32.68374d4ccca746f39a99a95af7bb02cd_hu_2c131010f3a2860a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 论文作者和单位太多？如何快速整理和修改"
+                        data-key="author_affiliation" 
+                        data-hash="md5-aDdNTMynRvOamala97sCzQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">论文作者和单位太多？如何快速整理和修改</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/docker-singularity/">
+        
+        
+            <div class="article-image">
+                <img src="/p/docker-singularity/images/docker.93bb574a4f019bad268cedef7444a9ab_hu_eb6e2e0797ec04b8.webp" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 容器（Docker &amp; Singularity）使用入门"
+                        data-key="docker-singularity" 
+                        data-hash="md5-k7tXSk8Bm60mjO3vdESpqw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">容器（Docker &amp; Singularity）使用入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

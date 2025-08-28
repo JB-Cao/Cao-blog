@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Reporter Score是一种改进微生物富集分析的新方法，这里我们分享一下使用ReporterScore包进行富集分析的具体方法。'>
+<title>使用ReporterScore包进行富集分析</title>
+
+<link rel='canonical' href='/p/reporterscore-package/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='使用ReporterScore包进行富集分析'>
+<meta property='og:description' content='Reporter Score是一种改进微生物富集分析的新方法，这里我们分享一下使用ReporterScore包进行富集分析的具体方法。'>
+<meta property='og:url' content='/p/reporterscore-package/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='R' /><meta property='article:tag' content='package' /><meta property='article:tag' content='功能基因' /><meta property='article:published_time' content='2023-07-04T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-07-04T00:00:00&#43;00:00'/><meta property='og:image' content='/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-7-1.png' />
+<meta name="twitter:title" content="使用ReporterScore包进行富集分析">
+<meta name="twitter:description" content="Reporter Score是一种改进微生物富集分析的新方法，这里我们分享一下使用ReporterScore包进行富集分析的具体方法。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-7-1.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#citation">Citation</a></li>
+    <li><a href="#install">Install</a></li>
+    <li><a href="#usage">Usage</a>
+      <ol>
+        <li><a href="#1-inputdata-ko-abundance-table-and-metadata">1. Inputdata (KO abundance table and metadata)</a></li>
+        <li><a href="#2-pathway-database">2. Pathway database</a></li>
+        <li><a href="#3-one-step-enrichment">3. One step enrichment</a></li>
+        <li><a href="#4-visualization">4. Visualization</a></li>
+        <li><a href="#example-for-mixed">example for “mixed”</a></li>
+      </ol>
+    </li>
+    <li><a href="#details">Details</a>
+      <ol>
+        <li><a href="#step-by-step">Step by step</a></li>
+        <li><a href="#other-enrichment-methods">Other enrichment methods</a></li>
+        <li><a href="#ko-levels">KO levels</a></li>
+      </ol>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/reporterscore-package/">
+                <img src="/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-7-1_hu_1d5fcef8bf66e524.png"
+                        srcset="/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-7-1_hu_1d5fcef8bf66e524.png 800w, /p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-7-1_hu_6b88a5d96f65758f.png 1600w"
+                        width="800" 
+                        height="560" 
+                        loading="lazy"
+                        alt="Featured image of post 使用ReporterScore包进行富集分析" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/r/" style="background-color: #bebada; color: #fff;">
+                R
+            </a>
+        
+            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/reporterscore-package/">使用ReporterScore包进行富集分析</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Reporter Score是一种改进微生物富集分析的新方法，这里我们分享一下使用ReporterScore包进行富集分析的具体方法。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 04, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>上次已经在<a class="link" href="../reporter-score" >一篇推文</a>中介绍过了微生物组分析常用的功能富集分析方法以及reporter score方法的原理，并且也介绍了我开发的R包<code>ReporterScore</code>。</p>
+<p>但时那个时候R包写的还比较粗糙，功能也不多，最近进一步优化了这个包的各种功能，支持两种模式，多种统计检验方法，支持两组甚至更多组的实验设计（这个挺好用的），KEGG数据库的同步做的也比较好了，还增加了一些可视化形式。</p>
+<p>以下是我给这个R包github主页（<a class="link" href="https://github.com/Asa12138/ReporterScore"  target="_blank" rel="noopener"
+    >https://github.com/Asa12138/ReporterScore</a>）下写的介绍和用法，这里简单翻译一下贴过来了。但其实里面还有不少功能没在下面写出，可以在R包里探索一下，哈哈。</p>
+<h2 id="citation">Citation</h2>
+<p>这个包暂时还没有在刊物上发表，要在出版物中引用 <code>ReporterScore</code>，请使用：</p>
+<p>Chen Peng, Chao Jiang. ReporterScore: an R package for Reporter Score-based Microbial Enrichment Analysis. R package (2023), <a class="link" href="https://github.com/Asa12138/ReporterScore"  target="_blank" rel="noopener"
+    >https://github.com/Asa12138/ReporterScore</a></p>
+<p>🤗也欢迎在GitHub上点个star⭐️</p>
+<h2 id="install">Install</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="kr">if</span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&#34;devtools&#34;</span><span class="p">))</span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;devtools&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#39;Asa12138/pcutils&#39;</span><span class="p">,</span><span class="n">dependencies</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#39;Asa12138/ReporterScore&#39;</span><span class="p">,</span><span class="n">dependencies</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ReporterScore</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="usage">Usage</h2>
+<h3 id="1-inputdata-ko-abundance-table-and-metadata">1. Inputdata (KO abundance table and metadata)</h3>
+<p>通常，我们可以使用<a class="link" href="https://www.kegg.jp/kegg/"  target="_blank" rel="noopener"
+    >KEGG数据库</a>来注释我们的微生物组测序数据，特别是环境微生物组，因为KEGG相对来说更全面（当然大部分还是unknown）。</p>
+<p>具体方法包括直接使用blast对KEGG序列数据库进行比对，使用KEGG官方mapper软件，使用<a class="link" href="http://eggnog5.embl.de/#/app/home"  target="_blank" rel="noopener"
+    >EggNOG数据库</a>并将结果转化为KEGG注释。</p>
+<p>这样我们就可以得到一个KO丰度表（行是KO，列是样本）用于我们的富集分析：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">data</span><span class="p">(</span><span class="s">&#34;KO_abundance_test&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">KO_abundance[</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="n">]</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>##                WT1         WT2         WT3         WT4         WT5         WT6
+## K03169 0.002653545 0.005096380 0.002033923 0.000722349 0.003468322 0.001483028
+## K07133 0.000308237 0.000280458 0.000596527 0.000859854 0.000308719 0.000878098
+## K03088 0.002147068 0.002030742 0.003797459 0.004161979 0.002076596 0.003091182
+## K03530 0.003788366 0.000239298 0.000445817 0.000557271 0.000222969 0.000529624
+## K06147 0.000785654 0.001213630 0.001312569 0.001662740 0.002387006 0.001725797
+## K05349 0.001816325 0.002813642 0.003274701 0.001089906 0.002371921 0.001795214
+</code></pre>
+<p>还需要提供实验设计的元数据metadata（行是样本，列是组）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">metadata</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>##     Group Group2
+## WT1    WT     G3
+## WT2    WT     G3
+## WT3    WT     G3
+## WT4    WT     G3
+## WT5    WT     G3
+## WT6    WT     G1
+</code></pre>
+<h3 id="2-pathway-database">2. Pathway database</h3>
+<p><code>ReporterScore</code>内置了KEGG 通路和模块数据库（2023-08 版）用于KO 丰度表分析。</p>
+<p>你可以使用 <code>load_KOlist()</code> 查看并使用 <code>update_KO_file()</code> 更新这些数据库（通过 KEGG API），因为使用最新的数据库非常重要。</p>
+<p>或者你可以使用<code>custom_modulelist()</code>自定义你自己的通路数据库（感兴趣的基因集）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">load_KOlist</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">KOlist</span><span class="o">$</span><span class="n">pathway</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-one-step-enrichment">3. One step enrichment</h3>
+<p>使用函数<code>reporter_score</code>可以一步得到reporter score结果。</p>
+<p>有一些重要的参数可供调节：</p>
+<ul>
+<li><strong>mode</strong>: “mixed” 或 “directed”（仅适用于两组差异分析或多组相关分析），详细信息参见<code>pvalue2zs</code>。</li>
+<li><strong>方法</strong>：统计检验类型。 默认为”wilcox.test”：
+<ul>
+<li><code>t.test</code> （参数）和 <code>wilcox.test</code> （非参数）。 对两组样品进行比较。 如果分组变量包含两个以上水平，则执行成对比较。 - <code>anova</code>（参数）和 <code>kruskal.test</code>（非参数）。 执行比较多个组的单向方差分析测试。</li>
+<li>“pearson”、“kendall”或”spearman”（相关分析），请参见<code>cor</code>。</li>
+</ul>
+</li>
+<li><strong>p.adjust.method</strong>：用于测试结果的p.adjust.method，参见<code>p.adjust</code>。</li>
+<li><strong>type</strong>/<strong>modulelist</strong>：选择通路数据库，默认数据库为”pathway”或”module”，或使用自定义的模块列表。</li>
+</ul>
+<p>group作为因子变量，第一个水平将被设置为<strong>对照组</strong>，你可以更改因子水平来改变你的比较。</p>
+<p>例如，我们想要比较两组”WT-OE”，并使用”directed”模式，因为我们只想知道 <strong>OE 组</strong> 中哪些通路被富集或耗尽：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">cat</span><span class="p">(</span><span class="s">&#34;Comparison: &#34;</span><span class="p">,</span><span class="nf">levels</span><span class="p">(</span><span class="nf">factor</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">Group</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## Comparison:  WT OE</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">reporter_score_res</span><span class="o">=</span><span class="nf">reporter_score</span><span class="p">(</span><span class="n">KO_abundance</span><span class="p">,</span><span class="s">&#34;Group&#34;</span><span class="p">,</span><span class="n">metadata</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s">&#34;directed&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果是一个”reporter_score”对象：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>elements</th>
+          <th>description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>kodf</code></td>
+          <td>你的输入 KO_abundance 表</td>
+      </tr>
+      <tr>
+          <td><code>ko_pvalue</code></td>
+          <td>ko 统计结果包含 p.value</td>
+      </tr>
+      <tr>
+          <td><code>ko_stat</code></td>
+          <td>ko统计结果包含p.value和z_score</td>
+      </tr>
+      <tr>
+          <td><code>reporter_s</code></td>
+          <td>在每个途径中的reporter score</td>
+      </tr>
+      <tr>
+          <td><code>modulelist</code></td>
+          <td>默认 KOlist 或自定义模块列表数据框</td>
+      </tr>
+      <tr>
+          <td><code>group</code></td>
+          <td>你的数据中的比较组</td>
+      </tr>
+      <tr>
+          <td><code>metadata</code></td>
+          <td>示例信息数据框包含组</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="4-visualization">4. Visualization</h3>
+<p>绘制最显著富集的通路：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#View(reporter_score_res$reporter_s)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot_report</span><span class="p">(</span><span class="n">reporter_score_res</span><span class="p">,</span><span class="n">rs_threshold</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-7-1.png" width="960" />
+<p>当我们聚焦于一条通路时，例如 “map00780”：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot_KOs_in_pathway</span><span class="p">(</span><span class="n">reporter_score_res</span><span class="p">,</span><span class="n">map_id</span> <span class="o">=</span> <span class="s">&#34;map00780&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<p>或者显示为网络：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot_KOs_network</span><span class="p">(</span><span class="n">reporter_score_res</span><span class="p">,</span><span class="n">map_id</span> <span class="o">=</span> <span class="s">&#34;map00780&#34;</span><span class="p">,</span><span class="n">main</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<p>我们也可以查看通路中每个 KO 的丰度：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot_KOs_box</span><span class="p">(</span><span class="n">reporter_score_res</span><span class="p">,</span><span class="n">map_id</span> <span class="o">=</span> <span class="s">&#34;map00780&#34;</span><span class="p">,</span><span class="n">only_sig</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-10-1.png" width="768" />
+<p>或者热图形式呈现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot_KOs_heatmap</span><span class="p">(</span><span class="n">reporter_score_res</span><span class="p">,</span><span class="n">map_id</span> <span class="o">=</span> <span class="s">&#34;map00780&#34;</span><span class="p">,</span><span class="n">only_sig</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span><span class="n">heatmap_param</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">cutree_rows</span><span class="o">=</span><span class="m">2</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<h3 id="example-for-mixed">example for “mixed”</h3>
+<p>如果我们的实验设计超过两组，我们可以选择多组比较和“mixed”模式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">cat</span><span class="p">(</span><span class="s">&#34;Comparison: &#34;</span><span class="p">,</span><span class="nf">levels</span><span class="p">(</span><span class="nf">factor</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">Group2</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## Comparison:  G1 G2 G3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">reporter_score_res2</span><span class="o">=</span><span class="nf">reporter_score</span><span class="p">(</span><span class="n">KO_abundance</span><span class="p">,</span><span class="s">&#34;Group2&#34;</span><span class="p">,</span><span class="n">metadata</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s">&#34;mixed&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">method</span> <span class="o">=</span> <span class="s">&#34;kruskal.test&#34;</span><span class="p">,</span><span class="n">p.adjust.method1</span> <span class="o">=</span> <span class="s">&#34;none&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">plot_KOs_in_pathway</span><span class="p">(</span><span class="n">reporter_score_res2</span><span class="p">,</span><span class="n">map_id</span> <span class="o">=</span> <span class="s">&#34;map00541&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<h2 id="details">Details</h2>
+<h3 id="step-by-step">Step by step</h3>
+<p>一步函数 <code>reporter_score</code> 由三部分组成：</p>
+<ol>
+<li><code>ko.test</code>：此函数有助于通过各种内置方法计算 KO_abundance 的 <em>p-value</em>，例如差异分析（t.test、wilcox.test、kruskal.test、anova）或相关分析（pearson 、spearman、kendall）。 <strong>你还可以通过其他方法计算 KO_abundance 的 p-value</strong>，例如“DESeq2”、“Edger”、“Limma”、“ALDEX”、“ANCOM”，并自行进行 p值矫正，然后跳过<code>ko.test</code> 步骤转到步骤2…</li>
+<li><code>pvalue2zs</code>：该函数将 KO 的 p-value 转换为 Z-score（选择模式: “mixed” 或 “directed”）。</li>
+<li><code>get_reporter_score</code> 该函数计算特定数据库中每个通路的reporter score。 你可以在此处使用自定义数据库。</li>
+</ol>
+<p>这样你就可以一步一步得到reporter score。</p>
+<h3 id="other-enrichment-methods">Other enrichment methods</h3>
+<p><code>ReporterScore</code> 还提供了其他丰富方法，如 <code>KO_fisher</code>(fisher.test)、<code>KO_enrich</code>(fisher.test, from <code>clusterProfiler</code>)、<code>KO_gsea</code> (GSEA, from <code>clusterProfiler</code>)，输入数据来自 <code>reporter_score</code>，并且也支持自定义数据库，因此你可以轻松比较各种富集方法的结果并进行全面分析：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">data</span><span class="p">(</span><span class="s">&#34;KO_abundance_test&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">reporter_score_res2</span><span class="o">=</span><span class="nf">reporter_score</span><span class="p">(</span><span class="n">KO_abundance</span><span class="p">,</span><span class="s">&#34;Group&#34;</span><span class="p">,</span><span class="n">metadata</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s">&#34;mixed&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#View(reporter_score_res2$reporter_s)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#reporter_score</span>
+</span></span><span class="line"><span class="cl"><span class="n">reporter_score_res2</span><span class="o">$</span><span class="n">reporter_s</span><span class="o">$</span><span class="n">p.adjust</span><span class="o">=</span><span class="nf">p.adjust</span><span class="p">(</span><span class="n">reporter_score_res2</span><span class="o">$</span><span class="n">reporter_s</span><span class="o">$</span><span class="n">p.value</span><span class="p">,</span><span class="s">&#34;BH&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">filter</span><span class="p">(</span><span class="n">reporter_score_res2</span><span class="o">$</span><span class="n">reporter_s</span><span class="p">,(</span><span class="n">ReporterScore</span><span class="p">)</span><span class="o">&gt;</span><span class="m">1.64</span><span class="p">,</span><span class="n">p.adjust</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">)</span><span class="o">%&gt;%</span><span class="nf">pull</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">RS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#fisher</span>
+</span></span><span class="line"><span class="cl"><span class="n">ko_pvalue</span><span class="o">=</span><span class="n">reporter_score_res2</span><span class="o">$</span><span class="n">ko_pvalue</span>
+</span></span><span class="line"><span class="cl"><span class="n">fisher_res</span><span class="o">=</span><span class="nf">KO_fisher</span><span class="p">(</span><span class="n">ko_pvalue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">filter</span><span class="p">(</span><span class="n">fisher_res</span><span class="p">,</span><span class="n">p.adjust</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">)</span><span class="o">%&gt;%</span><span class="nf">pull</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Fisher</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#enricher</span>
+</span></span><span class="line"><span class="cl"><span class="n">enrich_res</span><span class="o">=</span><span class="nf">KO_enrich</span><span class="p">(</span><span class="n">ko_pvalue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">filter</span><span class="p">(</span><span class="n">enrich_res</span><span class="p">,</span><span class="n">p.adjust</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">)</span><span class="o">%&gt;%</span><span class="nf">pull</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">clusterProfiler</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#GESA</span>
+</span></span><span class="line"><span class="cl"><span class="nf">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gsea_res</span><span class="o">=</span><span class="nf">KO_gsea</span><span class="p">(</span><span class="n">ko_pvalue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">filter</span><span class="p">(</span><span class="n">gsea_res</span><span class="o">@</span><span class="n">result</span><span class="p">,</span><span class="n">p.adjust</span><span class="o">&lt;</span><span class="m">0.05</span><span class="p">)</span><span class="o">%&gt;%</span><span class="nf">pull</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">GSEA</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">venn_res</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">RS</span><span class="o">=</span><span class="n">RS</span><span class="p">,</span><span class="n">Fisher</span><span class="o">=</span><span class="n">Fisher</span><span class="p">,</span><span class="n">CP</span><span class="o">=</span><span class="n">clusterProfiler</span><span class="p">,</span><span class="n">GSEA</span><span class="o">=</span><span class="n">GSEA</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">pcutils</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">venn</span><span class="p">(</span><span class="n">venn_res</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">venn</span><span class="p">(</span><span class="n">venn_res</span><span class="p">,</span><span class="s">&#34;network&#34;</span><span class="p">,</span><span class="n">vertex.label.cex</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">4</span><span class="p">),</span><span class="nf">rep</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="m">22</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-13-2.png" width="672" />
+<h3 id="ko-levels">KO levels</h3>
+<p><a class="link" href="https://www.genome.jp/kegg/brite.html"  target="_blank" rel="noopener"
+    >KEGG BRITE</a> 是一个层次分类系统的集合，捕获各种生物对象的功能层次结构，特别是那些表示为 KEGG 对象的功能层次结构。</p>
+<p>我们收集了 k00001 KEGG Orthology (KO) 表，以便你可以总结每个级别的丰度。 使用 <code>load_KO_htable</code> 获取 KO_htable 并使用 <code>update_KO_htable</code> 进行更新。 使用 <code>up_level_KO</code> 可以升级到“pathway”、“module”、“level1”、“level2”、“level3”、“module1”、“module2”、“module3”之一中的特定级别。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">load_KO_htable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">KO_htable</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## # A tibble: 6 × 8
+##   level1_id level1_name level2_id level2_name        level3_id level3_name KO_id
+##   &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;              &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;
+## 1 A09100    Metabolism  B09101    Carbohydrate meta… map00010  Glycolysis… K008…
+## 2 A09100    Metabolism  B09101    Carbohydrate meta… map00010  Glycolysis… K124…
+## 3 A09100    Metabolism  B09101    Carbohydrate meta… map00010  Glycolysis… K008…
+## 4 A09100    Metabolism  B09101    Carbohydrate meta… map00010  Glycolysis… K250…
+## 5 A09100    Metabolism  B09101    Carbohydrate meta… map00010  Glycolysis… K018…
+## 6 A09100    Metabolism  B09101    Carbohydrate meta… map00010  Glycolysis… K068…
+## # ℹ 1 more variable: KO_name &lt;chr&gt;
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot_KO_htable</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-14-1.png" width="960" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">KO_level1</span><span class="o">=</span><span class="nf">up_level_KO</span><span class="p">(</span><span class="n">KO_abundance</span><span class="p">,</span><span class="n">level</span> <span class="o">=</span> <span class="s">&#34;level1&#34;</span><span class="p">,</span><span class="n">show_name</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pcutils</span><span class="o">::</span><span class="nf">stackplot</span><span class="p">(</span><span class="n">KO_level1[</span><span class="o">-</span><span class="nf">which</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">KO_level1</span><span class="p">)</span><span class="o">==</span><span class="s">&#34;Unknown&#34;</span><span class="p">),</span><span class="n">]</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporterscore-package/index.en_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<h2 id="reference">Reference</h2>
+<ol>
+<li>
+<p>Patil, K. R.
+&amp; Nielsen, J. Uncovering transcriptional regulation of metabolism by using metabolic network topology.
+Proc Natl Acad Sci U S A 102, 2685–2689 (2005).</p>
+</li>
+<li>
+<p>L. Liu, R. Zhu, D. Wu, Misuse of reporter score in microbial enrichment analysis. iMeta. 2, e95 (2023).</p>
+</li>
+<li>
+<p><a class="link" href="https://github.com/wangpeng407/ReporterScore"  target="_blank" rel="noopener"
+    >https://github.com/wangpeng407/ReporterScore</a></p>
+</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/r/">R</a>
+        
+            <a href="/tags/package/">Package</a>
+        
+            <a href="/tags/%E5%8A%9F%E8%83%BD%E5%9F%BA%E5%9B%A0/">功能基因</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/synteny/">
+        
+        
+            <div class="article-image">
+                <img src="/p/synteny/images/emales.4bc315eea41464bbcfd1eab9c4798b89_hu_712745c117876c99.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 基因组同线性（synteny）分析和可视化"
+                        data-key="synteny" 
+                        data-hash="md5-S8MV7qQUZLvP0eq5xHmLiQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">基因组同线性（synteny）分析和可视化</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/r-pctax/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-pctax/index.en_files/figure-html/rda-1.dd348f4200f041dd40c8e60e66ac5553_hu_997e3e688954cf7f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post R微生物组分析流程（pctax包）"
+                        data-key="r-pctax" 
+                        data-hash="md5-3TSPQgDwQd1AyOYOZqxVUw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">R微生物组分析流程（pctax包）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/bgckit-bgc/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">BGCkit：组学数据BGC分析流程</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-8/images/nc.80f498412d2ea6135a9712c93dbb8eba_hu_86d7f3e82c9046db.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜8.网络稳定性分析"
+                        data-key="metanet-8" 
+                        data-hash="md5-gPSYQS0uphNalxLJPbuOug==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜8.网络稳定性分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-7/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-7/index.en_files/figure-html/unnamed-chunk-5-1.347acced76b5c6eb13665a5b490dbdd9_hu_7eb69229f62ded98.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜7.网络模块分析"
+                        data-key="metanet-7" 
+                        data-hash="md5-NHrM7Xa1xusTZlpbSQ292Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜7.网络模块分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

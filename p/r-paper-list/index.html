@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='整理和分析文献信息的相关R包和代码。'>
+<title>R整理和分析文献信息</title>
+
+<link rel='canonical' href='/p/r-paper-list/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='R整理和分析文献信息'>
+<meta property='og:description' content='整理和分析文献信息的相关R包和代码。'>
+<meta property='og:url' content='/p/r-paper-list/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='R' /><meta property='article:published_time' content='2024-10-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-14T00:00:00&#43;00:00'/><meta property='og:image' content='/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-19-1.png' />
+<meta name="twitter:title" content="R整理和分析文献信息">
+<meta name="twitter:description" content="整理和分析文献信息的相关R包和代码。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-19-1.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#scholar">scholar</a>
+      <ol>
+        <li><a href="#获取作者的profile">获取作者的profile</a></li>
+        <li><a href="#获取作者的文章列表">获取作者的文章列表</a></li>
+        <li><a href="#引用次数可视化">引用次数可视化</a></li>
+        <li><a href="#作者比较">作者比较</a></li>
+        <li><a href="#作者的co-author网络">作者的co-author网络</a></li>
+        <li><a href="#预测未来的h指数值">预测未来的h指数值</a></li>
+      </ol>
+    </li>
+    <li><a href="#rcrossref">rcrossref</a>
+      <ol>
+        <li><a href="#通过doi获取文章信息">通过DOI获取文章信息</a></li>
+        <li><a href="#通过其他信息查询文章">通过其他信息查询文章</a></li>
+      </ol>
+    </li>
+    <li><a href="#pubmed相关r包">PubMed相关R包</a>
+      <ol>
+        <li><a href="#rismed">RISmed</a></li>
+        <li><a href="#easypubmed">easyPubMed</a></li>
+      </ol>
+    </li>
+    <li><a href="#bibliometrix">bibliometrix</a>
+      <ol>
+        <li><a href="#数据获取">数据获取</a></li>
+        <li><a href="#基本信息">基本信息</a></li>
+        <li><a href="#可视化文献网络">可视化文献网络</a></li>
+        <li><a href="#co-word分析">Co-Word分析</a></li>
+      </ol>
+    </li>
+    <li><a href="#其他需求">其他需求</a>
+      <ol>
+        <li><a href="#添加期刊影响因子">添加期刊影响因子</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/r-paper-list/">
+                <img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-19-1_hu_bff1b77d3ed06bb1.png"
+                        srcset="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-19-1_hu_bff1b77d3ed06bb1.png 800w, /p/r-paper-list/index.en_files/figure-html/unnamed-chunk-19-1_hu_e6245f83d86d0aa2.png 1600w"
+                        width="800" 
+                        height="571" 
+                        loading="lazy"
+                        alt="Featured image of post R整理和分析文献信息" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/r/" style="background-color: #bebada; color: #fff;">
+                R
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/r-paper-list/">R整理和分析文献信息</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            整理和分析文献信息的相关R包和代码。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 14, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>我们平时在做科研的时候，经常会遇到需要整理文献信息的情况。比如，我们需要查找某个领域的最新论文，或者是了解一个作者的发文情况等等。</p>
+<p>一般情况下，我们会通过搜索引擎来查找相关的文献，然后逐一查看。但手动的话一般很难快速整理成表，所以我在这里简单介绍几个R包，可以帮助我们快速整理文献信息:</p>
+<h2 id="scholar">scholar</h2>
+<p>Google Scholar 可能是了解一位作者最好的途径了（如果他有账号的话，因为这里的list一般比较全。但由于没有ORCID一类的标识符，也可能出现不是该作者的文章）。scholar包提供从 Google Scholar 中提取引文数据的功能。还提供了方便的函数来比较多个学者并预测未来的 H 指数值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># from CRAN</span>
+</span></span><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;scholar&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># from GitHub</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&#39;remotes&#39;</span><span class="p">))</span> <span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;remotes&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#39;YuLab-SMU/scholar&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意使用这个包需要我们本来就能上Google Scholar（代理一下），然后记得在R环境里也设置一下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># install.packages(&#34;r.proxy&#34;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">r.proxy</span><span class="o">::</span><span class="nf">proxy</span><span class="p">()</span> <span class="c1">#打开代理</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># r.proxy::noproxy() #不用的话可以关掉</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="获取作者的profile">获取作者的profile</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">scholar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## Define the id for Richard Feynman，这个id可以在Google Scholar中找到，看网址中的user=XXXXXXXXX</span>
+</span></span><span class="line"><span class="cl"><span class="n">id</span> <span class="o">&lt;-</span> <span class="s">&#39;B7vSqZsAAAAJ&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">## Get his profile</span>
+</span></span><span class="line"><span class="cl"><span class="n">l</span> <span class="o">&lt;-</span> <span class="nf">get_profile</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">print</span><span class="p">(</span><span class="n">l[2</span><span class="o">:</span><span class="m">7</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## $name</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## [1] &#34;Richard Feynman&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## $affiliation</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## [1] &#34;California Institute of Technology&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## $total_cites</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## [1] 127275</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## $h_index</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## [1] 62</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## $i10_index</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## [1] 100</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## $fields</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## [1] &#34;quantum mechanics&#34;       &#34;quantum electrodynamics&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="获取作者的文章列表">获取作者的文章列表</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">pubdf</span><span class="o">=</span><span class="nf">get_publications</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">nrow</span><span class="p">(</span><span class="n">pubdf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## [1] 157</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>注意这里的文章信息并不多，只有标题、作者列表、期刊、发表年、引用量等。而且，作者列表里如果人名太多太长，就会出现&quot;&hellip;&ldquo;的省略😂，我们可以进一步处理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 比如pubdf$author[33]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#34;RP Feynman, RB Leighton, M Sands, CA Heras, R Gómez, E Oelker, ...&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">for</span> <span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">pubdf</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="p">(</span><span class="nf">grepl</span><span class="p">(</span><span class="s">&#34;...&#34;</span><span class="p">,</span> <span class="n">pubdf</span><span class="o">$</span><span class="n">author[i]</span><span class="p">,</span><span class="n">fixed</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pubdf</span><span class="o">$</span><span class="n">author[i]</span> <span class="o">&lt;-</span> <span class="nf">get_complete_authors</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">pubdf</span><span class="o">$</span><span class="n">pubid[i]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 处理好之后：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># &#34;RP Feynman, RB Leighton, M Sands, CA Heras, R Gómez, E Oelker, H Espinosa&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取作者排名（根据姓查询的，比如这里就是用Feynman，有重名的话保留靠前的排名）：</span>
+</span></span><span class="line"><span class="cl"><span class="n">author_pos</span><span class="o">=</span><span class="n">scholar</span><span class="o">::</span><span class="nf">author_position</span><span class="p">(</span><span class="n">pubdf</span><span class="o">$</span><span class="n">author</span><span class="p">,</span><span class="n">l</span><span class="o">$</span><span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pubdf</span><span class="o">=</span><span class="nf">cbind</span><span class="p">(</span><span class="n">pubdf</span><span class="p">,</span><span class="n">author_pos</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这里的Position_Normalized基本可以确定0是第一作者，1是最后一个通讯作者了，但是共一共通讯需要自己去手动看看。</p>
+<h3 id="引用次数可视化">引用次数可视化</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#作者年份被引信息</span>
+</span></span><span class="line"><span class="cl"><span class="n">scholar</span><span class="o">::</span><span class="nf">get_citation_history</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">citation_history</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#某一篇文章年份被引信息</span>
+</span></span><span class="line"><span class="cl"><span class="n">scholar</span><span class="o">::</span><span class="nf">get_article_cite_history</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="n">pubdf</span><span class="o">$</span><span class="n">pubid[1]</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">article_cite_history</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">(</span><span class="n">citation_history</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">year</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">cites</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ggh4x</span><span class="o">::</span><span class="nf">geom_pointpath</span><span class="p">()</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&#34;Feynman&#39;s Citation History&#34;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s">&#34;Year&#34;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s">&#34;Citations&#34;</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">theme_classic</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<h3 id="作者比较">作者比较</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#比较Feynman和Hawking的文章引用</span>
+</span></span><span class="line"><span class="cl"><span class="nf">compare_scholars</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;B7vSqZsAAAAJ&#39;</span><span class="p">,</span> <span class="s">&#39;qj74uXkAAAAJ&#39;</span><span class="p">))</span><span class="o">-&gt;</span><span class="n">compare_result</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">(</span><span class="n">compare_result</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">year</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">cites</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">name</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ggh4x</span><span class="o">::</span><span class="nf">geom_pointpath</span><span class="p">()</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&#34;Feynman and Hawking&#39;s Citation History&#34;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s">&#34;Year&#34;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s">&#34;Citations&#34;</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">theme_classic</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#用职业生涯比较累计量</span>
+</span></span><span class="line"><span class="cl"><span class="nf">compare_scholar_careers</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;B7vSqZsAAAAJ&#39;</span><span class="p">,</span> <span class="s">&#39;qj74uXkAAAAJ&#39;</span><span class="p">))</span><span class="o">-&gt;</span><span class="n">compare_career_result</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">(</span><span class="n">compare_career_result</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">career_year</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">cites</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">name</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ggh4x</span><span class="o">::</span><span class="nf">geom_pointpath</span><span class="p">()</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">&#34;Feynman and Hawking&#39;s Citation History&#34;</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="s">&#34;Career year&#34;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s">&#34;Citations&#34;</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">theme_classic</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-7-2.png" width="672" />
+<h3 id="作者的co-author网络">作者的co-author网络</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">coauthor_network</span> <span class="o">&lt;-</span> <span class="nf">get_coauthors</span><span class="p">(</span><span class="s">&#34;amYIKXQAAAAJ&amp;hl&#34;</span><span class="p">,</span> <span class="n">n_coauthors</span> <span class="o">=</span> <span class="m">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot_coauthors</span><span class="p">(</span><span class="n">coauthor_network</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<h3 id="预测未来的h指数值">预测未来的h指数值</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">## Predict h-index of original method author, Daniel Acuna</span>
+</span></span><span class="line"><span class="cl"><span class="n">id</span> <span class="o">&lt;-</span> <span class="s">&#39;GAi23ssAAAAJ&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">predict_h_index</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="rcrossref">rcrossref</h2>
+<p>DOI (Digital Object Identifier) 是一种唯一的、永久的数字标识符，用于标记学术文章、图书、数据集等数字内容，确保即使资源位置变化，用户仍能访问。DOI由国际DOI基金会管理，广泛用于出版和学术界。</p>
+<p>Crossref 是一家非营利组织，负责为出版物分配和管理DOI。它通过与出版商合作，使学术资源能够通过DOI轻松发现和引用。Crossref 提供的服务帮助提升了学术成果的可追溯性和引用率。</p>
+<p>rcrossref 是一款 R 语言包，其核心功能是与 CrossRef 平台进行交互，实现对全球数千万条文献记录的快速查询和处理。通过该包，用户可以方便地获取论文的DOI（数字对象唯一标识符）、作者信息、出版年份等详细元数据，甚至进行文本和数据挖掘服务。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># from CRAN</span>
+</span></span><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;rcrossref&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># from GitHub</span>
+</span></span><span class="line"><span class="cl"><span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;ropensci/rcrossref&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="通过doi获取文章信息">通过DOI获取文章信息</h3>
+<p>如果我们有文章的DOI，可以通过rcrossref包获取文章的元数据，这是最方便的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">rcrossref</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">cr_works</span><span class="p">(</span><span class="n">dois</span><span class="o">=</span><span class="s">&#39;10.1063/1.3593378&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">doi_res</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#批量查询也是可以的</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">cr_works</span><span class="p">(</span><span class="n">dois</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;10.1007/12080.1874-1746&#39;</span><span class="p">,</span><span class="s">&#39;10.1007/10452.1573-5125&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="s">&#39;10.1111/(issn)1442-9993&#39;</span><span class="p">),</span><span class="n">.progress</span> <span class="o">=</span> <span class="s">&#34;text&#34;</span><span class="p">)</span><span class="c1"># 加上进度条</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>doi_res$data里面提供了非常详细的信息，包括作者列表、标题、出版年份、参考文献等，可以进一步整理表格。</p>
+<h3 id="通过其他信息查询文章">通过其他信息查询文章</h3>
+<p>官网提供了<a class="link" href="https://docs.ropensci.org/rcrossref/articles/crossref_filters.html"  target="_blank" rel="noopener"
+    >https://docs.ropensci.org/rcrossref/articles/crossref_filters.html</a>，可以根据作者、关键词、出版时间等信息进行筛选。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">rcrossref</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过作者ORCID查询文章，但不是很准确，会少很多</span>
+</span></span><span class="line"><span class="cl"><span class="nf">cr_works</span><span class="p">(</span><span class="n">filter</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">orcid</span><span class="o">=</span><span class="s">&#34;0000-0002-9449-7606&#34;</span><span class="p">))</span><span class="o">-&gt;</span><span class="n">orcid_res</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过期刊+标题查询文章（比如我们之前谷歌学术的结果表格只有期刊+标题，一般没有DOI）</span>
+</span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">&lt;-</span> <span class="nf">cr_works</span><span class="p">(</span><span class="n">query</span> <span class="o">=</span> <span class="s">&#34;Interaction with the absorber as the mechanism of radiation&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">flq</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">`query.container-title`</span> <span class="o">=</span> <span class="s">&#39;Reviews of Modern Physics&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这个可能会搜到很多结果，一般第一条是比较准确的，可以手动check一下：</span>
+</span></span><span class="line"><span class="cl"><span class="nf">nrow</span><span class="p">(</span><span class="n">res</span><span class="o">$</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## [1] 20</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>举个例子，我们需要将上面找到的谷歌学术列表中的文章表格添加DOI信息，可以用下列代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">rcrossref</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pubdf2</span><span class="o">=</span><span class="nf">get_publications</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pubdf2</span><span class="o">$</span><span class="n">DOI</span><span class="o">=</span><span class="kc">NA</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">for</span> <span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="nf">seq_len</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">pubdf2</span><span class="p">))){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">results</span> <span class="o">&lt;-</span> <span class="nf">cr_works</span><span class="p">(</span><span class="n">query</span> <span class="o">=</span> <span class="n">pubdf2</span><span class="o">$</span><span class="n">title[i]</span><span class="p">,</span> <span class="n">filter</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">type</span> <span class="o">=</span> <span class="s">&#34;journal-article&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span><span class="p">(</span><span class="n">stringr</span><span class="o">::</span><span class="nf">str_equal</span><span class="p">(</span><span class="n">pubdf2</span><span class="o">$</span><span class="n">title[i]</span><span class="p">,</span><span class="n">results</span><span class="o">$</span><span class="n">data</span><span class="o">$</span><span class="n">title[1]</span><span class="p">,</span><span class="n">ignore_case</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 如果第一篇文章标题和搜索结果标题完全一致，则添加DOI</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pubdf2</span><span class="o">$</span><span class="n">DOI[i]</span><span class="o">=</span><span class="n">results</span><span class="o">$</span><span class="n">data</span><span class="o">$</span><span class="n">doi[1]</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="kr">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 如果第一篇文章标题和搜索结果标题不完全一致，则需要手动选择</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">cat</span><span class="p">(</span><span class="n">pubdf2</span><span class="o">$</span><span class="n">title[i]</span><span class="p">,</span><span class="s">&#34;\n\n&#34;</span><span class="p">,</span><span class="n">results</span><span class="o">$</span><span class="n">data</span><span class="o">$</span><span class="n">title[1]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flag</span> <span class="o">&lt;-</span> <span class="nf">readline</span><span class="p">(</span><span class="s">&#34;yes/no(y/n)?&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="p">(</span><span class="nf">tolower</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;yes&#34;</span><span class="p">,</span> <span class="s">&#34;y&#34;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">             <span class="n">pubdf2</span><span class="o">$</span><span class="n">DOI[i]</span><span class="o">=</span><span class="n">results</span><span class="o">$</span><span class="n">data</span><span class="o">$</span><span class="n">doi[1]</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="pubmed相关r包">PubMed相关R包</h2>
+<p>PubMed数据库是一个流行的数据库（但我用的比较少😂，基本上直接谷歌学术），有很多包可以用来查询PubMed数据库并挖掘，比如RISmed，pumed.mineR，easyPubMed等等。</p>
+<h3 id="rismed">RISmed</h3>
+<p>这是一套从国家生物技术信息中心（NCBI）数据库（包括PubMed）中提取书目内容的工具。RISmed是RIS（用于研究信息系统，书目数据的通用标签格式）和PubMed的组合。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">RISmed</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 限定检索主题</span>
+</span></span><span class="line"><span class="cl"><span class="n">search_topic</span><span class="o">&lt;-</span><span class="s">&#34;indoor air microbiome&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">search_query</span><span class="o">&lt;-</span><span class="nf">EUtilsSummary</span><span class="p">(</span><span class="n">search_topic</span><span class="p">,</span><span class="n">db</span><span class="o">=</span><span class="s">&#34;pubmed&#34;</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&#34;esearch&#34;</span><span class="p">,</span><span class="n">mindate</span><span class="o">=</span><span class="m">2022</span><span class="p">,</span><span class="n">maxdate</span><span class="o">=</span><span class="m">2024</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">summary</span><span class="p">(</span><span class="n">search_query</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取摘要信息，经常有网络问题😂不如去网站检索再导出</span>
+</span></span><span class="line"><span class="cl"><span class="n">records</span><span class="o">&lt;-</span> <span class="nf">EUtilsGet</span><span class="p">(</span><span class="n">search_query</span><span class="o">@</span><span class="n">PMID</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&#34;efetch&#34;</span><span class="p">,</span><span class="n">db</span><span class="o">=</span><span class="s">&#34;pubmed&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取作者信息</span>
+</span></span><span class="line"><span class="cl"><span class="n">authors</span> <span class="o">&lt;-</span> <span class="nf">Author</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="easypubmed">easyPubMed</h3>
+<p>EasyPubMed是Entrez编程实用程序的开源R接口，旨在允许在R环境中对PubMed进行程序化访问。该软件包适用于下载大量记录，并包含一系列功能来执行Entrez/PubMed查询响应的基本处理。该库支持XML或TXT（“ MEDLINE”）格式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">easyPubMed</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以直接输入文章标题查找</span>
+</span></span><span class="line"><span class="cl"><span class="n">fullti</span> <span class="o">&lt;-</span> <span class="nf">get_pubmed_ids_by_fulltitle</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fulltitle</span> <span class="o">=</span> <span class="s">&#34;Identification of hub genes and outcome in colon cancer based on bioinformatics analysis&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">field</span> <span class="o">=</span> <span class="s">&#34;[Title]&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># PMID</span>
+</span></span><span class="line"><span class="cl"><span class="n">fullti</span><span class="o">$</span><span class="n">IdList</span><span class="o">$</span><span class="n">Id</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## [1] &#34;30643458&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 转为DOI</span>
+</span></span><span class="line"><span class="cl"><span class="n">rcrossref</span><span class="o">::</span><span class="nf">id_converter</span><span class="p">(</span><span class="n">fullti</span><span class="o">$</span><span class="n">IdList</span><span class="o">$</span><span class="n">Id</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## $status</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## [1] &#34;ok&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## $responseDate</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## [1] &#34;2024-10-14 02:56:51&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## $request</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## [1] &#34;tool=rcrossref;email=myrmecocystus%40gmail.com;ids=30643458;format=json&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## $records</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##        pmcid     pmid                  doi           versions</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## 1 PMC6312054 30643458 10.2147/CMAR.S173240 PMC6312054.1, true</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="bibliometrix">bibliometrix</h2>
+<p>BiblioMetrix软件包提供了一组用于文献计量学和科学计量学方面的定量研究的工具。</p>
+<p>文献计量学本身是科学，定量分析的主要工具。本质上，书目计量学是定量分析和统计数据的应用，例如期刊文章及其随附的引文数。现在，几乎所有科学领域都使用了对出版和引文数据的定量评估，以评估成长，成熟度，主要作者，概念图和智力图，科学界的趋势。</p>
+<p>BIBLIOMERTIC还用于研究绩效评估，尤其是在大学和政府实验室，以及决策者，研究总监和管理人员，信息专家和图书馆员以及学者本身。</p>
+<p>BiblioMetrix在分析的三个关键阶段支持学者：</p>
+<ul>
+<li>数据导入和转换为R格式；</li>
+<li>出版数据集的文献计量分析；</li>
+<li>构建和绘制矩阵，用于共同引用，耦合，协作和共同词分析。矩阵是用于执行网络分析，多个对应分析和任何其他数据减少技术的输入数据。</li>
+</ul>
+<p>这个包的使用教程很多，比如参考<a class="link" href="https://blog.csdn.net/weixin_42487488/article/details/116379324"  target="_blank" rel="noopener"
+    >https://blog.csdn.net/weixin_42487488/article/details/116379324</a>。而且它提供一个shiny界面，不需要很多代码知识也可以方便使用。</p>
+<h3 id="数据获取">数据获取</h3>
+<p>一般使用自己检索或整理得到的bib文件，比如直接从web of science检索，export为BibTex；或者自己想去看的某个作者的文章列表。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">bibliometrix</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">file</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;https://www.bibliometrix.org/datasets/management1.txt&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;https://www.bibliometrix.org/datasets/management2.txt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span> <span class="o">&lt;-</span> <span class="nf">convert2df</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="n">file</span><span class="p">,</span> <span class="n">dbsource</span> <span class="o">=</span> <span class="s">&#34;wos&#34;</span><span class="p">,</span> <span class="n">format</span> <span class="o">=</span> <span class="s">&#34;plaintext&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## Converting your wos collection into a bibliographic dataframe</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## Done!</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## </span>
+</span></span><span class="line"><span class="cl"><span class="c1">## Generating affiliation field tag AU_UN from C1:  Done!</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="基本信息">基本信息</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">results</span> <span class="o">&lt;-</span> <span class="nf">biblioAnalysis</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">results</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">pause</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-16-1.png" width="50%" /><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-16-2.png" width="50%" /><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-16-3.png" width="50%" /><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-16-4.png" width="50%" /><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-16-5.png" width="50%" /></p>
+<h3 id="可视化文献网络">可视化文献网络</h3>
+<p>展示国家科学合作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Create a country collaboration network</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">M</span> <span class="o">&lt;-</span> <span class="nf">metaTagExtraction</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">Field</span> <span class="o">=</span> <span class="s">&#34;AU_CO&#34;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">NetMatrix</span> <span class="o">&lt;-</span> <span class="nf">biblioNetwork</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">analysis</span> <span class="o">=</span> <span class="s">&#34;collaboration&#34;</span><span class="p">,</span> <span class="n">network</span> <span class="o">=</span> <span class="s">&#34;countries&#34;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Plot the network</span>
+</span></span><span class="line"><span class="cl"><span class="n">net</span><span class="o">=</span><span class="nf">networkPlot</span><span class="p">(</span><span class="n">NetMatrix</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="nf">dim</span><span class="p">(</span><span class="n">NetMatrix</span><span class="p">)</span><span class="n">[1]</span><span class="p">,</span> <span class="n">Title</span> <span class="o">=</span> <span class="s">&#34;Country Collaboration&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;circle&#34;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">remove.multiple</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span><span class="n">labelsize</span><span class="o">=</span><span class="m">0.8</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<p>共同引用分析：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Create a co-citation network</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">NetMatrix</span> <span class="o">&lt;-</span> <span class="nf">biblioNetwork</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">analysis</span> <span class="o">=</span> <span class="s">&#34;co-citation&#34;</span><span class="p">,</span> <span class="n">network</span> <span class="o">=</span> <span class="s">&#34;references&#34;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="m">30</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Plot the network</span>
+</span></span><span class="line"><span class="cl"><span class="n">net</span><span class="o">=</span><span class="nf">networkPlot</span><span class="p">(</span><span class="n">NetMatrix</span><span class="p">,</span> <span class="n">Title</span> <span class="o">=</span> <span class="s">&#34;Co-Citation Network&#34;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;fruchterman&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">size</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">remove.multiple</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="m">0.7</span><span class="p">,</span><span class="n">edgesize</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+关键词网络：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Create keyword co-occurrences network</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">NetMatrix</span> <span class="o">&lt;-</span> <span class="nf">biblioNetwork</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">analysis</span> <span class="o">=</span> <span class="s">&#34;co-occurrences&#34;</span><span class="p">,</span> <span class="n">network</span> <span class="o">=</span> <span class="s">&#34;keywords&#34;</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Plot the network</span>
+</span></span><span class="line"><span class="cl"><span class="n">net</span><span class="o">=</span><span class="nf">networkPlot</span><span class="p">(</span><span class="n">NetMatrix</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="s">&#34;association&#34;</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">Title</span> <span class="o">=</span> <span class="s">&#34;Keyword Co-occurrences&#34;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;fruchterman&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">size</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">edgesize</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span><span class="n">labelsize</span><span class="o">=</span><span class="m">0.7</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<h3 id="co-word分析">Co-Word分析</h3>
+<p>共词分析的目的是使用书目集合中的词共现来映射框架的概念结构。
+可以通过降维技术（例如多维标度（MDS）、对应分析（CA）或多对应分析（MCA））来执行分析。</p>
+<p>这里展示了一个使用函数 ConceptualStructure 的示例，该函数执行 CA 或 MCA 来绘制字段的概念结构，并使用 K 均值聚类来识别表达共同概念的文档簇。结果绘制在二维图上。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Conceptual Structure using keywords (method=&#34;CA&#34;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CS</span> <span class="o">&lt;-</span> <span class="nf">conceptualStructure</span><span class="p">(</span><span class="n">M</span><span class="p">,</span><span class="n">field</span><span class="o">=</span><span class="s">&#34;ID&#34;</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#34;MCA&#34;</span><span class="p">,</span> <span class="n">minDegree</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">clust</span><span class="o">=</span><span class="m">5</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                          <span class="n">stemming</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="m">15</span><span class="p">,</span> <span class="n">documents</span><span class="o">=</span><span class="m">20</span><span class="p">,</span> <span class="n">graph</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">CS</span><span class="o">$</span><span class="n">graph_terms</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-paper-list/index.en_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<h2 id="其他需求">其他需求</h2>
+<h3 id="添加期刊影响因子">添加期刊影响因子</h3>
+<p>目前没有特别好的R包或函数来获取期刊的影响因子，之前scholar包 get_impactfactor函数也无法使用了。最好的方法还是自己去下载一下当年的JCR影响因子表格（很多公众号都可以获取），然后自己用R整合一下。我之前也也简单整理了一个IF大于2.4的部分期刊的表，下载链接：<a class="link" href="https://asa12138.github.io/FileList/JCR_IF_2024_bigger_than_2.4.csv"  target="_blank" rel="noopener"
+    >https://asa12138.github.io/FileList/JCR_IF_2024_bigger_than_2.4.csv</a>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#获取IF</span>
+</span></span><span class="line"><span class="cl"><span class="n">readr</span><span class="o">::</span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&#34;~/Documents/Others/JCRs/JCR_IF_2024_bigger_than_2.4.csv&#34;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">jcr_df</span>
+</span></span><span class="line"><span class="cl"><span class="n">pubdf2</span><span class="o">$</span><span class="n">IF</span><span class="o">=</span><span class="kc">NA</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span> <span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="nf">seq_len</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">pubdf2</span><span class="p">))){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tmp</span><span class="o">=</span><span class="nf">which</span><span class="p">(</span><span class="n">stringr</span><span class="o">::</span><span class="nf">str_equal</span><span class="p">(</span><span class="n">pubdf2</span><span class="o">$</span><span class="n">journal[i]</span><span class="p">,</span><span class="n">jcr_df</span><span class="o">$</span><span class="n">`Journal name`</span><span class="p">,</span><span class="n">ignore_case</span> <span class="o">=</span> <span class="bp">T</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span><span class="o">&gt;</span><span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">         <span class="n">pubdf2</span><span class="o">$</span><span class="n">IF[i]</span><span class="o">=</span><span class="n">jcr_df[tmp</span><span class="p">,</span><span class="m">3</span><span class="n">]</span><span class="o">%&gt;%</span><span class="nf">unlist</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/r/">R</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/bgckit-bgc/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">BGCkit：组学数据BGC分析流程</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-8/images/nc.80f498412d2ea6135a9712c93dbb8eba_hu_86d7f3e82c9046db.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜8.网络稳定性分析"
+                        data-key="metanet-8" 
+                        data-hash="md5-gPSYQS0uphNalxLJPbuOug==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜8.网络稳定性分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-7/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-7/index.en_files/figure-html/unnamed-chunk-5-1.347acced76b5c6eb13665a5b490dbdd9_hu_7eb69229f62ded98.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜7.网络模块分析"
+                        data-key="metanet-7" 
+                        data-hash="md5-NHrM7Xa1xusTZlpbSQ292Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜7.网络模块分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-6/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-6/images/node_topo.1683b9dd5f4336e37158c4c2ba8c763d_hu_ba1f45afac1b002f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜6.网络拓扑指标分析"
+                        data-key="metanet-6" 
+                        data-hash="md5-FoO53V9DNuNxWMTCuox2PQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜6.网络拓扑指标分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-5/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1.7bec6bde92fa4911f3756ff861af16b6_hu_aaab0c1c731476bb.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具"
+                        data-key="metanet-5" 
+                        data-hash="md5-e&#43;xr3pL6SRHzdW/4Ya8Wtg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

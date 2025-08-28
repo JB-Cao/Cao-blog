@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='在学术写作中，&#34;文内引用&#34;（citation）和&#34;参考文献列表&#34;（bibliography）是两个重要的概念，学会管理它们十分重要。我们一般可以通过设置CSL文件来快速获得想要的引文风格。'>
+<title>CSL格式原理和应用</title>
+
+<link rel='canonical' href='/p/csl/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='CSL格式原理和应用'>
+<meta property='og:description' content='在学术写作中，&#34;文内引用&#34;（citation）和&#34;参考文献列表&#34;（bibliography）是两个重要的概念，学会管理它们十分重要。我们一般可以通过设置CSL文件来快速获得想要的引文风格。'>
+<meta property='og:url' content='/p/csl/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='csl' /><meta property='article:tag' content='文献管理' /><meta property='article:published_time' content='2024-01-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-01-23T00:00:00&#43;00:00'/><meta property='og:image' content='/p/csl/images/csl_editor.png' />
+<meta name="twitter:title" content="CSL格式原理和应用">
+<meta name="twitter:description" content="在学术写作中，&#34;文内引用&#34;（citation）和&#34;参考文献列表&#34;（bibliography）是两个重要的概念，学会管理它们十分重要。我们一般可以通过设置CSL文件来快速获得想要的引文风格。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/csl/images/csl_editor.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#citation-style-language">Citation Style Language</a>
+      <ol>
+        <li><a href="#xml-basic">XML basic</a></li>
+        <li><a href="#整体结构">整体结构</a></li>
+        <li><a href="#info">info</a></li>
+        <li><a href="#citation">citation</a></li>
+        <li><a href="#macro">macro</a></li>
+        <li><a href="#bibliography">bibliography</a></li>
+        <li><a href="#locale">locale</a></li>
+        <li><a href="#在线编辑器">在线编辑器</a></li>
+      </ol>
+    </li>
+    <li><a href="#实用例子">实用例子</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/csl/">
+                <img src="/p/csl/images/csl_editor_hu_52db0ee9552cd80a.png"
+                        srcset="/p/csl/images/csl_editor_hu_52db0ee9552cd80a.png 800w, /p/csl/images/csl_editor_hu_ac34b3414eb191dc.png 1600w"
+                        width="800" 
+                        height="475" 
+                        loading="lazy"
+                        alt="Featured image of post CSL格式原理和应用" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/utils/" style="background-color: #bebada; color: #fff;">
+                utils
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/csl/">CSL格式原理和应用</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            在学术写作中，&#34;文内引用&#34;（citation）和&#34;参考文献列表&#34;（bibliography）是两个重要的概念，学会管理它们十分重要。我们一般可以通过设置CSL文件来快速获得想要的引文风格。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 23, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    6 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>文献管理工具是科研必不可少的伙伴，我自己用的是Zetero。在学术写作中，&ldquo;文内引用&rdquo;（citation）和&quot;参考文献列表&quot;（bibliography）是两个重要的概念，学会管理它们十分重要。</p>
+<ul>
+<li>文内引用（Citation）是文章正文中用来指向引用的源材料的标记，目的是表明你引用了哪些资料。主要有两种常见格式：
+<ul>
+<li>作者-日期（Author-Date）：假设你正在引用由Smith在2020年出版的一篇文章，文内引用将会是这样的：(Smith, 2020)。</li>
+<li>数字（Numeric）：如果你引用的文献是参考文献列表中的第五个条目，那么文内引用将会是这样的：[5]。</li>
+</ul>
+</li>
+<li>参考文献列表（Bibliography）是文章末尾列出的所有引用和参考作品的详细信息清单，包括作者、标题、出版年份等，使读者能够找到和查阅这些源材料。</li>
+</ul>
+<p>不同期刊对于参考文献格式具有不同要求，我们一般可以通过设置CSL文件来快速获得想要的引文风格。Zotero Style Repository:<a class="link" href="https://www.zotero.org/styles"  target="_blank" rel="noopener"
+    >https://www.zotero.org/styles</a> 收录了10,000多种预设好的，各种期刊的引文风格，可以很方便地获取和设置。</p>
+<p>但有时候我们需要自定义一个引文风格。比如我们在PPT里一般不需要给出作者-标题-期刊-年份-卷号页码这么详细的内容，而是作者-期刊-年份即可。或者说我们想要控制作者显示前多少个，标题要不要斜体等等细节。这时就需要我们对CSL文件有一定的了解，并进行合适的编辑了。</p>
+<p>Citation Style Language（CSL）是一种用于描述引文风格的 XML 文件。它定义了文内引用和参考文献列表的外观和格式。CSL 文件告诉引文管理器（如 Zotero、Mendeley 等）如何渲染文内引用和文献列表。CSL 支持各种风格，包括 APA、MLA、Chicago 等。</p>
+<p>官方文档：<a class="link" href="https://docs.citationstyles.org/en/stable/primer.html"  target="_blank" rel="noopener"
+    >https://docs.citationstyles.org/en/stable/primer.html</a></p>
+<h2 id="citation-style-language">Citation Style Language</h2>
+<h3 id="xml-basic">XML basic</h3>
+<p>XML（可扩展标记语言）是一种用于存储和传输数据的标记语言。以下是 XML 的一些基本特征和用法：</p>
+<ol>
+<li><strong>标记语言：</strong> XML 是一种标记语言，使用标签来标识文档中的数据。标签通常是成对出现的，有起始标签和结束标签。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;book&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;title&gt;</span>Introduction to XML<span class="nt">&lt;/title&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;author&gt;</span>John Doe<span class="nt">&lt;/author&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/book&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li><strong>层次结构：</strong> XML 文档具有层次结构，由嵌套的元素组成。每个元素可以包含子元素，形成树状结构。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;library&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;book&gt;</span>
+</span></span><span class="line"><span class="cl">       <span class="nt">&lt;title&gt;</span>XML Basics<span class="nt">&lt;/title&gt;</span>
+</span></span><span class="line"><span class="cl">       <span class="nt">&lt;author&gt;</span>Jane Smith<span class="nt">&lt;/author&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;/book&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;book&gt;</span>
+</span></span><span class="line"><span class="cl">       <span class="nt">&lt;title&gt;</span>Advanced XML<span class="nt">&lt;/title&gt;</span>
+</span></span><span class="line"><span class="cl">       <span class="nt">&lt;author&gt;</span>John Doe<span class="nt">&lt;/author&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;/book&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/library&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li><strong>属性：</strong> XML 元素可以包含属性，提供有关元素的额外信息。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;book</span> <span class="na">category=</span><span class="s">&#34;programming&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;title&gt;</span>Python Programming<span class="nt">&lt;/title&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;author&gt;</span>Guido van Rossum<span class="nt">&lt;/author&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/book&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>XML 被广泛用于配置文件、数据交换、Web 服务和许多其他用途。它的可读性和可扩展性使其成为许多应用程序之间进行数据交换的理想选择。</p>
+<p>在引文风格的 CSL 文件中，XML 用于定义引文的样式和格式。</p>
+<h3 id="整体结构">整体结构</h3>
+<p>我们来看一个官方给出的极简CSL文件例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;style</span> <span class="na">xmlns=</span><span class="s">&#34;http://purl.org/net/xbiblio/csl&#34;</span> <span class="na">class=</span><span class="s">&#34;in-text&#34;</span> <span class="na">version=</span><span class="s">&#34;1.0&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;info&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;title&gt;</span>Example Style<span class="nt">&lt;/title&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;id&gt;</span>http://www.zotero.org/styles/example<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&#34;http://www.zotero.org/styles/example&#34;</span> <span class="na">rel=</span><span class="s">&#34;self&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&#34;http://www.zotero.org/styles/apa&#34;</span> <span class="na">rel=</span><span class="s">&#34;template&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&#34;http://www.example.com/style-guide/&#34;</span> <span class="na">rel=</span><span class="s">&#34;documentation&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;author&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;name&gt;</span>John Doe<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;email&gt;</span>JohnDoe@example.com<span class="nt">&lt;/email&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/author&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;contributor&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;name&gt;</span>Jane Doe<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/contributor&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;contributor&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;name&gt;</span>Bill Johnson<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/contributor&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;category</span> <span class="na">citation-format=</span><span class="s">&#34;author-date&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;category</span> <span class="na">field=</span><span class="s">&#34;science&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;updated&gt;</span>2014-10-15T18:17:09+00:00<span class="nt">&lt;/updated&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;rights</span> <span class="na">license=</span><span class="s">&#34;http://creativecommons.org/licenses/by-sa/3.0/&#34;</span><span class="nt">&gt;</span>This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License<span class="nt">&lt;/rights&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/info&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;locale</span> <span class="na">xml:lang=</span><span class="s">&#34;en&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;terms&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;term</span> <span class="na">name=</span><span class="s">&#34;no date&#34;</span><span class="nt">&gt;</span>without date<span class="nt">&lt;/term&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/terms&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/locale&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;macro</span> <span class="na">name=</span><span class="s">&#34;author&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;names</span> <span class="na">variable=</span><span class="s">&#34;author&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;name</span> <span class="na">initialize-with=</span><span class="s">&#34;.&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/names&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/macro&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;macro</span> <span class="na">name=</span><span class="s">&#34;issued-year&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;choose&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;if</span> <span class="na">variable=</span><span class="s">&#34;issued&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;date</span> <span class="na">variable=</span><span class="s">&#34;issued&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&lt;date-part</span> <span class="na">name=</span><span class="s">&#34;year&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/date&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/if&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;else&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;text</span> <span class="na">term=</span><span class="s">&#34;no date&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/else&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/choose&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/macro&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;citation</span> <span class="na">et-al-min=</span><span class="s">&#34;3&#34;</span> <span class="na">et-al-use-first=</span><span class="s">&#34;1&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;sort&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;key</span> <span class="na">macro=</span><span class="s">&#34;author&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;key</span> <span class="na">macro=</span><span class="s">&#34;issued-year&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/sort&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;layout</span> <span class="na">prefix=</span><span class="s">&#34;(&#34;</span> <span class="na">suffix=</span><span class="s">&#34;)&#34;</span> <span class="na">delimiter=</span><span class="s">&#34;; &#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;group</span> <span class="na">delimiter=</span><span class="s">&#34;, &#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;text</span> <span class="na">macro=</span><span class="s">&#34;author&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;text</span> <span class="na">macro=</span><span class="s">&#34;issued-year&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/group&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/layout&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/citation&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;bibliography&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;sort&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;key</span> <span class="na">macro=</span><span class="s">&#34;author&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;key</span> <span class="na">macro=</span><span class="s">&#34;issued-year&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;key</span> <span class="na">variable=</span><span class="s">&#34;title&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/sort&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;layout</span> <span class="na">suffix=</span><span class="s">&#34;.&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;group</span> <span class="na">delimiter=</span><span class="s">&#34;, &#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;group</span> <span class="na">delimiter=</span><span class="s">&#34;. &#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&lt;text</span> <span class="na">macro=</span><span class="s">&#34;author&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&lt;text</span> <span class="na">macro=</span><span class="s">&#34;issued-year&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;title&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;container-title&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/group&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;group&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;volume&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;issue&#34;</span> <span class="na">prefix=</span><span class="s">&#34;(&#34;</span> <span class="na">suffix=</span><span class="s">&#34;)&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/group&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;page&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/group&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/layout&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/bibliography&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/style&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>把整个代码的一二级结构提取出来如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;style</span> <span class="na">xmlns=</span><span class="s">&#34;http://purl.org/net/xbiblio/csl&#34;</span> <span class="na">class=</span><span class="s">&#34;in-text&#34;</span> <span class="na">version=</span><span class="s">&#34;1.0&#34;</span><span class="nt">&gt;</span>//style组件开始
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;info&gt;</span>//info组件用于描述style的信息
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/info&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;locale</span> <span class="na">xml:lang=</span><span class="s">&#34;en&#34;</span><span class="nt">&gt;</span>//locale组件用于声明语言信息
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/locale&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;macro</span> <span class="na">name=</span><span class="s">&#34;author&#34;</span><span class="nt">&gt;</span>//macro组件是功能组件，这里声明了author的信息
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/macro&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;macro</span> <span class="na">name=</span><span class="s">&#34;issued-year&#34;</span><span class="nt">&gt;</span>//macro组件是功能组件，这里声明了出版年的信息
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/macro&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;citation</span> <span class="na">et-al-min=</span><span class="s">&#34;3&#34;</span> <span class="na">et-al-use-first=</span><span class="s">&#34;1&#34;</span><span class="nt">&gt;</span>//citation组件声明了文内引用的格式
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/citation&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;bibliography&gt;</span>//bibliography组件声明了参考文献的格式
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/bibliography&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/style&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>style是整个CSL样式的根元素。它包含了样式的所有定义，属性如class=&ldquo;in-text&quot;和version=&ldquo;1.0&quot;定义了样式的类型和版本。</p>
+<p>接下来介绍 CSL 文件通常包含的基本部分：</p>
+<ol>
+<li>
+<p><strong>信息部分（Info Section）</strong>：包含了样式的基本信息，如作者、标题、发布信息等。</p>
+</li>
+<li>
+<p><strong>宏（Macros）</strong>：这部分定义了一系列的模板，用于渲染不同类型的文献信息（如作者、标题、出版年份等）。在引用和参考文献中会重复使用这些模板。</p>
+</li>
+<li>
+<p><strong>引用（Citation）</strong>：定义文内引用的格式。这部分可以包含多种布局（layout），用于不同类型的引用（如作者-日期、数字等）。</p>
+</li>
+<li>
+<p><strong>参考文献（Bibliography）</strong>：定义了参考文献列表的格式。这里设置了整个列表的格式，以及单个参考文献的显示方式。</p>
+</li>
+</ol>
+<h3 id="info">info</h3>
+<p><strong><code>info</code> 元素：</strong> 包含了引文样式的元信息，如样式的名称、版本、授权信息等。示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;info&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 标题: 定义了CSL样式的名称 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;title&gt;</span>Example Style<span class="nt">&lt;/title&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 标识符: 提供了CSL样式的唯一URL标识 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;id&gt;</span>http://www.zotero.org/styles/example<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 链接: 指向CSL样式本身、基于的模板和相关文档的链接 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&#34;http://www.zotero.org/styles/example&#34;</span> <span class="na">rel=</span><span class="s">&#34;self&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&#34;http://www.zotero.org/styles/apa&#34;</span> <span class="na">rel=</span><span class="s">&#34;template&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">&#34;http://www.example.com/style-guide/&#34;</span> <span class="na">rel=</span><span class="s">&#34;documentation&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 作者信息: 定义了CSL样式的主要作者和联系方式 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;author&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>John Doe<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;email&gt;</span>JohnDoe@example.com<span class="nt">&lt;/email&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/author&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 贡献者: 列出对CSL样式有贡献的其他人 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;contributor&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>Jane Doe<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/contributor&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;contributor&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>Bill Johnson<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/contributor&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 分类信息: 描述了CSL样式的引用格式和适用领域 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;category</span> <span class="na">citation-format=</span><span class="s">&#34;author-date&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;category</span> <span class="na">field=</span><span class="s">&#34;science&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 更新日期: 显示CSL样式最后的更新时间 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;updated&gt;</span>2014-10-15T18:17:09+00:00<span class="nt">&lt;/updated&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 版权信息: 描述了CSL样式的版权和许可信息 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;rights</span> <span class="na">license=</span><span class="s">&#34;http://creativecommons.org/licenses/by-sa/3.0/&#34;</span><span class="nt">&gt;</span>This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License<span class="nt">&lt;/rights&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/info&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这些信息帮助用户了解CSL样式的来源、作者、适用范围，以及如何合法使用这个样式。</p>
+<h3 id="citation">citation</h3>
+<p><strong><code>citation</code> 元素：</strong> 描述了如何渲染引文。这包括引用哪些字段（作者、标题等）、字段的顺序、标点符号等。示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;citation</span> <span class="na">et-al-min=</span><span class="s">&#34;3&#34;</span> <span class="na">et-al-use-first=</span><span class="s">&#34;1&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 当一个引用的作者数超过3时，只显示第一个作者并加上&#34;et al.&#34; --&gt;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;sort&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 定义引用的排序方式，首先是按作者，然后是按发行年份 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;key</span> <span class="na">macro=</span><span class="s">&#34;author&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;key</span> <span class="na">macro=</span><span class="s">&#34;issued-year&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/sort&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;layout</span> <span class="na">prefix=</span><span class="s">&#34;(&#34;</span> <span class="na">suffix=</span><span class="s">&#34;)&#34;</span> <span class="na">delimiter=</span><span class="s">&#34;; &#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 定义文内引用的整体格式 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 引用以圆括号包围，多个引用之间用分号和空格分隔 --&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;group</span> <span class="na">delimiter=</span><span class="s">&#34;, &#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c">&lt;!-- 定义引用内的信息组，信息之间用逗号和空格分隔 --&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;text</span> <span class="na">macro=</span><span class="s">&#34;author&#34;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- 引用作者信息 --&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;text</span> <span class="na">macro=</span><span class="s">&#34;issued-year&#34;</span><span class="nt">/&gt;</span> <span class="c">&lt;!-- 引用发行年份 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/group&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/layout&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/citation&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>综上，这个<citation>元素定义了一个文内引用的格式，其中包括作者和出版年份，用圆括号包围，各部分之间用逗号分隔，多个引用之间用分号分隔。例如，如果有一个文献由三个作者在2020年出版，文内引用将显示为“(Smith et al., 2020)”。</p>
+<h3 id="macro">macro</h3>
+<p><strong><code>macro</code> 元素：</strong> 包含一组可以在引文样式中引用的宏定义，上面的citation中就用到了macro。示例中有两个macro元素：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;macro</span> <span class="na">name=</span><span class="s">&#34;author&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 定义了如何显示作者信息的宏 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;names</span> <span class="na">variable=</span><span class="s">&#34;author&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 引用了文献条目中的作者信息 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name</span> <span class="na">initialize-with=</span><span class="s">&#34;.&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 设置了作者姓名的格式，这里是用点&#34;.&#34;来初始化名字（例如，J. Doe） --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/names&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/macro&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;macro</span> <span class="na">name=</span><span class="s">&#34;issued-year&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 定义了如何显示出版年份的宏 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;choose&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 使用条件语句来确定显示什么内容 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;if</span> <span class="na">variable=</span><span class="s">&#34;issued&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c">&lt;!-- 如果有出版年份信息 --&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;date</span> <span class="na">variable=</span><span class="s">&#34;issued&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- 引用了文献条目中的出版日期 --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;date-part</span> <span class="na">name=</span><span class="s">&#34;year&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- 只显示年份部分 --&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/date&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/if&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;else&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c">&lt;!-- 如果没有出版年份信息 --&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;text</span> <span class="na">term=</span><span class="s">&#34;no date&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c">&lt;!-- 显示“no date” --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/else&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/choose&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/macro&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在这段代码中，<macro name="author"> 定义了显示作者姓名的方式，而 <macro name="issued-year"> 则定义了如何显示出版年份，包括处理没有年份信息的情况。这些宏在整个CSL文件中可以被重复引用，确保了样式的一致性和易于维护。</p>
+<h3 id="bibliography">bibliography</h3>
+<p><strong><code>bibliography</code> 元素：</strong> 描述了如何渲染参考文献列表。和 <code>citation</code> 类似，但可能额外包含一些特定于文献列表的元素。示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;bibliography&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 参考文献列表部分 --&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;sort&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 定义参考文献的排序方式 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;key</span> <span class="na">macro=</span><span class="s">&#34;author&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 首先按作者排序 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;key</span> <span class="na">macro=</span><span class="s">&#34;issued-year&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 然后按出版年份排序 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;key</span> <span class="na">variable=</span><span class="s">&#34;title&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 最后按标题排序 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/sort&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;layout</span> <span class="na">suffix=</span><span class="s">&#34;.&#34;</span> <span class="na">delimiter=</span><span class="s">&#34;, &#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 定义参考文献条目的布局 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 每个条目以句点结束，条目内部的元素用逗号分隔 --&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;group</span> <span class="na">delimiter=</span><span class="s">&#34;. &#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c">&lt;!-- 定义一个组合，各元素之间以句点和空格分隔 --&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;text</span> <span class="na">macro=</span><span class="s">&#34;author&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c">&lt;!-- 显示作者 --&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;text</span> <span class="na">macro=</span><span class="s">&#34;issued-year&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c">&lt;!-- 显示出版年份 --&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;title&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c">&lt;!-- 显示标题 --&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;container-title&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c">&lt;!-- 显示包含该作品的容器（例如期刊或书籍的标题） --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/group&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;group&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c">&lt;!-- 定义另一个组合 --&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;volume&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c">&lt;!-- 显示卷号 --&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;issue&#34;</span> <span class="na">prefix=</span><span class="s">&#34;(&#34;</span> <span class="na">suffix=</span><span class="s">&#34;)&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="c">&lt;!-- 显示期号，前后加括号 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/group&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;page&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 显示页码 --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/layout&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/bibliography&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在这个 <bibliography> 部分中，首先定义了参考文献的排序规则，然后定义了参考文献每条记录的具体布局，包括作者、出版年份、标题、容器标题、卷号、期号和页码等信息的显示方式。这种格式确保了参考文献列表的信息完整性和易于阅读。</p>
+<h3 id="locale">locale</h3>
+<p><code>&lt;locale&gt;</code> 部分用于定制特定语言环境下的术语表示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;locale</span> <span class="na">xml:lang=</span><span class="s">&#34;en&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 定义英语环境下的本地化设置 --&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;terms&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 术语定义部分 --&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;term</span> <span class="na">name=</span><span class="s">&#34;no date&#34;</span><span class="nt">&gt;</span>without date<span class="nt">&lt;/term&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 定义特定术语的表示方式 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 这里将“no date”这个术语在英语环境下表示为“without date” --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/terms&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/locale&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在这个 <code>&lt;locale&gt;</code> 部分中，它指定了在英语环境下应如何展示特定的术语。这里的示例只是对“no date”这个术语进行了本地化处理，将其改为“without date”。这对于适应不同语言环境中术语的变化非常有用，尤其是在多语言文档或出版物中使用不同的CSL样式时。</p>
+<p>比如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;locale</span> <span class="na">xml:lang=</span><span class="s">&#34;ch&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 定义本地化设置,这里是中文 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;terms&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;term</span> <span class="na">name=</span><span class="s">&#34;no date&#34;</span><span class="nt">&gt;</span>没有日期<span class="nt">&lt;/term&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- 呈现no date的地方，转变为呈现“没有日期” --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/terms&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/locale&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="在线编辑器">在线编辑器</h3>
+<p>其实Zotero直接就支持CSL文件的编辑，还能实时渲染修改后的结果。</p>
+<p>但还有一些在线编辑器，如Visual CSL Editor <a class="link" href="https://editor.citationstyles.org/visualEditor/"  target="_blank" rel="noopener"
+    >https://editor.citationstyles.org/visualEditor/</a>，提供了一种直观、用户友好的方式来创建和修改CSL样式。</p>
+<img src="images/csl_editor.png" title=""/>
+<ol>
+<li>提供了一个图形界面，使用户能够通过点击和选择来编辑CSL样式，而无需直接编写或编辑XML代码。用户可以直观地调整样式的各个元素，如作者格式、日期显示、排序规则等。</li>
+<li>用户可以搜索现有的CSL样式并将其作为起点，然后根据自己的需求进行修改。</li>
+<li>许多在线编辑器提供实时预览功能，使用户可以立即看到他们的更改对引用和参考文献列表的影响。</li>
+</ol>
+<h2 id="实用例子">实用例子</h2>
+<p>最开始讲到的在PPT里放参考文献的例子，我们来尝试一下实现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;style</span> <span class="na">xmlns=</span><span class="s">&#34;http://purl.org/net/xbiblio/csl&#34;</span> <span class="na">version=</span><span class="s">&#34;1.0&#34;</span> <span class="na">class=</span><span class="s">&#34;in-text&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;info&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;title&gt;</span>Simple PPT Style<span class="nt">&lt;/title&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;id&gt;</span>http://www.example.org/styles/simple-ppt<span class="nt">&lt;/id&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;author&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;name&gt;</span>Peng Chen<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;email&gt;</span>pengchen2001@zju.edu.cn<span class="nt">&lt;/email&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/author&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;category</span> <span class="na">citation-format=</span><span class="s">&#34;numeric&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;category</span> <span class="na">field=</span><span class="s">&#34;generic&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;updated&gt;</span>2024-01-23T00:00:00+00:00<span class="nt">&lt;/updated&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/info&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- Author macro --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;macro</span> <span class="na">name=</span><span class="s">&#34;author&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;names</span> <span class="na">variable=</span><span class="s">&#34;author&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;name</span> <span class="na">form=</span><span class="s">&#34;short&#34;</span> <span class="na">and=</span><span class="s">&#34;symbol&#34;</span> <span class="na">initialize-with=</span><span class="s">&#34;. &#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;label</span> <span class="na">form=</span><span class="s">&#34;short&#34;</span> <span class="na">prefix=</span><span class="s">&#34;, &#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/names&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/macro&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- Issued Year macro --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;macro</span> <span class="na">name=</span><span class="s">&#34;issued-year&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;date</span> <span class="na">variable=</span><span class="s">&#34;issued&#34;</span> <span class="na">date-parts=</span><span class="s">&#34;year&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;date-part</span> <span class="na">name=</span><span class="s">&#34;year&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/date&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/macro&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- Citation layout --&gt;</span>
+</span></span><span class="line"><span class="cl">   <span class="nt">&lt;citation</span> <span class="na">collapse=</span><span class="s">&#34;citation-number&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 这是一个使用数字引用的样式，collapse会将连续引用折叠 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;sort&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;key</span> <span class="na">variable=</span><span class="s">&#34;citation-number&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/sort&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;layout</span> <span class="na">prefix=</span><span class="s">&#34;(&#34;</span> <span class="na">suffix=</span><span class="s">&#34;)&#34;</span> <span class="na">delimiter=</span><span class="s">&#34;, &#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;citation-number&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/layout&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/citation&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- Bibliography layout --&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;bibliography</span> <span class="na">et-al-min=</span><span class="s">&#34;1&#34;</span> <span class="na">et-al-use-first=</span><span class="s">&#34;1&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="c">&lt;!-- 定义了作者的显示格式。当作者数量大于1时，只显示第一个作者并跟随“et al.” --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;layout&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;group</span> <span class="na">delimiter=</span><span class="s">&#34;, &#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;text</span> <span class="na">macro=</span><span class="s">&#34;author&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;text</span> <span class="na">variable=</span><span class="s">&#34;container-title&#34;</span>  <span class="na">font-style=</span><span class="s">&#34;italic&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- 期刊名以斜体显示 --&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;text</span> <span class="na">macro=</span><span class="s">&#34;issued-year&#34;</span> <span class="na">font-weight=</span><span class="s">&#34;bold&#34;</span><span class="nt">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="c">&lt;!-- 加粗显示的出版年份 --&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/group&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/layout&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/bibliography&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/style&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>把整个代码保存成ppt-short.csl文件，导入到Zotero</li>
+<li>我一般就直接选中文献，右键选择<code>Create Bibliography from item</code></li>
+<li>Style选择Simple PPT Style，就是上面代码保存的</li>
+<li>output mode选Bibliography</li>
+<li>output method选择Copy to Clipboard</li>
+<li>这样就可以直接粘贴到PPT中了。</li>
+</ul>
+<p>比如：X. Zhu, T. Xu, C. Peng, S. Wu, Advances in MALDI Mass Spectrometry Imaging Single Cell and Tissues. Front. Chem. 9, 782432 (2022).</p>
+<p>导出后粘贴就会变为 Zhu et al., Frontiers in Chemistry, 2022</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/csl/">Csl</a>
+        
+            <a href="/tags/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/">文献管理</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/sem/">
+        
+        
+            <div class="article-image">
+                <img src="/p/sem/images/sem_model.35f8a0757e6999b02657ef452ee4eaf5_hu_ea3e9e66fd7e7f23.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 中介分析与结构方程模型（SEM）学习"
+                        data-key="sem" 
+                        data-hash="md5-NfigdX5pmbAmV&#43;9FLuTq9Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">中介分析与结构方程模型（SEM）学习</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/ncbi-genome/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/p/ncbi-genome/images/datasets_schema_taxonomy.svg" loading="lazy" data-key="ncbi-genome" data-hash="/p/ncbi-genome/images/datasets_schema_taxonomy.svg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">批量下载NCBI genome相关数据</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/author_affiliation/">
+        
+        
+            <div class="article-image">
+                <img src="/p/author_affiliation/images/Screenshot%202025-05-06%20at%2017.22.32.68374d4ccca746f39a99a95af7bb02cd_hu_2c131010f3a2860a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 论文作者和单位太多？如何快速整理和修改"
+                        data-key="author_affiliation" 
+                        data-hash="md5-aDdNTMynRvOamala97sCzQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">论文作者和单位太多？如何快速整理和修改</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/sqlite-r/">
+        
+        
+            <div class="article-image">
+                <img src="/p/sqlite-r/images/R-C.2a115216bd159624507224fa388dbda7_hu_b1bb55cee70d9e55.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post SQLite使用基础以及在R中操作数据库"
+                        data-key="sqlite-r" 
+                        data-hash="md5-KhFSFr0VliRQciT6OI29pw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SQLite使用基础以及在R中操作数据库</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/docker-singularity/">
+        
+        
+            <div class="article-image">
+                <img src="/p/docker-singularity/images/docker.93bb574a4f019bad268cedef7444a9ab_hu_eb6e2e0797ec04b8.webp" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 容器（Docker &amp; Singularity）使用入门"
+                        data-key="docker-singularity" 
+                        data-hash="md5-k7tXSk8Bm60mjO3vdESpqw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">容器（Docker &amp; Singularity）使用入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

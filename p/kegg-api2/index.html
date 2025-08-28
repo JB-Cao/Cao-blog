@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='KEGG是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息，这里就要介绍非常重要的操作：通过api查询和下载KEGG数据库内容。'>
+<title>KEGG 数据库及API (2)</title>
+
+<link rel='canonical' href='/p/kegg-api2/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='KEGG 数据库及API (2)'>
+<meta property='og:description' content='KEGG是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息，这里就要介绍非常重要的操作：通过api查询和下载KEGG数据库内容。'>
+<meta property='og:url' content='/p/kegg-api2/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='database' /><meta property='article:tag' content='software' /><meta property='article:published_time' content='2023-08-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-08-12T00:00:00&#43;00:00'/><meta property='og:image' content='/p/kegg-api2/images/hsa00600.png' />
+<meta name="twitter:title" content="KEGG 数据库及API (2)">
+<meta name="twitter:description" content="KEGG是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息，这里就要介绍非常重要的操作：通过api查询和下载KEGG数据库内容。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/kegg-api2/images/hsa00600.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#api-for-download">API for download</a>
+      <ol>
+        <li><a href="#info">info</a></li>
+        <li><a href="#list">list</a></li>
+        <li><a href="#find">find</a></li>
+        <li><a href="#get">get</a></li>
+        <li><a href="#conv">conv</a></li>
+        <li><a href="#link">link</a></li>
+        <li><a href="#ddi">ddi</a></li>
+      </ol>
+    </li>
+    <li><a href="#rpackge-for-kegg">Rpackge for KEGG</a>
+      <ol>
+        <li><a href="#keggrest">KEGGREST</a>
+          <ol>
+            <li><a href="#通路-基因信息">通路-基因信息</a></li>
+          </ol>
+        </li>
+        <li><a href="#reporterscore">ReporterScore</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/kegg-api2/">
+                <img src="/p/kegg-api2/images/hsa00600_hu_cd7291b746f8a09e.png"
+                        srcset="/p/kegg-api2/images/hsa00600_hu_cd7291b746f8a09e.png 800w, /p/kegg-api2/images/hsa00600_hu_a39eae8d0d16ea66.png 1600w"
+                        width="800" 
+                        height="585" 
+                        loading="lazy"
+                        alt="Featured image of post KEGG 数据库及API (2)" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/kegg-api2/">KEGG 数据库及API (2)</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            KEGG是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息，这里就要介绍非常重要的操作：通过api查询和下载KEGG数据库内容。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 12, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    8 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p><a class="link" href="https://www.genome.jp/kegg/"  target="_blank" rel="noopener"
+    >KEGG</a>（Kyoto Encyclopedia of Genes and Genomes）是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息。它提供了基因、蛋白质、代谢物和信号通路等生物分子的综合信息，帮助研究人员理解生物体内分子之间的相互作用和功能。</p>
+<p><a class="link" href="../kegg-api" >上一篇</a>文章已经介绍了各种KEGG重要的子数据库，在这里就要介绍非常重要的操作：通过api查询和下载KEGG数据库内容。</p>
+<h2 id="api-for-download">API for download</h2>
+<p><a class="link" href="https://www.kegg.jp/kegg/docs/keggapi.html"  target="_blank" rel="noopener"
+    >KEGG API</a>是和KEGG内核数据库进行交互的程序界面，允许用户基于该界面检索KEGG数据库，该界面的运行基于用户电脑的浏览器，在浏览器地址栏书写相应的地址指令即可检索KEGG数据库条目，该地址指令的编写规则如下所示：</p>
+<p><code>http://rest.kegg.jp/&lt;operation&gt;/&lt;argument &gt;[/&lt;argument2&gt;...]</code></p>
+<p>其中operation可选info、list、find、get、conv、link、ddi，后面的参数可以是数据库名称以及选项。</p>
+<p>包含的database有:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&lt;database&gt; <span class="o">=</span> KEGG databases <span class="o">(</span>Table 1<span class="o">)</span> and Outside databases integrated in KEGG <span class="o">(</span>Table 2<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">           <span class="o">=</span> pathway <span class="p">|</span> brite <span class="p">|</span> module <span class="p">|</span> ko <span class="p">|</span> &lt;org&gt; <span class="p">|</span> vg <span class="p">|</span> vp <span class="p">|</span> ag <span class="p">|</span> genome <span class="p">|</span> compound <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             glycan <span class="p">|</span> reaction <span class="p">|</span> rclass <span class="p">|</span> enzyme <span class="p">|</span> network <span class="p">|</span> variant <span class="p">|</span> disease <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             drug <span class="p">|</span> dgroup <span class="p">|</span> disease_ja <span class="p">|</span> drug_ja <span class="p">|</span> dgroup_ja <span class="p">|</span> compound_ja <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             genes <span class="p">|</span> ligand <span class="p">|</span> kegg <span class="p">|</span> &lt;outside_db&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;org&gt; <span class="o">=</span> KEGG organism code
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;outside_db&gt; <span class="o">=</span> pubmed <span class="p">|</span> ncbi-geneid <span class="p">|</span> ncbi-proteinid <span class="p">|</span> uniprot <span class="p">|</span> pubchem <span class="p">|</span> chebi <span class="p">|</span>
+</span></span><span class="line"><span class="cl">               atc <span class="p">|</span> jtc <span class="p">|</span> ndc <span class="p">|</span> yj
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>所有操作的输出都是文本格式: - list, find, conv and link返回的制表符分隔文本 - get 返回平面文件数据库格式 - info 返回普通txt</p>
+<h3 id="info">info</h3>
+<p>info操作显示数据库发布信息以及数据库的统计信息。除了kegg、genes和ligand之外，该操作还显示可以在link操作中使用的链接数据库列表。</p>
+<p>示例 : 查看pathway 数据库的基本信息，命令<a class="link" href="http://rest.kegg.jp/info/pathway"  target="_blank" rel="noopener"
+    >http://rest.kegg.jp/info/pathway</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">url</span><span class="o">=</span><span class="s">&#34;http://rest.kegg.jp/info/pathway&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">httr</span><span class="o">::</span><span class="nf">GET</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Response [https://rest.kegg.jp/info/pathway]
+</span></span><span class="line"><span class="cl">##   Date: 2023-08-17 06:07
+</span></span><span class="line"><span class="cl">##   Status: 200
+</span></span><span class="line"><span class="cl">##   Content-Type: text/plain; charset=utf-8
+</span></span><span class="line"><span class="cl">##   Size: 471 B
+</span></span><span class="line"><span class="cl">## pathway          KEGG Pathway Database
+</span></span><span class="line"><span class="cl">## path             Release 107.0+/08-17, Aug 23
+</span></span><span class="line"><span class="cl">##                  Kanehisa Laboratories
+</span></span><span class="line"><span class="cl">##                  1,073,907 entries
+</span></span><span class="line"><span class="cl">## 
+</span></span><span class="line"><span class="cl">## linked db        module
+</span></span><span class="line"><span class="cl">##                  ko
+</span></span><span class="line"><span class="cl">##                  &lt;org&gt;
+</span></span><span class="line"><span class="cl">##                  genome
+</span></span><span class="line"><span class="cl">##                  compound
+</span></span><span class="line"><span class="cl">## ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="list">list</h3>
+<p>list操作可用于获取每个数据库中所有条目的列表。 可用genes, ligand and kegg以外的数据库。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">1.https://rest.kegg.jp/list/&lt;database&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;database&gt; <span class="o">=</span> pathway <span class="p">|</span> brite <span class="p">|</span> module <span class="p">|</span> ko <span class="p">|</span> &lt;org&gt; <span class="p">|</span> vg <span class="p">|</span> vp <span class="p">|</span> ag <span class="p">|</span> genome <span class="p">|</span> compound <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             glycan <span class="p">|</span> reaction <span class="p">|</span> rclass <span class="p">|</span> enzyme <span class="p">|</span> network <span class="p">|</span> variant <span class="p">|</span> disease <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             drug <span class="p">|</span> dgroup <span class="p">|</span> organism
+</span></span><span class="line"><span class="cl">             
+</span></span><span class="line"><span class="cl">2.https://rest.kegg.jp/list/pathway/&lt;org&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">3.https://rest.kegg.jp/list/brite/&lt;option&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;option&gt; <span class="o">=</span> br <span class="p">|</span> jp <span class="p">|</span> ko <span class="p">|</span> &lt;org&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">4.https://rest.kegg.jp/list/&lt;dbentries&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;dbentries&gt; <span class="o">=</span> Entries of the following &lt;database&gt;
+</span></span><span class="line"><span class="cl">&lt;database&gt; <span class="o">=</span> pathway <span class="p">|</span> brite <span class="p">|</span> module <span class="p">|</span> ko <span class="p">|</span> &lt;org&gt; <span class="p">|</span> vg <span class="p">|</span> vp <span class="p">|</span> ag <span class="p">|</span> genome <span class="p">|</span> compound <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             glycan <span class="p">|</span> reaction <span class="p">|</span> rclass <span class="p">|</span> enzyme <span class="p">|</span> network <span class="p">|</span> variant <span class="p">|</span> disease <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             drug <span class="p">|</span> dgroup
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一种，查看数据库中所有的记录:<a class="link" href="http://rest.kegg.jp/list/ko"  target="_blank" rel="noopener"
+    >http://rest.kegg.jp/list/ko</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">K00001	E1.1.1.1, adh<span class="p">;</span> alcohol dehydrogenase <span class="o">[</span>EC:1.1.1.1<span class="o">]</span>
+</span></span><span class="line"><span class="cl">K00002	AKR1A1, adh<span class="p">;</span> alcohol dehydrogenase <span class="o">(</span>NADP+<span class="o">)</span> <span class="o">[</span>EC:1.1.1.2<span class="o">]</span>
+</span></span><span class="line"><span class="cl">K00003	hom<span class="p">;</span> homoserine dehydrogenase <span class="o">[</span>EC:1.1.1.3<span class="o">]</span>
+</span></span><span class="line"><span class="cl">K00004	BDH, butB<span class="p">;</span> <span class="o">(</span>R,R<span class="o">)</span>-butanediol dehydrogenase / meso-butanediol dehydrogenase / diacetyl reductase <span class="o">[</span>EC:1.1.1.4 1.1.1.- 1.1.1.303<span class="o">]</span>
+</span></span><span class="line"><span class="cl">K00005	gldA<span class="p">;</span> glycerol dehydrogenase <span class="o">[</span>EC:1.1.1.6<span class="o">]</span>
+</span></span><span class="line"><span class="cl">K00006	GPD1<span class="p">;</span> glycerol-3-phosphate dehydrogenase <span class="o">(</span>NAD+<span class="o">)</span> <span class="o">[</span>EC:1.1.1.8<span class="o">]</span>
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当生物体代码已知时，可以使用第二种形式来获取生物体特异性途径的列表，仅在list操作中允许使用特殊数据库名称&quot;organism&quot;，可用于获取具有三或四字母生物体代码的 KEGG 生物体列表: <a class="link" href="https://rest.kegg.jp/list/pathway/hsa"  target="_blank" rel="noopener"
+    >https://rest.kegg.jp/list/pathway/hsa</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hsa01100	Metabolic pathways - Homo sapiens <span class="o">(</span>human<span class="o">)</span>
+</span></span><span class="line"><span class="cl">hsa01200	Carbon metabolism - Homo sapiens <span class="o">(</span>human<span class="o">)</span>
+</span></span><span class="line"><span class="cl">hsa01210	2-Oxocarboxylic acid metabolism - Homo sapiens <span class="o">(</span>human<span class="o">)</span>
+</span></span><span class="line"><span class="cl">hsa01212	Fatty acid metabolism - Homo sapiens <span class="o">(</span>human<span class="o">)</span>
+</span></span><span class="line"><span class="cl">hsa01230	Biosynthesis of amino acids - Homo sapiens <span class="o">(</span>human<span class="o">)</span>
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第三种形式是 brite 层次结构的类似选项: <a class="link" href="https://rest.kegg.jp/list/brite/br"  target="_blank" rel="noopener"
+    >https://rest.kegg.jp/list/brite/br</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">br08901	KEGG pathway maps
+</span></span><span class="line"><span class="cl">br08902	BRITE hierarchy files
+</span></span><span class="line"><span class="cl">br08904	BRITE table files
+</span></span><span class="line"><span class="cl">br08906	BRITE binary relation files
+</span></span><span class="line"><span class="cl">br08907	KEGG networks
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第四种形式可以用于获取给定的一组数据库条目标识符的定义列表: <a class="link" href="http://rest.kegg.jp/list/map00010&#43;map00040%e3%80%82%e5%8f%af%e4%bb%a5%e7%bb%99%e5%87%ba%e7%9a%84%e6%a0%87%e8%af%86%e7%ac%a6%e7%9a%84%e6%9c%80%e5%a4%a7%e6%95%b0%e9%87%8f%e4%b8%ba"  target="_blank" rel="noopener"
+    >http://rest.kegg.jp/list/map00010+map00040。可以给出的标识符的最大数量为</a>{.uri} 10。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">map00010	Glycolysis / Gluconeogenesis
+</span></span><span class="line"><span class="cl">map00040	Pentose and glucuronate interconversions
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="find">find</h3>
+<p>find是一个搜索操作,查找具有匹配查询关键字或其他查询数据的条目。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">1.https://rest.kegg.jp/find/&lt;database&gt;/&lt;query&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;database&gt; <span class="o">=</span> pathway <span class="p">|</span> brite <span class="p">|</span> module <span class="p">|</span> ko <span class="p">|</span> genes <span class="p">|</span> &lt;org&gt; <span class="p">|</span> vg <span class="p">|</span> vp <span class="p">|</span> ag <span class="p">|</span> genome <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             ligand <span class="p">|</span> compound <span class="p">|</span> glycan <span class="p">|</span> reaction <span class="p">|</span> rclass <span class="p">|</span> enzyme <span class="p">|</span> network <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             variant <span class="p">|</span> disease <span class="p">|</span> drug <span class="p">|</span> dgroup
+</span></span><span class="line"><span class="cl">             
+</span></span><span class="line"><span class="cl">2.https://rest.kegg.jp/find/&lt;database&gt;/&lt;query&gt;/&lt;option&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;database&gt; <span class="o">=</span> compound <span class="p">|</span> drug
+</span></span><span class="line"><span class="cl">&lt;option&gt; <span class="o">=</span> formula <span class="p">|</span> exact_mass <span class="p">|</span> mol_weight <span class="p">|</span> nop
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一种形式搜索如下所示的条目标识符和关联字段以查找匹配的关键字：<a class="link" href="http://rest.kegg.jp/find/genes/shiga&#43;toxin"  target="_blank" rel="noopener"
+    >http://rest.kegg.jp/find/genes/shiga+toxin</a> 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ece:Z1464	stx2A<span class="p">;</span> shiga-like toxin II A subunit encoded by bacteriophage BP-933W
+</span></span><span class="line"><span class="cl">ece:Z1465	stx2B<span class="p">;</span> shiga-like toxin II B subunit encoded by bacteriophage BP-933W
+</span></span><span class="line"><span class="cl">ece:Z3343	stx1B<span class="p">;</span> shiga-like toxin <span class="m">1</span> subunit B encoded within prophage CP-933V
+</span></span><span class="line"><span class="cl">ece:Z3344	stx1A<span class="p">;</span> shiga-like toxin <span class="m">1</span> subunit A encoded within prophage CP-933V
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在第二种形式中，化学式搜索是部分匹配，与给定的原子顺序无关：<a class="link" href="http://rest.kegg.jp/find/compound/C7H10O5/formula"  target="_blank" rel="noopener"
+    >http://rest.kegg.jp/find/compound/C7H10O5/formula</a> 。通过四舍五入到与查询数据相同的小数位来检查精确的质量（或分子量）。 也可以使用减号 (-) 指定值的范围。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cpd:C00493	C7H10O5
+</span></span><span class="line"><span class="cl">cpd:C04236	C7H10O5
+</span></span><span class="line"><span class="cl">cpd:C16588	C7H10O5
+</span></span><span class="line"><span class="cl">cpd:C17696	C7H10O5
+</span></span><span class="line"><span class="cl">cpd:C18307	C7H10O5
+</span></span><span class="line"><span class="cl">cpd:C18312	C7H10O5
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="get">get</h3>
+<p>此操作以平面文件格式或带有选项的其他格式检索给定的数据库条目。平面文件格式适用于除 brite 之外的所有 KEGG 数据库。</p>
+<p>输入最多 10 个条目。选项允许检索选定字段，包括基因条目中的序列数据、化合物、聚糖和药物条目中的化学结构数据或 gif 图像文件、途径条目中的 png 图像文件或 kgml 文件。输入仅限于带有图像选项的一种化合物/聚糖/药物条目，以及带有图像或 kgml 选项的一种通路条目。</p>
+<p>例子1: <a class="link" href="http://rest.kegg.jp/get/C01290&#43;G00092"  target="_blank" rel="noopener"
+    >http://rest.kegg.jp/get/C01290+G00092</a> 检索人类基因条目和大肠杆菌 O157 基因条目</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ENTRY       C01290                      Compound
+</span></span><span class="line"><span class="cl">NAME        Lactosylceramide<span class="p">;</span>
+</span></span><span class="line"><span class="cl">            beta-D-Galactosyl-<span class="o">(</span>1-&gt;4<span class="o">)</span>-beta-D-glucosyl-<span class="o">(</span>1&lt;-&gt;1<span class="o">)</span>-ceramide<span class="p">;</span>
+</span></span><span class="line"><span class="cl">            beta-D-Galactosyl-1,4-beta-D-glucosylceramide<span class="p">;</span>
+</span></span><span class="line"><span class="cl">            Gal-beta1-&gt;4Glc-beta1-&gt;1<span class="err">&#39;</span>Cer<span class="p">;</span>
+</span></span><span class="line"><span class="cl">            LacCer<span class="p">;</span>
+</span></span><span class="line"><span class="cl">            Lactosyl-N-acylsphingosine<span class="p">;</span>
+</span></span><span class="line"><span class="cl">            D-Galactosyl-1,4-beta-D-glucosylceramide
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例子2: <a class="link" href="http://rest.kegg.jp/get/hsa:10458/aaseq"  target="_blank" rel="noopener"
+    >http://rest.kegg.jp/get/hsa:10458/aaseq</a> 检索人类基因的氨基酸序列, 支持 aaseq 和 ntseq</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">&gt;hsa:10458 K05627 BAI1-associated protein <span class="m">2</span> <span class="p">|</span> <span class="o">(</span>RefSeq<span class="o">)</span> BAIAP2, BAP2, FLAF3, IRSP53, WAML<span class="p">;</span> BAR/IMD domain containing adaptor protein <span class="m">2</span> <span class="o">(</span>A<span class="o">)</span>
+</span></span><span class="line"><span class="cl">MSLSRSEEMHRLTENVYKTIMEQFNPSLRNFIAMGKNYEKALAGVTYAAKGYFDALVKMG
+</span></span><span class="line"><span class="cl">ELASESQGSKELGDVLFQMAEVHRQIQNQLEEMLKSFHNELLTQLEQKVELDSRYLSAAL
+</span></span><span class="line"><span class="cl">KKYQTEQRSKGDALDKCQAELKKLRKKSQGSKNPQKYSDKELQYIDAISNKQGELENYVS
+</span></span><span class="line"><span class="cl">DGYKTALTEERRRFCFLVEKQCAVAKNSAAYHSKGKELLAQKLPLWQQACADPSKIPERA
+</span></span><span class="line"><span class="cl">VQLMQQVASNGATLPSALSASKSNLVISDPIPGAKPLPVPPELAPFVGRMSAQESTPIMN
+</span></span><span class="line"><span class="cl">GVTGPDGEDYSPWADRKAAQPKSLSPPQSQSKLSDSYSNTLPVRKSVTPKNSYATTENKT
+</span></span><span class="line"><span class="cl">LPRSSSMAAGLERNGRMRVKAIFSHAAGDNSTLLSFKEGDLITLLVPEARDGWHYGESEK
+</span></span><span class="line"><span class="cl">TKMRGWFPFSYTRVLDSDGSDRLHMSLQQGKSSSTGNLLDKDDLAIPPPDYGAASRAFPA
+</span></span><span class="line"><span class="cl">QTASGFKQRPYSVAVPAFSQGLDDYGARSMSRNPFAHVQLKPTVTNDRCDLSAQGPEGRE
+</span></span><span class="line"><span class="cl">HGDGSARTLAGR
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>例子3: <a class="link" href="http://rest.kegg.jp/get/hsa00600/image"  target="_blank" rel="noopener"
+    >http://rest.kegg.jp/get/hsa00600/image</a> 检索通路图的 png 图像文件, 支持 image ,image2x， conf， kgml，但是一次只允许查询1条记录</p>
+<img src="images/hsa00600.png" title="" width="90%"/>
+<h3 id="conv">conv</h3>
+<p>conv操作可用于将外部数据库的条目标识符（登录号）转换为 KEGG 标识符，反之亦然。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">1.https://rest.kegg.jp/conv/&lt;target_db&gt;/&lt;source_db&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">(</span>&lt;target_db&gt; &lt;source_db&gt;<span class="o">)</span> <span class="o">=</span> <span class="o">(</span>&lt;kegg_db&gt; &lt;outside_db&gt;<span class="o">)</span> <span class="p">|</span> <span class="o">(</span>&lt;outside_db&gt; &lt;kegg_db&gt;<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">For gene identifiers:
+</span></span><span class="line"><span class="cl">&lt;kegg_db&gt; <span class="o">=</span> &lt;org&gt;
+</span></span><span class="line"><span class="cl">&lt;org&gt; <span class="o">=</span> KEGG organism code or T number
+</span></span><span class="line"><span class="cl">&lt;outside_db&gt; <span class="o">=</span> ncbi-geneid <span class="p">|</span> ncbi-proteinid <span class="p">|</span> uniprot
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">For chemical substance identifiers:
+</span></span><span class="line"><span class="cl">&lt;kegg_db&gt; <span class="o">=</span> compound <span class="p">|</span> glycan <span class="p">|</span> drug
+</span></span><span class="line"><span class="cl">&lt;outside_db&gt; <span class="o">=</span> pubchem <span class="p">|</span> chebi
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2.https://rest.kegg.jp/conv/&lt;target_db&gt;/&lt;dbentries&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">For gene identifiers:
+</span></span><span class="line"><span class="cl">&lt;dbentries&gt; <span class="o">=</span> database entries of the following &lt;database&gt;
+</span></span><span class="line"><span class="cl">&lt;database&gt; <span class="o">=</span> &lt;org&gt; <span class="p">|</span> genes <span class="p">|</span> ncbi-geneid <span class="p">|</span> ncbi-proteinid <span class="p">|</span> uniprot
+</span></span><span class="line"><span class="cl">&lt;org&gt; <span class="o">=</span> KEGG organism code or T number
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">For chemical substance identifiers:
+</span></span><span class="line"><span class="cl">&lt;dbentries&gt; <span class="o">=</span> database entries of the following &lt;database&gt;
+</span></span><span class="line"><span class="cl">&lt;database&gt; <span class="o">=</span> compound <span class="p">|</span> glycan <span class="p">|</span> drug <span class="p">|</span> pubchem <span class="p">|</span> chebi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一种形式允许数据库到数据库的映射：<a class="link" href="https://rest.kegg.jp/conv/eco/ncbi-geneid"  target="_blank" rel="noopener"
+    >https://rest.kegg.jp/conv/eco/ncbi-geneid</a> 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ncbi-geneid:944742	eco:b0001
+</span></span><span class="line"><span class="cl">ncbi-geneid:945803	eco:b0002
+</span></span><span class="line"><span class="cl">ncbi-geneid:947498	eco:b0003
+</span></span><span class="line"><span class="cl">ncbi-geneid:945198	eco:b0004
+</span></span><span class="line"><span class="cl">ncbi-geneid:944747	eco:b0005
+</span></span><span class="line"><span class="cl">ncbi-geneid:944749	eco:b0006
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而第二种形式允许转换选定数量的条目：<a class="link" href="https://rest.kegg.jp/conv/ncbi-proteinid/hsa:10458&#43;ece:Z5100"  target="_blank" rel="noopener"
+    >https://rest.kegg.jp/conv/ncbi-proteinid/hsa:10458+ece:Z5100</a> 。&ldquo;genes&quot;数据库只能以第二种形式使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hsa:10458	ncbi-proteinid:NP_059345
+</span></span><span class="line"><span class="cl">ece:Z5100	ncbi-proteinid:AAG58814
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="link">link</h3>
+<p>link操作允许检索所有 KEGG 数据库内以及 KEGG 数据库与外部数据库之间的交叉引用。 它对于寻找各种关系非常有用，例如基因和通路之间的关系。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">1.https://rest.kegg.jp/link/&lt;target_db&gt;/&lt;source_db&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;target_db&gt; <span class="o">=</span> &lt;database&gt;
+</span></span><span class="line"><span class="cl">&lt;source_db&gt; <span class="o">=</span> &lt;database&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;database&gt; <span class="o">=</span> pathway <span class="p">|</span> brite <span class="p">|</span> module <span class="p">|</span> ko <span class="p">|</span> &lt;org&gt; <span class="p">|</span> vg <span class="p">|</span> vp <span class="p">|</span> ag <span class="p">|</span> genome <span class="p">|</span> compound <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             glycan <span class="p">|</span> reaction <span class="p">|</span> rclass <span class="p">|</span> enzyme <span class="p">|</span> network <span class="p">|</span> variant <span class="p">|</span> disease <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             drug <span class="p">|</span> dgroup <span class="p">|</span> &lt;outside_db&gt;
+</span></span><span class="line"><span class="cl">&lt;outside_db&gt; <span class="o">=</span> pubmed <span class="p">|</span> atc <span class="p">|</span> jtc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2.https://rest.kegg.jp/link/&lt;target_db&gt;/&lt;dbentries&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;dbentries&gt; <span class="o">=</span> KEGG database entries of the following &lt;database&gt;
+</span></span><span class="line"><span class="cl">&lt;database&gt; <span class="o">=</span> pathway <span class="p">|</span> brite <span class="p">|</span> module <span class="p">|</span> ko <span class="p">|</span> &lt;org&gt; <span class="p">|</span> vg <span class="p">|</span> vp <span class="p">|</span> ag <span class="p">|</span> genome <span class="p">|</span> compound <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             glycan <span class="p">|</span> reaction <span class="p">|</span> rclass <span class="p">|</span> enzyme <span class="p">|</span> network <span class="p">|</span> variant <span class="p">|</span> disease <span class="p">|</span>
+</span></span><span class="line"><span class="cl">             drug <span class="p">|</span> dgroup <span class="p">|</span> &lt;outside_db&gt;
+</span></span><span class="line"><span class="cl">&lt;outside_db&gt; <span class="o">=</span> pubmed <span class="p">|</span> atc <span class="p">|</span> jtc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一种形式允许检索数据库到数据库的交叉引用：<a class="link" href="https://rest.kegg.jp/link/pathway/hsa"  target="_blank" rel="noopener"
+    >https://rest.kegg.jp/link/pathway/hsa</a> 或https://rest.kegg.jp/link/hsa/pathway 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hsa:10327	path:hsa00010
+</span></span><span class="line"><span class="cl">hsa:124	path:hsa00010
+</span></span><span class="line"><span class="cl">hsa:125	path:hsa00010
+</span></span><span class="line"><span class="cl">hsa:126	path:hsa00010
+</span></span><span class="line"><span class="cl">hsa:127	path:hsa00010
+</span></span><span class="line"><span class="cl">hsa:128	path:hsa00010
+</span></span><span class="line"><span class="cl">hsa:130	path:hsa00010
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而第二种形式允许检索选定数量的条目：<a class="link" href="https://rest.kegg.jp/link/pathway/hsa:10458&#43;ece:Z5100"  target="_blank" rel="noopener"
+    >https://rest.kegg.jp/link/pathway/hsa:10458+ece:Z5100</a> 。 &ldquo;genes&quot;数据库只能用于第二种形式中的&quot;ko&quot;条目。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hsa:10458	path:hsa04520
+</span></span><span class="line"><span class="cl">hsa:10458	path:hsa04810
+</span></span><span class="line"><span class="cl">hsa:10458	path:hsa05130
+</span></span><span class="line"><span class="cl">hsa:10458	path:hsa05135
+</span></span><span class="line"><span class="cl">ece:Z5100	path:ece05130
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="ddi">ddi</h3>
+<p>ddi操作搜索 KEGG 药物相互作用数据库，其中提取日本药品标签中指定为禁忌症 (CI) 和预防措施 (P) 的药物相互作用，通过 KEGG 标识符进行标准化，并用任何可能的分子机制进行注释。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">1.https://rest.kegg.jp/ddi/&lt;dbentry&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;dbentry&gt; <span class="o">=</span> Single entry of the following &lt;database&gt;
+</span></span><span class="line"><span class="cl">&lt;database&gt; <span class="o">=</span> drug <span class="p">|</span> ndc <span class="p">|</span> yj
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2.https://rest.kegg.jp/ddi/&lt;dbentries&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&lt;dbentries&gt; <span class="o">=</span> Multiple entries in one of the following &lt;database&gt;
+</span></span><span class="line"><span class="cl">&lt;database&gt; <span class="o">=</span> drug <span class="p">|</span> ndc <span class="p">|</span> yj
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一种形式报告所有已知的相互作用：<a class="link" href="https://rest.kegg.jp/ddi/D00564"  target="_blank" rel="noopener"
+    >https://rest.kegg.jp/ddi/D00564</a> 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dr:D00564	cpd:C00304	P	unclassified
+</span></span><span class="line"><span class="cl">dr:D00564	cpd:C01946	P	unclassified
+</span></span><span class="line"><span class="cl">dr:D00564	cpd:C04931	P	unclassified
+</span></span><span class="line"><span class="cl">dr:D00564	cpd:C06624	P	unclassified
+</span></span><span class="line"><span class="cl">dr:D00564	cpd:C07005	P	unclassified
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而第二种形式可用于检查给定药物组中的任何药物对是否为 CI 或 P：<a class="link" href="https://rest.kegg.jp/ddi/ndc:0078-0401"  target="_blank" rel="noopener"
+    >https://rest.kegg.jp/ddi/ndc:0078-0401</a> 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ndc:0078-0401	ndc:0703-5656	P	unclassified
+</span></span><span class="line"><span class="cl">ndc:0078-0401	ndc:0143-9510	P	unclassified
+</span></span><span class="line"><span class="cl">ndc:0078-0401	ndc:0143-9511	P	unclassified
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="rpackge-for-kegg">Rpackge for KEGG</h2>
+<p>我们有时候肯定还是想用代码来完成KEGG的查询或者下载的，上面给的API用爬虫其实就很好访问，但也有一些现成的R包帮忙完成且更加简便。</p>
+<h3 id="keggrest">KEGGREST</h3>
+<p>KEGGREST 允许访问 KEGG REST API。由于 KEGG 于 2012 年 12 月 31 日禁用了 KEGG SOAP 服务器（这意味着 KEGGSOAP 包将不再工作），因此 KEGGREST 充当替代者。</p>
+<p>KEGGREST 的接口比 KEGGSOAP 更简单，并且在某些方面更强大；但是，并非通过 SOAP API 提供的所有功能都已在 REST API 中公开。如果服务器端公开更多功能，则此包将被更新以利用它。</p>
+<p>KEGG REST API 基于一些简单的操作构建：info, list, find, get, conv, and link。 KEGGREST 中对应的 R 函数有：keggInfo()、keggList()、keggFind()、keggGet()、keggConv 和 keggLink()。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="kr">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&#34;KEGGREST&#34;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;KEGGREST&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">KEGGREST</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看KEGG包含的子数据库</span>
+</span></span><span class="line"><span class="cl"><span class="nf">listDatabases</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">##  [1] &#34;pathway&#34;  &#34;brite&#34;    &#34;module&#34;   &#34;ko&#34;       &#34;genome&#34;   &#34;vg&#34;      
+</span></span><span class="line"><span class="cl">##  [7] &#34;ag&#34;       &#34;compound&#34; &#34;glycan&#34;   &#34;reaction&#34; &#34;rclass&#34;   &#34;enzyme&#34;  
+</span></span><span class="line"><span class="cl">## [13] &#34;disease&#34;  &#34;drug&#34;     &#34;dgroup&#34;   &#34;environ&#34;  &#34;genes&#34;    &#34;ligand&#34;  
+</span></span><span class="line"><span class="cl">## [19] &#34;kegg&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 获取KEGG数据库中某个物种的所有通路（如人类）</span>
+</span></span><span class="line"><span class="cl"><span class="n">tmp</span><span class="o">=</span><span class="nf">keggList</span><span class="p">(</span><span class="s">&#34;pathway&#34;</span><span class="p">,</span><span class="s">&#34;hsa&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">##                                                 hsa01100 
+</span></span><span class="line"><span class="cl">##              &#34;Metabolic pathways - Homo sapiens (human)&#34; 
+</span></span><span class="line"><span class="cl">##                                                 hsa01200 
+</span></span><span class="line"><span class="cl">##               &#34;Carbon metabolism - Homo sapiens (human)&#34; 
+</span></span><span class="line"><span class="cl">##                                                 hsa01210 
+</span></span><span class="line"><span class="cl">## &#34;2-Oxocarboxylic acid metabolism - Homo sapiens (human)&#34; 
+</span></span><span class="line"><span class="cl">##                                                 hsa01212 
+</span></span><span class="line"><span class="cl">##           &#34;Fatty acid metabolism - Homo sapiens (human)&#34; 
+</span></span><span class="line"><span class="cl">##                                                 hsa01230 
+</span></span><span class="line"><span class="cl">##     &#34;Biosynthesis of amino acids - Homo sapiens (human)&#34; 
+</span></span><span class="line"><span class="cl">##                                                 hsa01232 
+</span></span><span class="line"><span class="cl">##           &#34;Nucleotide metabolism - Homo sapiens (human)&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 获取某一条KEGG通路的全部信息。</span>
+</span></span><span class="line"><span class="cl"><span class="n">tmp</span><span class="o">=</span><span class="nf">keggGet</span><span class="p">(</span><span class="s">&#34;hsa00020&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">print</span><span class="p">(</span><span class="n">tmp[[1]]</span><span class="o">$</span><span class="n">DESCRIPTION</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## [1] &#34;The citrate cycle (TCA cycle, Krebs cycle) is an important aerobic pathway for the final steps of the oxidation of carbohydrates and fatty acids. The cycle starts with acetyl-CoA, the activated form of acetate, derived from glycolysis and pyruvate oxidation for carbohydrates and from beta oxidation of fatty acids. The two-carbon acetyl group in acetyl-CoA is transferred to the four-carbon compound of oxaloacetate to form the six-carbon compound of citrate. In a series of reactions two carbons in citrate are oxidized to CO2 and the reaction pathway supplies NADH for use in the oxidative phosphorylation and other metabolic processes. The pathway also supplies important precursor metabolites including 2-oxoglutarate. At the end of the cycle the remaining four-carbon part is transformed back to oxaloacetate. According to the genome sequence data, many organisms seem to lack genes for the full cycle [MD:M00009], but contain genes for specific segments [MD:M00010 M00011].&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># KEGG通路的基因、代谢物等信息就包含在keggGet()函数获得的结果中</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 获取某一条KEGG通路的全部信息</span>
+</span></span><span class="line"><span class="cl"><span class="n">path</span> <span class="o">&lt;-</span> <span class="nf">keggGet</span><span class="p">(</span><span class="s">&#34;hsa00010&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gene.info</span> <span class="o">&lt;-</span> <span class="n">path[[1]]</span><span class="o">$</span><span class="n">GENE</span>
+</span></span><span class="line"><span class="cl"><span class="n">gene.info</span>
+</span></span><span class="line"><span class="cl"><span class="n">genes</span> <span class="o">&lt;-</span> <span class="nf">unlist</span><span class="p">(</span><span class="nf">lapply</span><span class="p">(</span><span class="n">gene.info</span><span class="p">,</span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">strsplit</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="s">&#34;;&#34;</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">gene.symbol</span> <span class="o">&lt;-</span> <span class="n">genes</span><span class="nf">[seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="nf">length</span><span class="p">(</span><span class="n">genes</span><span class="p">),</span><span class="m">2</span><span class="p">)</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">gene.id</span> <span class="o">&lt;-</span> <span class="n">genes</span><span class="nf">[seq</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="nf">length</span><span class="p">(</span><span class="n">genes</span><span class="p">),</span><span class="m">2</span><span class="p">)</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">gene.symbol</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成gene symbol和Entrez ID匹配的数据框</span>
+</span></span><span class="line"><span class="cl"><span class="nf">data.frame</span><span class="p">(</span><span class="n">gene.symbol</span> <span class="o">=</span> <span class="n">gene.symbol</span><span class="p">,</span><span class="n">gene.id</span> <span class="o">=</span> <span class="n">gene.id</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="通路-基因信息">通路-基因信息</h4>
+<p>比如我想要获得人类所有通路-基因信息（<a class="link" href="https://zhuanlan.zhihu.com/p/434383719"  target="_blank" rel="noopener"
+    >参考</a>）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">hsa_pathway</span> <span class="o">&lt;-</span> <span class="nf">keggList</span><span class="p">(</span><span class="s">&#34;pathway&#34;</span><span class="p">,</span><span class="s">&#34;hsa&#34;</span><span class="p">)</span><span class="c1"># 获取KEGG数据库中所有人类通路</span>
+</span></span><span class="line"><span class="cl"><span class="n">hsa_path</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">hsa_pathway</span><span class="p">)</span> <span class="c1"># 转成数据框,方便后续分析</span>
+</span></span><span class="line"><span class="cl"><span class="n">hsa_path</span><span class="o">$</span><span class="n">pathID</span> <span class="o">&lt;-</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">hsa_path</span><span class="p">)</span> <span class="c1"># 提取pathway ID</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">hsa_gene</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span> <span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">hsa_path</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">print</span><span class="p">(</span><span class="n">hsa_path[i</span><span class="p">,</span><span class="s">&#34;pathID&#34;</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hsa_info</span> <span class="o">&lt;-</span> <span class="nf">keggGet</span><span class="p">(</span><span class="n">hsa_path[i</span><span class="p">,</span><span class="s">&#34;pathID&#34;</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hsa_gene[[i]]</span> <span class="o">&lt;-</span> <span class="n">hsa_info[[1]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">hsa_gene</span><span class="p">)</span><span class="o">=</span><span class="n">hsa_path</span><span class="o">$</span><span class="n">pathID</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pre_gene_in_pathway</span><span class="o">=</span><span class="kr">function</span><span class="p">(</span><span class="n">pathway</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">genes</span><span class="o">=</span><span class="n">pathway[[</span><span class="s">&#34;GENE&#34;</span><span class="n">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span><span class="p">(</span><span class="nf">is.null</span><span class="p">(</span><span class="n">genes</span><span class="p">))</span><span class="kr">return</span><span class="p">(</span><span class="kc">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">kegg_gene_id</span><span class="o">=</span><span class="n">genes</span><span class="nf">[seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="nf">length</span><span class="p">(</span><span class="n">genes</span><span class="p">),</span><span class="m">2</span><span class="p">)</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input_strings</span><span class="o">=</span><span class="n">genes</span><span class="nf">[seq</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="nf">length</span><span class="p">(</span><span class="n">genes</span><span class="p">),</span><span class="m">2</span><span class="p">)</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">gene</span> <span class="o">=</span> <span class="nf">sub</span><span class="p">(</span><span class="s">&#34;;.*&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="n">input_strings</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span> <span class="o">=</span> <span class="nf">sub</span><span class="p">(</span><span class="s">&#34;.*;\\s*(.*?)\\s+\\[.*&#34;</span><span class="p">,</span> <span class="s">&#34;\\1&#34;</span><span class="p">,</span> <span class="n">input_strings</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">KO_id</span> <span class="o">=</span> <span class="nf">sub</span><span class="p">(</span><span class="s">&#34;.*\\[KO:(.*?)\\].*&#34;</span><span class="p">,</span> <span class="s">&#34;\\1&#34;</span><span class="p">,</span> <span class="n">input_strings</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#EC = sub(&#34;.*\\[EC:(.*?)\\].*&#34;, &#34;\\1&#34;, input_strings)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span><span class="o">=</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">pathway_id</span><span class="o">=</span><span class="n">pathway</span><span class="o">$</span><span class="n">ENTRY</span><span class="p">,</span><span class="n">kegg_gene_id</span><span class="o">=</span><span class="n">kegg_gene_id</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">row.names</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">data</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">pre_gene_in_pathway</span><span class="p">(</span><span class="n">hsa_gene</span><span class="o">$</span><span class="n">hsa00020</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">all_hsa_gene</span><span class="o">=</span><span class="nf">lapply</span><span class="p">(</span><span class="n">hsa_gene</span><span class="p">,</span><span class="n">pre_gene_in_pathway</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">all_hsa_gene1</span><span class="o">=</span><span class="nf">do.call</span><span class="p">(</span><span class="n">rbind</span><span class="p">,</span><span class="n">all_hsa_gene</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">rownames</span><span class="p">(</span><span class="n">all_hsa_gene1</span><span class="p">)</span><span class="o">=</span><span class="kc">NULL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="reporterscore">ReporterScore</h3>
+<p>因为很多富集方法都基于KEGG数据库，所有我写的ReporterScore包中也包含很多下载并处理KEGG数据库的函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ReporterScore</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#get_org_pathway函数可以获取某个organism的全部通路信息，及每条通路与基因，代谢物的关系。</span>
+</span></span><span class="line"><span class="cl"><span class="nf">get_org_pathway</span><span class="p">(</span><span class="n">org</span> <span class="o">=</span> <span class="s">&#34;hsa&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#load_*系列函数可以获取KEGG重要模块的层级信息，也可以用update_htable()更新</span>
+</span></span><span class="line"><span class="cl"><span class="nf">load_KO_htable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">load_Pathway_htable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">load_Compound_htable</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">load_Module_htable</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/database/">Database</a>
+        
+            <a href="/tags/software/">Software</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/kegg-api/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kegg-api/images/M00007.815aba0217a235e2a597c896bd52eefc_hu_13bd92c01c92a463.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post KEGG 数据库及API (1)"
+                        data-key="kegg-api" 
+                        data-hash="md5-gVq6AheiNeKll8iWvVLu/A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">KEGG 数据库及API (1)</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/gcf-big-fam/">
+        
+        
+            <div class="article-image">
+                <img src="/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28.0fbb5b0c2b31df564edb14075af07c92_hu_b51a4a4f8db8bb65.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 生物合成基因簇家族（GCF）数据库 BiG-FAM"
+                        data-key="gcf-big-fam" 
+                        data-hash="md5-D7tbDCsx31ZO2xQHWvB8kg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">生物合成基因簇家族（GCF）数据库 BiG-FAM</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/instrain/">
+        
+        
+            <div class="article-image">
+                <img src="/p/instrain/images/OverviewFigure1_v1.210f4876fc2ad1d4aaa1deb758403f1d_hu_533598e87412281c.webp" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用InStrain进行宏基因组群体分析"
+                        data-key="instrain" 
+                        data-hash="md5-IQ9Idvwq0dSqod63WEA/HQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用InStrain进行宏基因组群体分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/gtdb/">
+        
+        
+            <div class="article-image">
+                <img src="/p/gtdb/images/gtdb.e86e8d7c25f7c58539f53e381fd6bff6_hu_452ee57541a3e655.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post GTDB基因组分类数据库及GTDB-Tk工具"
+                        data-key="gtdb" 
+                        data-hash="md5-6G6NfCX3xYU59T44H9a/9g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">GTDB基因组分类数据库及GTDB-Tk工具</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/ani/">
+        
+        
+            <div class="article-image">
+                <img src="/p/ani/images/ani3.68da08c94ea4c007938042e49c0e07d5_hu_fe3e6b2cf8eeb457.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用FastANI与Skani计算平均核苷酸一致性(ANI)"
+                        data-key="ani" 
+                        data-hash="md5-aNoIyU6kwAeTgELknA4H1Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用FastANI与Skani计算平均核苷酸一致性(ANI)</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

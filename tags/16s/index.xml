@@ -1,0 +1,1270 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>16S on Cao&#39;s blog</title>
+        <link>/tags/16s/</link>
+        <description>Recent content in 16S on Cao&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Thu, 24 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="/tags/16s/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>有关Rarefaction的探讨，一篇10年前的文章</title>
+        <link>/p/rarefaction-10/</link>
+        <pubDate>Thu, 24 Jul 2025 00:00:00 +0000</pubDate>
+        
+        <guid>/p/rarefaction-10/</guid>
+        <description>&lt;img src="/p/rarefaction-10/images/fig1.png" alt="Featured image of post 有关Rarefaction的探讨，一篇10年前的文章" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;最近有审稿人的comments中建议阅读大佬Susan Holmes (2014) 的经典论文《Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible》，参考在自己的分析中。这篇文章深入探讨了微生物组数据分析中常用的稀释（rarefying）方法的缺陷，并提出了更合适的统计模型。虽然这篇文章已经发表了10多年，但其观点仍然具有重要的参考价值。&lt;/p&gt;
+&lt;h2 id=&#34;-微生物组测序的统计挑战&#34;&gt;🌱 微生物组测序的统计挑战&lt;/h2&gt;
+&lt;p&gt;高通量 DNA 测序技术让微生物组研究进入爆发期。通过测定来自不同环境或样本（如人体肠道、土壤、水体）的 16S rRNA 序列或宏基因组原始读数，研究者可以获得一个 OTU（操作分类单位，又可视作微生物“物种”）在各样本中的丰度矩阵。&lt;/p&gt;
+&lt;p&gt;但一个关键问题是：不同样本之间测序深度存在显著差异——每个样本的读数（library size）可能相差一个数量级。这样直接比较 OTU 计数会导致误导。为此，研究者常用两种“归一化”方式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;按比例（proportion）处理&lt;/strong&gt;：将各 OTU 计数除以总读数。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;稀释抽平（rarefying）&lt;/strong&gt;：随机抽取每个样本相同数量的读数（即归到最小 library size）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;然而，McMurdie 和 Holmes 指出，这两种方法都存在严重统计缺陷。作者主张，应该使用更先进的统计模型，比如基于负二项分布的差异表达分析方法（edgeR、DESeq），这些方法能更好地处理 library size 差异和数据方差结构。&lt;/p&gt;
+&lt;h2 id=&#34;稀释法的两个主要问题&#34;&gt;稀释法的两个主要问题&lt;/h2&gt;
+&lt;h3 id=&#34;损失统计能力statistical-power&#34;&gt;损失统计能力（statistical power）&lt;/h3&gt;
+&lt;img src=&#34;images/fig1.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;论文通过例子演示了 rarefying 带来的信息损失，例如样本 B 从 1000 个读数降到 100 后，估计微生物丰度比例的方差显著增加，导致对显著性差异的检验能力下降。即使两个样本在真实生态差异上有明显变化，稀释后信号可能被掩盖。&lt;/p&gt;
+&lt;h3 id=&#34;丢弃样本&#34;&gt;丢弃样本&lt;/h3&gt;
+&lt;p&gt;在 rarefying 流程中，通常设定一个最小读数阈值，低于阈值的样本被剔除。例如，如果用 500 读数标准化，而一个 sample 只有 300，则该 sample 会被完全删除。论文中指出，这可能导致有效样本被剔除，从而降低聚类分析或差异检测的结果质量。&lt;/p&gt;
+&lt;h2 id=&#34;替代方案基于负二项分布的混合模型&#34;&gt;替代方案：基于负二项分布的混合模型&lt;/h2&gt;
+&lt;p&gt;论文提出将微生物组计数数据视作负二项分布（Negative Binomial, NB）的一种表现：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;样本 j 的总体读数可视为 Poisson 随机变量。&lt;/li&gt;
+&lt;li&gt;OTU i 在样本 j 的计数$K[i,j] ~ NB(mean = s_j × μ_i, dispersion = φ_i)$，其中$s_j$ 是 library size 缩放因子，$μ_i$ 是 OTU 的相对丰度，$φ_i$ 捕捉 biological variability 和过度离散性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这种模型有三个优点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;统计理论支持：standard 方法来自 RNA-Seq 领域（edgeR、DESeq）。&lt;/li&gt;
+&lt;li&gt;变异估计更准确：考虑方差随着丰度增长而变化，避免样本深度不同导致的 heteroscedasticity。&lt;/li&gt;
+&lt;li&gt;没丢样本：所有样本保留，避免信息丢失。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;此外还提及另一种方法，zero-inflated Gaussian 模型（metagenomeSeq），适合候选 OTU 零计数很多的情况，但在生物重复较少时假阳性率仍然较高。&lt;/p&gt;
+&lt;h2 id=&#34;模拟实验&#34;&gt;模拟实验&lt;/h2&gt;
+&lt;p&gt;McMurdie 和 Holmes 为了系统地评估不同归一化和统计分析方法的性能，精心设计了两类模拟实验，分别聚焦于 &lt;strong&gt;样本聚类准确性&lt;/strong&gt; 与 &lt;strong&gt;差异丰度检出能力&lt;/strong&gt;。这些实验通过真实数据构造，并在可控的干预条件下测试各方法的稳健性与准确度，具有非常强的说服力。&lt;/p&gt;
+&lt;img src=&#34;images/fig2.png&#34; title=&#34;&#34;/&gt;
+&lt;h3 id=&#34;a样本聚类的准确性clustering-accuracy&#34;&gt;A:样本聚类的准确性（Clustering Accuracy）&lt;/h3&gt;
+&lt;p&gt;作者从真实的微生物组数据集中（如“soil”和“ocean”数据）选取样本，构建两个组成明显不同的样本群体，并在这些群体中模拟不同的测序深度（library size），例如一个样本有 10,000 reads，而另一个只有 1,000 reads，反映现实中常见的不平衡情况。&lt;/p&gt;
+&lt;p&gt;接着，他们使用不同的归一化方式处理这些样本，包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;稀释（rarefying）&lt;/strong&gt;：所有样本统一稀释至相同深度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;比例归一化（proportions）&lt;/strong&gt;：每个 OTU 相对其样本总数转换为相对丰度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;基于模型的方法（edgeR / DESeq）&lt;/strong&gt;：使用负二项分布估计归一化因子并建模。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;metagenomeSeq&lt;/strong&gt;：使用零膨胀正态模型（zero-inflated Gaussian）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;归一化后，再对 OTU 表进行距离计算（Bray-Curtis 或 UniFrac），最后进行聚类（如 PAM 或 hierarchical clustering）以观察样本是否能准确归类。&lt;/p&gt;
+&lt;img src=&#34;images/fig4.png&#34; title=&#34;&#34;/&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;稀释法准确率最低&lt;/strong&gt;，尤其当稀释程度较高（即大部分样本初始 read 数远高于稀释阈值）时，稀释过程导致数据大幅减少，聚类准确率明显下降；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;比例归一化方法略好但仍不稳定&lt;/strong&gt;，尤其在物种丰富度差异大时，常低估丰度低但重要的 OTU；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;edgeR 和 DESeq 准确率最高且最稳定&lt;/strong&gt;，能有效识别样本之间真实的结构差异；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;metagenomeSeq 表现介于中间&lt;/strong&gt;，在某些条件下表现尚可，但 replicates 少时不稳定。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这说明：&lt;strong&gt;基于模型的方法不仅能保留样本完整性，还能在复杂多变的测序深度下维持稳定的聚类表现&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;b差异丰度检测能力differential-abundance-detection&#34;&gt;B:差异丰度检测能力（Differential Abundance Detection）&lt;/h3&gt;
+&lt;p&gt;作者构建了一个 OTU 表，其中一部分 OTU 被设定为“差异丰度 OTU”——它们在组 A 与组 B 中的丰度存在系统性差异（如增加 2 倍或 5 倍），而其余 OTU 丰度一致不变。&lt;/p&gt;
+&lt;p&gt;通过不同方法处理这些数据并检测差异 OTU，然后使用 &lt;strong&gt;ROC 曲线和 AUC（Area Under Curve）&lt;/strong&gt; 来衡量每种方法检出真实差异 OTU 的能力与假阳性控制水平。&lt;/p&gt;
+&lt;img src=&#34;images/fig5.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;edgeR 与 DESeq 明显优于其他方法，具体表现为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;AUC 高达 0.95–0.98&lt;/strong&gt;，说明检出真正差异 OTU 的能力极强；&lt;/li&gt;
+&lt;li&gt;假阳性率控制良好，尤其在样本数较多时尤为明显；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;稀释法表现最差&lt;/strong&gt;，不仅灵敏度低（漏检多），而且假阳性率高，尤其当稀释阈值较低时更严重；&lt;/li&gt;
+&lt;li&gt;metagenomeSeq 在 replicates 较多时接近 edgeR，但在 n=2~3 样本时性能急剧下降。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;此外，作者强调，&lt;strong&gt;稀释法带来的最大问题是“有效样本数的减少”&lt;/strong&gt;——本来可以使用 10,000 个 reads 做差异分析，稀释后只剩 1,000 个，等效于用更小的样本重复去估计参数，导致功效大幅下降。&lt;/p&gt;
+&lt;p&gt;McMurdie &amp;amp; Holmes 在文中总结如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;明确反对 rarefying&lt;/strong&gt;：既浪费数据又带来分析偏差，是 inadmissible 的 normalization 方法。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;推荐基于统计混合模型的方法&lt;/strong&gt;：借用 RNA-Seq 的 edgeR、DESeq，甚至 metagenomeSeq。作者还将这些方法整合进 R 包 phyloseq 中，方便微生物组分析。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;树立统计意识&lt;/strong&gt;：研究者应理解 library size、overdispersion 的本质，并采用合适的 GLM（Generalized Linear Model）模型或经验贝叶斯方法，而不是简单采样。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这篇论文自 2014 年发布后对微生物组数据分析流程影响深远：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;推动了差异丰度分析方法的演进，例如 ANCOM、ALDEx2、Songbird 等工具开始强调 compositional data 和统计模型。&lt;/li&gt;
+&lt;li&gt;2024 年，Schloss 又在 mSphere 中重访 rarefying，提出一些更新观点，可视为对这篇论文的回应和延伸。&lt;/li&gt;
+&lt;li&gt;微生物组数据本质是&lt;strong&gt;成分数据（compositional）&lt;/strong&gt;，总和约束 → 需要特殊方法处理，而 NB 模型正是合理起点之一。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;McMurdie, P.J., and Holmes, S. (2014). Waste not, want not: why rarefying microbiome data is inadmissible. PLOS Comput. Biol. 10, e1003531. &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1371/journal.pcbi.1003531&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1371/journal.pcbi.1003531&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>扩增子(Amplicon)数据分析流程|Qiime2</title>
+        <link>/p/amplicon-workflow/</link>
+        <pubDate>Mon, 23 Dec 2024 00:00:00 +0000</pubDate>
+        
+        <guid>/p/amplicon-workflow/</guid>
+        <description>&lt;img src="/p/amplicon-workflow/images/16s.webp" alt="Featured image of post 扩增子(Amplicon)数据分析流程|Qiime2" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;我学习微生物组分析的过程是从shot-gun 宏基因组数据分析开始的，反而没怎么做过相对更早更成熟的扩增子测序的上游分析😂，最近刚好有需求，还是自己学习并搭建一下自己用的比较舒服的流程吧。&lt;/p&gt;
+&lt;p&gt;扩增子（Amplicon）分析是研究微生物群落组成与功能的核心方法之一，特别是在生态学、医学和环境科学领域。通过对目标基因区域（如16S rRNA、18S rRNA、ITS）的特异性扩增与测序，扩增子分析能够高效揭示样本中微生物的多样性和群落结构。相比宏基因组测序，扩增子分析具有成本低、处理流程简化等优势，适用于大规模样本研究。&lt;/p&gt;
+&lt;p&gt;扩增子分析的核心原理是通过聚合酶链式反应 (PCR) 技术，对目标微生物基因片段进行特异性扩增和测序，以解析微生物群落组成及其多样性。通常选择的目标片段为具有保守区域和高变异区域的基因，如细菌的16S rRNA基因、真菌的ITS区等。保守区域用作引物设计的靶点，高变异区域用于区分不同物种。&lt;/p&gt;
+&lt;p&gt;具体步骤包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;DNA 提取：从样本中提取总 DNA。&lt;/li&gt;
+&lt;li&gt;目标基因扩增：使用特异性引物扩增目标区域。&lt;/li&gt;
+&lt;li&gt;高通量测序：测序得到大量扩增子的序列数据。&lt;/li&gt;
+&lt;li&gt;生物信息学分析：对序列进行过滤、聚类、注释，获得物种分类和功能信息。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这种方法的优势在于其高灵敏度和特异性，可以快速揭示微生物多样性并进行定量分析。&lt;/p&gt;
+&lt;h3 id=&#34;细菌&#34;&gt;细菌&lt;/h3&gt;
+&lt;p&gt;细菌核糖体RNA (rRNA) 包括 5S rRNA (120bp)、16S rRNA (~1540bp) 和 23S rRNA (~2900bp)。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;5S rRNA&lt;/strong&gt;: 序列短，遗传信息量有限，无法用于分类鉴定。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;23S rRNA&lt;/strong&gt;: 序列过长，突变率高，不适用于远缘种类分析。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;16S rRNA&lt;/strong&gt;: 稳定性高、拷贝数多，约占细菌RNA总量的80%，基因中包含10个保守区和9个高变异区，适合细菌分类标准。V3-V4 区因特异性和数据库支持最佳，常用于多样性分析。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&#34;images/16s.webp&#34; title=&#34;&#34;/&gt;
+&lt;h3 id=&#34;真核生物&#34;&gt;真核生物&lt;/h3&gt;
+&lt;p&gt;真核微生物的 rRNA 包括 5.8S、18S 和 28S rRNA，其中 18S rRNA 常用于多样性分析。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;18S rRNA&lt;/strong&gt;: 基因序列包括保守区和可变区 (V1-V9, 无 V6)。可变区反映物种差异，V4 区因分类效果佳、数据库支持丰富，是分析和注释的最佳选择。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;真菌&#34;&gt;真菌&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;ITS (内源转录间隔区)&lt;/strong&gt; 位于真菌 18S、5.8S 和 28S rRNA 基因之间，由 ITS1 和 ITS2 组成，分别长约 350 bp 和 400 bp。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;保守性&lt;/strong&gt;: 基因片段在种内稳定，种间差异显著，适用于细粒度分类。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;灵活性&lt;/strong&gt;: 容易分析和扩增，广泛用于真菌种属和菌株系统发育研究。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;古菌&#34;&gt;古菌&lt;/h3&gt;
+&lt;p&gt;古菌生活于极端环境，是生命极限的代表。通过引物设计，16S rRNA 的 V4V5 区是古菌多样性研究的核心区域。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Illumina MiSeq&lt;/strong&gt;: 519F/915R 适用于 V4V5 扩增。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Roche 454&lt;/strong&gt;: 344F/915R 表现更佳。&lt;br&gt;
+古菌研究揭示了其独特的生物特征，促进了极端生态学和生物系统学的发展。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;qiime2&#34;&gt;Qiime2&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;QIIME 2&lt;/strong&gt; (Quantitative Insights Into Microbial Ecology 2) 是一个功能强大的微生物组数据分析平台，专为从原始 DNA 序列到可解释的生物学结论的全过程而设计。它是 QIIME 的升级版本，具有更高的灵活性、可扩展性和可重复性。&lt;/p&gt;
+&lt;p&gt;网站：&lt;a class=&#34;link&#34; href=&#34;https://qiime2.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://qiime2.org/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;详细教程：&lt;a class=&#34;link&#34; href=&#34;https://docs.qiime2.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://docs.qiime2.org/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;主要特点&lt;/strong&gt;：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;模块化架构&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;QIIME 2 使用插件系统，支持不同的分析任务（如数据导入、质量控制、OTU/ASV 分类、可视化等）。&lt;/li&gt;
+&lt;li&gt;常用插件包括 &lt;code&gt;dada2&lt;/code&gt;（去噪）、&lt;code&gt;feature-classifier&lt;/code&gt;（分类）、&lt;code&gt;diversity&lt;/code&gt;（多样性分析）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;可重复性&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分析工作流被记录在 &lt;code&gt;.qza&lt;/code&gt; 和 &lt;code&gt;.qzv&lt;/code&gt; 文件中，包含完整的元数据和参数信息。&lt;/li&gt;
+&lt;li&gt;易于分享和复现研究结果。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;交互式可视化&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;支持交互式的结果可视化（如多样性分析、特征分类）。&lt;/li&gt;
+&lt;li&gt;可在 QIIME 2 View 网站上直接查看 &lt;code&gt;.qzv&lt;/code&gt; 文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;广泛支持的数据类型&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;支持多种数据输入格式，如 FASTQ、BIOM。&lt;/li&gt;
+&lt;li&gt;可处理单端或双端序列，以及扩增子、宏基因组、宏转录组数据。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;强大的社区和生态系统&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;QIIME 2 拥有活跃的用户社区和丰富的文档支持。&lt;/li&gt;
+&lt;li&gt;易于与其他工具（如 R、Python、QIIME 1、PICRUSt）集成。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;QIIME 2 的分析过程通常包括以下步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;数据导入&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将原始数据（如 FASTQ 文件）导入为 QIIME 2 的 &lt;code&gt;.qza&lt;/code&gt; 格式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;质量控制与去噪&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;使用插件如 &lt;code&gt;DADA2&lt;/code&gt; 或 &lt;code&gt;Deblur&lt;/code&gt; 进行序列修剪、去噪和去冗余。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;特征表构建&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;生成 ASV 表（或 OTU 表）和代表性序列。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;序列分类&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;利用分类器（如 SILVA、Greengenes、UNITE）对特征序列进行物种注释。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;多样性分析&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;计算 α 多样性（物种丰度）和 β 多样性（样本间差异），并进行统计分析。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;可视化&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;生成图形化结果，如 PCA 图、丰度热图、分类饼图等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;优点&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;高度可扩展，支持多种微生物组分析。&lt;/li&gt;
+&lt;li&gt;工作流透明，方便重复分析和结果共享。&lt;/li&gt;
+&lt;li&gt;插件生态丰富，可根据需要选择不同的工具。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;缺点&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;学习曲线较陡，需熟悉命令行操作。&lt;/li&gt;
+&lt;li&gt;对计算资源需求较高，处理大规模数据可能较慢。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;QIIME 2 是现代微生物组研究的核心工具之一，尤其适合大规模扩增子数据的处理和分析。安装的话尽量用conda直接装下整个环境，然后整个Qiime2分析平台太多太复杂了，像多样性分析，可视化等步骤都可以后续在R语言里更灵活地实现，没必要一定用Qiime2。我们明确一下我们的输入和输出目标（获得feature-table，feature的物种注释结果，feature的系统发育树基本就够了），这里只用下面最关键的几个步骤就行：&lt;/p&gt;
+&lt;h2 id=&#34;input-data&#34;&gt;Input data&lt;/h2&gt;
+&lt;p&gt;测序公司一般返回的是按照每个样本拆分好的双端fq文件，或者单端fq文件，或者已经做了简单质控和拼接后的单个fq文件（可以当作单端fq文件），我们从这里开始进行分析。&lt;/p&gt;
+&lt;p&gt;metadata.tsv的话是我们的实验设计（第一列SampleID，可以有一些实验分组的列），想搞的话可以搞一个，后续基于Qiime可视化的话可以用上，没有的话也没关系。&lt;/p&gt;
+&lt;h3 id=&#34;双端fq文件&#34;&gt;双端fq文件&lt;/h3&gt;
+&lt;p&gt;需要先准备一个一个制表符分隔的（即 .tsv）文本文件manifest。第一列定义样本 ID，而第二列（和可选的第三列）定义正向（和可选反向）读取的绝对文件路径：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sample-id     forward-absolute-filepath       reverse-absolute-filepath
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sample-1      $PWD/some/filepath/sample1_R1.fastq.gz  $PWD/some/filepath/sample1_R2.fastq.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sample-2      $PWD/some/filepath/sample2_R1.fastq.gz  $PWD/some/filepath/sample2_R2.fastq.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sample-3      $PWD/some/filepath/sample3_R1.fastq.gz  $PWD/some/filepath/sample3_R2.fastq.gz
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sample-4      $PWD/some/filepath/sample4_R1.fastq.gz  $PWD/some/filepath/sample4_R2.fastq.gz
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后数据导入qiime2，这里假设reads格式为双端33格式（PairedEndFastqManifestPhred33V2）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime tools import &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --type &lt;span class=&#34;s1&#34;&gt;&amp;#39;SampleData[PairedEndSequencesWithQuality]&amp;#39;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --input-path manifest &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --output-path demux.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --input-format PairedEndFastqManifestPhred33V2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;单端fq文件&#34;&gt;单端fq文件&lt;/h3&gt;
+&lt;p&gt;同样需要准备manifest文件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sample-id     absolute-filepath
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sample-1      $PWD/some/filepath/sample1_R1.fastq
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;sample-2      $PWD/some/filepath/sample2_R1.fastq
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后数据导入qiime2，这里假设reads格式为单端33格式（SingleEndFastqManifestPhred33V2）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime tools import &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --type &lt;span class=&#34;s1&#34;&gt;&amp;#39;SampleData[PairedEndSequencesWithQuality]&amp;#39;&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --input-path manifest &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --output-path demux.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --input-format SingleEndFastqManifestPhred33V2
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;其他类型&#34;&gt;其他类型&lt;/h3&gt;
+&lt;p&gt;其他类型数据的导入方式可以参考&lt;a class=&#34;link&#34; href=&#34;https://docs.qiime2.org/2024.10/tutorials/importing/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://docs.qiime2.org/2024.10/tutorials/importing/&lt;/a&gt;，主要是未拆分的fq文件，就是说所有样本都在一个fq文件里，但是不同样本具有不同的barcode可以用来区分。&lt;/p&gt;
+&lt;p&gt;这种的话需要新建一个muxed-se-barcode-in-seq文件夹，把多样本的一个fq文件和对应metadata文件放在文件夹里，metadata其中包含一列用于 FASTQ 解复用（demultiplexing）的每个样本barcode（或两列双索引条形码）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime tools import &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --type MultiplexedPairedEndBarcodeInSequence &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --input-path muxed-pe-barcode-in-seq &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --output-path multiplexed-seqs.qza
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;asvotu&#34;&gt;ASV/OTU&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;ASV&lt;/strong&gt;（Amplicon Sequence Variant）和 &lt;strong&gt;OTU&lt;/strong&gt;（Operational Taxonomic Unit）是微生物组研究中用于表征样本中微生物分类单元的两个核心概念。具体可以参考师姐以前写的介绍&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/f31581bbfb80&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.jianshu.com/p/f31581bbfb80&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1. OTU&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;定义&lt;/strong&gt;：OTU 是通过对扩增子序列进行聚类后定义的分类单元。通常基于序列间的相似性（如 97% 或 99% 相似性）将序列归为同一 OTU。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;特点&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;常用聚类方法如 UCLUST、VSEARCH、USEARCH。&lt;/li&gt;
+&lt;li&gt;需要参考数据库或 &lt;strong&gt;de novo&lt;/strong&gt; 聚类（无参考）。&lt;/li&gt;
+&lt;li&gt;OTU 表可能存在冗余（因聚类误差导致部分不一致）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;2. ASV&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;定义&lt;/strong&gt;：ASV 是通过严格的去噪算法（如 DADA2 或 Deblur）精确定义的单个核苷酸级别变异的序列单元。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;特点&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;不依赖相似性阈值，直接基于序列精确变异。&lt;/li&gt;
+&lt;li&gt;生成的序列表更加真实和精细，减少了因聚类导致的信息丢失。&lt;/li&gt;
+&lt;li&gt;去除了测序误差，保留了真实生物学变异。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;strong&gt;特性&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;ASV&lt;/strong&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;strong&gt;OTU&lt;/strong&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;定义&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;精确的序列变异单位&lt;/td&gt;
+          &lt;td&gt;相似性聚类的单位&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;分析方法&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;去噪算法（DADA2、Deblur）&lt;/td&gt;
+          &lt;td&gt;聚类算法（VSEARCH、UCLUST）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;分辨率&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;核苷酸级别&lt;/td&gt;
+          &lt;td&gt;依赖设定的相似性阈值（如 97%）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;误差处理&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;去噪模型精准去除测序误差&lt;/td&gt;
+          &lt;td&gt;聚类可能保留部分测序误差&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;strong&gt;对数据质量要求&lt;/strong&gt;&lt;/td&gt;
+          &lt;td&gt;较高&lt;/td&gt;
+          &lt;td&gt;较低&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;ASV 是现代扩增子分析的主流方法，其精确性和可比较性显著优于 OTU。OTU 在一些特定场景仍有使用价值，但逐渐被 ASV 所取代。&lt;/p&gt;
+&lt;h3 id=&#34;asv&#34;&gt;ASV&lt;/h3&gt;
+&lt;p&gt;在 QIIME 2 中，去噪（denoising）是重要步骤，用于去除测序误差并生成高分辨率的 &lt;strong&gt;ASV（Amplicon Sequence Variants）&lt;/strong&gt;。目前支持两种主流的去噪方法：&lt;strong&gt;DADA2&lt;/strong&gt; 和 &lt;strong&gt;Deblur&lt;/strong&gt;。&lt;strong&gt;DADA2&lt;/strong&gt; 使用基于错误模型的算法，通过学习测序误差分布，精确校正序列错误并去除嵌合体；它适合于单端和双端数据，能够直接输出无错误的 ASV 表。&lt;strong&gt;Deblur&lt;/strong&gt; 则是基于参考序列的去噪方法，通过对序列进行截断和归一化操作，快速去除低质量序列及噪音，适合质量已优化的单端数据。两者均能高效生成高分辨率的 ASV，但 DADA2 更注重错误校正，而 Deblur 在速度上更具优势。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 选择1，DADA2，不一定要trim和trunc，看自己数据，这里是单端数据，双端稍微改一下参数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime dada2 denoise-single &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-demultiplexed-seqs demux.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --p-trim-left &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --p-trunc-len &lt;span class=&#34;m&#34;&gt;120&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-representative-sequences rep-seqs-dada2.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-table table-dada2.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-denoising-stats stats-dada2.qza
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 改名，放入主流程&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv rep-seqs-dada2.qza rep-seqs.qza
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv table-dada2.qza table.qza
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 选择2，deblur，不一定要trim和trunc，看自己数据，这里是单端数据，双端稍微改一下参数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime quality-filter q-score &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-demux demux.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-filtered-sequences demux-filtered.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-filter-stats demux-filter-stats.qza
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime deblur denoise-16S &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-demultiplexed-seqs demux-filtered.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --p-trim-length &lt;span class=&#34;m&#34;&gt;120&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-representative-sequences rep-seqs-deblur.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-table table-deblur.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --p-sample-stats &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-stats deblur-stats.qza
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 改名，放入主流程&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv rep-seqs-deblur.qza rep-seqs.qza
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;mv table-deblur.qza table.qza
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;otu&#34;&gt;OTU&lt;/h3&gt;
+&lt;p&gt;在 QIIME 2 中，序列聚类用于根据相似性对扩增子序列进行分组，生成 &lt;strong&gt;OTU（Operational Taxonomic Units）&lt;/strong&gt; 表。目前支持三种主要聚类策略：&lt;strong&gt;De novo 聚类&lt;/strong&gt; 完全基于样本序列间的相似性，无需参考数据库，适合研究未被充分表征的微生物群落；&lt;strong&gt;封闭引用聚类&lt;/strong&gt; 仅将序列与参考数据库进行比对，未匹配的序列会被丢弃，适合标准化分析和与已有数据的比较；&lt;strong&gt;开放引用聚类&lt;/strong&gt; 则结合两者优势，先对序列与参考数据库比对，再对未匹配序列进行 de novo 聚类，适合兼顾探索性研究和数据库参考分析的场景。&lt;strong&gt;注意，优先使用ASV吧。&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 如果input数据是fq文件，需要先想办法质控后转化为fasta文件，&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 可以参考https://docs.qiime2.org/2019.1/tutorials/read-joining/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 因为OTU聚类需要输入fasta文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime tools import &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --input-path seqs.fna &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --output-path seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --type &lt;span class=&#34;s1&#34;&gt;&amp;#39;SampleData[Sequences]&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导入数据后，第一步可以使用 dereplicate-sequences 命令去重复。&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime vsearch dereplicate-sequences &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-sequences seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-dereplicated-table table.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-dereplicated-sequences rep-seqs.qza
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 选择1，De novo clustering&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime vsearch cluster-features-de-novo &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-table table.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-sequences rep-seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --p-perc-identity 0.99 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-clustered-table table-dn-99.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-clustered-sequences rep-seqs-dn-99.qza
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 选择2，Closed-reference clustering&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime vsearch cluster-features-closed-reference &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-table table.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-sequences rep-seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-reference-sequences 85_otus.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --p-perc-identity 0.85 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-clustered-table table-cr-85.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-clustered-sequences rep-seqs-cr-85.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-unmatched-sequences unmatched-cr-85.qza
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 选择3，Open-reference clustering&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime vsearch cluster-features-open-reference &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-table table.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-sequences rep-seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-reference-sequences 85_otus.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --p-perc-identity 0.85 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-clustered-table table-or-85.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-clustered-sequences rep-seqs-or-85.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-new-reference-sequences new-ref-seqs-or-85.qza
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;筛选处理&#34;&gt;筛选处理&lt;/h3&gt;
+&lt;p&gt;试了下如果这一步产生的ASV太多的话，后续建树（fasttree预估20多天）和物种注释（2天还没完）要非常久，可以稍微对table进行筛选。&lt;/p&gt;
+&lt;p&gt;例如，当过滤样本时，可以使用它来过滤总频率是样本频率分布中的异常值的样本。在许多16S调查中，某些样本只能获得很少（可能是数十）的序列，这可能是由于样本生物量较低导致DNA提取率较低。在这种情况下，用户可能希望根据样本的最小总频率（即，在此示例中为样本获得的序列总数）来删除样本。这可以通过如下方式实现（在本例中，总频率小于1500的样本将被过滤）。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime feature-table filter-samples &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-table table.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --p-min-frequency &lt;span class=&#34;m&#34;&gt;1500&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-filtered-table sample-frequency-filtered-table.qza
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;此过滤器可以应用于特征轴以从表中删除低丰度特征。例如，您可以删除总丰度（所有样本的总和）小于 10 的所有特征，如下所示。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime feature-table filter-features &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-table table.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --p-min-frequency &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-filtered-table feature-frequency-filtered-table.qza
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;基于偶然性的过滤用于根据样本包含的特征数量从表中过滤样本，或者根据观察到的样本数量从表中过滤特征。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime feature-table filter-features &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-table table.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --p-min-samples &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-filtered-table sample-contingency-filtered-table.qza
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime feature-table filter-samples &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-table table.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --p-min-features &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-filtered-table feature-contingency-filtered-table.qza
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;建树&#34;&gt;建树&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;### 构建进化树，可以用来展示物种，也可以计算后续的基于发育距离的alpha和beta多样性&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime phylogeny align-to-tree-mafft-fasttree &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-sequences rep-seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-alignment aligned-rep-seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-masked-alignment masked-aligned-rep-seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-tree unrooted-tree.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-rooted-tree rooted-tree.qza
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后还可以做一个简单的summary和可视化：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime feature-table summarize &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-table table.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-visualization table.qzv &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --m-sample-metadata-file metadata.tsv
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime feature-table tabulate-seqs &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-data rep-seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-visualization rep-seqs.qzv
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这些qzv文件都可以直接拖动到&lt;a class=&#34;link&#34; href=&#34;https://view.qiime2.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://view.qiime2.org/&lt;/a&gt;网站来查看可视化结果。&lt;/p&gt;
+&lt;h2 id=&#34;物种注释&#34;&gt;物种注释&lt;/h2&gt;
+&lt;h3 id=&#34;数据库注释&#34;&gt;数据库注释&lt;/h3&gt;
+&lt;p&gt;常用的&lt;a class=&#34;link&#34; href=&#34;../amplicon&#34; &gt;扩增子数据库&lt;/a&gt;上次介绍过了，涉及到16S rRNA基因的序列数据库时，有三个主要的数据库是常用的：&lt;strong&gt;Greengenes&lt;/strong&gt;、&lt;strong&gt;SILVA&lt;/strong&gt; 和 &lt;strong&gt;RDP&lt;/strong&gt;。&lt;strong&gt;UNITE数据库&lt;/strong&gt;是用于真菌鉴定和多样性检测的主要marker基因数据库。具体信息每个数据库主页都有写，我们拿来用的话关键就是两个文件，一个是数据库提供的序列fasta文件，另一个是这些序列对应的taxonomy文件。&lt;/p&gt;
+&lt;p&gt;拿一个UNITE数据库做例子（用来真菌ITS比较多的），先去官网&lt;a class=&#34;link&#34; href=&#34;https://unite.ut.ee/repository.php&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://unite.ut.ee/repository.php&lt;/a&gt;找到对应的资源下载（注意版本号等信息）。&lt;/p&gt;
+&lt;p&gt;读入数据库：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导入参考序列&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime tools import &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --type FeatureData&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Sequence&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --input-path sh_refs_qiime_ver9_99_s_all_25.07.2023.fasta &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --output-path unite-ver9-seqs_99_25.07.2023.qza
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导入物种分类信息&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime tools import &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --type FeatureData&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;Taxonomy&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --input-path sh_taxonomy_qiime_ver9_99_s_all_25.07.2023.txt &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --output-path unite-ver9-taxonomy_99_25.07.2023.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --input-format HeaderlessTSVTaxonomyFormat
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;注释的话，在 QIIME 2 中，&lt;code&gt;feature-classifier&lt;/code&gt; 插件提供多种方法用于扩增子序列的分类注释，帮助识别微生物物种或更高分类级别。常用方法包括：&lt;strong&gt;朴素贝叶斯（Naive bayes）分类器&lt;/strong&gt;，利用预训练的参考数据库（如 Silva 或 Greengenes）对序列进行概率性分类，是最常用的分类方法；&lt;strong&gt;vsearch-based consensus 分类&lt;/strong&gt;，通过与参考数据库的序列比对，基于相似性得出共识分类，适合精确匹配需求；&lt;strong&gt;BLAST+ 分类&lt;/strong&gt;，使用 BLAST 算法与参考序列比对，能够提供灵活的匹配控制。此外，还支持训练自定义分类器，适用于特定研究需求。各方法在速度、灵敏度和对参考数据库的依赖上各有优劣，用户可根据数据特点和研究目标灵活选择。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 选择1，朴素贝叶斯分类器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 注意，首先要有训练好的分类器qza文件才能用，可以参考下一节训练分类器&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime feature-classifier classify-sklearn &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-classifier unite-ver9-99-classifier-25.07.2023.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-reads rep-seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-classification taxonomy.qza
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 选择2，vsearch&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime feature-classifier classify-consensus-vsearch &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-query rep-seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-reference-reads unite-ver9-seqs_99_25.07.2023.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-reference-taxonomy unite-ver9-taxonomy_99_25.07.2023.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-classification taxonomy_vsearch.qza
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 选择3，blast&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime feature-classifier classify-consensus-blast &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-query rep-seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-reference-reads unite-ver9-seqs_99_25.07.2023.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-reference-taxonomy unite-ver9-taxonomy_99_25.07.2023.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-classification taxonomy_blast.qza
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;简单画个物种堆积柱形图，后续导出数据再R里画也行。上面几种方法的物种注释结果有差异，在合适情况下还是选最常用的第一个吧。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 可视化物种注释&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime metadata tabulate &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --m-input-file taxonomy.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-visualization taxonomy.qzv
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 堆叠柱状图展示&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime taxa barplot &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-table table.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-taxonomy taxonomy.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --m-metadata-file metadata.txt &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-visualization taxa-bar-plots.qzv
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;训练分类器&#34;&gt;训练分类器&lt;/h3&gt;
+&lt;p&gt;注意，这个步骤一般需要较大内存（看数据库，UNITE这个我消耗了100G左右内存），运行时间也比较久，10多个小时&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime feature-classifier fit-classifier-naive-bayes &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-reference-reads unite-ver9-seqs_99_25.07.2023.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --i-reference-taxonomy unite-ver9-taxonomy_99_25.07.2023.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --o-classifier unite-ver9-99-classifier-25.07.2023.qza
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;所以尽可能可以去找别人训练好的结果（因为序列是一样的，拿来用就行，但是要注意是在跟你同版本的Qiime2环境下训练的，不然可能用不了）&lt;/p&gt;
+&lt;p&gt;这里整理了一些下载路径，可以尝试用用，毕竟不一定每个人都有足够的内存和时间来跑这个分类器：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UNITE (ITS)：&lt;a class=&#34;link&#34; href=&#34;https://github.com/colinbrislawn/unite-train/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/colinbrislawn/unite-train/releases&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Greengenes (16S rRNA)：&lt;a class=&#34;link&#34; href=&#34;http://ftp.microbio.me/greengenes_release/2022.10/sklearn-1.4.2-compatible-nb-classifiers/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://ftp.microbio.me/greengenes_release/2022.10/sklearn-1.4.2-compatible-nb-classifiers/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Silva (16S/18S rRNA): &lt;a class=&#34;link&#34; href=&#34;https://anw-sh.github.io/silva-138_classifiers/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://anw-sh.github.io/silva-138_classifiers/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;RDP (16S/28S rRNA): &lt;a class=&#34;link&#34; href=&#34;https://sourceforge.net/projects/rdp-classifier/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://sourceforge.net/projects/rdp-classifier/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;kraken物种注释&#34;&gt;Kraken物种注释&lt;/h3&gt;
+&lt;p&gt;Qiime2注释可真慢呀😂，赶紧找了Kraken的替代方法，见&lt;a class=&#34;link&#34; href=&#34;../kraken-16s-its&#34; &gt;使用Kraken进行16S/ITS物种注释（超快）&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;export-data&#34;&gt;Export data&lt;/h2&gt;
+&lt;p&gt;qza，qzv文件是Qiime2的标准格式，还是导出成普通的文本文件（表格等）用来后续别的平台分析吧：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导出feature丰度表&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime tools &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --input-path feature-table.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --output-path exported-feature-table
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导出序列，在rep-seqs文件夹下&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime tools &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --input-path rep-seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --output-path rep-seqs
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导出系统发育树&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime tools &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --input-path unrooted-tree.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  --output-path exported-tree
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;功能预测&#34;&gt;功能预测&lt;/h2&gt;
+&lt;p&gt;16S测序的一大缺点就是只能的到物种信息，缺乏功能信息，使用PICRUSt软件进行16S功能预测分析（预测，稍微弥补这一缺点）。
+2018年推出了全新版本的PICRUSt，即PICRUSt2&lt;a class=&#34;link&#34; href=&#34;https://github.com/picrust/picrust2&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/picrust/picrust2&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;PICRUSt2 (Phylogenetic Investigation of Communities by Reconstruction of Unobserved States)是一款基于标记基因序列来预测功能丰度的软件。&lt;/p&gt;
+&lt;p&gt;“功能”通常指的是基因家族，如KEGG同源基因，预测通常基于16S rRNA基因测序数据，但也可以使用其他标记基因。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 选择1. 使用 bioconda 安装 PICRUSt2 环境&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conda create -n picrust2 -c bioconda -c conda-forge picrust2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#input就是我们上面导出来的otu.fasta和otu_table.txt&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;picrust2_pipeline.py -s otu.fasta -i otu_table.txt -o picrust2_result -p &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 选择2. 安装q2 picrust2插件（前面提到qiime2的一个特点是插件化，这里刚好可以试试，注意安装对于Qiime2版本的）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;conda install q2-picrust2 &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -c conda-forge &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -c bioconda &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;  -c picrust 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 跑整个流程&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime picrust2 full-pipeline &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   --i-table feature-table.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   --i-seq rep-seqs.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   --output-dir q2-picrust2_output &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   --p-placement-tool sepp &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   --p-threads &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   --p-hsp-method pic &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   --p-max-nsti &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   --verbose
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;q2-picrust2_output 中的这些输出文件是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ec_metagenome.qza - EC 宏基因组预测（行是 EC 编号，列是样本）。&lt;/li&gt;
+&lt;li&gt;ko_metagenome.qza - KO 宏基因组预测（行是 KO，列是样本）。&lt;/li&gt;
+&lt;li&gt;Pathway_abundance.qza - MetaCyc 途径丰度预测（行是Pathway，列是样本）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导出功能丰度表&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;qiime tools &lt;span class=&#34;nb&#34;&gt;export&lt;/span&gt; &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   --input-path q2-picrust2_output/pathway_abundance.qza &lt;span class=&#34;se&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;   --output-path pathabun_exported
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这样，整个扩增子上游就差不多了，得到了feature丰度表，feature的物种注释信息，预测的功能丰度表，后续分析就类似宏基因组的部分操作了。&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://docs.qiime2.org/2024.10/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://docs.qiime2.org/2024.10/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/f31581bbfb80&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.jianshu.com/p/f31581bbfb80&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Evan Bolyen, Jai Ram Rideout, et al. 2019. Reproducible, interactive, scalable and extensible microbiome data science using QIIME 2. &lt;strong&gt;Nature Biotechnology&lt;/strong&gt; 37: 852-857. &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1038/s41587-019-0209-9&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1038/s41587-019-0209-9&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Douglas, G.M., Maffei, V.J., Zaneveld, J.R. et al. PICRUSt2 for prediction of metagenome functions. Nat Biotechnol 38, 685–688 (2020). &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1038/s41587-020-0548-6&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1038/s41587-020-0548-6&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/YongxinLiu/EasyAmplicon&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/YongxinLiu/EasyAmplicon&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>常用扩增子数据库</title>
+        <link>/p/amplicon/</link>
+        <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>/p/amplicon/</guid>
+        <description>&lt;img src="/p/amplicon/images/nbt1.png" alt="Featured image of post 常用扩增子数据库" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;扩增子测序是一种主要用于研究微生物群落结构的分子生物学技术。它主要用于分析环境样本中的微生物群落，特别是对细菌和古菌的16S rRNA基因以及真菌的18S rRNA基因进行测序。这项技术广泛用于研究土壤、水体、空气、生物体内等不同环境中微生物的多样性和丰度。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;基本步骤：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;DNA提取：&lt;/strong&gt; 从样本中提取总DNA。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;目标基因扩增：&lt;/strong&gt; 使用聚合酶链式反应（PCR）扩增目标基因片段。对于细菌和古菌，通常选择16S rRNA基因的特定区域；对于真菌，选择18S rRNA基因。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;文库构建：&lt;/strong&gt; 将扩增的DNA片段构建成文库，通常通过添加适配器序列。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;高通量测序：&lt;/strong&gt; 使用高通量测序技术，如Illumina、454、Ion Torrent等，对文库进行测序。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;数据分析：&lt;/strong&gt; 对测序得到的数据进行生物信息学分析，包括去除低质量序列、去除冗余、聚类分析、物种注释等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;生态学分析：&lt;/strong&gt; 利用得到的数据，进行微生物群落的多样性、丰度、结构等生态学研究。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;更详细的代码流程可以参考刘永鑫老师的&lt;a class=&#34;link&#34; href=&#34;https://github.com/YongxinLiu/EasyAmplicon&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;EasyAmplicon&lt;/a&gt; (&lt;a class=&#34;link&#34; href=&#34;#ref-liuEasyAmpliconEasytouseOpensource2023&#34; &gt;&lt;em&gt;1&lt;/em&gt;&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;除了16S和18S rRNA，还有其他一些常用的核酸序列，特别是在研究微生物和生物多样性时。以下是一些常见的核酸序列：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ITS序列（Internal Transcribed Spacer）：&lt;/strong&gt; 位于真核生物的核糖体RNA基因间区域，尤其在真菌中常被用于物种鉴定。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;23S和28S rRNA：&lt;/strong&gt; 与16S和18S rRNA相对应，用于更大型的细胞器，如线粒体和真核细胞的核糖体。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;COI（Cytochrome c Oxidase subunit I）：&lt;/strong&gt; 用于动物的分子鉴定，尤其在动物界中是一种广泛使用的DNA条形码。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;rpoB基因：&lt;/strong&gt; 编码细菌和古细菌RNA聚合酶β亚基，常被用于分子鉴定。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;ITS2序列：&lt;/strong&gt; 在ITS序列中的亚单位，同样用于真菌的物种鉴定。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;database&#34;&gt;Database&lt;/h2&gt;
+&lt;p&gt;涉及到16S rRNA基因的序列数据库时，有三个主要的数据库是常用的：&lt;strong&gt;Greengenes&lt;/strong&gt;、&lt;strong&gt;SILVA&lt;/strong&gt; 和 &lt;strong&gt;RDP&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;greengenes&#34;&gt;Greengenes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;特点：&lt;/strong&gt; Greengenes 是一个由 Berkeley 国家实验室创建的数据库，长期以来一直是16S序列数据库中的重要参考。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;内容：&lt;/strong&gt; 包含细菌和古菌的16S rRNA基因序列，提供了丰富的分类信息，便于微生物群落的分析。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分类：&lt;/strong&gt; 使用七级分类（界、门、纲、目、科、属、种），易于理解和使用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;更新：&lt;/strong&gt; 今年更新了！！！数据库升级，称为Greengenes2，相关介绍已见刊于nature biotechnology (&lt;a class=&#34;link&#34; href=&#34;#ref-mcdonaldGreengenes2UnifiesMicrobial2023&#34; &gt;&lt;em&gt;2&lt;/em&gt;&lt;/a&gt;)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;应用：&lt;/strong&gt; 被广泛用于微生物群落结构和功能的分析。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&#34;images/greengenes2.png&#34; style=&#34;width:100.0%&#34; /&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://greengenes2.ucsd.edu/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://greengenes2.ucsd.edu/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Greengenes2&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;标准化的分类系统：&lt;/strong&gt; Greengenes2沿用了Greengenes的分类系统，即GTDB（Genome Taxonomy Database），这意味着在不同研究之间，微生物分类的结果更加一致和可比较。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;系统发育的一致性：&lt;/strong&gt; 该数据库允许直接整合16S rRNA和宏基因组数据集，将它们统一在一个参考树中。分析表明，由相同样本生成的16S rRNA和宏基因组数据在主坐标空间、分类学和表型效应大小方面一致。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&#34;images/nbt1.png&#34; style=&#34;width:100.0%&#34; /&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;系统发育覆盖率的提高：&lt;/strong&gt; Greengenes2的系统发育覆盖率远大于过去的资源，包括SILVA、Greengenes和GTDB。这提供了更全面的分类信息，有助于更好地理解微生物群落的结构。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;高分辨率结果：&lt;/strong&gt; 对于16S rRNA基因V4区域的研究，Greengenes2允许直接从系统发育中获得分类结果，无需使用朴素贝叶斯方法，并可能产生更高的分辨率结果。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;良好的一致性：&lt;/strong&gt; 与Silva数据库相比，Greengenes2在属水平和物种水平上提供了良好的一致性，这有助于确保研究结果的可靠性和可重复性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&#34;images/nbt2.png&#34; style=&#34;width:100.0%&#34; /&gt;
+&lt;p&gt;总体而言，Greengenes2的全面性和一致性提高了使用不同数据类型进行微生物组研究的可重复性。这对于确定影响微生物组变化的变量，并在不同人群中可靠地进行比较，具有重要的科研意义。&lt;/p&gt;
+&lt;h3 id=&#34;silva&#34;&gt;SILVA&lt;/h3&gt;
+&lt;img src=&#34;images/silva.png&#34; style=&#34;width:100.0%&#34; /&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://www.arb-silva.de/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.arb-silva.de/&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;特点：&lt;/strong&gt; SILVA 是由德国马普研究所和 Ribocon 主持的数据库，它专注于提供全面和高质量的核糖体rRNA注释信息 (&lt;a class=&#34;link&#34; href=&#34;#ref-quastSILVARibosomalRNA2013&#34; &gt;&lt;em&gt;3&lt;/em&gt;&lt;/a&gt;)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;内容：&lt;/strong&gt; 包含了细菌、古菌和真菌的小亚基（SSU）和大亚基（LSU）rRNA序列。提供了很多不同的部分，根据不同的序列长度和相似性来生成。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分类：&lt;/strong&gt; SILVA 采用了多级分类系统，提供更详细的分类信息，但其物种注释采用14级，与其他数据库不同。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;更新：&lt;/strong&gt; 定期更新，保持其信息的时效性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;应用：&lt;/strong&gt; 在微生物分类和系统发育研究中广泛应用，也在16S和18S序列分析中被许多软件包如mothur所采用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;rdp-ribosomal-database-project&#34;&gt;RDP (Ribosomal Database Project)&lt;/h3&gt;
+&lt;img src=&#34;images/rdp.png&#34; style=&#34;width:100.0%&#34; /&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://lcsciences.com/documents/sample_data/16S_sequencing/src/html/top1.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://lcsciences.com/documents/sample_data/16S_sequencing/src/html/top1.html&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;特点：&lt;/strong&gt; RDP 是一个由 Ribosomal Database Project 团队创建和维护的数据库，专注于提供核糖体相关的数据和服务 (&lt;a class=&#34;link&#34; href=&#34;#ref-maidakRibosomalDatabaseProject1996&#34; &gt;&lt;em&gt;4&lt;/em&gt;&lt;/a&gt;)。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;内容：&lt;/strong&gt; 包括细菌的16S rRNA序列，也包括真菌的28S rRNA序列。是一个全面的16S rRNA序列数据库。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分类：&lt;/strong&gt; 提供16S rRNA序列的比对、分类、树构建等多种功能。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;更新：&lt;/strong&gt; 最近更新在 May 26, 2015。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;应用：&lt;/strong&gt; 作为16S rRNA序列数据库中最早的之一，RDP 在微生物多样性和进化方面有着深远的影响，也在一些16S rRNA分析软件中被广泛采用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;unite&#34;&gt;UNITE&lt;/h3&gt;
+&lt;img src=&#34;images/unite.png&#34; style=&#34;width:100.0%&#34; /&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://unite.ut.ee/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://unite.ut.ee/&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;用途：&lt;/strong&gt; UNITE数据库是用于真菌鉴定和多样性检测的主要marker基因数据库。ITS（核糖体基因内转录间隔区）是最常用的真菌标记基因之一。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;数据库更新：&lt;/strong&gt; 最近一次的更新是在2023-11-30。数据库的更新对于确保其中包含最新的、全面的真菌序列是非常重要的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;阈值聚类：&lt;/strong&gt; 数据库提供了阈值聚类的选项，用户可以根据需要选择不同的阈值，以调整序列的聚类水平。这对于控制数据的复杂度和提高分析效率很有帮助。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;包含singleton序列：&lt;/strong&gt; 用户可以选择是否包含singleton序列，即那些在数据库中没有与其碱基完全相同的物种序列。这个选择可能影响到数据的多样性分析。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;物种统计信息：&lt;/strong&gt; 用户可以通过在第三个方框中填入感兴趣的物种，查看数据库中该物种的序列统计信息。这包括左下角展示的物种序列统计信息和右下角对应的扇形图。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;内置blast功能：&lt;/strong&gt; UNITE数据库还内置了blast功能，用户可以通过数据库的右上角菜单栏 “Run Analysis” 进行操作。这个功能允许用户通过blast来进行序列的比对和相似性搜索。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references csl-bib-body&#34;&gt;
+&lt;div id=&#34;ref-liuEasyAmpliconEasytouseOpensource2023&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;1. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;Y.-X. Liu, L. Chen, T. Ma, X. Li, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1002/imt2.83&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;EasyAmplicon: An easy-to-use, open-source, reproducible, and community-based pipeline for amplicon data analysis in microbiome research&lt;/a&gt;. &lt;em&gt;iMeta&lt;/em&gt;. &lt;strong&gt;2&lt;/strong&gt;, e83 (2023).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-mcdonaldGreengenes2UnifiesMicrobial2023&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;2. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;D. McDonald, Y. Jiang, M. Balaban, K. Cantrell, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1038/s41587-023-01845-1&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Greengenes2 unifies microbial data in a single reference tree&lt;/a&gt;. &lt;em&gt;Nature Biotechnology&lt;/em&gt;, 1–4 (2023).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-quastSILVARibosomalRNA2013&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;3. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;C. Quast, E. Pruesse, P. Yilmaz, J. Gerken, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1093/nar/gks1219&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;The SILVA ribosomal RNA gene database project: Improved data processing and web-based tools&lt;/a&gt;. &lt;em&gt;Nucleic Acids Research&lt;/em&gt;. &lt;strong&gt;41&lt;/strong&gt;, D590–D596 (2013).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-maidakRibosomalDatabaseProject1996&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;4. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;B. L. Maidak, G. J. Olsen, N. Larsen, R. Overbeek, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1093/nar/24.1.82&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;The Ribosomal Database Project (RDP)&lt;/a&gt;. &lt;em&gt;Nucleic Acids Research&lt;/em&gt;. &lt;strong&gt;24&lt;/strong&gt;, 82–85 (1996).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+        </item>
+        <item>
+        <title>地球微生物组计划介绍（EMP）</title>
+        <link>/p/emp/</link>
+        <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
+        
+        <guid>/p/emp/</guid>
+        <description>&lt;img src="/p/emp/images/emp1.png" alt="Featured image of post 地球微生物组计划介绍（EMP）" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;The Earth Microbiome Project (EMP) 是一个旨在描述和解释地球上微生物多样性的国际性科学计划。这个项目的目标是通过对地球各种环境中的微生物群落进行大规模的DNA测序和元数据采集，构建一个全球微生物群落的参考数据库，以更好地理解和研究微生物的生态学、功能和进化。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;全球性研究：&lt;/strong&gt; EMP 的目标是收集世界各地不同环境的微生物数据，包括土壤、水体、空气、植被、动物等。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;DNA测序：&lt;/strong&gt; 项目使用高通量的DNA测序技术，基本都是16S rRNA基因测序，以研究微生物的遗传信息。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;元数据采集：&lt;/strong&gt; 除了DNA数据，项目还关注采集样本的相关元数据，如环境条件、地理位置、季节等，以更好地理解微生物与环境之间的关系。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;开放数据：&lt;/strong&gt; EMP 采用开放科学的理念，旨在使其数据对全球科学家社群开放，以促进更广泛的研究和合作。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;生态学和生物多样性：&lt;/strong&gt; 通过研究微生物群落，该项目有助于揭示地球各个生态系统中微生物的生态学角色，并促使对生物多样性的更深入理解。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;技术和计算工具的发展：&lt;/strong&gt; 除了数据的收集，该项目还致力于发展新的技术和计算工具，以更好地处理和分析大规模的微生物组学数据。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;EMP 的工作对于我们理解地球上微生物的分布、演变和功能，以及它们与生态系统健康的关系都具有重要的意义。&lt;/p&gt;
+&lt;p&gt;官方网址：https://earthmicrobiome.org/&lt;/p&gt;
+&lt;h2 id=&#34;首发成果&#34;&gt;首发成果&lt;/h2&gt;
+&lt;p&gt;原文链接： &lt;a class=&#34;link&#34; href=&#34;https://www.nature.com/articles/nature24621&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.nature.com/articles/nature24621&lt;/a&gt; (&lt;em&gt;Nature&lt;/em&gt; 2017 (&lt;a class=&#34;link&#34; href=&#34;#ref-thompsonCommunalCatalogueReveals2017&#34; &gt;&lt;em&gt;1&lt;/em&gt;&lt;/a&gt;))&lt;/p&gt;
+&lt;p&gt;主要介绍了微生物世界的重要性和多样性与对其基本结构的有限理解之间的对比。尽管最近DNA测序技术取得了重大进展，但缺乏标准化的研究方法和共同的分析框架阻碍了研究之间的比较，从而妨碍了对地球微生物生命的全球推断的发展。&lt;/p&gt;
+&lt;p&gt;本研究通过对地球微生物计划中收集的微生物群落样本进行荟萃分析。通过协调的研究方法和新的分析方法，&lt;strong&gt;特别是使用精确序列而不是聚类的操作分类单元&lt;/strong&gt;，我们能够跨多个研究跟踪细菌和古菌核糖体RNA基因序列，并探索前所未有的规模下的多样性模式。结果是一个提供全球背景的参考数据库，为将来的研究数据提供框架，并促进对地球微生物多样性的越来越完整的描述。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;方法与结果&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;1.样品收集&lt;/p&gt;
+&lt;p&gt;EMP向全球科学界征集环境样本和相关数据，跨越不同的环境，空间、时间和物理化学变量。
+来自97个独立研究的27751个样本代表了不同的环境类型(图a)、地理位置(图b)。所有样品进行了DNA提取和16S rRNA测序，并对细菌和古菌部分进行了分析。
+&lt;img src=&#34;images/emp1.png&#34; title=&#34;&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;2.DNA提取，PCR扩增，测序和序列预处理&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 MO BIO PowerSoil DNA 提取试剂盒进行 DNA 提取。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;采用 16S rRNA V4 区域的引物对（515F-806R）进行 PCR 扩增。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;序列测定阶段选择 Illumina HiSeq 或 MiSeq 测序平台。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;利用 QIIME 1.9.1 脚本 split_libraries_fastq.py 对测序得到的数据进行拆分，使用默认参数进行质量控制，并生成 FASTA 序列文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;3.序列标记、OTU筛选以及群落分析方法&lt;/p&gt;
+&lt;p&gt;在这项研究中，考虑到与植物相关的样本和无宿主影响的样本中有三分之一以上的序列不能与现有的 rRNA 数据库匹配，研究采用了一种无需参考序列的方法，即 &lt;strong&gt;Deblur&lt;/strong&gt;。这种方法通过去除错误的序列并提供单核酸精度上的子操作单元（sOTU，sub-OTU），在文章中被称为“标记序列”（tag sequence）。由于早期 EMP 计划中的测序长度为90bp，为了进行跨时期的序列结果比较，研究将所有序列都截断至90bp，相应的结果表明了90bp、100bp 和150bp 等不同长度对研究结果的影响不大。&lt;/p&gt;
+&lt;p&gt;在与参考数据库（Greengenes 13.8 和 Silva 128）的全长序列进行比对时，使用了 VSEARCH 工具进行全局比对，并要求100%的相似性（类似现在常用的ASV）。
+对于90bp 的 Deblur 结果，每个样本随机抽取了5000个观测到的序列，用于分析微生物群落的 alpha 多样性（observed_otus、shannon、chao1、faith_pd）和 beta 多样性（基于 UniFrac 距离矩阵，进行 PCoA 分析）。&lt;/p&gt;
+&lt;p&gt;对于16S rRNA 基因拷贝数的计算，使用了基于 PICRUSt 1.1.0 的命令行脚本“normalize_by_copy_number.py”，将每个OTU的丰度除以相应推测出的16S rRNA基因的拷贝数。&lt;/p&gt;
+&lt;p&gt;针对 Deblur 90 bp 结果中的2000个样本，采用随机森林分类树的方法进行样本分类分析，将不同环境下的样本划分至相应的环境标签中。在这一方法中使用了 R 语言下的 caret 和 randomForest 包。&lt;/p&gt;
+&lt;p&gt;为了确定 tag sequence 在多个环境样本中的分布程度，研究使用 SourceTracker 分析。在进行分析之前，对每个样本的序列总数进行了稀释至1000。&lt;/p&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;多样性模式与环境的关系&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过使用微生物环境的结构化分类变量 EMPO，研究分析了 EMP 目录中的多样性，包括观察到的标签序列数量（α多样性）、类群周转和嵌套性（β多样性）以及预测的基因组特性（生态策略）。&lt;/p&gt;
+&lt;p&gt;宿主关联是区分微生物群落的基本环境因素，而盐水群落和非盐水群落之间存在主要组成差异。环境因素对α和β多样性的影响表明环境类型和宿主物种对多样性贡献较大。&lt;/p&gt;
+&lt;p&gt;监督机器学习结果显示仅根据群落组成即可将样本准确区分为动物相关、植物相关、含盐自由生活或非含盐自由生活，而对环境进行更详细分类的准确度也相对较高。源追踪分析支持对环境类型的高度分类。&lt;/p&gt;
+&lt;p&gt;另外，16S rRNA 基因的预测平均群落拷贝数 (ACN) 是区分宿主相关群落和自由生活群落中微生物群落的另一个指标。这个指标反映了不同环境之间的生态策略差异，尤其在动物宿主中与较高的全基因组 rRNA 操纵子拷贝数相关。&lt;/p&gt;
+&lt;img src=&#34;images/emp2.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;5.用更为精确的分类单元代替OTU。&lt;/p&gt;
+&lt;p&gt;准确序列使我们能够以比传统OTU更精细的分辨率观察和分析微生物分布模式。&lt;/p&gt;
+&lt;p&gt;通过Shannon熵分析标签序列和更高的分类群，以测量类群分布中的偏差，我们能够更好地了解不同类群在各种环境中的分布模式。标签序列在环境中表现出很高的特异性，而更高的分类水平则在不同环境中分布更均匀。熵的分布显示了这一模式的普遍性。通过研究熵如何随着系统发育距离的变化而变化，可以更准确地衡量类群对环境的特异性。结果表明，个体16S rRNA序列最好地捕捉了环境特异性，远低于定义微生物物种的典型阈值（16S rRNA基因的97%同一性）。EMP数据集具有跟踪地球微生物群落中个体序列的能力。使用EMP的代表性子集，研究人员生成了序列计数和分布表，包括在不同环境（EMPO）和沿环境梯度（pH、温度、盐度和氧气）中的分布。从中生成的’EMP交易卡’可促进对数据集的探索，并突出了三个普遍或与环境相关的标签序列的分布模式。&lt;/p&gt;
+&lt;p&gt;EMP目录可以使用Redbiom软件查询，具有命令行和Web界面，以根据序列、分类或样本元数据查找样本，并导出所选样本数据和元数据。EMP协议生成的用户数据可以轻松整合到该框架中。未来，针对相同基因组区域的不同方法测序的数据集的组合可能是可以接受的，但需要考虑方法学偏差。EMP目录的不断增长预计将在研究和工业中发挥作用，标签序列将用作环境指标，并代表培养、基因组测序和实验室研究的目标。此外，尽管这些工具和方法是为细菌和古细菌开发的，但可以扩展到生命的所有领域。为了增加EMP和类似项目的效用，我们必须不断改进元数据收集和整理、本体论、对多组学数据的支持以及对计算资源的访问。&lt;/p&gt;
+&lt;p&gt;微生物生态不再需要OTU聚类，而是一个更为精确的分类单元。这样一来，序列的特异性更高，环境分类也可以更细，使我们能够在更精确的分辨率下观察和分析微生物分布模式。在该文章中，作者以shannon熵值为标准，分别对tag sequence和较高的物种分类在不同环境中的分布进行分析。可以看出，新方法中的标记序列对环境具有较高的特异性，分布偏向于一个或几个环境(低Shannon熵)；相比之下，更高的物种分类学水平往往更均匀地分布在不同的环境(高Shannon熵，低特异性)(图a)。不同物种分类级别上的所有标记序列的熵的分布也证实了这一观点(图b) 。为了精确衡量每个分类单元对环境的差异，作者也探究了熵随着生态系统距离的变化而变化的模式(图c)。&lt;/p&gt;
+&lt;img src=&#34;images/emp3.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;现在的16S rRNA测序分析用的更多的是ASV (amplicon sequence variant) (&lt;a class=&#34;link&#34; href=&#34;#ref-callahanExactSequenceVariants2017&#34; &gt;&lt;em&gt;2&lt;/em&gt;&lt;/a&gt;)，符合使用准确序列这一倡议，可以参考 &lt;a class=&#34;link&#34; href=&#34;https://www.jianshu.com/p/f31581bbfb80&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://www.jianshu.com/p/f31581bbfb80&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;结论：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;EMP框架和全球综合分析的价值超出了各个研究的贡献。但是由于数据主要是为了回答不同问题而收集的，而不是针对一个主题的元分析，因此结论应该谨慎对待，并可以作为未来假设导向研究的起点。&lt;/p&gt;
+&lt;p&gt;此外，有必要更均匀地覆盖地理和化学梯度，并使用更全面的元数据收集和整理工具来跟踪环境变化。&lt;/p&gt;
+&lt;p&gt;另外，未在本研究中测量的生物因素（例如动物、真菌、植物、病毒和真核微生物）在确定群落结构方面起着重要作用。这个可扩展的框架可以用来解决这些需求：填补生理化学空间中的空白、为微生物真核生物和病毒提供扩增子数据，以及进行全基因组和全代谢组分析。在当前学术和环境学家都意识到生物多样性和生态系统功能的重要性时，这样的研究框架具有重要意义。&lt;/p&gt;
+&lt;p&gt;未来肯定会有基于鸟枪法测序和质谱的EMP(Earth Metagenome Project, Earth Metabolome Project)，哈哈。&lt;/p&gt;
+&lt;h2 id=&#34;衍生成果&#34;&gt;衍生成果&lt;/h2&gt;
+&lt;p&gt;基于EMP提供的protocol与软件进行独立研究，或者基于EMP数据进行荟萃分析的研究近些年有很多，这里介绍几篇代表性的。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;A macroecological theory of microbial biodiversity (&lt;a class=&#34;link&#34; href=&#34;#ref-shoemakerMacroecologicalTheoryMicrobial2017&#34; &gt;&lt;em&gt;3&lt;/em&gt;&lt;/a&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;微生物是地球上最丰富、多样且功能重要的生物。在过去的十年中，微生物生态学家们产生了有史以来最大的群落数据集。然而，这些数据很少被用来揭示普遍性和稀有性的类似定律的模式，检验生物多样性理论，或者探索微生物群落结构的统一解释。&lt;/p&gt;
+&lt;p&gt;通过对来自环境和宿主相关生态系统的&amp;gt;20,000个样本的全球范围汇编，我们测试了竞争理论预测微生物丰度和多样性-丰度缩放规律的能力。我们表明，这些模式最好由随机过程的协同作用来解释，这些过程由对数正态动态所捕捉。我们证明对数正态动态在丰度的各个尺度上都具有预测能力，这是生物多样性理论所必需的。通过理解生态过程的乘性和随机性质，科学家们可以更好地了解地球上最大且最多样化的生态系统的结构和动态。&lt;/p&gt;
+&lt;img src=&#34;images/ecology.png&#34; title=&#34;&#34;/&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;Standardized multi-omics of Earth’s microbiomes reveals microbial and metabolite diversity (&lt;a class=&#34;link&#34; href=&#34;#ref-shafferStandardizedMultiomicsEarth2022&#34; &gt;&lt;em&gt;4&lt;/em&gt;&lt;/a&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;由于缺乏标准化方法，全球范围内比较不同栖息地类型对微生物群落结构和功能的研究面临重大挑战。本研究对地球微生物组项目收集的880个微生物群落样本进行了多组学分析，包括16S、18S和ITS扩增子数据、鸟枪测序数据，以及基于液相和气相色谱-质谱的非靶向代谢组数据。采用标准化的协议和数据处理方法描述微生物群落，重点关注微生物相关代谢物和微生物类群在不同环境中的关系和共现性。&lt;/p&gt;
+&lt;p&gt;结果建立了宏基因组和代谢组学数据的参考数据库，并提供了整合其他研究的框架，为跨越尺度探索多样性提供支持。通过验证“每种微生物和代谢物无处不在，但受到环境选择”的假设，证明了数据库的实用性。研究发现代谢物的多样性与微生物群落和环境相关，并揭示了与特定栖息地相关的微生物群共存方式。此外，某些化学物质（如萜类化合物）在区分不同地球环境方面表现出色，为微生物和化学生态学提供深入见解，为宿主和环境的多组学微生物组研究提供了基础和方法。&lt;/p&gt;
+&lt;img src=&#34;images/multi.png&#34; title=&#34;&#34;/&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;Earth microbial co-occurrence network reveals interconnection pattern across microbiomes (&lt;a class=&#34;link&#34; href=&#34;#ref-maEarthMicrobialCooccurrence2020&#34; &gt;&lt;em&gt;5&lt;/em&gt;&lt;/a&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;背景：微生物相互作用塑造了微生物群落的结构和功能；在特定环境中，微生物共存网络已被广泛构建以探索这些复杂系统，但它们在全球范围内跨各种环境中的互联模式仍未被探索。在这里，我们从地球微生物组项目数据集的23,595个样本和12,646个精确序列变体中推断了一个微生物共存网络。&lt;/p&gt;
+&lt;p&gt;结果：这个非随机的无标度地球微生物共存网络包括8个分类学上不同的模块，与不同的环境相连接，具有特定环境的微生物共存关系。从修剪成统一大小的数据集中推断出的亚网络的不同拓扑特征表明在各种环境的微生物群落中存在不同的共存模式。大量专业边的存在突显了环境特异性共存关系是微生物群落中的重要特征。各种环境的微生物群落被聚类成两组，这两组主要由植物和动物表面的微生物群落连接。在大多数亚网络中，酸杆菌Gp2和Nisaea被识别为中心枢纽。负边的比例范围从土壤亚网络的1.9%到非盐性表面亚网络的48.9%，表明各种环境经历了不同强度的竞争或生态位分化。&lt;/p&gt;
+&lt;p&gt;结论：这项研究突显了各种环境中微生物群落之间的互联模式，并强调了从网络视角理解微生物群落的共存特征的重要性。&lt;/p&gt;
+&lt;img src=&#34;images/net.png&#34; title=&#34;&#34;/&gt;
+&lt;h2 id=&#34;实际使用&#34;&gt;实际使用&lt;/h2&gt;
+&lt;p&gt;首先应该找到我们希望使用的数据：&lt;/p&gt;
+&lt;p&gt;EMP 观测表、元数据以及其他数据和结果可从 Nature 论文的 Zenodo 存档 (&lt;a class=&#34;link&#34; href=&#34;https://zenodo.org/record/890000&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://zenodo.org/record/890000&lt;/a&gt;)、FTP 站点 (&lt;a class=&#34;link&#34; href=&#34;ftp://ftp.microbio.me/emp/release1&#34; &gt;ftp://ftp.microbio.me/emp/release1&lt;/a&gt;)和 Qiita EMP 门户(&lt;a class=&#34;link&#34; href=&#34;https://qiita.ucsd.edu/emp/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://qiita.ucsd.edu/emp/&lt;/a&gt;)获取。&lt;/p&gt;
+&lt;p&gt;FTP 站点上的内容包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;描述存储库的自述文件&lt;/li&gt;
+&lt;li&gt;描述映射文件和数据集子集的 Markdown 文件&lt;/li&gt;
+&lt;li&gt;选择最适合您分析的 BIOM 表的流程图&lt;/li&gt;
+&lt;li&gt;EMP 样本类型本体 (EMPO) 文本文件&lt;/li&gt;
+&lt;li&gt;映射文件&lt;/li&gt;
+&lt;li&gt;OTU 观测表&lt;/li&gt;
+&lt;li&gt;OTU信息：序列和树&lt;/li&gt;
+&lt;li&gt;OTU分布表&lt;/li&gt;
+&lt;li&gt;结果：α 和β 多样性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;选择最适合您分析的 BIOM 表的流程图：&lt;/p&gt;
+&lt;img src=&#34;images/workflow.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;emp_studies.csv记录了所有97个研究的信息，包括研究的文章，原始数据在EBI的编号，样本数量等等。&lt;/p&gt;
+&lt;p&gt;但是在寻找原始数据的时候发现The soil microbiome influences grapevine-associated microbiota这个研究的数据找不到了（ERP006348），值得注意。&lt;/p&gt;
+&lt;h3 id=&#34;metadata&#34;&gt;metadata&lt;/h3&gt;
+&lt;p&gt;metadata可以使用emp_qiime_mapping_release1_20170912.tsv文件，其中标准化地记录了27751的样本非常多的信息，使用的时候关键是这些列：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;#SampleID&lt;/code&gt; – unique identifier for sample&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Ontology&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;env_biome&lt;/code&gt; – ENVO biome&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;env_feature&lt;/code&gt; – ENVO feature&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;env_material&lt;/code&gt; – ENVO material&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;envo_biome_0&lt;/code&gt; – ENVO biome level 0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;envo_biome_1&lt;/code&gt; – ENVO biome level 1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;envo_biome_2&lt;/code&gt; – ENVO biome level 2&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;envo_biome_3&lt;/code&gt; – ENVO biome level 3&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;envo_biome_4&lt;/code&gt; – ENVO biome level 4&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;envo_biome_5&lt;/code&gt; – ENVO biome level 5&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;empo_0&lt;/code&gt; – EMPO level 0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;empo_1&lt;/code&gt; – EMPO level 1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;empo_2&lt;/code&gt; – EMPO level 2&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;empo_3&lt;/code&gt; – EMPO level 3&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;如果要结合地理和环境因素分析，就加上这些列：&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Geography&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;collection_timestamp&lt;/code&gt; – date and time sample was collected&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;country&lt;/code&gt; – country where sample was collected&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;latitude_deg&lt;/code&gt; – latitude where sample was collected&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;longitude_deg&lt;/code&gt; – longitude where sample was collected&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;depth_m&lt;/code&gt; – depth in meters where sample was collected (blank if altitude is given)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;altitude_m&lt;/code&gt; – altitude in meters where sample was collected (blank if depth is given)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;elevation_m&lt;/code&gt; – elevation in meters where sample was collected&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;Environment&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;temperature_deg_c&lt;/code&gt; – temperature of sample in degrees Celsius&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ph&lt;/code&gt; – pH of sample&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;salinity_psu&lt;/code&gt; – salinity of sample in practical salinity units&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;oxygen_mg_per_l&lt;/code&gt; – oxygen concentration of sample in mg/L&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;phosphate_umol_per_l&lt;/code&gt; – phosphate concentration of sample in umol/L&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ammonium_umol_per_l&lt;/code&gt; – ammonium concentration of sample in umol/L&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;nitrate_umol_per_l&lt;/code&gt; – nitrate concentration of sample in umol/L&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sulfate_umol_per_l&lt;/code&gt; – sulfate concentration of sample in umol/L&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;metadata记录的#sampleID应该是人工整理的结果，如果我们从原始数据分析会发现我们的样本名是EBI数据库里的编号如ERR1591463，所以要用上metadata的话就要找到ERR编号和metadata中的#sampleID的对应关系。&lt;/p&gt;
+&lt;p&gt;我们要在EBI数据库中找到每个研究的project，然后看read files里的信息，一般Run Accession和Sample Title对应的就是ERR编号和#sampleID。如果Sample Title有问题的话，一般Run Alias中会包含#sampleID，所以有些需要自己手动map一下。&lt;/p&gt;
+&lt;img src=&#34;images/ENA.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;其他就可以使用16S的分析流程进一步看了。&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references csl-bib-body&#34;&gt;
+&lt;div id=&#34;ref-thompsonCommunalCatalogueReveals2017&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;1. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;L. R. Thompson, J. G. Sanders, D. McDonald, A. Amir, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1038/nature24621&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;A communal catalogue reveals Earth’s multiscale microbial diversity&lt;/a&gt;. &lt;em&gt;Nature&lt;/em&gt;. &lt;strong&gt;551&lt;/strong&gt;, 457–463 (2017).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-callahanExactSequenceVariants2017&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;2. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;B. J. Callahan, P. J. McMurdie, S. P. Holmes, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1038/ismej.2017.119&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Exact sequence variants should replace operational taxonomic units in marker-gene data analysis&lt;/a&gt;. &lt;em&gt;The ISME Journal&lt;/em&gt;. &lt;strong&gt;11&lt;/strong&gt;, 2639–2643 (2017).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-shoemakerMacroecologicalTheoryMicrobial2017&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;3. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;W. R. Shoemaker, K. J. Locey, J. T. Lennon, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1038/s41559-017-0107&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;A macroecological theory of microbial biodiversity&lt;/a&gt;. &lt;em&gt;Nature Ecology &amp;amp; Evolution&lt;/em&gt;. &lt;strong&gt;1&lt;/strong&gt;, 1–6 (2017).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-shafferStandardizedMultiomicsEarth2022&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;4. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;J. P. Shaffer, L.-F. Nothias, L. R. Thompson, J. G. Sanders, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1038/s41564-022-01266-x&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Standardized multi-omics of Earth’s microbiomes reveals microbial and metabolite diversity&lt;/a&gt;. &lt;em&gt;Nature Microbiology&lt;/em&gt;. &lt;strong&gt;7&lt;/strong&gt;, 2128–2150 (2022).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-maEarthMicrobialCooccurrence2020&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;5. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;B. Ma, Y. Wang, S. Ye, S. Liu, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1186/s40168-020-00857-2&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Earth microbial co-occurrence network reveals interconnection pattern across microbiomes&lt;/a&gt;. &lt;em&gt;Microbiome&lt;/em&gt;. &lt;strong&gt;8&lt;/strong&gt;, 82 (2020).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Reporter score是一种改良的微生物富集分析的新方法，这里分享其原理和一个实现的R包。'>
+<title>Reporter Score 微生物功能富集分析</title>
+
+<link rel='canonical' href='/p/reporter-score/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='Reporter Score 微生物功能富集分析'>
+<meta property='og:description' content='Reporter score是一种改良的微生物富集分析的新方法，这里分享其原理和一个实现的R包。'>
+<meta property='og:url' content='/p/reporter-score/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='function' /><meta property='article:tag' content='KEGG' /><meta property='article:published_time' content='2023-05-10T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-05-10T00:00:00&#43;00:00'/><meta property='og:image' content='/p/reporter-score/images/misuse2.jpeg' />
+<meta name="twitter:title" content="Reporter Score 微生物功能富集分析">
+<meta name="twitter:description" content="Reporter score是一种改良的微生物富集分析的新方法，这里分享其原理和一个实现的R包。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/reporter-score/images/misuse2.jpeg' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#method">Method</a></li>
+    <li><a href="#misuse">Misuse</a></li>
+    <li><a href="#rpackage">Rpackage</a></li>
+    <li><a href="#reference">Reference</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/reporter-score/">
+                <img src="/p/reporter-score/images/misuse2_hu_d7ba5424f9dd06a1.jpeg"
+                        srcset="/p/reporter-score/images/misuse2_hu_d7ba5424f9dd06a1.jpeg 800w, /p/reporter-score/images/misuse2_hu_b8c5a139a2cd6363.jpeg 1600w"
+                        width="800" 
+                        height="360" 
+                        loading="lazy"
+                        alt="Featured image of post Reporter Score 微生物功能富集分析" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/reporter-score/">Reporter Score 微生物功能富集分析</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Reporter score是一种改良的微生物富集分析的新方法，这里分享其原理和一个实现的R包。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 10, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <script src="/p/reporter-score/index.en_files/kePrint/kePrint.js"></script>
+<link href="/p/reporter-score/index.en_files/lightable/lightable.css" rel="stylesheet" />
+<h2 id="introduction">Introduction</h2>
+<p><strong>功能富集分析</strong>是一种用于分析基因集合或基因组数据中功能模式富集程度的计算方法。它可以帮助揭示在特定生物学背景下，哪些功能模块、代谢通路、基因家族等在统计上富集或显著过表示。</p>
+<p>功能富集分析通常包括以下步骤：</p>
+<ol>
+<li>
+<p>数据预处理：根据研究问题和数据类型，选择适当的基因集合或基因组数据，例如基因表达数据、基因注释数据或基因列表。</p>
+</li>
+<li>
+<p>注释和功能分类：将基因集合与已知的功能注释数据库进行比较，例如基因本体论（Gene Ontology）、KEGG（Kyoto Encyclopedia of Genes and Genomes）通路数据库等。这一步将基因与特定的功能或生物过程相关联。</p>
+</li>
+<li>
+<p>统计分析：使用合适的统计方法，如超几何分布、Fisher’s exact test、GSEA（基因集富集分析）等，评估每个功能的富集程度。这些方法会计算一个得分或P值，用于判断功能是否在给定基因集合中富集。</p>
+</li>
+<li>
+<p>结果解释和可视化：根据统计分析的结果，识别在给定条件下显著富集的功能模块，并将结果进行解释和可视化。这可以帮助研究人员理解基因集合或基因组数据中的生物学特征和功能。</p>
+</li>
+</ol>
+<p>功能富集分析可应用于多个研究领域，如基因表达分析、蛋白质组学、微生物组学等。它可以帮助研究人员理解基因集合的生物学意义，从而揭示生物过程、代谢通路、细胞组分等在特定条件下的调控机制，并为进一步的实验设计和研究提供有价值的指导。</p>
+<p>$$
+P=1-\sum_{i=0}^{m-1}\frac{C_M^iC_{N-M}^{n-i}}{C_N^n}
+$$</p>
+<p><strong>P：</strong> 某pathway的富集显著性；
+<strong>N：</strong> 注释上KEGG的所有基因的数量；
+<strong>n：</strong> 所有显著差异的基因数量；
+<strong>M：</strong> 所有基因中注释到某pathway的基因数量；
+<strong>m：</strong> 所有差异基因中注释到某pathway的基因数量</p>
+<p>R函数phyper:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="m">1</span><span class="o">-</span><span class="nf">phyper</span><span class="p">(</span><span class="n">m</span><span class="m">-1</span><span class="p">,</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">phyper</span><span class="p">(</span><span class="n">m</span><span class="m">-1</span><span class="p">,</span><span class="n">M</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="n">M</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">lower.tail</span><span class="o">=</span><span class="bp">F</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">gene.not.interest</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">M</span><span class="o">-</span><span class="n">m</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="n">M</span><span class="o">-</span><span class="n">n</span><span class="o">+</span><span class="n">m</span><span class="p">),</span> <span class="n">gene.in.interest</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="n">m</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">row.names</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;In_category&#34;</span><span class="p">,</span> <span class="s">&#34;not_in_category&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fisher.test</span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="n">alternative</span> <span class="o">=</span> <span class="s">&#34;greater&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table class=" lightable-classic" style="font-family: Cambria; margin-left: auto; margin-right: auto;">
+<caption>
+Table 1: Methods for microbial enrichment analysis.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Method
+</th>
+<th style="text-align:left;">
+Type
+</th>
+<th style="text-align:left;">
+Notes
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Hypergeometric test / Fisher’ exact test
+</td>
+<td style="text-align:left;">
+algorithm
+</td>
+<td style="text-align:left;">
+The most common method used in enrichment analysis. There are many enrichment analysis platforms or software developed based on it, including DAVID, clusterprofile, etc.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gene set enrichment analysis (GSEA)
+</td>
+<td style="text-align:left;">
+software
+</td>
+<td style="text-align:left;">
+Gene Set Enrichment Analysis (GSEA) is a computational method that determines whether an a priori defined set of genes shows statistically significant, concordant differences between two biological states (e.g. phenotypes).
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Clusterprofiler
+</td>
+<td style="text-align:left;">
+R package
+</td>
+<td style="text-align:left;">
+ClusterProfiler automates the process of biological-term classification and the enrichment analysis of gene clusters, which calculates enrichment test for GO terms and KEGG pathways based on hypergeometric distribution.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Reporter score
+</td>
+<td style="text-align:left;">
+algorithm
+</td>
+<td style="text-align:left;">
+The plus or minus sign of reporter score does not represent regulation direction.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Reporter feature analysis
+</td>
+<td style="text-align:left;">
+algorithm
+</td>
+<td style="text-align:left;">
+Reporter feature can achieve enrichment ananlysis for non-directional, mixed-directional up/down-regulation, and distinct-directional up/down-regulation classes.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Piano
+</td>
+<td style="text-align:left;">
+R package
+</td>
+<td style="text-align:left;">
+Piano is a R package that implements the Reporter Features algorithm. Piano performs gene set analysis using various statistical methods, from different gene level statistics and a wide range of gene-set collections. Furthermore, the Piano package contains functions for combining the results of multiple runs of gene set analyses.
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Reporter score</strong>是一种改良的微生物富集分析的新方法，此方法最初是为了揭示代谢网络中的转录调控模式而开发的，目前已被引入微生物研究中进行功能富集分析。</p>
+<h2 id="method">Method</h2>
+<p>Reporter score算法最初由Patil和Nielsen于2005年开发，用于识别代谢调节热点的代谢物 (<a class="link" href="#ref-patilUncoveringTranscriptionalRegulation2005" ><em>1</em></a>)。</p>
+<p>应用于宏基因组分析，则是基于基因的KO（KEGG orthology，同源基因）注释，获得KO的差异信息，再”上升”至KEGG pathway的功能层面。主要步骤如下：</p>
+<ol>
+<li>
+<p>使用Wilcoxon秩和检验获得两分组间每个KO差异显著性的P值（即$P_{koi}$，i代表某个KO）；</p>
+</li>
+<li>
+<p>采用逆正态分布，将每个KO的P值转化为Z值（$Z_{koi}$）,公式：$Z_{koi}=\theta ^{-1}(1-P_{koi})$；</p>
+</li>
+<li>
+<p>将KO”上升”为pathway：$Z_{koi}$，计算通路的Z值,$Z_{pathway}=\frac{1}{\sqrt{k}}\sum Z_{koi}$，其中k表示对应通路共注释到k个KO；</p>
+</li>
+<li>
+<p>评估显著程度：置换（permutation）1000次，获得$Z_{pathway}$的随机分布，公式：$Z_{adjustedpathway}=(Z_{pathway}-\mu _k)/\sigma _k$，$μ_k$为随机分布的均值，$σ_k$为随机分布的标准差。</p>
+</li>
+</ol>
+<p>最终获得的$Z_{adjustedpathway}$，即为每条代谢通路富集的Reporter score值，<strong>Reporter score是非方向性的，Reporter score越大代表富集越显著，但不能指示通路的上下调信息</strong>。</p>
+<h2 id="misuse">Misuse</h2>
+<p>最近有一篇文章就讨论了reporter-score的正负号误用问题 (<a class="link" href="#ref-liuMisuseReporterScore2023" ><em>2</em></a>)：</p>
+<p><a class="link" href="https://mp.weixin.qq.com/s?__biz=MzUzMjA4Njc1MA==&amp;mid=2247507105&amp;idx=1&amp;sn=d5a0f0aaf176e245de7976f0a48f87a8#rd"  target="_blank" rel="noopener"
+    >https://mp.weixin.qq.com/s?__biz=MzUzMjA4Njc1MA==&mid=2247507105&idx=1&sn=d5a0f0aaf176e245de7976f0a48f87a8#rd</a></p>
+<img src="images/misuse2.jpeg" style="width:90.0%" />
+<p>主要结论是 <strong>reporter score</strong>算法（上述）是一种忽略通路中KOs上/下调节信息的富集方法，直接将reporter score的符号视为通路的调节方向是不正确的。</p>
+<p>但是我们应该可以将其改为能够考虑通路内KO上下调的方式，我称为directed 模式, 参考自<a class="link" href="https://github.com/wangpeng407/ReporterScore"  target="_blank" rel="noopener"
+    >https://github.com/wangpeng407/ReporterScore</a>。</p>
+<p>具体步骤如下:</p>
+<ol>
+<li>
+<p>使用Wilcoxon秩和检验或者t.test获得两分组间每个KO差异显著性的P值（即$P_{koi}$，i代表某个KO），再将P值除以2，即将(0,1]的范围变为(0,0.5]，$P_{koi}=P_{koi}/2$；</p>
+</li>
+<li>
+<p>采用逆正态分布，将每个KO的P值转化为Z值（$Z_{koi}$）,公式：$Z_{koi}=\theta ^{-1}(1-P_{koi})$，由于上述P值小于0.5，则Z值将全部大于0；</p>
+</li>
+<li>
+<p>考虑每个KO是上调还是下调，计算$\Delta KO_i$，</p>
+</li>
+</ol>
+<p>$$
+\Delta KO_i=\overline {KO_{i_{g1}}}-\overline {KO_{i_{g2}}}
+$$</p>
+<p>其中，$\overline {KO_{i_{g1}}}$ 是组1的$KO_i$ 的平均丰度,$\overline {KO_{i_{g2}}}$ 是组2的$KO_i$ 的平均丰度，然后：</p>
+<p>$$
+Z_{koi} =
+\begin{cases}
+-Z_{koi},  &amp; (\Delta KO_i&lt;0) \
+Z_{koi}, &amp; (\Delta KO_i \ge 0)
+\end{cases}
+$$</p>
+<p>这样的话$Z_{koi}$大于0为上调，$Z_{koi}$小于0为下调。</p>
+<ol start="4">
+<li>
+<p>将KO”上升”为pathway：$Z_{koi}$，计算通路的Z值,$Z_{pathway}=\frac{1}{\sqrt{k}}\sum Z_{koi}$，其中k表示对应通路共注释到k个KO；</p>
+</li>
+<li>
+<p>评估显著程度：置换（permutation）1000次，获得$Z_{pathway}$的随机分布，公式：$Z_{adjustedpathway}=(Z_{pathway}-\mu _k)/\sigma _k$，$μ_k$为随机分布的均值，$σ_k$为随机分布的标准差。</p>
+</li>
+</ol>
+<p>最终获得的$Z_{adjustedpathway}$，即为每条代谢通路富集的Reporter score值，在这种模式下，Reporter score是方向性的，更大的正值代表显著上调富集，更小的负值代表显著下调富集。</p>
+<p>但是这种方法的缺点是当一条通路显著上调KO和显著下调KO差不多时，最终的Reporter score绝对值可能会趋近0，成为没有被显著富集的通路。</p>
+<h2 id="rpackage">Rpackage</h2>
+<p>因为我看目前没有现成的工具完成Reporter Score分析（除了一些云平台，但可能不太方便），所以我参考<a class="link" href="https://github.com/wangpeng407/ReporterScore"  target="_blank" rel="noopener"
+    >https://github.com/wangpeng407/ReporterScore</a> 写了一个R包帮助分析（虽然也不是特别复杂）</p>
+<p>地址：<a class="link" href="https://github.com/Asa12138/ReporterScore"  target="_blank" rel="noopener"
+    >https://github.com/Asa12138/ReporterScore</a></p>
+<p>安装方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;devtools&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#39;Asa12138/ReporterScore&#39;</span><span class="p">,</span><span class="n">dependencies</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ReporterScore</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#准备KO丰度表和实验metadata</span>
+</span></span><span class="line"><span class="cl"><span class="nf">data</span><span class="p">(</span><span class="n">KO_test</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">KO_abundance</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>##                CG1         CG2         CG3         CG4         CG5         CG6
+## K03169 0.002653545 0.005096380 0.002033923 0.000722349 0.003468322 0.001483028
+## K07133 0.000308237 0.000280458 0.000596527 0.000859854 0.000308719 0.000878098
+## K03088 0.002147068 0.002030742 0.003797459 0.004161979 0.002076596 0.003091182
+##                CG7         CG8         CG9        CG10        CG11        CG12
+## K03169 0.002261685 0.004114644 0.002494258 0.002793671 0.004053729 0.002437170
+## K07133 0.000525566 0.000356138 0.000445409 0.000268306 0.000293546 0.000465780
+## K03088 0.003098506 0.002558730 0.002896506 0.002618472 0.002367986 0.002082786
+##               CG13        CG14        CG15         EG1         EG2         EG3
+## K03169 0.002187500 0.001988374 0.002304885 0.003317368 0.001150671 0.002610814
+## K07133 0.000507992 0.000409447 0.000327910 0.002916018 0.004820742 0.001973789
+## K03088 0.002680792 0.003066870 0.002975895 0.002257401 0.002889640 0.001997586
+##                EG4         EG5         EG6         EG7         EG8         EG9
+## K03169 0.000900673 0.001545374 0.001640295 0.001445024 0.001096728 0.001026556
+## K07133 0.003359927 0.001913932 0.001384079 0.001321643 0.002376473 0.004391014
+## K03088 0.002613441 0.002803388 0.002251835 0.002981244 0.002944061 0.003113215
+##               EG10        EG11        EG12        EG13        EG14        EG15
+## K03169 0.001513195 0.001812732 0.003256782 0.006723067 0.001769819 0.001233307
+## K07133 0.002479040 0.003484868 0.000790457 0.000127818 0.000634529 0.004746572
+## K03088 0.003177522 0.002790092 0.001607913 0.002574928 0.001662157 0.002614489
+##  [ reached 'max' / getOption(&quot;max.print&quot;) -- omitted 3 rows ]
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">Group_tab</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>##     Group
+## CG1    CG
+## CG2    CG
+## CG3    CG
+## CG4    CG
+## CG5    CG
+## CG6    CG
+</code></pre>
+<ol>
+<li>分组检验获得P值,threads多线程可加速</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">ko_pvalue</span><span class="o">=</span><span class="nf">ko_test</span><span class="p">(</span><span class="n">KO_abundance</span><span class="p">,</span><span class="s">&#34;Group&#34;</span><span class="p">,</span><span class="n">Group_tab</span><span class="p">,</span><span class="n">threads</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">verbose</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## Compared groups: CG and EG
+## Total KO number: 4535
+## Time use: 1.348
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">ko_pvalue</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>##    KO_id       avg_CG        sd_CG       avg_EG        sd_EG      diff_mean
+## 1 K03169 0.0026728975 0.0011094132 0.0020694937 0.0014922004  0.00060340387
+## 2 K07133 0.0004554658 0.0001951678 0.0024480601 0.0014916566 -0.00199259427
+## 3 K03088 0.0027767713 0.0006253559 0.0025519275 0.0004966801  0.00022484380
+## 4 K03530 0.0005779169 0.0008952163 0.0005197504 0.0001435245  0.00005816647
+## 5 K06147 0.0020807307 0.0007731661 0.0014321838 0.0004273716  0.00064854693
+## 6 K05349 0.0021064422 0.0005243558 0.0017419317 0.0005382770  0.00036451047
+##         p.value
+## 1 0.03671754164
+## 2 0.00002654761
+## 3 0.48636476395
+## 4 0.01125600770
+## 5 0.00987482265
+## 6 0.12614740102
+</code></pre>
+<p>2.将P值矫正并转为Z-Score，这里提供两种方法（mixed就是经典的方法，另一种是directed方法）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">ko_stat</span><span class="o">=</span><span class="nf">pvalue2zs</span><span class="p">(</span><span class="n">ko_pvalue</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s">&#34;directed&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## ================================================================================ 
+## 
+## 	Chi-squared test for given probabilities
+## 
+## data:  up_down_ratio
+## X-squared = 21.823, df = 1, p-value = 0.000002991
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">ko_stat</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>##    KO_id       avg_CG        sd_CG       avg_EG        sd_EG      diff_mean
+## 1 K03169 0.0026728975 0.0011094132 0.0020694937 0.0014922004  0.00060340387
+## 2 K07133 0.0004554658 0.0001951678 0.0024480601 0.0014916566 -0.00199259427
+## 3 K03088 0.0027767713 0.0006253559 0.0025519275 0.0004966801  0.00022484380
+## 4 K03530 0.0005779169 0.0008952163 0.0005197504 0.0001435245  0.00005816647
+## 5 K06147 0.0020807307 0.0007731661 0.0014321838 0.0004273716  0.00064854693
+## 6 K05349 0.0021064422 0.0005243558 0.0017419317 0.0005382770  0.00036451047
+##         p.value sign     type      q.value    Z_score
+## 1 0.01835877082    1 Enriched 0.0669268695  1.4990767
+## 2 0.00001327381   -1 Depleted 0.0004777517 -3.3033110
+## 3 0.24318238198    1 Enriched 0.3058325297  0.5076981
+## 4 0.00562800385    1 Enriched 0.0304570375  1.8741186
+## 5 0.00493741133    1 Enriched 0.0277461715  1.9150013
+## 6 0.06307370051    1 Enriched 0.1607865272  0.9912305
+</code></pre>
+<p>3.将KO”上升”为pathway，计算ReporterScore：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">reporter_s</span><span class="o">=</span><span class="nf">get_reporter_score</span><span class="p">(</span><span class="n">ko_stat</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## =================================Checking file================================= 
+## ==================================load KOlist================================== 
+## ===================KOlist download time: 2023-05-12 00:07:41=================== 
+## ============================Calculating each pathway============================ 
+## ID number: 479
+## Time use: 4.641
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">reporter_s</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>##         ID ReporterScore                              Description K_num
+## 1 map00010    -1.6255358             Glycolysis / Gluconeogenesis   106
+## 2 map00020    -1.8906022                Citrate cycle (TCA cycle)    67
+## 3 map00030    -0.8261448                Pentose phosphate pathway    88
+## 4 map00040    -0.6685755 Pentose and glucuronate interconversions    89
+## 5 map00051    -2.2494558          Fructose and mannose metabolism   112
+## 6 map00052    -0.4196662                     Galactose metabolism    78
+</code></pre>
+<ol start="4">
+<li>结果进行绘图</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot_report</span><span class="p">(</span><span class="n">reporter_s</span><span class="p">,</span><span class="n">rs_threshold</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">-7</span><span class="p">),</span><span class="n">y_text_size</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="n">str_width</span><span class="o">=</span><span class="m">40</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&#34;CG vs EG&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporter-score/index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot_report</span><span class="p">(</span><span class="n">reporter_s</span><span class="p">,</span><span class="n">rs_threshold</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">-7</span><span class="p">),</span><span class="n">mode</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span><span class="n">y_text_size</span><span class="o">=</span><span class="m">10</span><span class="p">,</span><span class="n">str_width</span><span class="o">=</span><span class="m">40</span><span class="p">)</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">labs</span><span class="p">(</span><span class="n">title</span> <span class="o">=</span> <span class="s">&#34;CG vs EG&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporter-score/index.en_files/figure-html/unnamed-chunk-9-2.png" width="672" />
+<p>5.挑选一条通路进行绘制</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot_KOs_in_pathway</span><span class="p">(</span><span class="n">map_id</span> <span class="o">=</span> <span class="s">&#34;map00780&#34;</span><span class="p">,</span><span class="n">ko_stat</span> <span class="o">=</span> <span class="n">ko_stat</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/reporter-score/index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<h2 id="reference">Reference</h2>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-patilUncoveringTranscriptionalRegulation2005" class="csl-entry">
+<p><span class="csl-left-margin">1. </span><span class="csl-right-inline">K. R. Patil, J. Nielsen, <a class="link" href="https://doi.org/10.1073/pnas.0406811102"  target="_blank" rel="noopener"
+    >Uncovering transcriptional regulation of metabolism by using metabolic network topology</a>. <em>Proceedings of the National Academy of Sciences of the United States of America</em>. <strong>102</strong>, 2685–2689 (2005).</span></p>
+</div>
+<div id="ref-liuMisuseReporterScore2023" class="csl-entry">
+<p><span class="csl-left-margin">2. </span><span class="csl-right-inline">L. Liu, R. Zhu, D. Wu, <a class="link" href="https://doi.org/10.1002/imt2.95"  target="_blank" rel="noopener"
+    >Misuse of reporter score in microbial enrichment analysis</a>. <em>iMeta</em>. <strong>2</strong>, e95 (2023).</span></p>
+</div>
+</div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/function/">Function</a>
+        
+            <a href="/tags/kegg/">KEGG</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/kegg-2024-12/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kegg-2024-12/images/gkae909fig3.ffe3f27542a7e621852ef33fba8c1a08_hu_bf6ad4594c76018.jpeg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post KEGG更新（2024.12）|作为现实世界模型的生物系统数据库"
+                        data-key="kegg-2024-12" 
+                        data-hash="md5-/&#43;PydUKn5iGFLvM/uowaCA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">KEGG更新（2024.12）|作为现实世界模型的生物系统数据库</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/function-tools/">
+        
+        
+            <div class="article-image">
+                <img src="/p/function-tools/images/mobileOG.34f036e8b976e8ff6e41a3950eb316d9_hu_31f8b9932a3c75a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 功能基因预测/注释通用工具"
+                        data-key="function-tools" 
+                        data-hash="md5-NPA26Ll26P9uQaOVDrMW2Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">功能基因预测/注释通用工具</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/gsea/">
+        
+        
+            <div class="article-image">
+                <img src="/p/gsea/images/gsea_intro.a9d9729869cb5d458404f04ee3fcd680_hu_7b336a40841c7dfa.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 基因集富集分析(GSEA)简介"
+                        data-key="gsea" 
+                        data-hash="md5-qdlymGnLXUWEBPBO4/zWgA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">基因集富集分析(GSEA)简介</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-4/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-4/images/1-2.7f04df50146143db7f38e3c60bbebaa9_hu_4ebeb6bc608a4e31.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（4）"
+                        data-key="25-nature-4" 
+                        data-hash="md5-fwTfUBRhQ9t/OOPGC766qQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（4）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-3/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-3/images/fig1.20d52f738dfd506b0754bda8d4b0ead0_hu_d6f6d5c8a568f26d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（3）"
+                        data-key="25-nature-3" 
+                        data-hash="md5-INUvc439UGsHVL2o1LDq0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（3）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

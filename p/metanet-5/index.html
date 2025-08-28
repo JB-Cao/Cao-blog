@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='介绍MetaNet的一些扩展绘图方法以及兼容工具'>
+<title>MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具</title>
+
+<link rel='canonical' href='/p/metanet-5/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具'>
+<meta property='og:description' content='介绍MetaNet的一些扩展绘图方法以及兼容工具'>
+<meta property='og:url' content='/p/metanet-5/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='network' /><meta property='article:tag' content='R' /><meta property='article:published_time' content='2025-04-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-13T00:00:00&#43;00:00'/><meta property='og:image' content='/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1.png' />
+<meta name="twitter:title" content="MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具">
+<meta name="twitter:description" content="介绍MetaNet的一些扩展绘图方法以及兼容工具"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#兼容工具">兼容工具</a>
+      <ol>
+        <li><a href="#ggplot2风格">ggplot2风格</a></li>
+        <li><a href="#gephi集成">Gephi集成</a></li>
+        <li><a href="#cytoscape集成">Cytoscape集成</a></li>
+        <li><a href="#networkd3交互式可视化">NetworkD3交互式可视化</a></li>
+      </ol>
+    </li>
+    <li><a href="#扩展绘图">扩展绘图</a>
+      <ol>
+        <li><a href="#模块图">模块图</a></li>
+        <li><a href="#pie节点">pie节点</a></li>
+        <li><a href="#韦恩图网络">韦恩图网络</a></li>
+        <li><a href="#两列边列表">两列边列表</a></li>
+        <li><a href="#网络树">网络树</a></li>
+        <li><a href="#奥运五环图">奥运五环图</a></li>
+      </ol>
+    </li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/metanet-5/">
+                <img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1_hu_782441c2d85a9e43.png"
+                        srcset="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1_hu_782441c2d85a9e43.png 800w, /p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1_hu_a59946da7b75bfdd.png 1600w"
+                        width="800" 
+                        height="500" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/r/" style="background-color: #bebada; color: #fff;">
+                R
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/metanet-5/">MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            介绍MetaNet的一些扩展绘图方法以及兼容工具
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 13, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>上一篇推文介绍了MetaNet进行网络可视化以及各种布局方法，本文将介绍一些扩展绘图方法以及兼容工具。</p>
+<ul>
+<li>软件主页：<a class="link" href="https://github.com/Asa12138/MetaNet"  target="_blank" rel="noopener"
+    >https://github.com/Asa12138/MetaNet</a> <strong>大家可以帮忙在github上点点star⭐️</strong>，谢谢🙏</li>
+<li>详细英文版教程：<a class="link" href="https://bookdown.org/Asa12138/metanet_book/"  target="_blank" rel="noopener"
+    >https://bookdown.org/Asa12138/metanet_book/</a></li>
+</ul>
+<p>可以从 CRAN 安装稳定版：<code>install.packages(&quot;MetaNet&quot;)</code></p>
+<p>依赖包 <code>pcutils</code>和<code>igraph</code>（需提前安装），推荐配合 <code>dplyr</code> 进行数据操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">MetaNet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ========data manipulation</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">pcutils</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="兼容工具">兼容工具</h2>
+<h3 id="ggplot2风格">ggplot2风格</h3>
+<p>如果你更熟悉ggplot2，可以使用<code>as.ggig()</code>函数将基础R绘图转换为ggplot2风格：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">as.ggig</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ggig</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">ggig</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## [1] &#34;ggig&#34; &#34;list&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">ggig</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-3-1.png" width="768" />
+<p>这样你就可以使用<code>labs()</code>、<code>theme()</code>、<code>ggsave()</code>和<code>cowplot::plot_grid()</code>等函数来制作更好的图形。</p>
+<h3 id="gephi集成">Gephi集成</h3>
+<p>处理大型数据集时，我推荐使用Gephi进行布局，运行比较快且美观。MetaNet提供了通过graphml格式文件与Gephi的接口：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">c_net_save</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="s">&#34;~/Desktop/test&#34;</span><span class="p">,</span> <span class="n">format</span> <span class="o">=</span> <span class="s">&#34;graphml&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将test.graphml导入Gephi并进行布局，从Gephi导出graphml文件：test2.graphml，然后在MetaNet中重新绘制：</p>
+<img src="images/gephi.png" title=""/>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">input_gephi</span><span class="p">(</span><span class="s">&#34;~/Desktop/test2.graphml&#34;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">gephi</span>
+</span></span><span class="line"><span class="cl"><span class="nf">c_net_plot</span><span class="p">(</span><span class="n">gephi</span><span class="o">$</span><span class="n">go</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="n">gephi</span><span class="o">$</span><span class="n">coors</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">legend_number</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">group_legend_title</span> <span class="o">=</span> <span class="s">&#34;Phylum&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-5-1.png" width="768" />
+<h3 id="cytoscape集成">Cytoscape集成</h3>
+<p>Cytoscape是另一个优秀的网络可视化软件，包含许多插件。将test.graphml导入Cytoscape进行布局，然后导出为cyjs文件，MetaNet可以读取：</p>
+<img src="images/cytoscape.png" title=""/>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">input_cytoscape</span><span class="p">(</span><span class="s">&#34;~/Desktop/test2.cyjs&#34;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">cyto</span>
+</span></span><span class="line"><span class="cl"><span class="nf">c_net_plot</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="n">cyto</span><span class="o">$</span><span class="n">coors</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">legend_number</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">group_legend_title</span> <span class="o">=</span> <span class="s">&#34;Phylum&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-6-1.png" width="768" />
+<h3 id="networkd3交互式可视化">NetworkD3交互式可视化</h3>
+<p>NetworkD3可以生成基于JavaScript的交互式网络图，输出对象是适合网页的htmlwidgets：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">netD3plot</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="images/d3.png" title=""/>
+<h2 id="扩展绘图">扩展绘图</h2>
+<h3 id="模块图">模块图</h3>
+<p>使用<code>mark_module=T</code>在网络中标记你的模块，下次会具体介绍网络模块分析：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">test_module_net</span> <span class="o">&lt;-</span> <span class="nf">module_net</span><span class="p">(</span><span class="n">module_number</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">n_node_in_module</span> <span class="o">=</span> <span class="m">30</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">c_net_plot</span><span class="p">(</span><span class="n">test_module_net</span><span class="p">,</span> <span class="n">mark_module</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span><span class="n">module_label</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span><span class="n">module_label_just</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0.2</span><span class="p">,</span><span class="m">0.8</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-8-1.png" width="768" />
+<h3 id="pie节点">pie节点</h3>
+<p>把网络里的节点直接画成pie图，不用在AI里面一个个拖过去了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">data</span><span class="p">(</span><span class="s">&#34;otutab&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">data</span><span class="p">(</span><span class="s">&#34;c_net&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">hebing</span><span class="p">(</span><span class="n">otutab</span><span class="p">,</span> <span class="n">metadata</span><span class="o">$</span><span class="n">Group</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">otutab_G</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">otutab_G</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">##                                     NS        WS        CS
+</span></span><span class="line"><span class="cl">## s__un_f__Thermomonosporaceae 1218.3333 1227.3333 1912.1667
+</span></span><span class="line"><span class="cl">## s__Pelomonas_puraquae        2087.6667  873.5000 1241.6667
+</span></span><span class="line"><span class="cl">## s__Rhizobacter_bergeniae      819.1667  781.3333 1164.8333
+</span></span><span class="line"><span class="cl">## s__Flavobacterium_terrae      816.1667  944.6667  986.5000
+</span></span><span class="line"><span class="cl">## s__un_g__Rhizobacter          821.8333  540.6667  953.3333
+</span></span><span class="line"><span class="cl">## s__un_o__Burkholderiales      972.6667  327.5000  522.6667
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">co_net_f</span><span class="o">=</span><span class="nf">c_net_filter</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span><span class="n">name</span><span class="o">%in%</span><span class="nf">head</span><span class="p">(</span><span class="nf">rownames</span><span class="p">(</span><span class="n">otutab_G</span><span class="p">),</span><span class="m">40</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">c_net_plot</span><span class="p">(</span><span class="n">co_net_f</span><span class="p">,</span><span class="n">pie_value</span><span class="o">=</span><span class="n">otutab_G</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="n">vertex.shape</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;pie&#34;</span><span class="p">),</span> <span class="c1">#把你需要展示pie的节点的shape设置为pie</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pie_legend</span><span class="o">=</span><span class="bp">T</span><span class="p">,</span><span class="n">color_legend</span><span class="o">=</span><span class="bp">F</span><span class="p">,</span><span class="n">vertex_size_range</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="m">18</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-9-1.png" width="768" />
+<h3 id="韦恩图网络">韦恩图网络</h3>
+<p>当集合里的点数量合适时，韦恩图网络算是个不错的展示方法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">data</span><span class="p">(</span><span class="n">otutab</span><span class="p">,</span> <span class="n">package</span> <span class="o">=</span> <span class="s">&#34;pcutils&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">tab</span> <span class="o">&lt;-</span> <span class="n">otutab[400</span><span class="o">:</span><span class="m">485</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span> <span class="c1">#0代表不存在</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">##                             NS1 NS2 NS3
+</span></span><span class="line"><span class="cl">## s__un_g__Brevundimonas        0   4   0
+</span></span><span class="line"><span class="cl">## s__un_g__Shinella             0  10  12
+</span></span><span class="line"><span class="cl">## s__Ramlibacter_henchirensis   0   9   6
+</span></span><span class="line"><span class="cl">## s__Cystobacter_gracilis       3   4  17
+</span></span><span class="line"><span class="cl">## s__un_g__Gordonia             0   6  16
+</span></span><span class="line"><span class="cl">## s__un_f__Nannocystaceae       0   6   0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">venn_net</span><span class="p">(</span><span class="n">tab</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">v_net</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">v_net</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1.png" width="768" />
+<h3 id="两列边列表">两列边列表</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">twocol</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;col1&#34;</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="kc">letters</span><span class="p">,</span> <span class="m">30</span><span class="p">,</span> <span class="n">replace</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;col2&#34;</span> <span class="o">=</span> <span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;A&#34;</span><span class="p">,</span> <span class="s">&#34;B&#34;</span><span class="p">),</span> <span class="m">30</span><span class="p">,</span> <span class="n">replace</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">twocol_net</span> <span class="o">&lt;-</span> <span class="nf">twocol_edgelist</span><span class="p">(</span><span class="n">twocol</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">c_net_plot</span><span class="p">(</span><span class="n">twocol_net</span><span class="p">,</span> <span class="nf">g_layout_polygon</span><span class="p">(</span><span class="n">twocol_net</span><span class="p">),</span><span class="n">labels_num</span> <span class="o">=</span> <span class="s">&#34;all&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-11-1.png" width="768" />
+<h3 id="网络树">网络树</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">data</span><span class="p">(</span><span class="s">&#34;otutab&#34;</span><span class="p">,</span> <span class="n">package</span> <span class="o">=</span> <span class="s">&#34;pcutils&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">cbind</span><span class="p">(</span><span class="n">taxonomy</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="nf">rowSums</span><span class="p">(</span><span class="n">otutab</span><span class="p">))</span><span class="n">[1</span><span class="o">:</span><span class="m">20</span><span class="p">,</span> <span class="n">]</span> <span class="o">-&gt;</span> <span class="n">test</span>
+</span></span><span class="line"><span class="cl"><span class="nf">df2net_tree</span><span class="p">(</span><span class="n">test</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ttt</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">ttt</span><span class="p">,</span> <span class="n">edge_legend</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#34;Tree network&#34;</span><span class="p">,</span> <span class="n">legend_position</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">left_leg_x</span> <span class="o">=</span> <span class="m">-1.3</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">edge.arrow.size</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">edge.arrow.width</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">rescale</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">ttt</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="nf">as_circle_tree</span><span class="p">(),</span> <span class="n">legend</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#34;Circle tree network&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">edge.arrow.size</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span><span class="n">edge.arrow.width</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">rescale</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-12-1.png" width="768" />
+<h3 id="奥运五环图">奥运五环图</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">olympic_rings_net</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/metanet-5/index.en_files/figure-html/unnamed-chunk-13-1.png" width="768" />
+<p>这个也是上次讲的分组布局的应用了，g_layout函数布局，用下面的代码就可以绘制：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">r</span> <span class="o">&lt;-</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">pensize</span> <span class="o">&lt;-</span> <span class="n">r</span> <span class="o">/</span> <span class="m">6</span>
+</span></span><span class="line"><span class="cl"><span class="n">rings_data</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-2</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">pensize</span><span class="p">),</span> <span class="o">-</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">pensize</span><span class="p">),</span> <span class="m">0</span><span class="p">,</span> <span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">pensize</span><span class="p">),</span> <span class="m">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="n">pensize</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">y</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">r</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">color</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;#0081C8&#34;</span><span class="p">,</span> <span class="s">&#34;#FCB131&#34;</span><span class="p">,</span> <span class="s">&#34;#000000&#34;</span><span class="p">,</span> <span class="s">&#34;#00A651&#34;</span><span class="p">,</span> <span class="s">&#34;#EE334E&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">g1</span> <span class="o">&lt;-</span> <span class="nf">module_net</span><span class="p">(</span><span class="n">module_number</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">n_node_in_module</span> <span class="o">=</span> <span class="m">30</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">coors</span> <span class="o">=</span> <span class="nf">g_layout</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="n">layout1</span> <span class="o">=</span> <span class="n">rings_data[</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">zoom1</span> <span class="o">=</span> <span class="m">1.2</span><span class="p">,</span> <span class="n">zoom2</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">rescale</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">legend</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#34;Olympic Rings&#34;</span><span class="p">,</span> <span class="n">vertex.frame.color</span> <span class="o">=</span> <span class="kc">NA</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">edge.width</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">vertex.color</span> <span class="o">=</span> <span class="nf">setNames</span><span class="p">(</span><span class="n">rings_data</span><span class="o">$</span><span class="n">color</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">),</span> <span class="n">vertex.size</span> <span class="o">=</span> <span class="m">7</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="references">References</h2>
+<ol>
+<li>Koutrouli M, Karatzas E, Paez-Espino D and Pavlopoulos GA (2020) A Guide to Conquer the Biological Network Era Using Graph Theory. Front. Bioeng. Biotechnol. 8:34. doi: 10.3389/fbioe.2020.00034</li>
+<li>Faust, K., and Raes, J. (2012). Microbial interactions: from networks to models. Nat. Rev. Microbiol. <a class="link" href="https://doi.org/10.1038/nrmicro2832"  target="_blank" rel="noopener"
+    >https://doi.org/10.1038/nrmicro2832</a>.</li>
+<li>Y. Deng, Y. Jiang, Y. Yang, Z. He, et al., Molecular ecological network analyses. BMC bioinformatics (2012), doi:10.1186/1471-2105-13-113.</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/network/">Network</a>
+        
+            <a href="/tags/r/">R</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-8/images/nc.80f498412d2ea6135a9712c93dbb8eba_hu_86d7f3e82c9046db.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜8.网络稳定性分析"
+                        data-key="metanet-8" 
+                        data-hash="md5-gPSYQS0uphNalxLJPbuOug==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜8.网络稳定性分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-7/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-7/index.en_files/figure-html/unnamed-chunk-5-1.347acced76b5c6eb13665a5b490dbdd9_hu_7eb69229f62ded98.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜7.网络模块分析"
+                        data-key="metanet-7" 
+                        data-hash="md5-NHrM7Xa1xusTZlpbSQ292Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜7.网络模块分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-6/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-6/images/node_topo.1683b9dd5f4336e37158c4c2ba8c763d_hu_ba1f45afac1b002f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜6.网络拓扑指标分析"
+                        data-key="metanet-6" 
+                        data-hash="md5-FoO53V9DNuNxWMTCuox2PQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜6.网络拓扑指标分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-4/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1.3a81938f6b8eb0c165afcedca73c47a3_hu_692adc1cabce892a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜4.布局和可视化"
+                        data-key="metanet-4" 
+                        data-hash="md5-OoGTj2uOsMFlr87cpzxHow==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜4.布局和可视化</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/metanet-3/">
+        
+        
+            <div class="article-image">
+                <img src="/p/metanet-3/images/anno.1a70999d71e270d107e71ba79bba4512_hu_bb2df97903817acf.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜3.网络注释与操作"
+                        data-key="metanet-3" 
+                        data-hash="md5-GnCZnXHicNEH5xunm7pFEg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜3.网络注释与操作</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

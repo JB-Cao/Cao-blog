@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ANI 是指平均核苷酸一致性（Average Nucleotide Identity），是一种用来比较基因组的指标。FastANI和Skani是常用于计算ANI的快速准确的软件，在此介绍一下这两个工具。'>
+<title>使用FastANI与Skani计算平均核苷酸一致性(ANI)</title>
+
+<link rel='canonical' href='/p/ani/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='使用FastANI与Skani计算平均核苷酸一致性(ANI)'>
+<meta property='og:description' content='ANI 是指平均核苷酸一致性（Average Nucleotide Identity），是一种用来比较基因组的指标。FastANI和Skani是常用于计算ANI的快速准确的软件，在此介绍一下这两个工具。'>
+<meta property='og:url' content='/p/ani/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='genome' /><meta property='article:tag' content='software' /><meta property='article:published_time' content='2024-05-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-05-19T00:00:00&#43;00:00'/><meta property='og:image' content='/p/ani/images/ani3.png' />
+<meta name="twitter:title" content="使用FastANI与Skani计算平均核苷酸一致性(ANI)">
+<meta name="twitter:description" content="ANI 是指平均核苷酸一致性（Average Nucleotide Identity），是一种用来比较基因组的指标。FastANI和Skani是常用于计算ANI的快速准确的软件，在此介绍一下这两个工具。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/ani/images/ani3.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#fastani">FastANI</a>
+      <ol>
+        <li><a href="#install">Install</a></li>
+        <li><a href="#usage">Usage</a>
+          <ol>
+            <li><a href="#fastani-使用帮助页面">FastANI 使用帮助页面</a></li>
+            <li><a href="#一对一计算">一对一计算</a></li>
+            <li><a href="#一对多计算">一对多计算</a></li>
+            <li><a href="#多对多计算">多对多计算</a></li>
+            <li><a href="#输出格式">输出格式</a></li>
+          </ol>
+        </li>
+        <li><a href="#visualize-conserved-regions">Visualize Conserved Regions</a></li>
+      </ol>
+    </li>
+    <li><a href="#skani">Skani</a>
+      <ol>
+        <li><a href="#install-1">Install</a></li>
+        <li><a href="#usage-1">Usage</a>
+          <ol>
+            <li><a href="#skani-使用帮助页面">Skani 使用帮助页面</a></li>
+            <li><a href="#一对一计算-1">一对一计算</a></li>
+            <li><a href="#多对多计算-1">多对多计算</a></li>
+            <li><a href="#ani矩阵">ANI矩阵</a></li>
+            <li><a href="#输出格式-1">输出格式</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/ani/">
+                <img src="/p/ani/images/ani3_hu_f5e9a4242b535266.png"
+                        srcset="/p/ani/images/ani3_hu_f5e9a4242b535266.png 800w, /p/ani/images/ani3_hu_3d0e6f987f413e7c.png 1600w"
+                        width="800" 
+                        height="435" 
+                        loading="lazy"
+                        alt="Featured image of post 使用FastANI与Skani计算平均核苷酸一致性(ANI)" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/ani/">使用FastANI与Skani计算平均核苷酸一致性(ANI)</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            ANI 是指平均核苷酸一致性（Average Nucleotide Identity），是一种用来比较基因组的指标。FastANI和Skani是常用于计算ANI的快速准确的软件，在此介绍一下这两个工具。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 19, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    6 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>ANI 是指平均核苷酸一致性（Average Nucleotide Identity），它是一种用来比较两种基因组之间相似度的方法。
+ANI 主要用于微生物基因组学和系统生物学，以评估不同细菌或古菌基因组之间的相似性。
+它被广泛应用于种的分类、基因组分类以及新物种的鉴定。</p>
+<p>ANI 一般通过以下步骤计算：</p>
+<ol>
+<li><strong>基因组切割</strong>：将两个基因组切割成小片段。</li>
+<li><strong>片段比对</strong>：使用序列比对工具将片段进行两两比对。</li>
+<li><strong>相似性计算</strong>：计算每对片段的相似度得分。</li>
+<li><strong>平均值计算</strong>：对所有比对片段的相似度得分取平均值，得到 ANI 值。</li>
+</ol>
+<p>常用的 ANI 计算工具：</p>
+<ol>
+<li><strong>ANI calculator</strong>：<a class="link" href="http://enve-omics.ce.gatech.edu/ani/"  target="_blank" rel="noopener"
+    >http://enve-omics.ce.gatech.edu/ani/</a> 可以快速计算两个genome的 ANI 值。</li>
+<li><strong>JSpecies</strong>：一个基于 Java 的工具，提供图形界面和命令行两种使用方式，适合不同需求的用户。</li>
+<li><strong>FastANI</strong>：一个高效的 ANI 计算工具，适用于处理大规模基因组数据。</li>
+<li><strong>PyANI</strong>：一个基于 Python 的工具包，支持多种 ANI 计算方法（如 MUMmer、BLAST）。</li>
+<li><strong>OrthoANI</strong>：提供网络服务和命令行工具，适用于比较较大的基因组数据。</li>
+<li><strong>Skani</strong>：使用 MinHash 技术和线性空间算法，能够快速处理大规模基因组数据。</li>
+</ol>
+<p>GTDB数据库构建的时候就需要进行巨大规模的ANI计算分析，他们使用的就是FastANI（v2.3.2之前）和Skani（最新的v2.4.0，更快），接下来简要介绍一下这两款软件。</p>
+<h2 id="fastani">FastANI</h2>
+<p>FastANI 专为全基因组平均核苷酸一致性 (ANI) 的快速免比对计算而开发。
+ANI 被定义为两个微生物基因组之间共享的直系同源基因对的平均核苷酸一致性。</p>
+<p>FastANI 支持完整基因组组装和草图基因组组装的成对比较。其基本过程遵循 Goris 等人描述的类似工作流程，
+它避免了麻烦的序列比对，并使用 Mashmap 作为其基于 MinHash 的序列映射引擎来计算直系映射和比对同一性估计。</p>
+<p>根据对完整基因组和草图基因组的实验，其精度与基于 BLAST 的 ANI calculator相当，并且实现了两到三个数量级的加速。
+因此，它对于大量基因组对的成对 ANI 计算非常有用。</p>
+<p>发表文章：Jain, C., Rodriguez-R, L.M., Phillippy, A.M. et al. High throughput ANI analysis of 90K prokaryotic genomes reveals clear species boundaries. Nat Commun 9, 5114 (2018). <a class="link" href="https://doi.org/10.1038/s41467-018-07641-9"  target="_blank" rel="noopener"
+    >https://doi.org/10.1038/s41467-018-07641-9</a></p>
+<h3 id="install">Install</h3>
+<p>FastANI的安装非常简单，可以选择以下一种方式：</p>
+<ol>
+<li>binary file</li>
+</ol>
+<p>可以在<a class="link" href="https://github.com/ParBliSS/FastANI/releases"  target="_blank" rel="noopener"
+    >https://github.com/ParBliSS/FastANI/releases</a>页面上选择合适的版本zip文件下载解压即可使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget -c https://github.com/ParBLiSS/FastANI/releases/download/v1.34/fastANI-linux64-v1.34.zip
+</span></span><span class="line"><span class="cl">unzip fastANI-linux64-v1.34.zip
+</span></span><span class="line"><span class="cl">./fastANI -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>conda</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda install -c bioconda fastani
+</span></span><span class="line"><span class="cl">fastANI -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>Build from source</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">This software requires c++11 to build,
+</span></span><span class="line"><span class="cl">which is available in GCC &gt;= 4.8 (on linux) and Clang &gt;= 3.3 (on mac)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Dependencies:
+</span></span><span class="line"><span class="cl">-------------
+</span></span><span class="line"><span class="cl">   - CMake 3.2 or above ( https://cmake.org/ )
+</span></span><span class="line"><span class="cl">   - either...
+</span></span><span class="line"><span class="cl">       GNU Scientific Library ( http://www.gnu.org/software/gsl/ )
+</span></span><span class="line"><span class="cl">     or..
+</span></span><span class="line"><span class="cl">       Boost Library ( http://www.boost.org ) (see &#34;-DBOOST_ROOT&#34; below)
+</span></span><span class="line"><span class="cl">   - Zlib ( included with OS X and most Linuxes, http://www.zlib.net ) *
+</span></span><span class="line"><span class="cl">   - C++ compiler with C++11 and openmp support
+</span></span><span class="line"><span class="cl">       Note for macOS users: Use &#34;libomp&#34; to link openmp with Clang
+</span></span><span class="line"><span class="cl">       libomp is available through brew ( https://formulae.brew.sh/formula/libomp )
+</span></span><span class="line"><span class="cl">Steps:
+</span></span><span class="line"><span class="cl">------
+</span></span><span class="line"><span class="cl">   mkdir build 
+</span></span><span class="line"><span class="cl">   cd build
+</span></span><span class="line"><span class="cl">   cmake .. -DCMAKE_BUILD_TYPE=Release [--install-prefix ...  -DGSL_SHARED=... -DGSL_ROOT_DIR=... -DBOOST_ROOT=...]
+</span></span><span class="line"><span class="cl">   cmake --build .
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="usage">Usage</h3>
+<h4 id="fastani-使用帮助页面">FastANI 使用帮助页面</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ fastANI -h
+</span></span><span class="line"><span class="cl">-----------------
+</span></span><span class="line"><span class="cl">示例用法：
+</span></span><span class="line"><span class="cl">$ fastANI -q genome1.fa -r genome2.fa -o output.txt
+</span></span><span class="line"><span class="cl">$ fastANI -q genome1.fa --rl genome_list.txt -o output.txt
+</span></span><span class="line"><span class="cl">语法:
+</span></span><span class="line"><span class="cl">--------
+</span></span><span class="line"><span class="cl">fastANI <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>-r &lt;value&gt;<span class="o">]</span> <span class="o">[</span>--rl &lt;value&gt;<span class="o">]</span> <span class="o">[</span>-q &lt;value&gt;<span class="o">]</span> <span class="o">[</span>--ql &lt;value&gt;<span class="o">]</span> <span class="o">[</span>-k
+</span></span><span class="line"><span class="cl">        &lt;value&gt;<span class="o">]</span> <span class="o">[</span>-t &lt;value&gt;<span class="o">]</span> <span class="o">[</span>--fragLen &lt;value&gt;<span class="o">]</span> <span class="o">[</span>--minFraction &lt;value&gt;<span class="o">]</span>
+</span></span><span class="line"><span class="cl">        <span class="o">[</span>--maxRatioDiff &lt;value&gt;<span class="o">]</span> <span class="o">[</span>--visualize<span class="o">]</span> <span class="o">[</span>--matrix<span class="o">]</span> <span class="o">[</span>-o &lt;value&gt;<span class="o">]</span> <span class="o">[</span>-s<span class="o">]</span> <span class="o">[</span>-v<span class="o">]</span>
+</span></span><span class="line"><span class="cl">选项:
+</span></span><span class="line"><span class="cl">--------
+</span></span><span class="line"><span class="cl">-h, --help
+</span></span><span class="line"><span class="cl">    打印此帮助页面
+</span></span><span class="line"><span class="cl">-r, --ref &lt;值&gt;
+</span></span><span class="line"><span class="cl">    参考基因组文件（fasta/fastq）<span class="o">[</span>支持 .gz 压缩<span class="o">]</span>
+</span></span><span class="line"><span class="cl">--rl, --refList &lt;值&gt;
+</span></span><span class="line"><span class="cl">    包含参考基因组文件列表的文件，每行一个基因组文件
+</span></span><span class="line"><span class="cl">-q, --query &lt;值&gt;
+</span></span><span class="line"><span class="cl">    查询基因组文件（fasta/fastq）<span class="o">[</span>支持 .gz 压缩<span class="o">]</span>
+</span></span><span class="line"><span class="cl">--ql, --queryList &lt;值&gt;
+</span></span><span class="line"><span class="cl">    包含查询基因组文件列表的文件，每行一个基因组文件
+</span></span><span class="line"><span class="cl">-k, --kmer &lt;值&gt;
+</span></span><span class="line"><span class="cl">    kmer 大小，最大值为 <span class="m">16</span> <span class="o">[</span>默认值：16<span class="o">]</span>
+</span></span><span class="line"><span class="cl">-t, --threads &lt;值&gt;
+</span></span><span class="line"><span class="cl">    并行执行的线程数 <span class="o">[</span>默认值：1<span class="o">]</span>
+</span></span><span class="line"><span class="cl">--fragLen &lt;值&gt;
+</span></span><span class="line"><span class="cl">    片段长度 <span class="o">[</span>默认值：3000<span class="o">]</span>
+</span></span><span class="line"><span class="cl">--minFraction &lt;值&gt;
+</span></span><span class="line"><span class="cl">    信任 ANI 结果所需的基因组最小共享比例。如果参考和查询基因组大小不同，则取较小的一个 <span class="o">[</span>默认值：0.2<span class="o">]</span>
+</span></span><span class="line"><span class="cl">--maxRatioDiff &lt;值&gt;
+</span></span><span class="line"><span class="cl">    <span class="o">(</span>总参考长度/总发生哈希数<span class="o">)</span> 和 <span class="o">(</span>总参考长度/总哈希数<span class="o">)</span> 之间的最大差异 <span class="o">[</span>默认值：10.0<span class="o">]</span>
+</span></span><span class="line"><span class="cl">--visualize
+</span></span><span class="line"><span class="cl">    输出用于可视化的映射，仅适用于单个基因组与单个基因组的比较 <span class="o">[</span>默认禁用<span class="o">]</span>
+</span></span><span class="line"><span class="cl">--matrix
+</span></span><span class="line"><span class="cl">    以下三角矩阵格式输出 ANI 值（格式参照 phylip）。启用后，输出文件将带有 .matrix 扩展名 <span class="o">[</span>默认禁用<span class="o">]</span>
+</span></span><span class="line"><span class="cl">-o, --output &lt;值&gt;
+</span></span><span class="line"><span class="cl">    输出文件名
+</span></span><span class="line"><span class="cl">-s, --sanityCheck
+</span></span><span class="line"><span class="cl">    运行完整性检查
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="一对一计算">一对一计算</h4>
+<p>计算单个查询基因组与单个参考基因组之间的ANI：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./fastANI -q <span class="o">[</span>QUERY_GENOME<span class="o">]</span> -r <span class="o">[</span>REFERENCE_GENOME<span class="o">]</span> -o <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在此，<code>QUERY_GENOME</code> 和 <code>REFERENCE_GENOME</code> 是以fasta或多fasta格式提供的查询和参考基因组装。</p>
+<p>我们来计算数据文件夹中提供的大肠杆菌和福氏志贺氏菌基因组之间的 ANI。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/ParBLiSS/FastANI
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">fastANI -q FastANI/tests/data/Shigella_flexneri_2a_01.fna -r FastANI/tests/data/Escherichia_coli_str_K12_MG1655.fna -o fastani.out
+</span></span><span class="line"><span class="cl">head fastani.out
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果有6列：查询基因组、参考基因组、ANI值、双向片段映射计数、总查询片段</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Shigella_flexneri_2a_01.fna	Escherichia_coli_str_K12_MG1655.fna	99.853	76	77
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="一对多计算">一对多计算</h4>
+<p>计算单个查询基因组与多个参考基因组之间的ANI：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./fastANI -q <span class="o">[</span>QUERY_GENOME<span class="o">]</span> --rl <span class="o">[</span>REFERENCE_LIST<span class="o">]</span> -o <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对于上述用例，<code>REFERENCE_LIST</code> 应为包含参考基因组目录路径的文件，每行一个基因组。</p>
+<h4 id="多对多计算">多对多计算</h4>
+<p>当有多个查询基因组和多个参考基因组时：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">./fastANI --ql <span class="o">[</span>QUERY_LIST<span class="o">]</span> --rl <span class="o">[</span>REFERENCE_LIST<span class="o">]</span> -o <span class="o">[</span>OUTPUT_FILE<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>同样，<code>QUERY_LIST</code> 和 <code>REFERENCE_LIST</code> 是包含基因组路径的文件，每行一个基因组。</p>
+<h4 id="输出格式">输出格式</h4>
+<p>在上述所有用例中，<code>OUTPUT_FILE</code> 将包含制表符分隔的行，包括查询基因组、参考基因组、ANI值、双向片段映射计数和总查询片段。</p>
+<p>比对比例（相对于查询基因组）仅是映射数和总片段的比率。用户还可以通过提供<code>--matrix</code>参数获得一个包含身份值的phylip格式的下三角矩阵文件（.matrix）。</p>
+<p>注意：如果ANI值远低于80%，则不会报告基因组对的ANI输出。此类情况应在氨基酸水平进行计算。FastANI还建议用户对其输入基因组装（包括参考基因组和查询基因组）进行充分的质量检查，特别是N50应≥10 Kbp。</p>
+<h3 id="visualize-conserved-regions">Visualize Conserved Regions</h3>
+<p>FastANI 支持两个基因组之间计算的相互映射的可视化。
+获得此可视化效果需要使用 FastANI 进行一对一比较，应提供附加标志 <code>--visualize</code>，FastANI 输出包含所有相互映射信息的映射文件（扩展名为 .visual）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">fastANI -q FastANI/tests/data/Shigella_flexneri_2a_01.fna -r FastANI/tests/data/Escherichia_coli_str_K12_MG1655.fna -o fastani.out --visualize
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>最后，可以使用genoPlotR 包来绘制这些映射：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">query_fasta</span><span class="o">=</span><span class="s">&#34;FastANI/tests/data/Shigella_flexneri_2a_01.fna&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">subject_fasta</span><span class="o">=</span><span class="s">&#34;FastANI/tests/data/Escherichia_coli_str_K12_MG1655.fna&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">fastANI_visual_file</span><span class="o">=</span><span class="s">&#34;fastani.out.visual&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">genoPlotR</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#Read fastANI output</span>
+</span></span><span class="line"><span class="cl"><span class="n">comparison</span> <span class="o">&lt;-</span> <span class="nf">try</span><span class="p">(</span><span class="nf">read_comparison_from_blast</span><span class="p">(</span><span class="n">fastANI_visual_file</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#Read sequences into genoPlotR objects</span>
+</span></span><span class="line"><span class="cl"><span class="n">Query</span> <span class="o">&lt;-</span> <span class="nf">try</span><span class="p">(</span><span class="nf">read_dna_seg_from_file</span><span class="p">(</span><span class="n">query_fasta</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">Ref</span> <span class="o">&lt;-</span> <span class="nf">try</span><span class="p">(</span><span class="nf">read_dna_seg_from_file</span><span class="p">(</span><span class="n">subject_fasta</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">plotTitle</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="n">query_fasta</span><span class="p">,</span> <span class="n">subject_fasta</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#34; v/s &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">pdf</span><span class="p">(</span><span class="nf">paste</span><span class="p">(</span><span class="n">fastANI_visual_file</span><span class="p">,</span><span class="s">&#34;.pdf&#34;</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">),</span><span class="n">width</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot_gene_map</span><span class="p">(</span><span class="n">dna_segs</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">Query</span><span class="p">,</span> <span class="n">Ref</span><span class="p">),</span> <span class="n">comparisons</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">comparison</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">              <span class="n">main</span><span class="o">=</span><span class="n">plotTitle</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">scale_cex</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">n_scale_ticks</span><span class="o">=</span><span class="m">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">dev.off</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>看看结果的fastani.out.visual.pdf：</p>
+<img src="images/ani.png" title=""/>
+<p>GTDB的Tools中提供了FastANI calculator的在线工具：<a class="link" href="https://gtdb.ecogenomic.org/tools/fastani"  target="_blank" rel="noopener"
+    >https://gtdb.ecogenomic.org/tools/fastani</a>，可用于原核生物 NCBI基因组的ANI比较，一次最多可以进行 1,000 次成对比较，例如下图：</p>
+<img src="images/ani3.png" title=""/>
+<h2 id="skani">Skani</h2>
+<p>用于宏基因组组装基因组 (metagenome-assembled genome, MAG) 的序列比较工具难以处理大量或低质量的数据。
+研究人员提出了 skani，一种通过稀疏近似比对确定ANI的方法。</p>
+<p>skani 使用近似映射方法，无需基础级别对齐来获取 ANI。它比基于 BLAST 的方法快几个数量级，并且几乎同样准确。其主要特点有：</p>
+<ul>
+<li>MAG 的准确 ANI 计算。 skani 对于不完整和中等质量的宏基因组组装基因组 (MAG) 是准确的。纯草图方法（例如 Mash）可能会低估不完整 MAG 的 ANI。</li>
+<li>对齐部分结果。 skani 输出基因组对齐的部分，而基于纯 k-mer 的方法则不会。</li>
+<li>快速计算。Indexing/sketching 比 Mash 快约 3 倍，查询比 FastANI 快约 25 倍（但比 Mash 慢）。</li>
+<li>高效的数据库搜索。使用单个处理器和约 6 GB 的 RAM，根据超过 65000 个原核基因组的预处理数据库查询基因组只需几秒钟。从基因组序列构建数据库需要几分钟到一个小时。</li>
+</ul>
+<img src="images/skani.png" title=""/>
+<p>发表文章：Jim Shaw and Yun William Yu. Fast and robust metagenomic sequence comparison through sparse chaining with skani. Nature Methods (2023). <a class="link" href="https://doi.org/10.1038/s41592-023-02018-3"  target="_blank" rel="noopener"
+    >https://doi.org/10.1038/s41592-023-02018-3</a></p>
+<p>确实牛，文章很短两张主图，直接发在Nature Methods上。</p>
+<h3 id="install-1">Install</h3>
+<p>Skani的安装也非常简单，可以选择以下一种方式：</p>
+<ol>
+<li>binary file</li>
+</ol>
+<p>可以在<a class="link" href="https://github.com/bluenote-1577/skani/releases/"  target="_blank" rel="noopener"
+    >https://github.com/bluenote-1577/skani/releases/</a>页面上选择合适的版本直接下载使用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://github.com/bluenote-1577/skani/releases/download/latest/skani
+</span></span><span class="line"><span class="cl">chmod +x skani
+</span></span><span class="line"><span class="cl">./skani -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>conda</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda install -c bioconda skani
+</span></span><span class="line"><span class="cl">skani -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>compile</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">Requirements</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">1.</span><span class="n">rust</span> <span class="n">programming</span> <span class="n">language</span> <span class="ow">and</span> <span class="n">associated</span> <span class="n">tools</span> <span class="n">such</span> <span class="n">as</span> <span class="n">cargo</span> <span class="n">are</span> <span class="n">required</span> <span class="ow">and</span> <span class="n">assumed</span> <span class="n">to</span> <span class="n">be</span> <span class="ow">in</span> <span class="n">PATH</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">2.</span><span class="n">A</span> <span class="n">c</span> <span class="n">compiler</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="n">GCC</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="mf">3.</span><span class="n">make</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">Steps</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="o">------</span>
+</span></span><span class="line"><span class="cl">    <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">bluenote</span><span class="o">-</span><span class="mi">1577</span><span class="o">/</span><span class="n">skani</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cd</span> <span class="n">skani</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># If default rust install directory is ~/.cargo</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cargo</span> <span class="n">install</span> <span class="o">--</span><span class="n">path</span> <span class="o">.</span> <span class="o">--</span><span class="n">root</span> <span class="o">~/.</span><span class="n">cargo</span>
+</span></span><span class="line"><span class="cl">    <span class="n">skani</span> <span class="n">dist</span> <span class="n">refs</span><span class="o">/</span><span class="n">e</span><span class="o">.</span><span class="n">coli</span><span class="o">-</span><span class="n">EC590</span><span class="o">.</span><span class="n">fasta</span> <span class="n">refs</span><span class="o">/</span><span class="n">e</span><span class="o">.</span><span class="n">coli</span><span class="o">-</span><span class="n">K12</span><span class="o">.</span><span class="n">fasta</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># If ~/.cargo doesn&#39;t exist use below commands instead</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#cargo build --release</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#./target/release/skani dist refs/e.coli-EC590.fasta refs/e.coli-K12.fasta</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="usage-1">Usage</h3>
+<h4 id="skani-使用帮助页面">Skani 使用帮助页面</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ skani -h
+</span></span><span class="line"><span class="cl">skani 0.2.1
+</span></span><span class="line"><span class="cl">快速、稳健的ANI计算和用于宏基因组片段和组装的数据库搜索。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">快速ANI计算：
+</span></span><span class="line"><span class="cl">skani dist genome1.fa genome2.fa
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">内存高效的数据库搜索：
+</span></span><span class="line"><span class="cl">skani sketch genomes/* -o database<span class="p">;</span> skani search -d database query1.fa query2.fa ...
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">全对全比较：
+</span></span><span class="line"><span class="cl">skani triangle genomes/*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">USAGE:
+</span></span><span class="line"><span class="cl">使用方法：
+</span></span><span class="line"><span class="cl">    skani <span class="o">[</span>SUBCOMMAND<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">OPTIONS:
+</span></span><span class="line"><span class="cl">选项：
+</span></span><span class="line"><span class="cl">    -h, --help       打印帮助信息
+</span></span><span class="line"><span class="cl">    -V, --version    打印版本信息
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">SUBCOMMANDS:
+</span></span><span class="line"><span class="cl">子命令：
+</span></span><span class="line"><span class="cl">    dist        计算查询基因组与参考fasta文件或预先计算的草图文件的ANI。
+</span></span><span class="line"><span class="cl">                    用法：skani dist query.fa ref1.fa ref2.fa ... 或使用 -q/--ql 和 -r/--rl 选项。
+</span></span><span class="line"><span class="cl">    search      在内存高效的方式下，搜索查询基因组与预先草绘的参考基因组数据库。
+</span></span><span class="line"><span class="cl">                    用法：skani search -d sketch_folder query1.fa query2.fa ...
+</span></span><span class="line"><span class="cl">    sketch      草绘（索引）基因组。
+</span></span><span class="line"><span class="cl">                    用法：skani sketch genome1.fa genome2.fa ... -o new_sketch_folder
+</span></span><span class="line"><span class="cl">    triangle    计算下三角形的ANI/AF矩阵。
+</span></span><span class="line"><span class="cl">                    用法：skani triangle genome1.fa genome2.fa genome3.fa ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="一对一计算-1">一对一计算</h4>
+<p>计算单个查询基因组与单个参考基因组之间的ANI：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 比较两个基因组的ANI。skani是对称的，所以顺序不影响ANI</span>
+</span></span><span class="line"><span class="cl">skani dist genome1.fa genome2.fa 
+</span></span><span class="line"><span class="cl">skani dist genome2.fa genome1.fa 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>示例：我们可以用skani文件夹中提供的两个大肠杆菌基因组来计算 ANI。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/bluenote-1577/skani
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">skani dist skani/refs/e.coli-EC590.fasta skani/refs/e.coli-K12.fasta -o skani.out
+</span></span><span class="line"><span class="cl">head skani.out
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Ref_file	Query_file	ANI	Align_fraction_ref	Align_fraction_query	Ref_name	Query_name
+</span></span><span class="line"><span class="cl">skani/refs/e.coli-K12.fasta	skani/refs/e.coli-EC590.fasta	99.39	91.89	92.46	NC_007779.1 Escherichia coli str. K-12 substr. W3110, complete sequenceNZ_CP016182.2 Escherichia coli strain EC590 chromosome, complete genome
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="多对多计算-1">多对多计算</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 比较多个基因组；所有选项都可以使用-t进行多线程处理。</span>
+</span></span><span class="line"><span class="cl">skani dist -t <span class="m">3</span> -q query1.fa query2.fa -r reference1.fa reference2.fa -o all-to-all_results.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 比较单个fasta文件里的每条序列（例如contigs）</span>
+</span></span><span class="line"><span class="cl">skani dist --qi -q assembly1.fa --ri -r assembly2.fa  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 构建数据库并进行内存高效搜索</span>
+</span></span><span class="line"><span class="cl">skani sketch genomes_to_search/* -o database
+</span></span><span class="line"><span class="cl">skani search query1.fa query2.fa ... -d database
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用“skani sketch”输出的草绘作为直接替代</span>
+</span></span><span class="line"><span class="cl">skani dist database/query.fa.sketch database/ref.fa.sketch
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="ani矩阵">ANI矩阵</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 为文件夹中的所有基因组构建相似性矩阵/边列表</span>
+</span></span><span class="line"><span class="cl">skani triangle genome_folder/* &gt; skani_ani_matrix.txt
+</span></span><span class="line"><span class="cl">skani triangle genome_folder/* -E &gt; skani_ani_edge_list.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># skani作者还提供了一个脚本用于聚类/可视化距离矩阵。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 需要python3, seaborn, scipy/numpy, 和matplotlib。</span>
+</span></span><span class="line"><span class="cl">python scripts/clustermap_triangle.py skani_ani_matrix.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>示例：我们可以用skani文件夹中提供的list.txt来计算 ANI矩阵。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> skani
+</span></span><span class="line"><span class="cl">skani triangle -l test_files/list.txt &gt; ../skani_ani_matrix.txt
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ..
+</span></span><span class="line"><span class="cl">python skani/scripts/clustermap_triangle.py skani_ani_matrix.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">8
+</span></span><span class="line"><span class="cl">test_files/e.coli-EC590.fasta
+</span></span><span class="line"><span class="cl">test_files/e.coli-K12.fasta	99.39
+</span></span><span class="line"><span class="cl">test_files/e.coli-W.fasta	98.58	98.54
+</span></span><span class="line"><span class="cl">test_files/e.coli-W.fasta.gz	98.58	98.54	100.00
+</span></span><span class="line"><span class="cl">test_files/e.coli-h5.fasta	98.90	98.91	98.61	98.61
+</span></span><span class="line"><span class="cl">test_files/e.coli-o157.fasta	98.14	98.09	98.05	98.05	98.03
+</span></span><span class="line"><span class="cl">test_files/o157_plasmid.fasta	0.00	0.00	0.00	0.00	0.00	100.00
+</span></span><span class="line"><span class="cl">test_files/o157_reads.fastq	92.81	93.05	93.15	93.15	92.84	95.55	94.64
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="images/ani2.png" title=""/>
+<h4 id="输出格式-1">输出格式</h4>
+<p>如果两个基因组的对齐比例低于15%，将不会输出结果。</p>
+<p>实际上，这意味着只有ANI大于约82%的结果才会可靠地输出（使用默认参数）。有关如何比较低ANI基因组的信息，需要参阅<a class="link" href="https://github.com/bluenote-1577/skani/wiki/skani-advanced-usage-guide"  target="_blank" rel="noopener"
+    >skani高级使用指南</a>。</p>
+<p>默认的search和dist命令输出如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Ref_file	Query_file	ANI	Align_fraction_ref	Align_fraction_query	Ref_name	Query_name
+</span></span><span class="line"><span class="cl">skani/refs/e.coli-K12.fasta	skani/refs/e.coli-EC590.fasta	99.39	91.89	92.46	NC_007779.1 Escherichia coli str. K-12 substr. W3110, complete sequenceNZ_CP016182.2 Escherichia coli strain EC590 chromosome, complete genome
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>列解释：</p>
+<ul>
+<li>Ref_file: 参考文件的文件名。</li>
+<li>Query_file: 查询文件的文件名。</li>
+<li>ANI: 平均核苷酸一致性（ANI）。</li>
+<li>Align_fraction_query/reference: 查询/参考序列的对齐覆盖比例。</li>
+<li>Ref/Query_name: 参考/查询文件中第一个记录的ID。</li>
+</ul>
+<p>当查询基因组数量超过5000时，结果的顺序取决于命令，不保证顺序是确定的。dist和search命令会尝试将最高ANI的结果放在前面。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/genome/">Genome</a>
+        
+            <a href="/tags/software/">Software</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/instrain/">
+        
+        
+            <div class="article-image">
+                <img src="/p/instrain/images/OverviewFigure1_v1.210f4876fc2ad1d4aaa1deb758403f1d_hu_533598e87412281c.webp" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用InStrain进行宏基因组群体分析"
+                        data-key="instrain" 
+                        data-hash="md5-IQ9Idvwq0dSqod63WEA/HQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用InStrain进行宏基因组群体分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/orthofinder/">
+        
+        
+            <div class="article-image">
+                <img src="/p/orthofinder/images/Workflow.b06f2895b33f76fcddcd78da78c36ab1_hu_54a1bd9442f615be.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用Orthofinder进行系统发育直系同源推断"
+                        data-key="orthofinder" 
+                        data-hash="md5-sG8olbM/dvzdzXjaeMNqsQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用Orthofinder进行系统发育直系同源推断</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/gtdb/">
+        
+        
+            <div class="article-image">
+                <img src="/p/gtdb/images/gtdb.e86e8d7c25f7c58539f53e381fd6bff6_hu_452ee57541a3e655.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post GTDB基因组分类数据库及GTDB-Tk工具"
+                        data-key="gtdb" 
+                        data-hash="md5-6G6NfCX3xYU59T44H9a/9g==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">GTDB基因组分类数据库及GTDB-Tk工具</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/big-scape-bgcs/">
+        
+        
+            <div class="article-image">
+                <img src="/p/big-scape-bgcs/images/big3.86718ea7b399b8d9a43ae949b1e57aec_hu_9d6c5c9129296f9b.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用BiG-SCAPE挖掘微生物组BGCs"
+                        data-key="big-scape-bgcs" 
+                        data-hash="md5-hnGOp7OZuNmkOulJseV67A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用BiG-SCAPE挖掘微生物组BGCs</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/kegg-api2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/kegg-api2/images/hsa00600.7ff6e911e1ef845cfb3ca73d2e562228_hu_b21dae334386ed65.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post KEGG 数据库及API (2)"
+                        data-key="kegg-api2" 
+                        data-hash="md5-f/bpEeHvhFz7PKc9LlYiKA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">KEGG 数据库及API (2)</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='一些有关土壤微生物组的综述文章，帮助快速了解领域主要科学问题'>
+<title>土壤微生物组综述（soil microbiome）</title>
+
+<link rel='canonical' href='/p/soil-microbiome/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='土壤微生物组综述（soil microbiome）'>
+<meta property='og:description' content='一些有关土壤微生物组的综述文章，帮助快速了解领域主要科学问题'>
+<meta property='og:url' content='/p/soil-microbiome/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='soil' /><meta property='article:tag' content='microbiome' /><meta property='article:published_time' content='2023-11-15T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-11-15T00:00:00&#43;00:00'/><meta property='og:image' content='/p/soil-microbiome/images/soil2.png' />
+<meta name="twitter:title" content="土壤微生物组综述（soil microbiome）">
+<meta name="twitter:description" content="一些有关土壤微生物组的综述文章，帮助快速了解领域主要科学问题"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/soil-microbiome/images/soil2.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#the-interplay-between-microbial-communities-and-soil-properties">The interplay between microbial communities and soil properties</a>
+      <ol>
+        <li><a href="#土壤微生物与土壤性质的关系">土壤微生物与土壤性质的关系</a></li>
+        <li><a href="#土壤微生物的生态后果">土壤微生物的生态后果</a></li>
+        <li><a href="#改变土地利用和气候">改变土地利用和气候</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/soil-microbiome/">
+                <img src="/p/soil-microbiome/images/soil2_hu_5e8dd5bed24b36ed.png"
+                        srcset="/p/soil-microbiome/images/soil2_hu_5e8dd5bed24b36ed.png 800w, /p/soil-microbiome/images/soil2_hu_6663933c97ec1263.png 1600w"
+                        width="800" 
+                        height="428" 
+                        loading="lazy"
+                        alt="Featured image of post 土壤微生物组综述（soil microbiome）" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/microbial-ecology/" style="background-color: #fb8072; color: #ffffff;">
+                microbial-ecology
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/soil-microbiome/">土壤微生物组综述（soil microbiome）</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            一些有关土壤微生物组的综述文章，帮助快速了解领域主要科学问题
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Nov 15, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>土壤是地球上最重要的生态系统之一，其中包含着丰富的微生物群落。土壤微生物群落是土壤生态系统中的重要组成部分，对土壤的生物地球化学循环和生态系统功能具有重要影响。土壤微生物群落与土壤性质之间存在着复杂的相互作用，这些相互作用对土壤生态系统的稳定性和功能产生了重要影响。</p>
+<h2 id="the-interplay-between-microbial-communities-and-soil-properties">The interplay between microbial communities and soil properties</h2>
+<ol>
+<li>L. Philippot, C. Chenu, A. Kappler, M. C. Rillig, N. Fierer, The interplay between microbial communities and soil properties. Nat Rev Microbiol, 1–14 (2023).</li>
+</ol>
+<p>本文综述了土壤微生物组与土壤性质之间的相互作用，以及这些相互作用对土壤生态系统的影响。强调土壤微生物对土壤性质的影响的重要性。</p>
+<h3 id="土壤微生物与土壤性质的关系">土壤微生物与土壤性质的关系</h3>
+<img src="images/soil1.png" title="" width="60%"/>
+<p><strong>土壤微生物如何影响土壤pH</strong></p>
+<p>土壤微生物通过不同的生物化学和生物物理机制对土壤酸碱度产生影响。首先是碳循环过程中，微生物呼吸所产生的二氧化碳会溶解成碳酸，释放出质子，导致土壤酸化。光合自养细菌（如蓝藻等）则通过二氧化碳固定活动使其生活环境碱化。此外，细菌和真菌也可以产生和分泌有机酸（如草酸或柠檬酸），这些有机酸的分泌可以导致土壤酸化。另一方面，有些细菌的草酸代谢与土壤pH的升高有关，可以使土壤的pH增加2.5个单位。</p>
+<p>其次是在氮循环过程中，细菌和古细菌氧化铵生成硝酸盐的过程产生了质子，是一个已知的降低土壤酸碱度的过程。</p>
+<p>此外，微生物还通过改变土壤中二氧化碳和碳酸盐浓度，以及土壤pH来诱导碳酸盐矿物的沉淀，从而影响土壤酸碱度。</p>
+<p>综上所述，土壤微生物通过上述生物化学过程和生物物理机制直接或间接地影响土壤的酸碱度。</p>
+<p><strong>土壤微生物如何与矿物质相互作用</strong></p>
+<img src="images/soil2.png" title=""/>
+<p>土壤微生物与矿物质之间存在多种相互作用。在土壤中，微生物通过生化和生物物理机制积极地改变土壤环境，并影响矿物质的性质。</p>
+<p>例如，微生物可以通过酸化作用加速矿物质的溶解，促进矿物质的风化作用。微生物还可以通过生物结核的形成，将根际环境中的氧气与铁离子反应，形成含铁氧化物的结核，从而改变土壤的结构。此外，微生物还可以通过氧化草酸和草酸盐矿物为能源和碳源，促进土壤碱化和碳酸盐沉淀。这些微生物介导的修改作用对微生物群落的组装和土壤生态系统产生了影响。</p>
+<p>总的来说，土壤微生物与矿物质之间的相互作用非常复杂，这些相互作用对土壤性质和生态系统的影响具有重要意义.</p>
+<p><strong>土壤微生物与土壤金属的关系</strong></p>
+<p>土壤微生物通过生物化学和生物物理机制，不仅参与营养循环和有机物转化，还能主动改变土壤环境，从而影响土壤金属的存在形式和可利用性。例如，微生物可以通过酸化土壤环境增加金属的溶解度，或者合成并排出金属络合剂来增加金属的生物利用度。另外，微生物还可以通过微生物诱导的碳酸盐沉淀过程改变土壤结构，影响土壤金属的存在状态和迁移行为。此外，一些微生物还能够通过加快岩石和矿物的风化过程，释放金属元素到土壤中。</p>
+<p><strong>土壤微生物与土壤结构的关系</strong></p>
+<img src="images/soil3.png" title=""/>
+<p>土壤结构是指土壤颗粒的三维排列和对应的孔隙空间，而微生物能够通过生化和生物物理机制来主动改变土壤环境。它们不仅参与养分循环和有机物转化，还能通过影响土壤颗粒的空间排列、通过细胞和代谢产物稳定土壤结构来改变土壤环境。这些微生物介导的改变会对微生物群落的组装产生局部影响，并导致生态后果的出现。</p>
+<p><strong>土壤微生物与土壤水份的关系</strong></p>
+<img src="images/soil4.png" title=""/>
+<p>微生物可以通过多种机制改变土壤水力学特性，包括分泌能够直接改变土壤水动力学的化合物，例如增加土壤的水保持能力和减少水的渗透性。此外，微生物还可以改变土壤中的水分分布和运动，促进水分在土壤中的传输。具体来说，真菌和菌根真菌在某些条件下能够增加根部对水分的吸收，通过菌丝帮助水分在植物之间的传输，并改变土壤剖面中的水分分布。这些对土壤水分的影响可以在一定程度上减轻干旱对植物生产力的影响。需要注意的是，非菌根微生物对土壤水分在土壤中的运输的贡献尚未得到充分研究，还需要进一步的研究来了解它们在此过程中的作用。</p>
+<h3 id="土壤微生物的生态后果">土壤微生物的生态后果</h3>
+<p><strong>微生物介导的土壤性质改变产生生态反馈</strong></p>
+<p>微生物通过介导土壤性质的改变，对生态系统产生生态反馈的方式有多种。首先，微生物可以通过改变土壤中的有机物和营养物质的可利用性，影响其他生物的生存和繁殖。例如，一些微生物可以分解有机物质，释放出营养物质，从而促进植物生长。其次，微生物通过氧化还原作用，可以改变土壤的化学性质，例如通过氧化反应将有机物质氧化为二氧化碳和水，从而改变土壤的酸碱性和氧含量。最后，微生物通过分解岩石和矿物，进行微生物风化作用，可以改变土壤中的矿物组成和结构，从而改变土壤的物理性质。这些微生物介导的土壤性质的改变可以对其他生物产生直接或间接的选择压力，并导致生态系统中不同生物种群的演化响应。因此，微生物的介导作用在生态学和进化生物学研究中具有重要意义。</p>
+<p><strong>间接正反馈回路和负反馈回路</strong></p>
+<p>在土壤中生活的生物形成了多样且复杂的群落，存在着多种互动作用。因此，一些群落成员通过壮大或改变当地环境条件来改变其他生物的适应性。微生物的生态位构建也可以转化为与受影响的物种竞争或合作的适应性变化。</p>
+<p>已有研究报道了由于微生物介导的环境条件转变而导致的微生物互作变化引起的间接反馈回路在土壤聚集体中的存在。例如，当氧气扩散受限时，聚集体内由于微生物呼吸引起的从氧化到缺氧条件的转变，会给能够利用氧化态氮作为替代电子受体的细菌提供竞争优势，并导致脱氮活性增加。同样，研究人员已经表明通过操纵氧气浓度以及减少一株假单胞菌菌株改变其修改氧气环境的能力可以改变适应性辐射动力学，从而为微生物通过生态位构建进化提供了实验证据。</p>
+<p>由于真菌通常被认为对于干旱不那么敏感，因此真菌产生的减少土壤水分渗透的疏水化合物可能使其相对于细菌具有优势。许多土壤微生物通过产生铁载体来影响金属生物可用性，这些铁载体是一种能够螯合固相三价铁的复杂有机分子，从而使铁溶解并通过铁载体受体吸收。因此，通过铁载体产生的土壤铁的隔离通过使铁对竞争者不可用来提供适应性优势。相反，一些铁载体-铁络合物可以被“作弊者”侧生物吸收，这些作弊者通过寻找并利用他人产生的铁载体而不产生自己的铁载体，因此能够胜过非独占铁载体产生者。</p>
+<h3 id="改变土地利用和气候">改变土地利用和气候</h3>
+<p><strong>土地管理实践对于微生物介导的土壤性质变化的重要性</strong></p>
+<p>土地管理实践的影响是通过微生物群落的改变间接地影响土壤性质的，现有研究方法仍难以从变化的土壤生物群落中区分变化的土壤性质。例如，耕作和翻耕等土地管理实践会对土壤中的真菌纤维网络和细菌外多糖的产生产生不利影响，从而导致土壤团聚稳定性降低。因此，了解微生物对土壤性质的影响对于土地管理和处理全球性土地问题至关重要。整体而言，土地管理实践对微生物介导的土壤性质变化具有重要性，对保护和恢复土壤健康以及应对其他环境挑战都具有潜在应用价值。</p>
+<p><strong>利用微生物群落应对土壤威胁和全球变化</strong></p>
+<p>文章还提到了利用微生物群落来应对土壤威胁和全球变化的多种方法。例如，通过微生物诱导钙化作用可以减少有机质和富含营养的表层土壤层因侵蚀而流失。此外，微生物也可以降解污染物，如农药和重金属，或通过细菌的解和碳酸盐共沉淀来清除土壤污染物。微生物还参与养分循环，并可以通过微生物侵蚀来提高土壤肥力。然而，利用微生物群落来处理土壤威胁和全球变化仍面临一些挑战，如大规模生产和应用微生物接种剂，以及对土壤本土微生物群落可能产生的意外后果的担忧。</p>
+<p>综上所述，了解微生物对土壤性质的影响以及如何利用微生物群落来应对土壤威胁和全球变化的方式具有重要意义。目前，微生物接种和操纵土壤微生物群落是一个新兴的研究领域，需要更深入的研究来揭示微生物对土壤性质的调节机制，并开发出更有效的方法来保护和恢复土壤。</p>
+<h3 id="总结">总结</h3>
+<p>总的来说，该综述强调了土壤微生物和土壤性质之间的相互作用的复杂性，以及这些相互作用的生态学意义。未来的研究应该集合土壤科学、生态学、生物地球化学、进化学和微生物学等多学科，通过综合研究来推进该领域的发展。此外，需要更多的实验研究来直接操纵微生物群落，以进一步了解微生物介导的土壤性质变化的功能作用。通过利用微生物的应用对土壤进行定向改造是一项新兴的研究领域，需要更深入地理解微生物介导的土壤性质变化如何应对土壤健康和其他环境挑战。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/soil/">Soil</a>
+        
+            <a href="/tags/microbiome/">Microbiome</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/lignocellulose/">
+        
+        
+            <div class="article-image">
+                <img src="/p/lignocellulose/images/fig2.59af298d5f9d6988af95b9c999b78bc6_hu_4319374f044a70ec.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 功能基因探索：木质纤维素（lignocellulose）降解"
+                        data-key="lignocellulose" 
+                        data-hash="md5-Wa8pjV&#43;daYivlbnJmbeLxg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">功能基因探索：木质纤维素（lignocellulose）降解</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/acid/">
+        
+        
+            <div class="article-image">
+                <img src="/p/acid/images/fig1.de95313758fafea536f71fc59ed49352_hu_ce6b739f5be49f54.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 微生物的耐酸机制研究"
+                        data-key="acid" 
+                        data-hash="md5-3pUxN1j6/qU29x/FntSTUg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">微生物的耐酸机制研究</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/global-arg/">
+        
+        
+            <div class="article-image">
+                <img src="/p/global-arg/images/global1.76903c71775de5690292660a4936b869_hu_a39006653f9d1429.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 全球尺度的抗生素耐药基因（ARG）研究"
+                        data-key="global-arg" 
+                        data-hash="md5-dpA8cXdd5WkCkmYKSTa4aQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">全球尺度的抗生素耐药基因（ARG）研究</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/giant-virus-res/">
+        
+        
+            <div class="article-image">
+                <img src="/p/giant-virus-res/images/gvmags2.a3ac8242b44f18b05f2bba7c449dda8c_hu_a831f89e1165abe9.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 一些基于宏基因组的巨型病毒研究"
+                        data-key="giant-virus-res" 
+                        data-hash="md5-o6yCQrRPGLBfK7p8RJ3ajA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">一些基于宏基因组的巨型病毒研究</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/giant-virus/">
+        
+        
+            <div class="article-image">
+                <img src="/p/giant-virus/images/gv2.73515dbbbf9bea756beb1dc235f3c58f_hu_628db13019d7d2b1.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 巨型病毒(Giant virus)生物学和多样性研究"
+                        data-key="giant-virus" 
+                        data-hash="md5-c1Fdu7&#43;b6nVr6x3CNfPFjw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">巨型病毒(Giant virus)生物学和多样性研究</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

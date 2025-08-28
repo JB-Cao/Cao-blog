@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='antiSMASH是一个用于识别和分析微生物中生物合成基因簇（BGCs）的工具。本文介绍了antiSMASH的使用方法和分析流程。'>
+<title>使用antiSMASH数据库及软件分析微生物组</title>
+
+<link rel='canonical' href='/p/antismash/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='使用antiSMASH数据库及软件分析微生物组'>
+<meta property='og:description' content='antiSMASH是一个用于识别和分析微生物中生物合成基因簇（BGCs）的工具。本文介绍了antiSMASH的使用方法和分析流程。'>
+<meta property='og:url' content='/p/antismash/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='BGCs' /><meta property='article:tag' content='microbiome' /><meta property='article:published_time' content='2024-05-07T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-05-07T00:00:00&#43;00:00'/><meta property='og:image' content='/p/antismash/images/clusterrules.png' />
+<meta name="twitter:title" content="使用antiSMASH数据库及软件分析微生物组">
+<meta name="twitter:description" content="antiSMASH是一个用于识别和分析微生物中生物合成基因簇（BGCs）的工具。本文介绍了antiSMASH的使用方法和分析流程。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/antismash/images/clusterrules.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#网页版">网页版</a>
+      <ol>
+        <li><a href="#注册antismash作业">注册antiSMASH作业</a></li>
+        <li><a href="#antismash-输入数据">antiSMASH 输入数据</a></li>
+        <li><a href="#antismash-默认和额外功能">antiSMASH 默认和额外功能</a></li>
+        <li><a href="#提交antismash作业">提交antiSMASH作业</a></li>
+      </ol>
+    </li>
+    <li><a href="#本地版">本地版</a>
+      <ol>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#运行参数">运行参数</a></li>
+        <li><a href="#运行示例">运行示例</a></li>
+      </ol>
+    </li>
+    <li><a href="#结果解读">结果解读</a>
+      <ol>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#result">Result</a></li>
+        <li><a href="#region概念">Region概念</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/antismash/">
+                <img src="/p/antismash/images/clusterrules_hu_b5fe14eed4de963.png"
+                        srcset="/p/antismash/images/clusterrules_hu_b5fe14eed4de963.png 800w, /p/antismash/images/clusterrules_hu_25b358098bb55641.png 1600w"
+                        width="800" 
+                        height="346" 
+                        loading="lazy"
+                        alt="Featured image of post 使用antiSMASH数据库及软件分析微生物组" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/antismash/">使用antiSMASH数据库及软件分析微生物组</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            antiSMASH是一个用于识别和分析微生物中生物合成基因簇（BGCs）的工具。本文介绍了antiSMASH的使用方法和分析流程。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 07, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>上次简要介绍过了<a class="link" href="../bgcs" >微生物组中生物合成基因簇（BGCs）分析</a>，这次具体讲解使用antiSMASH数据库及软件分析的流程。</p>
+<p>antiSMASH（antibiotics &amp; Secondary Metabolite Analysis Shell）是一个用于识别和分析微生物中生物合成基因簇（BGCs）的工具。BGCs是一组编码生物合成途径的基因，这些途径用于合成生物活性化合物，如抗生素、抗肿瘤药物等。通过分析BGCs，可以帮助研究者发现新的生物活性化合物，并了解这些化合物的生物合成途径。</p>
+<p>网址：<a class="link" href="https://antismash.secondarymetabolites.org"  target="_blank" rel="noopener"
+    >https://antismash.secondarymetabolites.org</a></p>
+<p>antiSMASH 使用基于规则的方法来识别 SM 生产中涉及的许多不同类型的生物合成途径。对编码非核糖体肽合成酶（non-ribosomal peptide synthetases，NRPS）、I型和II型聚酮合酶（polyketide synthases，PKS）、羊毛肽（lanthipeptides）、套索肽（sactipeptides）、活性肽（sactipeptides）和硫肽（thiopeptides）的BGC进行更深入的分析，针对这些簇特异性分析可以提供更多信息有关所执行的生物合成步骤的信息，从而还可以提供对所产生的化合物的更详细的预测（下图）：</p>
+<img src="images/antismash.png" title=""/>
+<h2 id="网页版">网页版</h2>
+<p>antiSMASH网页版提供细菌、真菌和模式植物三类生物的BGC分析页面。
+细菌和真菌类似，模式植物则差异较大。</p>
+<p>这是 antiSMASH 的最新稳定细菌版本的屏幕截图如下：</p>
+<img src="images/antiSMASHentrypage.png" title=""/>
+<h3 id="注册antismash作业">注册antiSMASH作业</h3>
+<p>如果希望在完成工作后收到电子邮件提醒您可以选择在“通知设置”面板中提供电子邮件地址。一旦顺利完成或不幸发生任何错误，将收到一封电子邮件，其中包含已完成作业的链接。</p>
+<p>如果没有提供电子邮件地址，则应该为作业提交页面的链接添加书签，否则将无法再访问结果。</p>
+<img src="images/notifications.png" title=""/>
+<h3 id="antismash-输入数据">antiSMASH 输入数据</h3>
+<ol>
+<li>有注释的核苷酸序列</li>
+</ol>
+<p>antiSMASH 的理想输入是 Genbank 格式或 EMBL 格式的带注释的核苷酸文件。可以手动上传本地 GenBank/EMBL 文件，也可以直接输入序列的 GenBank/RefSeq 登录号，以便 antiSMASH 上传。</p>
+<p>可以在“数据输入”面板中切换该选项，其中默认为accession number，antiSMASH 将尝试直接从 NCBI 下载数据。</p>
+<img src="images/datatype.png" title=""/>
+2. 无注释的核苷酸序列
+<ul>
+<li>
+<p>如果上传的序列没有可用的基因注释，建议通过 RAST 等注释管道处理序列，以获得具有高质量注释的 GBK/EMBL 文件。</p>
+</li>
+<li>
+<p>或者可以提供包含单个序列的 FASTA 文件，antiSMASH 将使用 Prodigal 生成初步注释，并使用注释结果来运行其余的分析。</p>
+</li>
+<li>
+<p>或者可以提供包含单个序列的 FASTA 文件和 GFF3 格式的基因注释。</p>
+</li>
+</ul>
+<h3 id="antismash-默认和额外功能">antiSMASH 默认和额外功能</h3>
+<p>在按下提交按钮之前，您必须指出您想要运行哪些 antiSMASH 功能。</p>
+<p><strong>默认情况下，antiSMASH 将运行以下功能：</strong></p>
+<img src="images/parameters.png" title=""/>
+<ul>
+<li>KnownClusterBlast 分析：根据 MIBiG 存储库搜索已识别的集群。 MIBiG 是一个手工策划的生物合成基因簇数据集合，这些数据已经过实验表征。</li>
+<li>Subcluster Blast 分析：根据数据库搜索识别出的簇，该数据库包含参与常见次级代谢产物构建块（例如非蛋白氨基酸的生物合成）生物合成的操纵子。</li>
+</ul>
+<p>以下 antiSMASH 功能始终在后台运行：</p>
+<ul>
+<li>smCOG 分析：次级代谢基因家族 (smCOG) 分析尝试使用特定于该家族保守序列区域特征的轮廓隐马尔可夫模型，将检测到的基因簇中的每个基因分配到次级代谢特异性基因家族。换句话说，将簇中的每个基因与参与次级代谢的蛋白质直系同源组簇的数据库进行比较。此外，系统发育树由每个基因以及 smCOG 种子比对的（最多 100 个）序列构建。然后可以使用该信息来提供基因产物的假定功能的注释。 smCOG分析结果可用于基因的功能预测和系统发育分析。</li>
+<li>Active site finder：检测几种高度保守的生物合成酶的活性位点并报告活性位点的变化。</li>
+<li>Detect TTA codons：含有高 GC 的细菌序列（默认情况下 antiSMASH &gt;65%），例如来自链霉菌的细菌序列，含有罕见的亮氨酸密码子“TTA”，作为通过限制/控制 TTA 量进行转录后调节的手段-细胞中的tNRA。
+这种类型的调节常见于次级代谢产物 BGC。此功能将在已识别的 BGC 中注释此类 TTA 密码子。</li>
+</ul>
+<p><strong>额外功能：</strong></p>
+<p>以下三个功能默认关闭，被认为对高级用户有用，或者在发现有趣的生物合成基因簇需要进一步详细分析时有用:</p>
+<ul>
+<li>ClusterBlast分析：根据综合基因簇数据库搜索已识别的簇，并识别相似的簇。这里使用的算法受到 MultiGeneBlast 的启发。它使用检测到的基因簇中的每个氨基酸序列运行 BlastP，作为对来自次级代谢物生物合成基因簇的预测蛋白质序列的大型数据库的查询，并汇集结果以识别与所检测的基因簇最同源的基因簇。</li>
+<li>Cluster Pfam 分析：根据 PFAM 数据库对检测到的 BGC 中编码的每个基因产物进行分析。命中结果在最终的 Genbank/EMBL 文件中进行了注释，分析完成后可以下载这些文件。这些结果不会显示在 antiSMASH HTML 结果页面上，但它们存在于可下载的结果 genbank 文件中。</li>
+<li>Pfam-based GO term annotation：这是用 GO 术语注释来注释上述 Cluster Pfam 分析。请注意，这些结果不会显示在 antiSMASH HTML 结果页面上，但它们存在于可下载的结果 genbank 文件中。</li>
+</ul>
+<h3 id="提交antismash作业">提交antiSMASH作业</h3>
+<p>设置在线 antiSMASH 作业后，点击页面底部的提交，基因簇识别和分析的计算将在antiSMASH服务器上进行。
+当工作完成后，用户会收到一封通知电子邮件。或者转到已添加书签的链接来检查分析是否已完成。</p>
+<h2 id="本地版">本地版</h2>
+<h3 id="安装">安装</h3>
+<p>官方教程：<a class="link" href="https://docs.antismash.secondarymetabolites.org/install/"  target="_blank" rel="noopener"
+    >https://docs.antismash.secondarymetabolites.org/install/</a></p>
+<p>请选择以下四种方式的一种即可！</p>
+<ol>
+<li>Bioconda，依赖项很多，安装很慢</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建环境</span>
+</span></span><span class="line"><span class="cl">conda create -n antismash antismash
+</span></span><span class="line"><span class="cl">conda activate antismash
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载数据库</span>
+</span></span><span class="line"><span class="cl">download-antismash-databases
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 想运行 antiSMASH，只需调用</span>
+</span></span><span class="line"><span class="cl">antismash my_input.gbk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>Docker，有些集群环境无法使用Docker</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir ~/bin 
+</span></span><span class="line"><span class="cl">curl -q https://dl.secondarymetabolites.org/releases/latest/docker-run_antismash-full &gt; ~/bin/run_antismash
+</span></span><span class="line"><span class="cl">chmod a+x ~/bin/run_antismash
+</span></span><span class="line"><span class="cl">run_antismash &lt;input file&gt; &lt;output directory&gt; <span class="o">[</span>antismash options<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>Manual, 大部分没有root权限用不了</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo apt-get update
+</span></span><span class="line"><span class="cl">sudo apt-get install -y apt-transport-https
+</span></span><span class="line"><span class="cl">sudo wget http://dl.secondarymetabolites.org/antismash-stretch.list -O /etc/apt/sources.list.d/antismash.list
+</span></span><span class="line"><span class="cl">sudo wget -q -O- http://dl.secondarymetabolites.org/antismash.asc <span class="p">|</span> sudo apt-key add -
+</span></span><span class="line"><span class="cl">sudo apt-get update
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">sudo apt-get install hmmer2 hmmer diamond-aligner fasttree prodigal ncbi-blast+ muscle glimmerhmm
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>半手动安装</li>
+</ol>
+<p>如果可以一次性bioconda安装成功那便是极好的，但我在安装过程中遇到了不少问题，最后参考<a class="link" href="https://github.com/BioGavin/wlab_antismash"  target="_blank" rel="noopener"
+    >https://github.com/BioGavin/wlab_antismash</a>提供的方法比较顺利地成功了：</p>
+<p>首先下载该github仓库下的文件（不同版本的antiSMASH）</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda create -n antismash_5.2.0 <span class="nv">python</span><span class="o">=</span>3.8  <span class="c1"># 创建环境</span>
+</span></span><span class="line"><span class="cl">conda activate antismash_5.2.0  <span class="c1">#激活环境</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将antismash_5.2.0/bin 文件夹中的两个脚本文件（Unix可执行文件）放置到 ~/miniconda3/envs/antismash_5.2.0/bin/ 目录下</span>
+</span></span><span class="line"><span class="cl">cp antismash_5.2.0/bin/* ~/miniconda3/envs/antismash_5.2.0/bin/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将目标版本5.2.0的 antismash 包文件放置到 ~/miniconda3/envs/antismash_5.2.0/lib/python3.8/site-packages/ 目录下</span>
+</span></span><span class="line"><span class="cl">cp -r antismash_5.2.0/antismash ~/miniconda3/envs/antismash_5.2.0/lib/python3.8/site-packages/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 根据环境配置文件安装依赖</span>
+</span></span><span class="line"><span class="cl">conda env update --file antismash_5.2.0/antismash.yaml
+</span></span><span class="line"><span class="cl">pip install -r antismash_5.2.0/requirements.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果上述步骤顺利，此时可以运行成功</span>
+</span></span><span class="line"><span class="cl">antismash -h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进一步检查</span>
+</span></span><span class="line"><span class="cl">antismash --check-prereqs
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载数据库速度较慢，放后台慢慢下载，我花了4小时</span>
+</span></span><span class="line"><span class="cl">nohup download-antismash-databases <span class="p">&amp;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="运行参数">运行参数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ antismash -h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">########### antiSMASH 5.2.0 #############</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">用法: antismash <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>options ..<span class="o">]</span> sequence
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">参数:
+</span></span><span class="line"><span class="cl">  SEQUENCE  包含DNA序列的GenBank/EMBL/FASTA文件。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--------
+</span></span><span class="line"><span class="cl">选项
+</span></span><span class="line"><span class="cl">--------
+</span></span><span class="line"><span class="cl">-h, --help              显示此帮助文本。
+</span></span><span class="line"><span class="cl">--help-showall          在此帮助文本上显示所有参数的完整列表。
+</span></span><span class="line"><span class="cl">-c CPUS, --cpus CPUS    并行使用的CPU数量。 <span class="o">(</span>默认值: 64<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">基本分析选项:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  --taxon <span class="o">{</span>bacteria,fungi<span class="o">}</span>
+</span></span><span class="line"><span class="cl">                        输入序列的分类学分类。 <span class="o">(</span>默认值: bacteria<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">附加分析:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  --fullhmmer           运行全基因组HMMer分析。
+</span></span><span class="line"><span class="cl">  --cassis              基于模体的SM基因簇区域预测。
+</span></span><span class="line"><span class="cl">  --cf-borders-only     仅注释现有簇的边界。
+</span></span><span class="line"><span class="cl">  --cf-create-clusters  查找额外的簇。
+</span></span><span class="line"><span class="cl">  --clusterhmmer        运行基于簇的HMMer分析。
+</span></span><span class="line"><span class="cl">  --smcog-trees         生成次级代谢物簇正交基因组的系统发育树。
+</span></span><span class="line"><span class="cl">  --tta-threshold TTA_THRESHOLD
+</span></span><span class="line"><span class="cl">                        注释TTA密码子的最低GC含量 <span class="o">(</span>默认值: 0.65<span class="o">)</span>。
+</span></span><span class="line"><span class="cl">  --cb-general          将识别的簇与antiSMASH预测的簇数据库进行比较。
+</span></span><span class="line"><span class="cl">  --cb-subclusters      将识别的簇与负责合成前体的已知子簇进行比较。
+</span></span><span class="line"><span class="cl">  --cb-knownclusters    将识别的簇与MIBiG数据库中已知的基因簇进行比较。
+</span></span><span class="line"><span class="cl">  --asf                 运行活性位点查找分析。
+</span></span><span class="line"><span class="cl">  --pfam2go             运行Pfam到基因本体映射模块。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">输出选项:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  --output-dir OUTPUT_DIR
+</span></span><span class="line"><span class="cl">                        写入结果的目录。
+</span></span><span class="line"><span class="cl">  --output-basename OUTPUT_BASENAME
+</span></span><span class="line"><span class="cl">                        用于输出目录中输出文件的基本文件名。
+</span></span><span class="line"><span class="cl">  --html-title HTML_TITLE
+</span></span><span class="line"><span class="cl">                        HTML输出页面的自定义标题（默认为输入文件名）。
+</span></span><span class="line"><span class="cl">  --html-description HTML_DESCRIPTION
+</span></span><span class="line"><span class="cl">                        要添加到输出的自定义描述。
+</span></span><span class="line"><span class="cl">  --html-start-compact  默认情况下使用紧凑视图的概览页面。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">基因查找选项 <span class="o">(</span>当ORFs已注释时被忽略<span class="o">)</span>:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  --genefinding-tool <span class="o">{</span>glimmerhmm,prodigal,prodigal-m,none,error<span class="o">}</span>
+</span></span><span class="line"><span class="cl">                        指定用于基因查找的算法: GlimmerHMM、Prodigal、Prodigal Metagenomic/Anonymous模式或无。<span class="s1">&#39;error&#39;</span>选项将在尝试基因查找时引发错误。<span class="s1">&#39;none&#39;</span>选项不会运行基因查找。 <span class="o">(</span>默认值: error<span class="o">)</span>。
+</span></span><span class="line"><span class="cl">  --genefinding-gff3 GFF3_FILE
+</span></span><span class="line"><span class="cl">                        指定要从中提取特征的GFF3文件。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="运行示例">运行示例</h3>
+<ul>
+<li>默认参数运行</li>
+</ul>
+<p>默认的 antiSMASH 将运行核心检测模块和那些运行速度相当快的分析。</p>
+<p>更耗时的选项（例如 ClusterBlast 分析、Pfam 注释、smCoG 树生成等）将不会运行。
+在四核机器上，跑完天蓝色链霉菌的基因组大约需要两分钟。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 本地运行</span>
+</span></span><span class="line"><span class="cl">antismash streptomyces_coelicolor.gbk
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>minimal模式运行</li>
+</ul>
+<p>使用 <code>--minimal</code> 参数运行 antiSMASH 将仅运行核心检测模块，而不会运行其他模块。</p>
+<p>如果需要，可以使用其匹配选项显式重新启用由此禁用的任何模块（例如 HTML 输出）（参阅 <code>--help-showall</code>）。</p>
+<p>在四核机器上，以minimal模式运行天蓝色链霉菌基因组大约需要一分钟。
+一般来建议在不加 <code>--minimal</code>，因为默认运行只需额外一分钟的运行时间即可生成更有用的结果。</p>
+<ul>
+<li>处理MAG</li>
+</ul>
+<p>一般分箱得到的MAG是没有功能注释的纯fasta文件，可以使用 <code>--genefinding-tool prodigal</code> 参数运行 prodigal，这样可以生成初步注释。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">antismash test_MAG.fa --genefinding-tool prodigal
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>重用上次运行的结果</li>
+</ul>
+<p>先前由 antiSMASH 生成的 JSON 输出文件可以重复使用以重新生成其他输出文件。通过添加选项，可以为新运行启用其他分析。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">antismash --reuse-results strepomyces_coelicolor.json
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="结果解读">结果解读</h2>
+<h3 id="overview">Overview</h3>
+<img src="images/cluster_overview.png" title=""/>
+<ul>
+<li>页面左上方是antiSMASH版本信息（1）。 antiSMASH 结果之间的直接比较应使用相同版本以保持一致性，因为结果可能会因版本而异。
+页面右上角是可能有用的辅助链接。</li>
+<li><code>Download</code>允许您下载结果的各个部分。</li>
+<li><code>About</code>antiSMASH 信息（包括出版物）的链接。</li>
+<li><code>Help</code>指向这些文档页面的帮助链接。</li>
+<li>``Contact`链接到一个包含表单的页面，用于向 antiSMASH 开发人员发送反馈或问题。</li>
+<li>顶部栏下方是<code>Region</code>按钮 (2)。这些按钮在所有 antiSMASH HTML 页面上都可见，并且可用于在区域之间快速跳转。如果正在查看某个区域，该区域的匹配按钮将突出显示。区域按钮的形式为 X.Y.例如，5.7 将是第五条记录中的第七个区域。区域按钮按预测的次要代谢物类型进行颜色编码。单击<code>Overview</code>按钮将使您返回此页面。</li>
+<li>这些<code>Region</code>按钮下方是每条记录的摘要，每个按钮均以输入文件中给出的记录名称 (3) 开头。</li>
+<li>顶部是一个图像 (4)，显示区域在记录中的位置。</li>
+<li>图像下是一个表，其中包含记录中找到的每个区域的摘要，每行 (5) 具有以下字段：
+<ul>
+<li>Region：Region编号</li>
+<li>Type：antiSMASH 检测到的产品类型（单击类型将带您进入这些帮助页面中的描述）</li>
+<li>From、To：区域的位置（以核苷酸为单位）</li>
+<li>Most similar known cluster：MiBIG 数据库中最接近的化合物（单击此按钮将带您进入 MiBIG 条目）及其类型（例如 t1pks+t3pks）</li>
+<li>Similarity：最接近的已知化合物中对当前区域内的基因具有显着 BLAST 命中的基因的百分比</li>
+</ul>
+</li>
+</ul>
+<p><em>仅当使用 KnownClusterBlast 选项运行 antiSMASH 时，才会显示包含与 MiBIG 数据库比较的最后两列。</em></p>
+<h3 id="result">Result</h3>
+<img src="images/region_display.png" title=""/>
+<p>在上图“基因簇描述”中，给出了有关检测到的每个基因簇的信息。</p>
+<p>上面一行显示了基因簇的生物合成类型和位置。在此标题行下方，概述了检测到的基因簇中存在的所有基因。基因簇的边界是使用每个基因簇类型指定的不同贪婪选择的截止值来估计的。</p>
+<p>基因按预测功能进行颜色编码。预测的生物合成基因为红色，运输相关基因为蓝色，调节相关基因为绿色。这些预测取决于 smCOG 功能，如果您选择不运行 smCOG 预测，这些预测将会丢失。</p>
+<p>将鼠标悬停在某个基因上，基因名称会显示在该基因上方。</p>
+<img src="images/gene_details.png" title="" width="70%"/>
+<p>单击基因将提供有关该基因的更多信息：标识符、现有产物注释、基因功能（包括 smCOG 或次级代谢基因家族）、其位置以及特定于该基因的交联。</p>
+<h3 id="region概念">Region概念</h3>
+<p>目前还没有好的方法可以纯粹根据提交的序列数据准确预测基因簇边界。因此，antiSMASH 预测的是输入基因组上的感兴趣&quot;Region&quot;。</p>
+<p><em>antiSMASH 5 及更高版本中的 Region 对应于 antiSMASH 4 及更早版本中的 gene cluster 注释。</em></p>
+<p>Region是如何定义的？</p>
+<ul>
+<li>第一步，根据高度保守的酶 HMM 图谱（核心酶）数据库搜索所分析序列的所有基因产物，这些图谱指示特定的 BGC 类型。</li>
+<li>第二步，采用预定义的聚类规则来定义在该区域中编码的各个原聚类。它们构成了一个核心，并由其邻近区域延伸，这些邻近区域由核心上游和下游编码的基因组成。</li>
+</ul>
+<p>以下是检测 I 型 PKS 的原集群的规则示例：</p>
+<img src="images/clusterrules.png" title=""/>
+<p>当 antiSMASH 发现编码具有 PKS_AT 结构域和各种亚型的 PKS_KS 结构域的蛋白质的基因时，就会在该区域内生成新的“I 型 PKS 原簇”特征；</p>
+<p>该特征包括触发规则的核心基因产物（即 PKS 编码基因），并将核心基因的左右邻域向左和右扩展 20 kb（由 EXTENT 参数定义）</p>
+<p>不同簇类型的值是根据经验确定的，通常倾向于过度预测，即在分配原簇特征后（注意：单个区域内可以有多个原簇特征），它们是检查重叠（由 CUTOFF 参数定义）并分为几种类型的候选簇，以反映许多 BGC 实际上包含几类生物合成机制的观察结果。</p>
+<p>例如万古霉素或巴希霉素（如上图所示）等糖肽是通过 NRPS 合成的。还包含 III 型 PKS 作为前体途径。</p>
+<img src="images/bal-cluster.png" title=""/>
+因此，显示的区域包含 NRPS 原簇（绿色条）和 T3PKS 原簇（黄色条）。当它们的邻域重叠时，它们被分配到候选簇。
+<img src="images/regionLogic.png" title="" width="70%"/>
+<ul>
+<li>化学杂化</li>
+</ul>
+<p>这些候选簇包含共享簇定义 CDS/基因/基因产物的原簇。它们还将包括该共享范围内不共享 CDS 的原星团，前提是它们完全包含在超星团边界内。例如上图中的情况A。
+在示例中，CDS 1 和 2 定义类型 A 的原簇，CDS 2 和 4 定义类型 B 的原簇。由于两个原簇共享定义这些原簇的 CDS，因此创建了化学混合候选簇。如果 CDS 4 和一些后来的 CDS 也对第三种原簇类型做出了贡献，那么它将被合并到同一个候选簇中。如果 CDS 3 定义了另一个未超出 CDS 1 或 4 的原簇，那么假设新的原簇与其他原簇相关，那么该新的原簇也将包含在化学混合中。</p>
+<ul>
+<li>交错</li>
+</ul>
+<p>这些候选簇包含不共享簇定义 CDS 特征的原簇，但它们的核心位置重叠，例如上图中的情况 B。</p>
+<ul>
+<li>邻接</li>
+</ul>
+<p>这些候选簇是混合候选簇的最弱形式。它们包含与化学变体或交错变体都不匹配的原簇，但在其邻域中传递重叠。 “相邻候选簇”中的每个原簇也将属于其他类型的候选簇之一，包括下面描述的单一类型，除非它是单个候选簇并且具有相邻候选簇的精确坐标的情况。</p>
+<ul>
+<li>Single</li>
+</ul>
+<p>这种候选簇存在于仅包含一个原簇的地方，例如情况D。它的存在只是为了内部一致性。对于包含在化学杂合体或交错候选簇中的原簇来说，将不存在单个候选簇，但对于相邻候选簇内的每个原簇来说，将存在单个候选簇。例如，情况 C 中的两个原簇都将有一个独立的单个候选簇以及邻近的候选簇。</p>
+<p><strong>尝试将微生物组项目中的MAGs跑完antiSMASH并进行下游的统计分析和可视化，下次再分享</strong></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/bgcs/">BGCs</a>
+        
+            <a href="/tags/microbiome/">Microbiome</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/bgcs/">
+        
+        
+            <div class="article-image">
+                <img src="/p/bgcs/images/BGC_overview.4db78f9b5a67a0da3a6a63dbb6ddb3c8_hu_2fad323ceee85f54.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 微生物组的生物合成基因簇（BGCs）分析"
+                        data-key="bgcs" 
+                        data-hash="md5-TbePm1pnoNo6amPbtt2zyA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">微生物组的生物合成基因簇（BGCs）分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-4/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-4/images/1-2.7f04df50146143db7f38e3c60bbebaa9_hu_4ebeb6bc608a4e31.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（4）"
+                        data-key="25-nature-4" 
+                        data-hash="md5-fwTfUBRhQ9t/OOPGC766qQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（4）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-3/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-3/images/fig1.20d52f738dfd506b0754bda8d4b0ead0_hu_d6f6d5c8a568f26d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（3）"
+                        data-key="25-nature-3" 
+                        data-hash="md5-INUvc439UGsHVL2o1LDq0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（3）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-2/images/2-1-2.f13dbba185acaee28c931cc543f77916_hu_94453c680a4ffc60.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（2）"
+                        data-key="25-nature-2" 
+                        data-hash="md5-8T27oYWsruKMkxzFQ/d5Fg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（2）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature/images/1-1-1.7ec2e930cb5bff1118bfef6c33cf66bd_hu_e11798ac155eaa9a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（1）"
+                        data-key="25-nature" 
+                        data-hash="md5-fsLpMMtb/xEYv&#43;9sM89mvQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（1）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

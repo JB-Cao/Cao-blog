@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='群体遗传学基础学习笔记。'>
+<title>群体遗传学基础学习</title>
+
+<link rel='canonical' href='/p/pop-genetic/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='群体遗传学基础学习'>
+<meta property='og:description' content='群体遗传学基础学习笔记。'>
+<meta property='og:url' content='/p/pop-genetic/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='evolution' /><meta property='article:tag' content='genetics' /><meta property='article:published_time' content='2024-08-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-08-29T00:00:00&#43;00:00'/><meta property='og:image' content='/p/pop-genetic/images/hw-law.png' />
+<meta name="twitter:title" content="群体遗传学基础学习">
+<meta name="twitter:description" content="群体遗传学基础学习笔记。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/pop-genetic/images/hw-law.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#concepts">Concepts</a>
+      <ol>
+        <li><a href="#hardy-weinberg定律">Hardy-Weinberg定律</a></li>
+        <li><a href="#vcf">VCF</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/pop-genetic/">
+                <img src="/p/pop-genetic/images/hw-law_hu_cf83ae44248f3e30.png"
+                        srcset="/p/pop-genetic/images/hw-law_hu_cf83ae44248f3e30.png 800w, /p/pop-genetic/images/hw-law_hu_9304bc2df7d46f8f.png 1600w"
+                        width="800" 
+                        height="646" 
+                        loading="lazy"
+                        alt="Featured image of post 群体遗传学基础学习" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/microbial-ecology/" style="background-color: #fb8072; color: #ffffff;">
+                microbial-ecology
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/pop-genetic/">群体遗传学基础学习</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            群体遗传学基础学习笔记。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 29, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>群体遗传学（Population Genetics）是研究在群体水平上基因频率的变化及其影响因素的学科。它结合了遗传学、进化生物学和统计学的方法来分析基因在群体中的分布和变化。</p>
+<p><strong>群体</strong>（Population）指的是一组同一物种的个体，它们生活在同一地理区域内，并能够相互交配和繁殖。这个群体的个体共享一个共同的基因库（gene pool），即所有个体的基因及其等位基因的集合。</p>
+<p><strong>群体</strong>有几个特征：</p>
+<ol>
+<li>
+<p><strong>物种一致性</strong>：群体中的所有个体属于同一个物种，意味着它们在生物学上能够相互交配并产生具有生殖能力的后代。</p>
+</li>
+<li>
+<p><strong>地理相对性</strong>：群体通常指在特定地理区域内的个体集合，虽然不同群体之间可能会有基因交流（如迁移），但通常被认为是相对隔离的。</p>
+</li>
+<li>
+<p><strong>基因库</strong>：群体内的个体共享一个基因库，这意味着在群体内部进行的所有交配，都会影响该群体的基因频率和遗传结构。</p>
+</li>
+<li>
+<p><strong>交配能力</strong>：群体中的个体能够进行随机或非随机的交配，产生后代，从而使得群体的基因频率在世代之间发生变化。</p>
+</li>
+</ol>
+<p>在群体遗传学研究中，群体的概念是基础，因为研究的主要目标是理解在不同条件下（如自然选择、基因漂变、基因流动、突变等），一个群体的基因频率和基因型频率是如何变化的。</p>
+<p>群体遗传学的研究帮助科学家理解进化过程、物种形成、群体间的遗传差异及其对环境变化的适应能力等。</p>
+<h2 id="concepts">Concepts</h2>
+<p>以下是群体遗传学中一些相关概念的简要介绍：</p>
+<ol>
+<li>
+<p><strong>Locus（基因座）</strong>：指基因或DNA片段在染色体上的特定位置。基因座可以是一个特定基因的位置，也可以是任意DNA序列的位置。</p>
+</li>
+<li>
+<p><strong>Variation/Mutation（变异/突变）</strong>：指基因或DNA序列中发生的变化。突变是引起变异的过程，是基因组中遗传信息的永久性改变。</p>
+</li>
+<li>
+<p><strong>Indel（插入/缺失）</strong>：指DNA序列中发生的短片段插入或缺失变异。Indel可导致基因功能的变化，尤其是在编码区发生时。</p>
+</li>
+<li>
+<p><strong>SNP（单核苷酸多态性）</strong>：指基因组中单个核苷酸的位置上的变异，是一种常见的遗传变异形式。</p>
+</li>
+<li>
+<p><strong>Alleles（等位基因）</strong>：指位于同一基因座的不同版本或变体。一个基因座可以有多个等位基因。</p>
+</li>
+<li>
+<p><strong>SV（结构变异，Structural Variation）</strong>：指基因组中涉及大片段DNA的变异，通常定义为长度大于50个碱基对的变异。SV包括多种类型的变异，如：</p>
+<ul>
+<li><strong>缺失（Deletion）</strong>：基因组中一段DNA片段的丢失。</li>
+<li><strong>重复（Duplication）</strong>：一段DNA片段的重复。</li>
+<li><strong>倒位（Inversion）</strong>：一段DNA片段在基因组中的方向发生了反转。</li>
+<li><strong>易位（Translocation）</strong>：一段DNA片段从一个位置移动到另一个位置。</li>
+<li><strong>插入（Insertion）</strong>：一段新的DNA片段插入到基因组中。</li>
+</ul>
+</li>
+<li>
+<p><strong>CNV（拷贝数变异，Copy Number Variation）</strong>：属于结构变异的一种，指基因组中某段DNA序列的拷贝数发生了变化，导致这段序列的拷贝数多于或少于通常的两个拷贝。CNV可以包括：</p>
+<ul>
+<li><strong>基因扩增（Gene Amplification）</strong>：某段DNA的拷贝数增加。</li>
+<li><strong>基因缺失（Gene Deletion）</strong>：某段DNA的拷贝数减少。</li>
+</ul>
+</li>
+<li>
+<p><strong>Haplotypes（单倍型）</strong>：指一组位于同一染色体上的紧密连锁的基因或遗传标记的组合，通常作为一个整体进行遗传。</p>
+</li>
+<li>
+<p><strong>Selection（选择）</strong>：自然选择的过程，通过优先传递适应环境的基因，影响群体中基因频率的变化。</p>
+<ul>
+<li><strong>Positive selection（正选择）</strong>：有利于有益突变的传播和保持。</li>
+<li><strong>Negative selection（负选择）</strong>：排除有害突变，维持群体基因组的稳定性。</li>
+</ul>
+</li>
+<li>
+<p><strong>Genetic drift（基因漂变）</strong>：群体中的等位基因频率由于随机抽样效应而发生的变化，尤其在小群体中更为显著。</p>
+</li>
+<li>
+<p><strong>核苷酸多样性 (π)</strong> ：测量群体中任意两个个体的基因序列之间平均差异的程度。反映了群体的遗传多样性。</p>
+</li>
+<li>
+<p><strong>非同义突变率与同义突变率的比值 (dN/dS)</strong> ： 非同义突变率（dN）是引起氨基酸序列变化的突变率，同义突变率（dS）是不引起氨基酸序列变化的突变率。dN/dS比值用于判断是否存在选择压力。</p>
+<ul>
+<li>dN/dS = 1：指非同义替代和同义替代发生的概率相等，通常表示该基因区域处于中性进化状态，即没有选择压力，仅靠随机突变率演化。</li>
+<li>dN/dS &lt; 1：指非同义替代的发生率低于同义替代，通常表示负选择（或净化选择，purifying selection）。在这种情况下，非同义突变可能对生物体不利或有害，因此被自然选择淘汰。</li>
+<li>dN/dS &gt; 1：指非同义替代的发生率高于同义替代，通常表示正选择（positive selection）。在这种情况下，非同义突变可能带来有利的适应性优势，因此被自然选择保留下来。</li>
+</ul>
+</li>
+<li>
+<p><strong>LD（连锁不平衡，Linkage Disequilibrium）</strong>：指在一个群体中，两个或多个位点上的等位基因频率之间存在统计学上的非随机关联。换句话说，在一个群体中，某些等位基因组合比随机预期的频率出现得更多或更少。</p>
+<ul>
+<li><strong>完全连锁平衡（LD = 0）</strong>：两个等位基因之间的组合是随机的，意味着它们独立遗传。</li>
+<li><strong>完全连锁不平衡（LD = 1）</strong>：两个等位基因总是一起遗传，意味着它们之间存在强烈的关联。</li>
+</ul>
+</li>
+<li>
+<p><strong>Tajima&rsquo;s D</strong>：是一个统计量，用于检测群体中核苷酸多样性和序列分化的异常，进而判断是否存在自然选择或其他进化力（如人口扩张、收缩等）。</p>
+<ul>
+<li><strong>Tajima&rsquo;s D = 0</strong>：表示核苷酸多样性和序列分化之间的一致性，通常意味着该群体处于中性进化状态，即没有自然选择作用。</li>
+<li><strong>Tajima&rsquo;s D &gt; 0</strong>：表示观测到的核苷酸多样性较高，序列间的差异较少，可能表明存在<strong>平衡选择</strong>或<strong>群体结构</strong>（如两个或多个亚群体的混合）。</li>
+<li><strong>Tajima&rsquo;s D &lt; 0</strong>：表示观测到的核苷酸多样性较低，序列间的差异较大，可能表明存在<strong>正选择</strong>（有利突变的快速扩散）或<strong>人口扩张</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>D&rsquo;（D-系数）</strong>：衡量两个遗传位点间连锁不平衡（LD）程度的指标，取值范围从0到1。D&rsquo; = 1 表示完全连锁，D&rsquo; = 0 表示无连锁。</p>
+</li>
+<li>
+<p><strong>重组率 (1-D&rsquo;)</strong> ： 重组率用于衡量两个位点之间的重组频率。1-D&rsquo;表示在连锁不平衡（LD）中，反映了重组事件的相对频率。</p>
+</li>
+<li>
+<p><strong>Divergence（分歧）</strong>：描述不同种群或物种之间的基因差异程度，反映了进化过程中累积的遗传变化。</p>
+</li>
+<li>
+<p><strong>Molecular clock（分子钟）</strong>：假设特定DNA序列的突变速率恒定，用于估计不同物种或种群间分歧时间的工具。</p>
+</li>
+<li>
+<p><strong>Founder effect（奠基者效应）</strong>：小群体从大群体中分离出来形成新的群体时，因最初几个创始者的基因组成差异而导致的新群体基因频率变化。</p>
+</li>
+<li>
+<p><strong>Bottleneck effect（瓶颈效应）</strong>：指群体经历了急剧的数量减少后，存活个体的基因组成对整个群体基因频率产生显著影响，通常伴随遗传多样性的减少。</p>
+</li>
+</ol>
+<h3 id="hardy-weinberg定律">Hardy-Weinberg定律</h3>
+<img src="images/hw-law.png" title=""/>
+<p><strong>Hardy-Weinberg定律</strong>（Hardy-Weinberg Law），又称为哈迪-温伯格平衡定律，是群体遗传学中的一个基本原则。它描述了在一个理想的随机交配的群体中，等位基因和基因型的频率在世代之间保持恒定的状态。这一定律是由英国数学家G.H. Hardy和德国医生Wilhelm Weinberg在1908年独立提出的。</p>
+<ul>
+<li>Hardy-Weinberg定律的条件</li>
+</ul>
+<p>Hardy-Weinberg定律成立的前提条件是：</p>
+<ol>
+<li><strong>无突变</strong>：没有新的等位基因通过突变加入到群体中。</li>
+<li><strong>无自然选择</strong>：所有基因型的生存和繁殖成功率相等，没有选择压力。</li>
+<li><strong>无限大的群体</strong>：群体的大小足够大，以至于基因频率的变化不受随机基因漂变的影响。</li>
+<li><strong>随机交配</strong>：群体中的个体是随机交配的，没有任何形式的非随机交配（如近亲交配或择偶偏好）。</li>
+<li><strong>无基因流</strong>：没有来自其他群体的基因引入，也没有个体迁出群体。</li>
+</ol>
+<ul>
+<li>Hardy-Weinberg定律的数学表达</li>
+</ul>
+<p>假设在一个二倍体群体中，一个基因座有两个等位基因：A和a。我们定义：</p>
+<ul>
+<li>p：等位基因A的频率（取值范围为0到1）。</li>
+<li>q：等位基因a的频率（取值范围为0到1）。</li>
+</ul>
+<p>根据等位基因频率的定义，有$p + q = 1$。</p>
+<p>根据Hardy-Weinberg定律，基因型频率（AA、Aa和aa）的平衡状态可以用等位基因频率来表示：</p>
+<ul>
+<li><strong>AA的频率</strong>：$p^2$</li>
+<li><strong>Aa的频率</strong>：$2pq$</li>
+<li><strong>aa的频率</strong>：$q^2$</li>
+</ul>
+<p>这些频率之和也等于1：</p>
+<p>$ p^2 + 2pq + q^2 = 1 $</p>
+<ul>
+<li>Hardy-Weinberg平衡的应用</li>
+</ul>
+<ol>
+<li>
+<p><strong>检测选择压力</strong>：通过比较观测到的基因型频率和预期的Hardy-Weinberg平衡频率，可以检测是否存在自然选择或其他进化因素的作用。</p>
+</li>
+<li>
+<p><strong>估算等位基因频率</strong>：利用基因型频率来估算等位基因频率，尤其在研究隐性遗传病的频率时。</p>
+</li>
+<li>
+<p><strong>基因库的稳定性</strong>：在一定条件下，如果一个群体的基因库符合Hardy-Weinberg平衡，则可以认为该群体的基因库在无外部干扰情况下是稳定的。</p>
+</li>
+</ol>
+<ul>
+<li>实际应用中的偏离</li>
+</ul>
+<p>在现实中，许多群体不完全符合Hardy-Weinberg平衡条件，可能因为：</p>
+<ul>
+<li><strong>自然选择</strong>：不同基因型具有不同的适应性。</li>
+<li><strong>小群体效应</strong>：基因漂变在小群体中更为显著。</li>
+<li><strong>非随机交配</strong>：如近亲交配或选择性交配。</li>
+<li><strong>基因流</strong>：来自其他群体的基因引入。</li>
+</ul>
+<p>偏离Hardy-Weinberg平衡可以揭示关于群体演化过程的有价值的信息。</p>
+<h3 id="vcf">VCF</h3>
+<p>VCF（Variant Call Format 是一种用于存储和描述基因组变异（如SNP、插入、缺失等）的文本文件格式。VCF文件广泛用于基因组学研究，尤其是在分析和存储从基因组测序数据中识别出的变异时。</p>
+<p>VCF文件由**头部（Header）<strong>和</strong>数据区（Data section）**两部分组成。</p>
+<ol>
+<li>头部（Header）</li>
+</ol>
+<p>头部部分以“<code>#</code>”开头，包含文件的元信息和描述变异的相关注释。常见的头部信息包括：</p>
+<ul>
+<li>
+<p><strong>文件格式版本</strong>：例如，<code>##fileformat=VCFv4.2</code>。</p>
+</li>
+<li>
+<p><strong>样本信息</strong>：例如，<code>##SAMPLE=&lt;ID=Sample1,Description=&quot;Sample description&quot;&gt;</code>。</p>
+</li>
+<li>
+<p><strong>参考基因组信息</strong>：例如，<code>##reference=ftp://ftp.1000genomes.ebi.ac.uk/...</code>。</p>
+</li>
+<li>
+<p><strong>信息字段的描述</strong>：例如，<code>##INFO=&lt;ID=DP,Number=1,Type=Integer,Description=&quot;Total Depth&quot;&gt;</code>，描述变异的附加信息。</p>
+</li>
+<li>
+<p><strong>格式字段的描述</strong>：例如，<code>##FORMAT=&lt;ID=GT,Number=1,Type=String,Description=&quot;Genotype&quot;&gt;</code>，描述样本格式信息。</p>
+</li>
+</ul>
+<ol start="2">
+<li>数据区（Data section）</li>
+</ol>
+<p>数据区包含实际的变异信息，每行表示一个变异。数据区以一行以“<code>#CHROM</code>”开头的字段名称作为标题行，常见的字段有：</p>
+<ul>
+<li>
+<p><strong>CHROM</strong>：染色体号，表示变异所在的染色体。</p>
+</li>
+<li>
+<p><strong>POS</strong>：位置，表示变异在染色体上的位置（1-based）。</p>
+</li>
+<li>
+<p><strong>ID</strong>：变异的标识符（若无信息则为“<code>.</code>”）。</p>
+</li>
+<li>
+<p><strong>REF</strong>：参考碱基或参考序列，表示参考基因组中该位置的碱基。</p>
+</li>
+<li>
+<p><strong>ALT</strong>：替代碱基或替代序列，表示变异后的碱基或序列。</p>
+</li>
+<li>
+<p><strong>QUAL</strong>：变异的质量得分，通常为Phred质量分数。</p>
+</li>
+<li>
+<p><strong>FILTER</strong>：变异的过滤信息，描述该变异是否通过了特定的质量过滤标准（如“PASS”表示通过）。</p>
+</li>
+<li>
+<p><strong>INFO</strong>：附加信息字段，包含与变异相关的各类注释和统计信息。</p>
+</li>
+<li>
+<p><strong>FORMAT</strong>：样本格式字段，描述以下各列样本数据的格式。</p>
+</li>
+<li>
+<p><strong>样本数据</strong>：每个样本的变异信息，根据FORMAT字段中的描述显示具体数据，如基因型、覆盖度等。</p>
+</li>
+<li>
+<p>例子</p>
+</li>
+</ul>
+<p>下面是一个简单的VCF文件示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">##fileformat=VCFv4.2
+</span></span><span class="line"><span class="cl">##source=Example
+</span></span><span class="line"><span class="cl">#CHROM  POS     ID        REF   ALT   QUAL  FILTER  INFO                  FORMAT     Sample1
+</span></span><span class="line"><span class="cl">1       123456  rs123456  G     A     50    PASS    DP=100;AF=0.5         GT:DP      0/1:35
+</span></span><span class="line"><span class="cl">1       789101  .         T     C,G   99    PASS    DP=200;AF=0.25,0.75   GT:DP:AD   1/2:60:10,20
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在这个例子中：</p>
+<ul>
+<li>
+<p>第一个变异在1号染色体的123456位点，参考碱基是G，替代为A，质量得分50，通过了过滤，附加信息显示总深度（DP）为100，等位基因频率（AF）为0.5，样本1的基因型（GT）是0/1，覆盖度（DP）是35。</p>
+</li>
+<li>
+<p>第二个变异在1号染色体的789101位点，参考碱基是T，替代为C和G（多等位基因变异），质量得分99，通过了过滤，附加信息显示总深度（DP）为200，等位基因频率（AF）分别为0.25和0.75，样本1的基因型（GT）是1/2，覆盖度（DP）是60，等位基因深度（AD）分别为10和20。</p>
+</li>
+<li>
+<p>使用场景</p>
+</li>
+</ul>
+<p>VCF文件主要用于： - 基因组变异分析：存储和分析个体或群体的基因变异。 - 临床基因组学：用于个体的基因组测序数据分析，帮助检测可能的致病突变。 - 进化研究：比较不同物种或个体之间的基因组差异。 - 群体遗传学：研究群体中等位基因的分布和频率。</p>
+<p>VCF格式标准化且易于扩展，适合存储大规模基因组数据，并支持丰富的注释信息，是基因组学研究中的重要工具。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/evolution/">Evolution</a>
+        
+            <a href="/tags/genetics/">Genetics</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/lignocellulose/">
+        
+        
+            <div class="article-image">
+                <img src="/p/lignocellulose/images/fig2.59af298d5f9d6988af95b9c999b78bc6_hu_4319374f044a70ec.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 功能基因探索：木质纤维素（lignocellulose）降解"
+                        data-key="lignocellulose" 
+                        data-hash="md5-Wa8pjV&#43;daYivlbnJmbeLxg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">功能基因探索：木质纤维素（lignocellulose）降解</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/acid/">
+        
+        
+            <div class="article-image">
+                <img src="/p/acid/images/fig1.de95313758fafea536f71fc59ed49352_hu_ce6b739f5be49f54.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 微生物的耐酸机制研究"
+                        data-key="acid" 
+                        data-hash="md5-3pUxN1j6/qU29x/FntSTUg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">微生物的耐酸机制研究</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/global-arg/">
+        
+        
+            <div class="article-image">
+                <img src="/p/global-arg/images/global1.76903c71775de5690292660a4936b869_hu_a39006653f9d1429.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 全球尺度的抗生素耐药基因（ARG）研究"
+                        data-key="global-arg" 
+                        data-hash="md5-dpA8cXdd5WkCkmYKSTa4aQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">全球尺度的抗生素耐药基因（ARG）研究</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/giant-virus-res/">
+        
+        
+            <div class="article-image">
+                <img src="/p/giant-virus-res/images/gvmags2.a3ac8242b44f18b05f2bba7c449dda8c_hu_a831f89e1165abe9.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 一些基于宏基因组的巨型病毒研究"
+                        data-key="giant-virus-res" 
+                        data-hash="md5-o6yCQrRPGLBfK7p8RJ3ajA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">一些基于宏基因组的巨型病毒研究</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/giant-virus/">
+        
+        
+            <div class="article-image">
+                <img src="/p/giant-virus/images/gv2.73515dbbbf9bea756beb1dc235f3c58f_hu_628db13019d7d2b1.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 巨型病毒(Giant virus)生物学和多样性研究"
+                        data-key="giant-virus" 
+                        data-hash="md5-c1Fdu7&#43;b6nVr6x3CNfPFjw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">巨型病毒(Giant virus)生物学和多样性研究</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

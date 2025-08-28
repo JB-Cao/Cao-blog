@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='在数据分析中，有时候面对大量的英文单词描述可能无法快速获得全部信息，需要去进一步查询或翻译。在R里可以调用一些翻译api完成这一步，但api一般会限制调用速度，`pcutils`提供了一种快速翻译的思路。另外，如何在绘图中展示翻译结果需要考虑中文字体的支持。'>
+<title>R快速翻译和绘图中文支持</title>
+
+<link rel='canonical' href='/p/translator/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='R快速翻译和绘图中文支持'>
+<meta property='og:description' content='在数据分析中，有时候面对大量的英文单词描述可能无法快速获得全部信息，需要去进一步查询或翻译。在R里可以调用一些翻译api完成这一步，但api一般会限制调用速度，`pcutils`提供了一种快速翻译的思路。另外，如何在绘图中展示翻译结果需要考虑中文字体的支持。'>
+<meta property='og:url' content='/p/translator/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='工具' /><meta property='article:tag' content='可视化' /><meta property='article:published_time' content='2024-01-16T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-01-16T00:00:00&#43;00:00'/><meta property='og:image' content='/p/translator/images/fanyi.png' />
+<meta name="twitter:title" content="R快速翻译和绘图中文支持">
+<meta name="twitter:description" content="在数据分析中，有时候面对大量的英文单词描述可能无法快速获得全部信息，需要去进一步查询或翻译。在R里可以调用一些翻译api完成这一步，但api一般会限制调用速度，`pcutils`提供了一种快速翻译的思路。另外，如何在绘图中展示翻译结果需要考虑中文字体的支持。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/translator/images/fanyi.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#motivation">Motivation</a>
+      <ol>
+        <li><a href="#fanyi">fanyi</a></li>
+      </ol>
+    </li>
+    <li><a href="#快速翻译">快速翻译</a></li>
+    <li><a href="#中文支持">中文支持</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/translator/">
+                <img src="/p/translator/images/fanyi_hu_9d8c86e716545012.png"
+                        srcset="/p/translator/images/fanyi_hu_9d8c86e716545012.png 800w, /p/translator/images/fanyi_hu_6f555150a75b4977.png 1600w"
+                        width="800" 
+                        height="438" 
+                        loading="lazy"
+                        alt="Featured image of post R快速翻译和绘图中文支持" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/r/" style="background-color: #bebada; color: #fff;">
+                R
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/translator/">R快速翻译和绘图中文支持</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            在数据分析中，有时候面对大量的英文单词描述可能无法快速获得全部信息，需要去进一步查询或翻译。在R里可以调用一些翻译api完成这一步，但api一般会限制调用速度，`pcutils`提供了一种快速翻译的思路。另外，如何在绘图中展示翻译结果需要考虑中文字体的支持。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 16, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="motivation">Motivation</h2>
+<p>在数据分析中，有时候面对大量的英文单词描述可能无法快速获得全部信息，需要去进一步查询或翻译。</p>
+<p>我们可以用代码自行调用一些翻译api完成这一步，CRAN和github上有不少帮助翻译的R包，比如<code>fanyi</code>, <code>ecce</code>, <code>translateR</code> 等。</p>
+<h3 id="fanyi">fanyi</h3>
+<p>Y叔最近写了一个不仅仅是翻译的fanyi包：<a class="link" href="https://github.com/YuLab-SMU/fanyi"  target="_blank" rel="noopener"
+    >https://github.com/YuLab-SMU/fanyi</a>。支持多种翻译服务：百度翻译，必应翻译，有道智云，火山引擎，彩云小译，腾讯翻译君，智谱清言等。还有小词典，翻译ggplot图，翻译基因信息等功能。功能强大，未来可期。</p>
+<p>但翻译api一般会限制调用速度，有些用户就遇到了如以下问题：</p>
+<img src="images/fanyi.png" title=""/>
+<p>我当时回复了一个我自己常用的快速翻译的思路，但有时候也会有分隔符不对，一次输入超上限等问题。最近把这些问题解决了，写成了一个在<code>pcutils</code>包中使用的函数。</p>
+<p>另外，<code>fanyi::translate_ggplot</code>函数支持直接将ggplot的x，y轴label替换为其他语言：</p>
+<img src="images/fanyi2.png" title=""/>
+<p>但是，并不是在所有机器上都能直接达到想要的效果的，需要考虑我们机器字体对其他语言（以中文为例）的支持。</p>
+<h2 id="快速翻译">快速翻译</h2>
+<p>使用<code>pcutils::translator</code>实现快速翻译。最近还没有同步到CRAN上(2024/1/17)，所以先从github安装吧。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="kr">if</span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="n">pcutils</span><span class="p">))</span><span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;Asa12138/pcutils&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">words</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;Metabolic pathways - Homo sapiens (human)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;Carbon metabolism - Homo sapiens (human)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;2-Oxocarboxylic acid metabolism - Homo sapiens (human)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;Fatty acid metabolism - Homo sapiens (human)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="s">&#34;Biosynthesis of amino acids - Homo sapiens (human)&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">translator</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">##              Metabolic pathways - Homo sapiens (human) 
+</span></span><span class="line"><span class="cl">##                                &#34;代谢途径-智人（人类）&#34; 
+</span></span><span class="line"><span class="cl">##               Carbon metabolism - Homo sapiens (human) 
+</span></span><span class="line"><span class="cl">##                                  &#34;碳代谢-智人（人类）&#34; 
+</span></span><span class="line"><span class="cl">## 2-Oxocarboxylic acid metabolism - Homo sapiens (human) 
+</span></span><span class="line"><span class="cl">##                              &#34;2-草酸代谢-智人（人类）&#34; 
+</span></span><span class="line"><span class="cl">##           Fatty acid metabolism - Homo sapiens (human) 
+</span></span><span class="line"><span class="cl">##                              &#34;脂肪酸代谢-智人（人类）&#34; 
+</span></span><span class="line"><span class="cl">##     Biosynthesis of amino acids - Homo sapiens (human) 
+</span></span><span class="line"><span class="cl">##                        &#34;氨基酸的生物合成-智人（人类）&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>主要解决了以下两个问题：</p>
+<ol>
+<li>当我们查询的是一大堆term时，使用换行符可以保证翻译结果的整齐，且这属于一次查询，所以速度非常快。</li>
+</ol>
+<p>类似这样：
+<img src="images/baidu.png" title=""/></p>
+<p>代码实现也不难，用换行符<code>paste0</code>输入到api后，返回的结果就已经是分隔好的向量了：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#baidu_translate是内置函数，下列代码运行不了，仅作参考</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">input_words</span><span class="o">=</span><span class="nf">paste0</span><span class="p">(</span><span class="n">words</span><span class="p">,</span><span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;\n&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">res</span><span class="o">=</span><span class="nf">baidu_translate</span><span class="p">(</span><span class="n">input_words</span><span class="p">,</span> <span class="n">from</span> <span class="o">=</span> <span class="n">from</span><span class="p">,</span> <span class="n">to</span> <span class="o">=</span> <span class="n">to</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="o">=</span><span class="n">words</span>
+</span></span><span class="line"><span class="cl"><span class="n">res</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>api查询一次输入字符有上限（参见api描述），比如百度翻译api大约5000个字符。</li>
+</ol>
+<p>所以对于上述的思路，将大量term合并在一起查询，可能会达到上限，所以我另外写了一个函数<code>split_text</code>将大段字符按照换行符&quot;\n&quot;分隔成不同部分，保证每个部分不超过上限，然后分别查询后，返回结果合并，达到的效果就是几乎没有上限，且非常快速。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">original_text</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="kc">letters</span><span class="p">,</span><span class="s">&#34;\n&#34;</span><span class="p">),</span><span class="m">200</span><span class="p">,</span><span class="n">replace</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">),</span><span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">print</span><span class="p">(</span><span class="n">original_text</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## [1] &#34;lxnj\nulhhrtjwklnzixrsjplflptfiuezuyjkhppfphtkpkkb\nknvafdtdjzetph\nvrdktwmfijizfoefpnwzzqjyuwqankbtdcobgsosvxzyagvgskeymiutgv\npux\nawpxrpqwlkbnjnw\nuxefkffydizfdgmogclmzjfukhsfhrctqykovdlivcgnkycnixajbqtw&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">parts</span> <span class="o">&lt;-</span> <span class="nf">split_text</span><span class="p">(</span><span class="n">original_text</span><span class="p">,</span> <span class="n">nchr_each</span> <span class="o">=</span> <span class="m">50</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Characters number of this paragraph is more than 50
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">print</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## [[1]]
+</span></span><span class="line"><span class="cl">## [1] &#34;lxnj\nulhhrtjwklnzixrsjplflptfiuezuyjkhppfphtkpkkb&#34;
+</span></span><span class="line"><span class="cl">## 
+</span></span><span class="line"><span class="cl">## [[2]]
+</span></span><span class="line"><span class="cl">## [1] &#34;knvafdtdjzetph&#34;
+</span></span><span class="line"><span class="cl">## 
+</span></span><span class="line"><span class="cl">## [[3]]
+</span></span><span class="line"><span class="cl">## [1] &#34;vrdktwmfijizfoefpnwzzqjyuwqankbtdcobgsosvxzyagvgskeymiutgv&#34;
+</span></span><span class="line"><span class="cl">## 
+</span></span><span class="line"><span class="cl">## [[4]]
+</span></span><span class="line"><span class="cl">## [1] &#34;pux\nawpxrpqwlkbnjnw&#34;
+</span></span><span class="line"><span class="cl">## 
+</span></span><span class="line"><span class="cl">## [[5]]
+</span></span><span class="line"><span class="cl">## [1] &#34;uxefkffydizfdgmogclmzjfukhsfhrctqykovdlivcgnkycnixajbqtw&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#baidu_translate是内置函数，下列代码运行不了，仅作参考</span>
+</span></span><span class="line"><span class="cl"><span class="n">split_words</span><span class="o">=</span><span class="nf">split_text</span><span class="p">(</span><span class="n">input_words</span><span class="p">,</span><span class="n">nchr_each</span> <span class="o">=</span> <span class="m">5000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">split_words</span><span class="p">)</span><span class="o">&gt;</span><span class="m">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">res_ls</span><span class="o">=</span><span class="nf">lapply</span><span class="p">(</span><span class="n">split_words</span><span class="p">,</span> <span class="n">baidu_translate</span><span class="p">,</span> <span class="n">from</span> <span class="o">=</span> <span class="n">from</span><span class="p">,</span> <span class="n">to</span> <span class="o">=</span> <span class="n">to</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span><span class="p">(</span><span class="nf">do.call</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">res_ls</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="中文支持">中文支持</h2>
+<p>在R基础图或者ggplot绘图中默认使用的都是英文字体，想要支持中文字体的方法也有不少，关键就是family要指定中文字体。</p>
+<p>但我觉得最好用的还是使用<code>showtext</code>包来实现（在macOS和Windows上亲测有效）:</p>
+<ul>
+<li>Windows字体文件存放位置: C:\Windows\Fonts\</li>
+<li>macOS字体文件存放位置:/Users/XXX/Library/Fonts/; /System/Library/Fonts/</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">showtext</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Loading required package: sysfonts
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Loading required package: showtextdb
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#开启showtext，一定要这行</span>
+</span></span><span class="line"><span class="cl"><span class="nf">showtext_auto</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#添加字体文件，&#34;simhei.ttf&#34;改成你需要的字体文件位置，simhei是我们给该字体的命名</span>
+</span></span><span class="line"><span class="cl"><span class="nf">font_add</span><span class="p">(</span><span class="s">&#34;simhei&#34;</span><span class="p">,</span> <span class="s">&#34;/System/Library/Fonts/STHeiti Medium.ttc&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#查看系统字体，如果出现了simhei说明导入成功</span>
+</span></span><span class="line"><span class="cl"><span class="nf">font_families</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## [1] &#34;sans&#34;         &#34;serif&#34;        &#34;mono&#34;         &#34;wqy-microhei&#34; &#34;simhei&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#然后就可以绘图了：</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span><span class="o">=</span><span class="nf">ggplot</span><span class="p">(</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">100</span><span class="p">)))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">geom_histogram</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">fill</span> <span class="o">=</span> <span class="s">&#39;purple&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.6</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#39;X 取值&#39;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&#39;频数 Count&#39;</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="s">&#39;标题 Title&#39;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">theme</span><span class="p">(</span><span class="n">text</span> <span class="o">=</span> <span class="nf">element_text</span><span class="p">(</span><span class="n">family</span> <span class="o">=</span> <span class="s">&#39;simhei&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="c1">## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/translator/index.en_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<p>有些中文字体的英文支持不太好，如果要中英文混合显示可以使用中英文混合字体，比如知名度很高的YaHei Consolas混合字体。或者使用开源项目: FontForge, 来合并中英文字体。</p>
+<p>我上次写了一个简单的函数用来“画”春联<code>chunlian</code>(见<a class="link" href="../new_year" >R画春联</a>)，就是这样来调用一个下载好的毛笔字体的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">chunlian</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;新年快乐&#34;</span><span class="p">),</span><span class="n">bg_shape</span> <span class="o">=</span> <span class="m">23</span><span class="p">,</span><span class="n">bg_size</span> <span class="o">=</span> <span class="m">50</span><span class="p">,</span><span class="n">text_size</span> <span class="o">=</span> <span class="m">25</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/translator/index.en_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<p>我也写了一个用来翻译ggplot的各种文字（包括x，y，label，legend，title等）的函数<code>pcutils::ggplot_translator()</code>，并且内置了<code>showtext_auto</code>，所以一般可以直接画出正常显示的其他语言。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">Subject</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;English&#34;</span><span class="p">,</span><span class="s">&#34;Math&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">Score</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">59</span><span class="p">,</span><span class="m">98</span><span class="p">),</span> <span class="n">Motion</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;sad&#34;</span><span class="p">,</span><span class="s">&#34;happy&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">ggp</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Subject</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Score</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">Motion</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">geom_text</span><span class="p">()</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">geom_point</span><span class="p">()</span><span class="o">+</span><span class="nf">labs</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&#34;Subject&#34;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s">&#34;Score&#34;</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s">&#34;Final Examination&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ggplot_translator</span><span class="p">(</span><span class="n">ggp</span><span class="p">,</span><span class="n">which</span> <span class="o">=</span> <span class="s">&#34;all&#34;</span><span class="p">,</span><span class="n">keep_original_label</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Please set the font family to make the labels display well.
+</span></span><span class="line"><span class="cl">##  see `how_to_set_font_for_plot()`.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/translator/index.en_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%B7%A5%E5%85%B7/">工具</a>
+        
+            <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/">可视化</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/sample-map/">
+        
+        
+            <div class="article-image">
+                <img src="/p/sample-map/images/leaf2.780d9a2ee8ea7ffe7f76cd25c264adad_hu_f2384a1b8d31b7dc.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 快速绘制采样地图"
+                        data-key="sample-map" 
+                        data-hash="md5-eA2aLujqf/5/ds0lwmStrQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">快速绘制采样地图</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/synteny/">
+        
+        
+            <div class="article-image">
+                <img src="/p/synteny/images/emales.4bc315eea41464bbcfd1eab9c4798b89_hu_712745c117876c99.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 基因组同线性（synteny）分析和可视化"
+                        data-key="synteny" 
+                        data-hash="md5-S8MV7qQUZLvP0eq5xHmLiQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">基因组同线性（synteny）分析和可视化</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/iphylo/">
+        
+        
+            <div class="article-image">
+                <img src="/p/iphylo/images/iphy.0244b30a5110c9d253d682d90a87289b_hu_773ae5a961053499.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post iPhylo 生成并绘制优美的分类树（物种&#43;化学）"
+                        data-key="iPhylo" 
+                        data-hash="md5-AkSzClEQydJT1oLZCocomw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">iPhylo 生成并绘制优美的分类树（物种&#43;化学）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/r-vis-pkg/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-vis-pkg/index.en_files/figure-html/unnamed-chunk-2-1.6932b469ee89c8b2a23202f3e6e7f6b2_hu_68db91eb2bec9b13.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 一些有趣的绘图R包"
+                        data-key="r-vis-pkg" 
+                        data-hash="md5-aTK0ae6JyLKiMgLz5uf2sg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">一些有趣的绘图R包</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/ggh4x-ggplot2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/ggh4x-ggplot2/images/README-facets-1.b352e5b8f0a77d2c374dae87631d4672_hu_63b65d67d03f4a4f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post ggh4x包拓展ggplot2绘图"
+                        data-key="ggh4x-ggplot2" 
+                        data-hash="md5-s1LluPCnfSw3Ta6HYx1Gcg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ggh4x包拓展ggplot2绘图</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

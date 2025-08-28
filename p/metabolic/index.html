@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='METABOLIC是一款基于微生物群的生物化学分析软件，能够预测任何给定基因组数据集的代谢和生物地球化学功能性状特征。'>
+<title>METABOLIC：微生物基因组群落规模功能网络分析</title>
+
+<link rel='canonical' href='/p/metabolic/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='METABOLIC：微生物基因组群落规模功能网络分析'>
+<meta property='og:description' content='METABOLIC是一款基于微生物群的生物化学分析软件，能够预测任何给定基因组数据集的代谢和生物地球化学功能性状特征。'>
+<meta property='og:url' content='/p/metabolic/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='GEM' /><meta property='article:published_time' content='2024-07-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-07-17T00:00:00&#43;00:00'/><meta property='og:image' content='/p/metabolic/images/MW-score_table_example.jpg' />
+<meta name="twitter:title" content="METABOLIC：微生物基因组群落规模功能网络分析">
+<meta name="twitter:description" content="METABOLIC是一款基于微生物群的生物化学分析软件，能够预测任何给定基因组数据集的代谢和生物地球化学功能性状特征。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/metabolic/images/MW-score_table_example.jpg' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a>
+      <ol>
+        <li><a href="#安装">安装</a></li>
+        <li><a href="#运行">运行</a>
+          <ol>
+            <li><a href="#参数">参数</a></li>
+            <li><a href="#示例数据">示例数据</a></li>
+            <li><a href="#运行程序">运行程序</a></li>
+          </ol>
+        </li>
+        <li><a href="#输出">输出</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/metabolic/">
+                <img src="/p/metabolic/images/MW-score_table_example_hu_bd63c97d157ffc8b.jpg"
+                        srcset="/p/metabolic/images/MW-score_table_example_hu_bd63c97d157ffc8b.jpg 800w, /p/metabolic/images/MW-score_table_example_hu_9a7c6cc7bc65341e.jpg 1600w"
+                        width="800" 
+                        height="454" 
+                        loading="lazy"
+                        alt="Featured image of post METABOLIC：微生物基因组群落规模功能网络分析" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/metabolic/">METABOLIC：微生物基因组群落规模功能网络分析</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            METABOLIC是一款基于微生物群的生物化学分析软件，能够预测任何给定基因组数据集的代谢和生物地球化学功能性状特征。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 17, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<img src="images/METABOLIC.webp" title=""/>
+<p>METabolic And BiogeOchemistry anaLyses In miCrobes (METABOLIC) 是一款基于微生物群的生物化学分析软件。该软件能够预测任何给定基因组数据集的代谢和生物地球化学功能性状特征。这些基因组数据集可以是宏基因组组装基因组 (MAG)、单细胞扩增基因组 (SAG) 或分离菌株测序基因组。</p>
+<p>METABOLIC有两个主要实现，分别是METABOLIC-G和METABOLIC-C。 METABOLIC-G.pl 允许生成输入基因组的代谢谱和生物地球化学循环图，并且不需要输入测序读数。 METABOLIC-C.pl 生成与 METABOLIC-G.pl 相同的输出，但由于它允许输入宏基因组读取数据，因此它将生成与群落代谢有关的信息。它还可以计算基因组覆盖度。解析信息并生成元素/生物地球化学循环路径（当前为氮、碳、硫和“其他”）的图表。</p>
+<p>Zhou, Z., Tran, P.Q., Breister, A.M. et al. METABOLIC: high-throughput profiling of microbial genomes for functional traits, metabolism, biogeochemistry, and community-scale functional networks. Microbiome 10, 33 (2022). <a class="link" href="https://doi.org/10.1186/s40168-021-01213-8"  target="_blank" rel="noopener"
+    >https://doi.org/10.1186/s40168-021-01213-8</a></p>
+<p>主页：<a class="link" href="https://github.com/AnantharamanLab/METABOLIC"  target="_blank" rel="noopener"
+    >https://github.com/AnantharamanLab/METABOLIC</a></p>
+<h3 id="安装">安装</h3>
+<p>Anaconda environment</p>
+<ol>
+<li>Git clone</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># get to the path where you want to set up your METABOLIC_running folder</span>
+</span></span><span class="line"><span class="cl">mkdir /path/to/METABOLIC_running_folder
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /path/to/METABOLIC_running_folder
+</span></span><span class="line"><span class="cl">git clone https://github.com/AnantharamanLab/METABOLIC.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>安装依赖包</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda env create -f METABOLIC/METABOLIC_v4.0_env.yml
+</span></span><span class="line"><span class="cl"><span class="c1"># In the popup after running all the installation in setting up this conda env, it asks you to rewrite the database address of GTDB-Tk;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Rewrite GTDBTK_DATA_PATH</span>
+</span></span><span class="line"><span class="cl">conda env config vars <span class="nb">set</span> <span class="nv">GTDBTK_DATA_PATH</span><span class="o">=</span><span class="s2">&#34;/path/to/your/databases/GTDBTK_DB&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>激活环境</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda activate METABOLIC_v4.0
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>Run the setup bash script</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> METABOLIC
+</span></span><span class="line"><span class="cl">bash run_to_setup.sh <span class="c1">#网速不是很好，花了4个小时</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果运行 bash 脚本，设置过程中可能会出现一些小问题，可以参考<a class="link" href="https://github.com/AnantharamanLab/METABOLIC/wiki/Installation"  target="_blank" rel="noopener"
+    >https://github.com/AnantharamanLab/METABOLIC/wiki/Installation</a>里的步骤 2-8 来解决。</p>
+<h3 id="运行">运行</h3>
+<h4 id="参数">参数</h4>
+<p>所有必需和可选的参数：
+要查看 METABOLIC-C.pl 和 METABOLIC-G.pl 的选项，请输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">perl METABOLIC-G.pl -help
+</span></span><span class="line"><span class="cl">perl METABOLIC-C.pl -help
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol>
+<li><code>-in-gn</code> [必需，如果从核苷酸fasta文件开始]：定义包含以&quot;.fasta&quot;结尾的基因组核苷酸fasta文件的文件夹位置。</li>
+<li><code>-in</code> [必需，如果从faa文件开始]：定义包含以&quot;.faa&quot;结尾的基因组氨基酸文件的文件夹位置。</li>
+<li><code>-r</code> [必需]：定义包含配对reads路径的文本文件的路径。</li>
+<li><code>-rt</code> [可选]：定义使用“metaG”或“metaT”以指示是使用宏基因组reads还是宏转录组reads（默认值：“metaG”）。仅在使用 METABOLIC-C 时需要。</li>
+<li><code>-st</code> [可选]：定义测序类型（“illumina”、“pacbio”、“pacbio_hifi”、“pacbio_asm20”或“nanopore”）（默认值：“illumina”）。</li>
+<li><code>-t</code> [可选]：定义程序运行的线程数（默认值：20）。</li>
+<li><code>-m-cutoff</code> [可选]：定义将KEGG模块指定为存在的步骤比例（默认值：0.75）。</li>
+<li><code>-kofam-db</code> [可选]：定义程序使用的KOfam数据库类型（“full”或“small”）（默认值：“full”）。</li>
+<li><code>-tax</code> [可选]：计算微生物组贡献的分类学水平（默认值：“phylum”）。</li>
+<li><code>-p</code> [可选]：定义用于注释ORFs的Prodigal方法（“meta”或“single”）（默认值：“meta”）。</li>
+<li><code>-o</code> [可选]：定义程序创建的输出目录（默认值：当前目录）。</li>
+</ol>
+<p>详细使用方法请查看帮助文档。</p>
+<ul>
+<li>
+<p>“-in-gn”标志指定的目录应包含基因组的核苷酸序列，文件扩展名为“.fasta”。如果为每个基因组提供氨基酸序列，这些序列应包含在一个目录中并具有文件扩展名“.faa”，并且将使用“-in”选项。确保每个“.fasta”或“.faa”文件的 fasta 标头是唯一的（所有 fasta 或 faa 文件将连接在一起形成“total.fasta”或“total.faa”文件；确保所有序列标头是唯一的），并且文件名不包含空格（建议在文件名中仅使用字母数字字符和下划线）；确保在基因组文件夹中仅放置基因组，而不放置其他文件，例如非基因组宏基因组组件，因为 METABOLIC 会将文件夹中的所有文件作为基因组纳入。如果想使用 METABOLIC-C，则仅允许“fasta”文件和“-in-gn”标志才能正确执行分析。</p>
+</li>
+<li>
+<p>“-r”标志允许输入定义宏基因组读取路径的文本文件（如果运行 METABOLIC-C）。宏基因组读数是指用于生成 MAG 的宏基因组读数数据集。在运行 METABOLIC-C 之前，请尝试确认使用的是解压缩的 fastq 文件而不是压缩文件。成对的读数集输入一行，用“，”分隔。请注意，应该给出读取文件的绝对路径。该文本文件的示例如下：</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#Read pairs: 
+</span></span><span class="line"><span class="cl">/path/to/your/reads/file/SRR3577362_sub_1.fastq,/path/to/your/reads/file/SRR3577362_sub_2.fastq
+</span></span><span class="line"><span class="cl">/path/to/your/reads/file/SRR3577362_sub2_1.fastq,/path/to/your/reads/file/SRR3577362_sub2_2.fastq
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><em>请注意，两组不同的配对读取由换行符（新行）分隔，并且每行中的两个读取由“,”分隔，但不是“ ,”或“, ”（逗号前后没有空格） 。不允许有空行。</em></p>
+<ul>
+<li>如果使用PacBio或Nanopore生成的长读长，则需要使用“-st”（或“-sequencing-type”）选项来指示测序方法的类型（请参阅上面的标志参数说明）。请注意，短读长 (Illumina) 和长读长（PacBio 或 Nanopore）不应一起用作输入。与短读取的要求一样，在运行 METABOLIC-C 之前尝试确认使用的是解压缩的 fastq 文件而不是压缩文件。由于长读取是作为单端读取提供的，因此请注意，应该给出读取文件的绝对路径。每行应提供不同的读取文件（如果有），如下所示：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#Read pairs: 
+</span></span><span class="line"><span class="cl">/path/to/your/reads/file/Nanopore_1st_run.fastq
+</span></span><span class="line"><span class="cl">/path/to/your/reads/file/Nanopore_2nd_run.fastq
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>请注意，hmmsearch 和 hmmscan（在 dbCAN2 处理步骤中）通常会占用非常小的内存负载，而当与大量 CPU 线程并行运行时，聚合内存需求可能非常高，并可能给服务器带来问题。有人建议使用 40 个核心将占用 1TB RAM。可以以此为标准来自定义线数设置。</li>
+</ul>
+<h4 id="示例数据">示例数据</h4>
+<p>METABOLIC 目录还包含一组 5 个基因组和一组配对的宏基因组读数，可用于测试 METABOLIC-G 和 METABOLIC-C 是否正确安装。这些基因组和读数可以在目录 METABOLIC_test_files/ 中找到，该目录包含在 METABOLIC 程序目录中。
+METABOLIC-C.pl 和 METABOLIC-G.pl 可以使用 METABOLIC 的 -test true 函数使用测试数据运行：</p>
+<p>首先看看genome测试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ perl METABOLIC-G.pl -test <span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:01:20<span class="o">]</span> The Prodigal annotation is running...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:02:07<span class="o">]</span> The Prodigal annotation is finished
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:02:08<span class="o">]</span> The hmmsearch is running with <span class="m">5</span> cpu threads...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:43:54<span class="o">]</span> The hmmsearch is finished
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:44:58<span class="o">]</span> The hmm hit result is calculating...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:44:58<span class="o">]</span> Generating each hmm faa collection...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:45:04<span class="o">]</span> Each hmm faa collection has been made
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:45:04<span class="o">]</span> The KEGG module result is calculating...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:47:54<span class="o">]</span> The KEGG identifier <span class="o">(</span>KO id<span class="o">)</span> result is calculating...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:47:54<span class="o">]</span> The KEGG identifier <span class="o">(</span>KO id<span class="o">)</span> seaching result is finished
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:47:54<span class="o">]</span> Searching CAZymes by dbCAN2...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:56:58<span class="o">]</span> dbCAN2 searching is <span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:56:58<span class="o">]</span> Searching MEROPS peptidase...
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:57:27<span class="o">]</span> MEROPS peptidase searching is <span class="k">done</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:57:34<span class="o">]</span> METABOLIC table has been generated
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:57:34<span class="o">]</span> Drawing element cycling diagrams...
+</span></span><span class="line"><span class="cl">Loading required package: shape
+</span></span><span class="line"><span class="cl"><span class="o">[</span>2024-07-19 11:57:36<span class="o">]</span> Drawing element cycling diagrams finished
+</span></span><span class="line"><span class="cl">METABOLIC-G was <span class="k">done</span>, the total running time: 00:56:16 <span class="o">(</span>hh:mm:ss<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>耗时56min，内存占用1.57 GB</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ perl METABOLIC-C.pl -test <span class="nb">true</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="运行程序">运行程序</h4>
+<p>用于运行该程序的主要脚本是 METABOLIC-G.pl 或 METABOLIC-C.pl。
+为了从核苷酸序列开始运行 METABOLIC-G，METABOLIC-G 至少应使用以下标志：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">perl METABOLIC-G.pl -in-gn [path_to_folder_with_genome_files] -o [output_directory_to_be_created]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如何运行METABOLIC：</p>
+<p>主要脚本是METABOLIC-G.pl或METABOLIC-C.pl。</p>
+<p>要从核苷酸序列运行METABOLIC-G，至少使用以下参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">perl METABOLIC-G.pl -in-gn [基因组文件夹路径] -o [输出目录]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>要从氨基酸序列运行METABOLIC-G，至少使用以下参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">perl METABOLIC-G.pl -in [基因组文件夹路径] -o [输出目录]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>要运行METABOLIC-C，至少使用以下参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">perl METABOLIC-C.pl -in-gn [基因组文件夹路径] -r [配对reads列表路径] -o [输出目录]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>（METABOLIC-C只使用fasta文件，因此不适用-in选项。）</p>
+<ul>
+<li>第二次运行METABOLIC-C：</li>
+</ul>
+<p>提供了额外的脚本METABOLIC-C.2nd_run.pl，用于多次运行相同基因组集。使用“-2nd-run”选项（默认值：“false”），设置为“true”时，需将“-o”设置为上次成功运行的输出文件夹，并设置“-2nd-run-suffix”用于新生成文件和文件夹的后缀。</p>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">perl METABOLIC-C.2nd_run.pl -in-gn [上次运行的基因组文件夹路径] -r [配对reads列表路径] -o [上次运行的输出目录] -2nd-run true -2nd-run-suffix 2nd_run_test
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>带有后缀“MW_score_tax_genus”的第二次运行，使用上次运行的深度文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">perl METABOLIC-C.2nd_run.pl -in-gn [上次运行的基因组文件夹路径] -r [配对reads列表路径] -o [上次运行的输出目录] -2nd-run true -2nd-run-suffix MW_score_tax_genus -depth-file All_gene_collections_mapped.depth.txt -tax genus
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="输出">输出</h3>
+<img src="images/output.png" title=""/>
+<ul>
+<li>METABOLIC 结果表 (METABOLIC_result.xlsx)
+该电子表格有 6 个工作表：</li>
+</ul>
+<ol>
+<li>“HMMHitNum” = 每个基因组内是否存在定制 HMM 图谱、在基因组内识别 HMM 图谱的次数以及代表所识别蛋白质的 ORF。</li>
+<li>“FunctionHit”= 存在或不存在蛋白质组，这些蛋白质组被识别并在标题为“HMMHitNum”的工作表中显示为单独的蛋白质。对于每个基因组，功能被标识为“存在”或“不存在”。</li>
+<li>“KEGGModuleHit” = 每个基因组的注释，其中包含 KEGG 数据库中按代谢类别组织的模块。对于每个基因组，模块被标识为“存在”或“不存在”。</li>
+<li>“KEGGModuleStepHit” = 每个基因组内 KEGG 数据库中模块的存在或不存在，这些模块被分成组成模块的步骤。对于每个基因组，模块步骤被标识为“存在”或“不存在”。</li>
+<li>“dbCAN2Hit”= 针对所有基因组的 dbCAN2 注释结果（CAZy 编号和命中）。对于每个基因组，有两个不同的列，显示 CAZy 被识别的次数以及代表该蛋白质的 ORF。</li>
+<li>&ldquo;MEROPSHit&rdquo; = MEROPS 肽酶搜索结果（MEROPS 肽酶编号和命中）。对于每个基因组，有两个不同的列，显示肽酶被识别的次数以及代表蛋白质的 ORF。</li>
+</ol>
+<ul>
+<li>每个 HMM 配置文件命中氨基酸序列集合 (Each_HMM_Amino_Acid_Sequence/)
+从输入基因组“.faa”文件中提取的所有氨基酸序列的集合，这些序列被识别为与 METABOLIC 提供的 HMM 配置文件匹配。</li>
+<li>KEGG 标识符结果 (KEGG_identifier_result/)
+KEGG 标识符搜索结果 - 每个基因组的 KEGG 标识符编号和命中，可用于在 KEGG Mapper 中可视化路径</li>
+<li>METABOLIC-G.pl 和 METABOLIC-C.pl 生成的所有代谢数据 (METABOLIC_Figures/)
+<ul>
+<li>Nutrient cycling diagrams</li>
+<li>Sequential transformation diagram</li>
+<li>Metabolic Sankey diagram</li>
+<li>Functional network diagrams</li>
+<li>MW-score result (MW-score_result/)</li>
+</ul>
+</li>
+</ul>
+<p>对于 MW 分数结果，将生成显示 MW 分数（代谢体重分数）的表格（“MW-score_result.txt”）。举一个例子：
+该 MW 分数图基于太平洋瓜伊马斯盆地深海热液喷口环境中微生物群落的宏基因组数据集。它包含 98 个 MAG 和 1 组宏基因组读数。在弄清楚整个群落的功能能力和每个功能的基因覆盖范围后，通过使用类似的研究代谢相互作用的方法，选择了基因组之间共享的功能，并通过将它们的丰度相加来总结它们在整个群落中的权重。</p>
+<p>在示例图中，“每个功能的MW得分”列表示整个社区内的功能权重。更频繁地共享功能及其更高的丰度会导致更高的 MW 分数，这定量地反映了功能网络中的功能权重。
+其余列表示每个门对 MW 分数的贡献。这有助于反映每个门对整个群落功能的贡献。总体而言，MW 分数提供了一种比较功能权重和功能网络内微生物群贡献的定量测量方法。</p>
+<img src="images/MW-score_table_example.jpg" title=""/>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/gem/">GEM</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/gem/">
+        
+        
+            <div class="article-image">
+                <img src="/p/gem/images/carveme.c9229ecc4e7e91889f918e3364203fba_hu_509e408dcec1d391.jpeg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 从宏基因组构建基因组规模代谢模型（GEM）"
+                        data-key="gem" 
+                        data-hash="md5-ySKezE5&#43;kYifkY4zZCA/ug==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">从宏基因组构建基因组规模代谢模型（GEM）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-4/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-4/images/1-2.7f04df50146143db7f38e3c60bbebaa9_hu_4ebeb6bc608a4e31.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（4）"
+                        data-key="25-nature-4" 
+                        data-hash="md5-fwTfUBRhQ9t/OOPGC766qQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（4）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-3/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-3/images/fig1.20d52f738dfd506b0754bda8d4b0ead0_hu_d6f6d5c8a568f26d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（3）"
+                        data-key="25-nature-3" 
+                        data-hash="md5-INUvc439UGsHVL2o1LDq0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（3）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-2/images/2-1-2.f13dbba185acaee28c931cc543f77916_hu_94453c680a4ffc60.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（2）"
+                        data-key="25-nature-2" 
+                        data-hash="md5-8T27oYWsruKMkxzFQ/d5Fg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（2）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature/images/1-1-1.7ec2e930cb5bff1118bfef6c33cf66bd_hu_e11798ac155eaa9a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（1）"
+                        data-key="25-nature" 
+                        data-hash="md5-fsLpMMtb/xEYv&#43;9sM89mvQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（1）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

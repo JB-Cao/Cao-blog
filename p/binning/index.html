@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='宏基因组分箱（Metagenomics Binning）是一个将宏基因组测序获得的DNA序列分类为离散组或“bins”的过程，在这里我们先从MetaBAT讲起，通过MetaBAT2实战来了解分箱流程。'>
+<title>宏基因组分箱（binning）｜1.Metabat实战了解binning</title>
+
+<link rel='canonical' href='/p/binning/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='宏基因组分箱（binning）｜1.Metabat实战了解binning'>
+<meta property='og:description' content='宏基因组分箱（Metagenomics Binning）是一个将宏基因组测序获得的DNA序列分类为离散组或“bins”的过程，在这里我们先从MetaBAT讲起，通过MetaBAT2实战来了解分箱流程。'>
+<meta property='og:url' content='/p/binning/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='microbiome' /><meta property='article:tag' content='binning' /><meta property='article:published_time' content='2024-05-29T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-05-29T00:00:00&#43;00:00'/><meta property='og:image' content='/p/binning/images/binning.png' />
+<meta name="twitter:title" content="宏基因组分箱（binning）｜1.Metabat实战了解binning">
+<meta name="twitter:description" content="宏基因组分箱（Metagenomics Binning）是一个将宏基因组测序获得的DNA序列分类为离散组或“bins”的过程，在这里我们先从MetaBAT讲起，通过MetaBAT2实战来了解分箱流程。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/binning/images/binning.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a>
+      <ol>
+        <li><a href="#常用方法">常用方法</a></li>
+        <li><a href="#存在挑战">存在挑战</a></li>
+        <li><a href="#常用软件">常用软件</a></li>
+      </ol>
+    </li>
+    <li><a href="#metabat实战">Metabat实战</a>
+      <ol>
+        <li><a href="#软件数据准备">软件，数据准备</a></li>
+        <li><a href="#binning">Binning</a></li>
+        <li><a href="#checking-quality">Checking quality</a></li>
+        <li><a href="#de-replication">De-replication</a></li>
+      </ol>
+    </li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/binning/">
+                <img src="/p/binning/images/binning_hu_c0644c7d25f310e2.png"
+                        srcset="/p/binning/images/binning_hu_c0644c7d25f310e2.png 800w, /p/binning/images/binning_hu_4d5e76daf8256a10.png 1600w"
+                        width="800" 
+                        height="246" 
+                        loading="lazy"
+                        alt="Featured image of post 宏基因组分箱（binning）｜1.Metabat实战了解binning" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/binning/">宏基因组分箱（binning）｜1.Metabat实战了解binning</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            宏基因组分箱（Metagenomics Binning）是一个将宏基因组测序获得的DNA序列分类为离散组或“bins”的过程，在这里我们先从MetaBAT讲起，通过MetaBAT2实战来了解分箱流程。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 29, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>宏基因组学是直接从环境样本（如土壤、水、肠道内容物等）中回收遗传物质并进行研究的学科，无需对个体生物进行分离或培养。这一领域的研究为我们提供了对微生物群落多样性及其功能的深入理解。可以查看我之前写的<a class="link" href="https://asa-blog.netlify.app/p/metagenomic-workflow"  target="_blank" rel="noopener"
+    >宏基因组分析流程</a>，当时想着在另一篇里介绍binning，结果拖了一年，哈哈😂，现在补上。</p>
+<p>宏基因组分箱（Metagenomics Binning）是一个将宏基因组测序获得的DNA序列分类为离散组或“bins”的过程，这些组基于序列间的相似性来定义。分箱的目的是将DNA序列分配给其来源的生物或分类群，从而更好地了解样本中存在的微生物群落的多样性和功能。</p>
+<img src="images/binning.png" title=""/>
+<p>分箱得到的较高质量bins也可以称为我们经常说的MAGs（Metagenome-Assembled Genomes，宏基因组组装基因组）或者draft genome，MAGs代表从宏基因组数据中组装并分箱出来的完整或几乎完整的基因组。因为许多微生物无法通过传统的培养方法进行研究，MAGs在环境微生物学研究中非常有用，可以做后续的很多深入分析比如BGCs，进化分析等。</p>
+<h3 id="常用方法">常用方法</h3>
+<p>宏基因组分箱有几种方法，包括：</p>
+<ul>
+<li><strong>基于序列组成的分箱</strong>：这种方法基于不同基因组具有独特的序列组成模式（如GC含量或密码子使用偏好）的观察。通过分析宏基因组数据中的这些模式，可以将序列片段分配到单个基因组或基因组组。</li>
+<li><strong>基于覆盖度的分箱</strong>：这种方法利用测序读段的覆盖深度将它们分组。来自同一基因组的测序读段预期具有相似的覆盖度，这些信息可以用来识别代表单个基因组或基因组簇的读段组。</li>
+<li><strong>混合分箱</strong>：这种方法结合了基于序列组成和基于覆盖度的分箱，以提高分箱结果的准确性。通过使用多种信息源，混合分箱可以更好地区分序列组成模式相似的近缘基因组。</li>
+<li><strong>基于聚类的分箱</strong>：这种方法根据序列相似性将序列片段分为多个簇，然后根据其序列组成和覆盖度将每个簇分配到一个基因组或基因组簇。此方法对于具有高基因组多样性的宏基因组数据集特别有用。</li>
+<li><strong>基于监督机器学习的分箱</strong>：这种方法使用在注释参考基因组上训练的机器学习算法来将宏基因组数据分类到各个分箱。这种方法可以实现高准确性，但需要大量的注释基因组进行训练。</li>
+</ul>
+<p>这些方法都有其优点和局限性，分箱方法的选择取决于宏基因组数据集的具体特征和所解决的研究问题。</p>
+<h3 id="存在挑战">存在挑战</h3>
+<p>宏基因组分箱是一个复杂的过程，涉及许多步骤，由于过程中可能出现的多个问题，这一过程充满挑战。宏基因组分箱中常见的一些问题包括：</p>
+<ul>
+<li><strong>高复杂性</strong>：宏基因组样本包含来自多个生物的DNA，这会导致数据的高复杂性。</li>
+<li><strong>片段化序列</strong>：宏基因组测序通常生成片段化的序列，这使得将读段分配到正确的分箱变得困难。</li>
+<li><strong>覆盖度不均</strong>：宏基因组样本中的一些生物可能比其他生物更丰富，导致不同基因组的覆盖度不均。</li>
+<li><strong>不完整或部分基因组</strong>：宏基因组测序可能无法捕获某个生物的完整基因组，这使得准确分箱该生物的序列变得困难。</li>
+<li><strong>水平基因转移</strong>：水平基因转移（HGT）可以使一个生物的遗传物质引入到另一个生物中，从而使宏基因组分箱变得复杂。</li>
+<li><strong>嵌合序列</strong>：由于测序错误或污染产生的嵌合序列，会使得准确分箱读段变得困难。</li>
+<li><strong>菌株变异</strong>：同一物种内的生物可以表现出显著的遗传变异，这使得区分宏基因组样本中不同的菌株变得困难。</li>
+</ul>
+<h3 id="常用软件">常用软件</h3>
+<p>有许多计算工具可以执行宏基因组分箱。以下是一些最广泛使用的工具：</p>
+<ol>
+<li><strong>MaxBin (Wu et al. 2015)</strong>：
+<ul>
+<li>一种流行的从头分箱算法，使用序列特征和标记基因的组合将重叠群聚类到基因组箱中。</li>
+</ul>
+</li>
+<li><strong>MetaBAT2（Kang 等人，2019）</strong>：
+<ul>
+<li>另一种广泛使用的从头分箱算法，采用基于四核苷酸频率和覆盖信息的分层聚类方法。</li>
+</ul>
+</li>
+<li><strong>CONCOCT（Alneberg et al. 2014）</strong>：
+<ul>
+<li>一种从头分箱工具，使用基于序列组成和覆盖信息的聚类算法将重叠群分组到基因组箱中。</li>
+</ul>
+</li>
+<li><strong>MyCC (Lin and Liao 2016)</strong>：
+<ul>
+<li>一种基于参考的分箱工具，使用序列比对来识别属于同一基因组或分类组的重叠群。</li>
+</ul>
+</li>
+<li><strong>GroopM (Imelfort et al. 2014)</strong>：
+<ul>
+<li>一种混合分箱工具，结合了基于参考和从头方法来实现高分箱精度。</li>
+</ul>
+</li>
+<li><strong>MetaWRAP (Uritskiy et al. 2018)</strong>：
+<ul>
+<li>一个全面的宏基因组分析流程，包括用于质量控制、组装、分箱和注释的各种模块。</li>
+</ul>
+</li>
+<li><strong>Anvi’o (Eren et al. 2015)</strong>：
+<ul>
+<li>一个用于可视化和分析宏基因组数据的平台，包括分箱、注释和比较基因组学的功能。</li>
+</ul>
+</li>
+<li><strong>SemiBin (Pan et al. 2022)</strong>：
+<ul>
+<li>一种利用深度学习进行宏基因组分箱的命令行工具，可处理短读和长读。</li>
+</ul>
+</li>
+</ol>
+<p>Sczyrba等人在2017年进行了一项基准测试研究，对多种宏基因组分箱工具的性能进行了评估。他们发现，Metabat2在准确性和计算效率方面均优于以前的MetaBAT和其他替代方案。所有这些评估都是基于默认参数进行的（Sczyrba et al. 2017）。</p>
+<p>MetaWRAP是一个非常全面详细的流程，包含了binning上下游的各种分析，还整合了三种软件的binning结果，对于刚开始学习binning的核心步骤可能不是很合适。
+所以我想先从MetaBAT讲起，通过MetaBAT2实战来了解分箱流程。</p>
+<p><strong>参考教程：</strong></p>
+<p>Nikolaos Pechlivanis, Fotis E. Psomopoulos, Binning of metagenomic sequencing data (Galaxy Training Materials). <a class="link" href="https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metagenomics-binning/tutorial.html"  target="_blank" rel="noopener"
+    >https://training.galaxyproject.org/training-material/topics/microbiome/tutorials/metagenomics-binning/tutorial.html</a> Online; accessed Wed May 29 2024</p>
+<h2 id="metabat实战">Metabat实战</h2>
+<p>以下描述来自MetaBat在Bioinformatics发表的论文：</p>
+<blockquote>
+<p>Grouping large fragments assembled from shotgun metagenomic sequences to deconvolute complex microbial communities, or metagenome binning, enables the study of individual organisms and their interactions. Here we developed automated metagenome binning software, called MetaBAT, which integrates empirical probabilistic distances of genome abundance and tetranucleotide frequency. On synthetic datasets MetaBAT on average achieves 98percent precision and 90% recall at the strain level with 281 near complete unique genomes. Applying MetaBAT to a human gut microbiome data set we recovered 176 genome bins with 92% precision and 80% recall. Further analyses suggest MetaBAT is able to recover genome fragments missed in reference genomes up to 19%, while 53 genome bins are novel. In summary, we believe MetaBAT is a powerful tool to facilitate comprehensive understanding of complex microbial communities.
+— Kang et al, 2019</p></blockquote>
+<h3 id="软件数据准备">软件，数据准备</h3>
+<p>使用conda安装Metabat2非常简单：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda install -c bioconda metabat2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>另外我们安装一下后续会用到的dRep和CheckM</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda install drep checkm-genome -y
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>CheckM需要下载对应数据库：<a class="link" href="https://data.ace.uq.edu.au/public/CheckM_databases"  target="_blank" rel="noopener"
+    >https://data.ace.uq.edu.au/public/CheckM_databases</a>并配置环境变量：</p>
+<p><code>checkm data setRoot &lt;checkm_data_dir&gt;</code></p>
+<p>本文使用的示例数据来自<a class="link" href="https://zenodo.org/records/7818827"  target="_blank" rel="noopener"
+    >https://zenodo.org/records/7818827</a>，这是基于咖啡发酵系统研究的6个原始数据集生成的模拟数据集。</p>
+<p>里面已经提供了双端fastq测序文件和组装好的contigs，我们直接下载下列链接即可：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">https://zenodo.org/api/records/7818827/files-archive
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="binning">Binning</h3>
+<p>Metabat2 需要以组装的contigs（fasta格式）和覆盖信息（bam格式）的形式输入宏基因组测序数据。具体而言，Metabat2 需要两个输入文件：</p>
+<ol>
+<li>
+<p><strong>fasta文件</strong>：包含组装的contigs，可以使用MEGAHIT、SPAdes或IDBA-UD等组装工具从原始宏基因组测序读段生成。</p>
+</li>
+<li>
+<p><strong>bam文件</strong>：包含每个contig的读段覆盖信息，可以使用Bowtie2或BWA等比对软件从相同的测序读段生成。</p>
+</li>
+</ol>
+<p>此外，Metabat2 还需要一个配置文件，用于指定分箱过程的各种参数和选项，如最小contig长度、要生成的最大簇数以及最大预期污染水平。</p>
+<p>具体流程：</p>
+<ol>
+<li>
+<p><strong>组装contigs</strong>：</p>
+<ul>
+<li>使用MEGAHIT、SPAdes或IDBA-UD等工具组装测序读段，生成contigs.fasta文件。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">megahit -1 reads_1.fq -2 reads_2.fq -o output_dir
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>生成覆盖信息</strong>：</p>
+<ul>
+<li>使用Bowtie2或BWA将读段比对到组装的contigs上，并生成bam文件。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">bowtie2-build contigs.fasta contigs
+</span></span><span class="line"><span class="cl">bowtie2 -x contigs -1 reads_1.fq -2 reads_2.fq -S alignment.sam
+</span></span><span class="line"><span class="cl">samtools view -bS alignment.sam &gt; alignment.bam
+</span></span><span class="line"><span class="cl">samtools sort alignment.bam -o sorted_alignment.bam
+</span></span><span class="line"><span class="cl">samtools index sorted_alignment.bam
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>生成覆盖深度文件</strong>：</p>
+<ul>
+<li>使用MetaBAT提供的工具计算每个contig的覆盖深度。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">jgi_summarize_bam_contig_depths --outputDepth depth.txt sorted_alignment.bam
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>运行Metabat2</strong>：</p>
+<ul>
+<li>使用Metabat2进行分箱。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">metabat2 -i contigs.fasta -a depth.txt -o bins_dir/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>配置文件</strong>：</p>
+<ul>
+<li>Metabat2 可以使用默认参数进行运行，但用户也可以通过配置文件指定参数，如最小contig长度、最大簇数和最大预期污染水平。配置文件的内容示例如下：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">minContig 1500
+</span></span><span class="line"><span class="cl">maxClusters 200
+</span></span><span class="line"><span class="cl">maxExpectedContamination 10
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>分别对上述6个样本跑这个流程，MetaBAT 2生成的输出文件包括（以下某些文件是可选的，只有在用户需要时才会生成）：</p>
+<ol>
+<li><strong>最终的基因组分箱（FASTA格式）</strong>（.fa文件）：包含分箱结果的基因组序列。</li>
+<li><strong>总结文件</strong>（.txt文件）：包含每个基因组分箱的信息，包括其长度、完整性、污染度和分类信息。</li>
+<li><strong>映射结果文件</strong>（.bam文件）：显示每个contig如何被分配到基因组分箱。</li>
+<li><strong>基因组分箱丰度估算文件</strong>（.txt文件）：包含每个基因组分箱的丰度估算信息。</li>
+<li><strong>基因组分箱覆盖率文件</strong>（.txt文件）：包含每个基因组分箱的覆盖率信息。</li>
+<li><strong>基因组分箱的核苷酸组成文件</strong>（.txt文件）：包含每个基因组分箱的核苷酸组成信息。</li>
+<li><strong>预测的基因序列文件</strong>（.faa文件）：包含每个基因组分箱的预测基因序列。</li>
+</ol>
+<p>输出文件示例：</p>
+<ol>
+<li>
+<p><strong>基因组分箱文件（.fa）</strong>：</p>
+<ul>
+<li>包含分箱后的基因组序列，每个文件代表一个基因组bin。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">&gt;bin1_contig1
+</span></span><span class="line"><span class="cl">ATGCGT...
+</span></span><span class="line"><span class="cl">&gt;bin1_contig2
+</span></span><span class="line"><span class="cl">ATGCGT...
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>总结文件（.txt）</strong>：</p>
+<ul>
+<li>包含每个基因组分箱的详细信息，如长度、完整性、污染度等。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Bin ID    Length    Completeness    Contamination    Taxonomy
+</span></span><span class="line"><span class="cl">bin1      3.2 Mb    95%             2%               Bacteria
+</span></span><span class="line"><span class="cl">bin2      4.1 Mb    90%             5%               Archaea
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>映射结果文件（.bam）</strong>：</p>
+<ul>
+<li>包含contigs如何被分配到基因组分箱的映射信息。</li>
+</ul>
+</li>
+<li>
+<p><strong>丰度估算文件（.txt）</strong>：</p>
+<ul>
+<li>包含每个基因组分箱在样本中的丰度估算。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Bin ID    Abundance
+</span></span><span class="line"><span class="cl">bin1      0.25
+</span></span><span class="line"><span class="cl">bin2      0.30
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>覆盖率文件（.txt）</strong>：</p>
+<ul>
+<li>包含每个基因组分箱的覆盖率信息。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Bin ID    Coverage
+</span></span><span class="line"><span class="cl">bin1      30x
+</span></span><span class="line"><span class="cl">bin2      25x
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>核苷酸组成文件（.txt）</strong>：</p>
+<ul>
+<li>包含每个基因组分箱的核苷酸组成信息。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Bin ID    GC Content
+</span></span><span class="line"><span class="cl">bin1      45%
+</span></span><span class="line"><span class="cl">bin2      50%
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>预测基因序列文件（.faa）</strong>：</p>
+<ul>
+<li>包含每个基因组分箱的预测蛋白质序列。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">&gt;bin1_gene1
+</span></span><span class="line"><span class="cl">MKTIIALSYIFCLVFA
+</span></span><span class="line"><span class="cl">&gt;bin1_gene2
+</span></span><span class="line"><span class="cl">MKSVIIFLCLCVFA
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>这些输出文件可以进一步分析并用于下游应用，例如功能注释、比较基因组学和系统发育分析。</p>
+<p>binning整体流程还是比较慢的，我们也可以下载已经跑好的结果（下面链接）看看去做后续分析：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">https://zenodo.org/api/records/7845138/files-archive
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>里面包含了6个样本单样本binning的结果，每个样本各3～8个bins。</p>
+<h3 id="checking-quality">Checking quality</h3>
+<p>在宏基因组分箱完成后，评估其质量非常重要。CheckM (Parks et al. 2015) 是一个常用的评估分箱质量的工具。CheckM 使用一组在几乎所有细菌和古菌基因组中存在的通用单拷贝标记基因来评估基因组分箱的完整性和污染度。</p>
+<ul>
+<li>CheckM 的关键功能</li>
+</ul>
+<ol>
+<li><strong>基因组完整性估计</strong>：
+<ul>
+<li>CheckM 使用一组通用单拷贝标记基因来估计基因组分箱的完整性。完整性得分表示这些标记基因中有多少比例存在于分箱中，从而提供了回收基因组的程度估计。</li>
+</ul>
+</li>
+<li><strong>基因组污染度估计</strong>：
+<ul>
+<li>CheckM 也使用同一组标记基因来估计基因组分箱的污染度。污染度得分表示在多个分箱中发现的标记基因的比例，这表明该基因组分箱可能包含来自多个生物的DNA。</li>
+</ul>
+</li>
+<li><strong>潜在错误组装的识别</strong>：
+<ul>
+<li>CheckM 可以根据标记基因在基因组中的分布识别潜在的错误组装。</li>
+</ul>
+</li>
+<li><strong>结果可视化</strong>：
+<ul>
+<li>CheckM 能生成各种图表和表格来可视化基因组分箱的完整性、污染度和其他质量指标，使得结果更易于解释。</li>
+</ul>
+</li>
+<li><strong>分类学分类</strong>：
+<ul>
+<li>CheckM 也可以基于特定标记基因的存在对基因组分箱进行分类，提供从域到种的不同分类水平的信息。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>使用 CheckM 进行评估</li>
+</ul>
+<p>以下是使用 CheckM 的一个示例工作流程，主要使用 <code>lineage_wf</code> 工作流程来评估基因组分箱的完整性和污染度，并进行分类学分类：</p>
+<ol>
+<li>
+<p><strong>准备输入数据</strong>：
+将你的分箱结果（通常是FASTA文件格式）准备好。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir bins
+</span></span><span class="line"><span class="cl">mv bin*.fa bins/
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>运行 CheckM lineage_wf</strong>：
+使用 <code>lineage_wf</code> 工作流程来评估基因组分箱。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">checkm lineage_wf -x fa bins/ checkm_output/ -t <span class="m">4</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>参数解释：</p>
+<ul>
+<li><code>-x fa</code> 指定文件扩展名为 <code>.fa</code>。</li>
+<li><code>bins/</code> 是输入分箱文件的目录。</li>
+<li><code>checkm_output/</code> 是输出结果的目录。</li>
+<li><code>-t 4</code> 指定使用 4 个线程。</li>
+</ul>
+<p>Lineage_wf(更准确)，taxonomy_wf(更快)。</p>
+</li>
+<li>
+<p><strong>查看结果</strong>：
+运行完成后，结果会保存在 <code>checkm_output</code> 目录中。你可以查看主要的结果文件 <code>bins_stats</code> 以获得每个分箱的完整性和污染度等信息。</p>
+</li>
+</ol>
+<p>“CheckM lineage_wf”的输出包括多个文件和表格，提供了有关基因组分箱的分类和质量评估的信息。以下是一些关键的输出内容：</p>
+<ol>
+<li><strong>输出报告（CheckM Lineage Workflow Output Report）</strong>：
+<ul>
+<li>该报告提供了 CheckM 进行的质量评估的总结。包括分析的基因组数量、它们的完整性、污染度及其他质量指标。</li>
+</ul>
+</li>
+<li><strong>特定谱系的质量评估（Lineage-specific Quality Assessment）</strong>：
+<ul>
+<li>CheckM 为每个分析的基因组生成特定谱系的质量评估文件。这些文件包含基于分类谱系的基因组完整性和污染度的详细信息。</li>
+</ul>
+</li>
+<li><strong>标记集分析（Marker Set Analysis）</strong>：
+<ul>
+<li>CheckM 使用一组标记基因来估计基因组的完整性和污染度。工具生成标记特定分析文件，提供分析基因组中每个标记基因的存在、缺失和拷贝数的详细信息。</li>
+</ul>
+</li>
+<li><strong>可视化（Visualizations）</strong>：
+<ul>
+<li>CheckM 生成各种可视化图表，以帮助解释结果。这些图包括谱系特定的完整性和污染度图、散点图及其他数据的可视化表示。</li>
+</ul>
+</li>
+<li><strong>表格和数据文件（Tables and Data Files）</strong>：
+<ul>
+<li>CheckM 生成包含分析基因组详细信息的表格数据文件，包括它们的名称、分类分配、完整性评分、污染度评分和其他相关指标。这些文件对于进一步的下游分析或数据处理非常有用。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>示例输出文件和解释</li>
+</ul>
+<ol>
+<li><strong>输出报告文件</strong>：
+<ul>
+<li><code>checkm_output/storage/bin_stats_ext.tsv</code>：包含每个分箱的详细统计信息，如完整性、污染度、标记基因数目等，自行整理为表格：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Bin Id  Completeness  Contamination  Strain heterogeneity
+</span></span><span class="line"><span class="cl">bin1    98.5          1.2            0.0
+</span></span><span class="line"><span class="cl">bin2    85.4          4.7            0.5
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li><strong>谱系特定质量评估文件</strong>：
+<ul>
+<li><code>checkm_output/lineage.ms</code>：包含每个基因组分箱的谱系特定质量评估信息，自行整理为表格：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">bin1    Bacteria;Proteobacteria;Gammaproteobacteria   98.5   1.2
+</span></span><span class="line"><span class="cl">bin2    Bacteria;Firmicutes;Bacilli                  85.4   4.7
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li><strong>标记基因分析文件</strong>：
+<ul>
+<li><code>checkm_output/marker_gene_stats.tsv</code>：提供分析基因组中每个标记基因的存在、缺失和拷贝数的详细信息，自行整理为表格：</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-plaintext" data-lang="plaintext"><span class="line"><span class="cl">Bin Id  Marker gene   Presence  Copy number
+</span></span><span class="line"><span class="cl">bin1    rplA          Present   1
+</span></span><span class="line"><span class="cl">bin1    rplB          Present   1
+</span></span><span class="line"><span class="cl">bin2    rplA          Present   2
+</span></span><span class="line"><span class="cl">bin2    rplB          Absent    0
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li><strong>可视化文件</strong>：
+<ul>
+<li><code>checkm_output/plots/</code> 目录包含各种图表，如完整性和污染度的散点图、谱系特定的完整性和污染度图等。</li>
+</ul>
+</li>
+</ol>
+<h3 id="de-replication">De-replication</h3>
+<p>去冗余（De-replication）是识别基因组列表中“相同”基因组集合的过程，并从每个冗余集合中去除除“最佳”基因组之外的所有其他基因组。基因组需要多相似才被认为是“相同的”、如何确定哪个基因组是“最佳的”以及其他重要决策将在重要概念中讨论。</p>
+<p>去冗余的一个常见用途是针对个别宏基因组数据的组装。如果宏基因组样本是按系列收集的，一种常见的组装短读段的方法是“共组装”。即将所有样本的读段结合在一起进行组装。然而，这样做的问题是，相似菌株的组装会严重导致组装的片段化，妨碍获得一个好的基因组分箱。</p>
+<p>一种替代方案是分别组装每个样本，然后对每个组装结果中的分箱进行去冗余，以生成最终的基因组集合。</p>
+<img src="images/individual-assembly.png" title=""/>
+<p>MetaBAT 2 并不会明确地执行去冗余过程，即在给定的数据集中识别相同或高度相似的基因组组。相反，MetaBAT 2 主要通过利用读段覆盖率、样本间的差异覆盖率和序列组成等特征来提高分箱的准确性。它的目标是区分宏基因组数据集中不同的基因组，并将contigs分配到适当的分箱中。</p>
+<p>dRep 是一个专门设计用于宏基因组数据集中基因组去冗余的软件工具。其目标是保留一个代表性基因组集，以改善后续的分析，如分类学分析和功能注释。</p>
+<ul>
+<li>dRep 的典型工作流程</li>
+</ul>
+<ol>
+<li><strong>基因组质量评估</strong>：
+<ul>
+<li>dRep 会运行checkM评估每个簇内基因组的质量，考虑因素包括完整性、污染度和菌株异质性。</li>
+</ul>
+</li>
+<li><strong>基因组比较</strong>：
+<ul>
+<li>dRep 使用成对基因组比较方法来评估给定宏基因组数据集中基因组之间的相似性。</li>
+</ul>
+</li>
+<li><strong>聚类</strong>：
+<ul>
+<li>根据基因组相似性，dRep 执行聚类，将相似基因组分组为“基因组簇”。每个簇代表一组密切相关的基因组。</li>
+</ul>
+</li>
+<li><strong>基因组选择</strong>：
+<ul>
+<li>在每个基因组簇内，dRep 根据用户定义的标准选择一个代表性基因组。这个代表性基因组被视为簇的“去冗余”版本。</li>
+</ul>
+</li>
+<li><strong>去冗余输出</strong>：
+<ul>
+<li>dRep 的输出包括去冗余基因组的信息，包括它们的身份、完整性和污染度。用户可以选择一个基因组相似性阈值来控制去冗余的水平。</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>dRep 的使用示例</li>
+</ul>
+<ol>
+<li>
+<p><strong>准备输入文件</strong>：</p>
+<ul>
+<li>将所有要去冗余的基因组文件放在一个目录中。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir genomes
+</span></span><span class="line"><span class="cl">mv genome1.fasta genome2.fasta ... genomes/
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>运行dRep</strong>：</p>
+<ul>
+<li>使用 dRep 对基因组进行去冗余。以下命令会在指定的输出目录中执行去冗余分析。</li>
+<li><strong>相似性阈值</strong>：可以通过 <code>--S_algorithm</code> 和 <code>--S_ani</code> 参数设置用于基因组聚类的相似性计算方法和阈值。</li>
+<li><strong>质量标准</strong>：可以通过 <code>--completeness</code>、<code>--contamination</code> 等参数设置选择代表性基因组的质量标准。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dRep dereplicate output_directory -g genomes/*.fasta
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>如果你已经自己运行了checkM，可以直接使用 checkM 的输出文件指定给 <code>--genomeInfo</code>（毕竟checkM也要很久）。</li>
+<li>自己整理bin_info.csv文件，3列，分别为genome name，completeness，contamination。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dRep dereplicate output_directory -g genomes/*.fasta --genomeInfo checkm_output/storage/bin_info.csv
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>如果你自行筛选了bins，也就是说你认为输入的都是合格bins，可以用<code>--ignoreGenomeQuality</code> 忽略质量评估。</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dRep dereplicate output_directory -g genomes/*.fasta --ignoreGenomeQuality
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>输出解释</strong>：</p>
+<ul>
+<li>输出目录中将包含多个文件和子目录，其中包括：
+<ul>
+<li><strong>dereplicated_genomes</strong>：去冗余后的基因组文件。</li>
+<li><strong>cluster_reports</strong>：包含每个基因组簇的信息。</li>
+<li><strong>quality_reports</strong>：评估基因组质量的报告。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>至此，我们就完成了使用Metabat2进行基因组分箱，使用checkM评估bins以及使用dRep进行bins去冗余得到最终的合格bins，这些是宏基因组binning分析的核心步骤。</strong></p>
+<p>后续可以对得到的MAGs进行物种注释（比如用<a class="link" href="https://asa-blog.netlify.app/p/gtdb"  target="_blank" rel="noopener"
+    >GTDB-tk</a>），功能注释（比如<a class="link" href="https://asa-blog.netlify.app/p/antismash"  target="_blank" rel="noopener"
+    >antismash分析BGCs</a>），以及很多基因组级别的深入分析。</p>
+<h2 id="references">References</h2>
+<ol>
+<li>Alneberg, J., B. S. Bjarnason, I. de Bruijn, M. Schirmer, J. Quick <em>et al.</em>, 2014 <strong>Binning metagenomic contigs by coverage and composition</strong>. Nature Methods 11: 1144–1146. <a class="link" href="https://doi.org/10.1038/nmeth.3103"  target="_blank" rel="noopener"
+    >https://doi.org/10.1038/nmeth.3103</a></li>
+<li>Imelfort, M., D. Parks, B. J. Woodcroft, P. Dennis, P. Hugenholtz <em>et al.</em>, 2014 <strong>GroopM: an automated tool for the recovery of population genomes from related metagenomes</strong>. PeerJ 2: e603. <a class="link" href="https://doi.org/10.7717/peerj.603"  target="_blank" rel="noopener"
+    >https://doi.org/10.7717/peerj.603</a></li>
+<li>Eren, A. M., Özcan C. Esen, C. Quince, J. H. Vineis, H. G. Morrison <em>et al.</em>, 2015 <strong>Anvi’o: an advanced analysis and visualization platform for ‘omics data</strong>. PeerJ 3: e1319. <a class="link" href="https://doi.org/10.7717/peerj.1319"  target="_blank" rel="noopener"
+    >https://doi.org/10.7717/peerj.1319</a></li>
+<li>Parks, D. H., M. Imelfort, C. T. Skennerton, P. Hugenholtz, and G. W. Tyson, 2015 <strong>CheckM: assessing the quality of microbial genomes recovered from isolates, single cells, and metagenomes</strong>. Genome Research 25: 1043–1055. <a class="link" href="https://doi.org/10.1101/gr.186072.114"  target="_blank" rel="noopener"
+    >https://doi.org/10.1101/gr.186072.114</a></li>
+<li>Wu, Y.-W., B. A. Simmons, and S. W. Singer, 2015 <strong>MaxBin 2.0: an automated binning algorithm to recover genomes from multiple metagenomic datasets</strong>. Bioinformatics 32: 605–607. <a class="link" href="https://doi.org/10.1093/bioinformatics/btv638"  target="_blank" rel="noopener"
+    >https://doi.org/10.1093/bioinformatics/btv638</a></li>
+<li>Lin, H.-H., and Y.-C. Liao, 2016 <strong>Accurate binning of metagenomic contigs via automated clustering sequences using information of genomic signatures and marker genes</strong>. Scientific Reports 6: <a class="link" href="https://doi.org/10.1038/srep24175"  target="_blank" rel="noopener"
+    >https://doi.org/10.1038/srep24175</a></li>
+<li>Sczyrba, A., P. Hofmann, P. Belmann, D. Koslicki, S. Janssen <em>et al.</em>, 2017 <strong>Critical Assessment of Metagenome Interpretation—a benchmark of metagenomics software</strong>. Nature Methods 14: 1063–1071. <a class="link" href="https://doi.org/10.1038/nmeth.4458"  target="_blank" rel="noopener"
+    >https://doi.org/10.1038/nmeth.4458</a></li>
+<li>Uritskiy, G. V., J. DiRuggiero, and J. Taylor, 2018 <strong>MetaWRAP—a flexible pipeline for genome-resolved metagenomic data analysis</strong>. Microbiome 6: <a class="link" href="https://doi.org/10.1186/s40168-018-0541-1"  target="_blank" rel="noopener"
+    >https://doi.org/10.1186/s40168-018-0541-1</a></li>
+<li>Kang, D. D., F. Li, E. Kirton, A. Thomas, R. Egan <em>et al.</em>, 2019 <strong>Metabat2: an adaptive binning algorithm for robust and efficient genome reconstruction from metagenome assemblies</strong>. PeerJ 7: e7359. <a class="link" href="https://doi.org/10.7717/peerj.7359"  target="_blank" rel="noopener"
+    >https://doi.org/10.7717/peerj.7359</a></li>
+<li>Evans, J. T., and V. J. Denef, 2020 <strong>To Dereplicate or Not To Dereplicate?</strong> mSphere 5: e00971–19. Publisher: American Society for Microbiology. <a class="link" href="https://doi.org/10.1128/mSphere.00971-19"  target="_blank" rel="noopener"
+    >https://doi.org/10.1128/mSphere.00971-19</a></li>
+<li>Pan, S., C. Zhu, X.-M. Zhao, and L. P. Coelho, 2022 <strong>A deep siamese neural network improves metagenome-assembled genomes in microbiome datasets across different environments</strong>. Nature Communications 13: <a class="link" href="https://doi.org/10.1038/s41467-022-29843-y"  target="_blank" rel="noopener"
+    >https://doi.org/10.1038/s41467-022-29843-y</a></li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/microbiome/">Microbiome</a>
+        
+            <a href="/tags/binning/">Binning</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/binning3/">
+        
+        
+            <div class="article-image">
+                <img src="/p/binning3/images/workflow.a06c7d26621b84946ebc6cf4b2eedad5_hu_8a1e7386d13e4faa.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 宏基因组分箱（binning）｜3. BASALT优化binning流程"
+                        data-key="binning3" 
+                        data-hash="md5-oGx9JmIbhJRuvGz0su7a1Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">宏基因组分箱（binning）｜3. BASALT优化binning流程</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/binning2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/binning2/images/metawrap.97b98d34d6d47fb1beaba090bdeee79f_hu_a369a8bdfe123e4a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 宏基因组分箱（binning）｜2. MetaWRAP实战深入binning"
+                        data-key="binning2" 
+                        data-hash="md5-l7mNNNbUf7G&#43;q6CQve7nnw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">宏基因组分箱（binning）｜2. MetaWRAP实战深入binning</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-4/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-4/images/1-2.7f04df50146143db7f38e3c60bbebaa9_hu_4ebeb6bc608a4e31.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（4）"
+                        data-key="25-nature-4" 
+                        data-hash="md5-fwTfUBRhQ9t/OOPGC766qQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（4）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-3/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-3/images/fig1.20d52f738dfd506b0754bda8d4b0ead0_hu_d6f6d5c8a568f26d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（3）"
+                        data-key="25-nature-3" 
+                        data-hash="md5-INUvc439UGsHVL2o1LDq0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（3）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-2/images/2-1-2.f13dbba185acaee28c931cc543f77916_hu_94453c680a4ffc60.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（2）"
+                        data-key="25-nature-2" 
+                        data-hash="md5-8T27oYWsruKMkxzFQ/d5Fg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（2）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Crispr on Cao&#39;s blog</title>
+        <link>/tags/crispr/</link>
+        <description>Recent content in Crispr on Cao&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Wed, 31 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/crispr/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Anti-CRISPR 相关内容学习</title>
+        <link>/p/anti-crispr/</link>
+        <pubDate>Wed, 31 Jul 2024 00:00:00 +0000</pubDate>
+        
+        <guid>/p/anti-crispr/</guid>
+        <description>&lt;img src="/p/anti-crispr/images/acr_mechanism.jpg" alt="Featured image of post Anti-CRISPR 相关内容学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;CRISPR-Cas系统是微生物为免受噬菌体和外来遗传元件入侵进化而来的获得性免疫系统，在约45%的细菌和87%的古细菌基因组中都发现了CRISPR-Cas系统的存在，具体可以看之前写的&lt;a class=&#34;link&#34; href=&#34;../crispr&#34; &gt;CRISPR 相关学习&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;在噬菌体与宿主共进化的过程中，通过在宿主CRISPR-Cas系统的Protospacer seed sequence区域引入突变，降低了RNP复合物与靶标核酸的结合亲和力，从而逃避宿主CRISPR-Cas系统介导的免疫。宿主CRISPR-Cas系统具有不断获取新Spacer的能力，因此噬菌体进化出积极的反防御系统，通过与核酸序列无关的机制使CRISPR-Cas效应复合物失活。&lt;/p&gt;
+&lt;p&gt;最初在铜绿假单胞菌的噬菌体中观察到了这种anti-CRISPR现象，尽管这些噬菌体携带与宿主Ⅰ-F型CRISPR-Cas系统Spacer序列匹配的靶标核酸，依然能成功侵染宿主并传播。Bondy-Denomy等研究者在这些噬菌体的基因组中发现了编码5个Acr蛋白（AcrⅠF1、AcrⅠF2、AcrⅠF3、AcrⅠF4和AcrⅠF5）的基因，这些蛋白能帮助噬菌体逃避Ⅰ-F型CRISPR-Cas系统的免疫。&lt;/p&gt;
+&lt;p&gt;自2013年发现第一个Acr蛋白以来，已确认多种来源于病毒和质粒等移动遗传元件的Acr蛋白可抵御CRISPR-Cas系统的免疫。由于Acr蛋白在序列上相似性较低，因此无法通过氨基酸序列同源比对来预测新的Acr蛋白。&lt;/p&gt;
+&lt;p&gt;当前预测和挖掘Acr蛋白的策略主要有三种：(1) 在序列保守的anti-CRISPR相关蛋白Aca周围进行预测；(2) 在携带内源CRISPR-Cas系统自靶向的宿主菌基因组上筛选；(3) 在能够抵御宿主CRISPR-Cas免疫活性的噬菌体基因组上鉴定。&lt;/p&gt;
+&lt;h2 id=&#34;分类&#34;&gt;分类&lt;/h2&gt;
+&lt;p&gt;目前已经发现了至少82种Acr蛋白，它们分别能够抑制Ⅰ、Ⅱ、Ⅲ、Ⅴ和Ⅵ型CRISPR-Cas系统的免疫活性。表1展示了这些发现，注意到目前还没有报道针对Ⅳ型CRISPR-Cas系统的Acr蛋白。研究表明，这些Acr蛋白大多通过与CRISPR-Cas复合物或Cas蛋白相互作用来抑制其免疫活性。&lt;/p&gt;
+&lt;img src=&#34;images/acr.jpg&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;除了Acr蛋白外，还有两种不同的噬菌体反CRISPR策略被发现可以对抗宿主CRISPR-Cas系统的免疫干扰。一种策略是噬菌体形成拟核结构来规避Ⅰ型CRISPR-Cas系统的免疫，另一种是利用噬菌体衍生的肽来抑制CRISPR-Cas9的免疫活性（见上图）。&lt;/p&gt;
+&lt;p&gt;Mendoza等人发现，铜绿假单胞菌噬菌体ΦKZ能够通过在其基因组周围形成蛋白质拟核屏障，逃避宿主细胞内多种CRISPR-Cas系统，包括Cas3、Cas9和Cas12a的免疫活性。类似地，Malone等人发现，沙雷氏菌噬菌体PCH45感染宿主后，形成的蛋白质包裹的拟核结构使其基因组DNA免受Ⅰ型CRISPR-Cas系统的靶向攻击，尽管Ⅲ-A型CRISPR-Cas系统仍可通过靶向释放到细胞质中的噬菌体mRNA来抑制其大量增殖。&lt;/p&gt;
+&lt;p&gt;此外，噬菌体M13衣壳蛋白G8P的一个肽段G8PPD（G8P的外膜结构域）能够抑制链球菌CRISPR-Cas9系统的免疫活性。该外膜结构域的胞浆周结构能够与Cas9结合，阻止其装载sgRNA形成效应复合物，从而帮助噬菌体逃避CRISPR-Cas9的免疫反应。这种肽抑制CRISPR-Cas系统活性的机制类似于某些Acr蛋白。&lt;/p&gt;
+&lt;h2 id=&#34;作用机制&#34;&gt;作用机制&lt;/h2&gt;
+&lt;p&gt;已报道的Acr蛋白，分别以阻止crRNA装载、阻止靶标DNA/RNA的识别与结合、阻止靶标核酸的切割以及通过降解信号分子等方式发挥抵御CRISPR-Cas系统免疫活性的功能：&lt;/p&gt;
+&lt;img src=&#34;images/acr_mechanism.jpg&#34; title=&#34;&#34;/&gt;
+&lt;h3 id=&#34;阻止crrna装载&#34;&gt;阻止crRNA装载&lt;/h3&gt;
+&lt;p&gt;AcrⅡC2是第一个报道的在核酸装载步骤抑制CRISPR-Cas系统免疫活性的anti-CRSIPR蛋白。AcrⅡC2通过与Cas9蛋白的BH结构域结合，阻止Cas9蛋白与crRNA结合形成效应复合体，进而保护靶标DNA不被降解。同样，有研究显示AcrⅡA16、17和19可能也是通过与ApoCas9蛋白的相互作用干扰了sgRNA的装载与稳定，从而抑制Ⅱ-A型CRISPR-Cas系统的活性。&lt;/p&gt;
+&lt;h3 id=&#34;阻止靶标dnarna的识别与结合&#34;&gt;阻止靶标DNA/RNA的识别与结合&lt;/h3&gt;
+&lt;p&gt;目前发现的anti-CRSIPR蛋白中，阻止CRISPR-Cas效应复合体识别和结合靶标核酸是其抑制CRISPR-Cas系统免疫活性的常见方式。例如，Ⅰ-D型CRISPR-Cas系统的AcrⅠD1蛋白以二聚体形式约束Cas10d大亚基，阻止其与外源DNA的结合。在Ⅰ-F型CRISPR-Cas系统中，AcrⅠF1和AcrⅠF2分别与Csy3亚基多聚体和Csy1-Csy2异二聚体互作，阻断CRISPR-Cas效应复合体与靶标DNA的结合，进而抑制靶标核酸的降解。AcrⅢB1是首个直接抑制Ⅲ型CRISPR-Cas系统核酸干涉活性的Acr蛋白，能有效阻止Ⅲ-B型CRISPR-Cas系统对病毒中/晚期基因的靶向免疫。&lt;/p&gt;
+&lt;h3 id=&#34;阻止靶标核酸的切割&#34;&gt;阻止靶标核酸的切割&lt;/h3&gt;
+&lt;p&gt;Acr蛋白抵御CRISPR-Cas系统免疫的第三种常见方式是直接抑制CRISPR-Cas效应复合体对外源靶标核酸的切割。其中，AcrⅠF3是第一个被发现能抑制CRISPR-Cas效应复合体核酸酶活性的Acr蛋白。AcrⅠF3以二聚体的形式结合到Cas3蛋白的关键结构域HD、Linker和CTD中，广泛的相互作用覆盖了Cas3蛋白的一个表面，并以ADP形式锁定Cas3，有效阻止了CRISPR-Cas效应复合体招募Cas3进行靶标DNA切割。此外，抑制Cas3靶向DNA降解也会阻碍新Spacer的获取。&lt;/p&gt;
+&lt;p&gt;另外，AcrⅡA11能够特异性地与Cas9蛋白的一个保守结构域结合，并通过改变Cas9蛋白的引导和自身构象来抑制其对双链DNA的切割活性。这种直接作用于Cas蛋白的保守结构域是细菌和噬菌体在长期“军备竞赛”中进化的结果，可以在一定程度上防止CRISPR-Cas系统通过修饰和突变克服Acr蛋白的抑制。&lt;/p&gt;
+&lt;h3 id=&#34;降解信号分子&#34;&gt;降解信号分子&lt;/h3&gt;
+&lt;p&gt;AcrⅢ-1不直接改变Ⅲ型CRISPR-Cas效应复合体的结构和功能，而是通过降解靶向RNA后生成的环腺苷酸CA4信号分子来帮助病毒逃避Ⅲ型CRISPR-Cas系统的免疫干扰。这种策略表明AcrⅢ-1具有广泛的宿主适应性，在细菌和古菌中普遍存在。此外，Ⅵ-B型CRISPR-Cas系统中的Csx27是一种特殊的Cas蛋白，能减弱Cas13b-crRNA效应复合体对靶向干涉RNA的活性，这种负调节作用可能在微生物宿主的免疫防御中起重要作用。&lt;/p&gt;
+&lt;h2 id=&#34;应用&#34;&gt;应用&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;细胞特异性控制&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基于AcrIIA4的技术能够将Cas9的活性限制在特定细胞类型中，例如肝细胞和心肌细胞。这种方法通过引入特征性MicroRNAs来实现目标细胞的特异性调控，从而避免非目标细胞中的脱靶效应。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;AAV载体与特异性miR-122结合&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;2019年的研究表明，通过使用Adenovirus-associated vector（AAV）与NmeCas9（来自Neisseria meningitidis）的联合递送，结合带有肝脏特异性miR-122结合位点的AcrIIC3，可以实现肝脏细胞中的基因编辑，同时抑制心肌细胞中的编辑。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;生物传感器开发&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;利用Acr蛋白的特性开发的生物传感器可以用于检测CRISPR-Cas系统的活性。这些传感器在酿酒酵母中被成功构建，并且能够与荧光表达增强耦合，实现了对CRISPR-Cas系统的有效调控。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;合成基因电路&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基于Acr蛋白的合成基因电路可以在酿酒酵母中实现对CRISPR-Cas系统的精确调控。这些电路通过Acr蛋白介导的抗CRISPR表达和活性诱导方法，为基因组编辑提供了更多的控制手段。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;生信鉴定方法&#34;&gt;生信鉴定方法&lt;/h2&gt;
+&lt;h3 id=&#34;anti-crisprdb&#34;&gt;anti-CRISPRdb&lt;/h3&gt;
+&lt;p&gt;可以直接跟现成的anti-CRISPR数据库比对。
+anti-CRISPRdb （&lt;a class=&#34;link&#34; href=&#34;http://guolab.whu.edu.cn/anti-CRISPRdb/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;http://guolab.whu.edu.cn/anti-CRISPRdb/&lt;/a&gt;）存储了已知的一些anti-CRISPR蛋白序列，我们下载序列文件，使用blast或者diamond建库后，进行序列比对即可。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;wget -c http://guolab.whu.edu.cn/anti-CRISPRdb/dataset/proteinSequence_V2.2.faa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 下载的序列有一些空格，需要去除&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;awk &lt;span class=&#34;s1&#34;&gt;&amp;#39;/^&amp;gt;/ {print; next} {gsub(&amp;#34; &amp;#34;, &amp;#34;&amp;#34;); print}&amp;#39;&lt;/span&gt; proteinSequence_V2.2.faa &amp;gt;proteinSequence_V2.2_rm_space.faa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 建库&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/miniconda3/envs/func/bin/diamond makedb --in proteinSequence_V2.2_rm_space.faa --db proteinSequence_V2.2
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 比对&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;~/miniconda3/envs/func/bin/diamond blastp --db ~/db/Anti-CRISPRdb/proteinSequence_V2.2 --query your_seq.faa --out your_seq.out --outfmt &lt;span class=&#34;m&#34;&gt;6&lt;/span&gt; --max-target-seqs &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt; --threads &lt;span class=&#34;m&#34;&gt;8&lt;/span&gt; --evalue 1e-5 --quiet
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;preacrs&#34;&gt;PreAcrs&lt;/h3&gt;
+&lt;img src=&#34;images/Figure4.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;一种新型机器学习集成预测器：PreAcrs[3]，用于直接从蛋白质序列中识别抗 CRISPR 蛋白质。使用三种特征和八种不同的机器学习算法来训练 PreAcrs。 PreAcrs 优于其他现有方法，并显着提高了识别抗 CRISPR 蛋白的预测准确性。&lt;/p&gt;
+&lt;p&gt;源代码位于：&lt;a class=&#34;link&#34; href=&#34;https://github.com/Lyn-666/anti_CRISPR.git&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/Lyn-666/anti_CRISPR.git&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;PEI Chenchen, LI Yingjun. Origin, development, and application of anti-CRISPR[J]. Microbiology China, 2021, 48(9): 3353-3367.&lt;/li&gt;
+&lt;li&gt;Na Xu, Yunxia Gong, Yanchun Shao, Shushan Gao, Shouwen Chen, Fusheng Chen. Research progress of CRISPR-Cas system and anti-CRISPR protein in microorganisms. Acta Microbiologica Sinica, 2021, 61(8): 2172-2191.&lt;/li&gt;
+&lt;li&gt;PreAcrs: a machine learning framework for identifying anti-CRISPR proteins. &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1186/s12859-022-04986-3&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1186/s12859-022-04986-3&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>CRISPR 相关内容学习</title>
+        <link>/p/crispr/</link>
+        <pubDate>Sun, 31 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>/p/crispr/</guid>
+        <description>&lt;img src="/p/crispr/images/stress.png" alt="Featured image of post CRISPR 相关内容学习" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;CRISPR规律成簇间隔短回文重复：clustered regularly interspaced short
+palindromic repeats&lt;/p&gt;
+&lt;p&gt;CRISPR是存在于细菌基因组中的一种元件，其中含有曾经攻击过该细菌的病毒的基因片段。细菌透过这些基因片段来侦测并抵抗相同病毒的攻击，并摧毁其DNA，这类基因组是细菌（和古菌）免疫系统的关键组成部分。CRISPR-Cas 系统存在于大约 40% 的细菌和 85% 的古细菌基因组中，但不存在于真核生物基因组中。&lt;/p&gt;
+&lt;h3 id=&#34;work-mechanism&#34;&gt;Work mechanism&lt;/h3&gt;
+&lt;p&gt;CRISPR整体工作流程基本如下 (&lt;a class=&#34;link&#34; href=&#34;#ref-carterSnapShotCRISPRRNAGuidedAdaptive2015&#34; &gt;&lt;em&gt;1&lt;/em&gt;&lt;/a&gt;)：&lt;/p&gt;
+&lt;img src=&#34;images/crispr_overall.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;阶段1. 外源DNA采集&lt;/p&gt;
+&lt;p&gt;外来核酸被Cas蛋白识别，入侵DNA的短片段（30-50个碱基对）（称为原型间隔子）被插入宿主的CRISPR基因座作为间隔序列，由重复序列分隔。在I型和II型系统中，原型间隔子选自侧翼有2-5称为PAM（protospacer
+adjacent
+motif）的核苷酸(nt)基序。原型间隔子通常结合在CRISPR基因座的一端，称为领导者，通过涉及Cas1、Cas2和原型间隔子上的游离3’羟基的机制。Protospacer整合伴随着重复前导末端重复序列，可能涉及宿主聚合酶和DNA修复机制。&lt;/p&gt;
+&lt;p&gt;阶段2. crRNA生物合成&lt;/p&gt;
+&lt;p&gt;CRISPR
+RNA生物合成始于转录，然后将初级转录本（pre-crRNA）核解加工成短的CRISPR衍生RNA文库(crRNAs)，每个都包含与先前遇到的外来DNA互补的序列。crRNA指导序列的两侧是相邻重复区域。在I型和III型系统中，初级CRISPR转录物由在重复序列内切割的CRISPR特异性内切核糖核酸酶（Cas6或Cas5d）处理。在许多I型系统中，重复序列是回文序列，并且Cas6与crRNA3’端的茎环稳定相关。在III型系统中，Cas6与CRISPR
+RNA瞬时结合，crRNA的3’端被未知核酸酶进一步修剪。CRISPR
+RNA加工类型II系统依赖于反式作用crRNA(tracrRNA)，它包含与重复序列互补的序列。这些双链区域在Cas9存在的情况下由RNase
+III处理。在II型系统中，tracrRNA和crRNA都是目标干扰所需的。该系统的两个RNA已融合成一个单向导RNA(sgRNA)，Cas9已成为一个强大的工具用于在多种细胞类型和多细胞生物中进行靶向基因组工程。&lt;/p&gt;
+&lt;p&gt;阶段3. 目标干扰&lt;/p&gt;
+&lt;p&gt;成熟的crRNA将Cas蛋白引导至互补目标。目标序列被专用Cas核酸酶降解，但目标降解的机制多种多样。I型和II型系统均以包含PAM和互补原型间隔子的dsDNA底物为目标顺序。II型系统中的目标切割由单个蛋白质(Cas9)和两个RNA执行，而I型系统依赖于多亚基监视复合物结合dsDNA底物然后募集Cas3，这是一种反式作用核酸酶，通常与ATP依赖性解旋酶融合。像I型系统，III型系统还依赖多亚基复合物进行目标检测，但与I型系统不同，这些复合物表现出内源性核酸酶活性，以转录依赖性方式降解互补RNA和靶DNA。III型系统不依赖PAM进行目标识别；相反，碱基配对延伸超出指导序列并进入crRNA信号”自身”的5’句柄（CRISPR基因座包含与指导和5’互补的序列handle)并防止目标切割。&lt;/p&gt;
+&lt;h3 id=&#34;pam&#34;&gt;PAM&lt;/h3&gt;
+&lt;p&gt;使用CRISPR/Cas9系统进行基因编辑时需要考虑PAM，PAM的含义和重要性：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Protospacer adjacent motif（PAM）原间隔序列邻近模块序列。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CRISPR/Cas9 (或 gRNA)所靶向的 DNA 序列称为 protospacer，PAM
+是与之紧邻的一小段 DNA 序列(常用的 SpCas9 识别的 PAM 为 NGG)。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cas9/sgRNA 不能结合、切割没有 PAM 的靶向序列。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;PAM 是细菌区分自身 DNA 与外源 DNA 的重要标志。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;改变 PAM 或与其相邻的 protospacer/target DNA
+序列会严重影响核酸酶(Cas9, Cpf1 等) 对 DNA 的切割效率。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;某些基因编辑操作(如敲入点突变)可能需要人为将 PAM 或与其相邻的 DNA
+序列进行突变，以避免核酸酶对该位点的反复切割，从而提高编辑效率。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;class-type-subtype&#34;&gt;Class, Type, Subtype&lt;/h3&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;/th&gt;
+          &lt;th&gt;&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;img src=&#34;images/class1.png&#34; title=&#34;&#34;/&gt; 1类&lt;/td&gt;
+          &lt;td&gt;&lt;img src=&#34;images/class2.png&#34; title=&#34;&#34;/&gt; 2类&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;原核生物的CRISPR-Cas适应性免疫系统根据效应子模块组织分为两个不同的类别。
+1类CRISPR-Cas系统利用&lt;strong&gt;多蛋白效应复合物&lt;/strong&gt;
+(&lt;a class=&#34;link&#34; href=&#34;#ref-makarovaSnapShotClassCRISPRCas2017&#34; &gt;&lt;em&gt;2&lt;/em&gt;&lt;/a&gt;)，而2类CRISPR-Cas系统利用&lt;strong&gt;单一蛋白效应器&lt;/strong&gt;
+(&lt;a class=&#34;link&#34; href=&#34;#ref-makarovaSnapShotClassCRISPRCas2017a&#34; &gt;&lt;em&gt;3&lt;/em&gt;&lt;/a&gt;)。&lt;/p&gt;
+&lt;p&gt;基于不同的效应蛋白家族，1类系统分为3种类型和12种亚型。1类系统代表CRISPR-Cas基因座的约90％，并且存在于不同的细菌和古菌门中;嗜热菌富含III型系统。除效应子基因之外，大部分1类基因座编码适应模块蛋白质Cas1和Cas2，以及多种辅助蛋白质，例如Cas4，逆转录酶，CARF（CRISPR相关的Rossmann折叠）结构域蛋白质等。
+III型和IV型系统在其各自的基因座中经常缺少适应性模块基因和/或CRISPR阵列。所有I型系统也编码DNA解旋酶Cas3，其通常与HD家族核酸酶结构域融合。在I型系统中，PAM在不同亚型之间变化，位于（原型）间隔区的5’或3’，对于适应和干扰都是必需的。&lt;/p&gt;
+&lt;p&gt;基于不同的效应蛋白家族，第2类系统可分为3种类型和9个亚型。第十亚型（V-U）包括许多假定的系统，其免疫（或可能是调节）功能仍有待证明。
+2类系统占CRISPR-Cas基因座的约10％，在不同的细菌被发现，但在古细菌中几乎不存在。除了效应器蛋白质，大部分2类基因组编码适应性模块蛋白质，Cas1和Cas2以及辅助蛋白质，例如Cas4。
+II型和V-B型基因座还包括tracrRNA（反式激活CRISPR
+RNA），其与重复部分互补并涉及CRISPR（cr）RNA加工和干扰。然而，某些2类系统，特别是类型6的系统仅由CRISPR阵列和效应蛋白组成。&lt;/p&gt;
+&lt;h2 id=&#34;beyond-adaptive-immunity&#34;&gt;beyond adaptive immunity&lt;/h2&gt;
+&lt;p&gt;一篇比较新的综述总结讨论了 CRISPR-Cas 系统的一些众所周知的和一些最近建立的非规范功能及其在其他生物过程中的快速扩展应用 (&lt;a class=&#34;link&#34; href=&#34;#ref-deviCRISPRCasSystemsRole2022&#34; &gt;&lt;em&gt;4&lt;/em&gt;&lt;/a&gt;)。它们在基因调控、细菌病理生理学、毒力和进化中的替代作用已经开始揭示。&lt;/p&gt;
+&lt;h4 id=&#34;pathogenicity-and-virulence&#34;&gt;Pathogenicity and virulence&lt;/h4&gt;
+&lt;p&gt;CRISPR-Cas系统在多种病原菌中不仅用于自适应免疫，还参与调控病原性和毒力。比如，Francisella novicida 利用Cas9和其他RNA分子减少宿主免疫反应，从而在宿主体内生存。类似的，Neisseria meningitis 和 Streptococcus pyogenes 也依赖Cas9侵染宿主并在其中繁殖。Campylobacter jejuni 的研究表明，Cas9参与调控毒力因子，影响其生物膜形成和宿主体内的生存能力。在 Legionella pneumophila 中，Cas2被发现对感染过程至关重要，具有核酸酶活性，且在 Acinetobacter baumannii 中，CRISPR-Cas系统与高生物膜生成能力有关。&lt;/p&gt;
+&lt;h4 id=&#34;bacterial-physiology&#34;&gt;Bacterial physiology&lt;/h4&gt;
+&lt;p&gt;在 Myxococcus xanthus 中，cas基因（如cas8、cas7和cas5）对孢子形成和子实体发育至关重要。Salmonella typhi 的研究表明，删除I-E型系统的cas基因会影响外膜蛋白的表达，进而影响生理过程和毒力。在 Pseudomonas aeruginosa 和 Aggregatibacter actinomycetemcomitans 中，CRISPR间隔区的自靶向可能改变病原菌的生理或代谢。在 Listeria monocytogenes 中，尽管CRISPR基因簇缺乏相关的cas基因，但仍能抑制特定基因的表达，影响铁运输和其他生理过程。&lt;/p&gt;
+&lt;h4 id=&#34;response-to-stress&#34;&gt;Response to stress&lt;/h4&gt;
+&lt;p&gt;在许多细菌中，CRISPR-Cas系统的表达会在应对压力时被激活。例如，在 Escherichia coli 中，膜应激可以诱导CRISPR-Cas系统的表达。同样，Streptococcus thermophilus 和 Sulfolobus islandicus 在噬菌体引发的应激后也会激活该系统。在 Streptococcus mutans 中，不同类型的CRISPR系统在温度和膜应激条件下表现出不同的调控模式，受双组分应激反应调节器VicK/R的影响。研究表明，CRISPR-Cas系统不仅参与适应性免疫，还与压力响应机制密切相关，但具体的分子机制仍需进一步研究。&lt;/p&gt;
+&lt;img src=&#34;images/stress.png&#34; style=&#34;width:90.0%&#34; /&gt;
+&lt;h4 id=&#34;endogenous-gene-regulation&#34;&gt;Endogenous gene regulation&lt;/h4&gt;
+&lt;p&gt;CRISPR-Cas系统在内源性基因调控中发挥作用。例如，在 Escherichia coli 中，I-E型CRISPR-Cas系统被发现有较高的倾向靶向自身染色体的转录活跃区域，表明其参与基因调控。Francisella novicida 利用CRISPR-Cas系统调节毒力相关蛋白的表达，帮助细菌躲避宿主免疫反应。在 Pelobacter carbinolicus 中，CRISPR间隔区自靶向特定基因，影响了该基因的转录。此外，III型系统通过靶向mRNA来调节基因表达，展示了CRISPR-Cas系统在基因调控中的多样性功能。&lt;/p&gt;
+&lt;h4 id=&#34;bacterial-genome-remodeling&#34;&gt;Bacterial genome remodeling&lt;/h4&gt;
+&lt;p&gt;在细菌中，为了避免由于CRISPR-Cas系统自靶向间隔区导致的细胞死亡，细菌会通过基因组重塑来应对。这种重塑通常包括删除原靶序列或整个靶区域。例如，在 Pectobacterium atrosepticum 中，自靶向导致了整个100 kb的水平获取岛（HAI2）区域的删除。类似的情况在其他细菌中也被观察到，如 Escherichia coli 和 Streptococcus thermophilus，自靶向导致了基因组中多达35 kb和37.4 kb的大片段缺失。这些研究表明，自靶向事件会促使细菌通过基因组重塑来进化和适应环境变化。&lt;/p&gt;
+&lt;h4 id=&#34;association-with-dna-repair-system&#34;&gt;Association with DNA repair system&lt;/h4&gt;
+&lt;p&gt;CRISPR-Cas系统与DNA修复系统在不同层面上存在密切关联，尤其是在适应阶段。Escherichia coli 的I-E型CRISPR-Cas系统在获取新间隔区时会利用DNA修复通路中的DNA聚合酶。此外，CRISPR-Cas系统中的一些蛋白质与DNA修复蛋白共享同源结构域，如Cas3的解旋酶域和Cas4的核酸酶域。Cas1 蛋白与多种细胞修复蛋白（如RecB、RecC和RuvB）相互作用，帮助修复复制过程中的DNA断裂，同时也促进了新间隔区的适应。尽管CRISPR-Cas系统与DNA修复系统在多个层面协同工作，但也存在一定的对抗关系。例如，II型系统与非同源末端连接（NHEJ）重组路径呈负相关。这种复杂的关系可能解释了CRISPR-Cas系统在细菌中的分布和多样性。&lt;/p&gt;
+&lt;h3 id=&#34;application&#34;&gt;application&lt;/h3&gt;
+&lt;h4 id=&#34;inhibition-of-horizontal-gene-transfer&#34;&gt;Inhibition of horizontal gene transfer&lt;/h4&gt;
+&lt;p&gt;CRISPR-Cas系统正被探索用于抑制抗生素抗性基因的水平转移。研究表明，CRISPR系统能够降低多药耐药（MDR）菌株中抗生素抗性决定因子的浓度。例如，在 Enterococcus faecalis 中，CRISPR系统减少了移动遗传元件（如前噬菌体和质粒）的传播。在 Streptococcus pyogenes 中，CRISPR间隔区的数量增加也降低了整合前噬菌体的频率。通过设计靶向抗药性基因的CRISPR间隔区，可以有效针对带有病原岛的菌株，从而减少抗生素耐药和致病性基因的传播。此外，将CRISPR-Cas系统引入溶原噬菌体中来靶向抗生素抗性基因，以及添加靶向裂解噬菌体的间隔区，有望进一步保护抗生素敏感的细胞免受噬菌体的裂解感染。&lt;/p&gt;
+&lt;h4 id=&#34;typing-tool&#34;&gt;Typing tool&lt;/h4&gt;
+&lt;p&gt;CRISPR-Cas系统最早被用于细菌种群的分型，以揭示其多样性。例如，在Mycobacterium tuberculosis中，CRISPR系统的间隔区变异常用于流行病学研究和类型学分析。与此不同的是，在Campylobacter jejuni中（使用的是类型II CRISPR系统），单靠CRISPR分型无法充分揭示进化关系，因此常与其他工具如扩增片段长度多态性（AFLP）和多位点序列分型（MLST）联合使用。&lt;/p&gt;
+&lt;h4 id=&#34;genome-editing&#34;&gt;Genome editing&lt;/h4&gt;
+&lt;p&gt;CRISPR-Cas系统因其在基因组编辑中的高效性而受到广泛关注。尽管所有CRISPR系统都具备识别和靶向DNA的功能，但并非所有系统都适用于基因组编辑。以下是一些关键点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;系统类型的适用性&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;I型和III型CRISPR&lt;/strong&gt;：这类系统的DNA降解过程不够清晰，需要额外的Cas6蛋白来生成crRNA，因此不适用于基因组编辑。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;II型CRISPR&lt;/strong&gt;：以CRISPR-Cas9为代表，仅需少量组件即可执行所有功能，这使其成为理想的基因组编辑工具。Type II系统通过引入双链断裂（DSBs）在哺乳动物细胞中表现出色，这对基因组编辑至关重要。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CRISPR-Cas9技术&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;构建&lt;/strong&gt;：CRISPR-Cas9系统使用Cas9蛋白和单导RNA（sgRNA）来靶向特定DNA序列。sgRNA通过将自然存在的tracrRNA和crRNA融合形成，具备与靶标序列的互补性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;优势&lt;/strong&gt;：CRISPR-Cas9技术相比于传统的基因组编辑工具，如转录激活因子样核酸酶（TALENs）和锌指核酸酶（ZFNs），展现了更高的效率和简便性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;应用&lt;/strong&gt;：在进行基因组编辑时，将Cas9-sgRNA构建体引入细胞，同时转化合成的重组DNA模板，可以提高靶位点的突变几率。重组DNA模板应具有突变以防止Cas9核酸酶的持续片段化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;效率&lt;/strong&gt;：CRISPR-Cas9技术因其操作简单、高效，被广泛应用于多种真核和原核模型生物的基因组编辑。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;pangenomes&#34;&gt;Pangenomes&lt;/h2&gt;
+&lt;p&gt;大部分的CRISPR array中的spacer尚未与它们识别的病毒相关联，被命名为
+&lt;strong&gt;CRISPR 暗物质&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;membranome-and-crispr-cas-systems&#34;&gt;membranome and CRISPR-Cas systems&lt;/h3&gt;
+&lt;p&gt;最新的这篇文章分析了被称为 ESKAPE 的细菌组的数千个基因组,
+看有crispr系统的基因组比没有的基因组多的特殊功能 (&lt;a class=&#34;link&#34; href=&#34;#ref-rubioAnalysisBacterialPangenomes2023&#34; &gt;&lt;em&gt;5&lt;/em&gt;&lt;/a&gt;)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;总体crispr概况&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;cirspr type 分布，spacer到plasmid/phage的比例。。。&lt;/p&gt;
+&lt;p&gt;在肠沙门氏菌中，已表明这些系统可以调节鞭毛基因的表达，最终与生物膜形成有关。&lt;/p&gt;
+&lt;p&gt;平均而言，具有 CRISPR-Cas 系统的基因组呈现出较少数量的抗性和毒力基因。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;crispr phylogeny&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;CRISPR-Cas 系统似乎遍布整个系统发育树&lt;/p&gt;
+&lt;p&gt;CRISPR-Cas 系统不会出现在具有固定辅助基因集合的基因组中&lt;/p&gt;
+&lt;p&gt;具有 CRISPR-Cas
+系统的基因组是否以比没有这些系统的基因组更高的频率呈现特定基因？&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;CRISPR-Cas 相关基因富集膜蛋白&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;具有 CRISPR-Cas I 型系统和特定膜蛋白的基因组显示出独特的spacer和噬菌体基因&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;hcrispr-or-repeat&#34;&gt;hCRISPR or repeat?&lt;/h2&gt;
+&lt;p&gt;CRISPR-Cas 系统存在于大约 40% 的细菌和 85% 的古细菌基因组中，但不存在于真核生物基因组中。最近，Communications Biology 上发表的一篇文章报道了在人类基因组中鉴定出 12,572 个推定的 CRISPR，他们称之为“hCRISPR” (&lt;a class=&#34;link&#34; href=&#34;#ref-vanrietCRISPRsHumanGenome2022&#34; &gt;&lt;em&gt;6&lt;/em&gt;&lt;/a&gt;)。&lt;/p&gt;
+&lt;p&gt;但感觉人类怎么会有这么多CRISPR系统，所以又看到一篇文章怼他的： (&lt;a class=&#34;link&#34; href=&#34;#ref-buyukyorukClarifyingCRISPRWhy2023&#34; &gt;&lt;em&gt;7&lt;/em&gt;&lt;/a&gt;)。&lt;/p&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references csl-bib-body&#34;&gt;
+&lt;div id=&#34;ref-carterSnapShotCRISPRRNAGuidedAdaptive2015&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;1. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;J. Carter, B. Wiedenheft, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1016/j.cell.2015.09.011&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;SnapShot: CRISPR-RNA-Guided Adaptive Immune Systems&lt;/a&gt;. &lt;em&gt;Cell&lt;/em&gt;. &lt;strong&gt;163&lt;/strong&gt;, 260–260.e1 (2015).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-makarovaSnapShotClassCRISPRCas2017&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;2. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;K. S. Makarova, F. Zhang, E. V. Koonin, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1016/j.cell.2017.02.018&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;SnapShot: Class 1 CRISPR-Cas Systems&lt;/a&gt;. &lt;em&gt;Cell&lt;/em&gt;. &lt;strong&gt;168&lt;/strong&gt;, 946–946.e1 (2017).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-makarovaSnapShotClassCRISPRCas2017a&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;3. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;K. S. Makarova, F. Zhang, E. V. Koonin, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1016/j.cell.2016.12.038&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;SnapShot: Class 2 CRISPR-Cas Systems&lt;/a&gt;. &lt;em&gt;Cell&lt;/em&gt;. &lt;strong&gt;168&lt;/strong&gt;, 328–328.e1 (2017).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-deviCRISPRCasSystemsRole2022&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;4. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;V. Devi, K. Harjai, S. Chhibber, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1007/s12223-022-00993-2&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CRISPR-Cas systems: Role in cellular processes beyond adaptive immunity&lt;/a&gt;. &lt;em&gt;Folia Microbiologica&lt;/em&gt;. &lt;strong&gt;67&lt;/strong&gt;, 837–850 (2022).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-rubioAnalysisBacterialPangenomes2023&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;5. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;A. Rubio, M. Sprang, A. Garzón, A. Moreno-Rodriguez, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1126/sciadv.add8911&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Analysis of bacterial pangenomes reduces CRISPR dark matter and reveals strong association between membranome and CRISPR-Cas systems&lt;/a&gt;. &lt;em&gt;Science Advances&lt;/em&gt;. &lt;strong&gt;9&lt;/strong&gt;, eadd8911 (2023).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-vanrietCRISPRsHumanGenome2022&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;6. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;J. van Riet, C. Saha, N. Strepis, R. W. W. Brouwer, &lt;em&gt;et al.&lt;/em&gt;, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1038/s42003-022-03249-4&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;CRISPRs in the human genome are differentially expressed between malignant and normal adjacent to tumor tissue&lt;/a&gt;. &lt;em&gt;Communications Biology&lt;/em&gt;. &lt;strong&gt;5&lt;/strong&gt;, 1–13 (2022).&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;ref-buyukyorukClarifyingCRISPRWhy2023&#34; class=&#34;csl-entry&#34;&gt;
+&lt;p&gt;&lt;span class=&#34;csl-left-margin&#34;&gt;7. &lt;/span&gt;&lt;span class=&#34;csl-right-inline&#34;&gt;M. Buyukyoruk, W. S. Henriques, B. Wiedenheft, Clarifying CRISPR: Why Repeats Identified in the Human Genome Should Not Be Considered CRISPRs. &lt;em&gt;The CRISPR Journal&lt;/em&gt; (2023), doi:&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1089/crispr.2022.0106&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;10.1089/crispr.2022.0106&lt;/a&gt;.&lt;/span&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='MetaNet是一个用于组学网络分析的R包，提供了多种功能，包括网络构建、可视化、比较和稳定性分析等。最近我把MetaNet的预印本放到了bioRxiv上，欢迎大家阅读和使用。'>
+<title>预印本｜MetaNet: a scalable and integrated tool for reproducible omics network analysis</title>
+
+<link rel='canonical' href='/p/metanet-biorxiv/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='预印本｜MetaNet: a scalable and integrated tool for reproducible omics network analysis'>
+<meta property='og:description' content='MetaNet是一个用于组学网络分析的R包，提供了多种功能，包括网络构建、可视化、比较和稳定性分析等。最近我把MetaNet的预印本放到了bioRxiv上，欢迎大家阅读和使用。'>
+<meta property='og:url' content='/p/metanet-biorxiv/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='network' /><meta property='article:published_time' content='2025-06-26T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-06-26T00:00:00&#43;00:00'/><meta property='og:image' content='/p/metanet-biorxiv/images/fig4.png' />
+<meta name="twitter:title" content="预印本｜MetaNet: a scalable and integrated tool for reproducible omics network analysis">
+<meta name="twitter:description" content="MetaNet是一个用于组学网络分析的R包，提供了多种功能，包括网络构建、可视化、比较和稳定性分析等。最近我把MetaNet的预印本放到了bioRxiv上，欢迎大家阅读和使用。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/metanet-biorxiv/images/fig4.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#methods">Methods</a>
+      <ol>
+        <li><a href="#metanet设计与开发">MetaNet设计与开发</a></li>
+        <li><a href="#性能对比">性能对比</a></li>
+        <li><a href="#案例应用">案例应用</a></li>
+        <li><a href="#获取方式">获取方式</a></li>
+      </ol>
+    </li>
+    <li><a href="#results">Results</a>
+      <ol>
+        <li><a href="#高效且可扩展的网络计算可以分析更大的omics数据集">高效且可扩展的网络计算可以分析更大的omics数据集</a></li>
+        <li><a href="#网络注释操作与比较的集成化功能工具">网络注释、操作与比较的集成化功能工具</a></li>
+        <li><a href="#进阶网络布局与可视化功能">进阶网络布局与可视化功能</a></li>
+        <li><a href="#专业生物网络与数据库的扩展支持">专业生物网络与数据库的扩展支持</a></li>
+        <li><a href="#全面的网络拓扑与稳定性分析">全面的网络拓扑与稳定性分析</a></li>
+        <li><a href="#案例1微生物共现网络的时序动态分析">案例1：微生物共现网络的时序动态分析</a></li>
+        <li><a href="#案例2多组学整合网络揭示生物与化学暴露组对转录组的差异化影响">案例2：多组学整合网络揭示生物与化学暴露组对转录组的差异化影响</a></li>
+      </ol>
+    </li>
+    <li><a href="#discussion">Discussion</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/metanet-biorxiv/">
+                <img src="/p/metanet-biorxiv/images/fig4_hu_beb170611b67e6e2.png"
+                        srcset="/p/metanet-biorxiv/images/fig4_hu_beb170611b67e6e2.png 800w, /p/metanet-biorxiv/images/fig4_hu_1b1cf0a0e2f2cbd8.png 1600w"
+                        width="800" 
+                        height="966" 
+                        loading="lazy"
+                        alt="Featured image of post 预印本｜MetaNet: a scalable and integrated tool for reproducible omics network analysis" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/paper/" style="background-color: #bebada; color: #fff;">
+                paper
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/metanet-biorxiv/">预印本｜MetaNet: a scalable and integrated tool for reproducible omics network analysis</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            MetaNet是一个用于组学网络分析的R包，提供了多种功能，包括网络构建、可视化、比较和稳定性分析等。最近我把MetaNet的预印本放到了bioRxiv上，欢迎大家阅读和使用。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 26, 2025</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>MetaNet是一个用于组学网络分析的R包，提供了多种功能，包括网络构建、可视化、比较和稳定性分析等。最近我把MetaNet的预印本放到了bioRxiv上，欢迎大家阅读和使用。</p>
+<ul>
+<li>预印本地址：<a class="link" href="https://www.biorxiv.org/content/10.1101/2025.06.26.661636v1"  target="_blank" rel="noopener"
+    >https://www.biorxiv.org/content/10.1101/2025.06.26.661636v1</a></li>
+<li>软件主页：<a class="link" href="https://github.com/Asa12138/MetaNet"  target="_blank" rel="noopener"
+    >https://github.com/Asa12138/MetaNet</a> <strong>大家可以帮忙在github上点点star⭐️</strong>，谢谢🙏</li>
+<li>详细英文版教程：<a class="link" href="https://bookdown.org/Asa12138/metanet_book/"  target="_blank" rel="noopener"
+    >https://bookdown.org/Asa12138/metanet_book/</a></li>
+</ul>
+<p>网络分析是揭示高通量组学数据集中复杂关系的有力策略。然而，现有工具通常在可扩展性、灵活性以及多组学整合的原生支持方面存在不足，这为探索复杂生物网络设置了重大障碍。为突破这些限制，我们开发了MetaNet——一个高性能R语言软件包，专为多组学数据集的生物网络构建、可视化与分析而设计。MetaNet支持基于相关性的高效网络构建，可扩展至包含超过10,000个特征的数据集的快速计算，并提供与静态和交互式平台兼容的丰富布局算法与可视化选项。该软件包还包含一套完整的拓扑和稳定性指标，用于深度网络表征。基准测试表明，MetaNet在计算时间上比现有R包快达100倍，内存使用减少达50倍。我们通过两个案例研究展示其实用性：(1) 微生物共现网络的纵向分析揭示了空气微生物组的动态变化；(2) 包含40,000多个特征的暴露组-转录组整合网络，揭示了生物与化学暴露的差异化调控影响。MetaNet通过提供强大、可重复且具有生物学解释力的框架，弥合了网络理论与组学应用之间的鸿沟，支持跨组学平台的大规模、可解释的整合网络分析，推动现代生命科学的系统水平认知。MetaNet已在
+CRAN发布(<a class="link" href="https://cran.r-project.org/web/packages/MetaNet"  target="_blank" rel="noopener"
+    >https://cran.r-project.org/web/packages/MetaNet</a>)。</p>
+<h2 id="introduction">Introduction</h2>
+<p>网络（或称图论模型）是解析复杂生物系统交互关系的基础工具。这种抽象而信息丰富的表征方式，可跨越分子到生态等多个层次揭示生物特征间的相互作用。网络理论已深刻影响生命科学的多个分支领域——蛋白质互作网络阐明信号传导与药物靶点，基因调控网络描绘发育与疾病的级联控制，代谢网络绘制生物合成与能量通路，而生态网络则揭示物种互作与群落动态。随着宏基因组、转录组、蛋白组和代谢组等高通量组学技术的爆发式发展，基于网络的分析方法已成为处理多维生物大数据的核心策略，能有效识别功能模块、推断关联关系并发现关键调控因子。</p>
+<p>现有网络分析工具各具特色：Cytoscape提供分子互作可视化平台，Gephi擅长大规模图布局算法；R/Python生态中的igraph、ggraph和tidygraph包提供灵活的网络功能，WGCNA专注于基因共表达分析，而ggClusterNet、microeco和NetCoMi等工具则针对微生物组分析进行了优化。此外，MENAP、iNAP等在线流程为简单需求提供了快速解决方案。</p>
+<p>然而，这些工具难以满足现代组学数据的复杂需求：首先，缺乏多组学整合的原生支持；其次，高维数据相关性网络构建存在计算瓶颈；第三，相关性阈值选择通常依赖主观判断；第四，可视化功能有限，难以生成出版级图表；最后，在线工具的不可复现性问题突出。这些局限严重制约了组学尺度网络分析的可靠性。</p>
+<p>为此，我们开发了MetaNet——专为组学数据设计的可扩展R包。该工具通过四大创新突破现有局限：(1) 采用并行优化算法，实现万级特征的高效网络构建；(2) 引入随机矩阵理论实现数据驱动的相关性阈值筛选；(3) 集成40余种布局算法，支持与ggplot2/Gephi/Cytoscape的交互；(4) 提供拓扑分析与稳定性评估的全套指标。通过微生物组时序共现网络和暴露组-转录组整合网络两个案例，我们验证了其在复杂生物大数据解析中的卓越性能。</p>
+<h2 id="methods">Methods</h2>
+<h3 id="metanet设计与开发">MetaNet设计与开发</h3>
+<p>MetaNet是基于R语言的多组学网络分析工具包，兼容Windows、MacOS和Linux系统（需R 4.0以上版本），核心功能基于igraph包实现。其架构包含八大模块（图1A）：计算、操作、布局、可视化、拓扑分析、模块分析、稳定性分析和数据读写，支持从网络构建到分析可视化的全流程。核心数据结构为扩展自igraph的&quot;metanet&quot;对象，兼容所有基础igraph操作，并可转换为tbl_graph对象与ggraph/tidygraph生态交互。所有功能函数均以&quot;c_net_&ldquo;前缀统一命名，便于记忆和使用。</p>
+<ol>
+<li>
+<p><strong>数据预处理</strong></p>
+<ul>
+<li>提供&quot;trans&quot;函数支持CPM、log转换、aCPM等十余种标准化方法（表S1）</li>
+<li>内置&quot;guolv&rdquo;（过滤）和&quot;hebing&quot;（合并）函数用于原始数据清洗</li>
+</ul>
+</li>
+<li>
+<p><strong>网络构建</strong></p>
+<ul>
+<li>支持四种构建方式：
+<ul>
+<li>从原始数据计算（<code>c_net_calculate</code> + <code>c_net_build</code>）</li>
+<li>导入graphml/pajek格式文件（<code>c_net_load</code>）</li>
+<li>通过边列表生成（<code>c_net_from_edgelist</code>）</li>
+<li>升级现有igraph对象（<code>c_net_update</code>）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>网络操作</strong></p>
+<ul>
+<li>注释管理：<code>c_net_set</code>/<code>c_net_annotate</code>实现属性标注</li>
+<li>子网提取：<code>c_net_filter</code>/<code>c_net_neighbors</code>支持局部网络分析</li>
+<li>集合运算：<code>c_net_union</code>/<code>c_net_intersect</code>实现网络比较</li>
+</ul>
+</li>
+<li>
+<p><strong>可视化与布局</strong></p>
+<ul>
+<li>集成40余种布局算法（<code>c_net_layout</code>）</li>
+<li>支持几何变换（缩放/旋转/3D投影等）</li>
+<li><code>c_net_plot</code>函数提供出版级绘图参数控制</li>
+</ul>
+</li>
+<li>
+<p><strong>拓扑分析</strong></p>
+<ul>
+<li><code>c_net_index</code>计算17种拓扑指标</li>
+<li><code>c_net_stability</code>评估网络鲁棒性（特别适用于微生物生态网络）</li>
+</ul>
+</li>
+</ol>
+<h3 id="性能对比">性能对比</h3>
+<p>在Apple M2芯片上的基准测试显示（图1C）：</p>
+<ul>
+<li>计算速度：较WGCNA、NetCoMi等工具提升最高100倍（p&lt;0.001）</li>
+<li>内存占用：降低达50倍（特征数=1000时）</li>
+<li>优势源于：向量化矩阵运算与t分布解析法求p值</li>
+</ul>
+<h3 id="案例应用">案例应用</h3>
+<ol>
+<li>
+<p><strong>微生物共现网络</strong></p>
+<ul>
+<li>数据集：6名受试者24个时间点的微生物组数据</li>
+<li>筛选：保留出现频率&gt;10%的914个物种</li>
+<li>构建：Spearman相关性（|ρ|&gt;0.6且FDR&lt;0.05）</li>
+<li>分析：
+<ul>
+<li>快速贪婪算法识别功能模块</li>
+<li>时序子网拓扑指标计算（连通性/中心性等）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>暴露组-转录组整合网络</strong></p>
+<ul>
+<li>关联分析：
+<ul>
+<li>化学暴露-转录组：|ρ|&gt;0.6且FDR&lt;5e-4</li>
+<li>生物暴露-转录组：|ρ|&gt;0.5且FDR&lt;5e-4</li>
+</ul>
+</li>
+<li>功能注释：ReporterScore包进行KEGG/GO富集分析</li>
+</ul>
+</li>
+</ol>
+<h3 id="获取方式">获取方式</h3>
+<ul>
+<li>CRAN/GitHub/Gitee平台开源</li>
+<li>附在线手册（https://bookdown.org/Asa12138/metanet_book/）</li>
+</ul>
+<h2 id="results">Results</h2>
+<h3 id="高效且可扩展的网络计算可以分析更大的omics数据集">高效且可扩展的网络计算可以分析更大的omics数据集</h3>
+<p>MetaNet实现了高效可扩展的网络计算能力，能够处理大规模组学数据集分析。该工具提供多种标准化策略（表S1），支持微生物组、转录组、蛋白组和代谢组等不同组学数据的预处理。网络构建基于Spearman、Pearson和Bray-Curtis等相似性计算方法，通过随机化检验和多重检验校正保留显著关联。相比现有工具，MetaNet采用优化的向量化矩阵算法，将计算速度提升100-10,000倍（p&lt;0.001），在1000个特征规模下仅需0.2秒和100MB内存（图1D），且资源消耗随特征数呈平方级增长（图1E）。</p>
+<p>针对相关性网络阈值选择的主观性问题，MetaNet整合随机矩阵理论（RMT），通过数据驱动方式自动确定最优相关性阈值（图S1A-B），有效减少虚假边的影响。除相关性方法外，该工具还兼容互信息和偏相关等非线性关系分析方法的输出结果，为复杂组学网络构建提供灵活解决方案。</p>
+<img src="images/fig1.png" title=""/>
+<blockquote>
+<p>Figure 1. Overview of the MetaNet workflow and its high-efficiency computation.
+(A) Functional modules of MetaNet, as visualized using MetaNet.
+(B) Detailed workflow of MetaNet. Green boxes indicate data objects, blue and red boxes represent MetaNet-specific objects, and gray boxes denote core functions.
+(C) MetaNet logo and its code repositories and platforms.
+(D) Line plots comparing memory usage and runtime for correlation-based network construction across different R packages. Comparisons were capped at 1000 features because some packages required too many resources and time to process larger networks. Error bars represent standard deviation (SD).
+(E) Line plots showing MetaNet’s performance on increasingly larger datasets in terms of memory usage and runtime. Error bars represent SD.</p></blockquote>
+<h3 id="网络注释操作与比较的集成化功能工具">网络注释、操作与比较的集成化功能工具</h3>
+<p>MetaNet提供完整的网络操作功能体系。通过&quot;get_*&ldquo;系列函数可快速获取网络、节点和边的属性表，支持数据检查和统计汇总。&ldquo;metanet&quot;对象完全兼容igraph基础操作，并可转换为tbl_graph对象实现与ggraph/tidygraph生态的无缝对接。</p>
+<p>在多组学研究中，网络注释常需整合丰度谱、分类学或临床元数据等外部信息。&ldquo;c_net_set&quot;函数支持批量添加注释表并自动配置可视化参数（图2B），包括颜色映射、线型设置、节点形状及图例生成。针对特定研究需求，&ldquo;c_net_filter&quot;可基于组合条件提取子网络（图2C），而&quot;c_net_highlight&quot;则能高亮显示关键节点或边（图2D）。</p>
+<p>对于复杂网络中的功能模块识别，&ldquo;c_net_module&quot;集成多种社区发现算法（图2E），检测结果可通过弦图或桑基图展示模块间关联（图2F）。通过&quot;c_net_skeleton&quot;函数可实现组间连接的统计汇总，显著提升多条件或时序数据的可解释性（图2G）。</p>
+<p>跨网络比较分析方面，MetaNet提供集合运算功能（图2H），支持通过交集、并集和差集运算揭示实验组间差异边或保守子网，为进化分析和差异比较建立标准化框架。</p>
+<img src="images/fig2.png" title=""/>
+<blockquote>
+<p>Figure 2. MetaNet supports flexible and intuitive network manipulation.
+(A) Initial multi-omics network constructed without annotations.
+(B) Annotated multi-omics network using the &ldquo;c_net_set&rdquo; function. Node shape indicates the types of omics data, color represents the subtypes of omics data, size denotes average abundance, edge color indicates positive or negative correlation, edge type (solid or dashed) distinguishes intra- and inter-omics connections, and edge width reflects the absolute value of the correlation coefficient.
+(C) Subnetwork filtered from intra-omics interactions between the Microbiome and Metabolome layers using &ldquo;c_net_filter&rdquo;.
+(D) Highlighted nodes centered on &ldquo;Dongia_mobilis&rdquo; and its neighbors using &ldquo;c_net_highlight&rdquo;.
+(E) Community detection and modular visualization using &ldquo;c_net_module&rdquo;.
+(F) Chord diagram displaying the proportion of edges between modules.
+(G) Skeleton network across omics subtypes at a grouped level using &ldquo;c_net_skeleton&rdquo;.
+(H) Operations among networks: &ldquo;c_net_union&rdquo; merges net1 and net2, &ldquo;c_net_intersect&rdquo; extracts shared nodes and edges, and &ldquo;c_net_difference&rdquo; isolates net1-specific nodes and edges. All networks shown are based on simulated data and are for illustrative purposes only.</p></blockquote>
+<h3 id="进阶网络布局与可视化功能">进阶网络布局与可视化功能</h3>
+<p>网络布局是可视化的重要环节，直接影响网络结构的可解释性。MetaNet采用灵活的&quot;coors&quot;对象存储布局坐标，支持布局设置的便捷控制与复用。&ldquo;c_net_layout&quot;函数集成40余种布局算法（图3A），既包含经典布局也创新开发了&quot;spatstat_layout&quot;方法——该方法支持在用户自定义多边形内或边缘生成节点分布，例如实现星形排布（图3B）或地理映射（图3C）。系统还支持与Gephi、Cytoscape等工具的布局互操作。</p>
+<p>针对分组网络，&ldquo;g_layout&quot;函数提供高级布局接口，允许分别定义各组的空间配置策略。通过嵌套调用可构建多级复合布局，例如人体各部位微生物共现网络的高效排布（图3D）。该功能特别适用于模块化结构展示：&ldquo;g_layout_circlepack&quot;生成紧凑的圆形包块布局（图3E），而&quot;g_layout_multi_layer&quot;则创建突出模块关系的伪3D多层表达（图3F）。</p>
+<p>可视化方面，&ldquo;c_net_plot&quot;提供丰富的参数定制选项（表S2），精确控制节点、边、模块与图例的视觉呈现。系统默认采用igraph的基础绘图体系，同时通过&quot;as.ggig&quot;函数支持转换为ggplot2对象，可进一步应用&quot;labs&rdquo;、&ldquo;theme&quot;等函数优化图表（图S3A）。此外，MetaNet支持导出至NetworkD3、Gephi等工具实现扩展可视化流程（图S3B-D）。</p>
+<img src="images/fig3.png" title=""/>
+<blockquote>
+<p>Figure 3. MetaNet enables diverse and powerful network layout strategies.
+(A) The application of 24 out of more than 40 built-in layout algorithms from &ldquo;c_net_layout&rdquo; on the Zachary Karate Club network was provided by the igraph package.
+(B) Layout generated within a star using &ldquo;spatstat_layout&rdquo;.
+(C) Layout generated within the map of Australia using &ldquo;spatstat_layout&rdquo;.
+(D) Grouped network layout consisting of four subgroups arranged with &ldquo;with_fr()&rdquo;, &ldquo;on_grid()&rdquo;, &ldquo;as_polycircle(3)&rdquo;, and &ldquo;as_polygon(3)&rdquo; within a human-body schematic. All visualization elements were rendered with MetaNet without manual adjustments.
+(E) Modular network visualized using &ldquo;g_layout_circlepack&rdquo;.
+(F) A three-layer modular structure visualized using &ldquo;g_layout_multi_layer&rdquo;. All networks shown are based on simulated data.</p></blockquote>
+<h3 id="专业生物网络与数据库的扩展支持">专业生物网络与数据库的扩展支持</h3>
+<p>MetaNet原生支持多种生物信息学专用网络类型。通过构建Venn式网络（图4A），可突破传统维恩图的局限，直观展示样本组间的集合关系与连接结构。针对分类学或基因本体等树状数据，内置&quot;as_circle_tree&quot;布局能紧凑呈现层级关系（图4B）。特有的饼图节点设计（图4C）支持将多组学丰度等多元注释直接编码于网络结构中。</p>
+<p>该工具深度整合生物数据库资源：可导入STRING数据库的蛋白质互作网络（图4D）和miRTarBase验证的miRNA-靶基因调控网络（图4E），并支持自定义布局与注释。通过与ReporterScore包的无缝衔接，能直接可视化KEGG同源基因与通路的关联网络（图4F），更支持通过KEGG ID实时渲染全注释通路图（图4G）。这些功能使MetaNet成为整合生物知识库与多组学分析的强大平台。</p>
+<img src="images/fig3-1.png" title=""/>
+<blockquote>
+<p>Figure 4. Diverse specialized network visualizations by MetaNet.
+(A) Venn-style network: Large nodes represent groups, while smaller nodes denote individual elements within each group, enabling visualization of shared and unique components.
+(B) Hierarchical tree network: Nodes are organized based on classification hierarchy. Node color corresponds to the taxonomic or categorical level.
+(C) Pie-node network: Each node is displayed as a pie chart, where slice colors indicate relative abundance across different groups.
+(D) Protein–protein interaction (PPI) network: Extracted from the STRING database, showing experimentally validated and predicted molecular interactions among proteins.
+(E) miRNA–gene regulatory network: Sourced from the miRTarBase database, illustrating experimentally supported regulatory relationships between miRNAs and their target genes.
+(F) KEGG KO–pathway association network: The network shows KEGG orthologs (KOs) involved in selected biological pathways. Small nodes represent KOs, and large nodes represent pathways. KO nodes are colored by their expression trend. Shaded regions surrounding pathways indicate whether the pathway is globally up-regulated (orange) or down-regulated (green).
+(G) KEGG pathway-specific network: Network representation of the “EGFR tyrosine kinase inhibitor resistance” pathway. Rectangular nodes denote KEGG orthologs, circular nodes indicate compounds, and edge colors reflect interaction types.</p></blockquote>
+<h3 id="全面的网络拓扑与稳定性分析">全面的网络拓扑与稳定性分析</h3>
+<p>MetaNet提供全面的网络拓扑分析功能，涵盖全局和局部两个维度。全局指标包括网络密度、平均连接度、聚类系数、平均路径长度等（表S3），可量化生物网络的冗余性、鲁棒性等特征。例如平均路径长度能反映代谢或基因调控网络中的信号传递效率。局部指标则用于评估节点/边的重要性（表S4），可识别关键调控因子或瓶颈节点。</p>
+<p>系统支持通过Erdős–Rényi模型生成随机网络作为参照（图S4A），用于检测生物网络普遍具有的无标度、小世界等特征。&ldquo;fit_power&quot;函数可验证度分布的幂律特性（图S4B），而&quot;smallworldness&quot;则计算小世界指数σ。针对生物网络典型的模块化结构，通过&quot;c_net_module&quot;函数实现多种社区发现算法（图S4C），并支持分析模块内的表达或丰度模式（图S4D）。基于Zi-Pi方法将节点划分为外围节点、连接节点、模块枢纽和网络枢纽四种拓扑角色（图S4E-F），为功能解析提供新视角。</p>
+<p>在稳定性分析方面，MetaNet集成多种生态与结构稳定性算法。结构鲁棒性测试通过逐步移除节点计算自然连通性变化（图S5A），其下降速率反映网络抗干扰能力。鲁棒性评估则模拟节点删除并跟踪基于丰度的交互强度（图S5B）。脆弱性分析揭示节点对网络通信效率的贡献（图S5C），而正负凝聚指数则量化微生物群落的合作与竞争关系（图S5D-E）。所有分析均支持多核并行加速。</p>
+<h3 id="案例1微生物共现网络的时序动态分析">案例1：微生物共现网络的时序动态分析</h3>
+<p>为展示MetaNet在多组学整合分析中的灵活性，我们将其应用于一项个体水平的多组学纵向研究数据。该研究通过可穿戴采样器获取19名受试者在特殊环境暴露下的化学与生物暴露组时序数据。我们重点分析了空气微生物组的动态变化，其中时间点A代表自然环境基线，B-D为暴露环境阶段。</p>
+<p>构建的全局微生物共现网络包含871个物种（图5A），覆盖四个分类界（图5B）。通过贪婪模块优化算法识别出六个功能模块，其度分布符合幂律特征（图5C），呈现典型复杂系统特性。模块内物种丰度分析显示，如M3模块成员随时间推移持续下降。拓扑角色分类鉴定出13个模块枢纽和19个连接节点，这些关键物种可能维持网络整体性。</p>
+<p>针对各时间点的细菌子网络分析（图5F）发现，部分微生物物种（灰色标记）的存在与丰度发生显著变化。拓扑指标比较显示，从时间点A到B出现重大转变（图5G）：暴露后网络的模块化程度和平均路径长度增加，而全局效率、聚类系数和自然连通性下降。这些变化暗示微生物群落发生功能解离——模块化增强反映亚群落间交流受限，聚类效率降低表明细菌互作网络受损，共同指向特殊暴露条件下空气微生物组的生态稳定性丧失。该发现与既往关于环境压力导致微生物网络脆弱性增加的研究结论一致。</p>
+<img src="images/fig4.png" title=""/>
+<blockquote>
+<p>Figure 5. Modularity and temporal dynamics of the microbial co-occurrence network.
+(A) Species-level microbial co-occurrence network constructed from all microbial exposure samples, showing six modules (M1 to M6). Node color indicates module membership, node size reflects relative abundance, and edge color distinguishes intra- versus inter-module connections.
+(B) Phylogenetic relationship network of all species in panel A, arranged using the &ldquo;as_circle_tree&rdquo; layout.
+(C) Comparison of degree distribution between the empirical network in panel A and a randomized network with the same number of nodes and edges.
+(D) Temporal abundance profiles of species within each module. The y-axis represents the scaled abundance of species, while the x-axis represents individual samples sorted by time point
+(E) Key microbial taxa identified based on topological role classification using the Zi-Pi framework.
+(F) Subnetwork dynamics across four exposure stages. Node color represents bacterial phylum, node size reflects relative abundance, and gray nodes denote non-core species with presence or abundance changes over time.
+(G) Changes in global network topological metrics across different stages. P-values for comparisons between timepoints A and B were calculated using the Wilcoxon rank-sum test.</p></blockquote>
+<h3 id="案例2多组学整合网络揭示生物与化学暴露组对转录组的差异化影响">案例2：多组学整合网络揭示生物与化学暴露组对转录组的差异化影响</h3>
+<p>基于同一纵向多组学数据集，我们进一步构建了暴露组（生物与化学）与宿主转录组的整合网络。该分析共纳入35,587个转录组基因、2,955个微生物物种和3,729种化学暴露物（图6A），发现590个微生物分类单元与1,983个基因存在显著关联（以正相关为主），而245种化学暴露物与1,026个基因的关联则以负相关为主导。最强关联子网络可视化显示（图6B），微生物暴露与基因表达呈正向关联，而化学暴露则倾向负相关（图6C）。关键环境因子包括：微生物中的Microbacterium lacticum和Aureobasidium melanogenum，化学物中的(SR)-4-甲基-2,3-戊二醇、吲哚等。</p>
+<p>功能富集分析揭示显著差异：微生物暴露关联基因主要富集于免疫负调控通路（图6D），如唾液链球菌与炎症信号枢纽HMGB1的正相关，提示潜在免疫调节机制；而化学暴露则显著关联神经退行性疾病（帕金森病、阿尔茨海默病等）和DNA损伤应答通路（图S6），其中苯系物和多环芳烃等已知神经毒物与认知功能障碍相关基因的负相关尤为突出。</p>
+<p>本案例证实MetaNet能有效解析多组学交互网络，揭示生物与化学暴露通过差异化的基因-环境互作机制影响健康结局——微生物暴露可能通过免疫调节通路发挥作用，而化学暴露更倾向于通过神经毒性和遗传毒性途径产生影响。</p>
+<img src="images/fig5.png" title=""/>
+<blockquote>
+<p>Figure 6. Integrated Network Analysis of Exposome–Transcriptome Interactions.
+(A) Spearman correlation-based multi-omics network linking all microbial and chemical exposures to transcriptomic data.
+(B) Spearman correlation-based multi-omics network showing the most prominent associations. Links with |ρ| &gt; 0.7 (for chemical–transcriptome pairs) or &gt; 0.6 (for biological–transcriptome pairs) are included. Only the top 10 ranked node labels are shown. Node size reflects degree centrality.
+(C) Skeleton structure of the network in panel B, highlighting the core architecture of microbial and chemical associations with genes.
+(D) Network representations of significantly correlated genes and enriched pathways for biological exposures. Bar charts on either side indicate the number of positively and negatively correlated connections for each exposure.</p></blockquote>
+<h2 id="discussion">Discussion</h2>
+<p>本研究推出的MetaNet是一个可扩展、灵活且具有生物学解释力的R语言工具包，专为组学与多组学网络分析设计。通过将网络构建、可视化、拓扑分析和跨组学整合集成至统一的可复现流程，该工具解决了现有方法的多个关键局限。其处理上万特征的能力、支持多样化网络类型以及生成高质量可定制可视化结果的特点，使其特别适用于现代系统生物学研究。两个案例研究证实了MetaNet从复杂数据中提取生物学洞见的价值，基准测试则验证了其计算性能优势，模块化设计则保障了功能的可扩展性。</p>
+<p>当前网络分析工具生态呈现多元化发展：Cytoscape擅长可视化扩展，Gephi支持大规模动态布局，igraph提供跨语言高性能计算，WGCNA专注基因共表达分析，而NetCoMi等工具则聚焦微生物生态网络。面对高通量技术产生的海量多维组学数据，MetaNet通过四大核心优势推动领域发展：(1) 基于相关性的超高效网络构建；(2) 多组学数据的无缝整合；(3) 覆盖40余种布局算法的可视化引擎；(4) 拓扑与稳定性分析的完整指标体系。该工具尤其适用于微生物生态网络、多组学互作网络等需要精确复现的研究场景，并能对接KEGG、STRING等生物知识库。</p>
+<p>尽管取得显著进展，MetaNet仍存在若干局限：当前主要优化相关性网络，对非线性关系的解析能力有待加强；随着数据规模扩大，布局算法与拓扑分析效率需持续提升；此外，生物网络分析领域普遍存在的标准化缺失问题（如阈值选择、零模型构建等）也亟待解决。未来发展方向包括：(1) 整合贝叶斯网络等新型推断方法；(2) 深化与生物知识库的融合；(3) 扩展单细胞组学数据支持；(4) 增加生态网络专用指标。通过持续优化与社区共建，MetaNet有望发展成为多组学网络分析的核心平台。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/network/">Network</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/critical-care/">
+        
+        
+            <div class="article-image">
+                <img src="/p/critical-care/images/fig1.2dfc48feea9137ca6d620bb40510403a_hu_6fa9c32f28d4bdc7.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Critical Care: ICU医护人员肠道抗生素耐药基因显著增加"
+                        data-key="critical-care" 
+                        data-hash="md5-LfxI/uqRN8ptYgu0BRBAOg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Critical Care: ICU医护人员肠道抗生素耐药基因显著增加</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/jhm/">
+        
+        
+            <div class="article-image">
+                <img src="/p/jhm/images/graphical_abstract.208c18a65ce41f5ceeb318c4bf746389_hu_bc111e5cd538918f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 浙江大学蒋超实验室在JHM发文揭示日常使用量的一次性纸杯释放的微塑料或可能影响孕期健康"
+                        data-key="jhm" 
+                        data-hash="md5-IIwYplzkH1zusxjEv3RjiQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">浙江大学蒋超实验室在JHM发文揭示日常使用量的一次性纸杯释放的微塑料或可能影响孕期健康</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/es-t/">
+        
+        
+            <div class="article-image">
+                <img src="/p/es-t/images/qt_graphical_abstract.958f2e020292b75ade7782f4b7167a55_hu_4596996422c4b8e2.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 浙江大学蒋超课题组合作ES&amp;T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘"
+                        data-key="es-t" 
+                        data-hash="md5-lY8uAgKSt1red4L0txZ6VQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">浙江大学蒋超课题组合作ES&amp;T：开发使用可穿戴被动采样器对个体生物和化学暴露组与转录组进行纵向测绘</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/grsa-bib/">
+        
+        
+            <div class="article-image">
+                <img src="/p/grsa-bib/images/BIB.3d989d4353ebbae8b423677a90ed31c2_hu_685d05494814d61f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics"
+                        data-key="grsa-bib" 
+                        data-hash="md5-PZidQ1Pruui0I2d6kO0xwg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">ReporterScore包(GRSA方法)正式发表于杂志Briefings in Bioinformatics</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

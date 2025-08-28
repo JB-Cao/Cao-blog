@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='一些常用的功能基因预测/注释通用工具介绍。'>
+<title>功能基因预测/注释通用工具</title>
+
+<link rel='canonical' href='/p/function-tools/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='功能基因预测/注释通用工具'>
+<meta property='og:description' content='一些常用的功能基因预测/注释通用工具介绍。'>
+<meta property='og:url' content='/p/function-tools/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='function' /><meta property='article:published_time' content='2024-08-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-08-06T00:00:00&#43;00:00'/><meta property='og:image' content='/p/function-tools/images/mobileOG.png' />
+<meta name="twitter:title" content="功能基因预测/注释通用工具">
+<meta name="twitter:description" content="一些常用的功能基因预测/注释通用工具介绍。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/function-tools/images/mobileOG.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#基因结构鉴定工具">基因结构鉴定工具</a>
+      <ol>
+        <li><a href="#prodigal">Prodigal</a></li>
+        <li><a href="#genemark">GeneMark</a></li>
+        <li><a href="#prokka">Prokka</a></li>
+      </ol>
+    </li>
+    <li><a href="#rna鉴定工具">RNA鉴定工具</a>
+      <ol>
+        <li><a href="#trnascan-se">tRNAscan-SE</a></li>
+        <li><a href="#aragorn">ARAGORN</a></li>
+        <li><a href="#barrnap">Barrnap</a></li>
+      </ol>
+    </li>
+    <li><a href="#比对软件">比对软件</a>
+      <ol>
+        <li><a href="#blast">BLAST</a></li>
+        <li><a href="#diamond">DIAMOND</a></li>
+        <li><a href="#mmseqs2">MMseqs2</a></li>
+        <li><a href="#hmmer">HMMER</a></li>
+      </ol>
+    </li>
+    <li><a href="#功能数据库">功能数据库</a>
+      <ol>
+        <li><a href="#kegg">KEGG</a></li>
+        <li><a href="#eggnog">eggNOG</a></li>
+        <li><a href="#pfam">Pfam</a></li>
+        <li><a href="#cog">COG</a></li>
+        <li><a href="#interpro">InterPro</a></li>
+        <li><a href="#uniprot">UniProt</a></li>
+        <li><a href="#cazy">CAZy</a></li>
+        <li><a href="#merops">MEROPS</a></li>
+        <li><a href="#tigrfams">TIGRFAMs</a></li>
+        <li><a href="#card">CARD</a></li>
+        <li><a href="#mobileog-db">mobileOG-db</a></li>
+        <li><a href="#iceberg3">ICEberg3</a></li>
+        <li><a href="#phastest">PHASTEST</a></li>
+        <li><a href="#bacmet">BacMet</a></li>
+        <li><a href="#mibpopdb">mibPOPdb</a></li>
+      </ol>
+    </li>
+    <li><a href="#元素循环">元素循环</a>
+      <ol>
+        <li><a href="#碳循环">碳循环</a></li>
+        <li><a href="#ncycdb">NCycDB</a></li>
+        <li><a href="#pcycdb">PCycDB</a></li>
+        <li><a href="#scycdb">SCycDB</a></li>
+        <li><a href="#asgenedb">AsgeneDB</a></li>
+        <li><a href="#fegenie">FeGenie</a></li>
+        <li><a href="#plasticdb">PlasticDB</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/function-tools/">
+                <img src="/p/function-tools/images/mobileOG_hu_49e83730c9255796.png"
+                        srcset="/p/function-tools/images/mobileOG_hu_49e83730c9255796.png 800w, /p/function-tools/images/mobileOG_hu_f185169bb1fcbbc.png 1600w"
+                        width="800" 
+                        height="450" 
+                        loading="lazy"
+                        alt="Featured image of post 功能基因预测/注释通用工具" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/function-tools/">功能基因预测/注释通用工具</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            一些常用的功能基因预测/注释通用工具介绍。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Aug 06, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>自己整理一些常用的功能基因预测/注释通用工具，因为数量较多，不会写的很仔细，对于每个单独的工具可以进一步找相关教程学习。</p>
+<h2 id="基因结构鉴定工具">基因结构鉴定工具</h2>
+<h3 id="prodigal">Prodigal</h3>
+<p>参考教程：<a class="link" href="https://blog.csdn.net/zd200572/article/details/135991053"  target="_blank" rel="noopener"
+    >一文读懂Prodigal教程</a></p>
+<p><strong>介绍</strong>：
+Prodigal（Prokaryotic Dynamic Programming Gene-finding Algorithm）是一款用于原核生物基因预测的高效工具，广泛应用于基因组和宏基因组数据分析。</p>
+<p><strong>安装</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 下载并解压源代码包：</span>
+</span></span><span class="line"><span class="cl">wget https://github.com/hyattpd/Prodigal/releases/download/v2.6.3/prodigal.linux
+</span></span><span class="line"><span class="cl">chmod +x prodigal.linux
+</span></span><span class="line"><span class="cl">sudo mv prodigal.linux /usr/local/bin/prodigal
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者直接用 conda 安装：</span>
+</span></span><span class="line"><span class="cl">conda install prodigal
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>简单使用</strong>：</p>
+<ol>
+<li>基因组序列文件中预测基因：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">prodigal -i input.fasta -o genes.gbk -a proteins.faa
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="genemark">GeneMark</h3>
+<p>参考教程：</p>
+<ul>
+<li><a class="link" href="https://cloud.tencent.com/developer/article/1625152"  target="_blank" rel="noopener"
+    >GeneMark-ES</a></li>
+<li><a class="link" href="https://cloud.tencent.com/developer/article/2075645"  target="_blank" rel="noopener"
+    >GeneMarkS</a></li>
+</ul>
+<p><strong>介绍</strong>：
+GeneMark是一款通用的基因预测工具，适用于原核和真核生物，能够识别复杂的基因结构。</p>
+<p><strong>安装</strong>：</p>
+<ol>
+<li>
+<p>前往GeneMark官网（<a class="link" href="http://exon.gatech.edu/GeneMark/"  target="_blank" rel="noopener"
+    >http://exon.gatech.edu/GeneMark/</a>）下载相应的版本。</p>
+</li>
+<li>
+<p>解压并配置环境变量：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tar -xzvf genemark.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/path/to/genemark
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p><strong>简单使用</strong>：</p>
+<ol>
+<li>对基因组序列文件进行基因预测：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">gmhmmp -m MetaGeneMark_v1.mod -o genes.gff input.fasta
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="prokka">Prokka</h3>
+<p>参考教程：<a class="link" href="https://blog.csdn.net/woodcorpse/article/details/106552667"  target="_blank" rel="noopener"
+    >基因注释Prokka</a></p>
+<p><strong>介绍</strong>：
+Prokka 是一个快速的基因组功能注释工具，能够对细菌、古菌和病毒基因组进行注释。它集成了多个工具，用于基因预测和功能注释，输出标准化的注释结果。</p>
+<p><strong>安装</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda install prokka
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>简单使用</strong>：</p>
+<ol>
+<li>对基因组序列进行注释：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">prokka input.fasta --outdir annotation_output --prefix sample
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="rna鉴定工具">RNA鉴定工具</h2>
+<h3 id="trnascan-se">tRNAscan-SE</h3>
+<p>参考教程：<a class="link" href="https://www.jianshu.com/p/92489a720134"  target="_blank" rel="noopener"
+    >tRNAscan-SE安装使用教程</a></p>
+<p><strong>介绍</strong>：
+tRNAscan-SE 是一款广泛应用的tRNA基因预测工具，能够高效、准确地识别基因组中的tRNA基因。该工具结合了多个算法，以提高预测准确性。</p>
+<p><strong>安装</strong>：
+安装有点麻烦，需要仔细:</p>
+<ol>
+<li>下载并解压源代码包：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 自己找一下最新版看看</span>
+</span></span><span class="line"><span class="cl">wget http://trna.ucsc.edu/tRNAscan-SE.tar.gz
+</span></span><span class="line"><span class="cl">tar -xzvf tRNAscan-SE.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> tRNAscan-SE
+</span></span><span class="line"><span class="cl">./configure  --prefix<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#需要调用infernal</span>
+</span></span><span class="line"><span class="cl">wget -c http://eddylab.org/infernal/infernal-1.1.2-linux-intel-gcc.tar.gz
+</span></span><span class="line"><span class="cl">tar xzvf infernal-1.1.2-linux-intel-gcc.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> infernal-1.1.2-linux-intel-gcc/
+</span></span><span class="line"><span class="cl">./configure  --prefix<span class="o">=</span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">make <span class="o">&amp;&amp;</span> make install
+</span></span><span class="line"><span class="cl">cp binaries/*  bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加bashrc</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;export PATH=</span><span class="nv">$PATH</span><span class="s2">:/path/to/tRNAscan-SE/bin&#34;</span> &gt;&gt; ~/.bashrc
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;export PERL5LIB=/path/to/tRNAscan-SE/lib:</span><span class="nv">$PERL5LIB</span><span class="s2">&#34;</span> &gt;&gt; ~/.bashrc
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> ~/.bashrc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 需要编辑/path/to/tRNAscan-SE/tRNAscan-SE.conf文件，下面这几行需要修改</span>
+</span></span><span class="line"><span class="cl">bin_dir: /path/to/tRNAscan-SE/bin
+</span></span><span class="line"><span class="cl">lib_dir: /path/to/tRNAscan-SE/lib
+</span></span><span class="line"><span class="cl">infernal_dir: /path/to/infernal-1.1.2-linux-intel-gcc/bin
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p><strong>简单使用</strong>：</p>
+<ol>
+<li>对基因组序列进行tRNA基因预测：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tRNAscan-SE -o output.txt input.fasta
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="aragorn">ARAGORN</h3>
+<p><strong>介绍</strong>：
+ARAGORN是一款用于快速和高效识别基因组序列中tRNA和tmRNA基因的工具。它的设计目的是在大规模基因组分析中提供精确的tRNA/tmRNA基因定位。</p>
+<p><strong>安装</strong>：</p>
+<ul>
+<li><strong>Conda安装</strong>：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda install -c bioconda aragorn
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p><strong>简单使用</strong>：</p>
+<ol>
+<li>识别tRNA和tmRNA基因：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">aragorn -i input.fasta -o output.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="barrnap">Barrnap</h3>
+<p>参考教程：<a class="link" href="https://www.jianshu.com/p/8f4061c38508"  target="_blank" rel="noopener"
+    >Barrnap预测rRNA基因</a></p>
+<p><strong>介绍</strong>：
+Barrnap是一款快速、小巧的rRNA基因预测工具，专为16S、23S和5S rRNA基因的检测而设计，适用于细菌和古菌。</p>
+<p><strong>安装</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://github.com/tseemann/barrnap/archive/v0.9.tar.gz
+</span></span><span class="line"><span class="cl">tar -xzvf v0.9.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> barrnap-0.9
+</span></span><span class="line"><span class="cl">sudo cp bin/barrnap /usr/local/bin/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#或者conda安装：</span>
+</span></span><span class="line"><span class="cl">conda install -c bioconda -c conda-forge barrnap
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>简单使用</strong>：</p>
+<ol>
+<li>对基因组序列进行rRNA基因预测：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">barrnap input.fasta &gt; output.gff
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="比对软件">比对软件</h2>
+<p>我们要对鉴定到的基因进行功能注释，有一些功能数据库具有配套的比对软件，但更多的数据库是只提供序列的，我们需要自己使用一些软件建库比对。</p>
+<h3 id="blast">BLAST</h3>
+<p>参考教程：<a class="link" href="https://www.jianshu.com/p/de28be1a3bea"  target="_blank" rel="noopener"
+    >BLAST教程</a></p>
+<p><strong>介绍</strong>：
+BLAST（Basic Local Alignment Search Tool）是一个广泛使用的基因和蛋白质序列比对工具，能够快速地在数据库中查找与查询序列相似的序列。</p>
+<p><strong>安装</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-*.tar.gz
+</span></span><span class="line"><span class="cl">tar -xzvf ncbi-blast-*.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ncbi-blast-*
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置环境变量：</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/path/to/ncbi-blast-*/bin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者conda安装：</span>
+</span></span><span class="line"><span class="cl">conda install -c bioconda blast
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>简单使用</strong>：</p>
+<ol>
+<li>创建本地数据库：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">makeblastdb -in database.fasta -dbtype nucl -out mydb
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>进行序列比对：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">blastn -query query.fasta -db mydb -out results.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="diamond">DIAMOND</h3>
+<p>参考教程：<a class="link" href="https://blog.csdn.net/u012110870/article/details/102804629"  target="_blank" rel="noopener"
+    >DIAMOND: 超快的蛋白序列比对软件</a></p>
+<p><strong>介绍</strong>：
+DIAMOND是一个快速的蛋白质序列比对工具，设计用于比对大规模数据集，速度比BLAST快几个数量级。</p>
+<p><strong>安装</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://github.com/bbuchfink/diamond/releases/download/v2.0.14/diamond-linux64.tar.gz
+</span></span><span class="line"><span class="cl">tar -xzvf diamond-linux64.tar.gz
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者conda安装</span>
+</span></span><span class="line"><span class="cl">conda install -c bioconda diamond
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>简单使用</strong>：</p>
+<ol>
+<li>创建本地数据库：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">diamond makedb --in database.fasta -d mydb
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>进行序列比对：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">diamond blastp -d mydb -q query.fasta -o results.m8
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="mmseqs2">MMseqs2</h3>
+<p>参考教程：<a class="link" href="https://blog.csdn.net/zrc_xiaoguo/article/details/134747183"  target="_blank" rel="noopener"
+    >MMseqs2蛋白质序列快速高效比对工具</a></p>
+<p><strong>介绍</strong>：
+MMseqs2（Many-against-Many sequence searching）是一个快速高效的序列搜索和聚类工具，适用于大规模数据集，这个可以好好学习一下使用，因为速度算是非常快的。</p>
+<p><strong>安装</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget https://mmseqs.com/latest/mmseqs-linux.tar.gz
+</span></span><span class="line"><span class="cl">tar -xzvf mmseqs-linux.tar.gz
+</span></span><span class="line"><span class="cl"><span class="c1"># 或者conda安装</span>
+</span></span><span class="line"><span class="cl">conda install -c conda-forge -c bioconda mmseqs2
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>简单使用</strong>：</p>
+<ol>
+<li>创建本地数据库：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mmseqs createdb input.fasta mydb
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>进行序列比对：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mmseqs search mydb query.fasta result tmp
+</span></span><span class="line"><span class="cl">mmseqs convertalis mydb query.fasta result results.m8
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>在基因组和宏基因组研究中，除了BLAST、DIAMOND和MMseqs2等常用比对软件外，还有一些基于隐马尔可夫模型（HMM）的比对工具，这些工具能够提供更敏感和准确的比对，特别是对于蛋白质家族和结构域的检测。</p>
+<p>在基因组和宏基因组研究中，基因和功能注释的比对工具是不可或缺的。以下是一些常用的工具，包括HMM（隐马尔可夫模型）相关的比对软件：</p>
+<h3 id="hmmer">HMMER</h3>
+<p>参考教程：<a class="link" href="https://www.jianshu.com/p/da21884850ad"  target="_blank" rel="noopener"
+    >hmmer 简明教程</a></p>
+<p><strong>介绍</strong>：
+HMMER是一款基于HMM的工具，适用于检测蛋白质家族和结构域。</p>
+<p><strong>安装</strong>：</p>
+<ul>
+<li><strong>Conda安装</strong>：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda install -c bioconda hmmer
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p><strong>简单使用</strong>：</p>
+<ol>
+<li>创建HMM模型：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hmmbuild mymodel.hmm myalignment.sto
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>进行HMM比对：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hmmsearch --tblout results.tbl mymodel.hmm query.fasta
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h2 id="功能数据库">功能数据库</h2>
+<h3 id="kegg">KEGG</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://www.kegg.jp/"  target="_blank" rel="noopener"
+    >KEGG</a></li>
+<li><strong>介绍</strong>: KEGG (Kyoto Encyclopedia of Genes and Genomes) 是一个综合数据库，提供有关基因组、化学物质和系统功能的信息。它包含了代谢通路、药物、疾病、代谢物等多种数据。KEGG 用于基因和代谢途径的注释，帮助研究人员理解生物体的复杂功能和相互作用。</li>
+</ul>
+<h3 id="eggnog">eggNOG</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="http://eggnogdb.embl.de/"  target="_blank" rel="noopener"
+    >eggNOG</a></li>
+<li><strong>介绍</strong>: eggNOG (evolutionary genealogy of genes: Non-supervised Orthologous Groups) 是一个用于功能注释和进化学分类的数据库。它通过无监督的方式构建直系同源基因组群，提供高质量的功能预测和注释，广泛应用于基因功能研究和比较基因组学。</li>
+</ul>
+<h3 id="pfam">Pfam</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="http://pfam.xfam.org/"  target="_blank" rel="noopener"
+    >Pfam</a></li>
+<li><strong>介绍</strong>: Pfam 是一个蛋白质家族数据库，提供已知蛋白质结构域和功能位点的详细信息。每个结构域在数据库中都以隐马尔可夫模型（HMMs）的形式存储，Pfam 用于注释蛋白质序列，帮助研究人员理解蛋白质的结构和功能。</li>
+</ul>
+<h3 id="cog">COG</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://www.ncbi.nlm.nih.gov/research/cog/"  target="_blank" rel="noopener"
+    >COG</a></li>
+<li><strong>介绍</strong>: COG (Clusters of Orthologous Groups) 数据库针对细菌和古菌，组织和分类了直系同源基因群。COG 提供了跨物种的基因和蛋白质功能注释，帮助研究者识别基因的保守性和功能演化。</li>
+</ul>
+<h3 id="interpro">InterPro</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://www.ebi.ac.uk/interpro/"  target="_blank" rel="noopener"
+    >InterPro</a></li>
+<li><strong>介绍</strong>: InterPro 是一个综合数据库，整合了多个蛋白质家族、结构域和功能位点的资源。它通过统一的注释标准，帮助研究人员分析和理解蛋白质序列的功能。</li>
+</ul>
+<h3 id="uniprot">UniProt</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://www.uniprot.org/"  target="_blank" rel="noopener"
+    >UniProt</a></li>
+<li><strong>介绍</strong>: UniProt 是一个全面的蛋白质序列和功能数据库。它提供了丰富的蛋白质信息，包括序列、功能注释、相互作用、结构等，广泛应用于生物信息学和系统生物学研究。</li>
+</ul>
+<h3 id="cazy">CAZy</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="http://www.cazy.org/"  target="_blank" rel="noopener"
+    >CAZy</a></li>
+<li><strong>介绍</strong>: CAZy (Carbohydrate-Active enZymes) 数据库专注于碳水化合物活性酶，包括糖苷水解酶、糖苷转移酶、多糖裂解酶等。CAZy 用于注释和分类这些酶，帮助研究人员理解碳水化合物代谢和功能。</li>
+</ul>
+<h3 id="merops">MEROPS</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://www.ebi.ac.uk/merops/"  target="_blank" rel="noopener"
+    >MEROPS</a></li>
+<li><strong>介绍</strong>: MEROPS 是一个肽酶和肽酶抑制剂的数据库。它分类和注释了各种肽酶及其抑制剂，提供了序列、功能和结构信息，帮助研究人员研究蛋白质降解和调控机制。</li>
+</ul>
+<h3 id="tigrfams">TIGRFAMs</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://tigrfams.jcvi.org/cgi-bin/index.cgi"  target="_blank" rel="noopener"
+    >TIGRFAMs</a></li>
+<li><strong>介绍</strong>: TIGRFAMs 是一个用于功能和进化注释的蛋白质家族模型数据库。它基于 HMMs，为每个蛋白质家族提供详细的功能注释，广泛用于基因组和代谢途径的研究。</li>
+</ul>
+<h3 id="card">CARD</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://card.mcmaster.ca/"  target="_blank" rel="noopener"
+    >CARD</a></li>
+<li><strong>介绍</strong>: CARD（The Comprehensive Antibiotic Resistance Database） 是经过严格筛选的、经过同行评审的耐药性决定因素和相关抗生素的集合，由抗生素耐药性本体论 (ARO) 和 AMR 基因检测模型组织而成。</li>
+</ul>
+<h3 id="mobileog-db">mobileOG-db</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://github.com/clb21565/mobileOG-db"  target="_blank" rel="noopener"
+    >mobileOG-db</a></li>
+<li><strong>介绍</strong>: mobileOG-db 是一个用于注释移动基因组的数据库。它基于 HMMs，为每个移动基因组提供详细的功能注释，广泛用于基因组和代谢途径的研究。</li>
+</ul>
+<img src="images/mobileOG.png" title=""/>
+<h3 id="iceberg3">ICEberg3</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://tool2-mml.sjtu.edu.cn/ICEberg3/index.html"  target="_blank" rel="noopener"
+    >ICEberg3</a></li>
+<li><strong>介绍</strong>: 整合和接合元件（ICE）是重要的移动遗传元件，在细菌进化中发挥着重要作用。它们可以整合到细菌染色体中并拥有完整的接合机制，从而实现细菌细胞之间的自我传播。通过促进不同货物基因的水平转移，ICE赋予宿主有益的特征，如抗生素抗性、发病机制、防御系统、金属抗性、化合物降解和共生，这对细菌多样性和适应有显着贡献。ICEberg 3.0 提供了三个主要增强功能：(i) 具有手动管理功能的新 ICE、IME 和 CIME 数据。 (ii) ICE 货运功能分类。 (iii) 将其重点扩展到涵盖人类微生物组中的 ICE。这些更新通过捕获 ICE 的不同功能和特征，能够有效地促进对细菌进化的理解。</li>
+</ul>
+<h3 id="phastest">PHASTEST</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://phastest.ca/"  target="_blank" rel="noopener"
+    >PHASTEST</a></li>
+<li><strong>介绍</strong>: PHASTEST旨在支持细菌基因组和质粒中原噬菌体序列的快速识别、注释和可视化。</li>
+</ul>
+<h3 id="bacmet">BacMet</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="http://bacmet.biomedicine.gu.se/"  target="_blank" rel="noopener"
+    >BacMet</a></li>
+<li><strong>介绍</strong>: BacMet 是一种易于使用的抗菌剂和金属抗性基因的生物信息学资源。 BacMet 由两个数据库组成：手动管理的基因数据库，具有经实验证实的抗性功能；基于与具有实验证实功能的基因的序列相似性的预测抗性基因的数据库。</li>
+</ul>
+<h3 id="mibpopdb">mibPOPdb</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="http://mibpop.genome-mining.cn/"  target="_blank" rel="noopener"
+    >mibPOPdb</a></li>
+<li><strong>介绍</strong>: mibPOPdb 数据库是一个手动管理的综合资源，致力于持久性有机污染物 (POP) 研究的微生物生物修复。数据是从科学文献中系统地、手动地收集的。</li>
+</ul>
+<h2 id="元素循环">元素循环</h2>
+<h3 id="碳循环">碳循环</h3>
+<p>碳循环是指碳在生物圈、大气圈、水圈和岩石圈中的循环过程。它通过光合作用、呼吸作用、分解和燃烧等途径，维持着地球上的碳平衡。碳循环的重要性在于它对气候变化和生态系统健康的影响。</p>
+<p>相关信息可以在KEGG找到大部分，甲烷循环部分具有数据库<a class="link" href="https://github.com/qichao1984/MCycDB"  target="_blank" rel="noopener"
+    >MCycDB</a></p>
+<h3 id="ncycdb">NCycDB</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://github.com/Tu-Lab/NCyc"  target="_blank" rel="noopener"
+    >NCycDB</a></li>
+<li><strong>介绍</strong>: NCycDB 是一个专注于氮循环的基因和酶的数据库，包含与氮循环相关的功能基因信息。它有助于研究氮在生态系统中的转化过程，理解氮循环的分子机制。</li>
+</ul>
+<h3 id="pcycdb">PCycDB</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://github.com/ZengJiaxiong/Phosphorus-cycling-database"  target="_blank" rel="noopener"
+    >PCycDB</a></li>
+<li><strong>介绍</strong>: PCycDB 是一个关于磷循环的数据库，提供了磷循环相关基因和酶的信息。该数据库有助于研究磷的生物地球化学循环，了解磷在环境中的迁移和转化过程。</li>
+</ul>
+<h3 id="scycdb">SCycDB</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://github.com/Tu-Lab/SCycDB"  target="_blank" rel="noopener"
+    >SCycDB</a></li>
+<li><strong>介绍</strong>: SCycDB 专注于硫循环，包含硫循环相关的基因和酶信息。它帮助研究者理解硫在生态系统中的循环过程，分析硫的生物地球化学作用。</li>
+</ul>
+<h3 id="asgenedb">AsgeneDB</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://github.com/Asgene/AsgeneDB"  target="_blank" rel="noopener"
+    >AsgeneDB</a></li>
+<li><strong>介绍</strong>: AsgeneDB 是一个关于氨基酸循环的数据库，包含氨基酸循环相关的基因和酶信息。它有助于研究氨基酸在生态系统中的循环过程，理解氨基酸的生物地球化学作用。</li>
+</ul>
+<h3 id="fegenie">FeGenie</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://github.com/Arkadiy-Garber/FeGenie"  target="_blank" rel="noopener"
+    >FeGenie</a></li>
+<li><strong>介绍</strong>: FeGenie 是一个关于铁循环的数据库，包含铁循环相关的基因和酶信息。它有助于研究铁在生态系统中的循环过程，理解铁的生物地球化学作用。</li>
+</ul>
+<h3 id="plasticdb">PlasticDB</h3>
+<ul>
+<li><strong>官网</strong>: <a class="link" href="https://plasticdb.org"  target="_blank" rel="noopener"
+    >PlasticDB</a></li>
+<li><strong>介绍</strong>: PlasticDB 是一个关于塑料循环的数据库，包含塑料循环相关的基因和酶信息。它有助于研究塑料在生态系统中的循环过程，理解塑料的生物地球化学作用。</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/function/">Function</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/gsea/">
+        
+        
+            <div class="article-image">
+                <img src="/p/gsea/images/gsea_intro.a9d9729869cb5d458404f04ee3fcd680_hu_7b336a40841c7dfa.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 基因集富集分析(GSEA)简介"
+                        data-key="gsea" 
+                        data-hash="md5-qdlymGnLXUWEBPBO4/zWgA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">基因集富集分析(GSEA)简介</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/reporter-score/">
+        
+        
+            <div class="article-image">
+                <img src="/p/reporter-score/images/misuse2.58ae901d15239e78cab2a90a3ab9c398_hu_9e2e21d67bd4d74a.jpeg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Reporter Score 微生物功能富集分析"
+                        data-key="reporter-score" 
+                        data-hash="md5-WK6QHRUjnnjKsqkKOrnDmA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Reporter Score 微生物功能富集分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-4/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-4/images/1-2.7f04df50146143db7f38e3c60bbebaa9_hu_4ebeb6bc608a4e31.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（4）"
+                        data-key="25-nature-4" 
+                        data-hash="md5-fwTfUBRhQ9t/OOPGC766qQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（4）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-3/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-3/images/fig1.20d52f738dfd506b0754bda8d4b0ead0_hu_d6f6d5c8a568f26d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（3）"
+                        data-key="25-nature-3" 
+                        data-hash="md5-INUvc439UGsHVL2o1LDq0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（3）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/25-nature-2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/25-nature-2/images/2-1-2.f13dbba185acaee28c931cc543f77916_hu_94453c680a4ffc60.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（2）"
+                        data-key="25-nature-2" 
+                        data-hash="md5-8T27oYWsruKMkxzFQ/d5Fg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（2）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

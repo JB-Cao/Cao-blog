@@ -1,0 +1,1765 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='介绍绘制进化树用的ggtree以及一些拓展包的基础用法，因为gg系列绘图的逻辑基本是搭积木，这种介绍性的文章能够帮助快速的找到想要的“积木”以及拼接的方法，剩下的就是随心所欲设计想要的图了。'>
+<title>R绘制优美的进化树（基础）</title>
+
+<link rel='canonical' href='/p/r-tree/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='R绘制优美的进化树（基础）'>
+<meta property='og:description' content='介绍绘制进化树用的ggtree以及一些拓展包的基础用法，因为gg系列绘图的逻辑基本是搭积木，这种介绍性的文章能够帮助快速的找到想要的“积木”以及拼接的方法，剩下的就是随心所欲设计想要的图了。'>
+<meta property='og:url' content='/p/r-tree/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='可视化' /><meta property='article:tag' content='进化树' /><meta property='article:tag' content='phylogenetic tree' /><meta property='article:published_time' content='2023-04-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-04-14T00:00:00&#43;00:00'/><meta property='og:image' content='/index.cn_files/figure-html/unnamed-chunk-15-1.png' />
+<meta name="twitter:title" content="R绘制优美的进化树（基础）">
+<meta name="twitter:description" content="介绍绘制进化树用的ggtree以及一些拓展包的基础用法，因为gg系列绘图的逻辑基本是搭积木，这种介绍性的文章能够帮助快速的找到想要的“积木”以及拼接的方法，剩下的就是随心所欲设计想要的图了。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/index.cn_files/figure-html/unnamed-chunk-15-1.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#visualization">Visualization</a>
+      <ol>
+        <li><a href="#format">format</a></li>
+        <li><a href="#basic-plot">basic plot</a>
+          <ol>
+            <li><a href="#layout">layout</a></li>
+            <li><a href="#label">label</a></li>
+          </ol>
+        </li>
+        <li><a href="#manipulate">manipulate</a></li>
+        <li><a href="#annotation">annotation</a>
+          <ol>
+            <li><a href="#tip-annotation">tip annotation</a></li>
+            <li><a href="#internal-annotation">internal annotation</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/r-tree/">
+                
+                    <img src="/index.cn_files/figure-html/unnamed-chunk-15-1.png" loading="lazy" alt="Featured image of post R绘制优美的进化树（基础）" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/r/" style="background-color: #bebada; color: #fff;">
+                R
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/r-tree/">R绘制优美的进化树（基础）</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            介绍绘制进化树用的ggtree以及一些拓展包的基础用法，因为gg系列绘图的逻辑基本是搭积木，这种介绍性的文章能够帮助快速的找到想要的“积木”以及拼接的方法，剩下的就是随心所欲设计想要的图了。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 14, 2023</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    7 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>这篇文章主要是介绍绘制进化树用的ggtree以及一些拓展包的基础用法，因为gg系列绘图的逻辑基本是搭积木，这种介绍性的文章能够帮助快速的找到想要的“积木”以及拼接的方法，剩下的就是随心所欲设计想要的图了。所以这篇出的图可能不是很“漂亮”，下次一定搞一篇提供复现各种文章美图的代码的推文💪。</p>
+<h2 id="introduction">Introduction</h2>
+<p>在数学中，“树”是一种特殊的无向图，它没有任何循环，并且任意两个顶点之间都只有一条简单路径。树通常用于建立层次关系，比如在计算机科学中，用树来表示文件系统、程序的调用关系、HTML文档的DOM结构等等。树也是算法和数据结构中非常重要的概念，许多问题可以用树来解决，比如搜索、排序、编码等等。</p>
+<p><strong>系统发育树（Phylogenetic tree）</strong> 是一种用于描述不同物种或生物体系之间进化关系的树形结构。它是一种分支图，用于表示生命的进化历史，从共同祖先开始，沿着时间轴向后展开。系统发育树通常是基于各种生物学数据的分析所建立的，如形态特征、基因序列、蛋白质序列、生化反应等，以便识别物种之间的遗传变异和演化趋势。</p>
+<p>系统发育树的树枝代表演化分支，节点表示各个物种的最近共同祖先，树枝的长度表示演化距离或进化时间。系统发育树的形状和结构可以帮助我们理解不同物种之间的亲缘关系，了解生物进化和演化过程。在生物分类学、生态学、生物地理学和生物技术等领域中，系统发育树都具有重要的应用价值。</p>
+<h2 id="visualization">Visualization</h2>
+<p>有很多软件平台可以用来可视化Phylogenetic tree，下面列举一些比较常用的：</p>
+<ol>
+<li>
+<p>iTOL (Interactive Tree Of Life)：这是一个在线工具，可以方便地创建、注释和可视化Phylogenetic tree。它提供了多种样式和注释选项，可以根据需求自定义显示效果。网址为：<a class="link" href="https://itol.embl.de/"  target="_blank" rel="noopener"
+    ><strong>https://itol.embl.de/</strong></a><strong>（不付费的话无法保存中间步骤，注释方法不太友好[Doge]）</strong></p>
+</li>
+<li>
+<p>FigTree：这是一个免费的软件，可以在Mac和Windows系统上运行。它可以可视化Nexus、Newick和Nexml等格式的Phylogenetic tree，并提供了多种样式和注释选项。网址为：<a class="link" href="http://tree.bio.ed.ac.uk/software/figtree/"  target="_blank" rel="noopener"
+    ><strong>http://tree.bio.ed.ac.uk/software/figtree/</strong></a></p>
+</li>
+<li>
+<p>Phylo.io：这也是一个在线工具，可以可视化Phylogenetic tree并进行自定义注释。它还提供了交互式功能，可以探索和比较不同部分之间的关系。网址为：<a class="link" href="https://phylo.io/"  target="_blank" rel="noopener"
+    ><strong>https://phylo.io/</strong></a></p>
+</li>
+<li>
+<p>Dendroscope：这是一个基于Java的软件，可以用来可视化Phylogenetic tree并进行比较和注释。它支持多种文件格式，包括Nexus、Newick、Phylip等。网址为：<a class="link" href="http://dendroscope.org/"  target="_blank" rel="noopener"
+    ><strong>http://dendroscope.org/</strong></a></p>
+</li>
+<li>
+<p>MEGA (Molecular Evolutionary Genetics Analysis)：这是一个免费的软件，可以用于分子进化分析和可视化。它可以创建、注释和可视化Phylogenetic tree，并提供了多种样式和注释选项。网址为：<a class="link" href="https://www.megasoftware.net/"  target="_blank" rel="noopener"
+    ><strong>https://www.megasoftware.net/</strong></a></p>
+</li>
+</ol>
+<p>当然，在线平台和带GUI界面的软件有一定弊端，操纵不是那么自由。在R语言中，用于可视化Phylogenetic tree的包也有很多：</p>
+<ol>
+<li>
+<p><strong>ggtree (<a class="link" href="#ref-yuGgtreePackageVisualization2017" ><em>1</em></a>) +ggtreeExtra (<a class="link" href="#ref-xuGgtreeExtraCompactVisualization2021" ><em>2</em></a>)</strong> ：Y叔的神包，基于ggplot2语法，学起来比较流畅，提供高度可定制化的绘图，支持各种不同类型的进化树。是我们要讲的重点，画树掌握这两个包基本就够了。<a class="link" href="https://yulab-smu.top/treedata-book/"  target="_blank" rel="noopener"
+    >官方英文教程</a>；现在Y叔的中文教程也在热卖中。</p>
+</li>
+<li>
+<p>ape：提供了用于绘制基本的进化树和一些简单的树的可视化函数，基础函数还是非常有用的，phylo对象也是一直要用的。</p>
+</li>
+<li>
+<p>phytools：提供了多种用于绘制进化树的函数，包括变形进化树的函数。</p>
+</li>
+<li>
+<p>ggphylo：基于ggplot2语法，提供了一些用于绘制进化树的函数，支持多种不同的树形态。</p>
+</li>
+</ol>
+<p>我们可以先安装载入一些包。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="kr">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">,</span> <span class="n">quietly</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;YuLab-SMU/treedataverse&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;ggtree&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;ggtreeExtra&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">treedataverse</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggtree</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggtreeExtra</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="format">format</h3>
+<p>首先我们还是介绍一下存储树的一些文件格式和读取方法（毕竟读入数据一直是可视化的第一步）。</p>
+<ol>
+<li>
+<p>Newick格式 (.newick 或 .nwk)：Newick格式是最常见的用于存储和传输系统发育树的格式之一。它是一种文本格式，可以使用文本编辑器打开和编辑。在Newick格式中，每个节点由一个括号表示，其后面跟着一个表示该节点的标签和一个冒号，然后是一个表示该节点的分支长度的数字，最后跟着逗号和下一个节点的括号。叶节点是没有子节点的节点。</p>
+</li>
+<li>
+<p>Nexus格式 (.nex 或 .nexus)：Nexus格式是一种广泛使用的用于存储分子系统发育树和其他分子生物学数据的格式。它是一种文本格式，可以使用文本编辑器打开和编辑。Nexus格式允许存储多个数据集和多个树，并提供了一些其他的扩展功能，如注释、区分字符等。</p>
+</li>
+<li>
+<p>PhyloXML格式 (.xml)：PhyloXML格式是一种基于XML的格式，专门用于存储和传输系统发育树。它提供了许多其他格式所不具备的灵活性和扩展性，可以存储大量的信息，如节点注释、支持值、分支长度、支持率等。</p>
+</li>
+<li>
+<p>NeXML格式 (.xml)：NeXML格式是一种基于XML的格式，用于存储和传输生物多样性和系统发育树数据。它提供了PhyloXML格式的所有功能，并添加了一些额外的功能，如存储生物多样性元数据、事件、传输网格数据等。</p>
+</li>
+<li>
+<p>其他还有Phylip 格式 (.phy 或 .phylip)，PAUP 格式 (.paup)，IQ-TREE 格式 (.tree)，RAxML 格式 (.raxml)，MEGA 格式 (.meg)等等。</p>
+</li>
+</ol>
+<p>在R中，可以使用不同的包和函数来读取不同格式的系统发育树文件。如 <strong><code>ape</code></strong> 包中的 <strong><code>read.tree()</code></strong> 函数可以读取Newick格式的系统发育树文件、 <strong><code>phangorn</code></strong> 包中的 <strong><code>read.phyDat()</code></strong> 和 <strong><code>read.phylo()</code></strong> 函数读取包括Nexus、Newick、Phylip等格式。</p>
+<p>当然，Y叔团队也贴心地准备好了一个包 <strong><code>treeio</code></strong> 用于读取、处理各种系统发育树文件格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">treeio</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从 Newick 格式读取系统发育树数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">tree</span> <span class="o">&lt;-</span> <span class="nf">read.tree</span><span class="p">(</span><span class="s">&#34;tree.nwk&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从 Nexus 格式读取系统发育树数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">tree</span> <span class="o">&lt;-</span> <span class="nf">read.nexus</span><span class="p">(</span><span class="s">&#34;tree.nexus&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 从 Phylip 格式读取系统发育树数据</span>
+</span></span><span class="line"><span class="cl"><span class="n">tree</span> <span class="o">&lt;-</span> <span class="nf">read.phylo</span><span class="p">(</span><span class="s">&#34;tree.phy&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Nexus、Newick、Phylip这几种格式读入后会变成常见的<strong>phylo S3对象</strong>，其他格式读入后一般会变成<strong>treedata S4对象</strong>（更高级全面的一个对象，当然亦可以和phylo相互转换），这两种对象都可以直接使用ggtree画图的，我们只要读入就好。</p>
+<h3 id="basic-plot">basic plot</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">set.seed</span><span class="p">(</span><span class="m">1234</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#生成示例树</span>
+</span></span><span class="line"><span class="cl"><span class="n">tree</span><span class="o">=</span><span class="nf">rtree</span><span class="p">(</span><span class="m">50</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">main_p</span><span class="o">=</span><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">mapping</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">layout</span> <span class="o">=</span> <span class="s">&#34;rectangular&#34;</span><span class="p">,</span><span class="c1">#常用circular，daylight</span>
+</span></span><span class="line"><span class="cl">      <span class="n">open.angle</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span><span class="c1">#部分支持，如fan</span>
+</span></span><span class="line"><span class="cl">      <span class="n">mrsd</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span><span class="c1">#时间轴</span>
+</span></span><span class="line"><span class="cl">      <span class="n">as.Date</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">yscale</span> <span class="o">=</span> <span class="s">&#34;none&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">yscale_mapping</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">ladderize</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span><span class="c1">#阶梯状排列树</span>
+</span></span><span class="line"><span class="cl">      <span class="n">right</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">branch.length</span> <span class="o">=</span> <span class="s">&#34;branch.length&#34;</span><span class="p">,</span><span class="c1">#&#34;none&#34;就会让branch末端都对齐</span>
+</span></span><span class="line"><span class="cl">      <span class="n">root.position</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">xlim</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">#线段风格</span>
+</span></span><span class="line"><span class="cl">      <span class="n">color</span><span class="o">=</span><span class="s">&#34;black&#34;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="m">1</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<h4 id="layout">layout</h4>
+<p>整棵树的布局方式有很多’rectangular’, ‘dendrogram’, ‘slanted’, ‘ellipse’, ‘roundrect’, ‘fan’, ‘circular’, ‘inward_circular’, ‘radial’, ‘equal_angle’, ‘daylight’ or ‘ape’，也可以用其它一些参数调节：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;roundrect&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;slanted&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;ellipse&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;circular&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;fan&#34;</span><span class="p">,</span> <span class="n">open.angle</span><span class="o">=</span><span class="m">120</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;equal_angle&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;daylight&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">branch.length</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;ellipse&#34;</span><span class="p">,</span> <span class="n">branch.length</span><span class="o">=</span><span class="s">&#34;none&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#39;circular&#39;</span><span class="p">,</span> <span class="n">branch.length</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;daylight&#34;</span><span class="p">,</span> <span class="n">branch.length</span> <span class="o">=</span> <span class="s">&#39;none&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="images/tree_layout1.svg" style="width:100.0%" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">+</span> <span class="nf">scale_x_reverse</span><span class="p">()</span><span class="c1">#左右颠倒</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">+</span> <span class="nf">coord_flip</span><span class="p">()</span><span class="c1">#上下颠倒</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">+</span> <span class="nf">layout_dendrogram</span><span class="p">()</span><span class="c1">#只看骨架</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ggplotify</span><span class="o">::</span><span class="nf">as.ggplot</span><span class="p">(</span><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="m">-30</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="m">.9</span><span class="p">)</span><span class="c1">#旋转特定角度和缩放</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#39;slanted&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nf">coord_flip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#39;slanted&#39;</span><span class="p">,</span> <span class="n">branch.length</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nf">layout_dendrogram</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#39;circular&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nf">xlim</span><span class="p">(</span><span class="m">-10</span><span class="p">,</span> <span class="kc">NA</span><span class="p">)</span><span class="c1">#扩大树中间的空白区域</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">+</span> <span class="nf">layout_inward_circular</span><span class="p">()</span><span class="c1">#内外颠倒</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">+</span> <span class="nf">layout_inward_circular</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="m">15</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="images/tree_layout2.svg" style="width:100.0%" />
+<h4 id="label">label</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#对齐加虚线</span>
+</span></span><span class="line"><span class="cl"><span class="n">main_p</span><span class="o">+</span><span class="nf">geom_tiplab</span><span class="p">(</span><span class="n">align</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span><span class="n">linetype</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span><span class="n">linesize</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">&#34;red&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#对齐不加虚线</span>
+</span></span><span class="line"><span class="cl"><span class="n">main_p</span><span class="o">+</span><span class="nf">geom_tiplab</span><span class="p">(</span><span class="n">align</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="m">4</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s">&#34;blue&#34;</span><span class="p">,</span><span class="n">as_ylab</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-5-2.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#加上内部节点名称</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span><span class="o">+</span><span class="nf">geom_nodelab</span><span class="p">(</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">node</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-5-3.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#比例尺</span>
+</span></span><span class="line"><span class="cl"><span class="n">main_p</span><span class="o">+</span><span class="nf">geom_treescale</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="m">6</span><span class="p">,</span> <span class="n">linesize</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-5-4.png" width="672" />
+<h3 id="manipulate">manipulate</h3>
+<p>我们可以使用<code>tidytree::as_tibble</code>或者<code>ggtree::fortify</code>把整个树（phylo对象）转为一个易于阅读的dataframe。</p>
+<p>parent和node两列展示了整个树的连接关系,branch.length是每个枝（连接parent和node）的枝长，label是node的label，一般每个tip（端点）都会有一个label，内部的点可能没有label（比如这个示例），我们也可以手动加上。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tidytree</span><span class="o">::</span><span class="nf">as_tibble</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span><span class="o">%&gt;%</span><span class="nf">head</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## # A tibble: 6 × 4
+##   parent  node branch.length label
+##    &lt;int&gt; &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt;
+## 1     58     1         0.318 t2   
+## 2     59     2         0.634 t47  
+## 3     59     3         0.127 t40  
+## 4     57     4         0.423 t20  
+## 5     56     5         0.914 t44  
+## 6     55     6         0.468 t3
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tree_df</span><span class="o">=</span><span class="n">ggtree</span><span class="o">::</span><span class="nf">fortify</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">tree_df</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## # A tibble: 6 × 9
+##   parent  node branch.length label isTip     x     y branch angle
+##    &lt;int&gt; &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;lgl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1     58     1         0.318 t2    TRUE   4.28    48   4.12  346.
+## 2     59     2         0.634 t47   TRUE   5.55    49   5.24  353.
+## 3     59     3         0.127 t40   TRUE   5.05    50   4.98  360 
+## 4     57     4         0.423 t20   TRUE   3.88    47   3.67  338.
+## 5     56     5         0.914 t44   TRUE   3.87    46   3.42  331.
+## 6     55     6         0.468 t3    TRUE   3.17    45   2.94  324
+</code></pre>
+<p>我们可以用以下方法访问树的节点（node）的关系节点，可以通过tree或者tree生成的dataframe查询：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">tidytree</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">child</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="m">53</span><span class="p">)</span><span class="c1">#子节点,一层</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## [1] 54 63
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">parent</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span><span class="c1">#父节点，一层</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## [1] 58
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">offspring</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="m">53</span><span class="p">)</span><span class="c1">#所有的子节点，包括子节点的子节点</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>##  [1] 54 63 55 60 56  6 57  5 58  4  1 59  2  3  7 61 62 10  8  9 64 67 65 66 11
+## [26] 12 13 14 15 16
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ancestor</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span><span class="c1">#所有的父节点，包括父节点的父节点</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## [1] 58 57 56 55 54 53 52 51
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sibling</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span><span class="c1">#兄弟节点</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## [1] 59
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">MRCA</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span><span class="c1">#最近祖先</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## [1] 58
+</code></pre>
+<p><strong>节点分组</strong></p>
+<p><code>groupOTU()</code> 和 <code>groupClade()</code> 方法旨在将分类群分组信息添加到输入树对象，这种分组信息可以直接用在 ggtree 的树可视化中。</p>
+<p><code>groupOTU()</code> 输入的是要给分组下的每个node。</p>
+<p><code>groupClade()</code> 输入给每个分组的最高级node即可，会自动分配该node下所有offspring node同一个分组。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">groupOTU</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">.node</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">52</span><span class="p">,</span><span class="m">53</span><span class="p">),</span><span class="n">group_name</span> <span class="o">=</span> <span class="s">&#34;OTU&#34;</span><span class="p">)</span><span class="o">%&gt;%</span><span class="nf">as_tibble</span><span class="p">()</span><span class="o">%&gt;%</span><span class="n">head</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## # A tibble: 6 × 5
+##   parent  node branch.length label OTU  
+##    &lt;int&gt; &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;fct&gt;
+## 1     58     1         0.318 t2    0    
+## 2     59     2         0.634 t47   0    
+## 3     59     3         0.127 t40   0    
+## 4     57     4         0.423 t20   0    
+## 5     56     5         0.914 t44   0    
+## 6     55     6         0.468 t3    0
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">groupClade</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">.node</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">52</span><span class="p">,</span><span class="m">53</span><span class="p">),</span><span class="n">group_name</span> <span class="o">=</span> <span class="s">&#34;Clade&#34;</span><span class="p">)</span><span class="o">%&gt;%</span><span class="nf">as_tibble</span><span class="p">()</span><span class="o">%&gt;%</span><span class="n">head</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>## # A tibble: 6 × 5
+##   parent  node branch.length label Clade
+##    &lt;int&gt; &lt;int&gt;         &lt;dbl&gt; &lt;chr&gt; &lt;fct&gt;
+## 1     58     1         0.318 t2    2    
+## 2     59     2         0.634 t47   2    
+## 3     59     3         0.127 t40   2    
+## 4     57     4         0.423 t20   2    
+## 5     56     5         0.914 t44   2    
+## 6     55     6         0.468 t3    2
+</code></pre>
+<p><strong>取树的子集</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">clade</span> <span class="o">&lt;-</span> <span class="nf">tree_subset</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">node</span><span class="o">=</span><span class="m">53</span><span class="p">,</span> <span class="n">levels_back</span><span class="o">=</span><span class="m">0</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">clade2</span> <span class="o">&lt;-</span> <span class="nf">tree_subset</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">node</span><span class="o">=</span><span class="m">53</span><span class="p">,</span> <span class="n">levels_back</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p1</span> <span class="o">&lt;-</span> <span class="nf">ggtree</span><span class="p">(</span><span class="n">clade</span><span class="p">)</span> <span class="o">+</span> <span class="nf">geom_tiplab</span><span class="p">()</span> <span class="o">+</span> <span class="nf">xlim</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">p2</span> <span class="o">&lt;-</span> <span class="nf">ggtree</span><span class="p">(</span><span class="n">clade2</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">group</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_tiplab</span><span class="p">()</span> <span class="o">+</span>    <span class="nf">xlim</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">9</span><span class="p">)</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">    <span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;black&#34;</span><span class="p">,</span> <span class="s">&#34;red&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="o">+</span><span class="n">p2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<p>其他一些操作:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#重设树根,指定外类群</span>
+</span></span><span class="line"><span class="cl"><span class="n">trda2</span> <span class="o">&lt;-</span> <span class="nf">root</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">outgroup</span> <span class="o">=</span> <span class="m">104</span><span class="p">,</span> <span class="n">edgelabel</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#缩放树枝</span>
+</span></span><span class="line"><span class="cl"><span class="nf">rescale_tree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="s">&#39;dN&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#删除tip</span>
+</span></span><span class="line"><span class="cl"><span class="nf">drop.tip</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="annotation">annotation</h3>
+<h4 id="tip-annotation">tip annotation</h4>
+<p>这类注释方法使用的注释数据集基本是一列是tip的node号或label，其他列为注释数据（分类数据/连续数值数据），每一行是一个tip。</p>
+<p>ggtree本身自带一些实现tip注释（添加热图等对象）的功能，基于facet以及数据对齐tip：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#生成测试注释文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">anno</span><span class="o">=</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">row.names</span> <span class="o">=</span> <span class="n">tree</span><span class="o">$</span><span class="n">tip.label</span><span class="p">,</span><span class="n">node</span><span class="o">=</span><span class="n">tree</span><span class="o">$</span><span class="n">tip.label</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Group</span><span class="o">=</span><span class="nf">sample</span><span class="p">(</span><span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">3</span><span class="n">]</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="n">replace</span> <span class="o">=</span> <span class="bp">T</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">Type</span><span class="o">=</span><span class="nf">sample</span><span class="p">(</span><span class="kc">letters</span><span class="n">[1</span><span class="o">:</span><span class="m">3</span><span class="n">]</span><span class="p">,</span><span class="m">50</span><span class="p">,</span><span class="n">replace</span> <span class="o">=</span> <span class="bp">T</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                <span class="n">value1</span><span class="o">=</span><span class="nf">abs</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">50</span><span class="p">)),</span><span class="n">high</span><span class="o">=</span><span class="nf">abs</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="m">5</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">anno</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><pre><code>##     node Group Type     value1     high
+## t2    t2     B    a 1.41126240 5.287710
+## t47  t47     B    c 0.83758243 4.340230
+## t40  t40     B    a 1.12376279 7.919140
+## t20  t20     A    a 3.04376589 5.677416
+## t44  t44     A    b 0.23502131 4.315680
+## t3    t3     C    a 0.03325861 5.186492
+</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">p</span><span class="o">=</span><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span><span class="o">+</span><span class="nf">geom_tiplab</span><span class="p">(</span><span class="n">align</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">gheatmap</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">anno[</span><span class="s">&#34;Group&#34;</span><span class="n">]</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="m">0</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">0.2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<p>或者使用aplot包进行会自动对齐tip的组图（用cowplot无法实现），但缺点就是组图时候的一些细节不好调节，且要考虑清楚各个分面insert的关系和宽度。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">aplot</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ap1</span><span class="o">=</span><span class="nf">ggplot</span><span class="p">(</span><span class="n">anno</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">node</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s">&#34;Group&#34;</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">Group</span><span class="p">))</span><span class="o">+</span><span class="nf">geom_tile</span><span class="p">()</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">coord_flip</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme_tree2</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ap2</span><span class="o">=</span><span class="nf">ggplot</span><span class="p">(</span><span class="n">anno</span><span class="p">,</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">node</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">high</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">Group</span><span class="p">))</span><span class="o">+</span><span class="nf">geom_col</span><span class="p">()</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">coord_flip</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme_tree2</span><span class="p">()</span> <span class="o">+</span> <span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">ap1</span><span class="o">%&gt;%</span> <span class="nf">insert_left</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">width</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">insert_right</span><span class="p">(</span><span class="n">ap2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="m">2</span><span class="p">)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<p>目前感觉最好用的tip注释方法就是 <strong>ggtreeExtra</strong>，有统一的注释逻辑<code>geom_fruit</code>,按照图层一个一个添加，比较易学和调节。具体能用来注释的图层有’geom_bar’, ‘geom_col’, ‘geom_boxplot’, ‘geom_violin’，‘ggstar’,’ggimage’等。</p>
+<p>每一个geom图层就像一个积木块一样，我们要做的就是挑选合适的积木，用同样的方法搭上去即可（也是整个ggplot的绘图逻辑，优雅），对每个geom图层，我们同样可以使用ggplot的各种scale方法调节颜色、大小、形状等。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">p</span><span class="o">=</span><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span><span class="n">layout</span> <span class="o">=</span> <span class="s">&#34;fan&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#geom_star</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggstar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span><span class="o">=</span><span class="n">p</span> <span class="o">+</span> <span class="nf">geom_fruit</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="n">data</span><span class="o">=</span><span class="n">anno</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">geom</span><span class="o">=</span><span class="n">geom_star</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">mapping</span><span class="o">=</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">`node`</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">Type</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">value1</span><span class="p">,</span> <span class="n">starshape</span><span class="o">=</span><span class="n">Group</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">position</span><span class="o">=</span><span class="s">&#34;identity&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">starstroke</span><span class="o">=</span><span class="m">0.1</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span><span class="o">+</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">#调节star的大小以及其legend</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">scale_size_continuous</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="n">range</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="c1"># the range of size.</span>
+</span></span><span class="line"><span class="cl">          <span class="n">guide</span><span class="o">=</span><span class="nf">guide_legend</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">keywidth</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                    <span class="n">keyheight</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">override.aes</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">starshape</span><span class="o">=</span><span class="m">15</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">order</span><span class="o">=</span><span class="m">2</span> <span class="c1">#legend的顺序</span>
+</span></span><span class="line"><span class="cl">                <span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#调节star的颜色以及其legend</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">scale_fill_manual</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="n">values</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;#8dd3c7&#34;</span><span class="p">,</span> <span class="s">&#34;#ffed6f&#34;</span><span class="p">,</span> <span class="s">&#34;#bebada&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">guide</span><span class="o">=</span><span class="s">&#34;none&#34;</span> 
+</span></span><span class="line"><span class="cl">      <span class="p">)</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">     <span class="c1">#调节star的形状以及其legend     </span>
+</span></span><span class="line"><span class="cl">      <span class="nf">scale_starshape_manual</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="n">values</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">16</span><span class="p">,</span><span class="m">15</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">guide</span><span class="o">=</span><span class="nf">guide_legend</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">keywidth</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">keyheight</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">order</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">                <span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<p>要注意的是！在添加多个图层时，有时候我们要用多次的fill或color属性，但是ggplot的scale_fill_manual会对全局生效，结果就会比较奇怪，所以我们在图层之间一般要使用<code>ggnewscale</code>包来产生一个新的scale，之后就可以分别调节了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggnewscale</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p2</span><span class="o">=</span><span class="n">p1</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">      <span class="n">ggnewscale</span><span class="o">::</span><span class="nf">new_scale_fill</span><span class="p">()</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">      <span class="nf">geom_fruit</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="n">data</span><span class="o">=</span><span class="n">anno</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">geom</span><span class="o">=</span><span class="n">geom_tile</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">mapping</span><span class="o">=</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">node</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">value1</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">offset</span><span class="o">=</span><span class="m">0.08</span><span class="p">,</span>   <span class="c1"># 调节</span>
+</span></span><span class="line"><span class="cl">          <span class="n">pwidth</span><span class="o">=</span><span class="m">0.25</span> <span class="c1"># width of the external layer, default is 0.2 times of x range of tree.</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">      <span class="nf">scale_fill_gradient</span><span class="p">(</span><span class="n">low</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span><span class="n">high</span> <span class="o">=</span> <span class="s">&#34;red&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">p2</span><span class="o">+</span> <span class="n">ggnewscale</span><span class="o">::</span><span class="nf">new_scale_fill</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">geom_fruit</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="n">data</span><span class="o">=</span><span class="n">anno</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">geom</span><span class="o">=</span><span class="n">geom_col</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">mapping</span><span class="o">=</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">node</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">high</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="n">Type</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">pwidth</span><span class="o">=</span><span class="m">0.4</span><span class="p">,</span><span class="n">offset</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">axis.params</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">                          <span class="n">axis</span><span class="o">=</span><span class="s">&#34;x&#34;</span><span class="p">,</span> <span class="c1"># 添加x轴文字</span>
+</span></span><span class="line"><span class="cl">                          <span class="n">text.size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="c1">#文字大小</span>
+</span></span><span class="line"><span class="cl">                          <span class="n">text.angle</span><span class="o">=</span><span class="m">-45</span><span class="p">,</span> <span class="c1"># 角度</span>
+</span></span><span class="line"><span class="cl">                          <span class="n">hjust</span><span class="o">=</span><span class="m">0</span>  <span class="c1"># 调节</span>
+</span></span><span class="line"><span class="cl">                      <span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">grid.params</span><span class="o">=</span><span class="nf">list</span><span class="p">()</span> <span class="c1"># 添加网格线</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">      <span class="nf">scale_fill_manual</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">          <span class="n">values</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;#a6bce3&#34;</span><span class="p">,</span> <span class="s">&#34;#fb9a99&#34;</span><span class="p">,</span> <span class="s">&#34;#fdbf6f&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">guide</span><span class="o">=</span><span class="nf">guide_legend</span><span class="p">(</span><span class="n">keywidth</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">keyheight</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="m">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<p>当然还可以加一些有趣的比如 <strong>image注释</strong> 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggimage</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggtree</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">nwk</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;((((bufonidae, dendrobatidae), ceratophryidae),&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">              <span class="s">&#34;(centrolenidae, leptodactylidae)), hylidae);&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">imgdir</span> <span class="o">&lt;-</span> <span class="nf">system.file</span><span class="p">(</span><span class="s">&#34;extdata/frogs&#34;</span><span class="p">,</span> <span class="n">package</span> <span class="o">=</span> <span class="s">&#34;TDbook&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">=</span> <span class="nf">read.tree</span><span class="p">(</span><span class="n">text</span> <span class="o">=</span> <span class="n">nwk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">+</span><span class="nf">geom_tiplab</span><span class="p">()</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">geom_fruit</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="n">x</span><span class="o">$</span><span class="n">tip.label</span><span class="p">,</span><span class="n">image</span><span class="o">=</span><span class="nf">paste0</span><span class="p">(</span><span class="n">imgdir</span><span class="p">,</span> <span class="s">&#39;/&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">$</span><span class="n">tip.label</span><span class="p">,</span> <span class="s">&#39;.jpg&#39;</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">geom</span> <span class="o">=</span> <span class="n">geom_image</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">node</span><span class="p">,</span><span class="n">image</span><span class="o">=</span><span class="n">image</span><span class="p">),</span> <span class="n">offset</span><span class="o">=</span><span class="m">0.5</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="m">.2</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<p>生物剪影，<a class="link" href="https://yulab-smu.top/treedata-book/phylopic.org"  target="_blank" rel="noopener"
+    >Phylopic</a> 包含 3200 多个生物剪影，涵盖很多门类。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">newick</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;((Pongo_abelii,(Gorilla_gorilla_gorilla,(Pan_paniscus,&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;Pan_troglodytes)Pan,Homo_sapiens)Homininae)Hominidae,&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="s">&#34;Nomascus_leucogenys)Hominoidea;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tree</span> <span class="o">&lt;-</span> <span class="nf">read.tree</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">newick</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#通过phylopic_uid查询剪影</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">&lt;-</span> <span class="n">ggimage</span><span class="o">::</span><span class="nf">phylopic_uid</span><span class="p">(</span><span class="n">tree</span><span class="o">$</span><span class="n">tip.label</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span><span class="o">$</span><span class="n">body_mass</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">52</span><span class="p">,</span> <span class="m">114</span><span class="p">,</span> <span class="m">47</span><span class="p">,</span> <span class="m">45</span><span class="p">,</span> <span class="m">58</span><span class="p">,</span> <span class="m">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">%&lt;+%</span> <span class="n">d</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_tiplab</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">uid</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="n">body_mass</span><span class="p">),</span> <span class="n">geom</span><span class="o">=</span><span class="s">&#34;phylopic&#34;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="m">2.5</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_tiplab</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">),</span> <span class="n">offset</span> <span class="o">=</span> <span class="m">.2</span><span class="p">)</span> <span class="o">+</span> <span class="nf">xlim</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="m">7</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_color_viridis_c</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="images/phylopic.png" width="1075" />
+<h4 id="internal-annotation">internal annotation</h4>
+<p>这类注释方法使用基本是内部的node号或label，加上额外的注释数据（分类数据/连续数值数据）</p>
+<p>可选的对象有cladelab，strip，highlight，taxa_link… 也能直接给一部分树枝上色。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">internal_anno</span><span class="o">=</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">53</span><span class="p">,</span><span class="m">68</span><span class="p">,</span><span class="m">79</span><span class="p">),</span><span class="n">name</span><span class="o">=</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;clade&#34;</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">),</span><span class="n">angle1</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">90</span><span class="p">,</span><span class="m">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tree2</span> <span class="o">&lt;-</span> <span class="nf">groupClade</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="nf">setNames</span><span class="p">(</span><span class="n">internal_anno</span><span class="o">$</span><span class="n">node</span><span class="p">,</span><span class="n">internal_anno</span><span class="o">$</span><span class="n">name</span><span class="p">),</span><span class="n">group_name</span> <span class="o">=</span> <span class="s">&#34;test&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">col_p</span><span class="o">=</span><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree2</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">test</span><span class="p">))</span><span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_color_manual</span><span class="p">(</span><span class="n">values</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;black&#34;</span><span class="p">,</span> <span class="s">&#34;red3&#34;</span><span class="p">,</span> <span class="s">&#34;skyblue&#34;</span><span class="p">,</span><span class="s">&#34;yellow3&#34;</span><span class="p">))</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">#theme(legend.position=&#39;none&#39;)+</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">guides</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="nf">guide_legend</span><span class="p">(</span><span class="n">override.aes</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="m">3</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#添加point注释</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree2</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;fan&#34;</span><span class="p">)</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point2</span><span class="p">(</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">test</span><span class="o">!=</span><span class="m">0</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="n">test</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-19-2.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;fan&#34;</span><span class="p">)</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_cladelab</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">internal_anno</span><span class="p">,</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="n">node</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">name</span><span class="p">,</span><span class="n">angle</span><span class="o">=</span><span class="n">angle1</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#strip类似cladelab，不过提供的是两个tip，可以横跨不同位置的枝条,不接受mapping</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;fan&#34;</span><span class="p">)</span>  <span class="o">+</span> <span class="nf">geom_tiplab</span><span class="p">()</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_strip</span><span class="p">(</span><span class="s">&#39;t10&#39;</span><span class="p">,</span> <span class="s">&#39;t33&#39;</span><span class="p">,</span> <span class="n">barsize</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">label</span><span class="o">=</span><span class="s">&#34;group1&#34;</span><span class="p">,</span> <span class="n">offset.text</span><span class="o">=</span><span class="m">.1</span><span class="p">)</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_strip</span><span class="p">(</span><span class="s">&#39;t12&#39;</span><span class="p">,</span> <span class="s">&#39;t21&#39;</span><span class="p">,</span> <span class="n">barsize</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">label</span> <span class="o">=</span> <span class="s">&#34;group2&#34;</span><span class="p">,</span> <span class="n">offset.text</span><span class="o">=</span><span class="m">.1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-20-2.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#highlight</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;fan&#34;</span><span class="p">)</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_highlight</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">internal_anno</span><span class="p">,</span><span class="n">mapping</span> <span class="o">=</span> <span class="nf">aes</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="n">node</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">name</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="n">name</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#balance类似highlight，不过可以提供两个有包含关系的clade,不接受mapping</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_balance</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="m">55</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.6</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_balance</span><span class="p">(</span><span class="n">node</span><span class="o">=</span><span class="m">56</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">&#39;darkgreen&#39;</span><span class="p">,</span>  <span class="n">alpha</span><span class="o">=</span><span class="m">0.6</span><span class="p">,</span> <span class="n">extend</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-21-2.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">links</span> <span class="o">&lt;-</span><span class="nf">data.frame</span><span class="p">(</span><span class="n">from</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;t36&#34;</span><span class="p">,</span><span class="s">&#34;t7&#34;</span><span class="p">,</span><span class="s">&#34;t23&#34;</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                  <span class="n">to</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;t6&#34;</span><span class="p">,</span> <span class="s">&#34;t46&#34;</span><span class="p">,</span> <span class="s">&#34;t29&#34;</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                  <span class="n">type</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;l1&#34;</span><span class="p">,</span> <span class="s">&#34;l2&#34;</span><span class="p">,</span> <span class="s">&#34;l3&#34;</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                  <span class="n">s</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ggtree</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="s">&#34;inward_circular&#34;</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">          <span class="nf">geom_taxalink</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">links</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                         <span class="n">mapping</span><span class="o">=</span><span class="nf">aes</span><span class="p">(</span><span class="n">taxa1</span><span class="o">=</span><span class="n">from</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                     <span class="n">taxa2</span><span class="o">=</span><span class="n">to</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                     <span class="n">color</span><span class="o">=</span><span class="n">type</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                     <span class="n">size</span><span class="o">=</span><span class="n">s</span><span class="p">))</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">          <span class="nf">geom_tiplab</span><span class="p">(</span><span class="n">hjust</span><span class="o">=</span><span class="m">1</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">          <span class="nf">scale_size_continuous</span><span class="p">(</span><span class="n">range</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<p>另外一些是通过内部节点改变整个树分布的方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#通过scaleClade调节某个clade占比</span>
+</span></span><span class="line"><span class="cl"><span class="nf">scaleClade</span><span class="p">(</span><span class="n">col_p</span><span class="p">,</span> <span class="n">node</span><span class="o">=</span><span class="m">53</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="m">.1</span><span class="p">)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#通过collapes折叠某个clade</span>
+</span></span><span class="line"><span class="cl"><span class="nf">collapse</span><span class="p">(</span><span class="n">col_p</span><span class="p">,</span> <span class="n">node</span><span class="o">=</span><span class="m">53</span><span class="p">,</span><span class="n">mode</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;mix&#34;</span><span class="p">,</span><span class="s">&#34;max&#34;</span><span class="p">,</span><span class="s">&#34;min&#34;</span><span class="p">,</span><span class="s">&#34;none&#34;</span><span class="p">)</span><span class="n">[1]</span><span class="p">,</span><span class="n">fill</span><span class="o">=</span><span class="s">&#34;red3&#34;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.4</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-2.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#通过rotate旋转两个clade</span>
+</span></span><span class="line"><span class="cl"><span class="n">ggtree</span><span class="o">::</span><span class="nf">rotate</span><span class="p">(</span><span class="n">col_p</span><span class="p">,</span><span class="n">node</span> <span class="o">=</span> <span class="m">52</span><span class="p">)</span><span class="o">+</span><span class="nf">geom_nodelab</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="n">node</span><span class="o">==</span><span class="m">52</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="n">node</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-3.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#通过flip交换两个clade</span>
+</span></span><span class="line"><span class="cl"><span class="n">ggtree</span><span class="o">::</span><span class="nf">flip</span><span class="p">(</span><span class="n">col_p</span><span class="p">,</span><span class="m">53</span><span class="p">,</span><span class="m">68</span><span class="p">)</span><span class="o">+</span><span class="nf">geom_nodelab</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="n">node</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-4.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#通过open_tree和rotate_tree调节角度</span>
+</span></span><span class="line"><span class="cl"><span class="nf">open_tree</span><span class="p">(</span><span class="n">col_p</span><span class="p">,</span> <span class="m">180</span><span class="p">)</span><span class="o">%&gt;%</span><span class="nf">rotate_tree</span><span class="p">(</span><span class="m">90</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/r-tree/index.cn_files/figure-html/unnamed-chunk-23-5.png" width="672" />
+<p>掌握以上这些方法，基本上可以绘制出用在文章的树了（当然一定要自己好好找配色，调整细节！！！）</p>
+<p>下次进阶！</p>
+<h2 id="reference">Reference</h2>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-yuGgtreePackageVisualization2017" class="csl-entry">
+<p><span class="csl-left-margin">1. </span><span class="csl-right-inline">G. Yu, D. K. Smith, H. Zhu, Y. Guan, <em>et al.</em>, <a class="link" href="https://doi.org/10.1111/2041-210X.12628"  target="_blank" rel="noopener"
+    >Ggtree: An r package for visualization and annotation of phylogenetic trees with their covariates and other associated data</a>. <em>Methods in Ecology and Evolution</em>. <strong>8</strong>, 28–36 (2017).</span></p>
+</div>
+<div id="ref-xuGgtreeExtraCompactVisualization2021" class="csl-entry">
+<p><span class="csl-left-margin">2. </span><span class="csl-right-inline">S. Xu, Z. Dai, P. Guo, X. Fu, <em>et al.</em>, <a class="link" href="https://doi.org/10.1093/molbev/msab166"  target="_blank" rel="noopener"
+    ><span class="nocase">ggtreeExtra</span>: Compact Visualization of Richly Annotated Phylogenetic Data</a>. <em>Molecular Biology and Evolution</em>. <strong>38</strong>, 4039–4042 (2021).</span></p>
+</div>
+</div>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/">可视化</a>
+        
+            <a href="/tags/%E8%BF%9B%E5%8C%96%E6%A0%91/">进化树</a>
+        
+            <a href="/tags/phylogenetic-tree/">Phylogenetic Tree</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/iphylo/">
+        
+        
+            <div class="article-image">
+                <img src="/p/iphylo/images/iphy.0244b30a5110c9d253d682d90a87289b_hu_773ae5a961053499.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post iPhylo 生成并绘制优美的分类树（物种&#43;化学）"
+                        data-key="iPhylo" 
+                        data-hash="md5-AkSzClEQydJT1oLZCocomw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">iPhylo 生成并绘制优美的分类树（物种&#43;化学）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/r-tree2/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-tree2/images/example3.2d1a5ae3bdd0028f7084e9e4be97252d_hu_b76111f320dd40af.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post R绘制优美的进化树（进阶）"
+                        data-key="r-tree2" 
+                        data-hash="md5-LRpa473QAo9whOnkvpclLQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">R绘制优美的进化树（进阶）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/sample-map/">
+        
+        
+            <div class="article-image">
+                <img src="/p/sample-map/images/leaf2.780d9a2ee8ea7ffe7f76cd25c264adad_hu_f2384a1b8d31b7dc.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 快速绘制采样地图"
+                        data-key="sample-map" 
+                        data-hash="md5-eA2aLujqf/5/ds0lwmStrQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">快速绘制采样地图</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/synteny/">
+        
+        
+            <div class="article-image">
+                <img src="/p/synteny/images/emales.4bc315eea41464bbcfd1eab9c4798b89_hu_712745c117876c99.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 基因组同线性（synteny）分析和可视化"
+                        data-key="synteny" 
+                        data-hash="md5-S8MV7qQUZLvP0eq5xHmLiQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">基因组同线性（synteny）分析和可视化</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/r-vis-pkg/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-vis-pkg/index.en_files/figure-html/unnamed-chunk-2-1.6932b469ee89c8b2a23202f3e6e7f6b2_hu_68db91eb2bec9b13.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 一些有趣的绘图R包"
+                        data-key="r-vis-pkg" 
+                        data-hash="md5-aTK0ae6JyLKiMgLz5uf2sg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">一些有趣的绘图R包</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

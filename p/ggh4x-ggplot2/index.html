@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ggh4x包是ggplot2的扩展包，提供了一些实用函数，这里简要介绍一下。'>
+<title>ggh4x包拓展ggplot2绘图</title>
+
+<link rel='canonical' href='/p/ggh4x-ggplot2/'>
+
+<link rel="stylesheet" href="/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='ggh4x包拓展ggplot2绘图'>
+<meta property='og:description' content='ggh4x包是ggplot2的扩展包，提供了一些实用函数，这里简要介绍一下。'>
+<meta property='og:url' content='/p/ggh4x-ggplot2/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='可视化' /><meta property='article:tag' content='R' /><meta property='article:published_time' content='2024-10-09T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-10-09T00:00:00&#43;00:00'/><meta property='og:image' content='/p/ggh4x-ggplot2/images/README-facets-1.png' />
+<meta name="twitter:title" content="ggh4x包拓展ggplot2绘图">
+<meta name="twitter:description" content="ggh4x包是ggplot2的扩展包，提供了一些实用函数，这里简要介绍一下。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='/p/ggh4x-ggplot2/images/README-facets-1.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/142776729'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Asa12138'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://asa12138.github.io/'
+                        target="_blank"
+                        title="Homepage"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-world-pin"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20.972 11.291a9 9 0 1 0 -8.322 9.686" /><path d="M3.6 9h16.8" /><path d="M3.6 15h8.9" /><path d="M11.5 3a17 17 0 0 0 0 18" /><path d="M12.5 3a16.986 16.986 0 0 1 2.578 9.018" /><path d="M21.121 20.121a3 3 0 1 0 -4.242 0c.418 .419 1.125 1.045 2.121 1.879c1.051 -.89 1.759 -1.516 2.121 -1.879z" /><path d="M19 18v.01" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://twitter.com/Asa12138_'
+                        target="_blank"
+                        title="Twitter"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-twitter" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M22 4.01c-1 .49 -1.98 .689 -3 .99c-1.121 -1.265 -2.783 -1.335 -4.38 -.737s-2.643 2.06 -2.62 3.737v1c-3.245 .083 -6.135 -1.395 -8 -4c0 0 -4.182 7.433 4 11c-1.872 1.247 -3.739 2.088 -6 2c3.308 1.803 6.913 2.423 10.034 1.517c3.58 -1.04 6.522 -3.723 7.651 -7.742a13.84 13.84 0 0 0 .497 -3.753c-.002 -.249 1.51 -2.772 1.818 -4.013z" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="/" selected>English</option>
+                        
+                            <option value="/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#调整facets">调整facets</a>
+      <ol>
+        <li><a href="#扩展facets">扩展facets</a></li>
+        <li><a href="#嵌套facets">嵌套facets</a></li>
+        <li><a href="#手动设计facets">手动设计facets</a></li>
+        <li><a href="#细调strips">细调strips</a></li>
+        <li><a href="#调整scales">调整scales</a></li>
+        <li><a href="#panel大小">Panel大小</a></li>
+      </ol>
+    </li>
+    <li><a href="#调整legend">调整legend</a>
+      <ol>
+        <li><a href="#多color-scale">多color scale</a></li>
+        <li><a href="#字符legend">字符legend</a></li>
+      </ol>
+    </li>
+    <li><a href="#调整坐标轴">调整坐标轴</a>
+      <ol>
+        <li><a href="#截断坐标轴">截断坐标轴</a></li>
+        <li><a href="#手动设置坐标轴">手动设置坐标轴</a></li>
+        <li><a href="#设置ticks">设置ticks</a></li>
+        <li><a href="#嵌套坐标轴">嵌套坐标轴</a></li>
+        <li><a href="#内部坐标轴">内部坐标轴</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/p/ggh4x-ggplot2/">
+                <img src="/p/ggh4x-ggplot2/images/README-facets-1_hu_c1083636c20a97f1.png"
+                        srcset="/p/ggh4x-ggplot2/images/README-facets-1_hu_c1083636c20a97f1.png 800w, /p/ggh4x-ggplot2/images/README-facets-1_hu_d5d09e5c9f1add0e.png 1600w"
+                        width="800" 
+                        height="571" 
+                        loading="lazy"
+                        alt="Featured image of post ggh4x包拓展ggplot2绘图" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/r/" style="background-color: #bebada; color: #fff;">
+                R
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/ggh4x-ggplot2/">ggh4x包拓展ggplot2绘图</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            ggh4x包是ggplot2的扩展包，提供了一些实用函数，这里简要介绍一下。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Oct 09, 2024</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>官网：<a class="link" href="https://github.com/teunbrand/ggh4x/"  target="_blank" rel="noopener"
+    >https://github.com/teunbrand/ggh4x/</a></p>
+<p><code>ggh4x</code> 包是 <code>ggplot2</code> 扩展包。它提供了一些实用函数，虽然这些函数并不完全符合“图形语法”的概念（它们可能有点hacky），但在调整ggplot绘图结果时仍然很有用。比如调整facet的大小、将多种美学映射到颜色以及指定facet的单独比例等等，下面介绍一些常用的功能：</p>
+<p>可以从 CRAN 安装最新稳定版本的 ggh4x，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;ggh4x&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>或者可以使用以下命令从 <a class="link" href="https://github.com/"  target="_blank" rel="noopener"
+    >GitHub</a> 安装开发版本：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># install.packages(&#34;devtools&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;teunbrand/ggh4x&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="调整facets">调整facets</h2>
+<h3 id="扩展facets">扩展facets</h3>
+<p><code>facet_wrap2</code>和<code>facet_grid2</code>函数扩展了ggplot2的分面功能。即使当scales=“fixed”（默认）时，也可以使用axes参数在（部分或全部）内面绘制轴。此外，可以选择省略轴标签，但通过设置remove_labels参数保留内部面的轴刻度。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggh4x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">scales</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">mpg</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">displ</span><span class="p">,</span> <span class="n">hwy</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">cyl</span><span class="p">)))</span> <span class="o">+</span> <span class="nf">geom_point</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#34;Engine displacement&#34;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&#34;Highway miles per gallon&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">guides</span><span class="p">(</span><span class="n">colour</span> <span class="o">=</span> <span class="s">&#34;none&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">+</span> <span class="nf">facet_wrap2</span><span class="p">(</span><span class="nf">vars</span><span class="p">(</span><span class="n">class</span><span class="p">),</span> <span class="n">axes</span> <span class="o">=</span> <span class="s">&#34;all&#34;</span><span class="p">,</span> <span class="n">remove_labels</span> <span class="o">=</span> <span class="s">&#34;x&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<p>此外，facet_grid2() 还支持该包所谓的“独立”尺度。这缓解了 ggplot2::facet_grid() 的限制，即比例只能在布局的行和列之间自由，而允许比例在布局的行和列内自由。这保留了网格布局，但保留了包裹面中尺度的灵活性。请注意，在下图中，每个面板的 x 轴都是独立的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">p</span> <span class="o">+</span> <span class="nf">facet_grid2</span><span class="p">(</span><span class="nf">vars</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="nf">vars</span><span class="p">(</span><span class="n">drv</span><span class="p">),</span> <span class="n">scales</span> <span class="o">=</span> <span class="s">&#34;free_x&#34;</span><span class="p">,</span> <span class="n">independent</span> <span class="o">=</span> <span class="s">&#34;x&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+<h3 id="嵌套facets">嵌套facets</h3>
+<p>ggh4x这个包因生成嵌套面而闻名；其中，如果外strip属于同一类别，则它们可以跨越内strip。
+如果分面存在一些层次关系，这可能特别有用。
+在下面的示例中，根据叶子的长短对鸢尾花进行分类：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">new_iris</span> <span class="o">&lt;-</span> <span class="nf">transform</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">iris</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">Nester</span> <span class="o">=</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">Species</span> <span class="o">==</span> <span class="s">&#34;setosa&#34;</span><span class="p">,</span> <span class="s">&#34;Short Leaves&#34;</span><span class="p">,</span> <span class="s">&#34;Long Leaves&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">iris_plot</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">new_iris</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">Sepal.Width</span><span class="p">,</span> <span class="n">Sepal.Length</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">iris_plot</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">facet_nested</span><span class="p">(</span><span class="o">~</span> <span class="n">Nester</span> <span class="o">+</span> <span class="n">Species</span><span class="p">,</span> <span class="n">nest_line</span> <span class="o">=</span> <span class="nf">element_line</span><span class="p">(</span><span class="n">linetype</span> <span class="o">=</span> <span class="m">2</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">strip.background</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ggh4x.facet.nestline</span> <span class="o">=</span> <span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span> <span class="o">=</span> <span class="s">&#34;blue&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<h3 id="手动设计facets">手动设计facets</h3>
+<p>为了实现对 ggplot2 方面的类似base-R的<code>par(mar = c(2,2,1,1))</code>控制级别，facet_manual() 被引入。与layout()函数一样，facet_manual()需要预先指定哪些面板放置在哪里。
+这些被称为“手动”构面，因为它不会像网格和环绕构面那样根据可用数据动态生成布局。在上图中赋予layout()函数的矩阵现在可以用作手动方面的设计参数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Setting up a design for a layout</span>
+</span></span><span class="line"><span class="cl"><span class="n">design</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">+</span> <span class="nf">facet_manual</span><span class="p">(</span><span class="nf">vars</span><span class="p">(</span><span class="nf">factor</span><span class="p">(</span><span class="n">drv</span><span class="p">)),</span> <span class="n">design</span> <span class="o">=</span> <span class="n">design</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+<p>或者更灵活的设计：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">design</span> <span class="o">&lt;-</span> <span class="s">&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">  A##
+</span></span></span><span class="line"><span class="cl"><span class="s">  AB#
+</span></span></span><span class="line"><span class="cl"><span class="s">  #BC
+</span></span></span><span class="line"><span class="cl"><span class="s">  ##C
+</span></span></span><span class="line"><span class="cl"><span class="s">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">+</span> <span class="nf">facet_manual</span><span class="p">(</span><span class="nf">vars</span><span class="p">(</span><span class="n">drv</span><span class="p">),</span> <span class="n">design</span> <span class="o">=</span> <span class="n">design</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<h3 id="细调strips">细调strips</h3>
+<p>ggh4x提供了主题化的 strips。这些 strips 还允许你根据每个标签或每层图形设置 <code>strip.text.*</code> 和 <code>strip.background.*</code> 的主题选项。<code>background_x/y</code> 和 <code>text_x/y</code> 参数可以接受一个包含 <code>ggplot2</code> 主题元素的列表。如果主题元素的数量与 strips 的数量不匹配，这些主题元素会使用 <code>rep_len()</code> 扩展，如下面的垂直 strips 所示。</p>
+<p>按照如下方式构建一个元素列表可能会有点麻烦：<code>list(element_text(colour = &quot;dodgerblue&quot;, face = &quot;bold&quot;), element_text(colour = &quot;limegreen&quot;, face = &quot;bold&quot;))</code>。为了简化操作，可以使用方便的函数来获得相同的结果，像这样：<code>elem_list_text(colour = c(&quot;dodgerblue&quot;, &quot;limegreen&quot;), face = c(&quot;bold&quot;, &quot;bold&quot;))</code>，这稍微简洁了一些。同样，也有 <code>elem_list_rect()</code> 函数可以对 <code>element_rect()</code> 执行类似操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">ridiculous_strips</span> <span class="o">&lt;-</span> <span class="nf">strip_themed</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">     <span class="c1"># Horizontal strips</span>
+</span></span><span class="line"><span class="cl">     <span class="n">background_x</span> <span class="o">=</span> <span class="nf">elem_list_rect</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;limegreen&#34;</span><span class="p">,</span> <span class="s">&#34;dodgerblue&#34;</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">     <span class="n">text_x</span> <span class="o">=</span> <span class="nf">elem_list_text</span><span class="p">(</span><span class="n">colour</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;dodgerblue&#34;</span><span class="p">,</span> <span class="s">&#34;limegreen&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                             <span class="n">face</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;bold&#34;</span><span class="p">,</span> <span class="s">&#34;bold&#34;</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">     <span class="n">by_layer_x</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">     <span class="c1"># Vertical strips</span>
+</span></span><span class="line"><span class="cl">     <span class="n">background_y</span> <span class="o">=</span> <span class="nf">elem_list_rect</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">       <span class="n">fill</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;gold&#34;</span><span class="p">,</span> <span class="s">&#34;tomato&#34;</span><span class="p">,</span> <span class="s">&#34;deepskyblue&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">     <span class="p">),</span>
+</span></span><span class="line"><span class="cl">     <span class="n">text_y</span> <span class="o">=</span> <span class="nf">elem_list_text</span><span class="p">(</span><span class="n">angle</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">90</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">     <span class="n">by_layer_y</span> <span class="o">=</span> <span class="kc">FALSE</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">+</span> <span class="nf">facet_grid2</span><span class="p">(</span><span class="n">class</span> <span class="o">~</span> <span class="n">drv</span> <span class="o">+</span> <span class="n">year</span><span class="p">,</span> <span class="n">strip</span> <span class="o">=</span> <span class="n">ridiculous_strips</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-7-1.png" width="672" />
+<h3 id="调整scales">调整scales</h3>
+<p>我们可能还希望对每个分面的坐标轴位置进行精确调整。为此，可以使用 <code>facetted_pos_scales()</code> 并结合 scales 列表来单独设置各个分面的刻度。通过这种方式可以为每个面板单独调整labels, breaks, limits, transformations，甚至轴guides。</p>
+<p>scales 列表按照分面的顺序排列，只要它们被设置为 &ldquo;free&rdquo;（自由缩放）。调整位置刻度适用于多种类型的分面，如 wrap、grid 和 nested，但需要在添加分面之后调用。如果不想让坐标轴自由缩放，可以使用 <code>xlim()</code> 和 <code>ylim()</code> 来固定坐标范围。不过，<code>facetted_pos_scales()</code> 函数要求分面的 <code>scales</code> 参数必须设置为 &ldquo;free&rdquo;，才能应用不同的刻度设置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">scales</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_x_reverse</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">labels</span> <span class="o">=</span> <span class="n">scales</span><span class="o">::</span><span class="n">dollar</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">minor_breaks</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2.5</span><span class="p">,</span> <span class="m">4.5</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2.945</span><span class="p">,</span> <span class="m">6</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">limits</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">guide</span> <span class="o">=</span> <span class="s">&#34;axis_minor&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">+</span> <span class="nf">facet_wrap</span><span class="p">(</span><span class="nf">vars</span><span class="p">(</span><span class="n">drv</span><span class="p">),</span> <span class="n">scales</span> <span class="o">=</span> <span class="s">&#34;free_x&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">facetted_pos_scales</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">scales</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+<h3 id="panel大小">Panel大小</h3>
+<p>最后，我们还可以根据需要设置面板的大小。<code>force_panelsizes()</code> 函数允许你为行和列设置相对或绝对大小。该函数适用于遵循典型 <code>ggplot2</code> 规范的分面功能。这不仅包括 <code>ggplot2</code> 中的分面函数，还包括 <code>ggforce</code> 包中的函数、<code>ggh4x</code> 中的分面功能，甚至其他可能的包（但对 <code>facet_manual()</code> 来说是多余的）。值得注意的是，这个函数同样适用于 <code>facet_null()</code>，即每个图形的默认分面设置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">lvls</span> <span class="o">&lt;-</span> <span class="nf">factor</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;Points&#34;</span><span class="p">,</span> <span class="s">&#34;Density&#34;</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Points&#34;</span><span class="p">,</span> <span class="s">&#34;Density&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">g</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">faithful</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">waiting</span><span class="p">,</span> <span class="n">eruptions</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">             <span class="n">data</span> <span class="o">=</span> <span class="o">~</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">.x</span><span class="p">,</span> <span class="n">facet</span> <span class="o">=</span> <span class="n">lvls[1]</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_density</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">eruptions</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">               <span class="n">data</span> <span class="o">=</span> <span class="o">~</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">faithful</span><span class="p">,</span> <span class="n">facet</span> <span class="o">=</span> <span class="n">lvls[2]</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">facet_grid</span><span class="p">(</span><span class="o">~</span> <span class="n">facet</span><span class="p">,</span> <span class="n">scales</span> <span class="o">=</span> <span class="s">&#34;free_x&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">g</span> <span class="o">+</span> <span class="nf">force_panelsizes</span><span class="p">(</span><span class="n">cols</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0.3</span><span class="p">),</span> <span class="n">rows</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">),</span> <span class="n">respect</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" />
+<h2 id="调整legend">调整legend</h2>
+<h3 id="多color-scale">多color scale</h3>
+<p>有时单一的颜色比例不足以描述数据。我之前的话用<code>ggnewscale</code>包来实现多种颜色scale，<code>ggh4x</code>提供了另一种策略。</p>
+<p>如果数据位于不同的图层中，你可以使用 <code>scale_colour_multi()</code> 将多个变量映射到颜色上。它的工作原理类似于 <code>scale_colour_gradientn()</code>，但你可以声明美学属性，并以向量化的方式提供其他参数，与美学属性的设置平行。</p>
+<p>在下面的示例中，给出一个包含颜色的 <code>list()</code>，其中第一个列表元素将成为第一个颜色比例的参数，第二个列表元素将用于第二个颜色比例，依此类推。其他只需要长度为一的参数可以作为向量输入。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">#为了绘制具有多种颜色scale的图，我们首先需要制作有具有另类aes图层</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#我们将为每个物种选择一个色标。</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#这将产生一些警告，因为ggplot2不知道如何处理另类aes。</span>
+</span></span><span class="line"><span class="cl"><span class="n">g</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">iris</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">Sepal.Width</span><span class="p">,</span> <span class="n">Sepal.Length</span><span class="p">))</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">SW</span> <span class="o">=</span> <span class="n">Sepal.Width</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">             <span class="n">data</span> <span class="o">=</span> <span class="o">~</span> <span class="nf">subset</span><span class="p">(</span><span class="n">.,</span> <span class="n">Species</span> <span class="o">==</span> <span class="s">&#34;setosa&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">PL</span> <span class="o">=</span> <span class="n">Petal.Length</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">             <span class="n">data</span> <span class="o">=</span> <span class="o">~</span> <span class="nf">subset</span><span class="p">(</span><span class="n">.,</span> <span class="n">Species</span> <span class="o">==</span> <span class="s">&#34;versicolor&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">PW</span> <span class="o">=</span> <span class="n">Petal.Width</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">             <span class="n">data</span> <span class="o">=</span> <span class="o">~</span> <span class="nf">subset</span><span class="p">(</span><span class="n">.,</span> <span class="n">Species</span> <span class="o">==</span> <span class="s">&#34;virginica&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">g</span> <span class="o">&lt;-</span> <span class="n">g</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_colour_multi</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">aesthetics</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;SW&#34;</span><span class="p">,</span> <span class="s">&#34;PL&#34;</span><span class="p">,</span> <span class="s">&#34;PW&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="s">&#34;Blue&#34;</span><span class="p">,</span> <span class="s">&#34;Pink&#34;</span><span class="p">,</span> <span class="s">&#34;Orange&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">colours</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">brewer_pal</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;YlGnBu&#34;</span><span class="p">)(</span><span class="m">6</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">brewer_pal</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;RdPu&#34;</span><span class="p">)(</span><span class="m">6</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">brewer_pal</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;YlOrRd&#34;</span><span class="p">)(</span><span class="m">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">guide</span> <span class="o">=</span> <span class="nf">guide_colorbar</span><span class="p">(</span><span class="n">barheight</span> <span class="o">=</span> <span class="nf">unit</span><span class="p">(</span><span class="m">50</span><span class="p">,</span> <span class="s">&#34;pt&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">g</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<h3 id="字符legend">字符legend</h3>
+<p>说明颜色或填充美学的直接映射的一种简单但有效的方法是使用彩色文本。ggh4x可以通过设置guide =&ldquo;stringlegend&quot;作为颜色和填充比例的参数，或设置<code>guides(colour =&quot;stringlegend&quot;)</code>来完成此操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">(</span><span class="n">diamonds</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">price</span><span class="p">,</span> <span class="n">carat</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="n">clarity</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point</span><span class="p">(</span><span class="n">shape</span> <span class="o">=</span> <span class="s">&#34;.&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_colour_brewer</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;Dark2&#34;</span><span class="p">,</span> <span class="n">guide</span> <span class="o">=</span> <span class="s">&#34;stringlegend&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">mpg</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">displ</span><span class="p">,</span> <span class="n">hwy</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">colour</span> <span class="o">=</span> <span class="n">class</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">+</span> <span class="nf">guides</span><span class="p">(</span><span class="n">colour</span> <span class="o">=</span> <span class="nf">guide_stringlegend</span><span class="p">(</span><span class="n">spacing.x</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">spacing.y</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">family</span> <span class="o">=</span> <span class="s">&#34;mono&#34;</span><span class="p">,</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-12-1.png" width="672" />
+<h2 id="调整坐标轴">调整坐标轴</h2>
+<p>首先，假设我们已经熟悉了坐标轴的基础设置方法，比如x,y轴(line,ticks,text)位置和主题，第二坐标轴等等：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">(</span><span class="n">economics</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">date</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">unemploy</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_line</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">pop</span> <span class="o">/</span> <span class="m">30</span><span class="p">),</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&#34;red&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_y_continuous</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sec.axis</span> <span class="o">=</span> <span class="nf">sec_axis</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="o">~</span> <span class="n">.x</span> <span class="o">*</span> <span class="m">30</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&#34;pop&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">guide</span> <span class="o">=</span> <span class="nf">guide_axis_colour</span><span class="p">(</span><span class="n">colour</span> <span class="o">=</span> <span class="s">&#34;red&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">axis.line.y</span> <span class="o">=</span> <span class="nf">element_line</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<h3 id="截断坐标轴">截断坐标轴</h3>
+<p>截断轴并不是一个非常特殊的轴：它只是使轴线变短。默认情况下，它将轴线修剪到最外面的断裂位置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">g</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">wt</span><span class="p">,</span> <span class="n">mpg</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">axis.line</span> <span class="o">=</span> <span class="nf">element_line</span><span class="p">(</span><span class="n">colour</span> <span class="o">=</span> <span class="s">&#34;black&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">g</span> <span class="o">+</span> <span class="nf">guides</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#34;axis_truncated&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-14-1.png" width="672" />
+<p>这个可以灵活应用：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">-3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="n">length.out</span> <span class="o">=</span> <span class="m">6</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">6</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_col</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">scale_x_continuous</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">breaks</span> <span class="o">=</span> <span class="m">-3</span><span class="o">:</span><span class="m">0</span><span class="p">,</span> <span class="n">guide</span> <span class="o">=</span> <span class="s">&#34;axis_truncated&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sec.axis</span> <span class="o">=</span> <span class="nf">dup_axis</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="n">breaks</span> <span class="o">=</span> <span class="m">0</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="n">guide</span> <span class="o">=</span> <span class="s">&#34;axis_truncated&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">axis.line.x</span> <span class="o">=</span> <span class="nf">element_line</span><span class="p">())</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<h3 id="手动设置坐标轴">手动设置坐标轴</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">g</span> <span class="o">+</span> <span class="nf">guides</span><span class="p">(</span><span class="n">y.sec</span> <span class="o">=</span> <span class="nf">guide_axis_manual</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">breaks</span> <span class="o">=</span> <span class="nf">unit</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="s">&#34;cm&#34;</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">labels</span> <span class="o">=</span> <span class="nf">expression</span><span class="p">(</span><span class="s">&#34;treshold&#34;</span><span class="n">^2</span><span class="p">,</span> <span class="s">&#34;annotation&#34;</span><span class="n">[3]</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">label_colour</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;red&#34;</span><span class="p">,</span> <span class="s">&#34;blue&#34;</span><span class="p">),</span> <span class="n">label_size</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">8</span><span class="p">,</span> <span class="m">12</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+<h3 id="设置ticks">设置ticks</h3>
+<p>在小中断所在的位置也可以放置刻度线。
+次要刻度的长度由 ggh4x.axis.ticks.length.minor 主题元素控制，并使用 rel() 函数相对于主要刻度指定。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">g</span> <span class="o">+</span> <span class="nf">guides</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#34;axis_minor&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">axis.ticks.length.x</span> <span class="o">=</span> <span class="nf">unit</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="s">&#34;cm&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ggh4x.axis.ticks.length.minor</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">0.5</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<p>次要刻度的一个变化是为对数轴放置刻度。需要注意的是，这些在 log10 转换中效果最好。ticks现在有三种长度：主要长度、次要长度和所谓的“迷你”长度。与次要刻度一样，迷你刻度也是相对于主要刻度来定义的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">pres</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">pressure</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">temperature</span><span class="p">,</span> <span class="n">pressure</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_line</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">pres</span> <span class="o">+</span> <span class="nf">scale_y_log10</span><span class="p">(</span><span class="n">guide</span> <span class="o">=</span> <span class="s">&#34;axis_logticks&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">axis.ticks.length.y</span> <span class="o">=</span> <span class="nf">unit</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="s">&#34;cm&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ggh4x.axis.ticks.length.minor</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">0.5</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ggh4x.axis.ticks.length.mini</span> <span class="o">=</span> <span class="nf">rel</span><span class="p">(</span><span class="m">0.2</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<h3 id="嵌套坐标轴">嵌套坐标轴</h3>
+<p>具有某种类别或交互作用的离散变量可以以嵌套方式布局。这可以方便地指示例如组成员身份。</p>
+<p>在下面的示例中，我们使用<code>interaction()</code>函数将项目的名称及其所属的组粘贴在一起，并使用&rdquo;.&ldquo;为分割。 Guide_axis_nested() 函数尝试分割“.”上的标签。用于区分项目及其组成员身份的符号。为了解决在排序项目时使用interaction() 和paste0() 带来的一些麻烦，ggh4x 提供了weave_factors() 便利函数，该函数尝试保留它们出现的因子级别的自然顺序。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">item</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Coffee&#34;</span><span class="p">,</span> <span class="s">&#34;Tea&#34;</span><span class="p">,</span> <span class="s">&#34;Apple&#34;</span><span class="p">,</span> <span class="s">&#34;Pear&#34;</span><span class="p">,</span> <span class="s">&#34;Car&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">type</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Drink&#34;</span><span class="p">,</span> <span class="s">&#34;Drink&#34;</span><span class="p">,</span> <span class="s">&#34;Fruit&#34;</span><span class="p">,</span> <span class="s">&#34;Fruit&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">amount</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stringsAsFactors</span> <span class="o">=</span> <span class="kc">FALSE</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="nf">interaction</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">type</span><span class="p">),</span> <span class="n">amount</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_col</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">guides</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#34;axis_nested&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-19-1.png" width="672" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df</span><span class="o">$</span><span class="n">type2</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&#34;Consumables&#34;</span><span class="p">,</span> <span class="m">4</span><span class="p">),</span> <span class="s">&#34;Vehicle&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">$</span><span class="n">appletea</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&#34;Ingredient of apple tea&#34;</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> <span class="nf">rep</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="nf">weave_factors</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">type</span><span class="p">,</span> <span class="n">appletea</span><span class="p">,</span> <span class="n">type2</span><span class="p">),</span> <span class="n">amount</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_col</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">guides</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#34;axis_nested&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<h3 id="内部坐标轴">内部坐标轴</h3>
+<p>对于某些图，我们可能有兴趣让图的轴与最低限制以外的其他值相交。要将轴放置在绘图面板内，我们可以使用 coord_axes_inside()。默认情况下，如果原点不在限制范围内，coord_axes_inside() 将尝试将轴放置在原点 (0, 0) 或最接近原点的点处。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">mpg</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">displ</span> <span class="o">-</span> <span class="nf">mean</span><span class="p">(</span><span class="n">displ</span><span class="p">),</span> <span class="n">hwy</span> <span class="o">-</span> <span class="nf">mean</span><span class="p">(</span><span class="n">hwy</span><span class="p">)))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">geom_point</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">theme</span><span class="p">(</span><span class="n">axis.line</span> <span class="o">=</span> <span class="nf">element_line</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">+</span><span class="nf">coord_axes_inside</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/p/ggh4x-ggplot2/index.en_files/figure-html/unnamed-chunk-21-1.png" width="672" />
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/">可视化</a>
+        
+            <a href="/tags/r/">R</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/p/r-vis-pkg/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-vis-pkg/index.en_files/figure-html/unnamed-chunk-2-1.6932b469ee89c8b2a23202f3e6e7f6b2_hu_68db91eb2bec9b13.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 一些有趣的绘图R包"
+                        data-key="r-vis-pkg" 
+                        data-hash="md5-aTK0ae6JyLKiMgLz5uf2sg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">一些有趣的绘图R包</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/r-venn/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-venn/images/venn.98fcfaf23c6f08bbdcde8d4cb4e8c63d_hu_76d177c362f67a7b.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post R绘制Venn图及其变换"
+                        data-key="r-venn" 
+                        data-hash="md5-mPz68jxvCLvc3o1MtOjGPQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">R绘制Venn图及其变换</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/r-treemap/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-treemap/images/cengji.cf6ab7ddbf6b954c2022d6249abcd50a_hu_52c4d6c1588b2175.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post R展示层级数据（桑基/旭日/珠包/Treemap图等）"
+                        data-key="r-treemap" 
+                        data-hash="md5-z2q33b9rlUwgItYkmrzVCg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">R展示层级数据（桑基/旭日/珠包/Treemap图等）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/r-box/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-box/index.en_files/figure-html/unnamed-chunk-6-1.24e7e930b03e1dea4782b8ed1d48d6b6_hu_c6008d46c882d1e7.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post R绘制箱形图及其变换"
+                        data-key="r-box" 
+                        data-hash="md5-JOfpMLA&#43;HepHgrjtHUjWtg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">R绘制箱形图及其变换</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/p/r-bar-chart/">
+        
+        
+            <div class="article-image">
+                <img src="/p/r-bar-chart/images/barchart.1d9ec531c5dabda31cd7c071c2827c8a_hu_d13dbd5a3e7b5911.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post R绘制柱形图及其变换"
+                        data-key="r-bar-chart" 
+                        data-hash="md5-HZ7FMcXavaMc18BxwoJ8ig==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">R绘制柱形图及其变换</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
