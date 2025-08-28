@@ -14,11 +14,10 @@
         <guid>https://jb-cao.github.io/Cao-blog/about/</guid>
         <description>&lt;h2 id=&#34;-about-me&#34;&gt;🤺 About Me&lt;/h2&gt;
 &lt;!-- profile logo 个人资料徽标 --&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/Asa12138/&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/GitHub-181717?logo=github&amp;amp;logoColor=fff&amp;amp;style=flat&#34;/&gt;&lt;/a&gt; 
-&lt;a href=&#34;https://asa12138.github.io/&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/Website-个人网页-78C2AD&#34;/&gt;&lt;/a&gt; 
-&lt;a href=&#34;https://asa-blog.netlify.app/&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/Blog-博客-F1805D&#34;/&gt;&lt;/a&gt; 
-&lt;a href=&#34;https://asa12138.github.io/wp.html&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/WeChat-微信-07c160&#34;/&gt;&lt;/a&gt; 
-&lt;a href=&#34;https://space.bilibili.com/142776729/&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/Bilibili-B站-ff69b4&#34;/&gt;&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/GitHub-181717?logo=github&amp;amp;logoColor=fff&amp;amp;style=flat&#34;/&gt;&lt;/a&gt; 
+&lt;a href=&#34;&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/Blog-博客-F1805D&#34;/&gt;&lt;/a&gt; 
+&lt;a href=&#34;&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/WeChat-微信-07c160&#34;/&gt;&lt;/a&gt; 
+&lt;a href=&#34;&#34;&gt;&lt;img src=&#34;https://img.shields.io/badge/Bilibili-B站-ff69b4&#34;/&gt;&lt;/a&gt; &lt;/p&gt;
 &lt;h3 id=&#34;-education&#34;&gt;🏫 Education&lt;/h3&gt;
 &lt;p&gt;&lt;strong&gt;Undergraduate (2019~2023)&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;Biotechnology, Henan Agricultural University, &lt;a class=&#34;link&#34; href=&#34;https://sk.henau.edu.cn/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -71,12 +70,11 @@ Valley&lt;/a&gt;, and
 &lt;/ul&gt;
 &lt;h3 id=&#34;publications&#34;&gt;📄Publications&lt;/h3&gt;
 &lt;ol&gt;
-&lt;li&gt;Huang, L.#, Li, K.#, &lt;strong&gt;Peng, C.#&lt;/strong&gt;, Gu, S.#, Huang, X.#, Gao, C.#,
-Ren, X., Cheng, M., He, G., Xu, Y., et al. (2025). Elevated
-antibiotic resistance gene abundance of ICU healthcare workers, a
-multicentre, cross-sectional study. &lt;em&gt;Crit. Care&lt;/em&gt; 29, 170.
-&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1186/s13054-025-05408-5&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://doi.org/10.1186/s13054-025-05408-5&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Zhizhan Wang，&lt;strong&gt;Jinbiao Cao&lt;/strong&gt;，Nan Lin，Jiaming Li，Yazhou Wang，Weibin Liu，Wen Yao and Yang Li
+*(2025).Origin，Evolution，and Diversification of the Expansin Family in Plants.
+International Journal of Molecular Sciences，2025.
+&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.3390/ijms252111814&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.3390/ijms252111814&lt;/a&gt;.&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id=&#34;r-packages-&#34;&gt;R packages 📦&lt;/h2&gt;
 &lt;img src=&#34;https://asa12138.github.io/images/images.gif&#34; align=&#34;right&#34; width=&#34;40%&#34;/&gt;
