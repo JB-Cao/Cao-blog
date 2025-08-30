@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='介绍MetaNet中的各种可视化方法，从基础绘图到高级布局技巧。'>
+<title>MetaNet：多组学网络分析工具｜4.布局和可视化</title>
+
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/metanet-4/'>
+
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='MetaNet：多组学网络分析工具｜4.布局和可视化'>
+<meta property='og:description' content='介绍MetaNet中的各种可视化方法，从基础绘图到高级布局技巧。'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/metanet-4/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='network' /><meta property='article:tag' content='R' /><meta property='article:published_time' content='2025-04-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-12T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1.png' />
+<meta name="twitter:title" content="MetaNet：多组学网络分析工具｜4.布局和可视化">
+<meta name="twitter:description" content="介绍MetaNet中的各种可视化方法，从基础绘图到高级布局技巧。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/Cao-blog/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/472862038'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/JB-Cao'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/Cao-blog/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#绘图设置">绘图设置</a>
+      <ol>
+        <li><a href="#使用params_list">使用params_list</a></li>
+      </ol>
+    </li>
+    <li><a href="#网络布局">网络布局</a>
+      <ol>
+        <li><a href="#基础布局">基础布局</a></li>
+        <li><a href="#变换布局">变换布局</a></li>
+        <li><a href="#分组布局">分组布局</a>
+          <ol>
+            <li><a href="#tkplot手动调整大布局">tkplot手动调整大布局</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#spatstat-layout"><code>spatstat</code> layout</a></li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/Cao-blog/p/metanet-4/">
+                <img src="/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1_hu_840892db95092c64.png"
+                        srcset="/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1_hu_840892db95092c64.png 800w, /Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1_hu_d05a9d8aeeb5baa7.png 1600w"
+                        width="800" 
+                        height="500" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜4.布局和可视化" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/Cao-blog/categories/r/" style="background-color: #bebada; color: #fff;">
+                R
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/Cao-blog/p/metanet-4/">MetaNet：多组学网络分析工具｜4.布局和可视化</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            介绍MetaNet中的各种可视化方法，从基础绘图到高级布局技巧。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 12, 12120</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    5 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>之前已经介绍了网络计算，构建以及各种注释了。本文将详细介绍MetaNet中的各种可视化方法，从基础绘图到高级布局技巧。</p>
+<ul>
+<li>软件主页：<a class="link" href="https://github.com/Asa12138/MetaNet"  target="_blank" rel="noopener"
+    >https://github.com/Asa12138/MetaNet</a> <strong>大家可以帮忙在github上点点star⭐️</strong>，谢谢🙏</li>
+<li>详细英文版教程：<a class="link" href="https://bookdown.org/Asa12138/metanet_book/"  target="_blank" rel="noopener"
+    >https://bookdown.org/Asa12138/metanet_book/</a></li>
+</ul>
+<p>可以从 CRAN 安装稳定版：<code>install.packages(&quot;MetaNet&quot;)</code></p>
+<p>最新的开发版本可以在 <a class="link" href="https://github.com/Asa12138/MetaNet"  target="_blank" rel="noopener"
+    >https://github.com/Asa12138/MetaNet</a> 中找到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;Asa12138/MetaNet&#34;</span><span class="p">,</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>依赖包 <code>pcutils</code>和<code>igraph</code>（需提前安装），推荐配合 <code>dplyr</code> 进行数据操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">MetaNet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ========data manipulation</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">pcutils</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="绘图设置">绘图设置</h2>
+<p>在构建网络时，MetaNet已经设置了一些与可视化相关的内部属性。我们可以使用<code>c_net_set()</code>函数自定义这些属性以满足研究需求。</p>
+<p><img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-2-1.png" width="768" /><img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-2-2.png" width="768" /></p>
+<p>如果需要更灵活地自定义网络图，可以使用<code>c_net_plot()</code>函数，它包含许多灵活的绘图参数：</p>
+<img src="images/arg1.png" title=""/>
+<img src="images/arg2.png" title=""/>
+<img src="images/arg3.png" title=""/>
+<p>示例代码，尝试各种设置看看：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">c_net_plot</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">          <span class="n">labels_num</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">vertex.color</span> <span class="o">=</span> <span class="nf">get_cols</span><span class="p">(</span><span class="m">11</span><span class="p">,</span> <span class="s">&#34;col1&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">vertex_size_range</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">10</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">vertex.label.color</span> <span class="o">=</span> <span class="s">&#34;red&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">edge_width_range</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">edge.color</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;orange&#34;</span><span class="p">,</span> <span class="s">&#34;green4&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">edge.curved</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">legend</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">legend_number</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">group_legend_order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Microbiome&#34;</span><span class="p">,</span> <span class="s">&#34;Metabolome&#34;</span><span class="p">,</span> <span class="s">&#34;Transcriptome&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">group_legend_title</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Phylum&#34;</span><span class="p">,</span> <span class="s">&#34;Metabolome&#34;</span><span class="p">,</span> <span class="s">&#34;Transcriptome&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">edge_legend_title</span> <span class="o">=</span> <span class="s">&#34;Correlation&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">edge_legend_order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;positive&#34;</span><span class="p">,</span> <span class="s">&#34;negative&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">          <span class="n">size_legend</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">size_legend_title</span> <span class="o">=</span> <span class="s">&#34;Abundance&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">width_legend</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">width_legend_title</span> <span class="o">=</span> <span class="s">&#34;abs(r)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">lty_legend</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="n">lty_legend_title</span> <span class="o">=</span> <span class="s">&#34;Omics relationship&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-3-1.png" width="768" />
+<h3 id="使用params_list">使用params_list</h3>
+<p><code>params_list</code>是<code>c_net_plot()</code>中的一个特殊参数，它是一个包含参数的列表，可以方便地用于绘制一系列具有相同属性的网络图：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">node_colors</span> <span class="o">&lt;-</span> <span class="nf">setNames</span><span class="p">(</span><span class="nf">get_cols</span><span class="p">(</span><span class="m">9</span><span class="p">,</span> <span class="s">&#34;col1&#34;</span><span class="p">),</span> <span class="nf">unique</span><span class="p">(</span><span class="nf">V</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">)</span><span class="o">$</span><span class="n">v_class</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">params_list</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">labels_num</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">vertex.color</span> <span class="o">=</span> <span class="n">node_colors</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">vertex_size_range</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">10</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">vertex.label.color</span> <span class="o">=</span> <span class="s">&#34;red&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">edge_width_range</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">edge.color</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;orange&#34;</span><span class="p">,</span> <span class="s">&#34;green4&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">edge.curved</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">legend</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">legend_number</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">group_legend_order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Microbiome&#34;</span><span class="p">,</span> <span class="s">&#34;Metabolome&#34;</span><span class="p">,</span> <span class="s">&#34;Transcriptome&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">group_legend_title</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Phylum&#34;</span><span class="p">,</span> <span class="s">&#34;Metabolome&#34;</span><span class="p">,</span> <span class="s">&#34;Transcriptome&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">edge_legend_title</span> <span class="o">=</span> <span class="s">&#34;Correlation&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">edge_legend_order</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;positive&#34;</span><span class="p">,</span> <span class="s">&#34;negative&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">size_legend</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">size_legend_title</span> <span class="o">=</span> <span class="s">&#34;Abundance&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">width_legend</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">width_legend_title</span> <span class="o">=</span> <span class="s">&#34;abs(r)&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lty_legend</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lty_legend_title</span> <span class="o">=</span> <span class="s">&#34;Omics relationship&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">c_net_plot</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">,</span> <span class="n">params_list</span> <span class="o">=</span> <span class="n">params_list</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-4-1.png" width="768" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 构建另一个多组学网络</span>
+</span></span><span class="line"><span class="cl"><span class="n">multi1_with_anno2</span> <span class="o">&lt;-</span> <span class="nf">c_net_filter</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                 <span class="n">v_group</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Microbiome&#34;</span><span class="p">,</span> <span class="s">&#34;Metabolome&#34;</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">c_net_filter</span><span class="p">(</span><span class="n">.,</span> <span class="n">e_class</span> <span class="o">==</span> <span class="s">&#34;intra&#34;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s">&#34;e&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">c_net_plot</span><span class="p">(</span><span class="n">multi1_with_anno2</span><span class="p">,</span> <span class="n">params_list</span> <span class="o">=</span> <span class="n">params_list</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-4-2.png" width="768" />
+<h2 id="网络布局">网络布局</h2>
+<p>布局是网络可视化的重要组成部分，一个好的布局可以清晰地呈现信息。</p>
+<p>在MetaNet中，我们使用<code>coors</code>对象来存储布局的坐标。<code>coors</code>是一个具有&quot;name&quot;, &ldquo;X&rdquo;, &ldquo;Y&quot;三列的dataframe。</p>
+<h3 id="基础布局">基础布局</h3>
+<p>使用<code>c_net_layout()</code>获取特定布局方法的坐标：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">c_net_layout</span><span class="p">(</span><span class="n">co_net2</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="nf">in_circle</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="n">coors</span>
+</span></span><span class="line"><span class="cl"><span class="nf">c_net_plot</span><span class="p">(</span><span class="n">co_net2</span><span class="p">,</span> <span class="n">coors</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-5-1.png" width="768" />
+<p>可用的基础布局方法包括：</p>
+<ol>
+<li>igraph布局：<code>in_circle()</code>, <code>nicely()</code>, <code>on_grid()</code>, <code>on_sphere()</code>, <code>randomly()</code>, <code>with_dh()</code>, <code>with_fr()</code>, <code>with_gem()</code>, <code>with_graphopt()</code>, <code>with_kk()</code>, <code>with_lgl()</code>, <code>with_mds()</code></li>
+<li>metanet新布局方法：<code>as_line()</code>, <code>as_arc()</code>, <code>as_polygon()</code>, <code>as_polyarc()</code>, <code>as_polycircle()</code>, <code>as_circle_tree()</code>, <code>as_multi_layer()</code>, <code>as_poly_sector()</code></li>
+<li>ggraph布局：&ldquo;auto&rdquo;, &ldquo;backbone&rdquo;, &ldquo;centrality&rdquo;, &ldquo;circlepack&rdquo;, &ldquo;dendrogram&rdquo;, &ldquo;eigen&rdquo;, &ldquo;focus&rdquo;, &ldquo;hive&rdquo;, &ldquo;igraph&rdquo;, &ldquo;linear&rdquo;, &ldquo;manual&rdquo;, &ldquo;matrix&rdquo;, &ldquo;partition&rdquo;, &ldquo;pmds&rdquo;, &ldquo;stress&rdquo;, &ldquo;treemap&rdquo;, &ldquo;unrooted&rdquo;</li>
+</ol>
+<p>示例代码展示不同布局效果：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">go</span> <span class="o">&lt;-</span> <span class="nf">erdos.renyi.game</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="m">0.25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># get a metanet</span>
+</span></span><span class="line"><span class="cl"><span class="n">go</span> <span class="o">&lt;-</span> <span class="nf">c_net_update</span><span class="p">(</span><span class="n">go</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">layout_methods</span> <span class="o">&lt;-</span> <span class="nf">list</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">as_star</span><span class="p">(),</span> <span class="nf">as_tree</span><span class="p">(),</span> <span class="nf">in_circle</span><span class="p">(),</span> <span class="nf">nicely</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">on_grid</span><span class="p">(),</span> <span class="nf">on_sphere</span><span class="p">(),</span> <span class="nf">randomly</span><span class="p">(),</span> <span class="nf">with_dh</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">with_fr</span><span class="p">(),</span> <span class="nf">with_gem</span><span class="p">(),</span> <span class="nf">with_graphopt</span><span class="p">(),</span> <span class="nf">with_kk</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">with_lgl</span><span class="p">(),</span> <span class="nf">with_mds</span><span class="p">(),</span> <span class="nf">as_line</span><span class="p">(),</span> <span class="nf">as_arc</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">as_polygon</span><span class="p">(),</span> <span class="nf">as_polyarc</span><span class="p">(),</span> <span class="nf">as_polycircle</span><span class="p">(</span><span class="m">3</span><span class="p">),</span> <span class="nf">as_circle_tree</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">as_multi_layer</span><span class="p">(</span><span class="m">2</span><span class="p">),</span> <span class="nf">as_poly_sector</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">layout_methods</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;as_star &#34;</span><span class="p">,</span> <span class="s">&#34;as_tree &#34;</span><span class="p">,</span> <span class="s">&#34;in_circle &#34;</span><span class="p">,</span> <span class="s">&#34;nicely &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;on_grid &#34;</span><span class="p">,</span> <span class="s">&#34;on_sphere &#34;</span><span class="p">,</span> <span class="s">&#34;randomly &#34;</span><span class="p">,</span> <span class="s">&#34;with_dh &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;with_fr &#34;</span><span class="p">,</span> <span class="s">&#34;with_gem &#34;</span><span class="p">,</span> <span class="s">&#34;with_graphopt &#34;</span><span class="p">,</span> <span class="s">&#34;with_kk &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;with_lgl &#34;</span><span class="p">,</span> <span class="s">&#34;with_mds&#34;</span><span class="p">,</span> <span class="s">&#34;as_line&#34;</span><span class="p">,</span> <span class="s">&#34;as_arc&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;as_polygon&#34;</span><span class="p">,</span> <span class="s">&#34;as_polyarc&#34;</span><span class="p">,</span> <span class="s">&#34;as_polycircle&#34;</span><span class="p">,</span> <span class="s">&#34;as_circle_tree&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="s">&#34;as_multi_layer&#34;</span><span class="p">,</span> <span class="s">&#34;as_poly_sector&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="m">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span> <span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="nf">names</span><span class="p">(</span><span class="n">layout_methods</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">plot</span><span class="p">(</span><span class="n">go</span><span class="p">,</span> <span class="n">layout_methods[[i]]</span><span class="p">,</span> <span class="n">legend</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span> <span class="n">labels_num</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://bookdown.org/Asa12138/metanet_book/04-visualization_files/figure-html/fig-4-layout-methods-1.png" title=""/>
+对于每种方法，可以在其中额外添加一些参数：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># get a metanet</span>
+</span></span><span class="line"><span class="cl"><span class="n">go</span> <span class="o">&lt;-</span> <span class="nf">erdos.renyi.game</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="m">0.25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">go</span> <span class="o">&lt;-</span> <span class="nf">c_net_update</span><span class="p">(</span><span class="n">go</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">go</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="nf">with_fr</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">go</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="nf">with_fr</span><span class="p">(</span><span class="n">niter</span> <span class="o">=</span> <span class="m">99</span><span class="p">,</span> <span class="n">grid</span> <span class="o">=</span> <span class="s">&#34;nogrid&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>as_polygon()</code>很有趣，它可以绘制多边形形状的网络，您可以更改多边形的边数:</p>
+<img src="https://bookdown.org/Asa12138/metanet_book/images/4-1.multiangle.gif" title=""/>
+<h3 id="变换布局">变换布局</h3>
+<p>使用<code>transform_comors</code>可以转换布局，包括缩放，X/Y比，旋转角度，镜像，伪3D效果等：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">c_net_layout</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">coors</span>
+</span></span><span class="line"><span class="cl"><span class="nf">c_net_plot</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="nf">transform_coors</span><span class="p">(</span><span class="n">coors</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">scale</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">aspect_ratio</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">rotation</span> <span class="o">=</span> <span class="n">i</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">mirror_x</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="n">shear_x</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://bookdown.org/Asa12138/metanet_book/images/4-2.trans_coors.gif" title=""/>
+<h3 id="分组布局">分组布局</h3>
+<p>除<code>c_net_layout()</code>外，我们还为具有分组变量的网络提供了一种高级布局方法：<code>g_layout()</code>。
+使用<code>g_layout()</code>可以轻松控制每个组的位置及其内部布局。<code>g_layout()</code>返回的也是<code>coors</code>对象，这意味着我们可以继续用<code>g_layout()</code>组合，实现疯狂套娃，高度自定义的布局！</p>
+<p><code>g_layout()</code>在处理多组学网络或模块网络）时，是布局分组变量网络的极佳选择。</p>
+<ul>
+<li>首先，指定分组变量group</li>
+<li>设置组间布局<code>layout1</code>，可选：
+<ol>
+<li>数据框或矩阵：行名为组名，两列分别为X和Y坐标</li>
+<li>函数：<code>c_net_layout()</code>的各种布局方法（默认：in_circle()）</li>
+</ol>
+</li>
+<li>调整<code>layout1</code>的缩放比例<code>zoom1</code></li>
+<li>设置组内布局<code>layout2</code>（使用<code>c_net_layout()</code>的各种布局方法），
+用一个list，为每个组单独指定布局函数或者直接给一个坐标数据框。</li>
+<li>调整<code>layout2</code>的缩放比例<code>zoom2</code>，可用向量分别控制各组缩放</li>
+<li>设置<code>show_big_layout = T</code>可查看<code>layout1</code>的分布情况</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 为每个组设置圆形布局</span>
+</span></span><span class="line"><span class="cl"><span class="nf">g_layout</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;v_group&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">layout1</span> <span class="o">=</span> <span class="nf">in_circle</span><span class="p">(),</span> <span class="n">zoom1</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">layout2</span> <span class="o">=</span> <span class="nf">in_circle</span><span class="p">(),</span> <span class="n">zoom2</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">g_coors</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="n">g_coors</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-9-1.png" width="768" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 为每个组设置不同的布局</span>
+</span></span><span class="line"><span class="cl"><span class="nf">g_layout</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;v_group&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">layout1</span> <span class="o">=</span> <span class="nf">in_circle</span><span class="p">(),</span> <span class="n">zoom1</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">layout2</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="nf">in_circle</span><span class="p">(),</span> <span class="nf">with_fr</span><span class="p">(),</span> <span class="nf">as_polygon</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">        <span class="n">zoom2</span> <span class="o">=</span> <span class="m">3</span><span class="o">:</span><span class="m">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">g_coors</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">multi1_with_anno</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="n">g_coors</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-9-2.png" width="768" />
+<h4 id="tkplot手动调整大布局">tkplot手动调整大布局</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 首先获取网络骨架</span>
+</span></span><span class="line"><span class="cl"><span class="nf">get_group_skeleton</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="s">&#34;v_class&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">clean_igraph</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">s_net</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用tkplot进行手动调整</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">&lt;-</span> <span class="n">igraph</span><span class="o">::</span><span class="nf">tkplot</span><span class="p">(</span><span class="n">s_net</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在tkplot窗口中移动节点到你喜欢的布局！</span>
+</span></span><span class="line"><span class="cl"><span class="n">da</span> <span class="o">&lt;-</span> <span class="n">igraph</span><span class="o">::</span><span class="nf">tkplot.getcoords</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">igraph</span><span class="o">::</span><span class="nf">tkplot.close</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将调整后的坐标传递给layout1</span>
+</span></span><span class="line"><span class="cl"><span class="nf">g_layout</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;v_class&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">layout1</span> <span class="o">=</span> <span class="n">da</span><span class="p">,</span> <span class="n">zoom1</span> <span class="o">=</span> <span class="m">20</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">layout2</span> <span class="o">=</span> <span class="nf">in_circle</span><span class="p">(),</span> <span class="n">zoom2</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">5</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">g_coors</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="n">g_coors</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://bookdown.org/Asa12138/metanet_book/images/4-3.tkplot1.png" title=""/>
+<img src="https://bookdown.org/Asa12138/metanet_book/images/4-2.tkplot.png" title=""/>
+<p>MetaNet还提供了一些预设的分组布局方法：</p>
+<ol>
+<li><code>g_layout_circlepack()</code></li>
+<li><code>g_layout_treemap()</code></li>
+<li><code>g_layout_backbone()</code></li>
+<li><code>g_layout_stress()</code></li>
+<li><code>g_layout_polyarc()</code></li>
+<li><code>g_layout_polygon()</code></li>
+<li><code>g_layout_polycircle()</code></li>
+<li><code>g_layout_multi_layer()</code> 伪3D效果</li>
+<li><code>g_layout_poly_sector()</code></li>
+</ol>
+<p>示例代码：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">E</span><span class="p">(</span><span class="n">co_net</span><span class="p">)</span><span class="o">$</span><span class="n">color</span> <span class="o">&lt;-</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&#34;grey&#34;</span><span class="p">,</span> <span class="nf">length</span><span class="p">(</span><span class="nf">E</span><span class="p">(</span><span class="n">co_net</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="nf">g_layout_circlepack</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;v_class&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">legend</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">labels_num</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#34;g_layout_circlepack&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="nf">g_layout_polyarc</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;v_class&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">legend</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">labels_num</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#34;g_layout_polyarc&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="nf">g_layout_polycircle</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;v_class&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">legend</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">labels_num</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#34;g_layout_polycircle&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">g1</span> <span class="o">&lt;-</span> <span class="nf">module_net</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">coors</span> <span class="o">=</span> <span class="nf">g_layout_multi_layer</span><span class="p">(</span><span class="n">g1</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="s">&#34;v_class&#34;</span><span class="p">,</span> <span class="n">layout</span> <span class="o">=</span> <span class="nf">on_grid</span><span class="p">()),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">legend</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">labels_num</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#34;g_layout_multi_layer&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="images/g_lay.png" title=""/>
+<h2 id="spatstat-layout"><code>spatstat</code> layout</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="kr">if</span><span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&#34;spatstat&#34;</span><span class="p">))</span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;spatstat&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">E</span><span class="p">(</span><span class="n">co_net</span><span class="p">)</span><span class="o">$</span><span class="n">color</span> <span class="o">&lt;-</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&#34;grey&#34;</span><span class="p">,</span> <span class="nf">length</span><span class="p">(</span><span class="nf">E</span><span class="p">(</span><span class="n">co_net</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">poly_x</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">poly_y</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">win_poly</span> <span class="o">&lt;-</span> <span class="n">spatstat.geom</span><span class="o">::</span><span class="nf">owin</span><span class="p">(</span><span class="n">poly</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">poly_x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">poly_y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">win_poly</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">coors1</span> <span class="o">&lt;-</span> <span class="nf">spatstat_layout</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">win_poly</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;random&#34;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s">&#34;surface&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="n">coors1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">coors1</span> <span class="o">&lt;-</span> <span class="nf">spatstat_layout</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">win_poly</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;regular&#34;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s">&#34;surface&#34;</span><span class="p">,</span><span class="n">order_by</span><span class="o">=</span><span class="s">&#34;v_class&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="n">coors1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">coors2</span> <span class="o">&lt;-</span> <span class="nf">spatstat_layout</span><span class="p">(</span><span class="n">co_net2</span><span class="p">,</span> <span class="n">win_poly</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;random&#34;</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s">&#34;boundary&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">co_net2</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="n">coors2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-12-1.png" width="1152" />
+<p>尝试画个五角星⭐️：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">spatstat.geom</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">create_star_window</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">r_outer</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">r_inner</span> <span class="o">=</span> <span class="m">0.4</span><span class="p">,</span> <span class="n">center</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># 创建五角星的10个顶点（外、内交替）</span>
+</span></span><span class="line"><span class="cl">  <span class="n">theta</span> <span class="o">&lt;-</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">2</span> <span class="o">*</span> <span class="kc">pi</span><span class="p">,</span> <span class="n">length.out</span> <span class="o">=</span> <span class="m">11</span><span class="p">)</span><span class="n">[</span><span class="m">-11</span><span class="n">]</span>  <span class="c1"># 10个点</span>
+</span></span><span class="line"><span class="cl">  <span class="n">theta_outer</span> <span class="o">&lt;-</span> <span class="n">theta</span><span class="nf">[seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">  <span class="n">theta_inner</span> <span class="o">&lt;-</span> <span class="n">theta</span><span class="nf">[seq</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">r_outer</span> <span class="o">*</span> <span class="nf">cos</span><span class="p">(</span><span class="n">theta_outer</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">r_inner</span> <span class="o">*</span> <span class="nf">cos</span><span class="p">(</span><span class="n">theta_inner</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">r_outer</span> <span class="o">*</span> <span class="nf">sin</span><span class="p">(</span><span class="n">theta_outer</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">r_inner</span> <span class="o">*</span> <span class="nf">sin</span><span class="p">(</span><span class="n">theta_inner</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># 重新排序成首尾相连的路径</span>
+</span></span><span class="line"><span class="cl">  <span class="n">order_index</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">6</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">7</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">8</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">9</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">x</span> <span class="o">&lt;-</span> <span class="n">x[order_index]</span> <span class="o">+</span> <span class="n">center[1]</span>
+</span></span><span class="line"><span class="cl">  <span class="n">y</span> <span class="o">&lt;-</span> <span class="n">y[order_index]</span> <span class="o">+</span> <span class="n">center[2]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># 构建 spatstat 的 owin 窗口</span>
+</span></span><span class="line"><span class="cl">  <span class="n">win</span> <span class="o">&lt;-</span> <span class="nf">owin</span><span class="p">(</span><span class="n">poly</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">return</span><span class="p">(</span><span class="n">win</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">win_star</span> <span class="o">&lt;-</span> <span class="nf">create_star_window</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="nf">spatstat_layout</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">win_star</span><span class="p">,</span> <span class="n">order_by</span><span class="o">=</span><span class="s">&#34;v_class&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1.png" width="768" />
+<p>甚至可以画成地图：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">rnaturalearth</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取非洲国家边界（1:50m精度）</span>
+</span></span><span class="line"><span class="cl"><span class="n">africa_sf</span> <span class="o">&lt;-</span> <span class="nf">ne_countries</span><span class="p">(</span><span class="n">continent</span> <span class="o">=</span> <span class="s">&#34;Africa&#34;</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="m">50</span><span class="p">,</span> <span class="n">returnclass</span> <span class="o">=</span> <span class="s">&#34;sf&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 可视化</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="nf">st_geometry</span><span class="p">(</span><span class="n">africa_sf</span><span class="p">),</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;sandybrown&#34;</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#34;Africa Outline (1:50m)&#34;</span><span class="p">,</span> <span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-14-1.png" width="768" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">coors</span> <span class="o">=</span> <span class="nf">spatstat_layout</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">africa_sf</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;regular&#34;</span><span class="p">,</span> <span class="n">order_by</span><span class="o">=</span><span class="s">&#34;v_class&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-14-2.png" width="768" />
+<p>MetaNet使用的是igraph的绘图方式，R的基础绘图，所以需要用<code>pdf</code>,<code>png</code>等设备保存图片。下一节介绍MetaNet和其他绘图方式如ggplot2，D3等的转换，以及MetaNet配合Gephi，Cytoscape等交互式软件使用。</p>
+<h2 id="references">References</h2>
+<ol>
+<li>Koutrouli M, Karatzas E, Paez-Espino D and Pavlopoulos GA (2020) A Guide to Conquer the Biological Network Era Using Graph Theory. Front. Bioeng. Biotechnol. 8:34. doi: 10.3389/fbioe.2020.00034</li>
+<li>Faust, K., and Raes, J. (2012). Microbial interactions: from networks to models. Nat. Rev. Microbiol. <a class="link" href="https://doi.org/10.1038/nrmicro2832"  target="_blank" rel="noopener"
+    >https://doi.org/10.1038/nrmicro2832</a>.</li>
+<li>Y. Deng, Y. Jiang, Y. Yang, Z. He, et al., Molecular ecological network analyses. BMC bioinformatics (2012), doi:10.1186/1471-2105-13-113.</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/Cao-blog/tags/network/">Network</a>
+        
+            <a href="/Cao-blog/tags/r/">R</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-8/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-8/images/nc.80f498412d2ea6135a9712c93dbb8eba_hu_86d7f3e82c9046db.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜8.网络稳定性分析"
+                        data-key="metanet-8" 
+                        data-hash="md5-gPSYQS0uphNalxLJPbuOug==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜8.网络稳定性分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-7/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-5-1.347acced76b5c6eb13665a5b490dbdd9_hu_7eb69229f62ded98.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜7.网络模块分析"
+                        data-key="metanet-7" 
+                        data-hash="md5-NHrM7Xa1xusTZlpbSQ292Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜7.网络模块分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-6/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-6/images/node_topo.1683b9dd5f4336e37158c4c2ba8c763d_hu_ba1f45afac1b002f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜6.网络拓扑指标分析"
+                        data-key="metanet-6" 
+                        data-hash="md5-FoO53V9DNuNxWMTCuox2PQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜6.网络拓扑指标分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-5/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1.7bec6bde92fa4911f3756ff861af16b6_hu_aaab0c1c731476bb.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具"
+                        data-key="metanet-5" 
+                        data-hash="md5-e&#43;xr3pL6SRHzdW/4Ya8Wtg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-3/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-3/images/anno.1a70999d71e270d107e71ba79bba4512_hu_bb2df97903817acf.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜3.网络注释与操作"
+                        data-key="metanet-3" 
+                        data-hash="md5-GnCZnXHicNEH5xunm7pFEg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜3.网络注释与操作</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

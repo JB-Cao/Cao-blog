@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Paper on Cao&#39;s blog</title>
+        <link>https://jb-cao.github.io/Cao-blog/tags/paper/</link>
+        <description>Recent content in Paper on Cao&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Fri, 02 May 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/paper/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Critical Care: ICU医护人员肠道抗生素耐药基因显著增加</title>
+        <link>https://jb-cao.github.io/Cao-blog/p/critical-care/</link>
+        <pubDate>Fri, 02 May 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://jb-cao.github.io/Cao-blog/p/critical-care/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/critical-care/images/fig1.png" alt="Featured image of post Critical Care: ICU医护人员肠道抗生素耐药基因显著增加" /&gt;&lt;p&gt;抗生素耐药性（Antimicrobial Resistance, AMR）是21世纪全球公共卫生面临的重大挑战之一。随着抗生素的广泛使用，耐药菌株和抗生素耐药基因（Antibiotic Resistance Genes, ARGs）在医院环境中迅速扩散，尤其是在重症监护病房（ICU）这样高风险的医疗场所。ICU医护人员因长期暴露于高浓度抗生素和耐药菌的环境中，其肠道微生物群是否受到显著影响，成为一个备受关注的研究课题。2025年发表在《Critical Care》期刊上的一篇多中心、跨区域研究通过宏基因组学技术，系统比较了ICU医护人员与健康对照组的肠道ARG丰度及微生物群组成，揭示了ICU医护人员肠道ARG显著升高的现象。&lt;/p&gt;
+&lt;h2 id=&#34;paper-info&#34;&gt;Paper Info&lt;/h2&gt;
+&lt;img src=&#34;images/title.png&#34; title=&#34;&#34;/&gt;
+&lt;ul&gt;
+&lt;li&gt;标题：Elevated antibiotic resistance gene abundance of ICU healthcare workers, a multicentre, cross-sectional study&lt;/li&gt;
+&lt;li&gt;译名：多中心横断面研究揭示ICU医护人员抗生素耐药基因丰度升高&lt;/li&gt;
+&lt;li&gt;期刊：Critical Care (IF：8.8)&lt;/li&gt;
+&lt;li&gt;发表时间：2025年4月30日&lt;/li&gt;
+&lt;li&gt;链接：&lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1186/s13054-025-05408-5&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1186/s13054-025-05408-5&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;引言&#34;&gt;引言&lt;/h2&gt;
+&lt;p&gt;抗生素耐药性被世界卫生组织列为全球十大公共卫生威胁之一。据《Lancet》2024年报道，1990年至2021年间，全球因AMR导致的死亡人数持续上升，预计未来几十年将进一步加剧。医院作为抗生素使用最密集的场所，是ARG传播的主要来源。ICU尤为突出，因其患者病情危重、抗生素使用频繁、耐药菌（如ESKAPE病原体：粪肠球菌、肺炎克雷伯菌等）高发，导致环境中的ARG浓度远高于外部环境。&lt;/p&gt;
+&lt;p&gt;ICU医护人员每天接触高危患者、污染表面及空气中的耐药菌，面临较高的职业暴露风险。先前的研究表明，医护人员可能通过直接接触、空气传播或交叉污染成为耐药菌的携带者。然而，传统研究多依赖细菌培养技术，样本量小，难以全面揭示ARG的传播动态。宏基因组学技术的兴起为研究ARG提供了更精确的工具，使研究人员能够深入分析医护人员肠道微生物群的耐药基因特征。&lt;/p&gt;
+&lt;p&gt;该研究提出一个核心问题：ICU医护人员的肠道ARG丰度是否高于健康人群？此外，ICU职业暴露的时长是否与ARG丰度相关？通过多中心、跨区域的样本采集和宏基因组学分析，研究旨在填补这一领域的知识空白，为医院感染防控提供科学依据。&lt;/p&gt;
+&lt;h2 id=&#34;研究设计与方法&#34;&gt;研究设计与方法&lt;/h2&gt;
+&lt;p&gt;这项前瞻性、多中心、横断面研究在中国浙江和河南的八家医疗中心开展，时间为2024年1月至2月。研究对象包括191名ICU医护人员（医生、护士、护理助理）和99名健康对照组，共290人。健康对照组来自常规体检人群，无医疗相关工作背景。研究通过粪便样本的宏基因组测序，比较两组的肠道ARG丰度、ARG多样性及微生物群组成。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;纳入标准&lt;/strong&gt;：年龄大于18岁，签署知情同意书。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;排除标准&lt;/strong&gt;：存在胃肠道疾病、恶性肿瘤、精神疾病；近6个月使用广谱抗生素（如万古霉素、头孢吡肟等）；孕妇；健康对照组需无医疗相关工作经历。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;研究团队收集粪便样本，提取DNA后使用Illumina NovaSeq X Plus平台进行双末端测序（2×150 bp）。通过Fastp去除低质量读数，Bowtie2过滤人类基因组序列，Kraken2进行分类学分析，RGI结合CARD数据库识别ARG。ARG丰度以每千碱基每百万映射读数（RPKM）标准化，ARG丰富度以识别的ARG总数量化。研究还通过Kraken2和RGI的读数ID匹配，追踪ARG的细菌宿主。&lt;/p&gt;
+&lt;p&gt;主要结局为比较ICU医护人员与健康对照组的ARG丰度（以RPKM为指标）。使用广义线性模型（GLM）进行分析，矫正了年龄、性别和BMI等混杂因素。次要结局为探索ICU职业暴露时长与ARG丰度的关系，使用限制性立方样条（RCS）模型。亚组分析和敏感性分析进一步验证结果的稳健性，分析工具包括R软件及其相关包（如pctax、rms）。&lt;/p&gt;
+&lt;h2 id=&#34;结果&#34;&gt;结果&lt;/h2&gt;
+&lt;h3 id=&#34;icu医护人员肠道arg丰度显著升高&#34;&gt;ICU医护人员肠道ARG丰度显著升高&lt;/h3&gt;
+&lt;img src=&#34;images/fig1.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;研究发现，ICU医护人员的总ARG丰度显著高于健康对照组（调整后倍数变化=1.22，95%置信区间：1.12-1.34，p&amp;lt;0.001）。具体而言，来源于粪肠球菌、肺炎克雷伯菌和肠杆菌属（包括大肠杆菌）的ARG丰度在医护人员中显著增加。特别值得注意的是，与喹诺酮类抗生素耐药相关的qnrE1基因（log2倍数变化=14.03，p-adj=0.02）以及与β-内酰胺类抗生素耐药相关的ACT-12（log2倍数变化=11.23，p-adj=0.03）和MIR-12（log2倍数变化=11.17，p-adj=0.04）基因在医护人员中显著上调。&lt;/p&gt;
+&lt;h3 id=&#34;arg多样性与微生物群组成差异&#34;&gt;ARG多样性与微生物群组成差异&lt;/h3&gt;
+&lt;img src=&#34;images/fig2.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;ICU医护人员的ARG α多样性（丰富度和Shannon指数）显著高于对照组（p&amp;lt;0.001，p=0.02），β多样性也存在显著差异（Adonis R²=0.0396，p=0.001）。243个ARG在医护人员中显著上调，而仅9个ARG下调。此外，医护人员的肠道细菌组成显示出更高的α多样性（p=0.04）和β多样性（Adonis R²=0.0419，p=0.001），其中克雷伯菌属（如Klebsiella grimontii，log2倍数变化=5.93，p-adj=0.004）和乳酸乳球菌（log2倍数变化=5.78，p-adj=0.009）显著上调。&lt;/p&gt;
+&lt;h3 id=&#34;职业暴露时长与arg丰度无关&#34;&gt;职业暴露时长与ARG丰度无关&lt;/h3&gt;
+&lt;img src=&#34;images/fig3.png&#34; title=&#34;&#34; width=&#34;70%&#34;/&gt;
+&lt;p&gt;出乎意料的是，研究未发现ICU职业暴露时长与ARG丰度之间的显著线性或非线性关系（p for overall=0.96，p for nonlinear=0.84）。这表明ARG丰度的增加可能在医护人员职业生涯的早期即已发生。&lt;/p&gt;
+&lt;h3 id=&#34;4-亚组与敏感性分析&#34;&gt;4. 亚组与敏感性分析&lt;/h3&gt;
+&lt;img src=&#34;images/fig4.png&#34; title=&#34;&#34;/&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性别差异&lt;/strong&gt;：男性医护人员的ARG丰度与职业暴露的关联更强（β=0.29，p&amp;lt;0.001）相比女性（β=0.13，p=0.03）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;地区差异&lt;/strong&gt;：河南的医护人员ARG丰度高于浙江（倍数变化=1.20 vs. 1.12）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;职业差异&lt;/strong&gt;：护理助理的ARG丰度最高（倍数变化=1.33），其次为医生（1.18）和护士（1.08）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;讨论&#34;&gt;讨论&lt;/h2&gt;
+&lt;h3 id=&#34;临床意义&#34;&gt;临床意义&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;感染防控的新视角&lt;/strong&gt;：ICU医护人员作为潜在的ARG携带者，可能在医院内外的耐药菌传播中扮演重要角色。研究提示需加强对医护人员的感染防控措施，如优化手部卫生、加强环境消毒。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;精准医疗的潜力&lt;/strong&gt;：宏基因组学技术为监测ARG提供了高分辨率工具，可用于识别高风险人群和制定针对性的干预措施。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;职业健康保障&lt;/strong&gt;：医护人员肠道微生物群的变化可能影响其长期健康，需进一步研究这些变化的临床意义。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;公共卫生意义&#34;&gt;公共卫生意义&lt;/h3&gt;
+&lt;p&gt;研究结果支持“One Health”框架，强调人类、动物和环境健康的互联性。医院作为ARG的“热点”，其防控策略应扩展到医护人员和社区。减少不必要的抗生素使用、加强耐药性监测是应对AMR的关键。&lt;/p&gt;
+&lt;h3 id=&#34;局限性&#34;&gt;局限性&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;地域局限&lt;/strong&gt;：研究仅限于中国人群，结论的普遍性需进一步验证。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;因果关系&lt;/strong&gt;：作为观察性研究，无法确定职业暴露与ARG升高之间的因果关系。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;未测混杂因素&lt;/strong&gt;：如旅行史、住院史等可能影响结果。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;临床相关性&lt;/strong&gt;：ARG的升高是否导致实际感染风险尚不明确。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;未来研究方向&#34;&gt;未来研究方向&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;纵向研究&lt;/strong&gt;：通过长期随访，探索ARG丰度变化的动态和影响因素。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;全球合作&lt;/strong&gt;：开展跨国研究，验证不同地区医护人员的ARG特征。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;干预措施&lt;/strong&gt;：测试感染防控策略（如益生菌干预、环境净化）对ARG丰度的影响。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;健康影响&lt;/strong&gt;：研究ARG升高对医护人员健康的潜在影响，如免疫功能或代谢疾病风险。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;小结&#34;&gt;小结&lt;/h2&gt;
+&lt;p&gt;这项多中心研究揭示了ICU医护人员肠道ARG丰度和微生物群多样性的显著升高，提示职业暴露可能是重要驱动因素。尽管未发现暴露时长与ARG丰度的直接关联，但研究强调了医院环境在耐药基因传播中的关键作用。宏基因组学技术的应用为理解AMR动态提供了新视角，未来需进一步探索其临床和公共卫生意义，以优化感染防控策略，保护医护人员和患者的健康。&lt;/p&gt;
+&lt;h2 id=&#34;card数据库中药物类型整理&#34;&gt;CARD数据库中药物类型整理&lt;/h2&gt;
+&lt;p&gt;为了方便分析，我整合了CARD数据库的描述信息到ReporterScore包中，可以通过以下代码调取：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ReporterScore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;remotes&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;install_github&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Asa12138/ReporterScore&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ReporterScore&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;CARDinfo&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;load_CARDinfo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CARDinfo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ARO_index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##         ARO Accession CVTERM ID Model Sequence ID Model ID
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3005099   ARO:3005099     43314              6143     3831
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002523   ARO:3002523     38923              8144     1781
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002524   ARO:3002524     38924                85      746
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002525   ARO:3002525     38925              4719     1246
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002526   ARO:3002526     38926               228     1415
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002527   ARO:3002527     38927              5510     2832
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##                                                     Model Name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3005099 23S rRNA (adenine(2058)-N(6))-methyltransferase Erm(A)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002523                                             AAC(2&amp;#39;)-Ia
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002524                                             AAC(2&amp;#39;)-Ib
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002525                                             AAC(2&amp;#39;)-Ic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002526                                             AAC(2&amp;#39;)-Id
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002527                                             AAC(2&amp;#39;)-Ie
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##                                                       ARO Name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3005099 23S rRNA (adenine(2058)-N(6))-methyltransferase Erm(A)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002523                                             AAC(2&amp;#39;)-Ia
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002524                                             AAC(2&amp;#39;)-Ib
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002525                                             AAC(2&amp;#39;)-Ic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002526                                             AAC(2&amp;#39;)-Id
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002527                                             AAC(2&amp;#39;)-Ie
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##         Protein Accession DNA Accession                         AMR Gene Family
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3005099        AAB60941.1    AF002716.1 Erm 23S ribosomal RNA methyltransferase
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002523        AAA03550.1      L06156.2                                 AAC(2&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002524        AAC44793.1      U41471.1                                 AAC(2&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002525        CCP42991.1    AL123456.3                                 AAC(2&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002526        AAB41701.1      U72743.1                                 AAC(2&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002527        CAC32082.1    AL583926.1                                 AAC(2&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##                                                                   Drug Class
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3005099 lincosamide antibiotic;macrolide antibiotic;streptogramin antibiotic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002523                                            aminoglycoside antibiotic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002524                                            aminoglycoside antibiotic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002525                                            aminoglycoside antibiotic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002526                                            aminoglycoside antibiotic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002527                                            aminoglycoside antibiotic
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##                 Resistance Mechanism CARD Short Name length     Drug_Class
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3005099 antibiotic target alteration  Spyo_ErmA_MLSb    732            MLS
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002523      antibiotic inactivation      AAC(2&amp;#39;)-Ia    537 Aminoglycoside
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002524      antibiotic inactivation      AAC(2&amp;#39;)-Ib    588 Aminoglycoside
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002525      antibiotic inactivation      AAC(2&amp;#39;)-Ic    546 Aminoglycoside
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002526      antibiotic inactivation      AAC(2&amp;#39;)-Id    633 Aminoglycoside
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 3002527      antibiotic inactivation      AAC(2&amp;#39;)-Ie    549 Aminoglycoside
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;注意CARD数据库中Drug Class，一个ARO可以对应很多种药物类型，不是很方便整合，所以我根据《Assessment of global health risk of antibiotic resistance genes》中的规则新增了一列“Drug_Class”。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ARGs were manually reclassified based on the drugs to which they confer resistance. ARGs referring to penam, cephalosporin, carbapenem, cephamycin, penem and monobactam were grouped into the beta-lactam class. ARGs referring to macrolides, lincosamides and streptogramins were grouped into the MLS class. ARGs referring to more than one drug class were grouped into the multidrug class.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pcutils&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;gghuan&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dplyr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;count&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;CARDinfo&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ARO_index&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Drug_Class&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;scale_fill_pc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;img src=&#34;https://jb-cao.github.io/Cao-blog/p/critical-care/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

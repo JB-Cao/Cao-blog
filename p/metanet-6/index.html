@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='网络拓扑（Network Topology）是指网络中节点与边的连接模式所呈现的全局或局部结构特征。'>
+<title>MetaNet：多组学网络分析工具｜6.网络拓扑指标分析</title>
+
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/metanet-6/'>
+
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='MetaNet：多组学网络分析工具｜6.网络拓扑指标分析'>
+<meta property='og:description' content='网络拓扑（Network Topology）是指网络中节点与边的连接模式所呈现的全局或局部结构特征。'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/metanet-6/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='network' /><meta property='article:tag' content='R' /><meta property='article:published_time' content='2025-04-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-14T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/metanet-6/images/node_topo.png' />
+<meta name="twitter:title" content="MetaNet：多组学网络分析工具｜6.网络拓扑指标分析">
+<meta name="twitter:description" content="网络拓扑（Network Topology）是指网络中节点与边的连接模式所呈现的全局或局部结构特征。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/metanet-6/images/node_topo.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/Cao-blog/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/472862038'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/JB-Cao'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/Cao-blog/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#拓扑指标">拓扑指标</a>
+      <ol>
+        <li><a href="#局部拓扑指标">局部拓扑指标</a></li>
+        <li><a href="#全局拓扑指标">全局拓扑指标</a></li>
+        <li><a href="#metanet计算">MetaNet计算</a></li>
+      </ol>
+    </li>
+    <li><a href="#随机网络">随机网络</a></li>
+    <li><a href="#复杂网络">复杂网络</a></li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/Cao-blog/p/metanet-6/">
+                <img src="/Cao-blog/p/metanet-6/images/node_topo_hu_58ec558cdd8e19d1.png"
+                        srcset="/Cao-blog/p/metanet-6/images/node_topo_hu_58ec558cdd8e19d1.png 800w, /Cao-blog/p/metanet-6/images/node_topo_hu_9447a496f32897bd.png 1600w"
+                        width="800" 
+                        height="633" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜6.网络拓扑指标分析" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/Cao-blog/categories/r/" style="background-color: #bebada; color: #fff;">
+                R
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/Cao-blog/p/metanet-6/">MetaNet：多组学网络分析工具｜6.网络拓扑指标分析</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            网络拓扑（Network Topology）是指网络中节点与边的连接模式所呈现的全局或局部结构特征。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 14, 14140</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>本文我们介绍网络的各种拓扑指标计算和分析。网络拓扑（Network Topology）是指网络中节点与边的连接模式所呈现的全局或局部结构特征。在生物组学研究中，拓扑分析能揭示分子互作网络的功能组织规律，是理解复杂生物系统的关键手段。</p>
+<ul>
+<li>软件主页：<a class="link" href="https://github.com/Asa12138/MetaNet"  target="_blank" rel="noopener"
+    >https://github.com/Asa12138/MetaNet</a> <strong>大家可以帮忙在github上点点star⭐️</strong>，谢谢🙏</li>
+<li>详细英文版教程：<a class="link" href="https://bookdown.org/Asa12138/metanet_book/"  target="_blank" rel="noopener"
+    >https://bookdown.org/Asa12138/metanet_book/</a></li>
+</ul>
+<p>可以从 CRAN 安装稳定版：<code>install.packages(&quot;MetaNet&quot;)</code></p>
+<p>依赖包 <code>pcutils</code>和<code>igraph</code>（需提前安装），推荐配合 <code>dplyr</code> 进行数据操作。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">MetaNet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ========data manipulation</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">pcutils</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="拓扑指标">拓扑指标</h2>
+<p>全局拓扑（Global Topology）描述网络整体连接特性，局部拓扑（Local Topology）聚焦单个节点/边的结构重要性，MetaNet可以对构建好的网络进行多种拓扑指标的计算和分析。</p>
+<h3 id="局部拓扑指标">局部拓扑指标</h3>
+<img src="images/node_topo.png" title=""/>
+<ol>
+<li>
+<p><strong>Connectivity/Degree centrality</strong><br>
+衡量节点直接连接数量的基础指标，反映节点的局部影响力。</p>
+</li>
+<li>
+<p><strong>Betweenness centrality</strong><br>
+统计节点出现在所有最短路径中的频率，识别网络中的&quot;桥梁&quot;节点。</p>
+</li>
+<li>
+<p><strong>Closeness centrality</strong><br>
+计算节点到其他所有节点的平均最短距离倒数，体现信息传播效率。</p>
+</li>
+<li>
+<p><strong>Eigenvector centrality</strong><br>
+考虑邻居节点的重要性加权计算，适用于评估依赖高端连接的节点影响力。</p>
+</li>
+<li>
+<p><strong>Clustering coefficient</strong><br>
+量化节点邻居间的连接紧密程度，揭示网络局部模块化特性。</p>
+</li>
+<li>
+<p><strong>Eccentricity</strong><br>
+定义节点到网络中最远节点的距离，反映节点的全局位置特征。</p>
+</li>
+<li>
+<p><strong>PageRank</strong><br>
+基于随机游走模型迭代计算的节点重要性，适用于有向网络（如基因调控网络）。</p>
+</li>
+<li>
+<p><strong>Kleinberg&rsquo;s hub/authority centrality</strong><br>
+双向评价节点价值：hub（指向重要节点）和authority（被重要节点指向）。</p>
+</li>
+</ol>
+<p>更细致的介绍可以看下表，来自MetaNet教程网页：</p>
+<img src="images/node_topodf.png" title=""/>
+<h3 id="全局拓扑指标">全局拓扑指标</h3>
+<ol>
+<li>
+<p><strong>Average connectivity/degree</strong><br>
+网络中所有节点连接数的平均值，反映整体连接密度。</p>
+</li>
+<li>
+<p><strong>Average path length/Average geodesic distance</strong><br>
+所有节点对之间最短路径的平均值，衡量网络信息传递效率。</p>
+</li>
+<li>
+<p><strong>Global efficiency/Geodesic efficiency</strong><br>
+节点间最短路径倒数和的标准化值（0-1），值越高表示信息流动越高效。</p>
+</li>
+<li>
+<p><strong>Centralization of degree</strong><br>
+节点度分布的集中程度（0-1），值越高说明网络越依赖少数枢纽节点。</p>
+</li>
+<li>
+<p><strong>Centralization of betweenness</strong><br>
+节点介数中心性的方差，反映网络对&quot;桥梁&quot;节点的依赖程度。</p>
+</li>
+<li>
+<p><strong>Centralization of closeness</strong><br>
+接近中心性的分布偏态，表征网络核心-边缘结构的强度。</p>
+</li>
+<li>
+<p><strong>Centralization of eigenvector centrality</strong><br>
+特征向量中心性的异质性，评估高端连接节点的支配性。</p>
+</li>
+<li>
+<p><strong>Density</strong><br>
+实际边数与最大可能边数的比值（0-1），描述网络的稀疏程度。</p>
+</li>
+<li>
+<p><strong>Average clustering coefficient</strong><br>
+所有节点局部聚类系数的均值，量化网络模块化趋势。</p>
+</li>
+<li>
+<p><strong>Transitivity</strong><br>
+三元闭包比例（三角形结构占比），反映网络局部聚集特性。</p>
+</li>
+<li>
+<p><strong>Natural connectivity</strong><br>
+基于网络特征谱的鲁棒性指标，值越高表示网络越稳定。</p>
+</li>
+</ol>
+<img src="images/net_topodf.png" title=""/>
+<p><strong>一些潜在的生物网络分析应用场景：</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>指标类型</th>
+          <th>典型应用场景</th>
+          <th>计算复杂度</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Degree</td>
+          <td>快速筛选高连接分子</td>
+          <td>O(n)</td>
+      </tr>
+      <tr>
+          <td>Betweenness</td>
+          <td>发现跨模块调控因子</td>
+          <td>O(n²)</td>
+      </tr>
+      <tr>
+          <td>PageRank</td>
+          <td>识别关键调控基因</td>
+          <td>O(n log n)</td>
+      </tr>
+  </tbody>
+</table></div>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>指标</th>
+          <th>典型生物学意义</th>
+          <th>示例场景</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Average path length</td>
+          <td>代谢物信号传导速度</td>
+          <td>短路径=快速调控响应</td>
+      </tr>
+      <tr>
+          <td>Centralization of degree</td>
+          <td>关键基因的支配性</td>
+          <td>转录因子网络分析</td>
+      </tr>
+      <tr>
+          <td>Transitivity</td>
+          <td>蛋白复合体的形成倾向</td>
+          <td>PPI网络功能模块检测</td>
+      </tr>
+      <tr>
+          <td>Natural connectivity</td>
+          <td>基因网络抗突变能力</td>
+          <td>疾病相关网络稳定性评估</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="metanet计算">MetaNet计算</h3>
+<p>MetaNet提供<code>net_par()</code>函数一键计算网络/节点/边三个层级的拓扑指标：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">MetaNet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 示例1：获取Walther网络的所有指标（返回列表）</span>
+</span></span><span class="line"><span class="cl"><span class="nf">make_graph</span><span class="p">(</span><span class="s">&#34;Walther&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">net_par</span><span class="p">(</span><span class="n">mode</span> <span class="o">=</span> <span class="s">&#34;all&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 示例2：仅获取网络级全局指标</span>
+</span></span><span class="line"><span class="cl"><span class="nf">make_graph</span><span class="p">(</span><span class="s">&#34;Walther&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">net_par</span><span class="p">(</span><span class="n">mode</span> <span class="o">=</span> <span class="s">&#34;n&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>参数说明</strong>：</p>
+<ul>
+<li><code>mode</code>：计算范围
+<ul>
+<li><code>&quot;n&quot;</code>：网络级指标（如密度、平均路径长度）</li>
+<li><code>&quot;v&quot;</code>：节点级指标（如度中心性、介数）</li>
+<li><code>&quot;e&quot;</code>：边级指标（如边介数）</li>
+<li><code>&quot;all&quot;</code>：全部指标（返回嵌套列表）</li>
+</ul>
+</li>
+</ul>
+<p>也可以通过<code>c_net_index()</code>计算并存储拓扑指标到网络中，便于后续分析和可视化：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 生成随机网络</span>
+</span></span><span class="line"><span class="cl"><span class="n">go</span> <span class="o">&lt;-</span> <span class="nf">erdos.renyi.game</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="m">0.25</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">c_net_update</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 计算拓扑指标并存入网络属性</span>
+</span></span><span class="line"><span class="cl"><span class="n">go</span> <span class="o">&lt;-</span> <span class="nf">c_net_index</span><span class="p">(</span><span class="n">go</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看节点属性表（前6行）</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="nf">get_v</span><span class="p">(</span><span class="n">go</span><span class="p">))</span>  <span class="c1"># 包含Degree、Betweenness等列</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">##   name label size  v_group  shape  v_class   color Degree
+</span></span><span class="line"><span class="cl">## 1    1     1    1 v_group1 circle v_class1 #a6bce3     12
+</span></span><span class="line"><span class="cl">## 2    2     2    1 v_group1 circle v_class1 #a6bce3      5
+</span></span><span class="line"><span class="cl">## 3    3     3    1 v_group1 circle v_class1 #a6bce3      6
+</span></span><span class="line"><span class="cl">## 4    4     4    1 v_group1 circle v_class1 #a6bce3     10
+</span></span><span class="line"><span class="cl">## 5    5     5    1 v_group1 circle v_class1 #a6bce3     10
+</span></span><span class="line"><span class="cl">## 6    6     6    1 v_group1 circle v_class1 #a6bce3      8
+</span></span><span class="line"><span class="cl">##   Clustering_coefficient Betweenness Eccentricity  Closeness Hub_score
+</span></span><span class="line"><span class="cl">## 1              0.3030303   28.397972            3 0.02127660 1.0000000
+</span></span><span class="line"><span class="cl">## 2              0.2000000    6.660256            3 0.01666667 0.3248811
+</span></span><span class="line"><span class="cl">## 3              0.2666667    6.069444            3 0.01694915 0.4109319
+</span></span><span class="line"><span class="cl">## 4              0.2000000   28.380145            3 0.02000000 0.7223088
+</span></span><span class="line"><span class="cl">## 5              0.2666667   21.248995            3 0.02000000 0.7955976
+</span></span><span class="line"><span class="cl">## 6              0.2857143   11.864627            2 0.02000000 0.6595919
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>将节点度中心性映射为可视化属性：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># get a metanet</span>
+</span></span><span class="line"><span class="cl"><span class="n">go</span> <span class="o">&lt;-</span> <span class="nf">erdos.renyi.game</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="m">0.25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">go</span> <span class="o">&lt;-</span> <span class="nf">c_net_update</span><span class="p">(</span><span class="n">go</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">go</span><span class="p">,</span> <span class="n">vertex_size_range</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="m">20</span><span class="p">),</span> <span class="n">legend</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#34;Same size&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># calculate topological indexes and store</span>
+</span></span><span class="line"><span class="cl"><span class="n">go</span> <span class="o">&lt;-</span> <span class="nf">c_net_index</span><span class="p">(</span><span class="n">go</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="nf">get_v</span><span class="p">(</span><span class="n">go</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">##   name label size  v_group  shape  v_class   color Degree
+</span></span><span class="line"><span class="cl">## 1    1     1    1 v_group1 circle v_class1 #a6bce3      5
+</span></span><span class="line"><span class="cl">## 2    2     2    1 v_group1 circle v_class1 #a6bce3      6
+</span></span><span class="line"><span class="cl">## 3    3     3    1 v_group1 circle v_class1 #a6bce3      6
+</span></span><span class="line"><span class="cl">## 4    4     4    1 v_group1 circle v_class1 #a6bce3      5
+</span></span><span class="line"><span class="cl">## 5    5     5    1 v_group1 circle v_class1 #a6bce3      5
+</span></span><span class="line"><span class="cl">## 6    6     6    1 v_group1 circle v_class1 #a6bce3     10
+</span></span><span class="line"><span class="cl">##   Clustering_coefficient Betweenness Eccentricity  Closeness Hub_score
+</span></span><span class="line"><span class="cl">## 1             0.10000000   10.013921            3 0.01785714 0.4610096
+</span></span><span class="line"><span class="cl">## 2             0.26666667    6.727020            3 0.01754386 0.6577058
+</span></span><span class="line"><span class="cl">## 3             0.20000000   10.684066            3 0.01694915 0.5397470
+</span></span><span class="line"><span class="cl">## 4             0.20000000    8.271461            3 0.01724138 0.4504656
+</span></span><span class="line"><span class="cl">## 5             0.20000000    8.340112            3 0.01694915 0.4305194
+</span></span><span class="line"><span class="cl">## 6             0.08888889   41.647508            3 0.02040816 0.8463154
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># use vertex.size to indicate degree</span>
+</span></span><span class="line"><span class="cl"><span class="n">go</span> <span class="o">&lt;-</span> <span class="nf">c_net_set</span><span class="p">(</span><span class="n">go</span><span class="p">,</span> <span class="n">vertex_size</span> <span class="o">=</span> <span class="s">&#34;Degree&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">go</span><span class="p">,</span> <span class="n">vertex_size_range</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="m">20</span><span class="p">),</span> <span class="n">legend</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#34;Size map to degree&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-6/index.en_files/figure-html/unnamed-chunk-3-1.png" width="768" />
+<h2 id="随机网络">随机网络</h2>
+<p>随机网络（Random Network）是网络科学中的一类基础网络模型，其核心特征是网络连接遵循某种随机生成规则。Erdős-Rényi（ER）模型是最著名的代表：</p>
+<ul>
+<li>
+<p><strong>定义</strong>：给定N个节点，每对节点以概率p独立连接</p>
+</li>
+<li>
+<p><strong>特性</strong>：</p>
+<ul>
+<li>度分布呈泊松分布 $ P(k) \sim e^{-\lambda}\lambda^k/k! $</li>
+<li>平均聚类系数：$C \approx p $</li>
+<li>平均路径长度：$L \sim \ln(N) $</li>
+</ul>
+</li>
+<li>
+<p>生物学意义：</p>
+<ul>
+<li>作为&quot;零模型&quot;（null model）用于评估真实生物网络的显著性</li>
+<li>帮助识别网络中的非随机结构（如模块、枢纽节点）</li>
+</ul>
+</li>
+</ul>
+<p>MetaNet提供两种随机网络生成方法用于网络分析对比：</p>
+<ol>
+<li><strong>单次随机网络生成</strong><br>
+使用<code>rand_net()</code>基于Erdős-Rényi模型生成与目标网络（相同节点数和边数）的随机对照网络：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">rand_net</span><span class="p">(</span><span class="n">co_net</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">random_net</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-6/index.en_files/figure-html/unnamed-chunk-4-1.png" width="768" />
+<ol start="2">
+<li><strong>批量生成与统计比较</strong><br>
+通过<code>rand_net_par()</code>生成多个随机网络并计算拓扑指标分布，再使用<code>compare_rand()</code>进行显著性比较：</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">rand_net_par</span><span class="p">(</span><span class="n">co_net</span><span class="p">,</span> <span class="n">reps</span> <span class="o">=</span> <span class="m">30</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">randp</span>  <span class="c1"># 生成30个随机网络</span>
+</span></span><span class="line"><span class="cl"><span class="nf">net_par</span><span class="p">(</span><span class="n">co_net</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pars</span>                   <span class="c1"># 计算原网络指标</span>
+</span></span><span class="line"><span class="cl"><span class="nf">compare_rand</span><span class="p">(</span><span class="n">pars</span><span class="p">,</span> <span class="n">randp</span><span class="p">,</span>                 <span class="c1"># 指标对比</span>
+</span></span><span class="line"><span class="cl">            <span class="n">index</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;Average_path_length&#34;</span><span class="p">,</span> <span class="s">&#34;Clustering_coefficient&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-6/index.en_files/figure-html/unnamed-chunk-5-1.png" width="768" />
+<h2 id="复杂网络">复杂网络</h2>
+<p>在组学研究中构建的网络大多属于复杂网络，其核心特征包括无标度性、小世界性、模块化和层次性，具体定义如下所示：</p>
+<img src="images/co1.png" title=""/>
+<img src="images/co2.png" title=""/>
+<img src="images/complex.png" title=""/>
+<ol>
+<li><strong>无标度性验证</strong></li>
+</ol>
+<p>使用<code>fit_power()</code>函数拟合网络的度分布幂律曲线：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">data</span><span class="p">(</span><span class="s">&#34;c_net&#34;</span><span class="p">,</span> <span class="n">package</span> <span class="o">=</span> <span class="s">&#34;MetaNet&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fit_power</span><span class="p">(</span><span class="n">co_net</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-6/index.en_files/figure-html/unnamed-chunk-6-1.png" width="60%" />
+<ol start="2">
+<li><strong>小世界性量化</strong><br>
+通过<code>smallworldness()</code>计算小世界指数σ：</li>
+</ol>
+<p>$$
+\sigma=\frac{C/C_{random}}{L/L_{random}}
+$$
+其中C和L分别表示实际网络的聚类系数和平均路径长度，$C_{random}$和$L_{random}$为随机网络对应值。当σ&gt;1时，网络具有小世界特性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">smallworldness</span><span class="p">(</span><span class="n">co_net</span><span class="p">)</span>  <span class="c1"># 示例输出：43.09368</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>网络的模块分析下一次介绍。</p>
+<h2 id="references">References</h2>
+<ol>
+<li>Koutrouli M, Karatzas E, Paez-Espino D and Pavlopoulos GA (2020) A Guide to Conquer the Biological Network Era Using Graph Theory. Front. Bioeng. Biotechnol. 8:34. doi: 10.3389/fbioe.2020.00034</li>
+<li>Faust, K., and Raes, J. (2012). Microbial interactions: from networks to models. Nat. Rev. Microbiol. <a class="link" href="https://doi.org/10.1038/nrmicro2832"  target="_blank" rel="noopener"
+    >https://doi.org/10.1038/nrmicro2832</a>.</li>
+<li>Y. Deng, Y. Jiang, Y. Yang, Z. He, et al., Molecular ecological network analyses. BMC bioinformatics (2012), doi:10.1186/1471-2105-13-113.</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/Cao-blog/tags/network/">Network</a>
+        
+            <a href="/Cao-blog/tags/r/">R</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-8/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-8/images/nc.80f498412d2ea6135a9712c93dbb8eba_hu_86d7f3e82c9046db.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜8.网络稳定性分析"
+                        data-key="metanet-8" 
+                        data-hash="md5-gPSYQS0uphNalxLJPbuOug==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜8.网络稳定性分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-7/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-5-1.347acced76b5c6eb13665a5b490dbdd9_hu_7eb69229f62ded98.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜7.网络模块分析"
+                        data-key="metanet-7" 
+                        data-hash="md5-NHrM7Xa1xusTZlpbSQ292Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜7.网络模块分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-5/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-5/index.en_files/figure-html/unnamed-chunk-10-1.7bec6bde92fa4911f3756ff861af16b6_hu_aaab0c1c731476bb.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具"
+                        data-key="metanet-5" 
+                        data-hash="md5-e&#43;xr3pL6SRHzdW/4Ya8Wtg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜5.扩展绘图与兼容工具</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-4/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-4/index.en_files/figure-html/unnamed-chunk-13-1.3a81938f6b8eb0c165afcedca73c47a3_hu_692adc1cabce892a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜4.布局和可视化"
+                        data-key="metanet-4" 
+                        data-hash="md5-OoGTj2uOsMFlr87cpzxHow==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜4.布局和可视化</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-3/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-3/images/anno.1a70999d71e270d107e71ba79bba4512_hu_bb2df97903817acf.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜3.网络注释与操作"
+                        data-key="metanet-3" 
+                        data-hash="md5-GnCZnXHicNEH5xunm7pFEg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜3.网络注释与操作</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='使用MetaNet包获取KEGG通路网络，并进行注释和可视化。'>
+<title>使用MetaNet绘制KEGG通路网络图</title>
+
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/metanet-kegg/'>
+
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='使用MetaNet绘制KEGG通路网络图'>
+<meta property='og:description' content='使用MetaNet包获取KEGG通路网络，并进行注释和可视化。'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/metanet-kegg/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='network' /><meta property='article:tag' content='KEGG' /><meta property='article:published_time' content='2025-06-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-06-12T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1.png' />
+<meta name="twitter:title" content="使用MetaNet绘制KEGG通路网络图">
+<meta name="twitter:description" content="使用MetaNet包获取KEGG通路网络，并进行注释和可视化。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/Cao-blog/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/472862038'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/JB-Cao'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/Cao-blog/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#reporterscoremetanet">ReporterScore+MetaNet</a></li>
+    <li><a href="#ggkegg">ggkegg</a></li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/Cao-blog/p/metanet-kegg/">
+                <img src="/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1_hu_1ea617e9a627e274.png"
+                        srcset="/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1_hu_1ea617e9a627e274.png 800w, /Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1_hu_b73f2eded4965b1b.png 1600w"
+                        width="800" 
+                        height="500" 
+                        loading="lazy"
+                        alt="Featured image of post 使用MetaNet绘制KEGG通路网络图" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/Cao-blog/categories/r/" style="background-color: #bebada; color: #fff;">
+                R
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/Cao-blog/p/metanet-kegg/">使用MetaNet绘制KEGG通路网络图</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            使用MetaNet包获取KEGG通路网络，并进行注释和可视化。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jun 12, 12120</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p><a class="link" href="https://www.genome.jp/kegg/"  target="_blank" rel="noopener"
+    >KEGG</a>（Kyoto Encyclopedia of Genes and Genomes）是一个广泛使用的生物信息学数据库，用于研究基因组、代谢组、信号通路和生物化学反应等方面的信息。它提供了基因、蛋白质、代谢物和信号通路等生物分子的综合信息，帮助研究人员理解生物体内分子之间的相互作用和功能。</p>
+<p>之前的文章详细介绍了<a class="link" href="../kegg-api" >KEGG 数据库及API</a>的基础使用。其中KEGG pathway是我们经常需要使用的功能之一，它提供了生物体内代谢通路和信号传导通路的详细信息。</p>
+<p>使用KEGG官网提供的绘图功能或者R包<code>pathview</code>可以绘制下面这种KEGG通路图，但这些方法通常只能处理单个通路，且绘图功能较为简单：</p>
+<img src="images/pathview.png" title=""/>
+<p>为了更好地处理和可视化KEGG通路网络，我们尝试获取KEGG pathway的网络结构然后用<code>MetaNet</code>绘制，因为涉及到KEGG通路的一些函数我之前已经在<code>ReporterScore</code>包中实现了，所以我这次把通路网络的获取和绘图功能放在了<code>ReporterScore</code>包中，但背后调用的还是<code>MetaNet</code>包的绘图功能。</p>
+<ul>
+<li>软件主页：<a class="link" href="https://github.com/Asa12138/MetaNet"  target="_blank" rel="noopener"
+    >https://github.com/Asa12138/MetaNet</a> <strong>大家可以帮忙在github上点点star⭐️</strong>，谢谢🙏</li>
+<li>详细英文版教程：<a class="link" href="https://bookdown.org/Asa12138/metanet_book"  target="_blank" rel="noopener"
+    >https://bookdown.org/Asa12138/metanet_book</a></li>
+</ul>
+<p>可以从 CRAN 安装稳定版：<code>install.packages(&quot;MetaNet&quot;)</code></p>
+<p>最新的开发版本可以在 <a class="link" href="https://github.com/Asa12138/MetaNet"  target="_blank" rel="noopener"
+    >https://github.com/Asa12138/MetaNet</a> 中找到：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;Asa12138/MetaNet&#34;</span><span class="p">,</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;Asa12138/ReporterScore&#34;</span><span class="p">,</span> <span class="n">dependencies</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="reporterscoremetanet">ReporterScore+MetaNet</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ReporterScore</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">MetaNet</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">tmp_dir</span> <span class="o">&lt;-</span> <span class="nf">tempdir</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载KEGG通路XML文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">pcutils</span><span class="o">::</span><span class="nf">download2</span><span class="p">(</span><span class="s">&#34;https://rest.kegg.jp/get/ko01521/kgml&#34;</span><span class="p">,</span> <span class="nf">file.path</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="s">&#34;ko01521.xml&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 读取KEGG通路XML文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">path_net_c</span> <span class="o">&lt;-</span> <span class="nf">c_net_from_pathway_xml</span><span class="p">(</span><span class="nf">file.path</span><span class="p">(</span><span class="n">tmp_dir</span><span class="p">,</span> <span class="s">&#34;ko01521.xml&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 绘制KEGG通路网络图</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot_pathway_net</span><span class="p">(</span><span class="n">path_net_c</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-2-1.png" width="768" />
+<p>我们也可以使用<code>update_pathway_xml_ls()</code>函数来获取或更新所有的KEGG通路XML文件。这个函数会下载最新的KEGG通路XML文件到指定的目录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># org参数可以指定组织或物种，默认为NULL，表示获取所有通路</span>
+</span></span><span class="line"><span class="cl"><span class="nf">update_pathway_xml_ls</span><span class="p">(</span><span class="n">download_dir</span> <span class="o">=</span> <span class="s">&#34;~/Documents/&#34;</span><span class="p">,</span><span class="n">org</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载过一次之后，就可以用load_pathway_xml_ls获取KEGG通路</span>
+</span></span><span class="line"><span class="cl"><span class="nf">load_pathway_xml_ls</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">pathway_xml_ls</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>想要给节点加上注释，并换上不同颜色，大小，布局等参数也非常简单，与之前介绍的<code>MetaNet</code>包的<code>c_net_plot</code>绘图参数完全一致的，可以查看<a class="link" href="../metanet-3" >3.网络注释与操作</a>，<a class="link" href="../metanet-4" >4.布局和可视化</a>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 调整一下布局</span>
+</span></span><span class="line"><span class="cl"><span class="n">coors</span><span class="o">=</span><span class="nf">get_v</span><span class="p">(</span><span class="n">path_net_c</span><span class="p">)</span><span class="n">[</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;name&#34;</span><span class="p">,</span><span class="s">&#34;x&#34;</span><span class="p">,</span><span class="s">&#34;y&#34;</span><span class="p">)</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">colnames</span><span class="p">(</span><span class="n">coors</span><span class="p">)</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;name&#34;</span><span class="p">,</span><span class="s">&#34;X&#34;</span><span class="p">,</span><span class="s">&#34;Y&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">coors</span><span class="o">=</span><span class="nf">rescale_coors</span><span class="p">(</span><span class="nf">as_coors</span><span class="p">(</span><span class="n">coors</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">coors</span><span class="o">=</span><span class="nf">transform_coors</span><span class="p">(</span><span class="n">coors</span><span class="p">,</span><span class="n">aspect_ratio</span> <span class="o">=</span> <span class="m">0.6</span><span class="p">)</span> <span class="c1"># 调整纵横比</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">plot_pathway_net</span><span class="p">(</span><span class="n">path_net_c</span><span class="p">,</span><span class="n">coors</span><span class="o">=</span><span class="n">coors</span><span class="p">,</span> <span class="n">label_cex</span><span class="o">=</span><span class="m">0.6</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">vertex.color</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;#a6cee3&#34;</span><span class="p">,</span> <span class="s">&#34;#78c679&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">vertex.frame.width</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">arrow_size_cex</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">arrow_width_cex</span><span class="o">=</span><span class="m">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">edge.width</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-4-1.png" width="768" />
+<p>添加注释文件，比如基因上调和下调信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 添加注释信息</span>
+</span></span><span class="line"><span class="cl"><span class="n">anno_df</span><span class="o">=</span><span class="nf">data.frame</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">name</span><span class="o">=</span><span class="nf">V</span><span class="p">(</span><span class="n">path_net_c</span><span class="p">)</span><span class="o">$</span><span class="n">name</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">Group</span><span class="o">=</span><span class="nf">sample</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;Up&#34;</span><span class="p">,</span><span class="s">&#34;None&#34;</span><span class="p">,</span><span class="s">&#34;Down&#34;</span><span class="p">),</span><span class="nf">vcount</span><span class="p">(</span><span class="n">path_net_c</span><span class="p">),</span><span class="n">replace</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">path_net_c</span><span class="o">=</span><span class="nf">c_net_set</span><span class="p">(</span><span class="n">path_net_c</span><span class="p">,</span><span class="n">anno_df</span><span class="p">,</span><span class="n">vertex_class</span> <span class="o">=</span> <span class="s">&#34;Group&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># &#34;#FFFFFF00&#34;是透明色</span>
+</span></span><span class="line"><span class="cl"><span class="n">pal</span><span class="o">=</span><span class="nf">setNames</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;#92C5DE&#34;</span><span class="p">,</span><span class="s">&#34;#FFFFFF00&#34;</span><span class="p">,</span><span class="s">&#34;#D6604D&#34;</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;Down&#34;</span><span class="p">,</span><span class="s">&#34;None&#34;</span><span class="p">,</span><span class="s">&#34;Up&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">plot_pathway_net</span><span class="p">(</span><span class="n">path_net_c</span><span class="p">,</span><span class="n">coors</span><span class="o">=</span><span class="n">coors</span><span class="p">,</span> <span class="n">label_cex</span><span class="o">=</span><span class="m">0.6</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">vertex.color</span><span class="o">=</span><span class="n">pal</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">vertex.frame.width</span><span class="o">=</span><span class="m">0.2</span><span class="p">,</span><span class="n">arrow_size_cex</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">arrow_width_cex</span><span class="o">=</span><span class="m">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">edge.width</span><span class="o">=</span><span class="m">0.5</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1.png" width="768" />
+<p>还可以使用<code>MetaNet</code>对网络进行各种操作筛选，比如我想获取某个基因的下游网络：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">get_v</span><span class="p">(</span><span class="n">path_net_c</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">##        name _type     type reaction graphics_name   x    y width height fgcolor
+</span></span><span class="line"><span class="cl">## 1 ko:K04357  from ortholog     &lt;NA&gt;        K04357 155 -247    46     17 #000000
+</span></span><span class="line"><span class="cl">## 2 ko:K08774  from ortholog     &lt;NA&gt;        K08774 155 -271    46     17 #000000
+</span></span><span class="line"><span class="cl">## 3 ko:K05460  from ortholog     &lt;NA&gt;        K05460 155 -530    46     17 #000000
+</span></span><span class="line"><span class="cl">##   bgcolor graphics_type coords xmin xmax   ymin   ymax orig.id pathway_id
+</span></span><span class="line"><span class="cl">## 1 #BFBFFF     rectangle     NA  132  178 -255.5 -238.5      32    ko01521
+</span></span><span class="line"><span class="cl">## 2 #BFBFFF     rectangle     NA  132  178 -279.5 -262.5      20    ko01521
+</span></span><span class="line"><span class="cl">## 3 #BFBFFF     rectangle     NA  132  178 -538.5 -521.5      75    ko01521
+</span></span><span class="line"><span class="cl">##    label size  v_group  shape v_class   color Group
+</span></span><span class="line"><span class="cl">## 1 K04357    1 ortholog square    None #fb9a99  None
+</span></span><span class="line"><span class="cl">## 2 K08774    1 ortholog square    None #fb9a99  None
+</span></span><span class="line"><span class="cl">## 3 K05460    1 ortholog square      Up #fdbf6f    Up
+</span></span><span class="line"><span class="cl">##  [ reached &#39;max&#39; / getOption(&#34;max.print&#34;) -- omitted 50 rows ]
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">c_net_neighbors</span><span class="p">(</span><span class="n">path_net_c</span><span class="p">,</span> <span class="n">nodes</span> <span class="o">=</span> <span class="s">&#34;ko:K04456&#34;</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s">&#34;out&#34;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">path_net_c2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">plot_pathway_net</span><span class="p">(</span><span class="n">path_net_c2</span><span class="p">,</span><span class="n">vertex.color</span><span class="o">=</span><span class="n">pal</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://jb-cao.github.io/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-6-1.png" width="768" />
+<h2 id="ggkegg">ggkegg</h2>
+<p>但目前MetaNet不支持一些巨大的代谢网络如ko01100，因为其xml文件不是标准网络信息，可以使用更强大的<code>ggkegg</code>包来绘制，代码稍微复杂一点：</p>
+<p>ggkegg是一个基于<code>ggplot2</code>的KEGG通路绘图包，提供了更灵活的绘图功能和更美观的图形输出。它可以处理更复杂的KEGG通路数据，并支持多种自定义样式。</p>
+<p><a class="link" href="https://github.com/noriakis/ggkegg"  target="_blank" rel="noopener"
+    >https://github.com/noriakis/ggkegg</a></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggkegg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggfx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">tidygraph</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">pathway</span><span class="p">(</span><span class="s">&#34;ko01100&#34;</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">process_line</span><span class="p">()</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">highlight_module</span><span class="p">(</span><span class="nf">module</span><span class="p">(</span><span class="s">&#34;M00021&#34;</span><span class="p">))</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">highlight_module</span><span class="p">(</span><span class="nf">module</span><span class="p">(</span><span class="s">&#34;M00338&#34;</span><span class="p">))</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ggraph</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">geom_node_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="nf">I</span><span class="p">(</span><span class="n">fgcolor</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">filter</span><span class="o">=</span><span class="n">fgcolor</span><span class="o">!=</span><span class="s">&#34;none&#34;</span> <span class="o">&amp;</span> <span class="n">type</span><span class="o">!=</span><span class="s">&#34;line&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">geom_edge_link0</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="m">0.1</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="nf">I</span><span class="p">(</span><span class="n">fgcolor</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">filter</span><span class="o">=</span><span class="n">type</span><span class="o">==</span><span class="s">&#34;line&#34;</span><span class="o">&amp;</span> <span class="n">fgcolor</span><span class="o">!=</span><span class="s">&#34;none&#34;</span><span class="p">))</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">with_outer_glow</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">geom_edge_link0</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="m">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">aes</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="nf">I</span><span class="p">(</span><span class="n">fgcolor</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">filter</span><span class="o">=</span><span class="p">(</span><span class="n">M00021</span> <span class="o">|</span> <span class="n">M00338</span><span class="p">))),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">colour</span><span class="o">=</span><span class="s">&#34;red&#34;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="m">5</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">with_outer_glow</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">geom_node_point</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">1.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">aes</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="nf">I</span><span class="p">(</span><span class="n">fgcolor</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">filter</span><span class="o">=</span><span class="p">(</span><span class="n">M00021</span> <span class="o">|</span> <span class="n">M00338</span><span class="p">))),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">colour</span><span class="o">=</span><span class="s">&#34;red&#34;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="m">5</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">geom_node_text</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="m">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">aes</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">label</span><span class="o">=</span><span class="n">graphics_name</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">filter</span><span class="o">=</span><span class="n">name</span><span class="o">==</span><span class="s">&#34;path:ko00270&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">repel</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="s">&#34;sans&#34;</span><span class="p">,</span> <span class="n">bg.colour</span><span class="o">=</span><span class="s">&#34;white&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">theme_void</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="images/ggkegg.png" title=""/>
+<h2 id="references">References</h2>
+<ol>
+<li><a class="link" href="https://github.com/noriakis/ggkegg"  target="_blank" rel="noopener"
+    >https://github.com/noriakis/ggkegg</a></li>
+<li><a class="link" href="https://github.com/datapplab/pathview"  target="_blank" rel="noopener"
+    >https://github.com/datapplab/pathview</a></li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/Cao-blog/tags/network/">Network</a>
+        
+            <a href="/Cao-blog/tags/kegg/">KEGG</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-comparison/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-comparison/index.en_files/figure-html/unnamed-chunk-4-1.2a276bb6291b4bc955cbc48d48e20783_hu_1c65ad1aedf4ec30.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用MetaNet进行网络比较"
+                        data-key="metanet-comparison" 
+                        data-hash="md5-KidrtikbS8lVy8SNSOIHgw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用MetaNet进行网络比较</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-shape/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-6-1.7c881e05c802fe4fe0bfe72fe0302643_hu_ac88ef85b437254d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用MetaNet添加更多节点形状"
+                        data-key="metanet-shape" 
+                        data-hash="md5-fIgeBcgC/k/gv&#43;cv4DAmQw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用MetaNet添加更多节点形状</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-8/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-8/images/nc.80f498412d2ea6135a9712c93dbb8eba_hu_86d7f3e82c9046db.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜8.网络稳定性分析"
+                        data-key="metanet-8" 
+                        data-hash="md5-gPSYQS0uphNalxLJPbuOug==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜8.网络稳定性分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-7/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-7/index.en_files/figure-html/unnamed-chunk-5-1.347acced76b5c6eb13665a5b490dbdd9_hu_7eb69229f62ded98.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜7.网络模块分析"
+                        data-key="metanet-7" 
+                        data-hash="md5-NHrM7Xa1xusTZlpbSQ292Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜7.网络模块分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-6/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-6/images/node_topo.1683b9dd5f4336e37158c4c2ba8c763d_hu_ba1f45afac1b002f.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post MetaNet：多组学网络分析工具｜6.网络拓扑指标分析"
+                        data-key="metanet-6" 
+                        data-hash="md5-FoO53V9DNuNxWMTCuox2PQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">MetaNet：多组学网络分析工具｜6.网络拓扑指标分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

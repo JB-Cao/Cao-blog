@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='MaAsLin 3是一个强大的微生物组多变量关联分析R包工具，提供了同时检测丰度和存在性关联的能力，并引入了创新的组成性校正方法。'>
+<title>MaAsLin 3：微生物组多变量关联分析</title>
+
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/maaslin-3/'>
+
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='MaAsLin 3：微生物组多变量关联分析'>
+<meta property='og:description' content='MaAsLin 3是一个强大的微生物组多变量关联分析R包工具，提供了同时检测丰度和存在性关联的能力，并引入了创新的组成性校正方法。'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/maaslin-3/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='statistics' /><meta property='article:published_time' content='2025-07-02T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-07-02T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/maaslin-3/images/git1.png' />
+<meta name="twitter:title" content="MaAsLin 3：微生物组多变量关联分析">
+<meta name="twitter:description" content="MaAsLin 3是一个强大的微生物组多变量关联分析R包工具，提供了同时检测丰度和存在性关联的能力，并引入了创新的组成性校正方法。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/maaslin-3/images/git1.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/Cao-blog/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/472862038'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/JB-Cao'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/Cao-blog/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#maaslin-3文章简介">MaAsLin 3文章简介</a>
+      <ol>
+        <li><a href="#性能表现">性能表现</a></li>
+        <li><a href="#在ibd研究中的新发现">在IBD研究中的新发现</a></li>
+        <li><a href="#实际应用建议">实际应用建议</a></li>
+      </ol>
+    </li>
+    <li><a href="#使用教程">使用教程</a>
+      <ol>
+        <li><a href="#安装maaslin-3">安装MaAsLin 3</a></li>
+        <li><a href="#使用maaslin-3进行微生物组关联分析">使用MaAsLin 3进行微生物组关联分析</a>
+          <ol>
+            <li><a href="#输入文件要求">输入文件要求</a></li>
+            <li><a href="#运行maaslin-3分析">运行MaAsLin 3分析</a></li>
+            <li><a href="#hmp2数据实战示例">HMP2数据实战示例</a></li>
+            <li><a href="#核心结果文件">核心结果文件</a></li>
+            <li><a href="#完整输出文件结构">完整输出文件结构</a></li>
+            <li><a href="#诊断与验证要点">诊断与验证要点</a></li>
+            <li><a href="#结果重绘功能">结果重绘功能</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/Cao-blog/p/maaslin-3/">
+                <img src="/Cao-blog/p/maaslin-3/images/git1_hu_d13afeba5ea5f2e.png"
+                        srcset="/Cao-blog/p/maaslin-3/images/git1_hu_d13afeba5ea5f2e.png 800w, /Cao-blog/p/maaslin-3/images/git1_hu_63212d9886cbf9a.png 1600w"
+                        width="800" 
+                        height="593" 
+                        loading="lazy"
+                        alt="Featured image of post MaAsLin 3：微生物组多变量关联分析" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/Cao-blog/categories/r/" style="background-color: #bebada; color: #fff;">
+                R
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/Cao-blog/p/maaslin-3/">MaAsLin 3：微生物组多变量关联分析</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            MaAsLin 3是一个强大的微生物组多变量关联分析R包工具，提供了同时检测丰度和存在性关联的能力，并引入了创新的组成性校正方法。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jul 02, 2020</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    3 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>微生物组研究的一个核心问题是识别与特定表型（如健康状况或环境条件）相关的微生物特征。然而，微生物组数据具有<strong>稀疏性</strong>、<strong>组成性</strong>和<strong>异方差性</strong>等特点，使得统计分析面临巨大挑战。近期发表在bioRxiv上的论文《MaAsLin 3: Refining and extending generalized multivariable linear models for meta-omic association discovery》提出了一个强大的解决方案。</p>
+<h2 id="maaslin-3文章简介">MaAsLin 3文章简介</h2>
+<p>MaAsLin3 (Microbiome Multivariable Associations with Linear Models) 是哈佛大学Huttenhower C.大佬团队开发的微生物组多变量关联分析R包工具，相比前代主要有三大突破：</p>
+<ol>
+<li><strong>同时检测丰度和存在性关联</strong>
+<ul>
+<li>传统方法只能检测微生物相对丰度的变化</li>
+<li>MaAsLin 3通过分步建模，分别检测：
+<ul>
+<li>存在/缺失（Prevalence）</li>
+<li>非零时的丰度变化（Abundance）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img src="images/fig1.png" title=""/>
+<ol start="2">
+<li>
+<p><strong>创新的组成性校正方法</strong></p>
+<ul>
+<li>通过中位数系数比较策略推断绝对丰度变化</li>
+<li>支持实验性绝对定量数据（如spike-in）</li>
+</ul>
+</li>
+<li>
+<p><strong>扩展的分析能力</strong></p>
+<ul>
+<li>支持混合效应模型</li>
+<li>新增有序预测变量分析</li>
+<li>支持特征特异性协变量（如宏转录组中的DNA丰度）</li>
+</ul>
+</li>
+</ol>
+<h3 id="性能表现">性能表现</h3>
+<p>在模拟数据测试中，MaAsLin 3展现出显著优势：</p>
+<ul>
+<li>在50个以上样本时F1分数最高</li>
+<li>平均精确度≥0.82，优于同类工具</li>
+<li>系数估计偏差最小（仅-12%）</li>
+</ul>
+<img src="images/fig2.png" title=""/>
+<h3 id="在ibd研究中的新发现">在IBD研究中的新发现</h3>
+<p>应用MaAsLin 3分析HMP2炎症性肠病(IBD)数据库时发现：</p>
+<ul>
+<li>77%的显著关联是存在性（而非丰度）变化</li>
+<li>确认了成人IBD中Enterocloster spp.的富集</li>
+<li>首次发现Dysosmobacter welbionis在IBD中的存在性降低</li>
+</ul>
+<img src="images/fig3.png" title=""/>
+<h3 id="实际应用建议">实际应用建议</h3>
+<ol>
+<li>
+<p><strong>数据类型选择</strong>：</p>
+<ul>
+<li>优先使用spike-in或qPCR绝对定量数据</li>
+<li>相对丰度数据需启用中位数校正</li>
+</ul>
+</li>
+<li>
+<p><strong>模型设定</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="c1"># 基础模型</span>
+</span></span><span class="line"><span class="cl"><span class="nf">maaslin3</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">input_data</span> <span class="o">=</span> <span class="n">features</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">input_metadata</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">normalization</span> <span class="o">=</span> <span class="s">&#34;TSS&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">transform</span> <span class="o">=</span> <span class="s">&#34;LOG&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">analysis_method</span> <span class="o">=</span> <span class="s">&#34;LM&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>结果解读</strong>：</p>
+<ul>
+<li>关注q-value&lt;0.1且|β|&gt;1的关联</li>
+<li>区分丰度与存在性变化的生物学意义</li>
+</ul>
+</li>
+</ol>
+<h2 id="使用教程">使用教程</h2>
+<p>官方教程：<a class="link" href="https://github.com/biobakery/biobakery/wiki/MaAsLin3"  target="_blank" rel="noopener"
+    >https://github.com/biobakery/biobakery/wiki/MaAsLin3</a></p>
+<h3 id="安装maaslin-3">安装MaAsLin 3</h3>
+<p>最新开发版的MaAsLin 3可通过devtools工具包从GitHub安装。</p>
+<p>稳定版MaAsLin 3可通过BiocManager安装：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="kr">if</span> <span class="p">(</span><span class="o">!</span><span class="nf">require</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">,</span> <span class="n">quietly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;BiocManager&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;remotes&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="s">&#34;biobakery/maaslin3&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运行前需加载依赖库：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="kr">for</span> <span class="p">(</span><span class="n">lib</span> <span class="kr">in</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;maaslin3&#39;</span><span class="p">,</span> <span class="s">&#39;dplyr&#39;</span><span class="p">,</span> <span class="s">&#39;ggplot2&#39;</span><span class="p">,</span> <span class="s">&#39;knitr&#39;</span><span class="p">,</span> <span class="s">&#39;kableExtra&#39;</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">suppressPackageStartupMessages</span><span class="p">(</span><span class="nf">require</span><span class="p">(</span><span class="n">lib</span><span class="p">,</span> <span class="n">character.only</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="使用maaslin-3进行微生物组关联分析">使用MaAsLin 3进行微生物组关联分析</h3>
+<p>运行MaAsLin 3需要提供以下数据：</p>
+<ul>
+<li>样本特征丰度表（需保留零值）</li>
+<li>样本元数据表</li>
+<li>指定元数据与特征存在率（特征出现概率）及丰度（存在时的数量级）关系的公式或固定效应（可添加随机效应）</li>
+</ul>
+<p>输出结果包括：</p>
+<ul>
+<li>关联分析表（含每个特征-元数据组合的效应量及p值）</li>
+<li>可视化文件夹（含显著关联的摘要图及诊断图）</li>
+</ul>
+<h4 id="输入文件要求">输入文件要求</h4>
+<p>需准备两个输入文件：</p>
+<p>1.特征丰度数据框</p>
+<ul>
+<li>格式1：列=特征，行=样本</li>
+<li>格式2：行=特征，列=样本（转置格式亦可）</li>
+<li>特征类型：分类单元或基因（支持相对丰度或绝对计数）</li>
+<li>可接受制表符分隔的文件路径</li>
+</ul>
+<p>2.元数据数据框</p>
+<ul>
+<li>格式1：列=变量，行=样本</li>
+<li>格式2：行=变量，列=样本（转置格式亦可）</li>
+<li>变量类型：性别、年龄等</li>
+<li>可接受制表符分隔的文件路径</li>
+</ul>
+<p>注意事项：</p>
+<ol>
+<li>允许存在仅出现在一个文件中的样本，分析时会自动剔除不匹配样本</li>
+<li>两个文件的样本顺序无需一致，程序会自动对齐</li>
+<li>含NA值的样本在模型拟合时会被排除，建议在随机缺失假设下预先剔除或使用多重插补处理</li>
+</ol>
+<p>示例文件说明：
+示例数据来自人类微生物组计划2（HMP2），存放于MaAsLin 3源码的inst/extdata目录或教程文件库：</p>
+<ul>
+<li>HMP2_taxonomy.tsv：物种丰度子集（行=样本，列=物种）</li>
+<li>HMP2_metadata.tsv：元数据子集（行=样本，列=变量）</li>
+</ul>
+<p>数据读取与预处理：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 读取物种丰度表</span>
+</span></span><span class="line"><span class="cl"><span class="n">taxa_table_name</span> <span class="o">&lt;-</span> <span class="nf">system.file</span><span class="p">(</span><span class="s">&#34;extdata&#34;</span><span class="p">,</span> <span class="s">&#34;HMP2_taxonomy.tsv&#34;</span><span class="p">,</span> <span class="n">package</span> <span class="o">=</span> <span class="s">&#34;maaslin3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">taxa_table</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="n">taxa_table_name</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#39;\t&#39;</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 读取元数据表</span>
+</span></span><span class="line"><span class="cl"><span class="n">metadata_name</span> <span class="o">&lt;-</span> <span class="nf">system.file</span><span class="p">(</span><span class="s">&#34;extdata&#34;</span><span class="p">,</span> <span class="s">&#34;HMP2_metadata.tsv&#34;</span><span class="p">,</span> <span class="n">package</span> <span class="o">=</span> <span class="s">&#34;maaslin3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">metadata</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="n">metadata_name</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#39;\t&#39;</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 分类变量因子化（用于IBD与健康对照比较）</span>
+</span></span><span class="line"><span class="cl"><span class="n">metadata</span><span class="o">$</span><span class="n">diagnosis</span> <span class="o">&lt;-</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">factor</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">diagnosis</span><span class="p">,</span> <span class="n">levels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;nonIBD&#39;</span><span class="p">,</span> <span class="s">&#39;UC&#39;</span><span class="p">,</span> <span class="s">&#39;CD&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">metadata</span><span class="o">$</span><span class="n">dysbiosis_state</span> <span class="o">&lt;-</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">factor</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">dysbiosis_state</span><span class="p">,</span> <span class="n">levels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;none&#39;</span><span class="p">,</span> <span class="s">&#39;dysbiosis_UC&#39;</span><span class="p">,</span> <span class="s">&#39;dysbiosis_CD&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">metadata</span><span class="o">$</span><span class="n">antibiotics</span> <span class="o">&lt;-</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">factor</span><span class="p">(</span><span class="n">metadata</span><span class="o">$</span><span class="n">antibiotics</span><span class="p">,</span> <span class="n">levels</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;No&#39;</span><span class="p">,</span> <span class="s">&#39;Yes&#39;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看数据结构</span>
+</span></span><span class="line"><span class="cl"><span class="n">taxa_table[1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="n">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">##            Phocaeicola_vulgatus Faecalibacterium_prausnitzii
+</span></span><span class="line"><span class="cl">## CSM5FZ3N_P            0.4265226                  0.060255109
+</span></span><span class="line"><span class="cl">## CSM5FZ3R_P            0.5369584                  0.007396904
+</span></span><span class="line"><span class="cl">## CSM5FZ3T_P            0.5911821                  0.000000000
+</span></span><span class="line"><span class="cl">## CSM5FZ3V_P            0.2661378                  0.029680329
+</span></span><span class="line"><span class="cl">## CSM5FZ3X_P            0.6601039                  0.003596740
+</span></span><span class="line"><span class="cl">##            Bacteroides_uniformis Prevotella_copri_clade_A Bacteroides_stercoris
+</span></span><span class="line"><span class="cl">## CSM5FZ3N_P           0.269241131               0.0000e+00           0.000000000
+</span></span><span class="line"><span class="cl">## CSM5FZ3R_P           0.252604847               0.0000e+00           0.008390958
+</span></span><span class="line"><span class="cl">## CSM5FZ3T_P           0.000000000               0.0000e+00           0.000000000
+</span></span><span class="line"><span class="cl">## CSM5FZ3V_P           0.400426526               0.0000e+00           0.000000000
+</span></span><span class="line"><span class="cl">## CSM5FZ3X_P           0.000880428               1.3081e-05           0.001335669
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">metadata[1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="n">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">##            participant_id    site_name week_num    reads diagnosis
+</span></span><span class="line"><span class="cl">## CSM5FZ3N_P          C3001 Cedars-Sinai        0  9961743        CD
+</span></span><span class="line"><span class="cl">## CSM5FZ3R_P          C3001 Cedars-Sinai        2 16456391        CD
+</span></span><span class="line"><span class="cl">## CSM5FZ3T_P          C3002 Cedars-Sinai        0 10511448        CD
+</span></span><span class="line"><span class="cl">## CSM5FZ3V_P          C3001 Cedars-Sinai        6 17808965        CD
+</span></span><span class="line"><span class="cl">## CSM5FZ3X_P          C3002 Cedars-Sinai        2 13160893        CD
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="运行maaslin-3分析">运行MaAsLin 3分析</h4>
+<p>MaAsLin 3的运行需要指定以下参数：</p>
+<ul>
+<li>丰度表（<code>input_data</code>）</li>
+<li>元数据表（<code>input_metadata</code>）</li>
+<li>输出目录（<code>output</code>）</li>
+<li>分析模型（可通过公式或变量向量指定）</li>
+</ul>
+<p><strong>模型构建方式</strong></p>
+<ol>
+<li>
+<p><strong>公式法</strong>：</p>
+<ul>
+<li>遵循lme4语法规范，可包含：
+<ul>
+<li>固定效应</li>
+<li>随机效应</li>
+<li>交互项</li>
+<li>多项式项</li>
+</ul>
+</li>
+<li>分类变量作为固定效应时，各水平将与首个因子水平对比</li>
+<li>支持特殊声明：
+<ul>
+<li><code>group(variable_name)</code>：分组预测变量</li>
+<li><code>ordered(variable_name)</code>：有序预测变量</li>
+<li><code>strata(variable_name)</code>：配对样本的条件逻辑回归</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>向量法</strong>：</p>
+<ul>
+<li>通过以下参数指定变量：
+<ul>
+<li><code>fixed_effects</code>：固定效应</li>
+<li><code>random_effects</code>：随机效应</li>
+<li><code>group_effects</code>：分组变量</li>
+<li><code>ordered_effects</code>：有序变量</li>
+<li><code>strata_effects</code>：配对变量</li>
+</ul>
+</li>
+<li>注意事项：
+<ul>
+<li>需使用列名而非<code>$</code>符号引用变量</li>
+<li>分类变量需预先因子化，或通过<code>'变量,参考水平;...'</code>格式指定（如<code>diagnosis,nonIBD;antibiotics,No</code>）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>重要建议</strong></p>
+<ul>
+<li>当存在测序深度数据时，应将其作为协变量纳入模型（<code>reads</code>参数），以避免因测序深度差异导致的假阳性关联</li>
+</ul>
+<h4 id="hmp2数据实战示例">HMP2数据实战示例</h4>
+<p>以下代码演示如何分析微生物物种与IBD诊断的关联，同时控制抗生素使用、年龄和测序深度的影响：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">set.seed</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">fit_out</span> <span class="o">&lt;-</span> <span class="nf">maaslin3</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input_data</span> <span class="o">=</span> <span class="n">taxa_table</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">input_metadata</span> <span class="o">=</span> <span class="n">metadata</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output</span> <span class="o">=</span> <span class="s">&#39;hmp2_output&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">formula</span> <span class="o">=</span> <span class="s">&#39;~ diagnosis + dysbiosis_state + antibiotics + age + reads&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">normalization</span> <span class="o">=</span> <span class="s">&#39;TSS&#39;</span><span class="p">,</span>       <span class="c1"># 总丰度标准化</span>
+</span></span><span class="line"><span class="cl">    <span class="n">transform</span> <span class="o">=</span> <span class="s">&#39;LOG&#39;</span><span class="p">,</span>           <span class="c1"># 对数转换</span>
+</span></span><span class="line"><span class="cl">    <span class="n">augment</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>              <span class="c1"># 启用数据增强（解决逻辑回归线性可分问题）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">standardize</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>          <span class="c1"># 连续变量Z-score标准化</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_significance</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">,</span>      <span class="c1"># FDR阈值设为0.1</span>
+</span></span><span class="line"><span class="cl">    <span class="n">median_comparison_abundance</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>  <span class="c1"># 丰度系数与中位数比较（应对组成性效应）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">median_comparison_prevalence</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span><span class="c1"># 存在率系数与0比较</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_pngs</span> <span class="o">=</span> <span class="m">250</span><span class="p">,</span>              <span class="c1"># 最大可视化结果数</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cores</span> <span class="o">=</span> <span class="m">1</span>                    <span class="c1"># 单核运行</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>关键参数解析</strong></p>
+<ol>
+<li>
+<p><strong>标准化与转换</strong></p>
+<ul>
+<li><code>TSS</code>+<code>LOG</code>组合是推荐配置，其他选项详见<code>?maaslin3</code></li>
+</ul>
+</li>
+<li>
+<p><strong>统计检验策略</strong></p>
+<ul>
+<li>丰度关联：默认与特征的中位数系数比较（<code>median_comparison_abundance=TRUE</code>），适用于相对丰度数据</li>
+<li>存在率关联：默认与0比较（<code>median_comparison_prevalence=FALSE</code>）</li>
+</ul>
+</li>
+<li>
+<p><strong>适用场景建议</strong></p>
+<ul>
+<li>关闭中位数比较的情况：
+<ul>
+<li>研究相对丰度关联</li>
+<li>假设总绝对丰度不变时的绝对关联分析</li>
+<li>使用spike-in或未标准化丰度数据时</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>输出控制</strong></p>
+<ul>
+<li>默认输出详细日志，可通过<code>verbosity = 'WARN'</code>减少输出</li>
+</ul>
+</li>
+</ol>
+<p><strong>中位数比较机制详解</strong></p>
+<p>当启用<code>median_comparison</code>时：</p>
+<ul>
+<li><strong>丰度系数</strong>：与所有特征在该元数据上的中位数系数对比，抵消组成性效应
+<ul>
+<li>仅影响p值/q值计算（除非设置<code>subtract_median=TRUE</code>才会修正系数值）</li>
+</ul>
+</li>
+<li><strong>存在率系数</strong>：通常保持与0比较，因其不受组成性影响</li>
+</ul>
+<p>该设计确保了：</p>
+<ol>
+<li>相对丰度数据可推断绝对丰度变化</li>
+<li>避免因技术偏差（如测序深度）导致的假关联</li>
+</ol>
+<p>3.3 MaAsLin 3 输出结果解析<br>
+MaAsLin 3的输出包含数据文件和可视化图表两类，完整示例可参考教程文件库中的HMP2分析结果。</p>
+<h4 id="核心结果文件">核心结果文件</h4>
+<p><strong>1. 显著性关联表 (<code>significant_results.tsv</code>)</strong><br>
+按q值升序列出所有通过显著性检验的关联，字段说明：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>字段</th>
+          <th>说明</th>
+          <th>示例值</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>feature</code></td>
+          <td>微生物特征名</td>
+          <td>Phocaeicola_sartorii</td>
+      </tr>
+      <tr>
+          <td><code>metadata</code></td>
+          <td>元数据变量名</td>
+          <td>reads</td>
+      </tr>
+      <tr>
+          <td><code>coef</code></td>
+          <td>效应量系数</td>
+          <td>1.095</td>
+      </tr>
+      <tr>
+          <td>- 丰度模型：表示元数据每增加1单位，特征相对丰度的2^coef倍变化</td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td>- 存在率模型：表示对数几率（log-odds）的变化量</td>
+          <td></td>
+          <td></td>
+      </tr>
+      <tr>
+          <td><code>null_hypothesis</code></td>
+          <td>零假设值（0或中位数）</td>
+          <td>0</td>
+      </tr>
+      <tr>
+          <td><code>qval_individual</code></td>
+          <td>个体检验FDR校正q值</td>
+          <td>1.06E-40</td>
+      </tr>
+      <tr>
+          <td><code>qval_joint</code></td>
+          <td>联合检验q值（基于Beta(1,2)分布计算）</td>
+          <td>1.14E-40</td>
+      </tr>
+      <tr>
+          <td><code>model</code></td>
+          <td>模型类型（abundance/prevalence）</td>
+          <td>prevalence</td>
+      </tr>
+  </tbody>
+</table></div>
+<h4 id="完整输出文件结构">完整输出文件结构</h4>
+<p><strong>数据文件</strong></p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>文件/目录</th>
+          <th>内容</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>all_results.tsv</code></td>
+          <td>全量关联结果（含错误信息）</td>
+      </tr>
+      <tr>
+          <td><code>features/</code></td>
+          <td>处理后的特征表（过滤→标准化→转换）</td>
+      </tr>
+      <tr>
+          <td><code>models_*.rds</code></td>
+          <td>模型对象（需<code>save_models=TRUE</code>）</td>
+      </tr>
+      <tr>
+          <td><code>residuals_*.rds</code></td>
+          <td>模型残差（线性模型为普通残差，逻辑模型为偏差残差）</td>
+      </tr>
+      <tr>
+          <td><code>maaslin3.log</code></td>
+          <td>完整运行日志（含参数设置与报错信息）</td>
+      </tr>
+  </tbody>
+</table></div>
+<p><strong>可视化文件</strong></p>
+<ol>
+<li><strong>摘要图 (<code>summary_plot.pdf</code>)</strong>
+<ul>
+<li>左：系数热图（*表示q&lt;0.1，**表示q&lt;0.01）</li>
+<li>右：显著关联的效应量排序图</li>
+</ul>
+</li>
+</ol>
+<img src="images/git1.png" title=""/>
+<ol start="2">
+<li><strong>关联详图 (<code>association_plots/</code>)</strong>
+<ul>
+<li>连续变量：散点图（丰度）或箱线图（存在率）</li>
+<li>分类变量：箱线图（丰度）或网格图（存在率）</li>
+<li>图表右上角标注：q值、总样本数、非零样本数</li>
+</ul>
+</li>
+</ol>
+<img src="images/git2.png" title=""/>
+<h4 id="诊断与验证要点">诊断与验证要点</h4>
+<ol>
+<li>
+<p><strong>错误排查</strong></p>
+<ul>
+<li>检查<code>all_results.tsv</code>的<code>error</code>列：模型拟合失败会标记错误</li>
+<li>启用<code>warn_prevalence=TRUE</code>时，存在率关联可能受丰度影响（需通过可视化验证）</li>
+</ul>
+</li>
+<li>
+<p><strong>有效性验证</strong></p>
+<ul>
+<li>分类变量：每组至少10个样本（丰度模型）且存在/缺失样本均≥10（存在率模型）</li>
+<li>连续变量：通过散点图检查异常值影响</li>
+<li>超大系数（|coef|&gt;15）：需验证：
+<ul>
+<li>样本量充足（建议样本数≥10×变量数）</li>
+<li>元数据无多重共线性</li>
+<li>随机效应设置合理</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>多重检验校正</strong></p>
+<ul>
+<li>默认对所有关联进行FDR校正，若需聚焦特定变量，可单独校正目标p值</li>
+</ul>
+</li>
+</ol>
+<h4 id="结果重绘功能">结果重绘功能</h4>
+<p>通过<code>maaslin_plot_results_from_output</code>可重新生成图表（无需原始R对象）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="c1"># 示例：指定热图与系数图的元数据变量</span>
+</span></span><span class="line"><span class="cl"><span class="nf">maaslin_plot_results_from_output</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">output_dir</span> <span class="o">=</span> <span class="s">&#34;hmp2_output&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">heatmap_vars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;diagnosis&#34;</span><span class="p">,</span> <span class="s">&#34;dysbiosis_state&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">coef_plot_vars</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;age&#34;</span><span class="p">,</span> <span class="s">&#34;reads&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>更多高级功能，请查看<a class="link" href="https://github.com/biobakery/biobakery/wiki/MaAsLin3#4-advanced-topics"  target="_blank" rel="noopener"
+    >https://github.com/biobakery/biobakery/wiki/MaAsLin3#4-advanced-topics</a></p>
+<h2 id="references">References</h2>
+<ol>
+<li>Nickols, W.A., Kuntz, T., Shen, J., Maharjan, S., Mallick, H., Franzosa, E.A., Thompson, K.N., Nearing, J.T., and Huttenhower, C. (2024). MaAsLin 3: refining and extending generalized multivariable linear models for meta-omic association discovery. Preprint at bioRxiv, <a class="link" href="https://doi.org/10.1101/2024.12.13.628459"  target="_blank" rel="noopener"
+    >https://doi.org/10.1101/2024.12.13.628459</a> <a class="link" href="https://doi.org/10.1101/2024.12.13.628459"  target="_blank" rel="noopener"
+    >https://doi.org/10.1101/2024.12.13.628459</a>.</li>
+<li><a class="link" href="https://github.com/biobakery/biobakery/wiki/MaAsLin3"  target="_blank" rel="noopener"
+    >https://github.com/biobakery/biobakery/wiki/MaAsLin3</a></li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/Cao-blog/tags/statistics/">Statistics</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-kegg/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-kegg/index.en_files/figure-html/unnamed-chunk-5-1.20380752dde6c2c54f2a928556fb0666_hu_6caab2d218b0684e.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用MetaNet绘制KEGG通路网络图"
+                        data-key="metanet-kegg" 
+                        data-hash="md5-IDgHUt3mwsVPKpKFVvsGZg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用MetaNet绘制KEGG通路网络图</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/sample-map/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/sample-map/images/leaf2.780d9a2ee8ea7ffe7f76cd25c264adad_hu_f2384a1b8d31b7dc.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 快速绘制采样地图"
+                        data-key="sample-map" 
+                        data-hash="md5-eA2aLujqf/5/ds0lwmStrQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">快速绘制采样地图</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-comparison/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-comparison/index.en_files/figure-html/unnamed-chunk-4-1.2a276bb6291b4bc955cbc48d48e20783_hu_1c65ad1aedf4ec30.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用MetaNet进行网络比较"
+                        data-key="metanet-comparison" 
+                        data-hash="md5-KidrtikbS8lVy8SNSOIHgw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用MetaNet进行网络比较</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/metanet-shape/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/metanet-shape/index.en_files/figure-html/unnamed-chunk-6-1.7c881e05c802fe4fe0bfe72fe0302643_hu_ac88ef85b437254d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用MetaNet添加更多节点形状"
+                        data-key="metanet-shape" 
+                        data-hash="md5-fIgeBcgC/k/gv&#43;cv4DAmQw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用MetaNet添加更多节点形状</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/Cao-blog/p/bgckit-bgc/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">BGCkit：组学数据BGC分析流程</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

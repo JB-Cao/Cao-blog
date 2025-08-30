@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='耐酸细菌通过多种机制适应酸性环境，包括生理适应、代谢响应和质子消耗机制等。'>
+<title>微生物的耐酸机制研究</title>
+
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/acid/'>
+
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='微生物的耐酸机制研究'>
+<meta property='og:description' content='耐酸细菌通过多种机制适应酸性环境，包括生理适应、代谢响应和质子消耗机制等。'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/acid/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='function' /><meta property='article:published_time' content='2025-03-12T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-12T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/acid/images/fig1.png' />
+<meta name="twitter:title" content="微生物的耐酸机制研究">
+<meta name="twitter:description" content="耐酸细菌通过多种机制适应酸性环境，包括生理适应、代谢响应和质子消耗机制等。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/acid/images/fig1.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/Cao-blog/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/472862038'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/JB-Cao'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/Cao-blog/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#非典型环境">非典型环境</a>
+      <ol>
+        <li><a href="#耐酸细菌的非典型环境与生态系统">耐酸细菌的非典型环境与生态系统</a></li>
+        <li><a href="#耐酸细菌在微生物生态中的作用">耐酸细菌在微生物生态中的作用</a></li>
+      </ol>
+    </li>
+    <li><a href="#耐酸的细胞机制">耐酸的细胞机制</a>
+      <ol>
+        <li><a href="#细胞膜修饰">细胞膜修饰</a></li>
+        <li><a href="#伴侣蛋白与dna保护">伴侣蛋白与DNA保护</a></li>
+        <li><a href="#ff-atpase质子泵">F₁F₀-ATPase质子泵</a></li>
+        <li><a href="#生物膜形成">生物膜形成</a></li>
+        <li><a href="#碱生成脲酶活性">碱生成——脲酶活性</a></li>
+        <li><a href="#大分子的保护与修复">大分子的保护与修复</a></li>
+      </ol>
+    </li>
+    <li><a href="#耐酸的遗传机制">耐酸的遗传机制</a>
+      <ol>
+        <li><a href="#谷氨酸依赖酸耐受系统gdar">谷氨酸依赖酸耐受系统（GDAR）</a></li>
+        <li><a href="#精氨酸依赖酸耐受系统adar">精氨酸依赖酸耐受系统（ADAR）</a></li>
+        <li><a href="#赖氨酸依赖酸耐受系统ldar">赖氨酸依赖酸耐受系统（LDAR）</a></li>
+        <li><a href="#鸟氨酸依赖酸耐受系统odar">鸟氨酸依赖酸耐受系统（ODAR）</a></li>
+        <li><a href="#耐酸基因与细菌的进化与多样性">耐酸基因与细菌的进化与多样性</a></li>
+      </ol>
+    </li>
+    <li><a href="#耐酸细菌在工业与生物修复中的应用">耐酸细菌在工业与生物修复中的应用</a>
+      <ol>
+        <li><a href="#工业生物过程与生物发电中的耐酸菌株">工业生物过程与生物发电中的耐酸菌株</a></li>
+        <li><a href="#废水处理与生物发电">废水处理与生物发电</a></li>
+        <li><a href="#在生物修复中的应用">在生物修复中的应用</a></li>
+        <li><a href="#通过工程酸耐受性基因提高酸耐受性">通过工程酸耐受性基因提高酸耐受性</a></li>
+      </ol>
+    </li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/Cao-blog/p/acid/">
+                <img src="/Cao-blog/p/acid/images/fig1_hu_e428730da7b5fb53.png"
+                        srcset="/Cao-blog/p/acid/images/fig1_hu_e428730da7b5fb53.png 800w, /Cao-blog/p/acid/images/fig1_hu_2a19beb20424728c.png 1600w"
+                        width="800" 
+                        height="655" 
+                        loading="lazy"
+                        alt="Featured image of post 微生物的耐酸机制研究" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/Cao-blog/categories/microbial-ecology/" style="background-color: #fb8072; color: #ffffff;">
+                microbial-ecology
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/Cao-blog/p/acid/">微生物的耐酸机制研究</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            耐酸细菌通过多种机制适应酸性环境，包括生理适应、代谢响应和质子消耗机制等。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 12, 12120</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    2 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>在进化过程中，细菌发展出多种机制以应对不同的环境压力，如酸性、温度和抗生素等。其中，酸性环境是细菌最常面临的极端条件之一。耐酸细菌是一类能够在pH 2.0至5.0（也有说6.0的）的强酸性环境中生存的极端微生物（另外还有生长的最适pH在4以下的微生物叫嗜酸微生物，它们不仅耐酸，还依赖酸性环境生长）。这些酸性环境可能由自然过程（如酸性矿山排水、海洋火山喷口和酸性硫泉）或人类活动（如工业废水排放）形成。工业废水中含有大量有机物、悬浮固体和氨氮，其低pH值为耐酸细菌的生存提供了条件。</p>
+<p>耐酸细菌通过多种机制适应酸性环境，包括生理适应、代谢响应和质子消耗机制。在<strong>生理适应</strong>方面，细菌通过改变细胞膜组成和流动性来减少质子的内流。例如，降低不饱和脂质的浓度，并通过环丙烷脂肪酸磷脂合成酶修饰磷脂尾结构。此外，外膜蛋白（OMPs）可通过多磷酸盐或尸胺被阻断，而HdeA和HdeB等伴侣蛋白则能在酸性压力下释放底物蛋白。在大肠杆菌中，Hsp31伴侣蛋白和DNA结合蛋白Dps也在酸性压力下保护DNA的完整性。</p>
+<p>在<strong>代谢响应</strong>方面，细菌通过质子外排和质子消耗机制应对酸性压力。例如，大肠杆菌K-12在轻度酸性压力下通过氧化电子传递链介导质子外排。此外，细胞膜在细菌适应极端环境中起关键作用，溶质通过ATP驱动的初级运输或质子动力驱动的次级运输系统跨膜运输。某些耐酸细菌（如大肠杆菌和丙酸杆菌）甚至能在pH 2.5的极端条件下存活数小时，主要通过进入稳定期并激活多种耐酸机制来实现。</p>
+<p>耐酸细菌的机制在工业生物过程、有机酸生产、微生物燃料电池和工业废水生物处理中具有广泛应用。工业废水中含有大量有机物和有毒重金属，直接排放会对环境和人类健康造成严重危害。传统的化学处理方法（如混凝、沉淀和氧化）存在污泥产生、副产物生成和化学品消耗高等问题，而生物修复则是一种更环保的替代方案。耐酸细菌通过生物吸附、生物积累、生物降解和生物沉淀等机制修复酸性矿山排水或污染污泥中的重金属和石油烃化合物（如邻二甲苯、苯和甲苯）。</p>
+<h2 id="非典型环境">非典型环境</h2>
+<p>耐酸细菌是一类能够在pH 5.0及以下的极端酸性环境中繁衍生息的极端微生物。这些酸性环境可能由自然过程（如酸性矿山排水、海洋火山喷口和酸性硫泉）或人类活动（如工业革命后的工业废水排放）形成。</p>
+<h3 id="耐酸细菌的非典型环境与生态系统">耐酸细菌的非典型环境与生态系统</h3>
+<p>耐酸细菌主要存在于硫或黄铁矿氧化形成的pH低于5.0的酸性环境中。硫和亚铁在耐酸细菌的作用下分别被氧化为硫酸和三价铁。酸性黄铁矿区域常见于煤矿和硫矿周围，这些区域通常具有较高的硫化物浓度。由于重金属含量高而有机质含量低，这些区域的pH可低至1.0。参与硫酸盐氧化反应的极端耐酸细菌包括<strong>Sulfobacillus thermosulfidooxidans</strong>、<strong>Thiobacillus acidophilus</strong>和<strong>Thiobacillus thiooxidans</strong>等。此外，海底火山区域和热液喷口释放的大量还原硫也为耐酸细菌提供了适宜的生存环境。在金属氧化物中，锌和铜的硫化物最为丰富，而耐酸细菌如<strong>Acidithiobacillus</strong>、<strong>Ferrimicrobium</strong>、<strong>Sulfobacillus</strong>、<strong>Acidimicrobium</strong>和<strong>Leptospirillum</strong>等能够氧化铁和硫化物矿物。</p>
+<p>工业废水、农业用地和市政排放的污染物通常含有高浓度的有机物和无机物（如重金属、异生物质、微塑料以及硝酸盐、磷酸盐和总氮），这些污染物导致废水pH降低，从而形成极端酸性环境。<strong>Acidophilus</strong>、<strong>Brevibacterium</strong>、<strong>Leptospirillum</strong>、<strong>Stenotrophomonas</strong>和<strong>Thermogymnomonas</strong>等极端耐酸细菌能够在低pH废水中生存。研究表明，酸性矿山排水、海洋火山喷口、酸性硫泉和工业废水是耐酸细菌的主要栖息地。</p>
+<h3 id="耐酸细菌在微生物生态中的作用">耐酸细菌在微生物生态中的作用</h3>
+<p>由于酸性环境中溶解有机碳浓度较低，耐酸细菌通常被认为是寡营养型生物。在深矿等无阳光环境中，化能自养型耐酸细菌通过氧化硫化物和铁矿物生存。例如，<strong>Leptospirillum ferrooxidans</strong>在铁循环中起关键作用，它是一种专性化能自养菌，能够好氧氧化铁。在酸性矿山中，<strong>Ferroplasma</strong>、<strong>Leptospirillum</strong>和<strong>Acidithiobacillus</strong>等属的细菌广泛存在，其基因组测序显示存在编码固氮酶的基因。</p>
+<p>废水中的重金属是导致低pH的主要原因，而耐酸细菌通过产生脲酶中和酸性环境。脲酶通过生成氨（NH₃）与细胞内质子结合，从而降低细胞内pH。工业废水中的氨去除包括硝化和反硝化两个步骤：化能自养细菌将氨转化为亚硝酸盐（NO₂⁻）和硝酸盐（NO₃⁻），随后硝酸盐通过反硝化过程转化为氮气（N₂）。耐酸细菌的氮源主要包括氨、亚硝酸盐、硝酸盐和其他溶解有机氮化合物。硝酸盐还原为氨的过程涉及两个独立的酶促反应：NADH₂-硝酸还原酶催化NO₃⁻还原为NO₂⁻，铁氧还蛋白-亚硝酸还原酶催化NO₂⁻还原为NH₃，这一过程需要大量能量。</p>
+<h2 id="耐酸的细胞机制">耐酸的细胞机制</h2>
+<p>耐酸细菌在稳定期能够在低pH环境中存活数小时。为了适应极端酸性环境，多种细菌进化出了不同的细胞机制。当细菌暴露于酸性环境时，外膜和周质空间首先受到损害，因为外膜直接接触外部环境。在压力响应下，膜生物能量学、质子渗透和脂质生理学发生改变，从而降低膜的流动性和质子的通透性。细菌的耐酸细胞机制包括细胞膜修饰、F₁F₀-ATPase质子泵、生物膜形成、碱生成（脲酶活性）以及大分子的保护和修复。</p>
+<h3 id="细胞膜修饰">细胞膜修饰</h3>
+<img src="images/fig1.png" title=""/>
+<p>外膜结构的改变主要发生在脂肪酸链或头基组成上。通过多磷酸盐或尸胺阻断外膜蛋白（OMPs），可以进一步减少质子的内流。例如，多磷酸盐阴离子（polyP）阻断PhoE3孔蛋白，而尸胺阻断OmpC3和OmpF3孔蛋白。在<strong>Picrophilus oshimae</strong>中，刚性单层膜和庞大的异戊二烯核心使其对质子不渗透。耐酸细菌通过改变脂肪酸的组成或结构来调节膜流动性。例如，环丙烷脂肪酸磷脂合成酶（CFAS）降低不饱和脂质的浓度，并对不饱和磷脂尾进行甲基化。</p>
+<p>为维持pH稳态，耐酸细菌利用反向膜电位。在<strong>Acidithiobacillus thioxidans</strong>和<strong>Acidithiobacillus ferrooxidans</strong>中，丰富的次级转运蛋白（如H⁺-ATPase、同向转运蛋白和反向转运蛋白）帮助维持pH稳态。<strong>Picophilus torridus</strong>和<strong>Thermoplasma acidophilum</strong>则通过利用跨膜质子电化学梯度进行主动运输来调节酸性环境。膜通道的大小和通透性也是维持pH稳态的重要机制。例如，在<strong>Acidithiobacillus ferrooxidans</strong>中，当pH从3.5降至1.5时，外膜蛋白Omp40上调，其外部L3环调节孔蛋白入口的大小和离子选择性。</p>
+<p>有机酸（如乙酸和乳酸）对耐酸细菌有害，因为这些质子化酸能够轻易通过细胞膜。<strong>Picophilus torridus</strong>的基因组揭示了编码有机酸降解途径的基因，包括丙酰-CoA合成酶、两种乙酰-CoA合成酶和乳酸-2-单加氧酶，这些酶将乳酸转化为丙酮酸。</p>
+<h3 id="伴侣蛋白与dna保护">伴侣蛋白与DNA保护</h3>
+<p>HdeA和HdeB是两种周质伴侣蛋白，能够耐受酸性压力。HdeA的主要功能是防止酸诱导的蛋白质积累，并帮助蛋白质溶解和复性。HdeB具有类似功能。在大肠杆菌中，热休克伴侣蛋白Hsp31在酸性压力下结合并稳定未折叠的蛋白质中间体，随后允许蛋白质自发复性或依赖ATP的伴侣蛋白辅助复性。在酸性环境中，DNA结合蛋白Dps保护DNA免受损害。</p>
+<h3 id="ff-atpase质子泵">F₁F₀-ATPase质子泵</h3>
+<p>质子动力势（PMF）是细胞内质子梯度的体现，由细胞质与外部环境之间的电荷分离产生。依赖PMF的质子泵是细菌耐酸系统的重要组成部分，在维持pH稳态中起关键作用。在酸性环境中，H⁺的积累降低细胞内pH，随后质子泵开始消耗ATP。通过F₁F₀-ATPase进入细胞的质子在末端氧化酶处还原分子氧，导致代谢活动暂停。例如，<strong>Sulfolobus acidocaldarius</strong>通过F₁F₀-ATPase将质子排出细胞，从而在酸性环境中生存。在多种耐酸细菌（如<strong>Streptococcus pneumoniae</strong>和<strong>Lactobacillus acidophilus</strong>）中，F₁F₀操纵子因酸性pH的刺激而被转录。<strong>Streptococcus mutans</strong>则通过上调F₁F₀-ATPase应对酸性压力。因此，耐酸细菌通过F₁F₀-ATPase质子泵催化ATP水解，排出过量H⁺，从而耐受外部酸性环境并维持pH稳态。</p>
+<h3 id="生物膜形成">生物膜形成</h3>
+<img src="images/fig2.png" title=""/>
+<p>许多细菌通过形成生物膜（biofilm）以社区形式附着在表面，从而抵御酸性压力。生物膜形成是一种独特的耐酸机制，涉及细胞群体间的信号交流。在某些细菌中，生物膜对酸性环境具有强耐受性，而其浮游细胞则对酸性敏感。生物膜之所以能够耐受酸性压力，是因为某些蛋白质仅在生物膜形成时表达。例如，在<strong>Pseudomonas aeruginosa</strong>中，<strong>vfr</strong>和<strong>gacA</strong>基因调控<strong>luxR</strong>同源基因<strong>lasR</strong>，后者激活<strong>lasI</strong>表达，生成3-oxo-C12-HSL，与受体蛋白LasR结合形成复合物，从而调控生物膜形成。负调控因子<strong>rsaL</strong>则抑制<strong>lasR</strong>表达。这种LasR蛋白-AHL复合物正向驱动与生物膜形成、致病性和次级代谢相关的多个结构基因的表达。</p>
+<p>在<strong>Streptococcus mutans</strong>中，<strong>luxS</strong>合成并分泌AL2，同时抑制<strong>irvA</strong>的转录。然而，当细胞遭遇酸性压力时，<strong>irvA</strong>基因的表达显著增加，进而抑制<strong>mutA</strong>和<strong>mutR</strong>的转录。<strong>Streptococcus mutans</strong>的群体感应系统通过调控生物膜形成实现耐酸性。ABC转运蛋白编码基因<strong>comAB</strong>的产物切割<strong>comC</strong>基因的产物，生成群体感应肽（CSP）。当CSP达到临界浓度时，传感器激酶ComD（由<strong>comD</strong>编码）磷酸化<strong>comE</strong>，启动替代σ因子<strong>comX</strong>的转录。在<strong>Streptococcus pneumoniae</strong>中，磷酸化的<strong>comE</strong>激活两个特异性操纵子<strong>comAB</strong>和<strong>comCDE</strong>，以及<strong>comX</strong>基因，后者诱导遗传竞争性和其他依赖细胞密度的表型。</p>
+<h3 id="碱生成脲酶活性">碱生成——脲酶活性</h3>
+<img src="images/fig3.png" title=""/>
+<p>耐酸细菌通过胞外代谢产生碱性化合物来中和酸性环境。脲酶将尿素水解为氨和二氧化碳（CO₂）。脲酶通过生成氨与细胞内的质子结合，从而降低细胞内pH，起到中和酸性的作用。脲酶系统由<strong>ureIABCEFGD</strong>操纵子组成，耐酸细菌通过调控这一系统在pH低至2.5的环境中存活。例如，在<strong>Helicobacter pylori</strong>和<strong>Streptococcus salivarius</strong>中，<strong>ureI</strong>基因帮助将尿素从外部转运至细胞质。因此，脲酶通过生成碱性产物氨，保护细胞免受酸性环境的损害。<strong>Streptococcus sanguis</strong>和<strong>Streptococcus suis</strong>也依赖脲酶活性抵御酸性压力。此外，苹果酸乳酸发酵是<strong>Streptococcus mutans</strong>和<strong>Oenococcus oeni</strong>产生碱的另一种方式，其在细胞质内通过碱生成过程应对酸性压力，同时生成并排出CO₂。因此，碱生成机制是耐酸细菌在酸性环境中生存的有效策略。</p>
+<h3 id="大分子的保护与修复">大分子的保护与修复</h3>
+<p>在酸性压力条件下，膜蛋白的稳定性至关重要。特定蛋白质在酸性环境中被诱导，以保护DNA和其他蛋白质。例如，<strong>dps</strong>蛋白通过形成笼状结构结合铁并减少过氧化氢的毒性来保护DNA，而<strong>recA</strong>则在DNA修复和激活SOS响应中起关键作用。<strong>Oenococcus oeni</strong>的热休克蛋白Lo18通过减少蛋白质聚集来增强细菌的耐酸性，从而稳定膜结构并保护蛋白质。<strong>Ffh</strong>蛋白参与膜内蛋白质转运途径，并帮助蛋白质向细胞外运输。此外，多种伴侣蛋白（如DnaK、DnaJ、GroEL、GroES、GrpE、Clp蛋白酶和EF-Tu）在酸性压力下作为分子伴侣参与蛋白质修复。</p>
+<p>DNA损伤的修复则依赖于<strong>uvrABCD</strong>、DNA聚合酶和DNA连接酶。例如，在<strong>Streptococcus mutans</strong>中，<strong>uvrA</strong>在pH 5.0的酸性压力下修复DNA损伤。<strong>Escherichia coli</strong>的DnaK和<strong>Deinococcus radiodurans</strong>的IrrE也参与酸性压力下的DNA修复机制。在<strong>Bacillus caldontenax</strong>中，<strong>uvrA</strong>和<strong>uvrB</strong>协同识别并修复DNA损伤。</p>
+<h2 id="耐酸的遗传机制">耐酸的遗传机制</h2>
+<p>除了细胞层面的相互作用，耐酸细菌还通过耐酸基因适应酸性环境。这些基因调控的耐酸机制包括四种依赖吡哆醛-5&rsquo;-磷酸（PLP）的氨基酸脱羧酶酸耐受系统：谷氨酸依赖酸耐受系统（GDAR）、精氨酸依赖酸耐受系统（ADAR）、赖氨酸依赖酸耐受系统（LDAR）和鸟氨酸依赖酸耐受系统（ODAR）。这些系统协同作用，确保耐酸细菌在极端低pH环境中的代谢和生长。</p>
+<img src="images/fig4.png" title=""/>
+<h3 id="谷氨酸依赖酸耐受系统gdar">谷氨酸依赖酸耐受系统（GDAR）</h3>
+<p>GDAR系统由<strong>gadA</strong>和<strong>gadB</strong>基因编码的两种Gad酶以及<strong>gadC</strong>基因编码的谷氨酸/γ-氨基丁酸（GABA）反向转运蛋白组成。GadC将细胞外的质子化谷氨酸转运至细胞内，同时将细胞内的GABA转运至细胞外。通过谷氨酸与GABA的交换，细胞内质子被消耗，从而提高细胞内pH，保护细胞免受酸冲击。在<strong>Lactobacillus reuteri</strong>中，GadC通过交换GABA和谷氨酸发挥作用。此外，GadC还将谷氨酰胺转运至细胞内，在酸激活的<strong>ybaS</strong>基因帮助下转化为谷氨酸和氨。在<strong>Escherichia coli</strong>中，<strong>ybaS</strong>基因编码的谷氨酰胺酶将L-谷氨酰胺转化为L-谷氨酸，并通过生成氨中和H⁺。GDAR系统在pH低至2.0的极端酸性环境中对多种耐酸细菌的生存至关重要。</p>
+<h3 id="精氨酸依赖酸耐受系统adar">精氨酸依赖酸耐受系统（ADAR）</h3>
+<p>ADAR系统在酸性条件下（通常pH∼5.0）被最大程度诱导，主要存在于厌氧环境中生长的耐酸细菌中。该系统由<strong>adiA</strong>基因编码的胞质可诱导精氨酸脱羧酶、<strong>adiY</strong>基因编码的调控蛋白以及<strong>adiC</strong>基因编码的反向转运蛋白组成。精氨酸通过AdiC进入细胞，在AdiA的催化下转化为胍丁胺，随后胍丁胺被转运至细胞外。这一交换过程消耗细胞内质子，从而保护细胞。在<strong>Escherichia coli</strong>中，AdiC通过交换精氨酸和胍丁胺发挥作用。此外，ADAR系统还受ArcD反向转运蛋白调控，精氨酸通过ArcD进入细胞，经精氨酸脱亚胺酶（ADI）代谢为氨和瓜氨酸，最终生成ATP。在<strong>Streptococcus pyogenes</strong>中，ADAR系统是抵御酸性压力的主要机制。</p>
+<h3 id="赖氨酸依赖酸耐受系统ldar">赖氨酸依赖酸耐受系统（LDAR）</h3>
+<p>LDAR系统在pH 5.5的厌氧条件下被诱导，由<strong>cadBA</strong>操纵子组成，包括<strong>cadA</strong>和<strong>cadB</strong>基因，受<strong>cadC</strong>基因产物调控。CadC通过与赖氨酸特异性渗透酶LysP的相互作用诱导<strong>cadBA</strong>操纵子。在<strong>Escherichia coli</strong>中，CadC通过LysP间接感知赖氨酸。赖氨酸通过CadB进入细胞，在CadA的催化下转化为尸胺，随后被CadB转运至细胞外。在<strong>Edwardsiella tarda</strong>中，<strong>cadBA</strong>操纵子帮助细菌在低pH环境中生存。</p>
+<h3 id="鸟氨酸依赖酸耐受系统odar">鸟氨酸依赖酸耐受系统（ODAR）</h3>
+<p>ODAR系统在低pH条件下诱导<strong>speF</strong>和<strong>potE</strong>基因。鸟氨酸通过PotE进入细胞，转化为腐胺后被转运至细胞外。在<strong>Escherichia coli</strong>中，PotE通过交换鸟氨酸和腐胺发挥作用。这些脱羧酶在特定低pH范围内表现出最佳酶活性，例如<strong>gadA/gadB</strong>在pH 1.7-2.8范围内，<strong>adiA</strong>在pH 4.9-5.2范围内，<strong>ldcI</strong>在pH 5.7，<strong>speF</strong>在pH 6.5。因此，耐酸细菌在pH 4.0-7.0范围内表现出强酸应激响应，酶活性随pH升高而降低。</p>
+<h3 id="耐酸基因与细菌的进化与多样性">耐酸基因与细菌的进化与多样性</h3>
+<p>为适应高度酸性环境，不同耐酸细菌发展出多种耐酸机制。耐酸基因从1924年发现的<strong>Streptococcus mutans</strong>逐渐进化而来。在酸性环境中，细胞质酸化导致蛋白质和DNA结构损伤，进而诱导蛋白修复伴侣DnaK和信号识别基因<strong>ffh</strong>的表达，增加氨基酸代谢和氨生成，并上调H⁺-ATPase和DNA损伤修复蛋白RecA。此外，<strong>Streptococcus mutans</strong>通过群体感应系统<strong>irvA</strong>和<strong>luxS</strong>调控生物膜形成，增强耐酸性。在<strong>Streptococcus pyogenes</strong>中，ADAR系统和F₁F₀-ATPase是主要的耐酸机制。<strong>Salmonella enterica</strong>则通过ADAR和LDAR系统在低pH环境中生存。<strong>cadBA</strong>操纵子在<strong>arc</strong>操纵子之后进化，参与赖氨酸脱羧和精氨酸脱羧机制。近年来，更复杂的耐酸操纵子（如<strong>gad</strong>操纵子）被广泛发现，这些系统通过水平基因转移和重组进化，从简单系统逐渐发展为广泛分布的复杂系统。</p>
+<h2 id="耐酸细菌在工业与生物修复中的应用">耐酸细菌在工业与生物修复中的应用</h2>
+<p>耐酸细菌的耐酸机制在工业生物过程和工业废水处理（如矿山废水和石油泄漏）中具有广泛应用（Feng等，2021）。这些机制还可用于提高有机酸的生产效率。开发有效的工具以增强耐酸机制，对扩大工业耐酸细菌的应用至关重要。</p>
+<h3 id="工业生物过程与生物发电中的耐酸菌株">工业生物过程与生物发电中的耐酸菌株</h3>
+<p>耐酸细菌在工业生物过程中发挥重要作用。例如，在乳酸发酵过程中，<strong>Lactobacillus</strong>通过大分子修复和谷氨酰胺酶依赖的酸耐受系统应对酸性压力。低pH激活谷氨酸脱羧酶系统，增加γ-氨基丁酸（GABA）的生成，从而筛选高效乳酸菌。<strong>Lactobacillus reuteri</strong>通过GadA/GadB将谷氨酸转化为GABA，并由GadC转运至细胞外。此外，<strong>Lactobacillus lactis</strong>通过减少细胞内质子、消耗H⁺和改变细胞膜成分来耐受酸性环境。分子伴侣GroES和GroEL蛋白以及<strong>murG</strong>、<strong>gshA</strong>和<strong>gshB</strong>基因通过遗传工程提高其耐酸性。</p>
+<p>在乙酸和丁酸生产中，发酵细菌如<strong>Clostridium tyrobutyricum</strong>和<strong>Acetobacter pasteurianus</strong>通过<strong>gadA</strong>、<strong>gadB</strong>、<strong>gadC</strong>和<strong>uvrA</strong>等基因抵御酸性压力。RNA-Seq转录组学分析揭示了<strong>Acetobacter pasteurianus</strong>通过<strong>yro2</strong>、<strong>mrh1</strong>、<strong>COX20</strong>、<strong>PEP3</strong>和<strong>RTT109</strong>等基因修饰细胞膜并保护细胞。丙酸生产菌<strong>Propionibacteria acidipropionici</strong>则通过GDAR和ADAR系统以及<strong>atpA</strong>基因编码的F₁F₀-ATPase质子泵维持pH稳态，从而提高丙酸产量。</p>
+<h3 id="废水处理与生物发电">废水处理与生物发电</h3>
+<p>耐酸细菌广泛用于处理市政污水、农业用地和工业废水。此外，它们还可用于生物发电。微生物燃料电池（MFC）是一种生物电化学装置，利用耐酸细菌催化废水中的可降解化合物生成生物电。在MFC中，耐酸细菌位于阳极室，氧化废水中的有机和无机底物，生成二氧化碳、质子和电子。质子通过质子交换膜传递至阴极，电子通过外部电路传递至阴极，最终还原氧气。<strong>Acidithiobacillus</strong>和<strong>Ferroplasma</strong>等菌株在pH 1.5-3.0范围内以四硫酸盐为电子供体产生生物电。然而，MFC的发电效率受高内电阻限制，需通过系统架构的优化提高电力输出。</p>
+<h3 id="在生物修复中的应用">在生物修复中的应用</h3>
+<p>耐酸细菌在生物修复中广泛应用，尤其是在酸性压力条件下。生物修复是指细菌将有害有机物质矿化或转化为无毒物质，进而参与自然生物地球化学循环的过程。酸性矿山排水（AMD）含有高浓度的铝、铅、砷和锌等重金属，其高酸性进一步溶解其他金属和类金属，增加矿物溶解。耐酸细菌如<strong>Clostridium spp.</strong> 和<strong>Desulfovibrio spp.</strong> 通过上流式厌氧污泥床反应器修复酸性矿山排水，其中<strong>Desulfovibrio spp.</strong> 利用F₁F₀-ATPase质子泵排出细胞内H⁺以耐受酸性环境。</p>
+<p>废水中的有机污染物和有毒重金属可通过耐酸细菌的酶促反应降解。水解酶、脱氢酶、脱卤酶、蛋白酶和脂肪酶等代谢酶将有机污染物转化为无毒代谢物，实现环境友好型降解。耐酸细菌还可通过生物吸附、生物积累、生物转化和生物沉淀等机制修复重金属污染。例如，生物膜形成的耐酸细菌在去除金属方面更为高效，其胞外聚合物（EPS）通过带负电荷的功能基团吸附金属阳离子。<strong>Desulfovibrio desulfuricans</strong>产生的EPS有助于锌的生物吸附和生物沉淀，而<strong>Lysinibacillus sphaericus RTA-01</strong>则通过纳米吸附去除水溶液中的Cr⁶⁺。</p>
+<p>硫酸盐氧化和硫酸盐还原耐酸细菌分别参与生物浸出和生物沉淀过程。<strong>Acidithiobacillus ferrooxidans</strong>和<strong>Acidithiobacillus thiooxidans</strong>等细菌通过生物浸出将低品位铁矿石中的金属氧化为低毒可溶性化合物。<strong>Clostridium spp.</strong> 和<strong>Desulfovibrio spp.</strong> 的混合培养物可高效去除铜、镉和镍等重金属。<strong>Pseudomonas aeruginosa</strong>通过产生金属螯合剂（如铁载体）提高金属溶解性。</p>
+<p>耐酸细菌还可用于处理工业废水。<strong>Acidophilus</strong>、<strong>Brevibacterium</strong>、<strong>Leptospirillum</strong>和<strong>Stenotrophomonas</strong>等极端耐酸细菌可用于酸性矿山排水的生物处理。<strong>Lysinibacillus sphaericus RTA-01</strong>和<strong>Bacillus pumilus CTO-05</strong>可去除橡胶加工废水中的硝酸盐和磷酸盐。基因复制和耐酸基因的插入有助于提高细菌的生物修复能力。</p>
+<p>多环芳烃（PAHs）是酸性废水中的常见污染物。<strong>Acidocella sp.<strong>和</strong>Acidiphilium facilis</strong>可在pH 2.0的极端条件下降解甲苯、萘、菲和蒽等石油烃。<strong>Pseudomonas putida</strong>也可用于降解邻二甲苯、苯和甲苯等化合物。生物修复效率受温度、pH、营养物可用性、溶解氧和电子受体等多种因素影响。<strong>ybaS</strong>、<strong>cfa</strong>、<strong>dnaK</strong>和<strong>rpoS</strong>等耐酸基因在PAHs的降解中起关键作用。因此，提高耐酸基因的表达是增强生物修复和降解效率的关键。</p>
+<h3 id="通过工程酸耐受性基因提高酸耐受性">通过工程酸耐受性基因提高酸耐受性</h3>
+<p>通过基因工程技术改造耐酸基因，可显著提高细菌的耐酸性。基因组改组和原生质体融合是高效的技术手段。例如，<strong>Propionibacterium acidipropionici</strong>通过紫外线诱变和原生质体融合，获得耐酸菌株，丙酸产量提高了65%。<strong>Lactococcus lactis</strong>通过表达<strong>Escherichia coli</strong>的谷胱甘肽合成酶和<strong>Propionibacterium freudenreichii</strong>的海藻糖生物合成途径，增强了耐酸性。<strong>Propionibacterium acidipropionici</strong>工程化<strong>atpA</strong>基因，利用F₁F₀-ATPase泵出过量质子，维持细胞内pH；<strong>Propionibacterium jensenii ATCC 4868</strong>引入<strong>arcA</strong>、<strong>arcC</strong>、<strong>gadB</strong>、<strong>gdh</strong>和<strong>ybaS</strong>基因，提高了丙酸生产效率。</p>
+<p>耐酸基因的引入为细菌提供了额外的耐酸机制，基因工程菌株在生物修复和有机污染物降解中具有重要应用。未来需进一步探索耐酸基因的作用，并利用先进基因工程技术进行深入表征，以实现工业废水、重金属和有机污染物的高效、可持续生物修复。</p>
+<h2 id="references">References</h2>
+<ol>
+<li>Mallick, S., Das, S. Acid-tolerant bacteria and prospects in industrial and environmental applications. Appl Microbiol Biotechnol 107, 3355–3374 (2023). <a class="link" href="https://doi.org/10.1007/s00253-023-12529-w"  target="_blank" rel="noopener"
+    >https://doi.org/10.1007/s00253-023-12529-w</a></li>
+<li>Mirete, S., Morgante, V., González-Pastor, J.E. (2017). Acidophiles: Diversity and Mechanisms of Adaptation to Acidic Environments. In: Stan-Lotter, H., Fendrihan, S. (eds) Adaption of Microbial Life to Environmental Extremes. Springer, Cham. <a class="link" href="https://doi.org/10.1007/978-3-319-48327-6_9"  target="_blank" rel="noopener"
+    >https://doi.org/10.1007/978-3-319-48327-6_9</a></li>
+<li>Guan, N., Liu, L. Microbial response to acid stress: mechanisms and applications. Appl Microbiol Biotechnol 104, 51–65 (2020). <a class="link" href="https://doi.org/10.1007/s00253-019-10226-1"  target="_blank" rel="noopener"
+    >https://doi.org/10.1007/s00253-019-10226-1</a></li>
+<li>Lund PA, De Biase D, Liran O, Scheler O, Mira NP, Cetecioglu Z, Fernández EN, Bover-Cid S, Hall R, Sauer M, O&rsquo;Byrne C. Understanding How Microorganisms Respond to Acid pH Is Central to Their Control and Successful Exploitation. Front Microbiol. 2020 Sep 24;11:556140. doi: 10.3389/fmicb.2020.556140. PMID: 33117305; PMCID: PMC7553086.</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/Cao-blog/tags/function/">Function</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/lignocellulose/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/lignocellulose/images/fig2.59af298d5f9d6988af95b9c999b78bc6_hu_4319374f044a70ec.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 功能基因探索：木质纤维素（lignocellulose）降解"
+                        data-key="lignocellulose" 
+                        data-hash="md5-Wa8pjV&#43;daYivlbnJmbeLxg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">功能基因探索：木质纤维素（lignocellulose）降解</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/global-arg/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/global-arg/images/global1.76903c71775de5690292660a4936b869_hu_a39006653f9d1429.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 全球尺度的抗生素耐药基因（ARG）研究"
+                        data-key="global-arg" 
+                        data-hash="md5-dpA8cXdd5WkCkmYKSTa4aQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">全球尺度的抗生素耐药基因（ARG）研究</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

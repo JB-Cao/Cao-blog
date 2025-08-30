@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='DAS Tool是一种自动化方法，能够整合多个已有的分箱算法的结果，生成优化的、非冗余的高质量的bins。'>
+<title>宏基因组分箱（binning）｜4. DAS Tool优化binning结果</title>
+
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/binning-4-das-tool-binning/'>
+
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='宏基因组分箱（binning）｜4. DAS Tool优化binning结果'>
+<meta property='og:description' content='DAS Tool是一种自动化方法，能够整合多个已有的分箱算法的结果，生成优化的、非冗余的高质量的bins。'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/binning-4-das-tool-binning/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='binning' /><meta property='article:published_time' content='2025-04-22T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-04-22T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/binning-4-das-tool-binning/images/workflow.png' />
+<meta name="twitter:title" content="宏基因组分箱（binning）｜4. DAS Tool优化binning结果">
+<meta name="twitter:description" content="DAS Tool是一种自动化方法，能够整合多个已有的分箱算法的结果，生成优化的、非冗余的高质量的bins。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/binning-4-das-tool-binning/images/workflow.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/Cao-blog/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/472862038'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/JB-Cao'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/Cao-blog/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a>
+      <ol>
+        <li><a href="#工作流程">工作流程</a></li>
+        <li><a href="#效果评估">效果评估</a>
+          <ol>
+            <li><a href="#das-tool在模拟微生物群落中的表现验证">DAS Tool在模拟微生物群落中的表现验证</a></li>
+            <li><a href="#das-tool在真实环境样本中的应用">DAS Tool在真实环境样本中的应用</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#使用方法">使用方法</a>
+      <ol>
+        <li><a href="#安装">安装</a>
+          <ol>
+            <li><a href="#1-最简单的安装方式使用-conda">1. 最简单的安装方式：使用 conda</a></li>
+            <li><a href="#2-手动安装需满足以下依赖项">2. 手动安装（需满足以下依赖项）</a></li>
+            <li><a href="#3-使用-docker">3. 使用 Docker</a></li>
+          </ol>
+        </li>
+        <li><a href="#参数说明">参数说明</a></li>
+        <li><a href="#输入文件准备">输入文件准备</a>
+          <ol>
+            <li><a href="#1-多个-binning-工具的输出---bins--i">1. 多个 binning 工具的输出 [<code>--bins</code>, <code>-i</code>]</a></li>
+            <li><a href="#2-组装后的-contig-文件---contigs--c">2. 组装后的 contig 文件 [<code>--contigs</code>, <code>-c</code>]</a></li>
+            <li><a href="#3-可选预测蛋白序列---proteins">3. 可选：预测蛋白序列 [<code>--proteins</code>]</a></li>
+          </ol>
+        </li>
+        <li><a href="#运行-das-tool">运行 DAS Tool</a></li>
+        <li><a href="#输出结果">输出结果</a></li>
+        <li><a href="#示例数据与测试">示例数据与测试</a>
+          <ol>
+            <li><a href="#示例-1使用-4-个-bin-工具结果运行-das-tool">示例 1：使用 4 个 bin 工具结果运行 DAS Tool</a></li>
+            <li><a href="#示例-2设置更多参数跳过基因预测输出评估结果输出最终的bins使用多线程">示例 2：设置更多参数，跳过基因预测，输出评估结果，输出最终的bins，使用多线程</a></li>
+          </ol>
+        </li>
+        <li><a href="#承接metawrap输出结果">承接MetaWRAP输出结果</a></li>
+      </ol>
+    </li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/Cao-blog/p/binning-4-das-tool-binning/">
+                <img src="/Cao-blog/p/binning-4-das-tool-binning/images/workflow_hu_a47f84bb67ca68e8.png"
+                        srcset="/Cao-blog/p/binning-4-das-tool-binning/images/workflow_hu_a47f84bb67ca68e8.png 800w, /Cao-blog/p/binning-4-das-tool-binning/images/workflow_hu_345bf9ae91505117.png 1600w"
+                        width="800" 
+                        height="895" 
+                        loading="lazy"
+                        alt="Featured image of post 宏基因组分箱（binning）｜4. DAS Tool优化binning结果" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/Cao-blog/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/Cao-blog/p/binning-4-das-tool-binning/">宏基因组分箱（binning）｜4. DAS Tool优化binning结果</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            DAS Tool是一种自动化方法，能够整合多个已有的分箱算法的结果，生成优化的、非冗余的高质量的bins。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Apr 22, 22220</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>在宏基因组学研究中，准确地将组装后的基因组片段（contigs）归属到各自的微生物基因组中，是解析微生物群落功能和生态关系的关键步骤。然而，很多分箱（binning）方法在面对复杂的微生物群落时，常常难以重建出高质量的基因组，且不同工具在不同样本和生态环境中的表现差异显著。</p>
+<p>为了解决这一问题，研究人员开发了DAS Tool（Dereplication, Aggregation and Scoring Tool），这是一种自动化的方法，能够整合多个已有的分箱算法的结果，生成优化的、非冗余的高质量基因组集合。在多个复杂环境样本中，DAS Tool展示了比任何单一分箱工具更强的能力，能够恢复更多接近完整的基因组，包括一些之前未被发现的谱系。本文将介绍使用DAS Tool优化宏基因组分箱结果，提升基因组重建的质量和数量。</p>
+<img src="images/logo.png" title="" width="60%"/>
+<p>DAS Tool的文章于2018年发表于Nature Microbiology，软件主页：<a class="link" href="https://github.com/cmks/DAS_Tool"  target="_blank" rel="noopener"
+    >https://github.com/cmks/DAS_Tool</a>，logo也很有意思。</p>
+<h3 id="工作流程">工作流程</h3>
+<img src="images/workflow.png" title=""/>
+<p><strong>Step 1｜整合多种分箱结果</strong><br>
+DAS Tool 的输入包括：一个宏基因组组装（scaffolds）和来自不同 binning 工具的多个 bin 结果（每种颜色表示一个工具的输出）。这些分箱工具可能依据不同特征（如 GC 含量、k-mer 频率或丰度信息）进行聚类。</p>
+<p><strong>Step 2｜识别单拷贝基因并打分</strong><br>
+DAS Tool 会在 scaffolds 上预测单拷贝标志基因（single-copy marker genes），并以此对每个 bin 进行质量打分（例如完整度和污染度），用于后续筛选。</p>
+<p><strong>Step 3｜合并候选 bin 并去除冗余</strong><br>
+来自不同工具的 bin 可能存在重叠。DAS Tool 会将这些候选 bin 进行去冗余整合，构建一个统一的候选 bin 集合。</p>
+<p><strong>Step 4｜迭代优化与筛选</strong><br>
+DAS Tool 通过迭代方式从所有候选 bin 中优先选择得分最高的，并在每轮迭代中更新剩余 bin 的得分（考虑重复和覆盖情况），最终输出一个非冗余、高质量的 bin 集合。</p>
+<p>这个流程的关键在于：<strong>充分融合多个 binning 工具的优点</strong>，利用标志基因和打分机制，<strong>自动筛选出最优的 bin 组合</strong>，有效提升基因组重建的质量和覆盖范围。</p>
+<h3 id="效果评估">效果评估</h3>
+<h4 id="das-tool在模拟微生物群落中的表现验证">DAS Tool在模拟微生物群落中的表现验证</h4>
+<img src="images/fig2.png" title=""/>
+<p>为了验证 DAS Tool 的效果，研究者将其应用于 <strong>CAMI challenge</strong> 提供的三种复杂度不同的模拟微生物群落数据集（包含 40、132 和 596 个基因组）。使用五种主流 binning 工具（ABAWACA、CONCOCT、MaxBin 2、MetaBAT、ESOM）分别预测分箱，并用 DAS Tool 进行整合优化。</p>
+<p>在高复杂度（596 个基因组）数据集中，DAS Tool 重建的高质量基因组数量（F1 分数 &gt; 0.6）显著高于任何单一工具：</p>
+<ul>
+<li><strong>DAS Tool：</strong> 共识菌株 41 个、唯一菌株 299 个</li>
+<li><strong>次优 MaxBin 2：</strong> 共识菌株 23 个、唯一菌株 253 个</li>
+<li><strong>ESOM：</strong> 虽对唯一菌株效果尚可（173 个），但对存在菌株变异的基因组恢复能力较差（仅 6 个）</li>
+</ul>
+<p>此外，DAS Tool 重建的基因组 F1 分数中位数也优于其它工具，尤其在处理菌株变异时展现出更强的能力。不仅在高复杂度样本中表现优越，在中低复杂度数据集上也优于单一方法。</p>
+<h4 id="das-tool在真实环境样本中的应用">DAS Tool在真实环境样本中的应用</h4>
+<img src="images/fig3.png" title=""/>
+<p>Probst 等人曾从高 CO₂ 冷泉系统中构建了一个经过精细人工筛选的基因组分箱集，成为评估 DAS Tool 表现的理想样本。这些数据来自对不同滤膜（3.0 μm 与 0.2 μm）过滤后的样品进行组装，并采用三种 binning 方法 + 人工校正获得结果。</p>
+<p>研究者对原始发表的 bins 及不同 binning 工具（ABAWACA 1.0/1.07、ESOM、CONCOCT、MetaBAT、MaxBin 2）与 DAS Tool 的整合结果进行了对比评估。质量评估采用 <strong>CheckM</strong>，高质量定义为 <strong>&gt;90% 完整度且污染率 &lt;5%</strong>。</p>
+<p>主要发现如下：</p>
+<ul>
+<li><strong>使用3种工具整合的 DAS Tool</strong> 已超过任一单一方法的效果，但略低于人工精修结果。</li>
+<li><strong>使用7种工具整合的 DAS Tool</strong> 成果优于原始发表结果：
+<ul>
+<li><strong>0.2 μm 样本：</strong> DAS Tool 重建 36 个近全基因组，高于原始的 32 个；</li>
+<li><strong>3.0 μm 样本：</strong> DAS Tool 重建 38 个，高于原始的 31 个；</li>
+<li>草稿级基因组数量也全面提升。</li>
+</ul>
+</li>
+<li>当适度放宽污染率阈值时，草稿基因组数量进一步增加。</li>
+</ul>
+<p>在真实环境样本中，DAS Tool 同样展现出强大整合能力，尤其当结合更多 binning 工具时，不仅能提高高质量基因组的数量，也能有效替代部分人工精修过程。</p>
+<h2 id="使用方法">使用方法</h2>
+<h3 id="安装">安装</h3>
+<h4 id="1-最简单的安装方式使用-conda">1. 最简单的安装方式：使用 conda</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda config --add channels defaults
+</span></span><span class="line"><span class="cl">conda config --add channels bioconda
+</span></span><span class="line"><span class="cl">conda config --add channels conda-forge
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">conda install -c bioconda das_tool
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但我发现conda安装好了之后也需要下载github主页的db.zip文件并解压，后续运行需指定db目录，不然默认用当前目录下的db：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 下载并解压缩DASTool.zip存档:
+</span></span><span class="line"><span class="cl">unzip DAS_Tool-1.x.x.zip
+</span></span><span class="line"><span class="cl">cd ./DAS_Tool-1.x.x
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Unzip SCG database:
+</span></span><span class="line"><span class="cl">unzip ./db.zip -d db
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-手动安装需满足以下依赖项">2. 手动安装（需满足以下依赖项）</h4>
+<ul>
+<li><strong>R (&gt;= 3.2.3)</strong>：https://www.r-project.org</li>
+<li><strong>R 包</strong>：
+<ul>
+<li><code>data.table</code> (&gt;= 1.9.6)</li>
+<li><code>magrittr</code> (&gt;= 2.0.1)</li>
+<li><code>docopt</code> (&gt;= 0.7.1)</li>
+</ul>
+</li>
+<li><strong>ruby (&gt;= 2.3.1)</strong>：https://www.ruby-lang.org</li>
+<li><strong>Pullseq (&gt;= 1.0.2)</strong>：https://github.com/bcthomas/pullseq</li>
+<li><strong>Prodigal (&gt;= 2.6.3)</strong>：https://github.com/hyattpd/Prodigal</li>
+<li><strong>coreutils（仅 macOS 需要）</strong>：https://www.gnu.org/software/coreutils</li>
+<li><strong>以下三种搜索引擎之一：</strong>
+<ul>
+<li><strong>DIAMOND (&gt;= 0.9.14)</strong>：推荐，用于大数据集：https://ab.inf.uni-tuebingen.de/software/diamond</li>
+<li><strong>BLAST+ (&gt;= 2.5.0)</strong>：https://blast.ncbi.nlm.nih.gov/Blast.cgi</li>
+<li><strong>USEARCH (&gt;= 8.1)</strong>：http://www.drive5.com/usearch/download.html
+<blockquote>
+<p>注意：USEARCH 免费版仅支持最多 4GB 内存，因此推荐使用 DIAMOND 或 BLAST+。</p></blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 下载并解压缩DASTool.zip存档:
+</span></span><span class="line"><span class="cl">unzip DAS_Tool-1.x.x.zip
+</span></span><span class="line"><span class="cl">cd ./DAS_Tool-1.x.x
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Unzip SCG database:
+</span></span><span class="line"><span class="cl">unzip ./db.zip -d db
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"># Run DAS Tool:
+</span></span><span class="line"><span class="cl">./DAS_Tool -h
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ R
+</span></span><span class="line"><span class="cl">&gt; repo=&#39;http://cran.us.r-project.org&#39; #select a repository
+</span></span><span class="line"><span class="cl">&gt; install.packages(&#39;data.table&#39;, repos=repo, dependencies = T)
+</span></span><span class="line"><span class="cl">&gt; install.packages(&#39;magrittr&#39;, repos=repo, dependencies = T)
+</span></span><span class="line"><span class="cl">&gt; install.packages(&#39;docopt&#39;, repos=repo, dependencies = T)
+</span></span><span class="line"><span class="cl">&gt; q() #quit R-session
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3-使用-docker">3. 使用 Docker</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> ./DAS_Tool-1.x.x
+</span></span><span class="line"><span class="cl">docker build -t cmks/das_tool .
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="参数说明">参数说明</h3>
+<p>安装完成后，可以通过 <code>DAS_Tool -h</code> 查看可用参数：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">DAS_Tool <span class="o">[</span>选项<span class="o">]</span> -i &lt;contig2bin&gt; -c &lt;contigs_fasta&gt; -o &lt;输出前缀&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">主要参数：
+</span></span><span class="line"><span class="cl">  -i, --bins<span class="o">=</span>&lt;contig2bin&gt;                 多个 contig-to-bin 表格文件（以逗号分隔）
+</span></span><span class="line"><span class="cl">  -c, --contigs<span class="o">=</span>&lt;contigs&gt;                 组装后的 contig（FASTA 格式）
+</span></span><span class="line"><span class="cl">  -o, --outputbasename<span class="o">=</span>&lt;前缀&gt;             输出文件名前缀
+</span></span><span class="line"><span class="cl">  -l, --labels<span class="o">=</span>&lt;标签&gt;                     每个 binning 工具的名称（以逗号分隔）
+</span></span><span class="line"><span class="cl">  --search_engine<span class="o">=</span>&lt;搜索工具&gt;             用于识别单拷贝基因的搜索工具（diamond/blastp/usearch）<span class="o">[</span>默认：diamond<span class="o">]</span>
+</span></span><span class="line"><span class="cl">  -p, --proteins<span class="o">=</span>&lt;蛋白文件&gt;               预测蛋白（可选），跳过基因预测步骤（FASTA 格式）
+</span></span><span class="line"><span class="cl">  --write_bin_evals                       输出原始 bin 评估结果
+</span></span><span class="line"><span class="cl">  --write_bins                            输出最终整合的 bin（FASTA）
+</span></span><span class="line"><span class="cl">  --write_unbinned                        输出未归类的 contigs
+</span></span><span class="line"><span class="cl">  -t, --threads<span class="o">=</span>&lt;线程数&gt;                  并行线程数 <span class="o">[</span>默认：1<span class="o">]</span>
+</span></span><span class="line"><span class="cl">  --score_threshold<span class="o">=</span>&lt;阈值&gt;               bin 筛选的得分阈值（0~1）<span class="o">[</span>默认：0.5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">  --duplicate_penalty<span class="o">=</span>&lt;重复惩罚&gt;         单拷贝基因重复的惩罚因子（0~3）<span class="o">[</span>默认：0.6<span class="o">]</span>
+</span></span><span class="line"><span class="cl">  --megabin_penalty<span class="o">=</span>&lt;megabin惩罚&gt;        超大 bin 的惩罚因子（0~3）<span class="o">[</span>默认：0.5<span class="o">]</span>
+</span></span><span class="line"><span class="cl">  --dbDirectory<span class="o">=</span>&lt;数据库路径&gt;             单拷贝基因数据库路径 <span class="o">[</span>默认：db<span class="o">]</span>
+</span></span><span class="line"><span class="cl">  --resume                                使用之前预测过的单拷贝基因结果
+</span></span><span class="line"><span class="cl">  --debug                                 输出调试信息
+</span></span><span class="line"><span class="cl">  -v, --version                           查看版本
+</span></span><span class="line"><span class="cl">  -h, --help                              查看帮助
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="输入文件准备">输入文件准备</h3>
+<h4 id="1-多个-binning-工具的输出---bins--i">1. 多个 binning 工具的输出 [<code>--bins</code>, <code>-i</code>]</h4>
+<p>每个 binning 工具生成的 contig-to-bin 表格，TSV 格式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Contig_1    bin.01
+</span></span><span class="line"><span class="cl">Contig_8    bin.01
+</span></span><span class="line"><span class="cl">Contig_42   bin.02
+</span></span><span class="line"><span class="cl">Contig_49   bin.03
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>不是所有 binning 工具都直接生成此格式。可使用官方提供的脚本 <code>Fasta_to_Contigs2Bin.sh</code> 进行转换，在github主页上：</p></blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 示例：将 MaxBin 输出 fasta 文件转为 contigs2bin 表格</span>
+</span></span><span class="line"><span class="cl">~/biosoft/DAS_Tool/src/Fasta_to_Contig2Bin.sh -i /maxbin/output/folder -e fa &gt; maxbin.contigs2bin.tsv
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>某些工具如 CONCOCT 输出为 CSV，可用 perl 一行命令转为 TSV：</p></blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">perl -pe <span class="s2">&#34;s/,/\tconcoct./g;&#34;</span> concoct_clustering_gt1000.csv &gt; concoct.contigs2bin.tsv
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-组装后的-contig-文件---contigs--c">2. 组装后的 contig 文件 [<code>--contigs</code>, <code>-c</code>]</h4>
+<p>FASTA 格式，如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt;Contig_1
+</span></span><span class="line"><span class="cl">ATCATCGTCCGCATCGACGAATTCGGCGAACGAGTACCCCTGACCATCTCCGATTA...
+</span></span><span class="line"><span class="cl">&gt;Contig_2
+</span></span><span class="line"><span class="cl">GATCGTCACGCAGGCTATCGGAGCCTCGACCCGCAAGCTCTGCGCCTTGGAGCAGG...
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3-可选预测蛋白序列---proteins">3. 可选：预测蛋白序列 [<code>--proteins</code>]</h4>
+<p>若已有 prodigal 预测结果（<code>.faa</code> 格式），可跳过基因预测步骤。</p>
+<h3 id="运行-das-tool">运行 DAS Tool</h3>
+<p>基本命令格式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">DAS_Tool -i &lt;binning_results.tsv&gt; -l &lt;binning_labels&gt; -c &lt;scaffolds.fasta&gt; -o &lt;输出前缀&gt;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>参数说明：</p>
+<ul>
+<li><code>-i</code>：多个 binning 工具的 contigs-to-bin TSV 文件（用逗号连接），注意逗号之间绝对不能有空格，不然会引发Docopt报错</li>
+<li><code>-l</code>：与 <code>-i</code> 对应的 binning 工具名称（用逗号连接）</li>
+<li><code>-c</code>：组装后 contigs 的 FASTA 文件</li>
+<li><code>-o</code>：输出文件名前缀</li>
+</ul>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">DAS_Tool -i bins.tsv -l metabat,maxbin,concoct -c assembly.fasta -o DAS_Tool_output
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="输出结果">输出结果</h3>
+<p>运行后将生成以下输出文件：</p>
+<ul>
+<li><code>*_DASTool_summary.tsv</code>：输出 bin 的质量与完整性评估汇总</li>
+<li><code>*_DASTool_contigs2bin.tsv</code>：最终 contigs-to-bin 映射表</li>
+<li><code>*_allBins.eval</code>：若启用 <code>--write_bin_evals</code>，输出输入 bin 的评估结果</li>
+<li><code>DASTool_bins/</code>：若启用 <code>--write_bins</code>，输出整合后的 bin（FASTA 格式）</li>
+</ul>
+<h3 id="示例数据与测试">示例数据与测试</h3>
+<p>使用 GitHub 提供的 <code>sample_data</code>：</p>
+<h4 id="示例-1使用-4-个-bin-工具结果运行-das-tool">示例 1：使用 4 个 bin 工具结果运行 DAS Tool</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">DAS_Tool -t <span class="m">4</span> -i sample_data/sample.human.gut_concoct_contigs2bin.tsv,<span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>sample_data/sample.human.gut_maxbin2_contigs2bin.tsv,<span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>sample_data/sample.human.gut_metabat_contigs2bin.tsv,<span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>sample_data/sample.human.gut_tetraESOM_contigs2bin.tsv <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--dbDirectory ~/db/DAS_Tool_db <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-l concoct,maxbin,metabat,tetraESOM <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-c sample_data/sample.human.gut_contigs.fa <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-o sample_output2/DASToolRun1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>用了4核，对于一个32M的contig文件，用时1min，内存占用200MB。</p>
+<h4 id="示例-2设置更多参数跳过基因预测输出评估结果输出最终的bins使用多线程">示例 2：设置更多参数，跳过基因预测，输出评估结果，输出最终的bins，使用多线程</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">DAS_Tool -t <span class="m">4</span> -i sample_data/sample.human.gut_concoct_contigs2bin.tsv,<span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>sample_data/sample.human.gut_maxbin2_contigs2bin.tsv,<span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>sample_data/sample.human.gut_metabat_contigs2bin.tsv,<span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>sample_data/sample.human.gut_tetraESOM_contigs2bin.tsv <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--dbDirectory ~/db/DAS_Tool_db <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-l concoct,maxbin,metabat,tetraESOM <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-c sample_data/sample.human.gut_contigs.fa <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-o sample_output2/DASToolRun2 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--proteins sample_output2/DASToolRun1_proteins.faa <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--write_bin_evals <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--write_bins <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--score_threshold 0.6
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="承接metawrap输出结果">承接MetaWRAP输出结果</h3>
+<p>MetaWRAP是我们之前介绍过的一个binning流程工具，假如我们一开始已经用MetaWRAP进行了3种工具的binning，现在我们想用DAS_Tool来进行进一步的优化，那么可以用如下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">i</span><span class="o">=</span>KY01867_1_T006D
+</span></span><span class="line"><span class="cl">metawrap binning -o l -t <span class="m">2</span> -m <span class="m">4</span> -a contigs/contigs_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.fasta <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span> --metabat2 --maxbin2 --concoct reads/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>*.fastq
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>那么在INITIAL_BINNING_${i}文件夹下会有如下文件夹：</p>
+<p>INITIAL_BINNING_KY01867_1_T006D/
+├── concoct_bins
+├── maxbin2_bins
+├── metabat2_bins
+└── work_files</p>
+<p>我们使用DAS_Tool进行整合：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir DAS_Tool_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#整理list</span>
+</span></span><span class="line"><span class="cl">mkdir tmp/
+</span></span><span class="line"><span class="cl">rm tmp/*
+</span></span><span class="line"><span class="cl">find INITIAL_BINNING_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>/metabat2_bins/ -type f -name <span class="s2">&#34;bin.[0-9].fa&#34;</span> -exec cp <span class="o">{}</span> tmp/ <span class="se">\;</span>
+</span></span><span class="line"><span class="cl">~/biosoft/DAS_Tool/src/Fasta_to_Contig2Bin.sh -i tmp/ -e fa &gt; DAS_Tool_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>/metabat_contigs2bin.tsv
+</span></span><span class="line"><span class="cl">~/biosoft/DAS_Tool/src/Fasta_to_Contig2Bin.sh -i INITIAL_BINNING_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>/maxbin2_bins/ -e fa &gt; DAS_Tool_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>/maxbin_contigs2bin.tsv
+</span></span><span class="line"><span class="cl">rm tmp/*
+</span></span><span class="line"><span class="cl">cp INITIAL_BINNING_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>/concoct_bins/bin.*.fa tmp/
+</span></span><span class="line"><span class="cl">~/biosoft/DAS_Tool/src/Fasta_to_Contig2Bin.sh -i tmp/ -e fa &gt; DAS_Tool_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>/concoct_contigs2bin.tsv
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#运行DAS_Tool</span>
+</span></span><span class="line"><span class="cl">DAS_Tool -t <span class="m">4</span> -i DAS_Tool_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>/concoct_contigs2bin.tsv,<span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>DAS_Tool_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>/maxbin_contigs2bin.tsv,<span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>DAS_Tool_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>/metabat_contigs2bin.tsv <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--dbDirectory ~/db/DAS_Tool_db <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-l concoct,maxbin,metabat <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-c INITIAL_BINNING_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>/work_files/assembly.fa <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-o DAS_Tool_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>/DASToolRun2 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--write_bin_evals <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>--write_bins
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="references">References</h2>
+<ol>
+<li>Sieber, C.M.K., Probst, A.J., Sharrar, A. et al. Recovery of genomes from metagenomes via a dereplication, aggregation and scoring strategy. Nat Microbiol 3, 836–843 (2018). <a class="link" href="https://doi.org/10.1038/s41564-018-0171-1"  target="_blank" rel="noopener"
+    >https://doi.org/10.1038/s41564-018-0171-1</a></li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/Cao-blog/tags/binning/">Binning</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/binning3/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/binning3/images/workflow.a06c7d26621b84946ebc6cf4b2eedad5_hu_8a1e7386d13e4faa.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 宏基因组分箱（binning）｜3. BASALT优化binning流程"
+                        data-key="binning3" 
+                        data-hash="md5-oGx9JmIbhJRuvGz0su7a1Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">宏基因组分箱（binning）｜3. BASALT优化binning流程</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/25-nature-4/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/25-nature-4/images/1-2.7f04df50146143db7f38e3c60bbebaa9_hu_4ebeb6bc608a4e31.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（4）"
+                        data-key="25-nature-4" 
+                        data-hash="md5-fwTfUBRhQ9t/OOPGC766qQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（4）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/25-nature-3/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/25-nature-3/images/fig1.20d52f738dfd506b0754bda8d4b0ead0_hu_d6f6d5c8a568f26d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（3）"
+                        data-key="25-nature-3" 
+                        data-hash="md5-INUvc439UGsHVL2o1LDq0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（3）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/25-nature-2/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/25-nature-2/images/2-1-2.f13dbba185acaee28c931cc543f77916_hu_94453c680a4ffc60.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（2）"
+                        data-key="25-nature-2" 
+                        data-hash="md5-8T27oYWsruKMkxzFQ/d5Fg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（2）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/25-nature/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/25-nature/images/1-1-1.7ec2e930cb5bff1118bfef6c33cf66bd_hu_e11798ac155eaa9a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（1）"
+                        data-key="25-nature" 
+                        data-hash="md5-fsLpMMtb/xEYv&#43;9sM89mvQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（1）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='病毒序列宿主的预测是具挑战性又重要的任务，本文将介绍几个宏基因组中病毒序列的宿主预测方法。'>
+<title>宏基因组中病毒序列的宿主预测</title>
+
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/virus-host/'>
+
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='宏基因组中病毒序列的宿主预测'>
+<meta property='og:description' content='病毒序列宿主的预测是具挑战性又重要的任务，本文将介绍几个宏基因组中病毒序列的宿主预测方法。'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/virus-host/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='virus' /><meta property='article:tag' content='microbiome' /><meta property='article:published_time' content='2025-03-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-03-05T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/virus-host/images/IPEV.png' />
+<meta name="twitter:title" content="宏基因组中病毒序列的宿主预测">
+<meta name="twitter:description" content="病毒序列宿主的预测是具挑战性又重要的任务，本文将介绍几个宏基因组中病毒序列的宿主预测方法。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/virus-host/images/IPEV.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/Cao-blog/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/472862038'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/JB-Cao'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/Cao-blog/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a>
+      <ol>
+        <li><a href="#主要原理">主要原理</a></li>
+      </ol>
+    </li>
+    <li><a href="#vpf-class基于病毒蛋白家族的病毒分类分配和宿主预测">VPF-Class：基于病毒蛋白家族的病毒分类分配和宿主预测</a>
+      <ol>
+        <li><a href="#安装使用">安装使用</a>
+          <ol>
+            <li><a href="#常见问题">常见问题</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#cherry图编码器模型准确预测病毒-原核宿主相互作用">Cherry：图编码器模型准确预测病毒-原核宿主相互作用</a>
+      <ol>
+        <li><a href="#安装使用-1">安装使用</a>
+          <ol>
+            <li><a href="#使用">使用</a></li>
+            <li><a href="#扩展病毒-原核生物相互作用数据库">扩展病毒-原核生物相互作用数据库</a></li>
+            <li><a href="#预测感染特定原核生物的病毒">预测感染特定原核生物的病毒</a></li>
+            <li><a href="#常见问题-1">常见问题</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#ipev深度学习鉴定原核真核病毒衍生序列">IPEV：深度学习鉴定原核/真核病毒衍生序列</a>
+      <ol>
+        <li><a href="#安装使用-2">安装使用</a>
+          <ol>
+            <li><a href="#使用-1">使用</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#references">References</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/Cao-blog/p/virus-host/">
+                <img src="/Cao-blog/p/virus-host/images/IPEV_hu_1effb00a948b34f9.png"
+                        srcset="/Cao-blog/p/virus-host/images/IPEV_hu_1effb00a948b34f9.png 800w, /Cao-blog/p/virus-host/images/IPEV_hu_7ff70b02b6ae6a9d.png 1600w"
+                        width="800" 
+                        height="398" 
+                        loading="lazy"
+                        alt="Featured image of post 宏基因组中病毒序列的宿主预测" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/Cao-blog/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/Cao-blog/p/virus-host/">宏基因组中病毒序列的宿主预测</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            病毒序列宿主的预测是具挑战性又重要的任务，本文将介绍几个宏基因组中病毒序列的宿主预测方法。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 05, 5050</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    4 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>在宏基因组学的研究领域中，对病毒序列宿主的预测已经成为一项极具挑战性但又至关重要的任务。病毒是一种非细胞生命形态的微生物，它们必须依赖宿主细胞才能进行繁殖和生存。然而，在复杂的生态环境中，病毒所感染的宿主往往是未知的。病毒宿主预测就是通过各种技术手段和方法，利用病毒基因组中的信息来推测其可能感染的宿主（如细菌等微生物）的过程。</p>
+<p>目前已有的宿主预测方法已经有很多了，比如2022年前就有以下工具：</p>
+<div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th>名称</th>
+          <th>模型</th>
+          <th>描述</th>
+          <th>预测水平</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>WIsH</td>
+          <td>马尔可夫模型</td>
+          <td>针对潜在宿主基因组训练了一个同质的马尔可夫模型，并计算原核生物基因组作为查询病毒宿主的可能性。</td>
+          <td>属</td>
+      </tr>
+      <tr>
+          <td>PHP</td>
+          <td>高斯混合模型</td>
+          <td>利用 - mers频率（可反映病毒和宿主共享的密码子使用模式）来训练高斯混合模型。</td>
+          <td>属</td>
+      </tr>
+      <tr>
+          <td>HoPhage</td>
+          <td>深度学习模型和马尔可夫链算法</td>
+          <td>使用每个候选宿主基因组的编码序列（CDS）构建马尔可夫链模型，然后计算查询噬菌体片段感染候选宿主基因组的可能性。还使用深度学习模型，并最终将深度学习模型的结果与马尔可夫模型的结果整合用于宿主预测。</td>
+          <td>属</td>
+      </tr>
+      <tr>
+          <td>VPF-Class</td>
+          <td>基于序列匹配的模型</td>
+          <td>利用从IMG/VR系统下载的病毒蛋白家族（VPFs）来估计查询病毒与已知宿主病毒之间的相似性。</td>
+          <td>属</td>
+      </tr>
+      <tr>
+          <td>RaFAH</td>
+          <td>随机森林模型</td>
+          <td>使用MMseqs2生成蛋白质簇并构建轮廓隐马尔可夫模型（HMMs）。然后，使用HMM比对输出的特征训练多类别随机森林模型。</td>
+          <td>属</td>
+      </tr>
+      <tr>
+          <td>HostG</td>
+          <td>图卷积网络（GCN）</td>
+          <td>利用病毒和原核生物之间共享的蛋白质簇创建知识图谱，并训练GCN进行预测。</td>
+          <td>属</td>
+      </tr>
+      <tr>
+          <td>PHIST</td>
+          <td>基于比对的模型</td>
+          <td>基于病毒和宿主基因组之间的精确匹配来预测病毒的宿主原核生物。</td>
+          <td>种</td>
+      </tr>
+      <tr>
+          <td>PredPHI</td>
+          <td>卷积神经网络（CNN）</td>
+          <td>利用蛋白质序列中的化学成分信息（如氨基酸丰度）训练CNN进行宿主预测。</td>
+          <td>种</td>
+      </tr>
+      <tr>
+          <td>PHIAF</td>
+          <td>生成对抗网络（GAN）和卷积神经网络（CNN）</td>
+          <td>使用来自DNA和蛋白质序列的特征（如 - mers频率和分子量）训练CNN进行宿主预测，并应用GAN从已知的病毒 - 宿主相互作用生成伪病毒 - 宿主对以扩充数据集。</td>
+          <td>种</td>
+      </tr>
+      <tr>
+          <td>vHULK</td>
+          <td>多层感知机模型（MLP）</td>
+          <td>将宿主预测表述为一个多类别分类问题，输入为病毒，标签为原核生物，模型使用的特征是针对噬菌体蛋白家族pVOGs数据库的蛋白质轮廓比对结果。</td>
+          <td>种</td>
+      </tr>
+      <tr>
+          <td>DeepHost</td>
+          <td>卷积神经网络（CNN）</td>
+          <td>设计了一种基因组编码方法，使用 - mers特征将各种长度的基因组编码成3D矩阵，并训练CNN模型进行宿主预测。</td>
+          <td>种</td>
+      </tr>
+      <tr>
+          <td>VHM-net</td>
+          <td>马尔可夫随机场</td>
+          <td>利用马尔可夫随机场框架，通过结合病毒和原核生物之间的多种特征（如CRISPRs、WIsH的输出得分、BLASTN比对等）来预测病毒是否感染目标原核生物。</td>
+          <td>种</td>
+      </tr>
+      <tr>
+          <td>CHERRY</td>
+          <td>图卷积编码器和解码器用于链接预测</td>
+          <td>将宿主预测问题表述为多模态图中的链接预测问题，并设计了用于宿主预测的编码器 - 解码器结构。多模态图将不同类型的特征（包括蛋白质组织、CRISPR、序列相似性和 - mers频率）集成到节点和边中，边连接来自标记（训练）和未标记（测试）数据的病毒和原核生物。</td>
+          <td>种</td>
+      </tr>
+  </tbody>
+</table></div>
+<h3 id="主要原理">主要原理</h3>
+<p>（一）基于比对的方法</p>
+<ol>
+<li><strong>基于病毒间相似性或病毒与原核生物基因组相似性</strong>
+<ul>
+<li>这类方法主要利用病毒之间或病毒与原核生物基因组之间的相似性来实现宿主识别。例如，VPF - Class方法，它利用从IMG/VR系统下载的病毒蛋白家族（VPFs）。通过计算查询病毒与已知宿主病毒之间的VPFs相似性，根据与VPFs的比对结果，就能对查询的每个病毒片段（contig）给出宿主预测结果。</li>
+<li>PHIST方法则是利用病毒基因组与原核生物基因组之间的序列匹配来进行宿主预测。它通过识别病毒和原核生物基因组共有的 - mers（长度为k的连续核苷酸序列），从而估计病毒 - 原核生物对形成真实相互作用（即感染关系）的概率。</li>
+</ul>
+</li>
+<li><strong>利用CRISPR的比对预测</strong>
+<ul>
+<li>一些原核生物会通过CRISPR（成簇的规律间隔的短回文重复序列）记录病毒感染信息以预防再次感染。部分基于比对的工具利用这一特性来预测宿主。比如使用BLAST（基本局部比对搜索工具）等方法，通过搜索原核生物和病毒之间的短序列匹配来预测宿主。然而，这种方法存在一定的局限性，因为只有2 - 10%的测序原核生物含有CRISPRs，而且很多病毒与原核生物注释或预测的CRISPRs没有比对结果，所以无法利用这一信号进行宿主预测。</li>
+</ul>
+</li>
+</ol>
+<p>（二）基于学习的方法</p>
+<ol>
+<li><strong>基于序列特征构建模型</strong>
+<ul>
+<li>机器学习和深度学习学习基于学习的方法更加灵活，大多数这类方法是学习基于序列的特征用于宿主预测。</li>
+<li>例如，WIsH方法会针对潜在宿主基因组训练一个同质的马尔可夫模型。该模型随后计算一个原核生物基因组作为查询病毒宿主的可能性，并将可能性最高的原核生物指定为宿主。</li>
+<li>vHULK方法将宿主预测表述为一个多类别分类问题，其中输入是病毒，标签是原核生物。它在其深度学习模型中使用的特征是针对噬菌体蛋白家族pVOGs数据库的蛋白质轮廓比对结果。</li>
+<li>RaFAH方法不使用公共数据库，而是使用MMseqs2软件生成蛋白质簇并构建轮廓隐马尔可夫模型（HMMs）。然后，它利用HMM比对输出的特征并训练一个多类别随机森林模型。</li>
+<li>HoPhage是另一个基于多类别分类模型的宿主预测工具，它使用深度学习和马尔可夫链算法。它通过利用每个候选宿主基因组的编码序列（CDS）构建马尔可夫链模型，计算查询噬菌体片段感染候选宿主基因组的可能性，然后还使用一个深度学习模型，并最终将深度学习模型与马尔可夫模型的结果整合以预测宿主。</li>
+</ul>
+</li>
+<li><strong>基于 - mers频率和相关蛋白的特征预测</strong>
+<ul>
+<li>PHP方法利用 - mers频率，因为它可以反映病毒和宿主共享的密码子使用模式来预测宿主。</li>
+<li>DeepHost和PHIAF也利用基于 - mers的特征来训练卷积神经网络进行宿主预测。</li>
+</ul>
+</li>
+<li><strong>基于受体结合蛋白（RBPs）的特征预测</strong>
+<ul>
+<li>Boeckaerts等人构建学习模型时使用从受体结合蛋白（RBPs）提取的特征进行宿主预测。不过，这一方法存在局限性，因为在所有病毒中注释RBPs并不容易，该作者仅收集了与九个宿主相关的RBPs，所以这个工具只能预测非常有限的宿主物种。</li>
+</ul>
+</li>
+<li><strong>构建知识图谱或整合多种特征预测</strong>
+<ul>
+<li>HostG利用病毒和原核生物之间共享的蛋白质簇创建知识图谱，并训练图卷积网络进行预测。虽然它预测的准确性较高，但只能预测到属水平的主机。VHM - Net结合了病毒和原核生物之间的多种特征，如CRISPRs、WIsH的输出得分、BLASTN比对得分等。</li>
+</ul>
+</li>
+</ol>
+<p>近几年也有更多方法不断被发表出来，很难评判哪个软件最好用最准确，大家可以挑选最适合自己数据和研究问题的工具。这篇文章简要介绍一下几个我用过的软件。</p>
+<h2 id="vpf-class基于病毒蛋白家族的病毒分类分配和宿主预测">VPF-Class：基于病毒蛋白家族的病毒分类分配和宿主预测</h2>
+<p>VPF-Class是一种基于病毒蛋白家族（VPFs）信息的工具，用于对未培养病毒进行分类和宿主预测。它通过将病毒蛋白质分配到已分类的VPFs中，实现了在多个分类级别（包括Baltimore分类系统、病毒科和属）上的自动化分类和宿主预测。VPF-Class在RefSeq数据库中表现出高准确性，属级别的分类准确率接近100%，宿主预测准确率为86.4%。该工具无需下载或选择参考数据库，避免了映射过程中的偏差，使其更易于使用。VPF-Class适用于宏基因组研究、病毒发现和病毒生态学研究，帮助研究人员在没有培养条件的情况下识别新的病毒序列并预测其宿主。</p>
+<img src="images/vpf-class.png" title=""/>
+<p>在VPF-Class中，主要步骤包括：</p>
+<ol>
+<li>
+<p><strong>VPFs的分类和宿主预测</strong>：首先，对VPFs进行分类，并根据其与已知病毒的同源关系进行宿主预测。</p>
+</li>
+<li>
+<p><strong>病毒基因组的分类和宿主预测</strong>：利用分类后的VPFs对未培养病毒基因组进行分类和宿主预测。</p>
+</li>
+<li>
+<p><strong>交叉验证和VPFs的第二轮分类</strong>：通过比较未培养病毒的分类结果来更新VPFs的分类信息，以提高分类的准确性。</p>
+</li>
+<li>
+<p><strong>病毒基因组的分类和评分</strong>：为每个病毒基因组提供分类和宿主预测结果，并计算相应的置信度评分。</p>
+</li>
+</ol>
+<h3 id="安装使用">安装使用</h3>
+<p>在GitHub上的<code>biocom-uib/vpf-tools</code>项目中，提供了两种安装方法：使用Docker和从源代码构建（但是我的服务器上直接没有sudo权限，docker也用不了，stack也装不了😂，只能在自己的电脑上安装了）。以下是详细的安装步骤：</p>
+<p>方法1：使用Docker</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker volume create vpf-data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker run --rm -it <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -v <span class="s2">&#34;vpf-data:/opt/vpf-tools/vpf-data&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -v <span class="s2">&#34;</span><span class="nv">$PWD</span><span class="s2">/seqs:/opt/vpf-tools/input-sequences:ro&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -v <span class="s2">&#34;</span><span class="nv">$PWD</span><span class="s2">/outputs:/opt/vpf-tools/outputs:rw&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    bielr/vpf-tools <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        vpf-class -i seqs/test.fna -o outputs/test-classified
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>我尝试将本地的docker转换为HPC上的singularity来运行：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在 Docker 环境下转换 sif</span>
+</span></span><span class="line"><span class="cl">docker run --rm -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    -v <span class="nv">$PWD</span>:/output quay.io/singularity/docker2singularity <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    bielr/vpf-tools
+</span></span><span class="line"><span class="cl">docker save -o vpf-tools.tar bielr/vpf-tools
+</span></span><span class="line"><span class="cl">singularity build vpf-tools.sif docker-archive://vpf-tools.tar
+</span></span><span class="line"><span class="cl">mkdir -p <span class="nv">$PWD</span>/vpf-data
+</span></span><span class="line"><span class="cl">docker run --rm -v <span class="s2">&#34;</span><span class="nv">$PWD</span><span class="s2">/vpf-data:/opt/vpf-tools/vpf-data&#34;</span> bielr/vpf-tools cp -r /opt/vpf-tools/vpf-data/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在singularity环境运行</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 把vpf-tools.sif和vpf-data文件夹拷贝到HPC上</span>
+</span></span><span class="line"><span class="cl">singularity <span class="nb">exec</span> --bind <span class="s2">&#34;</span><span class="nv">$PWD</span><span class="s2">/vpf-data:/opt/vpf-tools/vpf-data&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>                 --bind <span class="s2">&#34;</span><span class="nv">$PWD</span><span class="s2">/seqs:/opt/vpf-tools/input-sequences:ro&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>                 --bind <span class="s2">&#34;</span><span class="nv">$PWD</span><span class="s2">/outputs:/opt/vpf-tools/outputs:rw&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>                 vpf-tools.sif <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>        vpf-class -i seqs/test.fna -o outputs/test-classified
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>方法2：从源代码构建</p>
+<ol>
+<li>
+<p><strong>安装Stack</strong>：
+使用以下命令安装Stack（适用于Mac OS和Linux，未在Windows上测试）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">curl -sSL https://get.haskellstack.org/ <span class="p">|</span> sh
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>克隆仓库</strong>：
+克隆<code>vpf-tools</code>仓库：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git clone https://github.com/biocom-uib/vpf-tools
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> vpf-tools
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>编译工具</strong>：
+使用Stack编译所有目标：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">stack build
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第一次编译可能需要一些时间，因为Stack还需要安装GHC并编译所有依赖项。</p>
+</li>
+<li>
+<p><strong>运行工具</strong>：
+编译完成后，可以通过在命令前加上<code>stack exec --</code>来运行工具，例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">stack <span class="nb">exec</span> -- vpf-class --help
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>实验性支持OpenMPI</strong>：
+如果需要使用OpenMPI，可以在构建时添加<code>--flag vpf-class:+mpi</code>标志，然后像其他程序一样使用<code>mpirun</code>运行工具。</p>
+</li>
+</ol>
+<p>补充材料</p>
+<ul>
+<li>
+<p><strong>分类文件</strong>：
+可以在这里找到VPF的分类文件，包括<code>index.yaml</code>。</p>
+</li>
+<li>
+<p><strong>单个数据文件</strong>：
+可以在这里下载单个数据文件，选择“VPF classification”选项卡。</p>
+</li>
+<li>
+<p><strong>HMMER模型文件</strong>：
+最新的包含VPF HMMER模型的文件可以从IMG/VR下载（注意：链接可能已失效，可以在这里找到一个副本）。将<code>final_list.hmms</code>解压到数据目录中，与<code>index.yaml</code>相邻。</p>
+</li>
+</ul>
+<h4 id="常见问题">常见问题</h4>
+<ul>
+<li>
+<p><strong>HMMERNotFound</strong>：
+确保HMMER安装正确，并且可以通过<code>$PATH</code>访问。如果不在<code>$PATH</code>中，可以使用<code>--hmmer-prefix</code>指定路径。</p>
+</li>
+<li>
+<p><strong>ProdigalNotFound</strong>：
+确保Prodigal已安装，并且可以通过<code>$PATH</code>访问。如果不在<code>$PATH</code>中，可以使用<code>--prodigal</code>指定可执行文件的位置。</p>
+</li>
+<li>
+<p><strong>Stack安装问题</strong>：
+如果在安装过程中遇到问题，请参考Stack文档以确保所有依赖项都满足。（还挺难搞的😂）</p>
+</li>
+<li>
+<p><strong>Conda环境问题</strong>：
+由于一些用户报告了Stack和Conda的问题，建议避免在Conda污染的环境中安装Stack。</p>
+</li>
+</ul>
+<h2 id="cherry图编码器模型准确预测病毒-原核宿主相互作用">Cherry：图编码器模型准确预测病毒-原核宿主相互作用</h2>
+<p>在微生物群落中，感染细菌和古菌的<strong>原核病毒</strong>是关键参与者。预测原核病毒的宿主有助于解码微生物之间的动态关系。然而，实验方法无法跟上高通量测序技术产生的噬菌体序列的快速积累，因此需要计算方法来进行宿主预测。尽管取得了一些有希望的结果，但由于已知相互作用的限制和大量测序噬菌体的数量，计算宿主预测仍然是一个挑战。目前最先进的方法在物种水平上的准确率只能达到43%。</p>
+<img src="images/cherry.png" title=""/>
+<p>在这项工作中，研究者将宿主预测问题表述为一个知识图中的链接预测问题，整合了多种基于蛋白质和DNA的序列特征。研究者实现的工具名为CHERRY，可以应用于预测新发现病毒的宿主，并识别感染目标细菌的病毒。研究者展示了CHERRY在这两种应用中的实用性，并将其性能与其他11种流行的宿主预测方法进行了比较。据研究者所知，CHERRY在识别病毒-原核生物相互作用方面具有最高的准确性。它在物种水平上超越了所有现有方法，准确率提高了37%。此外，CHERRY在短片段上的表现比其他工具更稳定。</p>
+<h3 id="安装使用-1">安装使用</h3>
+<p><code>CHERRY</code> 是一个用于预测病毒与原核生物基因组相互作用的 Python 库。使用 Conda 安装：</p>
+<ol>
+<li>
+<p><strong>克隆仓库</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/KennthShang/CHERRY.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>创建并激活 Conda 环境</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> CHERRY
+</span></span><span class="line"><span class="cl">conda env create -f CHERRY.yaml -n cherry
+</span></span><span class="line"><span class="cl">conda activate cherry
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>准备数据库</strong>：
+由于 GitHub 文件大小限制，数据库文件被压缩为 <code>.bz2</code> 格式。需要解压这些文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> dataset
+</span></span><span class="line"><span class="cl">bzip2 -d protein.fasta.bz2
+</span></span><span class="line"><span class="cl">bzip2 -d nucl.fasta.bz2
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ../prokaryote
+</span></span><span class="line"><span class="cl">gunzip *
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ..
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>激活环境</strong>：
+每次使用 <code>CHERRY</code> 之前，确保激活 <code>cherry</code> 环境：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda activate cherry
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h4 id="使用">使用</h4>
+<ol>
+<li>
+<p><strong>输入文件</strong>：
+输入文件应该是一个包含病毒序列的 FASTA 文件。研究者提供了一个示例文件 <code>test_contigs.fa</code>。</p>
+</li>
+<li>
+<p><strong>运行命令</strong>：
+使用以下命令进行宿主预测：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python run_Speed_up.py <span class="o">[</span>--contigs INPUT_FA<span class="o">]</span> <span class="o">[</span>--len MINIMUM_LEN<span class="o">]</span> <span class="o">[</span>--model MODEL<span class="o">]</span> <span class="o">[</span>--topk TOPK_PRED<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>--contigs INPUT_FA</code>：输入的 FASTA 文件（默认为 <code>test_contigs.fa</code>）。</li>
+<li><code>--len MINIMUM_LEN</code>：仅对长度大于等于指定长度的序列进行预测（默认为 8000）。</li>
+<li><code>--model MODEL</code>：使用预训练参数或重新训练的参数进行预测（默认为 <code>pretrain</code>）。</li>
+<li><code>--topk TOPK_PRED</code>：输出前 K 个预测结果（默认为 1）。</li>
+</ul>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python run_Speed_up.py --contigs test_contigs.fa --len <span class="m">8000</span> --model pretrain --topk <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>输出文件</strong>：
+输出文件格式为 CSV 文件（<code>final_prediction.csv</code>），包含每个病毒的预测结果。列 <code>contig_name</code> 是输入文件的访问号。</p>
+</li>
+<li>
+<p><strong>生成分类树</strong>：
+使用以下命令将预测结果转换为完整的分类树：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python run_Taxonomy_tree.py <span class="o">[</span>--k TOPK_PRED<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>需要指定 <code>k</code> 来生成树，输出文件为 <code>Top_k_prediction_taxonomy.csv</code>。</p>
+</li>
+</ol>
+<h4 id="扩展病毒-原核生物相互作用数据库">扩展病毒-原核生物相互作用数据库</h4>
+<p>如果有比预训练模型更多的病毒-原核生物相互作用信息，可以添加它们来训练自定义模型：</p>
+<ol>
+<li>
+<p><strong>添加病毒基因组</strong>：
+将病毒基因组添加到 <code>nucl.fasta</code> 文件中，并运行 <code>python refresh.py</code> 以生成新的 <code>protein.fasta</code> 和 <code>database_gene_to_genome.csv</code> 文件。</p>
+</li>
+<li>
+<p><strong>添加宿主分类信息</strong>：
+在 <code>dataset/virus.csv</code> 中添加宿主分类信息。表头为：</p>
+<ul>
+<li>Accession（病毒）</li>
+<li>Superkingdom</li>
+<li>Phylum</li>
+<li>Class</li>
+<li>Order</li>
+<li>Family</li>
+<li>Genus</li>
+<li>Species（必填）</li>
+</ul>
+</li>
+<li>
+<p><strong>添加原核生物基因组</strong>：
+将原核生物基因组放入 <code>prokaryote/</code> 文件夹，并在 <code>dataset/prokaryote.csv</code> 中添加条目。</p>
+</li>
+<li>
+<p><strong>重新训练模型</strong>：
+使用 <code>retrain</code> 作为 <code>--mode</code> 参数运行程序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python run_Speed_up.py --mode retrain
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h4 id="预测感染特定原核生物的病毒">预测感染特定原核生物的病毒</h4>
+<ol>
+<li>
+<p><strong>输入文件</strong>：</p>
+<ul>
+<li>将原核生物基因组放入 <code>new_prokaryote/</code> 文件夹。</li>
+<li>提供一个包含病毒序列的 FASTA 文件。</li>
+<li>在 <code>database/prokaryote.csv</code> 中添加分类信息。</li>
+</ul>
+</li>
+<li>
+<p><strong>运行命令</strong>：
+使用以下命令进行预测：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python run_Speed_up.py <span class="o">[</span>--mode MODE<span class="o">]</span> <span class="o">[</span>--t THRESHOLD<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><code>--mode MODE</code>：切换模式为预测病毒或宿主（<code>prokaryote</code> 或 <code>virus</code>）。</li>
+<li><code>--t THRESHOLD</code>：预测病毒的置信度阈值，阈值越高，精度越高（默认为 0.98）。</li>
+</ul>
+<p>示例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python run_Speed_up.py --contigs test_contigs.fa --mode prokaryote --t 0.98
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>输出文件</strong>：
+输出文件格式为 CSV 文件，包含每个病毒的预测结果。列 <code>prokaryote</code> 是给定原核生物基因组的访问号，列 <code>virus</code> 是可能感染这些基因组的病毒列表。</p>
+</li>
+</ol>
+<h4 id="常见问题-1">常见问题</h4>
+<p>如果程序输出错误（通常是由于机器配置问题）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">Error: mkl-service + Intel<span class="o">(</span>R<span class="o">)</span> MKL: <span class="nv">MKL_THREADING_LAYER</span><span class="o">=</span>INTEL is incompatible with libgomp.so.1 library.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可以尝试在运行 <code>run_Speed_up.py</code> 之前执行以下命令：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">MKL_SERVICE_FORCE_INTEL</span><span class="o">=</span><span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果不想上面这样安装到本地或者很难运行成功，可以使用作者提供的在线网站phabox（https://phage.ee.cityu.edu.hk/phabox），可以直接上传文件进行预测。还是比较方便且运行较快的。</p>
+<h2 id="ipev深度学习鉴定原核真核病毒衍生序列">IPEV：深度学习鉴定原核/真核病毒衍生序列</h2>
+<p>上面👆的CHERRY是只能鉴定潜在的原核生物宿主，而IPEV可以准确预测原核/真核病毒，可以作为一个扩充。</p>
+<p>通过病毒样颗粒富集获得的病毒组包含原核和真核病毒来源的片段混合物。准确识别和分类这些元素对于理解它们在微生物群落中的作用和功能至关重要。然而，病毒基因组的快速突变率对开发高性能分类工具提出了挑战，可能会限制下游分析。</p>
+<img src="images/IPEV.png" title=""/>
+<p>研究者提出了一种新颖的方法 IPEV，用于区分病毒组中的原核和真核病毒。该方法结合了二维卷积神经网络，利用三核苷酸对的相对距离和频率进行识别。IPEV 的交叉验证评估显示其在独立测试集上的精度处于领先地位，与现有方法相比，在查询病毒与已知病毒序列相似性低于 30% 的情况下，F1 分数显著提高了约 22%。此外，IPEV 在海洋和肠道病毒组样本上的准确性优于基于序列比对注释的其他方法。IPEV 相较于现有方法在同一计算配置下最多减少了 1,225 倍的运行时间。研究者还利用 IPEV 分析纵向样本，发现肠道病毒组比以往观察到的持久个人病毒组展现出更高的时间稳定性，为个体肠道病毒组的韧性提供了新的见解。</p>
+<p>IPEV 是一种高性能、用户友好的工具，帮助生物学家在病毒组中识别和分类原核和真核病毒。该工具可在 <a class="link" href="https://github.com/basehc/IPEV"  target="_blank" rel="noopener"
+    >IPEV GitHub 仓库</a> 或 <a class="link" href="https://hub.docker.com/r/dryinhc/ipev_v1"  target="_blank" rel="noopener"
+    >Docker Hub</a> 获取。IPEV 基于 Python3.8.6 和 TensorFlow 2.3.1 构建，通过并行处理和算法优化，能够快速获得计算结果。</p>
+<h3 id="安装使用-2">安装使用</h3>
+<p><code>IPEV</code> 是一个用于识别病毒组数据中原核和真核病毒序列的深度学习软件工具。以下是安装和使用 <code>IPEV</code> 的详细步骤：</p>
+<p>方法一：从 GitHub 使用</p>
+<ol>
+<li>
+<p><strong>克隆仓库</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/basehc/IPEV.git
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>创建新环境</strong>（推荐以避免与现有包冲突）：</p>
+<ul>
+<li>使用 <code>Conda</code>：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">conda create -n your_env_name <span class="nv">python</span><span class="o">=</span>3.8.6
+</span></span><span class="line"><span class="cl">conda activate your_env_name
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>使用 <code>virtualenv</code>：
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python3 -m venv /path/to/new/virtual/environment
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /path/to/new/virtual/environment/bin/activate
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p><strong>设置操作环境</strong>：
+进入项目目录并安装必要的依赖项：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> IPEV
+</span></span><span class="line"><span class="cl">python -m pip install -r requirements.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<p>方法二：从 Docker Hub 使用</p>
+<ol>
+<li>
+<p><strong>拉取镜像</strong>：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker pull dryinhc/ipev_v1
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>运行容器</strong>：
+打开一个新的终端窗口并运行以下命令以启动基于镜像的容器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -it --rm dryinhc/ipev_v1
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>传输数据文件</strong>：
+在新的终端窗口中，将数据文件传输到容器内：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker cp data.fasta dryinhc/ipev_v1:/app/tool/
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>在容器内运行程序</strong>：
+切换到容器内并运行程序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker <span class="nb">exec</span> -it &lt;container_id&gt; /bin/bash
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> tool
+</span></span><span class="line"><span class="cl">python run.py data.fasta
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>退出容器</strong>：
+按 <code>Ctrl+D</code> 或输入 <code>exit</code> 退出容器。</p>
+</li>
+</ol>
+<h4 id="使用-1">使用</h4>
+<ol>
+<li>
+<p><strong>基本使用</strong>：
+进入 <code>IPEV</code> 目录并运行示例文件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> ./IPEV
+</span></span><span class="line"><span class="cl">python run.py example.fasta
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p><strong>去除非病毒序列</strong>：
+<code>IPEV</code> 提供了一个功能来过滤掉病毒组数据中的非病毒成分。使用以下命令启用该功能（默认为关闭）：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">python run.py example.fasta -filter yes
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<ul>
+<li>
+<p><strong>序列评分文件</strong>：程序会生成一个 TSV 文件，包含每个序列的最终评分，存储在以当前日期和时间命名的文件夹中。</p>
+</li>
+<li>
+<p><strong>评分直方图</strong>：程序还会创建一个直方图，显示不同评分在 FASTA 文件中序列中出现的频率。</p>
+</li>
+<li>
+<p>为了节省时间，最好将所有序列放在一个单独的 FASTA 文件中，这样程序可以更快地处理。</p>
+</li>
+<li>
+<p>如果需要去除非病毒序列，请确保在运行时使用 <code>-filter yes</code> 参数。</p>
+</li>
+</ul>
+<h2 id="references">References</h2>
+<ol>
+<li>Joan Carles Pons, David Paez-Espino, Gabriel Riera, Natalia Ivanova, Nikos C Kyrpides, Mercè Llabrés, VPF-Class: taxonomic assignment and host prediction of uncultivated viruses based on viral protein families, Bioinformatics, Volume 37, Issue 13, July 2021, Pages 1805–1813, <a class="link" href="https://doi.org/10.1093/bioinformatics/btab026"  target="_blank" rel="noopener"
+    >https://doi.org/10.1093/bioinformatics/btab026</a></li>
+<li>Jiayu Shang, Yanni Sun, CHERRY: a Computational metHod for accuratE pRediction of virus–pRokarYotic interactions using a graph encoder–decoder model, Briefings in Bioinformatics, Volume 23, Issue 5, September 2022, bbac182, <a class="link" href="https://doi.org/10.1093/bib/bbac182"  target="_blank" rel="noopener"
+    >https://doi.org/10.1093/bib/bbac182</a></li>
+<li>Hengchuang Yin, Shufang Wu, Jie Tan, Qian Guo, Mo Li, Jinyuan Guo, Yaqi Wang, Xiaoqing Jiang, Huaiqiu Zhu, IPEV: identification of prokaryotic and eukaryotic virus-derived sequences in virome using deep learning, GigaScience, Volume 13, 2024, giae018, <a class="link" href="https://doi.org/10.1093/gigascience/giae018"  target="_blank" rel="noopener"
+    >https://doi.org/10.1093/gigascience/giae018</a></li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/Cao-blog/tags/virus/">Virus</a>
+        
+            <a href="/Cao-blog/tags/microbiome/">Microbiome</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/25-nature-4/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/25-nature-4/images/1-2.7f04df50146143db7f38e3c60bbebaa9_hu_4ebeb6bc608a4e31.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（4）"
+                        data-key="25-nature-4" 
+                        data-hash="md5-fwTfUBRhQ9t/OOPGC766qQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（4）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/25-nature-3/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/25-nature-3/images/fig1.20d52f738dfd506b0754bda8d4b0ead0_hu_d6f6d5c8a568f26d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（3）"
+                        data-key="25-nature-3" 
+                        data-hash="md5-INUvc439UGsHVL2o1LDq0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（3）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/25-nature-2/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/25-nature-2/images/2-1-2.f13dbba185acaee28c931cc543f77916_hu_94453c680a4ffc60.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（2）"
+                        data-key="25-nature-2" 
+                        data-hash="md5-8T27oYWsruKMkxzFQ/d5Fg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（2）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/25-nature/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/25-nature/images/1-1-1.7ec2e930cb5bff1118bfef6c33cf66bd_hu_e11798ac155eaa9a.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（1）"
+                        data-key="25-nature" 
+                        data-hash="md5-fsLpMMtb/xEYv&#43;9sM89mvQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（1）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/indoor/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/indoor/images/ind3.f88b22cb27b61a7f362968c78b715b40_hu_3690543364814c81.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 室内微生物组相关研究"
+                        data-key="indoor" 
+                        data-hash="md5-&#43;Isiyye2Gn82KWjHi3FbQA==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">室内微生物组相关研究</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

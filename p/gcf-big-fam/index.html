@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='通过将从当前可用的基因组和 MAG 中识别的大规模全球 BGC 集合作为数据源，BiG-FAM 提供了可探索的微生物次生代谢多样性“图集”，以浏览和搜索跨类群的生物合成多样性。'>
+<title>生物合成基因簇家族（GCF）数据库 BiG-FAM</title>
+
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/'>
+
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='生物合成基因簇家族（GCF）数据库 BiG-FAM'>
+<meta property='og:description' content='通过将从当前可用的基因组和 MAG 中识别的大规模全球 BGC 集合作为数据源，BiG-FAM 提供了可探索的微生物次生代谢多样性“图集”，以浏览和搜索跨类群的生物合成多样性。'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='BGCs' /><meta property='article:tag' content='database' /><meta property='article:published_time' content='2025-01-08T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-01-08T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28.png' />
+<meta name="twitter:title" content="生物合成基因簇家族（GCF）数据库 BiG-FAM">
+<meta name="twitter:description" content="通过将从当前可用的基因组和 MAG 中识别的大规模全球 BGC 集合作为数据源，BiG-FAM 提供了可探索的微生物次生代谢多样性“图集”，以浏览和搜索跨类群的生物合成多样性。"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/Cao-blog/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/472862038'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/JB-Cao'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/Cao-blog/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#数据库特征">数据库特征</a>
+      <ol>
+        <li><a href="#超过120万个bgc的gcf数据">超过120万个BGC的GCF数据</a></li>
+        <li><a href="#数据库内容的无缝探索">数据库内容的无缝探索</a></li>
+        <li><a href="#用户提交bgc的快速gcf定位">用户提交BGC的快速GCF定位</a></li>
+        <li><a href="#直接链接到bgc和基因组数据库">直接链接到BGC和基因组数据库</a></li>
+      </ol>
+    </li>
+    <li><a href="#应用示例">应用示例</a>
+      <ol>
+        <li><a href="#探索ranthipeptide-bgc的多样性">探索Ranthipeptide BGC的多样性</a></li>
+        <li><a href="#对新测序链霉菌株的gcf分析">对新测序链霉菌株的GCF分析</a></li>
+      </ol>
+    </li>
+    <li><a href="#reference">Reference</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/Cao-blog/p/gcf-big-fam/">
+                <img src="/Cao-blog/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28_hu_ef3d26d9114aec62.png"
+                        srcset="/Cao-blog/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28_hu_ef3d26d9114aec62.png 800w, /Cao-blog/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28_hu_8e23fa7803e25d7d.png 1600w"
+                        width="800" 
+                        height="378" 
+                        loading="lazy"
+                        alt="Featured image of post 生物合成基因簇家族（GCF）数据库 BiG-FAM" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/Cao-blog/categories/metagenomic/" style="background-color: #8dd3c7; color: #fff;">
+                metagenomic
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/Cao-blog/p/gcf-big-fam/">生物合成基因簇家族（GCF）数据库 BiG-FAM</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            通过将从当前可用的基因组和 MAG 中识别的大规模全球 BGC 集合作为数据源，BiG-FAM 提供了可探索的微生物次生代谢多样性“图集”，以浏览和搜索跨类群的生物合成多样性。
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Jan 08, 8080</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="introduction">Introduction</h2>
+<p>生物合成基因簇 (BGC) 的计算分析通过快速研究微生物基因组序列内的次级代谢潜力，彻底改变了天然产物的发现。将同源 BGC 分组为基因簇家族 (GCF) 有助于绘制其结构和分类多样性，并通过对已知功能的 BGC 进行去重复，提供对假定 BGC 新颖性的见解。</p>
+<p>通过将从当前可用的基因组和 MAG 中鉴定出的大规模全球 BGC 集合作为数据源，BiG-FAM 提供了可探索的微生物次生代谢多样性“图集”，以浏览和搜索跨类群的生物合成多样性。
+BiG-FAM 有助于查询假定的 BGC，以便根据公开数据与其他已知和预测的 BGC 的关系，快速找到它们在多样性图上的位置，并更好地了解它们的新颖性或（可能的）功能。</p>
+<p>BiG-FAM数据库（2020年）基于从多个公开可用来源获取的 1,225,071 个 BGC 的 GCF 聚类。这项大规模分析是使用 BiG-SLiCE 软件 和任意聚类阈值 (T=900.0) 进行的，结果构建了 29,955 个 GCF 模型，每个模型代表不同的蛋白质结构域和序列特征BGC。</p>
+<p><strong>这个数据库一直没有更新，而最近几年又是宏基因组测序井喷的时候，里面的GCF数量肯定远低于现在已经发现的GCF，但稍微用一下做参考还是可以的（或者有想法可以自己跑一下更多公开数据说不定也是一篇NAR）</strong></p>
+<p>BiG-FAM数据库在线访问：<a class="link" href="https://bigfam.bioinformatics.nl"  target="_blank" rel="noopener"
+    >https://bigfam.bioinformatics.nl</a></p>
+<img src="images/big-fam.png" title=""/>
+<h2 id="数据库特征">数据库特征</h2>
+<h3 id="超过120万个bgc的gcf数据">超过120万个BGC的GCF数据</h3>
+<p>BiG-FAM数据库包含29,955个通过BiG-SLiCE 1.0版本计算的GCF，这些数据源自1,225,071个BGC的集合。这些BGC通过antiSMASH v5.1.1从188,622个微生物基因组（包括细菌、真菌和古菌基因组）以及20,584个MAG中预测得到，并补充了来自MIBiG 2.0数据库的实验验证BGC。所有基因组的完整列表及其BGC计数和分类信息见补充表。这些BGC及其对应的GCF涵盖了广泛的生物合成类别和分类群，提供了对微生物次级代谢多样性的全面覆盖。</p>
+<h3 id="数据库内容的无缝探索">数据库内容的无缝探索</h3>
+<p>基于BiG-SLiCE 1.0.0生成的核心SQLite3数据存储，作者使用Python Flask库构建了一个功能齐全的Web服务器。为了实现更流畅的浏览体验，特别是在计算密集型的网页中，作者额外实现了一层缓存存储，用于预取复杂SQL查询。此外，这种设置还实现了轻量级的“搜索和过滤”功能，使用户能够根据特定的分类群、来源数据集类型、生物合成类别或蛋白质域来查找BGC或GCF。</p>
+<img src="images/Screenshot 2025-01-08 at 11.53.28.png" title=""/>
+<h3 id="用户提交bgc的快速gcf定位">用户提交BGC的快速GCF定位</h3>
+<p>使用BiG-SLiCE的一个主要优势在于，每个GCF的共享BGC特征被总结在与底层BGC相同的基于欧几里得距离的特征矩阵中，形成GCF模型。这使得BGC到GCF的线性匹配成为可能，从而可以在几秒钟内将新测序的BGC定位到预计算的生物合成多样性全球图谱中。为了便于使用这一功能，BiG-FAM集成了一个基于Web的“查询”提交系统，用户可以直接提交通过antiSMASH预测的BGC进行GCF分析。生成的BGC到GCF匹配结果将揭示查询BGC的近缘和远缘关系，帮助研究其新颖性、与其他BGC的关系，以及跨分类群的分布和进化。</p>
+<h3 id="直接链接到bgc和基因组数据库">直接链接到BGC和基因组数据库</h3>
+<p>尽管BiG-FAM存储并展示了许多与BGC相关的有用信息，但它并非旨在成为一个BGC数据库，因此不包含与GCF无直接关联的信息。为了支持需要这些数据的用户，BiG-FAM存储了来自MIBiG和antiSMASH数据库的BGC元数据链接。这些交叉链接可用于获取更多信息，例如BGC产物的核心结构。此外，每个BGC的摘要页面还提供了原始基因组来源的链接，用户也可以从GCF页面下载合并的URL列表。</p>
+<h2 id="应用示例">应用示例</h2>
+<h3 id="探索ranthipeptide-bgc的多样性">探索Ranthipeptide BGC的多样性</h3>
+<p>Ranthipeptides（曾被称为“SCIFF肽”）是一类核糖体合成并经翻译后修饰的肽（RiPPs），主要存在于梭菌纲（Clostridia）中，尽管GC含量分析表明其生物合成基因可能通过水平转移传播到其他分类群。近期研究表明，这些肽在群体水平调控中发挥重要作用，例如通过群体感应机制。在作者先前绘制120万个BGC全球多样性的研究中，作者捕获了6,800个推定的ranthipeptide BGC，这些BGC在前体肽侧翼的基因邻域表现出多样性。为了探索这种多样性，作者可以使用BiG-FAM的“GCF搜索”功能，并以该BGC类的两个标志性结构域（AS-TIGR03973和Radical_SAM）作为查询条件。搜索结果显示了79个GCF，每个GCF代表了不同的BGC分布模式及其分类学来源。通过点击每个GCF的详情页面链接，可以获取其分类来源、核苷酸长度、计算半径以及GCF内BGC共享的生物合成特征。此外，所有BGC的概览及其序列链接可以以TSV格式下载。多基因比较可视化功能还提供了ranthipeptide前体基因侧翼基因邻域多样性的整合视图。</p>
+<img src="images/Screenshot 2025-01-08 at 13.09.04.png" title=""/>
+<h3 id="对新测序链霉菌株的gcf分析">对新测序链霉菌株的GCF分析</h3>
+<p>最近，一株从突尼斯薰衣草根际土壤中分离的新链霉菌——Streptomyces tunisialbus的基因组草图被发布。为了展示BiG-FAM如何用于评估新测序BGC的生物合成新颖性并捕捉其远缘关系，作者从ENA下载了该基因组的组装数据，并将其上传至antiSMASH Web服务器，获得了一个唯一的任务ID。该ID可直接用于在BiG-FAM中进行GCF分析。对36个antiSMASH预测的BGC的完整分析在不到一分钟内完成，生成了最佳BGC-to-GCF匹配对的汇总表。其中一个有趣的BGC是来自“Region 15.1”的完整46.5 kb Type-I PKS基因簇，其在ClusterBlast和KnownClusterBlast结果中与公共数据库的基因簇匹配率较低。GCF分析结果显示，该BGC仅与一个单例GCF有显著匹配，进一步检查发现该GCF源自同一基因组的NCBI提交条目。这表明该PKS BGC代表了一种新型BGC，因为它与其他基因组中的GCF成员没有密切关系。通过“追踪”查询BGC的生物合成结构域，可以分析与数百至数千个远缘BGC的关系，展示基因之间的结构域架构相似性。</p>
+<img src="images/Screenshot 2025-01-08 at 13.09.25.png" title=""/>
+<h2 id="reference">Reference</h2>
+<p>Satria A Kautsar, Kai Blin, Simon Shaw, Tilmann Weber, Marnix H Medema, BiG-FAM: the biosynthetic gene cluster families database, Nucleic Acids Research, Volume 49, Issue D1, 8 January 2021, Pages D490–D497, <a class="link" href="https://doi.org/10.1093/nar/gkaa812"  target="_blank" rel="noopener"
+    >https://doi.org/10.1093/nar/gkaa812</a></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/Cao-blog/tags/bgcs/">BGCs</a>
+        
+            <a href="/Cao-blog/tags/database/">Database</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/big-slice-bgcs/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/big-slice-bgcs/images/bgc_intro.df70fa16769dec520e8e0d51ad084136_hu_abb4a69cdab52c07.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 使用BiG-SLiCE高效聚类大规模BGCs"
+                        data-key="big-slice-bgcs" 
+                        data-hash="md5-33D6Fnad7FIOjg1RrQhBNg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">使用BiG-SLiCE高效聚类大规模BGCs</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/bgc-atlas/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/bgc-atlas/images/bgc_atlas.ce859a75d3c77671b93620cb101b8dab_hu_8c90de7050bc2072.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post BGC Atlas助力宏基因组中生物合成基因簇的发现与分析"
+                        data-key="bgc-atlas" 
+                        data-hash="md5-zoWaddPHdnG5NiDLEBuNqw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">BGC Atlas助力宏基因组中生物合成基因簇的发现与分析</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/25-nature-4/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/25-nature-4/images/1-2.7f04df50146143db7f38e3c60bbebaa9_hu_4ebeb6bc608a4e31.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（4）"
+                        data-key="25-nature-4" 
+                        data-hash="md5-fwTfUBRhQ9t/OOPGC766qQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（4）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/25-nature-3/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/25-nature-3/images/fig1.20d52f738dfd506b0754bda8d4b0ead0_hu_d6f6d5c8a568f26d.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（3）"
+                        data-key="25-nature-3" 
+                        data-hash="md5-INUvc439UGsHVL2o1LDq0A==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（3）</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/25-nature-2/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/25-nature-2/images/2-1-2.f13dbba185acaee28c931cc543f77916_hu_94453c680a4ffc60.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 25年最新的一些Nature环境微生物研究文章（2）"
+                        data-key="25-nature-2" 
+                        data-hash="md5-8T27oYWsruKMkxzFQ/d5Fg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">25年最新的一些Nature环境微生物研究文章（2）</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

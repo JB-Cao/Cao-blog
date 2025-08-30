@@ -1,0 +1,689 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Statistics on Cao&#39;s blog</title>
+        <link>https://jb-cao.github.io/Cao-blog/tags/statistics/</link>
+        <description>Recent content in Statistics on Cao&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Thu, 24 Jul 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/statistics/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>有关Rarefaction的探讨，一篇10年前的文章</title>
+        <link>https://jb-cao.github.io/Cao-blog/p/rarefaction-10/</link>
+        <pubDate>Thu, 24 Jul 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://jb-cao.github.io/Cao-blog/p/rarefaction-10/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/rarefaction-10/images/fig1.png" alt="Featured image of post 有关Rarefaction的探讨，一篇10年前的文章" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;最近有审稿人的comments中建议阅读大佬Susan Holmes (2014) 的经典论文《Waste Not, Want Not: Why Rarefying Microbiome Data Is Inadmissible》，参考在自己的分析中。这篇文章深入探讨了微生物组数据分析中常用的稀释（rarefying）方法的缺陷，并提出了更合适的统计模型。虽然这篇文章已经发表了10多年，但其观点仍然具有重要的参考价值。&lt;/p&gt;
+&lt;h2 id=&#34;-微生物组测序的统计挑战&#34;&gt;🌱 微生物组测序的统计挑战&lt;/h2&gt;
+&lt;p&gt;高通量 DNA 测序技术让微生物组研究进入爆发期。通过测定来自不同环境或样本（如人体肠道、土壤、水体）的 16S rRNA 序列或宏基因组原始读数，研究者可以获得一个 OTU（操作分类单位，又可视作微生物“物种”）在各样本中的丰度矩阵。&lt;/p&gt;
+&lt;p&gt;但一个关键问题是：不同样本之间测序深度存在显著差异——每个样本的读数（library size）可能相差一个数量级。这样直接比较 OTU 计数会导致误导。为此，研究者常用两种“归一化”方式：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;按比例（proportion）处理&lt;/strong&gt;：将各 OTU 计数除以总读数。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;稀释抽平（rarefying）&lt;/strong&gt;：随机抽取每个样本相同数量的读数（即归到最小 library size）。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;然而，McMurdie 和 Holmes 指出，这两种方法都存在严重统计缺陷。作者主张，应该使用更先进的统计模型，比如基于负二项分布的差异表达分析方法（edgeR、DESeq），这些方法能更好地处理 library size 差异和数据方差结构。&lt;/p&gt;
+&lt;h2 id=&#34;稀释法的两个主要问题&#34;&gt;稀释法的两个主要问题&lt;/h2&gt;
+&lt;h3 id=&#34;损失统计能力statistical-power&#34;&gt;损失统计能力（statistical power）&lt;/h3&gt;
+&lt;img src=&#34;images/fig1.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;论文通过例子演示了 rarefying 带来的信息损失，例如样本 B 从 1000 个读数降到 100 后，估计微生物丰度比例的方差显著增加，导致对显著性差异的检验能力下降。即使两个样本在真实生态差异上有明显变化，稀释后信号可能被掩盖。&lt;/p&gt;
+&lt;h3 id=&#34;丢弃样本&#34;&gt;丢弃样本&lt;/h3&gt;
+&lt;p&gt;在 rarefying 流程中，通常设定一个最小读数阈值，低于阈值的样本被剔除。例如，如果用 500 读数标准化，而一个 sample 只有 300，则该 sample 会被完全删除。论文中指出，这可能导致有效样本被剔除，从而降低聚类分析或差异检测的结果质量。&lt;/p&gt;
+&lt;h2 id=&#34;替代方案基于负二项分布的混合模型&#34;&gt;替代方案：基于负二项分布的混合模型&lt;/h2&gt;
+&lt;p&gt;论文提出将微生物组计数数据视作负二项分布（Negative Binomial, NB）的一种表现：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;样本 j 的总体读数可视为 Poisson 随机变量。&lt;/li&gt;
+&lt;li&gt;OTU i 在样本 j 的计数$K[i,j] ~ NB(mean = s_j × μ_i, dispersion = φ_i)$，其中$s_j$ 是 library size 缩放因子，$μ_i$ 是 OTU 的相对丰度，$φ_i$ 捕捉 biological variability 和过度离散性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这种模型有三个优点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;统计理论支持：standard 方法来自 RNA-Seq 领域（edgeR、DESeq）。&lt;/li&gt;
+&lt;li&gt;变异估计更准确：考虑方差随着丰度增长而变化，避免样本深度不同导致的 heteroscedasticity。&lt;/li&gt;
+&lt;li&gt;没丢样本：所有样本保留，避免信息丢失。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;此外还提及另一种方法，zero-inflated Gaussian 模型（metagenomeSeq），适合候选 OTU 零计数很多的情况，但在生物重复较少时假阳性率仍然较高。&lt;/p&gt;
+&lt;h2 id=&#34;模拟实验&#34;&gt;模拟实验&lt;/h2&gt;
+&lt;p&gt;McMurdie 和 Holmes 为了系统地评估不同归一化和统计分析方法的性能，精心设计了两类模拟实验，分别聚焦于 &lt;strong&gt;样本聚类准确性&lt;/strong&gt; 与 &lt;strong&gt;差异丰度检出能力&lt;/strong&gt;。这些实验通过真实数据构造，并在可控的干预条件下测试各方法的稳健性与准确度，具有非常强的说服力。&lt;/p&gt;
+&lt;img src=&#34;images/fig2.png&#34; title=&#34;&#34;/&gt;
+&lt;h3 id=&#34;a样本聚类的准确性clustering-accuracy&#34;&gt;A:样本聚类的准确性（Clustering Accuracy）&lt;/h3&gt;
+&lt;p&gt;作者从真实的微生物组数据集中（如“soil”和“ocean”数据）选取样本，构建两个组成明显不同的样本群体，并在这些群体中模拟不同的测序深度（library size），例如一个样本有 10,000 reads，而另一个只有 1,000 reads，反映现实中常见的不平衡情况。&lt;/p&gt;
+&lt;p&gt;接着，他们使用不同的归一化方式处理这些样本，包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;稀释（rarefying）&lt;/strong&gt;：所有样本统一稀释至相同深度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;比例归一化（proportions）&lt;/strong&gt;：每个 OTU 相对其样本总数转换为相对丰度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;基于模型的方法（edgeR / DESeq）&lt;/strong&gt;：使用负二项分布估计归一化因子并建模。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;metagenomeSeq&lt;/strong&gt;：使用零膨胀正态模型（zero-inflated Gaussian）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;归一化后，再对 OTU 表进行距离计算（Bray-Curtis 或 UniFrac），最后进行聚类（如 PAM 或 hierarchical clustering）以观察样本是否能准确归类。&lt;/p&gt;
+&lt;img src=&#34;images/fig4.png&#34; title=&#34;&#34;/&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;稀释法准确率最低&lt;/strong&gt;，尤其当稀释程度较高（即大部分样本初始 read 数远高于稀释阈值）时，稀释过程导致数据大幅减少，聚类准确率明显下降；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;比例归一化方法略好但仍不稳定&lt;/strong&gt;，尤其在物种丰富度差异大时，常低估丰度低但重要的 OTU；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;edgeR 和 DESeq 准确率最高且最稳定&lt;/strong&gt;，能有效识别样本之间真实的结构差异；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;metagenomeSeq 表现介于中间&lt;/strong&gt;，在某些条件下表现尚可，但 replicates 少时不稳定。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这说明：&lt;strong&gt;基于模型的方法不仅能保留样本完整性，还能在复杂多变的测序深度下维持稳定的聚类表现&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;b差异丰度检测能力differential-abundance-detection&#34;&gt;B:差异丰度检测能力（Differential Abundance Detection）&lt;/h3&gt;
+&lt;p&gt;作者构建了一个 OTU 表，其中一部分 OTU 被设定为“差异丰度 OTU”——它们在组 A 与组 B 中的丰度存在系统性差异（如增加 2 倍或 5 倍），而其余 OTU 丰度一致不变。&lt;/p&gt;
+&lt;p&gt;通过不同方法处理这些数据并检测差异 OTU，然后使用 &lt;strong&gt;ROC 曲线和 AUC（Area Under Curve）&lt;/strong&gt; 来衡量每种方法检出真实差异 OTU 的能力与假阳性控制水平。&lt;/p&gt;
+&lt;img src=&#34;images/fig5.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;edgeR 与 DESeq 明显优于其他方法，具体表现为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;AUC 高达 0.95–0.98&lt;/strong&gt;，说明检出真正差异 OTU 的能力极强；&lt;/li&gt;
+&lt;li&gt;假阳性率控制良好，尤其在样本数较多时尤为明显；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;稀释法表现最差&lt;/strong&gt;，不仅灵敏度低（漏检多），而且假阳性率高，尤其当稀释阈值较低时更严重；&lt;/li&gt;
+&lt;li&gt;metagenomeSeq 在 replicates 较多时接近 edgeR，但在 n=2~3 样本时性能急剧下降。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;此外，作者强调，&lt;strong&gt;稀释法带来的最大问题是“有效样本数的减少”&lt;/strong&gt;——本来可以使用 10,000 个 reads 做差异分析，稀释后只剩 1,000 个，等效于用更小的样本重复去估计参数，导致功效大幅下降。&lt;/p&gt;
+&lt;p&gt;McMurdie &amp;amp; Holmes 在文中总结如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;明确反对 rarefying&lt;/strong&gt;：既浪费数据又带来分析偏差，是 inadmissible 的 normalization 方法。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;推荐基于统计混合模型的方法&lt;/strong&gt;：借用 RNA-Seq 的 edgeR、DESeq，甚至 metagenomeSeq。作者还将这些方法整合进 R 包 phyloseq 中，方便微生物组分析。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;树立统计意识&lt;/strong&gt;：研究者应理解 library size、overdispersion 的本质，并采用合适的 GLM（Generalized Linear Model）模型或经验贝叶斯方法，而不是简单采样。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这篇论文自 2014 年发布后对微生物组数据分析流程影响深远：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;推动了差异丰度分析方法的演进，例如 ANCOM、ALDEx2、Songbird 等工具开始强调 compositional data 和统计模型。&lt;/li&gt;
+&lt;li&gt;2024 年，Schloss 又在 mSphere 中重访 rarefying，提出一些更新观点，可视为对这篇论文的回应和延伸。&lt;/li&gt;
+&lt;li&gt;微生物组数据本质是&lt;strong&gt;成分数据（compositional）&lt;/strong&gt;，总和约束 → 需要特殊方法处理，而 NB 模型正是合理起点之一。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;McMurdie, P.J., and Holmes, S. (2014). Waste not, want not: why rarefying microbiome data is inadmissible. PLOS Comput. Biol. 10, e1003531. &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1371/journal.pcbi.1003531&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1371/journal.pcbi.1003531&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        <item>
+        <title>MaAsLin 3：微生物组多变量关联分析</title>
+        <link>https://jb-cao.github.io/Cao-blog/p/maaslin-3/</link>
+        <pubDate>Wed, 02 Jul 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://jb-cao.github.io/Cao-blog/p/maaslin-3/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/maaslin-3/images/git1.png" alt="Featured image of post MaAsLin 3：微生物组多变量关联分析" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;微生物组研究的一个核心问题是识别与特定表型（如健康状况或环境条件）相关的微生物特征。然而，微生物组数据具有&lt;strong&gt;稀疏性&lt;/strong&gt;、&lt;strong&gt;组成性&lt;/strong&gt;和&lt;strong&gt;异方差性&lt;/strong&gt;等特点，使得统计分析面临巨大挑战。近期发表在bioRxiv上的论文《MaAsLin 3: Refining and extending generalized multivariable linear models for meta-omic association discovery》提出了一个强大的解决方案。&lt;/p&gt;
+&lt;h2 id=&#34;maaslin-3文章简介&#34;&gt;MaAsLin 3文章简介&lt;/h2&gt;
+&lt;p&gt;MaAsLin3 (Microbiome Multivariable Associations with Linear Models) 是哈佛大学Huttenhower C.大佬团队开发的微生物组多变量关联分析R包工具，相比前代主要有三大突破：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;同时检测丰度和存在性关联&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;传统方法只能检测微生物相对丰度的变化&lt;/li&gt;
+&lt;li&gt;MaAsLin 3通过分步建模，分别检测：
+&lt;ul&gt;
+&lt;li&gt;存在/缺失（Prevalence）&lt;/li&gt;
+&lt;li&gt;非零时的丰度变化（Abundance）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&#34;images/fig1.png&#34; title=&#34;&#34;/&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;创新的组成性校正方法&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过中位数系数比较策略推断绝对丰度变化&lt;/li&gt;
+&lt;li&gt;支持实验性绝对定量数据（如spike-in）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;扩展的分析能力&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;支持混合效应模型&lt;/li&gt;
+&lt;li&gt;新增有序预测变量分析&lt;/li&gt;
+&lt;li&gt;支持特征特异性协变量（如宏转录组中的DNA丰度）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;性能表现&#34;&gt;性能表现&lt;/h3&gt;
+&lt;p&gt;在模拟数据测试中，MaAsLin 3展现出显著优势：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在50个以上样本时F1分数最高&lt;/li&gt;
+&lt;li&gt;平均精确度≥0.82，优于同类工具&lt;/li&gt;
+&lt;li&gt;系数估计偏差最小（仅-12%）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&#34;images/fig2.png&#34; title=&#34;&#34;/&gt;
+&lt;h3 id=&#34;在ibd研究中的新发现&#34;&gt;在IBD研究中的新发现&lt;/h3&gt;
+&lt;p&gt;应用MaAsLin 3分析HMP2炎症性肠病(IBD)数据库时发现：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;77%的显著关联是存在性（而非丰度）变化&lt;/li&gt;
+&lt;li&gt;确认了成人IBD中Enterocloster spp.的富集&lt;/li&gt;
+&lt;li&gt;首次发现Dysosmobacter welbionis在IBD中的存在性降低&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&#34;images/fig3.png&#34; title=&#34;&#34;/&gt;
+&lt;h3 id=&#34;实际应用建议&#34;&gt;实际应用建议&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;数据类型选择&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优先使用spike-in或qPCR绝对定量数据&lt;/li&gt;
+&lt;li&gt;相对丰度数据需启用中位数校正&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;模型设定&lt;/strong&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-R&#34; data-lang=&#34;R&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 基础模型&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;maaslin3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;input_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;features&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;input_metadata&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;normalization&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;TSS&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;transform&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;LOG&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;analysis_method&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;LM&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;结果解读&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;关注q-value&amp;lt;0.1且|β|&amp;gt;1的关联&lt;/li&gt;
+&lt;li&gt;区分丰度与存在性变化的生物学意义&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;使用教程&#34;&gt;使用教程&lt;/h2&gt;
+&lt;p&gt;官方教程：&lt;a class=&#34;link&#34; href=&#34;https://github.com/biobakery/biobakery/wiki/MaAsLin3&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/biobakery/biobakery/wiki/MaAsLin3&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;安装maaslin-3&#34;&gt;安装MaAsLin 3&lt;/h3&gt;
+&lt;p&gt;最新开发版的MaAsLin 3可通过devtools工具包从GitHub安装。&lt;/p&gt;
+&lt;p&gt;稳定版MaAsLin 3可通过BiocManager安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-R&#34; data-lang=&#34;R&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;BiocManager&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;quietly&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;install.packages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;BiocManager&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;BiocManager&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;install&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;remotes&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;BiocManager&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;install&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;biobakery/maaslin3&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;运行前需加载依赖库：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-R&#34; data-lang=&#34;R&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lib&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;maaslin3&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;dplyr&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;ggplot2&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;knitr&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;kableExtra&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;suppressPackageStartupMessages&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lib&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;character.only&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;使用maaslin-3进行微生物组关联分析&#34;&gt;使用MaAsLin 3进行微生物组关联分析&lt;/h3&gt;
+&lt;p&gt;运行MaAsLin 3需要提供以下数据：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;样本特征丰度表（需保留零值）&lt;/li&gt;
+&lt;li&gt;样本元数据表&lt;/li&gt;
+&lt;li&gt;指定元数据与特征存在率（特征出现概率）及丰度（存在时的数量级）关系的公式或固定效应（可添加随机效应）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;输出结果包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;关联分析表（含每个特征-元数据组合的效应量及p值）&lt;/li&gt;
+&lt;li&gt;可视化文件夹（含显著关联的摘要图及诊断图）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;输入文件要求&#34;&gt;输入文件要求&lt;/h4&gt;
+&lt;p&gt;需准备两个输入文件：&lt;/p&gt;
+&lt;p&gt;1.特征丰度数据框&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;格式1：列=特征，行=样本&lt;/li&gt;
+&lt;li&gt;格式2：行=特征，列=样本（转置格式亦可）&lt;/li&gt;
+&lt;li&gt;特征类型：分类单元或基因（支持相对丰度或绝对计数）&lt;/li&gt;
+&lt;li&gt;可接受制表符分隔的文件路径&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2.元数据数据框&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;格式1：列=变量，行=样本&lt;/li&gt;
+&lt;li&gt;格式2：行=变量，列=样本（转置格式亦可）&lt;/li&gt;
+&lt;li&gt;变量类型：性别、年龄等&lt;/li&gt;
+&lt;li&gt;可接受制表符分隔的文件路径&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;注意事项：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;允许存在仅出现在一个文件中的样本，分析时会自动剔除不匹配样本&lt;/li&gt;
+&lt;li&gt;两个文件的样本顺序无需一致，程序会自动对齐&lt;/li&gt;
+&lt;li&gt;含NA值的样本在模型拟合时会被排除，建议在随机缺失假设下预先剔除或使用多重插补处理&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;示例文件说明：
+示例数据来自人类微生物组计划2（HMP2），存放于MaAsLin 3源码的inst/extdata目录或教程文件库：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HMP2_taxonomy.tsv：物种丰度子集（行=样本，列=物种）&lt;/li&gt;
+&lt;li&gt;HMP2_metadata.tsv：元数据子集（行=样本，列=变量）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数据读取与预处理：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 读取物种丰度表&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;taxa_table_name&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;system.file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;extdata&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;HMP2_taxonomy.tsv&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;maaslin3&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;taxa_table&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;read.csv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;taxa_table_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sep&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;\t&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;row.names&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 读取元数据表&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;metadata_name&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;system.file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;extdata&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;HMP2_metadata.tsv&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;maaslin3&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;read.csv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;metadata_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sep&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;\t&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;row.names&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 分类变量因子化（用于IBD与健康对照比较）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;diagnosis&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;factor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;diagnosis&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;levels&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;nonIBD&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;UC&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;CD&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dysbiosis_state&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;factor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dysbiosis_state&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;levels&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;none&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;dysbiosis_UC&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;dysbiosis_CD&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;antibiotics&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nf&#34;&gt;factor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;antibiotics&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;levels&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#39;No&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;Yes&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 查看数据结构&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;taxa_table[1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##            Phocaeicola_vulgatus Faecalibacterium_prausnitzii
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3N_P            0.4265226                  0.060255109
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3R_P            0.5369584                  0.007396904
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3T_P            0.5911821                  0.000000000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3V_P            0.2661378                  0.029680329
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3X_P            0.6601039                  0.003596740
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##            Bacteroides_uniformis Prevotella_copri_clade_A Bacteroides_stercoris
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3N_P           0.269241131               0.0000e+00           0.000000000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3R_P           0.252604847               0.0000e+00           0.008390958
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3T_P           0.000000000               0.0000e+00           0.000000000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3V_P           0.400426526               0.0000e+00           0.000000000
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3X_P           0.000880428               1.3081e-05           0.001335669
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;metadata[1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;##            participant_id    site_name week_num    reads diagnosis
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3N_P          C3001 Cedars-Sinai        0  9961743        CD
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3R_P          C3001 Cedars-Sinai        2 16456391        CD
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3T_P          C3002 Cedars-Sinai        0 10511448        CD
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3V_P          C3001 Cedars-Sinai        6 17808965        CD
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## CSM5FZ3X_P          C3002 Cedars-Sinai        2 13160893        CD
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;运行maaslin-3分析&#34;&gt;运行MaAsLin 3分析&lt;/h4&gt;
+&lt;p&gt;MaAsLin 3的运行需要指定以下参数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;丰度表（&lt;code&gt;input_data&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;元数据表（&lt;code&gt;input_metadata&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;输出目录（&lt;code&gt;output&lt;/code&gt;）&lt;/li&gt;
+&lt;li&gt;分析模型（可通过公式或变量向量指定）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;模型构建方式&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;公式法&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;遵循lme4语法规范，可包含：
+&lt;ul&gt;
+&lt;li&gt;固定效应&lt;/li&gt;
+&lt;li&gt;随机效应&lt;/li&gt;
+&lt;li&gt;交互项&lt;/li&gt;
+&lt;li&gt;多项式项&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;分类变量作为固定效应时，各水平将与首个因子水平对比&lt;/li&gt;
+&lt;li&gt;支持特殊声明：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;group(variable_name)&lt;/code&gt;：分组预测变量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ordered(variable_name)&lt;/code&gt;：有序预测变量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;strata(variable_name)&lt;/code&gt;：配对样本的条件逻辑回归&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;向量法&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过以下参数指定变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;fixed_effects&lt;/code&gt;：固定效应&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;random_effects&lt;/code&gt;：随机效应&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;group_effects&lt;/code&gt;：分组变量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ordered_effects&lt;/code&gt;：有序变量&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;strata_effects&lt;/code&gt;：配对变量&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;注意事项：
+&lt;ul&gt;
+&lt;li&gt;需使用列名而非&lt;code&gt;$&lt;/code&gt;符号引用变量&lt;/li&gt;
+&lt;li&gt;分类变量需预先因子化，或通过&lt;code&gt;&#39;变量,参考水平;...&#39;&lt;/code&gt;格式指定（如&lt;code&gt;diagnosis,nonIBD;antibiotics,No&lt;/code&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;重要建议&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当存在测序深度数据时，应将其作为协变量纳入模型（&lt;code&gt;reads&lt;/code&gt;参数），以避免因测序深度差异导致的假阳性关联&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;hmp2数据实战示例&#34;&gt;HMP2数据实战示例&lt;/h4&gt;
+&lt;p&gt;以下代码演示如何分析微生物物种与IBD诊断的关联，同时控制抗生素使用、年龄和测序深度的影响：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;set.seed&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;fit_out&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;maaslin3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;input_data&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;taxa_table&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;input_metadata&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;metadata&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;hmp2_output&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;formula&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;~ diagnosis + dysbiosis_state + antibiotics + age + reads&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;normalization&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;TSS&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;       &lt;span class=&#34;c1&#34;&gt;# 总丰度标准化&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;transform&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#39;LOG&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;           &lt;span class=&#34;c1&#34;&gt;# 对数转换&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;augment&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;              &lt;span class=&#34;c1&#34;&gt;# 启用数据增强（解决逻辑回归线性可分问题）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;standardize&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;          &lt;span class=&#34;c1&#34;&gt;# 连续变量Z-score标准化&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;max_significance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;      &lt;span class=&#34;c1&#34;&gt;# FDR阈值设为0.1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;median_comparison_abundance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;# 丰度系数与中位数比较（应对组成性效应）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;median_comparison_prevalence&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;FALSE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;# 存在率系数与0比较&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;max_pngs&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;250&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;              &lt;span class=&#34;c1&#34;&gt;# 最大可视化结果数&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;cores&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;                    &lt;span class=&#34;c1&#34;&gt;# 单核运行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;关键参数解析&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;标准化与转换&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;TSS&lt;/code&gt;+&lt;code&gt;LOG&lt;/code&gt;组合是推荐配置，其他选项详见&lt;code&gt;?maaslin3&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;统计检验策略&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;丰度关联：默认与特征的中位数系数比较（&lt;code&gt;median_comparison_abundance=TRUE&lt;/code&gt;），适用于相对丰度数据&lt;/li&gt;
+&lt;li&gt;存在率关联：默认与0比较（&lt;code&gt;median_comparison_prevalence=FALSE&lt;/code&gt;）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;适用场景建议&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;关闭中位数比较的情况：
+&lt;ul&gt;
+&lt;li&gt;研究相对丰度关联&lt;/li&gt;
+&lt;li&gt;假设总绝对丰度不变时的绝对关联分析&lt;/li&gt;
+&lt;li&gt;使用spike-in或未标准化丰度数据时&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;输出控制&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;默认输出详细日志，可通过&lt;code&gt;verbosity = &#39;WARN&#39;&lt;/code&gt;减少输出&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;中位数比较机制详解&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;当启用&lt;code&gt;median_comparison&lt;/code&gt;时：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;丰度系数&lt;/strong&gt;：与所有特征在该元数据上的中位数系数对比，抵消组成性效应
+&lt;ul&gt;
+&lt;li&gt;仅影响p值/q值计算（除非设置&lt;code&gt;subtract_median=TRUE&lt;/code&gt;才会修正系数值）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;存在率系数&lt;/strong&gt;：通常保持与0比较，因其不受组成性影响&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;该设计确保了：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;相对丰度数据可推断绝对丰度变化&lt;/li&gt;
+&lt;li&gt;避免因技术偏差（如测序深度）导致的假关联&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;3.3 MaAsLin 3 输出结果解析&lt;br&gt;
+MaAsLin 3的输出包含数据文件和可视化图表两类，完整示例可参考教程文件库中的HMP2分析结果。&lt;/p&gt;
+&lt;h4 id=&#34;核心结果文件&#34;&gt;核心结果文件&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;1. 显著性关联表 (&lt;code&gt;significant_results.tsv&lt;/code&gt;)&lt;/strong&gt;&lt;br&gt;
+按q值升序列出所有通过显著性检验的关联，字段说明：&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;字段&lt;/th&gt;
+          &lt;th&gt;说明&lt;/th&gt;
+          &lt;th&gt;示例值&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;feature&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;微生物特征名&lt;/td&gt;
+          &lt;td&gt;Phocaeicola_sartorii&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;metadata&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;元数据变量名&lt;/td&gt;
+          &lt;td&gt;reads&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;coef&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;效应量系数&lt;/td&gt;
+          &lt;td&gt;1.095&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;- 丰度模型：表示元数据每增加1单位，特征相对丰度的2^coef倍变化&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;- 存在率模型：表示对数几率（log-odds）的变化量&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+          &lt;td&gt;&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;null_hypothesis&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;零假设值（0或中位数）&lt;/td&gt;
+          &lt;td&gt;0&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;qval_individual&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;个体检验FDR校正q值&lt;/td&gt;
+          &lt;td&gt;1.06E-40&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;qval_joint&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;联合检验q值（基于Beta(1,2)分布计算）&lt;/td&gt;
+          &lt;td&gt;1.14E-40&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;model&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;模型类型（abundance/prevalence）&lt;/td&gt;
+          &lt;td&gt;prevalence&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;完整输出文件结构&#34;&gt;完整输出文件结构&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;数据文件&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;文件/目录&lt;/th&gt;
+          &lt;th&gt;内容&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;all_results.tsv&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;全量关联结果（含错误信息）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;features/&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;处理后的特征表（过滤→标准化→转换）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;models_*.rds&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;模型对象（需&lt;code&gt;save_models=TRUE&lt;/code&gt;）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;residuals_*.rds&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;模型残差（线性模型为普通残差，逻辑模型为偏差残差）&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;&lt;code&gt;maaslin3.log&lt;/code&gt;&lt;/td&gt;
+          &lt;td&gt;完整运行日志（含参数设置与报错信息）&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;可视化文件&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;摘要图 (&lt;code&gt;summary_plot.pdf&lt;/code&gt;)&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;左：系数热图（*表示q&amp;lt;0.1，**表示q&amp;lt;0.01）&lt;/li&gt;
+&lt;li&gt;右：显著关联的效应量排序图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&#34;images/git1.png&#34; title=&#34;&#34;/&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;&lt;strong&gt;关联详图 (&lt;code&gt;association_plots/&lt;/code&gt;)&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;连续变量：散点图（丰度）或箱线图（存在率）&lt;/li&gt;
+&lt;li&gt;分类变量：箱线图（丰度）或网格图（存在率）&lt;/li&gt;
+&lt;li&gt;图表右上角标注：q值、总样本数、非零样本数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&#34;images/git2.png&#34; title=&#34;&#34;/&gt;
+&lt;h4 id=&#34;诊断与验证要点&#34;&gt;诊断与验证要点&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;错误排查&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;检查&lt;code&gt;all_results.tsv&lt;/code&gt;的&lt;code&gt;error&lt;/code&gt;列：模型拟合失败会标记错误&lt;/li&gt;
+&lt;li&gt;启用&lt;code&gt;warn_prevalence=TRUE&lt;/code&gt;时，存在率关联可能受丰度影响（需通过可视化验证）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;有效性验证&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;分类变量：每组至少10个样本（丰度模型）且存在/缺失样本均≥10（存在率模型）&lt;/li&gt;
+&lt;li&gt;连续变量：通过散点图检查异常值影响&lt;/li&gt;
+&lt;li&gt;超大系数（|coef|&amp;gt;15）：需验证：
+&lt;ul&gt;
+&lt;li&gt;样本量充足（建议样本数≥10×变量数）&lt;/li&gt;
+&lt;li&gt;元数据无多重共线性&lt;/li&gt;
+&lt;li&gt;随机效应设置合理&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;多重检验校正&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;默认对所有关联进行FDR校正，若需聚焦特定变量，可单独校正目标p值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;结果重绘功能&#34;&gt;结果重绘功能&lt;/h4&gt;
+&lt;p&gt;通过&lt;code&gt;maaslin_plot_results_from_output&lt;/code&gt;可重新生成图表（无需原始R对象）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-R&#34; data-lang=&#34;R&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 示例：指定热图与系数图的元数据变量&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;maaslin_plot_results_from_output&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;output_dir&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;hmp2_output&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;heatmap_vars&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;diagnosis&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;dysbiosis_state&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;coef_plot_vars&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;age&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;reads&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;更多高级功能，请查看&lt;a class=&#34;link&#34; href=&#34;https://github.com/biobakery/biobakery/wiki/MaAsLin3#4-advanced-topics&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/biobakery/biobakery/wiki/MaAsLin3#4-advanced-topics&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;references&#34;&gt;References&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Nickols, W.A., Kuntz, T., Shen, J., Maharjan, S., Mallick, H., Franzosa, E.A., Thompson, K.N., Nearing, J.T., and Huttenhower, C. (2024). MaAsLin 3: refining and extending generalized multivariable linear models for meta-omic association discovery. Preprint at bioRxiv, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1101/2024.12.13.628459&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1101/2024.12.13.628459&lt;/a&gt; &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1101/2024.12.13.628459&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1101/2024.12.13.628459&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a class=&#34;link&#34; href=&#34;https://github.com/biobakery/biobakery/wiki/MaAsLin3&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/biobakery/biobakery/wiki/MaAsLin3&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

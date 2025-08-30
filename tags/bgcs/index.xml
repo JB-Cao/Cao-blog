@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>BGCs on Cao&#39;s blog</title>
+        <link>https://jb-cao.github.io/Cao-blog/tags/bgcs/</link>
+        <description>Recent content in BGCs on Cao&#39;s blog</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <lastBuildDate>Sun, 27 Apr 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://jb-cao.github.io/Cao-blog/tags/bgcs/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>BGCkit：组学数据BGC分析流程</title>
+        <link>https://jb-cao.github.io/Cao-blog/p/bgckit-bgc/</link>
+        <pubDate>Sun, 27 Apr 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://jb-cao.github.io/Cao-blog/p/bgckit-bgc/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>使用BiG-SLiCE高效聚类大规模BGCs</title>
+        <link>https://jb-cao.github.io/Cao-blog/p/big-slice-bgcs/</link>
+        <pubDate>Thu, 27 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://jb-cao.github.io/Cao-blog/p/big-slice-bgcs/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/big-slice-bgcs/images/bgc_intro.png" alt="Featured image of post 使用BiG-SLiCE高效聚类大规模BGCs" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;随着基因组挖掘技术的进步，生物合成基因簇（BGCs）的研究已成为天然产物发现的核心环节。目前，超过20万个公开的微生物基因组中蕴藏着丰富的化学多样性信息。然而，现有的工具在处理大规模BGCs时，常因基于网络的聚类方法效率低下而面临瓶颈。&lt;/p&gt;
+&lt;p&gt;BiG-SLiCE（Biosynthetic Gene clusters - Super Linear Clustering Engine） 应运而生，这是一款专为高效聚类大规模BGCs而设计的工具。它通过将BGCs映射到欧几里得空间，以近乎线性的方式将BGCs分组为基因簇家族（GCFs）。在短短10天内，BiG-SLiCE成功分析了来自209,206个微生物基因组和宏基因组组装基因组（MAGs）的1,225,071个BGCs，并构建了全球次级代谢多样性的分布图谱，揭示了未被开发的生物合成潜力。此外，BiG-SLiCE还提供了“查询模式”，能够快速将新测序的BGCs归类到已有的GCFs中，并配备了强大的可视化引擎，便于用户探索数据。这一工具不仅加速了天然产物的发现，还为构建全球可搜索的BGC网络奠定了基础。&lt;/p&gt;
+&lt;p&gt;BiG-SLiCE的开源地址：https://github.com/medema-group/bigslice&lt;/p&gt;
+&lt;img src=&#34;images/bgc_intro.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;BGCs（以及GCFs）与催化酶及其编码途径产生的化合物直接相关，因此可以作为探索微生物次级代谢化学空间的代理。通过编目所有已测序微生物基因组中的GCFs，可以全面了解现有的化学多样性，并为未来的先导化合物发现提供方向。例如，可以重点关注具有新颖潜力的物种，或识别已知抗生素生产BGC的天然变体。然而，进行此类全球分析需要能够处理海量数据的聚类算法。尽管过去五年中工具的处理能力有所提升（从2014年的11,000–33,000个BGCs到2019年的73,260个），但与当前可用数据量相比仍显不足。截至2020年3月27日，antiSMASH-DB和IMG-ABC两大BGC数据库共包含565,096个BGCs，预测自85,221个细菌基因组。若考虑未覆盖的基因组和宏基因组，这一数字将更大。例如，NCBI RefSeq数据库中的约180,000个细菌基因组可能产生超过1,000,000个BGCs。&lt;/p&gt;
+&lt;p&gt;处理如此大规模的数据集，即使是目前最快的工具（如BiG-SCAPE）在36核CPU上也需要约37,000小时运行时间，这在实际中几乎不可行。主要瓶颈在于构建相似性网络和聚类分析时使用的成对BGC比较方法，其时间复杂度为O(n²)。因此，迫切需要一种能够更好适应基因组数据增长的替代方法。为此，研究者开发了&lt;strong&gt;BiG-SLiCE&lt;/strong&gt;（Biosynthetic Genes Super-Linear Clustering Engine），它将BGCs映射到欧几里得空间，采用分区聚类算法，时间复杂度接近线性[∼O(n)]，从而能够快速分析大规模BGC数据集，实现真正全球化的GCF分析。&lt;/p&gt;
+&lt;img src=&#34;images/method.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;为了实现大规模分析，&lt;strong&gt;BiG-SLiCE&lt;/strong&gt;在设计时将&lt;strong&gt;可扩展性和速度&lt;/strong&gt;作为首要目标。与之前的工具&lt;strong&gt;BiG-SCAPE&lt;/strong&gt;（能够敏感捕捉BGCs之间域结构和序列相似性的细微差异）不同，BiG-SLiCE能够在36核CPU、128GB内存的机器上，以不到一周的时间处理超过120万个BGCs的输入数据，同时保持足够的灵敏度以区分输入BGCs中的关键生物合成“信号”。此外，为了便于用户探索和分析结果，BiG-SLiCE还提供了交互式、易于使用的可视化输出，且对软硬件要求极低。&lt;/p&gt;
+&lt;h2 id=&#34;installation&#34;&gt;Installation&lt;/h2&gt;
+&lt;p&gt;安装方法非常简单，用以下两种选一个即可&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;从PyPI安装（稳定版）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install bigslice
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;&lt;strong&gt;从源码安装（开发版——仅适用于熟悉操作的用户）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install git+https://github.com/medema-group/bigslice.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后下载最新的HMM模型（约271MB压缩文件）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;download_bigslice_hmmdb
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果感觉下载太慢了，也可以手动下载：&lt;a class=&#34;link&#34; href=&#34;https://github.com/medema-group/bigslice/releases/download/v2.0.0rc/bigslice-models.2022-11-30.tar.gz&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/medema-group/bigslice/releases/download/v2.0.0rc/bigslice-models.2022-11-30.tar.gz&lt;/a&gt;，下载后重命名为bigslice_models.tar.gz放到&lt;code&gt;whcih download_bigslice_hmmdb&lt;/code&gt;的统一目录下再运行即可，就会跳过下载步骤。&lt;/p&gt;
+&lt;p&gt;最后检查安装是否成功&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bigslice --version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;成功安装后，将显示如下信息：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;==============
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;BiG-SLiCE version 2.0.0
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;HMM databases version: bigslice-models-2022-11-30
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Biosynthetic-pfam md5: 37495cac452bf1dd8aff2c4ad92065fe
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Sub-pfam md5: 2e6b41d06f3c318c61dffb022798091e
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;==============
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+&lt;h3 id=&#34;big-slice-运行模式&#34;&gt;BiG-SLiCE 运行模式&lt;/h3&gt;
+&lt;h4 id=&#34;heading&#34;&gt;&lt;strong&gt;[模式1] 聚类分析&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;解析输入数据集，构建GCF模型（BIRCH聚类），并根据指定阈值（T）进行成员分配。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参数说明&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-i|--input_folder &amp;lt;folder_path&amp;gt;&lt;/code&gt;：输入文件夹路径，需包含 &lt;code&gt;datasets.tsv&lt;/code&gt; 文件及数据集子文件夹。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--resume&lt;/code&gt;：继续上一次的聚类运行（不要与 &lt;code&gt;--input_folder&lt;/code&gt; 同时使用）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--complete&lt;/code&gt;：构建GCF模型时，仅使用完整的BGCs（antiSMASH &amp;gt; 4.2 标注为 &lt;code&gt;on_contig_edge = False&lt;/code&gt; 的BGCs）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--threshold&lt;/code&gt;：用于GCF模型构建（BIRCH算法）和成员分配的聚类阈值（T）。与 &lt;code&gt;--threshold_pct&lt;/code&gt; 互斥，使用 &lt;code&gt;-1&lt;/code&gt; 关闭此参数（默认：300）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--threshold_pct&lt;/code&gt;：基于数据间成对距离的随机采样计算聚类阈值（T），取第N百分位值作为阈值。与 &lt;code&gt;--threshold&lt;/code&gt; 互斥，使用 &lt;code&gt;-1&lt;/code&gt; 关闭此参数（默认：-1）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;heading-1&#34;&gt;&lt;strong&gt;[模式2] GCF查询&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;基于[模式1]生成的GCF模型，从输入文件夹中的BGC GenBank文件中提取特征并进行成员分配。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参数说明&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--query &amp;lt;folder_path&amp;gt;&lt;/code&gt;：输入文件夹路径，需包含所有BGC的GenBank文件（支持antiSMASH4的 &lt;code&gt;clusterXXX.gbk&lt;/code&gt;、antiSMASH5的 &lt;code&gt;regionXXX.gbk&lt;/code&gt; 或MIBiG ≥ 2.0的 &lt;code&gt;BGCXXXXXXX.gbk&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--query_name&lt;/code&gt;：为查询运行指定唯一名称，便于在输出可视化中追踪。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;heading-2&#34;&gt;&lt;strong&gt;[模式1+2] 通用参数&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;适用于聚类和查询模式的参数。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;参数说明&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--run_id&lt;/code&gt;：指定运行ID进行查询（或继续聚类），而非使用最新运行（可在输出可视化中查看运行ID列表）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--n_ranks &amp;lt;N_RANKS&amp;gt;&lt;/code&gt;：为每个BGC的成员分配过程取N个最佳GCF匹配（默认：5）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--program_db_folder &amp;lt;PROGRAM_DB_FOLDER&amp;gt;&lt;/code&gt;：HMM库路径（默认：&lt;code&gt;/mnt/local_scratch/kauts001/general-env/bin/bigslice-models&lt;/code&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;cpuram优化&#34;&gt;&lt;strong&gt;CPU/RAM优化&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-t|--num_threads&lt;/code&gt;：并行运行的作业数（默认：56）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--hmmscan_chunk_size&lt;/code&gt;：将 &lt;code&gt;biosyn_pfam&lt;/code&gt; 扫描拆分为每组N个BGCs的块（默认：100）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--subpfam_chunk_size&lt;/code&gt;：将 &lt;code&gt;sub_pfam&lt;/code&gt; 扫描拆分为每组N个BGCs的块（默认：100）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--extraction_chunk_size &amp;lt;EXTRACTION_CHUNK_SIZE&amp;gt;&lt;/code&gt;：将特征提取拆分为每组N个BGCs的块（默认：100）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--scratch&lt;/code&gt;：不将Sqlite3数据库加载到内存中（降低RAM使用，但可能降低速度）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;misc-其他可选参数&#34;&gt;[Misc] 其他可选参数：&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-h, --help&lt;/code&gt;
+显示帮助信息。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--export-tsv &amp;lt;folder_path&amp;gt;&lt;/code&gt;
+将现有的预计算输出数据导出为TSV格式文件（指定目标文件夹路径）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--program_db_folder PROGRAM_DB_FOLDER&lt;/code&gt;
+指定HMM库的路径（默认路径：/share/home/jianglab/pengchen/miniconda3/envs/antismash_5.2.0/bin/bigslice-models）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--version&lt;/code&gt;
+显示BiG-SLiCE的版本信息。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;example&#34;&gt;Example&lt;/h3&gt;
+&lt;p&gt;可以使用提供的示例输入文件夹进行“最小化”测试运行：&lt;/p&gt;
+&lt;p&gt;下载&lt;a class=&#34;link&#34; href=&#34;https://github.com/medema-group/bigslice/tree/master/misc/input_folder_template&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://github.com/medema-group/bigslice/tree/master/misc/input_folder_template&lt;/a&gt;这个文件夹，里面只有1个dataset，1个genome，2个gbk。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bigslice -i input_folder_template/ test_out/
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这里我遇到了一个问题：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;AttributeError: &amp;#39;pyhmmer.plan7.TopHits&amp;#39; object has no attribute &amp;#39;query_accession&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;应该是pyhmmer的版本问题，我尝试安装v0.10.7版本后解决：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install pyhmmer==0.10.7
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;通过以上步骤，可以轻松安装并运行 BiG-SLiCE，开始大规模 BGC 聚类分析！我测试了运行了2min，消耗内存160MB&lt;/p&gt;
+&lt;h3 id=&#34;input-files&#34;&gt;Input files&lt;/h3&gt;
+&lt;p&gt;为了充分利用BiG-SLiCE的强大功能，其输入的BGC文件需要按数据集和基因组的结构进行组织。一个典型的输入文件夹可能如下所示：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;input_folder/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── datasets.tsv
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── dataset_1/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── genome_1A/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── genome_1A.region001.gbk
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   ├── genome_1A.region002.gbk
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   │   └── ...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── genome_1B/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── ...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── dataset_2/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── genome_2A/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── ...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── dataset_3/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── genome_3A/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── ...
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└── taxonomy/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├── taxonomy_dataset_1.tsv
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ├── taxonomy_dataset_2.tsv
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    └── ...
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;datasets.tsv 文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;该文件需要严格命名为 datasets.tsv，并放置在输入文件夹的根目录中。它是一个描述所有BGC元数据的文件，BiG-SLiCE使用它来解析输入文件夹中的所有BGC数据。该文件应该是一个以制表符分隔的文件（.tsv），每一行按以下顺序包含以下内容：
+•	数据集名称
+•	数据集文件夹的路径（相对于输入文件夹根目录的路径）
+•	分类信息文件路径（见 &amp;lt;taxonomy_X.tsv&amp;gt; 文件）
+•	数据集描述&lt;/p&gt;
+&lt;p&gt;以 # 开头的行将被解析器跳过，因此可以用来定义表头等。可以从代码库下载一个模板 datasets.tsv 文件作为起始点。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;lt;dataset_X&amp;gt; 文件夹&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数据集是BiG-SLiCE中用来分组基因组和BGCs的灵活分类方案。例如，可以根据样本来源将Metagenome-Assembled Genomes（MAGs）归为一个数据集，也可以根据原始文献将基因组和MAGs归类，用于元分析研究。每个数据集文件夹下应直接包含基因组文件夹。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;lt;genome_X&amp;gt; 文件夹与 &amp;lt;genome_X.regionXXX.gbk&amp;gt; 文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些文件夹是由antiSMASH运行产生的输出文件夹，包含 &amp;lt;genome_name&amp;gt;.regionXXX.gbk（antiSMASH 5）或 &amp;lt;genome_name&amp;gt;.clusterXXX.gbk（antiSMASH 4）文件。此外，MIBiG &amp;gt;= 2.0格式的文件（名为 BGCXXXXXXX.gbk，可以通过“Download GenBank summary file”获取）也被BiG-SLiCE接受。请确保不修改这些命名格式，因为BiG-SLiCE依赖它们快速区分集群文件（clustergbks）和常规基因组文件。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;lt;taxonomy_X.tsv&amp;gt; 文件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;虽然可以从antiSMASH 5（和MIBiG &amp;gt;= 2.0）生成的cluster genbank文件中提取分类信息（因为这些文件保留了原始基因组的注释），但这些信息并没有统一的方式来为提供的分类名（通常是分号分隔的 ;）指定等级（如：界、门、纲、目、科、属、种等）。为了确保最佳的注释质量和分析结果，BiG-SLiCE要求用户为每个数据集手动提供分类学元数据（如果可能的话），并以制表符分隔的文件（.tsv）格式包含以下内容（按照此顺序）：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Genome folder name (ends with &amp;#39;/&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Kingdom / Domain name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Class name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Order name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Family name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Genus name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Species name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Organism / Strain name
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;为了确保所有数据集中的分类名称一致，建议使用相同的参考数据库为分类名称指定等级。为了帮助用户自动化这一过程，BiG-SLiCE提供了一些Python脚本，可以基于原始输入基因组（而非集群基因组文件）使用GTDB工具包为分类信息赋予等级（此脚本仅适用于完整的古菌和细菌基因组，下载脚本）。如果基因组来自NCBI RefSeq/GenBank（即具有GCF_*或GCA_*号的基因组），可以使用此脚本从GTDB API提取分类信息。&lt;/p&gt;
+&lt;h3 id=&#34;output&#34;&gt;Output&lt;/h3&gt;
+&lt;p&gt;输出文件夹结构：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;test_out/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── app
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── config.py
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── controllers
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── __init__.py
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── __pycache__
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── run.py
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── static
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── views
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── LICENSE.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;├── result
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── cache
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   ├── data.db
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;│   └── tmp
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;└── start_server.sh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;直接这样的输出db文件是很难查看的，新版介绍可以用&lt;code&gt;--export-tsv&lt;/code&gt;导出表格，&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-gdscript3&#34; data-lang=&#34;gdscript3&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;bigslice&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;test_out&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;export&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tsv&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;test_out&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;result_tsv&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;但是目前有&lt;code&gt;AttributeError: &#39;tuple&#39; object has no attribute &#39;values&#39;&lt;/code&gt;的报错，官方还没解决。但是可以自己使用sqlite3对结果的data.db文件进行查看和文件导出。&lt;/p&gt;
+&lt;p&gt;或者使用用户交互输出：&lt;/p&gt;
+&lt;p&gt;BiG-SLiCE的输出文件夹包含处理后的输入数据（以SQLite3数据库文件的形式）以及一些脚本，这些脚本支持一个小型的Web应用程序来可视化这些数据。要运行该可视化引擎，按照以下步骤操作：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;安装Web应用的依赖包：
+首先，确保安装了所需的依赖包。运行以下命令来安装requirements.txt中列出的所有依赖：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pip install -r &amp;lt;output_folder&amp;gt;/requirements.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;启动Flask服务器：
+然后，通过以下命令启动Flask服务器：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bash &amp;lt;output_folder&amp;gt;/start_server.sh &amp;lt;port(可选)&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;默认情况下，服务器会在端口5000上启动。如果需要自定义端口，可以在命令中指定端口号。&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;打开浏览器访问：
+启动服务器后，浏览器将显示如下信息：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)&lt;/p&gt;
+&lt;p&gt;在浏览器中输入 http://0.0.0.0:5000 即可访问Web应用进行数据可视化。&lt;/p&gt;
+&lt;p&gt;通过上述步骤，您可以轻松启动BiG-SLiCE的可视化应用，查看处理结果和数据分析图表，如下图所示：&lt;/p&gt;
+&lt;img src=&#34;images/web.png&#34; title=&#34;&#34;/&gt;
+&lt;h2 id=&#34;bgc-atlas&#34;&gt;BGC Atlas&lt;/h2&gt;
+&lt;p&gt;上次提到过的&lt;a class=&#34;link&#34; href=&#34;../bgc-atlas&#34; &gt;BGC Atlas&lt;/a&gt;，那个数据库用的就是BiG-SLiCE的输出结果。该数据库可供下载的有这几个文件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;complete-bgcs.tar.gz
+A tarball containing the GBK files for only the complete BGC (3.5GB).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;all-bgcs.tar.gz
+A tarball containing the GBK files for all BGCs (13GB).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;bigslice_2.0.0_T0.4_16April.tar.gz
+A tarball containing the BiG-SliCE clustering of complete BGCs (2.0 GB).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;atlas_17_07_2004.sql
+The sql dump of the BGC-Atlas database (2.0 GB).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;bigslice_2.0.0_T0.4_16April.tar.gz文件解压后就是BiG-SLiCE的输出文件夹，里面有result文件夹，里面有data.db文件，这个就是BiG-SLiCE处理后的数据库文件。&lt;/p&gt;
+&lt;p&gt;另外atlas_17_07_2004.sql里面有所有用到的宏基因组metadata，但它是个PostgreSQL database dump，作为文本文件可以直接打开，但不好转换为数据库或是表格，需要用一下postgresql。&lt;/p&gt;
+&lt;h3 id=&#34;使用案例&#34;&gt;使用案例&lt;/h3&gt;
+&lt;p&gt;比如我们自己产生的BGC想要和BGC Atlas进行比较，就可以用[模式2] GCF查询：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;bigslice --query gbk_files/ --query_name test_MAGs bigslice_2.0.0_T0.4_16April/ -t &lt;span class=&#34;m&#34;&gt;8&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后就会在big_slice_test_out目录下产生一个report文件夹（如果原来没有的话），report文件夹下可以找到自己本次运行的结果。可以考虑用户交互输出或用数据库软件查看结果。&lt;/p&gt;
+&lt;p&gt;主要是查看distance（membership_value）这一列，按默认定义的话&amp;lt;0.4才可以认为我们的query和数据库已有的部分聚成了GCF。&lt;/p&gt;
+&lt;p&gt;然后我们可以查看相应的GCF中有哪些BGCs以及所对应的metadata：&lt;/p&gt;
+&lt;p&gt;比如我们的BGC和BGC Atlas中的GCF 13734的distance&amp;lt;0.4，可以认为也是GCF 13734的一员，然后快速的方法是去官网查询&lt;a class=&#34;link&#34; href=&#34;https://bgc-atlas.cs.uni-tuebingen.de/bgcs?gcf=13734&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://bgc-atlas.cs.uni-tuebingen.de/bgcs?gcf=13734&lt;/a&gt;，可以看到一共有258条核心BGC，我们可以下载相应的metadata（一次最多1000条），然后和我们的进行比较分析。&lt;/p&gt;
+&lt;p&gt;但上述方法只适合查询的BGC不多的情况，很多的话最好还是考虑用代码处理atlas_17_07_2004.sql文件，获取metadata，需要使用postgresql进行处理：&lt;/p&gt;
+&lt;p&gt;假设你已经会用并成功运行了postgresql（有点难）&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 运行&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;brew services start postgresql
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 创建&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;createdb -U asa atlas_db
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 导入&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;psql -U asa -d atlas_db -f atlas_17_07_2004.sql
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;# 查看表
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;atlas_db=# \dt
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                List of relations
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; Schema |          Name           | Type  | Owner 
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--------+-------------------------+-------+-------
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | antismash_runs          | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | antismash_runs_bk       | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | assembly2biome          | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | assembly2longestbiome   | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | bigscape_clustering     | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | bigscape_networks       | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | bigslice_gcf            | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | bigslice_gcf_membership | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | biomes                  | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | mgnify_asms             | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | mgnify_asms_old         | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | mibig_membership        | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | protoclusters           | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | protoclusters_bk        | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | regions                 | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | regions_backup          | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | regions_bk              | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | sample_metadata         | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; public | sample_metadata_old     | table | asa
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(19 rows)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;atlas_db=# SELECT * FROM assembly2longestbiome limit 10;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   assembly   |                  longest_biome                  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;--------------+-------------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; MGYA00002187 | root:Host-associated:Animal:Digestive system
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; MGYA00002188 | root:Environmental:Terrestrial:Soil:Forest soil
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; MGYA00002318 | root:Host-associated:Animal:Digestive system
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; MGYA00002319 | root:Host-associated:Animal:Digestive system
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; MGYA00002320 | root:Host-associated:Animal:Digestive system
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; MGYA00003147 | root:Host-associated
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; MGYA00003148 | root:Host-associated
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; MGYA00004354 | root:Environmental
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; MGYA00004355 | root:Environmental
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; MGYA00004356 | root:Environmental
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;(10 rows)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;#导出csv&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;psql -U asa -d atlas_db -c &lt;span class=&#34;s2&#34;&gt;&amp;#34;COPY assembly2longestbiome TO STDOUT WITH CSV HEADER&amp;#34;&lt;/span&gt; &amp;gt; assembly2longestbiome.csv
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;然后就可以查看csv并和自己的数据整合分析。&lt;/p&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;Satria A Kautsar, Justin J J van der Hooft, Dick de Ridder, Marnix H Medema, BiG-SLiCE: A highly scalable tool maps the diversity of 1.2 million biosynthetic gene clusters, GigaScience, Volume 10, Issue 1, January 2021, giaa154. &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1093/gigascience/giaa154&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1093/gigascience/giaa154&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>BGC Atlas助力宏基因组中生物合成基因簇的发现与分析</title>
+        <link>https://jb-cao.github.io/Cao-blog/p/bgc-atlas/</link>
+        <pubDate>Wed, 26 Feb 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://jb-cao.github.io/Cao-blog/p/bgc-atlas/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/bgc-atlas/images/bgc_atlas.png" alt="Featured image of post BGC Atlas助力宏基因组中生物合成基因簇的发现与分析" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;次级代谢产物（Secondary Metabolites）是微生物在生长过程中产生的非必需化合物，尽管对微生物自身的生长发育并非不可或缺，却在生态和生理功能中扮演着重要角色。这些化合物在医药、生物技术和农业领域具有广泛的应用潜力。它们的合成由生物合成基因簇（Biosynthetic Gene Clusters, BGCs）编码，这些基因簇共同指导次级代谢产物的生物合成。随着宏基因组学技术的发展，研究人员能够直接从环境样本中研究BGCs，发现了许多编码全新化学结构的未知基因簇。&lt;/p&gt;
+&lt;p&gt;上次介绍过一下生物合成基因簇家族（GCF）相关的&lt;a class=&#34;link&#34; href=&#34;../gcf-big-fam&#34; &gt;Big-Fam数据库&lt;/a&gt;，但它的源数据来自培养的微生物基因组或存放在公共存储库中的MAG的数据。而且它不提供相应数据的下载，上传还是AntiSmash的id，想要跟自己宏基因组产生的大量BGCs比较不太可能。&lt;/p&gt;
+&lt;p&gt;本文介绍一个比较新的名为&lt;strong&gt;BGC Atlas&lt;/strong&gt;的网络资源（&lt;a class=&#34;link&#34; href=&#34;https://bgc-atlas.cs.uni-tuebingen.de&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://bgc-atlas.cs.uni-tuebingen.de&lt;/a&gt;），它为探索和分析宏基因组中的BGC多样性提供了便捷的工具。该工具最近发表在了NAR上：&lt;/p&gt;
+&lt;p&gt;Caner Bağcı, et.al, BGC Atlas: a web resource for exploring the global chemical diversity encoded in bacterial genomes, Nucleic Acids Research, Volume 53, Issue D1, 6 January 2025, Pages D618–D624, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1093/nar/gkae953&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1093/nar/gkae953&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;BGC Atlas从公开数据集中识别并聚类BGCs，提供了一个集中化的数据库和网络界面，支持基于元数据的BGC和基因簇家族（Gene Cluster Families, GCFs）的探索。通过对MGnify平台上超过35,000个数据集的分析，BGC Atlas识别了近180万个BGCs，并将其聚类为GCFs。分析结果显示，核糖体合成并经翻译后修饰的肽类（RiPPs）是最丰富的化合物类别，且大多数GCFs表现出高度的环境特异性。&lt;/p&gt;
+&lt;h2 id=&#34;database&#34;&gt;Database&lt;/h2&gt;
+&lt;img src=&#34;images/bgc_atlas.png&#34; title=&#34;&#34;/&gt;
+&lt;h3 id=&#34;数据收集与预处理&#34;&gt;数据收集与预处理&lt;/h3&gt;
+&lt;p&gt;研究者从公共数据库MGnify收集了宏基因组数据集及其对应的元数据。这些数据集涵盖了海洋、土壤、人体相关及其他环境样本。对于每个样本，研究者获取了FASTA格式的组装contigs以及描述样本环境和生物学背景的元数据（上图）。&lt;/p&gt;
+&lt;h3 id=&#34;bgc识别&#34;&gt;BGC识别&lt;/h3&gt;
+&lt;p&gt;使用antiSMASH（版本7.0.0）识别BGCs，参数设置为&lt;code&gt;--clusterhmmer --tigrfam --asf --cc-mibig --cb-subclusters --cb-knownclusters --pfam2go --rre --tfbs --genefinding-tool prodigal-m --allow-long-headers&lt;/code&gt;。antiSMASH提供了全面的注释信息，包括次级代谢产物类型、预测的化学结构和功能域，并构建了antiSMASH-DB用于存储和比较BGCs。&lt;/p&gt;
+&lt;h3 id=&#34;bgc聚类&#34;&gt;BGC聚类&lt;/h3&gt;
+&lt;p&gt;使用BiG-SLiCE（版本2.0.0）将BGCs聚类为基因簇家族（GCFs），基于序列相似性和域结构进行分组，形成非冗余的GCFs集合（上图）。聚类过程分为两步：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;初始聚类&lt;/strong&gt;：对antiSMASH标注为完整的BGCs进行聚类，距离阈值为0.4，确保核心簇定义明确。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;部分BGCs分配&lt;/strong&gt;：将antiSMASH标注为“on contig edge”的部分BGCs和MIBiG数据库中的已知化合物分配到预定义的簇中，距离阈值同样为0.4，保留最佳匹配结果。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;数据库与网络界面&#34;&gt;数据库与网络界面&lt;/h3&gt;
+&lt;p&gt;BGC识别和聚类结果存储在PostgreSQL数据库中，支持复杂查询和高效数据管理。研究者还开发了BGC Atlas的网络界面，基于node.js、express、pug、leaflet和bootstrap构建，提供以下功能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;BGC和GCF探索&lt;/strong&gt;：浏览BGCs、查看详细注释及其在不同环境中的分布。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;元数据整合&lt;/strong&gt;：将BGC数据与环境元数据结合，支持生态和进化分析。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;查询功能&lt;/strong&gt;：用户可输入BGC序列，使用BiG-SLiCE查询模式在数据库中搜索相似簇，结果以表格形式展示输入BGC与最接近GCF的距离。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;img src=&#34;images/web.png&#34; title=&#34;&#34;/&gt;
+&lt;p&gt;BGC Atlas 提供了多种视图和功能，用于探索宏基因组样本、BGCs 和 GCFs。所有视图均支持基于自由文本或元数据特征的搜索和过滤。通过“Filter”菜单，用户可以使用布尔逻辑组合多个条件进行查询，例如搜索来自“Arctic”（地理位置特征）环境的“Marine”（生物群落特征）BGCs。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Samples 视图&lt;/strong&gt;：展示所有分析样本及其元数据特征，用户可通过antiSMASH界面进一步探索这些样本。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BGCs 视图&lt;/strong&gt;：显示数据库中所有BGCs的表格，支持过滤功能以进行更具体的查询。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GCFs 视图&lt;/strong&gt;：展示所有GCFs的表格，选择特定GCF后，“BGCs”视图将仅显示该GCF的成员BGCs。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这种设计使用户能够在不同视图之间切换，结合详细注释和分布信息，深入比较分析BGCs及其所属GCFs，并通过元数据探索其生态学意义（上图）。&lt;/p&gt;
+&lt;h2 id=&#34;result&#34;&gt;Result&lt;/h2&gt;
+&lt;h3 id=&#34;bgc结构类别的分布&#34;&gt;BGC结构类别的分布&lt;/h3&gt;
+&lt;p&gt;研究者对MGnify的35,486个数据集进行了初步分析，发现了约185万个BGCs，分布于多种环境样本中。其中，绝大多数（88.7%）BGCs被antiSMASH标注为“on contig edge”，表明它们的不完整性，这主要是由于宏基因组测序通常产生较短的contigs。尽管如此，超过一半（51.7%）的BGCs长度仍超过5 kb，完整BGCs的中位长度约为21 kb。&lt;/p&gt;
+&lt;p&gt;在分析的BGCs中，&lt;strong&gt;核糖体合成并经翻译后修饰的肽类（RiPPs）&lt;strong&gt;占比最高（52.3%），其中环内酯自诱导物是最常见的产物类型（16.5%）。RiPPs的高比例可能与数据库中宿主相关样本的过度代表性有关。多项研究表明，RiPPs是人类微生物组中最常见的BGC类别，特别是在乳酸菌基因组中，其占比可高达76%。其他显著的结构类别包括&lt;/strong&gt;萜类&lt;/strong&gt;、&lt;strong&gt;非核糖体肽&lt;/strong&gt;和&lt;strong&gt;聚酮类&lt;/strong&gt;，这些类别共同构成了宏基因组中观察到的化学多样性。研究者还发现，不同生物群落中产物类别的分布存在显著差异。例如，萜类主要存在于陆地环境样本中，而RiPPs在宿主相关样本中最为丰富。&lt;/p&gt;
+&lt;h3 id=&#34;基因簇家族gcfs的栖息地特异性&#34;&gt;基因簇家族（GCFs）的栖息地特异性&lt;/h3&gt;
+&lt;p&gt;聚类分析显示，GCFs表现出显著的栖息地特异性，表明某些BGCs适应了特定的环境条件。总体而言，76%的GCFs（至少包含5个BGC成员）仅存在于一种特定栖息地中，这强调了微生物次级代谢的生态专一性。&lt;/p&gt;
+&lt;p&gt;在MGnify生物群落分类的第一层级（宿主相关、环境、工程和混合）中，几乎所有GCFs都局限于某一特定类别。这种高度特异性在第二层级（如宿主相关样本中的人类、哺乳动物和鸟类）中依然存在，表明大多数GCFs对特定宿主类型具有专一性。在第三层级（如人类样本中的消化系统与皮肤），这种趋势继续延续，表明GCF特异性甚至延伸到宿主体内的不同部位。然而，随着分类的细化，栖息地特异性逐渐减弱。例如，在第四层级（如人类消化系统中的大肠与后肠），GCFs的专一性下降，表明某些GCFs虽然适应了更广泛的环境（如人类消化系统），但也可能存在于更细分的生态位中。&lt;/p&gt;
+&lt;p&gt;在环境样本中也观察到了类似的模式。这些样本在第一层级被广泛分类，而在第二层级（如水生与陆地）中，大多数GCFs仍然高度特异性于这些不同的环境类型。在第三层级（如水生样本中的淡水与海洋），GCFs仍然主要特异性于特定的水生栖息地。然而，到了第四层级（如淡水样本中的地下水、静水与流水），栖息地特异性开始减弱，表明某些GCFs虽然适应了更广泛的水生环境，但也可能存在于更狭窄的亚栖息地中。&lt;/p&gt;
+&lt;p&gt;对某些GCFs的详细分析揭示了显著的栖息地特异性模式。例如，&lt;strong&gt;GCF2487&lt;/strong&gt;（一种萜类生产簇）仅在全球的河口样本中发现，凸显了其对该特定环境的适应性。另一方面，&lt;strong&gt;GCF12495&lt;/strong&gt;（一种长度约50 kb的非核糖体肽合成酶BGC家族）仅在来自欧洲、东南亚和北美的哺乳动物粪便样本中被发现。这些特异性BGCs的生态作用表明，微生物可能采用了特定的适应策略以在其各自环境中繁衍生息。&lt;/p&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;Caner Bağcı, Matin Nuhamunada, Hemant Goyat, Casimir Ladanyi, Ludek Sehnal, Kai Blin, Satria A Kautsar, Azat Tagirdzhanov, Alexey Gurevich, Shrikant Mantri, Christian von Mering, Daniel Udwary, Marnix H Medema, Tilmann Weber, Nadine Ziemert, BGC Atlas: a web resource for exploring the global chemical diversity encoded in bacterial genomes, Nucleic Acids Research, Volume 53, Issue D1, 6 January 2025, Pages D618–D624, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1093/nar/gkae953&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1093/nar/gkae953&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>生物合成基因簇家族（GCF）数据库 BiG-FAM</title>
+        <link>https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/</link>
+        <pubDate>Wed, 08 Jan 2025 00:00:00 +0000</pubDate>
+        
+        <guid>https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/</guid>
+        <description>&lt;img src="https://jb-cao.github.io/Cao-blog/p/gcf-big-fam/images/Screenshot%202025-01-08%20at%2011.53.28.png" alt="Featured image of post 生物合成基因簇家族（GCF）数据库 BiG-FAM" /&gt;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;生物合成基因簇 (BGC) 的计算分析通过快速研究微生物基因组序列内的次级代谢潜力，彻底改变了天然产物的发现。将同源 BGC 分组为基因簇家族 (GCF) 有助于绘制其结构和分类多样性，并通过对已知功能的 BGC 进行去重复，提供对假定 BGC 新颖性的见解。&lt;/p&gt;
+&lt;p&gt;通过将从当前可用的基因组和 MAG 中鉴定出的大规模全球 BGC 集合作为数据源，BiG-FAM 提供了可探索的微生物次生代谢多样性“图集”，以浏览和搜索跨类群的生物合成多样性。
+BiG-FAM 有助于查询假定的 BGC，以便根据公开数据与其他已知和预测的 BGC 的关系，快速找到它们在多样性图上的位置，并更好地了解它们的新颖性或（可能的）功能。&lt;/p&gt;
+&lt;p&gt;BiG-FAM数据库（2020年）基于从多个公开可用来源获取的 1,225,071 个 BGC 的 GCF 聚类。这项大规模分析是使用 BiG-SLiCE 软件 和任意聚类阈值 (T=900.0) 进行的，结果构建了 29,955 个 GCF 模型，每个模型代表不同的蛋白质结构域和序列特征BGC。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;这个数据库一直没有更新，而最近几年又是宏基因组测序井喷的时候，里面的GCF数量肯定远低于现在已经发现的GCF，但稍微用一下做参考还是可以的（或者有想法可以自己跑一下更多公开数据说不定也是一篇NAR）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;BiG-FAM数据库在线访问：&lt;a class=&#34;link&#34; href=&#34;https://bigfam.bioinformatics.nl&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://bigfam.bioinformatics.nl&lt;/a&gt;&lt;/p&gt;
+&lt;img src=&#34;images/big-fam.png&#34; title=&#34;&#34;/&gt;
+&lt;h2 id=&#34;数据库特征&#34;&gt;数据库特征&lt;/h2&gt;
+&lt;h3 id=&#34;超过120万个bgc的gcf数据&#34;&gt;超过120万个BGC的GCF数据&lt;/h3&gt;
+&lt;p&gt;BiG-FAM数据库包含29,955个通过BiG-SLiCE 1.0版本计算的GCF，这些数据源自1,225,071个BGC的集合。这些BGC通过antiSMASH v5.1.1从188,622个微生物基因组（包括细菌、真菌和古菌基因组）以及20,584个MAG中预测得到，并补充了来自MIBiG 2.0数据库的实验验证BGC。所有基因组的完整列表及其BGC计数和分类信息见补充表。这些BGC及其对应的GCF涵盖了广泛的生物合成类别和分类群，提供了对微生物次级代谢多样性的全面覆盖。&lt;/p&gt;
+&lt;h3 id=&#34;数据库内容的无缝探索&#34;&gt;数据库内容的无缝探索&lt;/h3&gt;
+&lt;p&gt;基于BiG-SLiCE 1.0.0生成的核心SQLite3数据存储，作者使用Python Flask库构建了一个功能齐全的Web服务器。为了实现更流畅的浏览体验，特别是在计算密集型的网页中，作者额外实现了一层缓存存储，用于预取复杂SQL查询。此外，这种设置还实现了轻量级的“搜索和过滤”功能，使用户能够根据特定的分类群、来源数据集类型、生物合成类别或蛋白质域来查找BGC或GCF。&lt;/p&gt;
+&lt;img src=&#34;images/Screenshot 2025-01-08 at 11.53.28.png&#34; title=&#34;&#34;/&gt;
+&lt;h3 id=&#34;用户提交bgc的快速gcf定位&#34;&gt;用户提交BGC的快速GCF定位&lt;/h3&gt;
+&lt;p&gt;使用BiG-SLiCE的一个主要优势在于，每个GCF的共享BGC特征被总结在与底层BGC相同的基于欧几里得距离的特征矩阵中，形成GCF模型。这使得BGC到GCF的线性匹配成为可能，从而可以在几秒钟内将新测序的BGC定位到预计算的生物合成多样性全球图谱中。为了便于使用这一功能，BiG-FAM集成了一个基于Web的“查询”提交系统，用户可以直接提交通过antiSMASH预测的BGC进行GCF分析。生成的BGC到GCF匹配结果将揭示查询BGC的近缘和远缘关系，帮助研究其新颖性、与其他BGC的关系，以及跨分类群的分布和进化。&lt;/p&gt;
+&lt;h3 id=&#34;直接链接到bgc和基因组数据库&#34;&gt;直接链接到BGC和基因组数据库&lt;/h3&gt;
+&lt;p&gt;尽管BiG-FAM存储并展示了许多与BGC相关的有用信息，但它并非旨在成为一个BGC数据库，因此不包含与GCF无直接关联的信息。为了支持需要这些数据的用户，BiG-FAM存储了来自MIBiG和antiSMASH数据库的BGC元数据链接。这些交叉链接可用于获取更多信息，例如BGC产物的核心结构。此外，每个BGC的摘要页面还提供了原始基因组来源的链接，用户也可以从GCF页面下载合并的URL列表。&lt;/p&gt;
+&lt;h2 id=&#34;应用示例&#34;&gt;应用示例&lt;/h2&gt;
+&lt;h3 id=&#34;探索ranthipeptide-bgc的多样性&#34;&gt;探索Ranthipeptide BGC的多样性&lt;/h3&gt;
+&lt;p&gt;Ranthipeptides（曾被称为“SCIFF肽”）是一类核糖体合成并经翻译后修饰的肽（RiPPs），主要存在于梭菌纲（Clostridia）中，尽管GC含量分析表明其生物合成基因可能通过水平转移传播到其他分类群。近期研究表明，这些肽在群体水平调控中发挥重要作用，例如通过群体感应机制。在作者先前绘制120万个BGC全球多样性的研究中，作者捕获了6,800个推定的ranthipeptide BGC，这些BGC在前体肽侧翼的基因邻域表现出多样性。为了探索这种多样性，作者可以使用BiG-FAM的“GCF搜索”功能，并以该BGC类的两个标志性结构域（AS-TIGR03973和Radical_SAM）作为查询条件。搜索结果显示了79个GCF，每个GCF代表了不同的BGC分布模式及其分类学来源。通过点击每个GCF的详情页面链接，可以获取其分类来源、核苷酸长度、计算半径以及GCF内BGC共享的生物合成特征。此外，所有BGC的概览及其序列链接可以以TSV格式下载。多基因比较可视化功能还提供了ranthipeptide前体基因侧翼基因邻域多样性的整合视图。&lt;/p&gt;
+&lt;img src=&#34;images/Screenshot 2025-01-08 at 13.09.04.png&#34; title=&#34;&#34;/&gt;
+&lt;h3 id=&#34;对新测序链霉菌株的gcf分析&#34;&gt;对新测序链霉菌株的GCF分析&lt;/h3&gt;
+&lt;p&gt;最近，一株从突尼斯薰衣草根际土壤中分离的新链霉菌——Streptomyces tunisialbus的基因组草图被发布。为了展示BiG-FAM如何用于评估新测序BGC的生物合成新颖性并捕捉其远缘关系，作者从ENA下载了该基因组的组装数据，并将其上传至antiSMASH Web服务器，获得了一个唯一的任务ID。该ID可直接用于在BiG-FAM中进行GCF分析。对36个antiSMASH预测的BGC的完整分析在不到一分钟内完成，生成了最佳BGC-to-GCF匹配对的汇总表。其中一个有趣的BGC是来自“Region 15.1”的完整46.5 kb Type-I PKS基因簇，其在ClusterBlast和KnownClusterBlast结果中与公共数据库的基因簇匹配率较低。GCF分析结果显示，该BGC仅与一个单例GCF有显著匹配，进一步检查发现该GCF源自同一基因组的NCBI提交条目。这表明该PKS BGC代表了一种新型BGC，因为它与其他基因组中的GCF成员没有密切关系。通过“追踪”查询BGC的生物合成结构域，可以分析与数百至数千个远缘BGC的关系，展示基因之间的结构域架构相似性。&lt;/p&gt;
+&lt;img src=&#34;images/Screenshot 2025-01-08 at 13.09.25.png&#34; title=&#34;&#34;/&gt;
+&lt;h2 id=&#34;reference&#34;&gt;Reference&lt;/h2&gt;
+&lt;p&gt;Satria A Kautsar, Kai Blin, Simon Shaw, Tilmann Weber, Marnix H Medema, BiG-FAM: the biosynthetic gene cluster families database, Nucleic Acids Research, Volume 49, Issue D1, 8 January 2021, Pages D490–D497, &lt;a class=&#34;link&#34; href=&#34;https://doi.org/10.1093/nar/gkaa812&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;https://doi.org/10.1093/nar/gkaa812&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

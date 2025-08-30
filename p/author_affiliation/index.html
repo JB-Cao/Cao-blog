@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Motivation SCI论文投稿时，我们要整理好作者和对应的单位，一般用数字上标对应下面的单位信息，然后用一些特殊符号如“#，*”来代表贡献相同的作者或者通讯作者。
+一般一个课题组出来的成果，只有几个作者的情况我们手打一下就好了。但现在的研究更多都是交叉性质的，可能会涉及到很多课题组合作，一些大的研究可能还会有几十个作者和单位，比如下面一篇cell，一页纸都写不完。
+一次手打完，不改了就还好，但这时老师叫你把某个单位顺序改一下，或者新加了个作者和单位，那么上面所有的数字上标都要随之改变，改起来就比较费劲了，还容易出错😂。
+所以我简单写了一个R函数，实现从整理好的作者-单位表格中自动生成符合规范的作者-单位 Rmarkdown文件，然后点击一下knit就可以生成对应的word文件，上标也不需要自己手动设置。如果需要改顺序也是在表格中调整一下重新生成即可，还是比较方便的。
+作者-单位 拿一篇cell文章《Molecular Choreography of Acute Exercise》做例子。
+准备一个表格，至少包含两列列名为Author和Affiliation，注意这里的作者顺序就是文章里想要的顺序，默认的单位顺序是根据作者顺位生成的： 如果要指定单位的顺序，那就再准备一列Affiliation的表格，保持想要的单位顺序： 如果还要添加额外的符号上标，如共一的#和通讯的*，再准备一个两列表格，Author和Note： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 # 安装最新版的pcutils # devtools::install_github(&#34;Asa12138/pcutils&#34;) library(pcutils) df=readxl::read_excel(&#34;~/Desktop/test_author.xlsx&#34;) pcutils::generate_and_write_author_rmd(df,file = &#34;~/Desktop/test_author.rmd&#34;) # 如果要指定单位的顺序 affiliation_df=readxl::read_excel(&#34;~/Desktop/test_author.xlsx&#34;,sheet = 2) pcutils::generate_and_write_author_rmd(df,file = &#34;~/Desktop/test_author.rmd&#34;, affiliation_df = affiliation_df) #如果要添加额外的符号上标 author_note=readxl::read_excel(&#34;~/Desktop/test_author.xlsx&#34;,sheet = 3) pcutils::generate_and_write_author_rmd(df,file = &#34;~/Desktop/test_author.rmd&#34;, affiliation_df = affiliation_df, author_note = author_note) 此时会输出一个test_author.rmd的文件，然后我们用Rstudio打开后点一下knit键进行编织，就可以得到word文件了：
+上标格式也不用自己麻烦一个一个点了，如果要修改顺序也比较方便。
+作者贡献 CRediT（贡献者角色分类法）是一种高级分类法，该方法将作者的贡献划分为14个类别，并对每个类别的角色详细精确地定义了作者的贡献。
+'>
+<title>论文作者和单位太多？如何快速整理和修改</title>
+
+<link rel='canonical' href='https://jb-cao.github.io/Cao-blog/p/author_affiliation/'>
+
+<link rel="stylesheet" href="/Cao-blog/scss/style.min.f0ecc11a39cd68bcc1eeb399f153637c1d516d2f399c93e65d25e7606d35ca1e.css"><meta property='og:title' content='论文作者和单位太多？如何快速整理和修改'>
+<meta property='og:description' content='Motivation SCI论文投稿时，我们要整理好作者和对应的单位，一般用数字上标对应下面的单位信息，然后用一些特殊符号如“#，*”来代表贡献相同的作者或者通讯作者。
+一般一个课题组出来的成果，只有几个作者的情况我们手打一下就好了。但现在的研究更多都是交叉性质的，可能会涉及到很多课题组合作，一些大的研究可能还会有几十个作者和单位，比如下面一篇cell，一页纸都写不完。
+一次手打完，不改了就还好，但这时老师叫你把某个单位顺序改一下，或者新加了个作者和单位，那么上面所有的数字上标都要随之改变，改起来就比较费劲了，还容易出错😂。
+所以我简单写了一个R函数，实现从整理好的作者-单位表格中自动生成符合规范的作者-单位 Rmarkdown文件，然后点击一下knit就可以生成对应的word文件，上标也不需要自己手动设置。如果需要改顺序也是在表格中调整一下重新生成即可，还是比较方便的。
+作者-单位 拿一篇cell文章《Molecular Choreography of Acute Exercise》做例子。
+准备一个表格，至少包含两列列名为Author和Affiliation，注意这里的作者顺序就是文章里想要的顺序，默认的单位顺序是根据作者顺位生成的： 如果要指定单位的顺序，那就再准备一列Affiliation的表格，保持想要的单位顺序： 如果还要添加额外的符号上标，如共一的#和通讯的*，再准备一个两列表格，Author和Note： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 # 安装最新版的pcutils # devtools::install_github(&#34;Asa12138/pcutils&#34;) library(pcutils) df=readxl::read_excel(&#34;~/Desktop/test_author.xlsx&#34;) pcutils::generate_and_write_author_rmd(df,file = &#34;~/Desktop/test_author.rmd&#34;) # 如果要指定单位的顺序 affiliation_df=readxl::read_excel(&#34;~/Desktop/test_author.xlsx&#34;,sheet = 2) pcutils::generate_and_write_author_rmd(df,file = &#34;~/Desktop/test_author.rmd&#34;, affiliation_df = affiliation_df) #如果要添加额外的符号上标 author_note=readxl::read_excel(&#34;~/Desktop/test_author.xlsx&#34;,sheet = 3) pcutils::generate_and_write_author_rmd(df,file = &#34;~/Desktop/test_author.rmd&#34;, affiliation_df = affiliation_df, author_note = author_note) 此时会输出一个test_author.rmd的文件，然后我们用Rstudio打开后点一下knit键进行编织，就可以得到word文件了：
+上标格式也不用自己麻烦一个一个点了，如果要修改顺序也比较方便。
+作者贡献 CRediT（贡献者角色分类法）是一种高级分类法，该方法将作者的贡献划分为14个类别，并对每个类别的角色详细精确地定义了作者的贡献。
+'>
+<meta property='og:url' content='https://jb-cao.github.io/Cao-blog/p/author_affiliation/'>
+<meta property='og:site_name' content='Cao&#39;s blog'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='utils' /><meta property='article:published_time' content='2025-05-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2025-05-06T00:00:00&#43;00:00'/><meta property='og:image' content='https://jb-cao.github.io/Cao-blog/p/author_affiliation/images/Screenshot%202025-05-06%20at%2017.22.32.png' />
+<meta name="twitter:title" content="论文作者和单位太多？如何快速整理和修改">
+<meta name="twitter:description" content="Motivation SCI论文投稿时，我们要整理好作者和对应的单位，一般用数字上标对应下面的单位信息，然后用一些特殊符号如“#，*”来代表贡献相同的作者或者通讯作者。
+一般一个课题组出来的成果，只有几个作者的情况我们手打一下就好了。但现在的研究更多都是交叉性质的，可能会涉及到很多课题组合作，一些大的研究可能还会有几十个作者和单位，比如下面一篇cell，一页纸都写不完。
+一次手打完，不改了就还好，但这时老师叫你把某个单位顺序改一下，或者新加了个作者和单位，那么上面所有的数字上标都要随之改变，改起来就比较费劲了，还容易出错😂。
+所以我简单写了一个R函数，实现从整理好的作者-单位表格中自动生成符合规范的作者-单位 Rmarkdown文件，然后点击一下knit就可以生成对应的word文件，上标也不需要自己手动设置。如果需要改顺序也是在表格中调整一下重新生成即可，还是比较方便的。
+作者-单位 拿一篇cell文章《Molecular Choreography of Acute Exercise》做例子。
+准备一个表格，至少包含两列列名为Author和Affiliation，注意这里的作者顺序就是文章里想要的顺序，默认的单位顺序是根据作者顺位生成的： 如果要指定单位的顺序，那就再准备一列Affiliation的表格，保持想要的单位顺序： 如果还要添加额外的符号上标，如共一的#和通讯的*，再准备一个两列表格，Author和Note： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 # 安装最新版的pcutils # devtools::install_github(&#34;Asa12138/pcutils&#34;) library(pcutils) df=readxl::read_excel(&#34;~/Desktop/test_author.xlsx&#34;) pcutils::generate_and_write_author_rmd(df,file = &#34;~/Desktop/test_author.rmd&#34;) # 如果要指定单位的顺序 affiliation_df=readxl::read_excel(&#34;~/Desktop/test_author.xlsx&#34;,sheet = 2) pcutils::generate_and_write_author_rmd(df,file = &#34;~/Desktop/test_author.rmd&#34;, affiliation_df = affiliation_df) #如果要添加额外的符号上标 author_note=readxl::read_excel(&#34;~/Desktop/test_author.xlsx&#34;,sheet = 3) pcutils::generate_and_write_author_rmd(df,file = &#34;~/Desktop/test_author.rmd&#34;, affiliation_df = affiliation_df, author_note = author_note) 此时会输出一个test_author.rmd的文件，然后我们用Rstudio打开后点一下knit键进行编织，就可以得到word文件了：
+上标格式也不用自己麻烦一个一个点了，如果要修改顺序也比较方便。
+作者贡献 CRediT（贡献者角色分类法）是一种高级分类法，该方法将作者的贡献划分为14个类别，并对每个类别的角色详细精确地定义了作者的贡献。
+"><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://jb-cao.github.io/Cao-blog/p/author_affiliation/images/Screenshot%202025-05-06%20at%2017.22.32.png' />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<link rel="shortcut icon" href="favicon/android-chrome-512x512.png" />
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/Cao-blog/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/Cao-blog/img/guodong1_hu_72aa525a63157f1a.jpg" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🐛🐶</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/Cao-blog">Cao&#39;s blog</a></h1>
+            <h2 class="site-description">work hard, live happily.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/472862038'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6z" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/JB-Cao'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/Cao-blog/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/about/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/mindmap/' >
+                
+                
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-sitemap"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M15 15m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M9 3m0 2a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2z" /><path d="M6 15v-1a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v1" /><path d="M12 9l0 3" /></svg>
+                
+                <span>Mindmap</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/Cao-blog/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+                <li id="i18n-switch">  
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                    <select name="language" onchange="window.location.href = this.selectedOptions[0].value">
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/" selected>English</option>
+                        
+                            <option value="https://jb-cao.github.io/Cao-blog/zh-cn/" >中文</option>
+                        
+                    </select>
+                </li>
+            
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#motivation">Motivation</a>
+      <ol>
+        <li><a href="#作者-单位">作者-单位</a></li>
+        <li><a href="#作者贡献">作者贡献</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/Cao-blog/p/author_affiliation/">
+                <img src="/Cao-blog/p/author_affiliation/images/Screenshot%202025-05-06%20at%2017.22.32_hu_7e4a78342cf6553e.png"
+                        srcset="/Cao-blog/p/author_affiliation/images/Screenshot%202025-05-06%20at%2017.22.32_hu_7e4a78342cf6553e.png 800w, /Cao-blog/p/author_affiliation/images/Screenshot%202025-05-06%20at%2017.22.32_hu_621219f59808d25.png 1600w"
+                        width="800" 
+                        height="649" 
+                        loading="lazy"
+                        alt="Featured image of post 论文作者和单位太多？如何快速整理和修改" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/Cao-blog/categories/utils/" style="background-color: #bebada; color: #fff;">
+                utils
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/Cao-blog/p/author_affiliation/">论文作者和单位太多？如何快速整理和修改</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">May 06, 6060</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    1 minute read
+                </time>
+            </div>
+        
+        
+        
+
+           <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+              <time class="article-words">
+                版权归Cao's blog所有，转载请注明出处
+              </time>
+           </div>
+        
+    </footer>
+    
+    
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="motivation">Motivation</h2>
+<p>SCI论文投稿时，我们要整理好作者和对应的单位，一般用数字上标对应下面的单位信息，然后用一些特殊符号如“#，*”来代表贡献相同的作者或者通讯作者。</p>
+<p>一般一个课题组出来的成果，只有几个作者的情况我们手打一下就好了。但现在的研究更多都是交叉性质的，可能会涉及到很多课题组合作，一些大的研究可能还会有几十个作者和单位，比如下面一篇cell，一页纸都写不完。</p>
+<img src="images/Screenshot 2025-05-06 at 17.22.32.png" title=""/>
+<img src="images/Screenshot 2025-05-06 at 17.22.43.png" title=""/>
+<p>一次手打完，不改了就还好，<strong>但这时老师叫你把某个单位顺序改一下，或者新加了个作者和单位，那么上面所有的数字上标都要随之改变，改起来就比较费劲了，还容易出错😂。</strong></p>
+<p>所以我简单写了一个R函数，实现从整理好的作者-单位表格中自动生成符合规范的作者-单位 Rmarkdown文件，然后点击一下knit就可以生成对应的word文件，上标也不需要自己手动设置。如果需要改顺序也是在表格中调整一下重新生成即可，还是比较方便的。</p>
+<h3 id="作者-单位">作者-单位</h3>
+<p>拿一篇cell文章《Molecular Choreography of Acute Exercise》做例子。</p>
+<p>准备一个表格，至少包含两列列名为Author和Affiliation，注意这里的作者顺序就是文章里想要的顺序，默认的单位顺序是根据作者顺位生成的：
+<img src="images/tbl1.png" title=""/></p>
+<p>如果要指定单位的顺序，那就再准备一列Affiliation的表格，保持想要的单位顺序：
+<img src="images/tbl2.png" title=""/></p>
+<p>如果还要添加额外的符号上标，如共一的#和通讯的*，再准备一个两列表格，Author和Note：
+<img src="images/tbl3.png" title=""/></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 安装最新版的pcutils</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># devtools::install_github(&#34;Asa12138/pcutils&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">pcutils</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span><span class="o">=</span><span class="n">readxl</span><span class="o">::</span><span class="nf">read_excel</span><span class="p">(</span><span class="s">&#34;~/Desktop/test_author.xlsx&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pcutils</span><span class="o">::</span><span class="nf">generate_and_write_author_rmd</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">file</span> <span class="o">=</span> <span class="s">&#34;~/Desktop/test_author.rmd&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果要指定单位的顺序</span>
+</span></span><span class="line"><span class="cl"><span class="n">affiliation_df</span><span class="o">=</span><span class="n">readxl</span><span class="o">::</span><span class="nf">read_excel</span><span class="p">(</span><span class="s">&#34;~/Desktop/test_author.xlsx&#34;</span><span class="p">,</span><span class="n">sheet</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pcutils</span><span class="o">::</span><span class="nf">generate_and_write_author_rmd</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">file</span> <span class="o">=</span> <span class="s">&#34;~/Desktop/test_author.rmd&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">affiliation_df</span> <span class="o">=</span> <span class="n">affiliation_df</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#如果要添加额外的符号上标</span>
+</span></span><span class="line"><span class="cl"><span class="n">author_note</span><span class="o">=</span><span class="n">readxl</span><span class="o">::</span><span class="nf">read_excel</span><span class="p">(</span><span class="s">&#34;~/Desktop/test_author.xlsx&#34;</span><span class="p">,</span><span class="n">sheet</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">pcutils</span><span class="o">::</span><span class="nf">generate_and_write_author_rmd</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">file</span> <span class="o">=</span> <span class="s">&#34;~/Desktop/test_author.rmd&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">affiliation_df</span> <span class="o">=</span> <span class="n">affiliation_df</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                       <span class="n">author_note</span> <span class="o">=</span> <span class="n">author_note</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>此时会输出一个test_author.rmd的文件，然后我们用Rstudio打开后点一下knit键进行编织，就可以得到word文件了：</p>
+<img src="images/res.png" title=""/>
+<p>上标格式也不用自己麻烦一个一个点了，如果要修改顺序也比较方便。</p>
+<h3 id="作者贡献">作者贡献</h3>
+<p>CRediT（贡献者角色分类法）是一种高级分类法，该方法将作者的贡献划分为14个类别，并对每个类别的角色详细精确地定义了作者的贡献。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Warning: &#39;xfun::attr()&#39; is deprecated.
+</span></span><span class="line"><span class="cl">## Use &#39;xfun::attr2()&#39; instead.
+</span></span><span class="line"><span class="cl">## See help(&#34;Deprecated&#34;)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+  <thead>
+      <tr>
+          <th style="text-align: left">贡献者角色（中文）</th>
+          <th style="text-align: left">贡献者角色（英文）</th>
+          <th style="text-align: left">定义</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">论文构思</td>
+          <td style="text-align: left">Conceptualization</td>
+          <td style="text-align: left">产生想法，构造或演绎发展主要的研究目的。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">数据管理</td>
+          <td style="text-align: left">Data curation</td>
+          <td style="text-align: left">为数据的首用和后续复用产生元数据，整理数据，维护研究数据（包括软件或程序）。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">形式分析</td>
+          <td style="text-align: left">Formal analysis</td>
+          <td style="text-align: left">使用统计、数学、计算或其他形式分析技术分析或合成研究数据。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">获取资助</td>
+          <td style="text-align: left">Funding acquisition</td>
+          <td style="text-align: left">为了项目研究成果能够发表而去争取并获得资助。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">调查研究</td>
+          <td style="text-align: left">Investigation</td>
+          <td style="text-align: left">实施研究和执行调查过程，特别是从事实验研究或收集数据和证据。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">方法论</td>
+          <td style="text-align: left">Methodology</td>
+          <td style="text-align: left">开发或设计研究用的方法，建立模型。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">项目管理</td>
+          <td style="text-align: left">Project administration</td>
+          <td style="text-align: left">为研究活动的策划和执行进行管理和协调。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">提供资源</td>
+          <td style="text-align: left">Resources</td>
+          <td style="text-align: left">提供研究材料、试剂、病例、实验室样品、动物、仪器、计算设备资源或其他分析工具。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">软件</td>
+          <td style="text-align: left">Software</td>
+          <td style="text-align: left">编程，研发软件，设计计算机程序，实施执行计算机程序及支持算法，测试已有的程序。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">指导</td>
+          <td style="text-align: left">Supervision</td>
+          <td style="text-align: left">监督和领导研究活动的策划和执行，包括对核心成员以外的人员进行指导。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">验证</td>
+          <td style="text-align: left">Validation</td>
+          <td style="text-align: left">对研究结果、实验或其他研究输出内容的复制和重现进行核实验证，包括整体的和部分的核实验证。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">可视化呈现</td>
+          <td style="text-align: left">Visualization</td>
+          <td style="text-align: left">对发表的内容进行准备、创建或表述，特别是内容或数据的可视化展现。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">初稿写作</td>
+          <td style="text-align: left">Writing – original draft</td>
+          <td style="text-align: left">对发表的内容进行准备、创建或表述，特别是撰写初稿，包括实质性翻译。</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">审核与编辑写作</td>
+          <td style="text-align: left">Writing – review &amp; editing</td>
+          <td style="text-align: left">对原始研究团队提出的发表内容进行准备、创建或表述，特别是评论、注释或修改，包括发表前和发表后所发生的这些工作。</td>
+      </tr>
+  </tbody>
+</table></div>
+<p>很多期刊都会让我们以CRediT的格式展示作者贡献，一般手打也很方便。但有时候会统一将名称进行缩写，这里也提供一个函数用来生成，准备一个两列表：</p>
+<img src="images/tbl4.png" title=""/>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">author_contributions</span><span class="o">=</span><span class="n">readxl</span><span class="o">::</span><span class="nf">read_excel</span><span class="p">(</span><span class="s">&#34;~/Desktop/test_author.xlsx&#34;</span><span class="p">,</span><span class="n">sheet</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">cat</span><span class="p">(</span><span class="n">pcutils</span><span class="o">::</span><span class="nf">format_credit_contributions</span><span class="p">(</span><span class="n">author_contributions</span><span class="p">,</span> <span class="n">short_name</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## Conceptualization, K.C., K.J.M., F.H., M.P.S.; Data curation, K.C., S.W., K.J.M.; Formal analysis, K.C., S.W., K.J.M., D.H.; Methodology, K.C., S.W., K.J.M., F.H., M.P.S.; Project administration, K.C., F.H., M.P.S.; Supervision, F.H., M.P.S.; Visualization, K.C., S.W., K.J.M., D.H., F.H., M.P.S.; Writing – original draft, K.C., F.H., M.P.S.
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/Cao-blog/tags/utils/">Utils</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">Related content</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/ncbi-genome/">
+        
+        
+            <div class="article-image">
+                
+                    <img src="/Cao-blog/p/ncbi-genome/images/datasets_schema_taxonomy.svg" loading="lazy" data-key="ncbi-genome" data-hash="/Cao-blog/p/ncbi-genome/images/datasets_schema_taxonomy.svg"/>
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">批量下载NCBI genome相关数据</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/sqlite-r/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/sqlite-r/images/R-C.2a115216bd159624507224fa388dbda7_hu_b1bb55cee70d9e55.png" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post SQLite使用基础以及在R中操作数据库"
+                        data-key="sqlite-r" 
+                        data-hash="md5-KhFSFr0VliRQciT6OI29pw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SQLite使用基础以及在R中操作数据库</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/sem/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/sem/images/sem_model.35f8a0757e6999b02657ef452ee4eaf5_hu_ea3e9e66fd7e7f23.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 中介分析与结构方程模型（SEM）学习"
+                        data-key="sem" 
+                        data-hash="md5-NfigdX5pmbAmV&#43;9FLuTq9Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">中介分析与结构方程模型（SEM）学习</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="has-image">
+    <a href="/Cao-blog/p/docker-singularity/">
+        
+        
+            <div class="article-image">
+                <img src="/Cao-blog/p/docker-singularity/images/docker.93bb574a4f019bad268cedef7444a9ab_hu_eb6e2e0797ec04b8.webp" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post 容器（Docker &amp; Singularity）使用入门"
+                        data-key="docker-singularity" 
+                        data-hash="md5-k7tXSk8Bm60mjO3vdESpqw==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">容器（Docker &amp; Singularity）使用入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="Asa12138/pc_blog2"
+        issue-term="pathname"
+        
+        label="none"
+        
+        crossorigin="anonymous"
+        async
+        >
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+<script>
+    let utterancesLoaded = false;
+
+    function setUtterancesTheme(theme) {
+        let utterances = document.querySelector('.utterances iframe');
+        if (utterances) {
+            utterances.contentWindow.postMessage(
+                {
+                    type: 'set-theme',
+                    theme: `github-${theme}`
+                },
+                'https://utteranc.es'
+            );
+        }
+    }
+
+    addEventListener('message', event => {
+        if (event.origin !== 'https://utteranc.es') return;
+
+        
+        utterancesLoaded = true;
+        setUtterancesTheme(document.documentElement.dataset.scheme)
+    });
+
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (!utterancesLoaded) return;
+        setUtterancesTheme(e.detail)
+    })
+</script>
+
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2025-6 - 
+        
+        2025 Cao&#39;s blog
+    </section>
+    
+    <section class="powerby">
+        
+            Email: 17837411716@163.cn <br/>
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.16.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/Cao-blog/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
